@@ -386,3 +386,8 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 
 .video__alt { margin: 10px 0 0; }
 .video__alt a { display: inline-flex; align-items: center; gap: 6px; font-weight: 600; text-decoration: none; }
+.social .is-linked { border-color: var(--blue); }
+.social .soc__n { font-weight: 700; }
+.social .soc__a { font-weight: 500; color: var(--blue); }
+.social--foot .is-linked { border-color: #FFFFFF; }
+.social--foot .soc__a { color: #DCE8FB; }

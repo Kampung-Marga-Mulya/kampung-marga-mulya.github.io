@@ -431,8 +431,8 @@
   }).join("");
 
   var ikonSos = { Facebook: "thumb", Instagram: "camera", YouTube: "video", TikTok: "note", WhatsApp: "chat" };
-  var sos = D.sosmed.map(function (s) {
-    if (s.url) return '<a href="' + esc(s.url) + '" target="_blank" rel="noopener">' + ic(ikonSos[s.nama] || "globe") + esc(s.nama) + "</a>";
+  var sos = D.sosmed.slice().sort(function (a, b) { return (b.url ? 1 : 0) - (a.url ? 1 : 0); }).map(function (s) {
+    if (s.url) return '<a class="is-linked" href="' + esc(s.url) + '" target="_blank" rel="noopener" aria-label="' + esc(s.nama + " " + s.akun) + '">' + ic(ikonSos[s.nama] || "globe") + '<span class="soc__n">' + esc(s.nama) + '</span><span class="soc__a">' + esc(s.akun) + "</span></a>";
     return '<button type="button" class="is-empty"' + act(function () {
       openModal({ kat: "Media sosial", title: s.nama + " kampung", html: "<p>Akun " + esc(s.nama) + " resmi Kampung Marga Mulya belum ditautkan. Setelah akun dibuat, tautannya akan tersedia di sini.</p><p class='small'>Untuk pengelola: isi kolom url " + esc(s.nama) + " di file data.js.</p>" });
     }) + ">" + ic(ikonSos[s.nama] || "globe") + esc(s.nama) + "</button>";

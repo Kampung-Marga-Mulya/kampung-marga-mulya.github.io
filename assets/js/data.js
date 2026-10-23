@@ -52,9 +52,9 @@ window.KAMPUNG = {
   // Isi tautan akun resmi kampung. Yang kosong akan tampil "belum tersedia".
   sosmed: [
     { nama: "Facebook", url: "", akun: "[nama halaman Facebook kampung]" },
-    { nama: "Instagram", url: "", akun: "[@akun Instagram kampung]" },
+    { nama: "Instagram", url: "https://www.instagram.com/kampung_margamulya/", akun: "@kampung_margamulya" },
     { nama: "YouTube", url: "", akun: "[nama kanal YouTube kampung]" },
-    { nama: "TikTok", url: "", akun: "[@akun TikTok kampung]" },
+    { nama: "TikTok", url: "https://www.tiktok.com/@kampung.marga.mul", akun: "@kampung.marga.mul" },
     { nama: "WhatsApp", url: "", akun: "[nomor WhatsApp kantor kampung]" }   // format url: https://wa.me/62812xxxxxxx
   ],
 
