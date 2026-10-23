@@ -131,17 +131,29 @@
   function step() { var c = track.querySelector(".ncard"); return c ? c.getBoundingClientRect().width + 16 : 300; }
   function updNav() {
     var max = track.scrollWidth - track.clientWidth - 2;
-    prev.disabled = track.scrollLeft <= 2; next.disabled = track.scrollLeft >= max;
     var first = Math.round(track.scrollLeft / step()) + 1;
     var vis = Math.max(1, Math.round(track.clientWidth / step()));
     count.textContent = first + "–" + Math.min(news.length, first + vis - 1) + " dari " + news.length;
   }
-  prev.addEventListener("click", function () { track.scrollBy({ left: -step(), behavior: "smooth" }); });
-  next.addEventListener("click", function () { track.scrollBy({ left: step(), behavior: "smooth" }); });
+  // Berputar: setelah berita terakhir kembali ke berita pertama, dan sebaliknya.
+  var atStart = function () { return track.scrollLeft <= 2; };
+  var atEnd = function () { return track.scrollLeft >= track.scrollWidth - track.clientWidth - 2; };
+  function goNext() { if (atEnd()) track.scrollTo({ left: 0, behavior: "smooth" }); else track.scrollBy({ left: step(), behavior: "smooth" }); }
+  function goPrev() { if (atStart()) track.scrollTo({ left: track.scrollWidth, behavior: "smooth" }); else track.scrollBy({ left: -step(), behavior: "smooth" }); }
+  prev.addEventListener("click", goPrev);
+  next.addEventListener("click", goNext);
+  // Geser jari melewati ujung slider juga berputar ke awal/akhir
+  var tx = null, edge = "";
+  track.addEventListener("touchstart", function (e) { tx = e.touches[0].clientX; edge = atEnd() ? "end" : (atStart() ? "start" : ""); }, { passive: true });
+  track.addEventListener("touchend", function (e) {
+    if (tx === null) return; var dx = e.changedTouches[0].clientX - tx; tx = null;
+    if (edge === "end" && dx < -40) track.scrollTo({ left: 0, behavior: "smooth" });
+    if (edge === "start" && dx > 40) track.scrollTo({ left: track.scrollWidth, behavior: "smooth" });
+  }, { passive: true });
   track.addEventListener("scroll", function () { window.requestAnimationFrame(updNav); }, { passive: true });
   track.addEventListener("keydown", function (e) {
-    if (e.key === "ArrowRight") { e.preventDefault(); next.click(); }
-    if (e.key === "ArrowLeft") { e.preventDefault(); prev.click(); }
+    if (e.key === "ArrowRight") { e.preventDefault(); goNext(); }
+    if (e.key === "ArrowLeft") { e.preventDefault(); goPrev(); }
   });
   window.addEventListener("resize", updNav); updNav();
 
