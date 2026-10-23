@@ -43,8 +43,10 @@ window.KAMPUNG = {
 
   // Dipakai untuk Google Maps, petunjuk arah, dan Street View.
   google: {
-    pencarian: "Marga Mulya, Semangga, Merauke, Papua Selatan",
-    zoom: 15
+    tautan: "https://maps.app.goo.gl/hsfJP5TVHHf9SKjVA",            // tautan Google Maps resmi kampung
+    pencarian: "Marga Mulya, Semangga, Merauke Regency, South Papua", // nama tempat persis di Google Maps
+    ftid: "0x69b53af011096ecb:0xb5940dce9198b34e",                  // ID tempat dari tautan di atas
+    zoom: 14
   },
 
   // Isi tautan akun resmi kampung. Yang kosong akan tampil "belum tersedia".
@@ -272,8 +274,8 @@ window.KAMPUNG = {
 
   video: {
     judul: "Video Profil Kampung Marga Mulya",
-    deskripsi: "Video profil hasil kerja sama Tim Ekspedisi Patriot IPB University dan warga Kampung Marga Mulya.",
-    youtubeId: "",          // ID dari https://youtu.be/ID_VIDEO
+    deskripsi: "Video profil hasil kerja sama Tim Ekspedisi Patriot IPB University dan warga Kampung Marga Mulya. Putar langsung di halaman ini.",
+    youtubeId: "4WKrKH5IqJc",   // dari https://youtu.be/4WKrKH5IqJc
     fileLokal: "",          // atau "assets/video/profil.mp4"
     poster: ""
   },

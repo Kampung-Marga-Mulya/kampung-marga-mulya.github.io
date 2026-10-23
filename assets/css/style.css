@@ -383,3 +383,6 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .mini-stat b { display: block; font-size: 1.25rem; color: var(--blue); font-variant-numeric: tabular-nums; }
 .mini-stat span { font-size: .8rem; color: var(--ink-2); }
 .toast { position: fixed; left: 50%; bottom: calc(20px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%); background: var(--ink); color: #fff; padding: 10px 16px; border-radius: 10px; font-size: .92rem; z-index: 80; }
+
+.video__alt { margin: 10px 0 0; }
+.video__alt a { display: inline-flex; align-items: center; gap: 6px; font-weight: 600; text-decoration: none; }

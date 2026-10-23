@@ -63,12 +63,12 @@
   var G = D.google, hasKoord = !!(id.koordinat && id.koordinat.lat);
   var gQuery = hasKoord ? id.koordinat.lat + "," + id.koordinat.lng : G.pencarian;
   var gm = {
-    open: "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(gQuery),
+    open: G.tautan || "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(gQuery),
     dir: "https://www.google.com/maps/dir/?api=1&destination=" + encodeURIComponent(gQuery),
     street: hasKoord
       ? "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=" + id.koordinat.lat + "," + id.koordinat.lng
       : "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(G.pencarian),
-    embed: function (type) { return "https://maps.google.com/maps?q=" + encodeURIComponent(gQuery) + "&t=" + type + "&z=" + G.zoom + "&ie=UTF8&iwloc=&output=embed"; },
+    embed: function (type) { return "https://maps.google.com/maps?q=" + encodeURIComponent(gQuery) + (!hasKoord && G.ftid ? "&ftid=" + G.ftid : "") + "&t=" + type + "&z=" + G.zoom + "&hl=id&ie=UTF8&iwloc=&output=embed"; },
     cari: function (nama) { return "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(nama + ", " + G.pencarian); }
   };
   var mapBtn = function (href, label, icon, solid) {
@@ -317,14 +317,15 @@
     (hasKoord ? "" : " Bila belum langsung tampil, seret ikon orang kuning di Google Maps ke jalan berwarna biru.") + "</p>" + mapBtn(gm.street, "Buka Street View", "person", true) + "</div>";
   var tabs = $("#mapTabs");
   tabs.addEventListener("click", function (e) {
-    var b = e.target.closest("button[data-tab]"); if (!b) return;
-    var t = b.dataset.tab;
-    tabs.querySelectorAll("button").forEach(function (x) { x.setAttribute("aria-selected", x === b ? "true" : "false"); });
+    var b = e.target.closest("button[data-tab]"); if (b) showTab(b.dataset.tab);
+  });
+  function showTab(t) {
+    tabs.querySelectorAll("button").forEach(function (x) { x.setAttribute("aria-selected", x.dataset.tab === t ? "true" : "false"); });
     ["drone", "satelit", "jalan", "street"].forEach(function (p) { $("#panel-" + p).hidden = p !== t; });
     if (t === "satelit") frame("satelit", "k");
     if (t === "jalan") frame("jalan", "m");
     if (t === "drone") drawSketch();
-  });
+  }
 
   var ortho = $("#ortho"), canvas = $("#sketch");
   if (PT.ortofoto) {
@@ -332,7 +333,8 @@
     ortho.onerror = drawSketch;
     ortho.src = PT.ortofoto;
   }
-  drawSketch();
+  // Selama ortofoto belum ada, peta Google satelit tampil lebih dulu di halaman.
+  showTab(PT.ortofoto ? "drone" : "satelit");
   var rT; window.addEventListener("resize", function () { clearTimeout(rT); rT = setTimeout(function () { if (!canvas.hidden) drawSketch(); }, 150); });
 
   // Peta sketsa sementara (warna biru): petak sawah, jalan, saluran irigasi, permukiman.
@@ -378,10 +380,9 @@
   if (V.fileLokal) {
     vb.innerHTML = '<video controls preload="metadata"' + (V.poster ? ' poster="' + esc(V.poster) + '"' : "") + '><source src="' + esc(V.fileLokal) + '" type="video/mp4">Peramban Anda tidak mendukung video.</video>';
   } else if (V.youtubeId) {
-    vb.innerHTML = '<button class="video__poster" type="button" id="playBtn">' + poster + '<div><span class="video__play">' + ic("play") + "</span><b>Putar video profil</b><small>YouTube</small></div></button>";
-    $("#playBtn").addEventListener("click", function () {
-      vb.innerHTML = '<iframe src="https://www.youtube-nocookie.com/embed/' + encodeURIComponent(V.youtubeId) + '?autoplay=1&rel=0" title="' + esc(V.judul) + '" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>';
-    });
+    // Pemutar YouTube tertanam: video diputar langsung di halaman ini.
+    vb.innerHTML = '<iframe src="https://www.youtube-nocookie.com/embed/' + encodeURIComponent(V.youtubeId) + '?rel=0&playsinline=1" title="' + esc(V.judul) + '" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen></iframe>';
+    vb.insertAdjacentHTML("afterend", '<p class="video__alt"><a href="https://youtu.be/' + encodeURIComponent(V.youtubeId) + '" target="_blank" rel="noopener">' + ic("video") + "Tonton juga di YouTube</a></p>");
   } else {
     vb.innerHTML = '<button class="video__poster" type="button"' + act(function () {
       openModal({ kat: "Video profil", title: "Video sedang disiapkan", html: "<p>Video profil Kampung Marga Mulya sedang diproduksi oleh Tim Ekspedisi Patriot IPB University bersama warga. Setelah diunggah ke YouTube, video akan diputar langsung di sini.</p>" });
