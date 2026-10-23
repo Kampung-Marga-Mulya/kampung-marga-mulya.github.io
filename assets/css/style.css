@@ -89,14 +89,9 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 
 /* ---------- Hero ---------- */
 .hero { padding-block: 48px 8px; background: linear-gradient(180deg, #fff 0%, var(--tint) 100%); }
-.hero__in { display: grid; grid-template-columns: minmax(0, 1fr); gap: 0; }
-.hero__text { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 8px 40px; align-items: end; }
-.hero__text > .eyebrow, .hero__text > h1, .hero__text > .hero__place { grid-column: 1; }
-.hero__text > .collab, .hero__text > .hero__cta { grid-column: 2; }
-.hero__text > .collab { grid-row: 2; align-self: end; margin-bottom: 0; }
-.hero__text > .hero__cta { grid-row: 3; align-self: start; }
-.hero__photo { margin: 22px 0 0; position: relative; border-radius: 18px; overflow: hidden; background: var(--soft); }
-.hero__photo img { width: 100%; height: auto; aspect-ratio: 2 / 1; object-fit: cover; object-position: 50% 40%; }
+.hero__in { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: 36px; align-items: center; }
+.hero__photo { margin: 0; position: relative; border-radius: 18px; overflow: hidden; background: var(--soft); }
+.hero__photo img { width: 100%; height: auto; aspect-ratio: 2 / 1; object-fit: cover; object-position: 50% 45%; }
 .hero__photo figcaption { position: absolute; left: 12px; bottom: 12px; right: 12px; width: fit-content; max-width: calc(100% - 24px); background: rgba(255,255,255,.94); color: var(--ink); font-size: .86rem; font-weight: 600; padding: 6px 10px; border-radius: 8px; }
 .hero h1 { font-size: clamp(2.5rem, 6vw, 4.2rem); margin-bottom: .25em; }
 .hero__place { font-size: 1.15rem; color: var(--ink-2); margin-bottom: 1.4rem; }
@@ -107,9 +102,8 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .hero__cta { display: flex; flex-wrap: wrap; gap: 10px; }
 @media (max-width: 820px) {
   .hero { padding-top: 28px; }
-  .hero__text { grid-template-columns: minmax(0, 1fr); }
-  .hero__text > .collab, .hero__text > .hero__cta { grid-column: 1; grid-row: auto; }
-  .hero__text > .collab { margin: 6px 0 4px; }
+  .hero__in { grid-template-columns: minmax(0, 1fr); gap: 18px; }
+  .hero__photo { order: -1; }
   .hero__photo img { aspect-ratio: 16 / 10; }
   .hero__photo figcaption { position: static; max-width: none; width: auto; background: var(--soft); border-radius: 0; font-weight: 500; }
 }
