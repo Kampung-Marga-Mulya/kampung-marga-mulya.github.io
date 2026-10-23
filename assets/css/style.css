@@ -391,3 +391,6 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .social .soc__a { font-weight: 500; color: var(--blue); }
 .social--foot .is-linked { border-color: #FFFFFF; }
 .social--foot .soc__a { color: #DCE8FB; }
+.contact a.tap { color: var(--ink); text-decoration: none; }
+.contact a.tap b { color: var(--blue); }
+.contact .go { margin-left: auto; color: var(--blue); }
