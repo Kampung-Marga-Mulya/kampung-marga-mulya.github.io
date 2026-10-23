@@ -51,7 +51,7 @@ window.KAMPUNG = {
 
   // Isi tautan akun resmi kampung. Yang kosong akan tampil "belum tersedia".
   sosmed: [
-    { nama: "Facebook", url: "", akun: "[nama halaman Facebook kampung]" },
+    { nama: "Facebook", url: "https://www.facebook.com/share/1FFzSdy1pr/", akun: "Kampung Marga Mulya" },
     { nama: "Instagram", url: "https://www.instagram.com/kampung_margamulya/", akun: "@kampung_margamulya" },
     { nama: "YouTube", url: "", akun: "[nama kanal YouTube kampung]" },
     { nama: "TikTok", url: "https://www.tiktok.com/@kampung.marga.mul", akun: "@kampung.marga.mul" },
