@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Marga Mulya On Site</title>
+  <meta name="description" content="Profil resmi Kampung Marga Mulya, Distrik Semangga, Kabupaten Merauke, Papua Selatan. Data kampung, struktur pemerintahan, kependudukan, peta drone, dan video profil.">
+  <meta property="og:title" content="Marga Mulya On Site — Profil Kampung Marga Mulya">
+  <meta property="og:description" content="Pusat informasi Kampung Marga Mulya, Distrik Semangga, Merauke. Kerja sama Tim Ekspedisi Patriot IPB University dan Pemerintah Kampung Marga Mulya.">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#FFFFFF">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;800;900&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <a class="skip" href="#isi">Langsung ke isi</a>
+
+  <header class="topbar" id="atas">
+    <div class="wrap topbar__in">
+      <a class="brand" href="#beranda" aria-label="Marga Mulya On Site, ke beranda">
+        <span class="brand__mark" aria-hidden="true">MM</span>
+        <span class="brand__text"><b>Marga Mulya</b><small>On Site</small></span>
+      </a>
+      <button class="navtoggle" id="navtoggle" aria-expanded="false" aria-controls="menu">Menu</button>
+      <nav class="menu" id="menu" aria-label="Navigasi utama">
+        <a href="#profil">Profil</a>
+        <a href="#pemerintahan">Pemerintahan</a>
+        <a href="#data">Data Penduduk</a>
+        <a href="#peta">Peta Drone</a>
+        <a href="#video">Video</a>
+        <a href="#potensi">Potensi</a>
+        <a href="#galeri">Galeri</a>
+        <a href="#kontak">Kontak</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="draftbar" id="draftbar" hidden>
+    <div class="wrap">Versi draf: bagian bertanda <span class="chip chip--contoh">contoh</span> berisi data contoh dan akan diganti dengan data resmi kampung.</div>
+  </div>
+
+  <main id="isi">
+    <!-- BERANDA -->
+    <section class="hero" id="beranda">
+      <div class="hero__field" aria-hidden="true"></div>
+      <div class="wrap hero__in">
+        <p class="hero__gate">Selamat datang di</p>
+        <h1 class="hero__title"><span data-bind="identitas.nama">Kampung Marga Mulya</span></h1>
+        <p class="hero__place" id="heroPlace">Distrik Semangga · Kabupaten Merauke · Papua Selatan</p>
+        <div class="collab" id="collab">
+          <span class="collab__label">Kerja sama</span>
+          <span class="collab__party">Tim Ekspedisi Patriot IPB University</span>
+          <span class="collab__x" aria-hidden="true">×</span>
+          <span class="collab__party">Pemerintah Kampung Marga Mulya</span>
+        </div>
+        <dl class="facts" id="facts"></dl>
+      </div>
+    </section>
+
+    <!-- PROFIL -->
+    <section class="sec" id="profil">
+      <div class="wrap">
+        <header class="sec__head">
+          <p class="eyebrow">Profil Kampung</p>
+          <h2>Mengenal Marga Mulya</h2>
+        </header>
+        <div class="grid-2">
+          <div class="prose" id="sejarah"></div>
+          <aside class="card" aria-labelledby="idtitle">
+            <h3 id="idtitle">Identitas Wilayah</h3>
+            <dl class="kv" id="identitas"></dl>
+          </aside>
+        </div>
+        <div class="grid-2 mt">
+          <div>
+            <h3>Visi</h3>
+            <p class="visi" id="visi"></p>
+            <h3>Misi</h3>
+            <ol class="misi" id="misi"></ol>
+          </div>
+          <div>
+            <h3>Batas Wilayah</h3>
+            <div class="compass" id="batas"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PEMERINTAHAN -->
+    <section class="sec sec--tint" id="pemerintahan">
+      <div class="wrap">
+        <header class="sec__head">
+          <p class="eyebrow">Pemerintahan Kampung</p>
+          <h2>Struktur Organisasi</h2>
+          <p class="lead">Susunan Pemerintah Kampung Marga Mulya, Badan Musyawarah Kampung (Bamuskam), dan lembaga kemasyarakatan.</p>
+        </header>
+        <div class="org" id="org"></div>
+        <div class="grid-2 mt">
+          <div>
+            <h3>Badan Musyawarah Kampung</h3>
+            <ul class="roster" id="bamuskam"></ul>
+          </div>
+          <div>
+            <h3>Lembaga Kemasyarakatan</h3>
+            <ul class="roster" id="lembaga"></ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DATA PENDUDUK -->
+    <section class="sec" id="data">
+      <div class="wrap">
+        <header class="sec__head">
+          <p class="eyebrow">Data Kampung</p>
+          <h2>Kependudukan</h2>
+          <p class="lead" id="dataSumber"></p>
+        </header>
+        <div class="stats" id="stats"></div>
+
+        <div class="panel mt">
+          <div class="panel__head">
+            <h3>Piramida Penduduk menurut Kelompok Umur</h3>
+            <div class="legend"><span class="sw sw--l"></span>Laki-laki <span class="sw sw--p"></span>Perempuan</div>
+          </div>
+          <div class="pyramid" id="pyramid" role="img" aria-label="Piramida penduduk menurut kelompok umur dan jenis kelamin"></div>
+        </div>
+
+        <div class="grid-2 mt">
+          <div class="panel">
+            <h3>Penduduk Usia Sekolah</h3>
+            <div class="school" id="usiaSekolah"></div>
+          </div>
+          <div class="panel">
+            <h3>Pendidikan Terakhir</h3>
+            <div class="bars" id="pendidikan"></div>
+          </div>
+          <div class="panel">
+            <h3>Mata Pencaharian</h3>
+            <div class="bars" id="pekerjaan"></div>
+          </div>
+          <div class="panel">
+            <h3>Agama</h3>
+            <div class="bars" id="agama"></div>
+          </div>
+        </div>
+
+        <div class="panel mt">
+          <h3>Fasilitas Umum</h3>
+          <div class="tablewrap">
+            <table class="tbl" id="fasilitas">
+              <thead><tr><th>Kategori</th><th>Fasilitas</th><th>Keterangan</th></tr></thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PETA DRONE -->
+    <section class="sec sec--dark" id="peta">
+      <div class="wrap">
+        <header class="sec__head">
+          <p class="eyebrow">Peta Drone</p>
+          <h2>Marga Mulya dari Udara</h2>
+          <p class="lead" id="petaLead">Ketuk titik pada peta untuk melihat keterangan lokasi.</p>
+        </header>
+        <div class="mapwrap">
+          <div class="map" id="map">
+            <canvas id="sketch" aria-hidden="true"></canvas>
+            <img id="ortho" alt="Foto udara (ortofoto) Kampung Marga Mulya" hidden>
+            <div class="map__pins" id="pins"></div>
+            <span class="map__north" aria-hidden="true">U ↑</span>
+            <span class="map__tag" id="mapTag">Peta sketsa sementara</span>
+          </div>
+          <aside class="mapinfo">
+            <div class="mapinfo__card" id="pinInfo" aria-live="polite">
+              <p class="mapinfo__kat">Titik lokasi</p>
+              <h3>Pilih titik di peta</h3>
+              <p>Setiap titik menunjukkan fasilitas atau kawasan penting di kampung.</p>
+            </div>
+            <div class="mapfilter" id="mapFilter" role="group" aria-label="Saring kategori titik"></div>
+            <dl class="kv kv--dark" id="petaMeta"></dl>
+            <a class="btn btn--ghost" id="gmaps" target="_blank" rel="noopener">Buka lokasi di Google Maps</a>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- VIDEO -->
+    <section class="sec" id="video">
+      <div class="wrap">
+        <header class="sec__head">
+          <p class="eyebrow">Video Profil</p>
+          <h2 id="videoJudul">Video Profil Kampung Marga Mulya</h2>
+          <p class="lead" id="videoDesk"></p>
+        </header>
+        <div class="video" id="videoBox"></div>
+      </div>
+    </section>
+
+    <!-- POTENSI -->
+    <section class="sec sec--tint" id="potensi">
+      <div class="wrap">
+        <header class="sec__head">
+          <p class="eyebrow">Potensi Kampung</p>
+          <h2>Pertanian, Ternak, dan Usaha Warga</h2>
+        </header>
+        <div class="potensi" id="potensiList"></div>
+        <h3 class="mt">Kegiatan Ekspedisi Patriot</h3>
+        <ol class="timeline" id="kegiatan"></ol>
+      </div>
+    </section>
+
+    <!-- GALERI -->
+    <section class="sec" id="galeri">
+      <div class="wrap">
+        <header class="sec__head">
+          <p class="eyebrow">Galeri</p>
+          <h2>Kehidupan di Marga Mulya</h2>
+        </header>
+        <div class="gallery" id="gallery"></div>
+      </div>
+    </section>
+
+    <!-- KONTAK -->
+    <section class="sec sec--tint" id="kontak">
+      <div class="wrap grid-2">
+        <div>
+          <p class="eyebrow">Kontak</p>
+          <h2>Kantor Kampung Marga Mulya</h2>
+          <dl class="kv" id="kontakList"></dl>
+        </div>
+        <div class="card card--collab">
+          <p class="eyebrow">Tentang website ini</p>
+          <p id="collabText"></p>
+          <p class="small" id="collabKetua"></p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <div class="wrap foot__in">
+      <div>
+        <b>Marga Mulya On Site</b>
+        <p>Kampung Marga Mulya · Distrik Semangga · Kabupaten Merauke · Papua Selatan</p>
+      </div>
+      <p class="foot__collab">Dikembangkan atas kerja sama <b>Tim Ekspedisi Patriot IPB University</b> dengan <b>Pemerintah Kampung Marga Mulya</b>.</p>
+      <p class="foot__meta" id="footMeta"></p>
+    </div>
+  </footer>
+
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>
