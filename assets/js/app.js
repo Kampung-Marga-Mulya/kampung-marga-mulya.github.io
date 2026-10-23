@@ -110,6 +110,41 @@
     ["indeks", "gauge", "Indeks Desa"], ["peta", "pin", "Peta"], ["layanan", "doc", "Layanan"], ["potensi", "sprout", "Potensi"]];
   $("#quick").innerHTML = quick.map(function (q) { return '<a class="tap" href="#' + q[0] + '"><span>' + ic(q[1]) + "</span>" + q[2] + "</a>"; }).join("");
 
+  /* =================== BERITA (slider) =================== */
+  var BULAN = ["Jan", "Feb", "Mar", "Apr", "Mei", "Jun", "Jul", "Agu", "Sep", "Okt", "Nov", "Des"];
+  var tgl = function (iso) { var p = iso.split("-"); return +p[2] + " " + BULAN[+p[1] - 1] + " " + p[0]; };
+  var track = $("#newsTrack"), news = (D.berita || []).slice().sort(function (a, b) { return a.tanggal < b.tanggal ? 1 : -1; });
+  var tahunIni = new Date().getFullYear();
+  track.innerHTML = news.map(function (n) {
+    var ph = '<span class="ncard__ph"' + (n.cover ? " hidden" : "") + ">" + ic("doc") + "<span>" + esc(n.sumber) + "</span><b>Kampung Marga Mulya</b></span>";
+    var img = n.cover ? '<img src="' + esc(n.cover) + '" alt="" loading="lazy" referrerpolicy="no-referrer">' : "";
+    return '<a class="ncard" href="' + esc(n.url) + '" target="_blank" rel="noopener">' +
+      '<span class="ncard__cover">' + img + ph + '<span class="ncard__badge">' + n.tanggal.slice(0, 4) + "</span></span>" +
+      '<span class="ncard__body"><span class="ncard__meta">' + esc(n.sumber) + " · " + tgl(n.tanggal) + '</span><span class="ncard__t">' + esc(n.judul) + "</span>" +
+      '<span class="ncard__d">' + esc(n.ringkas) + '</span><span class="ncard__go">Baca berita ' + ic("external") + "</span></span></a>";
+  }).join("");
+  // Sampul yang gagal dimuat diganti sampul biru
+  track.addEventListener("error", function (e) {
+    if (e.target.tagName === "IMG") { var c = e.target.parentNode; e.target.remove(); var ph = c.querySelector(".ncard__ph"); if (ph) ph.hidden = false; }
+  }, true);
+  var prev = $("#newsPrev"), next = $("#newsNext"), count = $("#newsCount");
+  function step() { var c = track.querySelector(".ncard"); return c ? c.getBoundingClientRect().width + 16 : 300; }
+  function updNav() {
+    var max = track.scrollWidth - track.clientWidth - 2;
+    prev.disabled = track.scrollLeft <= 2; next.disabled = track.scrollLeft >= max;
+    var first = Math.round(track.scrollLeft / step()) + 1;
+    var vis = Math.max(1, Math.round(track.clientWidth / step()));
+    count.textContent = first + "–" + Math.min(news.length, first + vis - 1) + " dari " + news.length;
+  }
+  prev.addEventListener("click", function () { track.scrollBy({ left: -step(), behavior: "smooth" }); });
+  next.addEventListener("click", function () { track.scrollBy({ left: step(), behavior: "smooth" }); });
+  track.addEventListener("scroll", function () { window.requestAnimationFrame(updNav); }, { passive: true });
+  track.addEventListener("keydown", function (e) {
+    if (e.key === "ArrowRight") { e.preventDefault(); next.click(); }
+    if (e.key === "ArrowLeft") { e.preventDefault(); prev.click(); }
+  });
+  window.addEventListener("resize", updNav); updNav();
+
   /* =================== PROFIL =================== */
   $("#sejarah").innerHTML = "<h3>Sejarah singkat</h3>" + D.sejarah.map(function (p) { return "<p>" + esc(p) + "</p>"; }).join("");
   $("#identitas").innerHTML = [
