@@ -106,7 +106,7 @@
   }).join("");
   document.querySelectorAll(".fact").forEach(function (b, i) { if (facts[i].code) b.classList.add("fact--code"); });
 
-  var quick = [["profil", "home", "Profil"], ["pemerintahan", "users", "Pemerintahan"], ["data", "chart", "Penduduk"], ["anggaran", "wallet", "Anggaran"],
+  var quick = [["profil", "home", "Profil"], ["pemerintahan", "users", "Pemerintah"], ["data", "chart", "Penduduk"], ["anggaran", "wallet", "Anggaran"],
     ["indeks", "gauge", "Indeks Desa"], ["peta", "pin", "Peta"], ["layanan", "doc", "Layanan"], ["potensi", "sprout", "Potensi"]];
   $("#quick").innerHTML = quick.map(function (q) { return '<a class="tap" href="#' + q[0] + '"><span>' + ic(q[1]) + "</span>" + q[2] + "</a>"; }).join("");
 

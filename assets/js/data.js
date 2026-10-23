@@ -288,6 +288,7 @@ window.KAMPUNG = {
   ],
 
   galeri: [
+    { src: "assets/img/galeri-ekspedisi-patriot.jpg", caption: "Tim Ekspedisi Patriot bersama perangkat kampung dan distrik" },
     { src: "", caption: "Musyawarah kampung" },
     { src: "", caption: "Panen padi" },
     { src: "", caption: "Pemetaan drone bersama warga" },
