@@ -55,6 +55,17 @@ BAGIAN HALAMAN (satu halaman panjang, menu menempel di atas, menu lipat di ponse
    ada, gambar peta sketsa sawah/jalan/irigasi/permukiman dengan <canvas>.
 6. Video profil: dukung YouTube (pemutar baru dimuat setelah diklik, pakai youtube-nocookie)
    ATAU file MP4 lokal. Bila keduanya kosong, tampilkan sampul "Video profil sedang disiapkan".
+6a. Transparansi APBKam: ringkasan pendapatan/belanja/pembiayaan/realisasi, sumber pendapatan,
+   dan belanja per 5 bidang; tiap bidang bisa diketuk untuk tabel rincian kegiatan.
+6b. Indeks Desa (pengganti IDM sejak 2025): nilai dalam cincin, status, 6 dimensi (Layanan Dasar,
+   Sosial, Ekonomi, Lingkungan, Aksesibilitas, Tata Kelola), dan riwayat status per tahun.
+6c. Peta bertab: Peta drone | Satelit Google (iframe maps.google.com ... &t=k&output=embed) |
+   Peta jalan (&t=m) | Street View (tombol Google Maps URL map_action=pano). Tombol Buka di
+   Google Maps dan Petunjuk arah.
+6d. Layanan administrasi: daftar surat, persyaratan, dan lama proses.
+6e. Tautan media sosial kampung (Facebook, Instagram, YouTube, TikTok, WhatsApp) dari data.js.
+6f. SEMUA kartu, angka, batang grafik, jabatan, dan item bisa diketuk dan membuka jendela
+   informasi (<dialog>) berisi penjelasan.
 7. Potensi kampung (padi sawah, hortikultura, peternakan, UMKM) + linimasa kegiatan
    Ekspedisi Patriot.
 8. Galeri foto (kotak bermotif bila foto belum ada).
@@ -69,7 +80,9 @@ DESAIN
   Tidak boleh ada warna lain (tanpa hijau, kuning, merah, abu-abu berwarna) termasuk pada
   grafik, titik peta, dan peta sketsa. Header putih dengan garis biru; hero, bagian peta,
   dan footer berlatar biru dengan tulisan putih; bagian lain berlatar putih.
-- Font Google: Big Shoulders Display (judul), Source Sans 3 (isi), IBM Plex Mono (kode/angka).
+- Font humanis minimalis: Source Serif 4 (judul) dan Source Sans 3 (isi). Hindari huruf
+  geometris atau huruf display padat. Tambahkan ilustrasi SVG garis biru (sawah, rumah warga,
+  musamus, pohon kelapa, drone) dan ikon garis untuk tiap bagian.
 - Satu tema terang saja (tanpa mode gelap) agar warna putih-biru selalu konsisten.
 - Wajib nyaman di ponsel lebar 360–400 px, tidak boleh ada gulir menyamping.
 - Bahasa Indonesia baku dan sederhana di seluruh situs.

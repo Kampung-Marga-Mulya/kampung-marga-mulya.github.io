@@ -1,6 +1,6 @@
 # Marga Mulya On Site
 
-Website profil Kampung Marga Mulya, Distrik Semangga, Kabupaten Merauke, Papua Selatan. Dikembangkan atas kerja sama **Tim Ekspedisi Patriot IPB University** dengan **Pemerintah Kampung Marga Mulya** (2026).
+Website profil Kampung Marga Mulya (https://kampung-marga-mulya.github.io), Distrik Semangga, Kabupaten Merauke, Papua Selatan. Dikembangkan atas kerja sama **Tim Ekspedisi Patriot IPB University** dengan **Pemerintah Kampung Marga Mulya** (2026).
 
 ## Isi folder
 
@@ -30,6 +30,10 @@ Klik dua kali `index.html`. Atau, dari terminal di folder ini: `python3 -m http.
 **Foto:** taruh file di `assets/img/`, lalu isi path-nya, misalnya `foto: "assets/img/kepala-kampung.jpg"` atau `src: "assets/img/panen.jpg"` di galeri.
 
 **Peta drone:** ekspor ortofoto (dari Agisoft/WebODM/DroneDeploy) ke JPG/WEBP lebar ±2400 px, taruh di `assets/peta/`, isi `peta.ortofoto`. Atur posisi titik dengan `x` dan `y` dalam persen dari kiri dan atas gambar.
+
+**Anggaran, Indeks Desa, layanan, sosmed:** isi bagian `apbkam`, `indeksDesa`, `layanan`, dan `sosmed` di `data.js`. Untuk WhatsApp, tulis url seperti `https://wa.me/62812xxxxxxx`.
+
+**Google Maps & Street View:** isi `identitas.koordinat` dengan koordinat GPS kantor kampung, mis. `{ lat: -8.40, lng: 140.40 }`, agar peta dan Street View tepat di kantor kampung.
 
 **Video:** unggah ke YouTube, salin ID dari tautan (`https://youtu.be/ID_INI`) ke `video.youtubeId`. Atau taruh MP4 di `assets/video/` dan isi `video.fileLokal`.
 

@@ -4,72 +4,176 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Marga Mulya On Site</title>
-  <meta name="description" content="Profil resmi Kampung Marga Mulya, Distrik Semangga, Kabupaten Merauke, Papua Selatan. Data kampung, struktur pemerintahan, kependudukan, peta drone, dan video profil.">
-  <meta property="og:title" content="Marga Mulya On Site — Profil Kampung Marga Mulya">
-  <meta property="og:description" content="Pusat informasi Kampung Marga Mulya, Distrik Semangga, Merauke. Kerja sama Tim Ekspedisi Patriot IPB University dan Pemerintah Kampung Marga Mulya.">
+  <meta name="description" content="Website resmi Kampung Marga Mulya, Distrik Semangga, Kabupaten Merauke, Papua Selatan: profil, pemerintahan, data penduduk, transparansi APBKam, Indeks Desa, peta drone, dan layanan warga.">
+  <meta property="og:title" content="Marga Mulya On Site — Kampung Marga Mulya, Semangga, Merauke">
+  <meta property="og:description" content="Pusat informasi Kampung Marga Mulya. Kerja sama Tim Ekspedisi Patriot IPB University dan Pemerintah Kampung Marga Mulya.">
   <meta property="og:type" content="website">
+  <meta property="og:url" content="https://kampung-marga-mulya.github.io/">
   <meta name="theme-color" content="#FFFFFF">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;800;900&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap">
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
+  <!-- Kumpulan ikon garis (dipakai dengan <svg><use href="#i-..."/></svg>) -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <symbol id="i-home" viewBox="0 0 24 24"><path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></symbol>
+      <symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.6-3.4 3.3-5.5 6.5-5.5s5.9 2.1 6.5 5.5"/><circle cx="17" cy="9" r="2.5"/><path d="M16.5 14.6c2.6.2 4.5 2 5 4.9"/></symbol>
+      <symbol id="i-chart" viewBox="0 0 24 24"><path d="M5 20v-8M11 20V5M17 20v-5M3 20h18"/></symbol>
+      <symbol id="i-wallet" viewBox="0 0 24 24"><rect x="3" y="6.5" width="18" height="13.5" rx="2"/><path d="M3 10.5h18M15.5 15h2.5M6 6.5l9-3.5 1.8 3.5"/></symbol>
+      <symbol id="i-gauge" viewBox="0 0 24 24"><path d="M3.5 17a8.5 8.5 0 1 1 17 0"/><path d="M12 17l4-5.5"/><circle cx="12" cy="17" r="1.3"/></symbol>
+      <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></symbol>
+      <symbol id="i-doc" viewBox="0 0 24 24"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 12h6M9 16h6"/></symbol>
+      <symbol id="i-sprout" viewBox="0 0 24 24"><path d="M12 21v-9"/><path d="M12 12C12 8 9 6 5 6c0 4 3 6 7 6zM12 14c0-4 3-7 7-7 0 4-3 7-7 7z"/></symbol>
+      <symbol id="i-image" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="10" r="1.8"/><path d="m21 16-5-5-8 8"/></symbol>
+      <symbol id="i-phone" viewBox="0 0 24 24"><path d="M5 4h3l2 5-2.5 1.5a11 11 0 0 0 6 6L15 14l5 2v3a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></symbol>
+      <symbol id="i-play" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M10 8.5v7l6-3.5z"/></symbol>
+      <symbol id="i-layers" viewBox="0 0 24 24"><path d="M12 3 2 8l10 5 10-5z"/><path d="m2 13 10 5 10-5"/></symbol>
+      <symbol id="i-person" viewBox="0 0 24 24"><circle cx="12" cy="5" r="2.5"/><path d="M9.5 21v-6H8v-4.5A2.5 2.5 0 0 1 10.5 8h3a2.5 2.5 0 0 1 2.5 2.5V15h-1.5v6"/></symbol>
+      <symbol id="i-nav" viewBox="0 0 24 24"><path d="M3 11 21 3l-8 18-2-8z"/></symbol>
+      <symbol id="i-external" viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></symbol>
+      <symbol id="i-drone" viewBox="0 0 24 24"><rect x="9" y="10" width="6" height="4" rx="1"/><circle cx="4.5" cy="6" r="2.5"/><circle cx="19.5" cy="6" r="2.5"/><path d="M6.5 7.5 9.5 10.5M17.5 7.5l-3 3M12 14v3"/></symbol>
+      <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+      <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9c-2.5-2.7-3.8-5.7-3.8-9S9.5 5.7 12 3z"/></symbol>
+      <symbol id="i-chat" viewBox="0 0 24 24"><path d="M4 20l1.3-4A8 8 0 1 1 8 18.7z"/><path d="M9 11h6"/></symbol>
+      <symbol id="i-video" viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="12" rx="3"/><path d="M10.5 9.5v5l4-2.5z"/></symbol>
+      <symbol id="i-camera" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r=".8"/></symbol>
+      <symbol id="i-note" viewBox="0 0 24 24"><path d="M14 3v11.5a3.5 3.5 0 1 1-3.5-3.5"/><path d="M14 3c.5 2.5 2.5 4 5 4"/></symbol>
+      <symbol id="i-thumb" viewBox="0 0 24 24"><path d="M7 10.5 10.5 3a2 2 0 0 1 2 2.3L12 9h6a2 2 0 0 1 2 2.3l-1.4 7.5A2 2 0 0 1 16.6 21H7zM3 10.5h4V21H3z"/></symbol>
+      <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 9.5h18M8 3v4M16 3v4"/></symbol>
+      <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+      <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></symbol>
+      <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+      <symbol id="i-ternak" viewBox="0 0 24 24"><path d="M6 9c0-1.7 1.3-3 3-3h6c1.7 0 3 1.3 3 3v4a4 4 0 0 1-4 4h-4a4 4 0 0 1-4-4z"/><path d="M3 6.5 6 9M21 6.5 18 9M10 17v3.5M14 17v3.5"/><circle cx="10" cy="11" r=".6"/><circle cx="14" cy="11" r=".6"/></symbol>
+      <symbol id="i-toko" viewBox="0 0 24 24"><path d="M4 10h16l-1.5-5h-13zM5 10v10h14V10M10 20v-5h4v5"/></symbol>
+      <symbol id="i-daun" viewBox="0 0 24 24"><path d="M5 19C5 11 10 5 20 5c0 10-6 15-14 15"/><path d="m5 19 8-8"/></symbol>
+      <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.5"/></symbol>
+      <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5 10 17 19 7"/></symbol>
+      <symbol id="i-copy" viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V5a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h3"/></symbol>
+      <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+    </defs>
+  </svg>
+
   <a class="skip" href="#isi">Langsung ke isi</a>
 
-  <header class="topbar" id="atas">
+  <header class="topbar">
     <div class="wrap topbar__in">
       <a class="brand" href="#beranda" aria-label="Marga Mulya On Site, ke beranda">
-        <span class="brand__mark" aria-hidden="true">MM</span>
+        <span class="brand__mark" aria-hidden="true">
+          <svg viewBox="0 0 32 32"><path d="M4 22c4-1.5 8-1.5 12 0s8 1.5 12 0" /><path d="M4 26.5c4-1.5 8-1.5 12 0s8 1.5 12 0"/><path d="M9 17V10l7-5 7 5v7"/><path d="M14 17v-4h4v4"/></svg>
+        </span>
         <span class="brand__text"><b>Marga Mulya</b><small>On Site</small></span>
       </a>
-      <button class="navtoggle" id="navtoggle" aria-expanded="false" aria-controls="menu">Menu</button>
+      <button class="navtoggle" id="navtoggle" aria-expanded="false" aria-controls="menu" aria-label="Buka menu"><svg class="ic"><use href="#i-menu"/></svg></button>
       <nav class="menu" id="menu" aria-label="Navigasi utama">
         <a href="#profil">Profil</a>
         <a href="#pemerintahan">Pemerintahan</a>
-        <a href="#data">Data Penduduk</a>
-        <a href="#peta">Peta Drone</a>
-        <a href="#video">Video</a>
-        <a href="#potensi">Potensi</a>
-        <a href="#galeri">Galeri</a>
+        <a href="#data">Penduduk</a>
+        <a href="#anggaran">Anggaran</a>
+        <a href="#indeks">Indeks Desa</a>
+        <a href="#peta">Peta</a>
+        <a href="#layanan">Layanan</a>
         <a href="#kontak">Kontak</a>
       </nav>
     </div>
   </header>
 
   <div class="draftbar" id="draftbar" hidden>
-    <div class="wrap">Versi draf: bagian bertanda <span class="chip chip--contoh">contoh</span> berisi data contoh dan akan diganti dengan data resmi kampung.</div>
+    <div class="wrap">Versi draf · bagian bertanda <span class="chip chip--contoh">contoh</span> masih berisi data contoh dan akan diganti dengan data resmi kampung.</div>
   </div>
 
   <main id="isi">
     <!-- BERANDA -->
     <section class="hero" id="beranda">
-      <div class="hero__field" aria-hidden="true"></div>
       <div class="wrap hero__in">
-        <p class="hero__gate">Selamat datang di</p>
-        <h1 class="hero__title"><span data-bind="identitas.nama">Kampung Marga Mulya</span></h1>
-        <p class="hero__place" id="heroPlace">Distrik Semangga · Kabupaten Merauke · Papua Selatan</p>
-        <div class="collab" id="collab">
-          <span class="collab__label">Kerja sama</span>
-          <span class="collab__party">Tim Ekspedisi Patriot IPB University</span>
-          <span class="collab__x" aria-hidden="true">×</span>
-          <span class="collab__party">Pemerintah Kampung Marga Mulya</span>
+        <div class="hero__text">
+          <p class="eyebrow">Selamat datang di</p>
+          <h1>Kampung Marga Mulya</h1>
+          <p class="hero__place" id="heroPlace">Distrik Semangga · Kabupaten Merauke · Papua Selatan</p>
+          <button class="collab" id="collabBtn" type="button">
+            <span class="collab__label">Kerja sama</span>
+            <span><b>Tim Ekspedisi Patriot IPB University</b> <span class="collab__x">×</span> <b>Pemerintah Kampung Marga Mulya</b></span>
+          </button>
+          <div class="hero__cta">
+            <a class="btn btn--solid" href="#peta"><svg class="ic"><use href="#i-pin"/></svg>Lihat peta kampung</a>
+            <a class="btn btn--line" href="#layanan"><svg class="ic"><use href="#i-doc"/></svg>Layanan surat</a>
+          </div>
         </div>
-        <dl class="facts" id="facts"></dl>
+        <figure class="hero__art" aria-label="Ilustrasi Kampung Marga Mulya: sawah, rumah warga, musamus, pohon kelapa, dan drone pemetaan">
+          <svg viewBox="0 0 560 420" role="img">
+            <circle cx="392" cy="150" r="128" fill="#EEF4FD"/>
+            <circle cx="430" cy="112" r="30" fill="#DCE8FB"/>
+            <!-- jalur terbang & sorot drone -->
+            <path d="M40 120 C 110 60, 170 70, 214 92" fill="none" stroke="#7AAAF2" stroke-width="2" stroke-dasharray="4 7" stroke-linecap="round"/>
+            <path d="M226 106 L 150 300 L 330 300 Z" fill="#1452C2" opacity=".07"/>
+            <g transform="translate(206 84)" fill="none" stroke="#0B3A8F" stroke-width="2.4" stroke-linecap="round">
+              <rect x="10" y="12" width="20" height="10" rx="3" fill="#FFFFFF"/>
+              <path d="M10 14 2 8M30 14l8-6M20 22v5"/>
+              <ellipse cx="2" cy="6" rx="9" ry="2" fill="#DCE8FB" stroke-width="1.6"/>
+              <ellipse cx="38" cy="6" rx="9" ry="2" fill="#DCE8FB" stroke-width="1.6"/>
+            </g>
+            <!-- burung -->
+            <path d="M318 60q6-6 12 0q6-6 12 0M352 82q5-5 10 0q5-5 10 0" fill="none" stroke="#0B3A8F" stroke-width="2" stroke-linecap="round"/>
+            <!-- garis pepohonan jauh -->
+            <path d="M0 252 Q20 236 40 248 Q58 232 80 246 Q104 230 126 247 Q150 236 172 248 L172 256 L0 256Z" fill="#DCE8FB"/>
+            <path d="M390 250 Q412 234 434 248 Q456 232 480 247 Q506 236 530 248 Q546 240 560 246 L560 256 L390 256Z" fill="#DCE8FB"/>
+            <!-- musamus (sarang rayap khas Merauke) -->
+            <path d="M88 256 C 90 214, 96 186, 104 168 C 108 158, 115 160, 117 172 C 121 196, 126 226, 130 256 Z" fill="#7AAAF2"/>
+            <path d="M96 236c6-2 14-2 22 0M99 214c5-2 11-2 16 0M102 192c4-1 8-1 11 0" stroke="#1452C2" stroke-width="1.6" fill="none" stroke-linecap="round" opacity=".55"/>
+            <path d="M136 256 C 138 232, 142 214, 147 204 C 150 198, 155 200, 156 208 C 159 224, 161 240, 163 256 Z" fill="#B7D0F5"/>
+            <!-- pohon kelapa -->
+            <path d="M478 256 C 474 220, 468 186, 456 152" fill="none" stroke="#0B3A8F" stroke-width="6" stroke-linecap="round"/>
+            <g fill="#1452C2">
+              <path d="M456 150 C 430 136, 404 142, 388 160 C 410 150, 432 150, 456 154Z"/>
+              <path d="M456 150 C 470 126, 496 120, 520 130 C 498 132, 476 140, 458 156Z"/>
+              <path d="M456 150 C 446 126, 424 112, 402 116 C 422 124, 440 136, 454 156Z"/>
+              <path d="M456 150 C 478 146, 502 156, 514 178 C 494 164, 474 158, 456 156Z"/>
+              <path d="M456 150 C 456 128, 468 108, 486 100 C 474 116, 466 134, 460 154Z"/>
+            </g>
+            <circle cx="458" cy="157" r="5" fill="#0B3A8F"/>
+            <!-- rumah warga -->
+            <g stroke="#1452C2" stroke-width="2.2" stroke-linejoin="round">
+              <rect x="240" y="206" width="84" height="50" fill="#FFFFFF"/>
+              <path d="M228 210 L282 172 L336 210 Z" fill="#1452C2"/>
+              <rect x="272" y="226" width="18" height="30" fill="#0B3A8F" stroke="none"/>
+              <rect x="250" y="220" width="14" height="12" fill="#DCE8FB"/>
+              <rect x="300" y="220" width="14" height="12" fill="#DCE8FB"/>
+              <rect x="338" y="222" width="52" height="34" fill="#FFFFFF"/>
+              <path d="M330 225 L364 200 L398 225 Z" fill="#0B3A8F"/>
+              <rect x="356" y="234" width="14" height="22" fill="#7AAAF2" stroke="none"/>
+            </g>
+            <!-- tanah & sawah -->
+            <rect x="0" y="256" width="560" height="164" fill="#F5F8FE"/>
+            <path d="M0 256 H560" stroke="#1452C2" stroke-width="2"/>
+            <path d="M330 420 C 360 360, 420 310, 560 290 L 560 306 C 440 324, 384 366, 360 420 Z" fill="#B7D0F5"/>
+            <g fill="none" stroke-linecap="round">
+              <path d="M10 276 H 540" stroke="#7AAAF2" stroke-width="5" stroke-dasharray="2 10"/>
+              <path d="M0 300 H 520" stroke="#7AAAF2" stroke-width="7" stroke-dasharray="2 13"/>
+              <path d="M0 330 H 470" stroke="#1452C2" stroke-width="8" stroke-dasharray="2 16" opacity=".75"/>
+              <path d="M0 366 H 420" stroke="#1452C2" stroke-width="10" stroke-dasharray="2 20" opacity=".85"/>
+              <path d="M0 408 H 360" stroke="#0B3A8F" stroke-width="12" stroke-dasharray="2 24"/>
+            </g>
+          </svg>
+        </figure>
+      </div>
+      <div class="wrap">
+        <div class="facts" id="facts"></div>
       </div>
     </section>
+
+    <!-- AKSES CEPAT -->
+    <nav class="wrap quick" aria-label="Akses cepat" id="quick"></nav>
 
     <!-- PROFIL -->
     <section class="sec" id="profil">
       <div class="wrap">
-        <header class="sec__head">
-          <p class="eyebrow">Profil Kampung</p>
-          <h2>Mengenal Marga Mulya</h2>
-        </header>
+        <header class="sec__head"><span class="sec__icon"><svg class="ic"><use href="#i-home"/></svg></span><div><p class="eyebrow">Profil kampung</p><h2>Mengenal Marga Mulya</h2></div></header>
         <div class="grid-2">
           <div class="prose" id="sejarah"></div>
-          <aside class="card" aria-labelledby="idtitle">
-            <h3 id="idtitle">Identitas Wilayah</h3>
+          <aside class="card">
+            <h3>Identitas wilayah</h3>
             <dl class="kv" id="identitas"></dl>
           </aside>
         </div>
@@ -81,7 +185,7 @@
             <ol class="misi" id="misi"></ol>
           </div>
           <div>
-            <h3>Batas Wilayah</h3>
+            <h3>Batas wilayah</h3>
             <div class="compass" id="batas"></div>
           </div>
         </div>
@@ -91,21 +195,11 @@
     <!-- PEMERINTAHAN -->
     <section class="sec sec--tint" id="pemerintahan">
       <div class="wrap">
-        <header class="sec__head">
-          <p class="eyebrow">Pemerintahan Kampung</p>
-          <h2>Struktur Organisasi</h2>
-          <p class="lead">Susunan Pemerintah Kampung Marga Mulya, Badan Musyawarah Kampung (Bamuskam), dan lembaga kemasyarakatan.</p>
-        </header>
+        <header class="sec__head"><span class="sec__icon"><svg class="ic"><use href="#i-users"/></svg></span><div><p class="eyebrow">Pemerintahan kampung</p><h2>Struktur organisasi</h2><p class="lead">Ketuk kotak jabatan untuk melihat tugas pokoknya.</p></div></header>
         <div class="org" id="org"></div>
         <div class="grid-2 mt">
-          <div>
-            <h3>Badan Musyawarah Kampung</h3>
-            <ul class="roster" id="bamuskam"></ul>
-          </div>
-          <div>
-            <h3>Lembaga Kemasyarakatan</h3>
-            <ul class="roster" id="lembaga"></ul>
-          </div>
+          <div><h3>Badan Musyawarah Kampung</h3><ul class="roster" id="bamuskam"></ul></div>
+          <div><h3>Lembaga kemasyarakatan</h3><ul class="roster" id="lembaga"></ul></div>
         </div>
       </div>
     </section>
@@ -113,77 +207,89 @@
     <!-- DATA PENDUDUK -->
     <section class="sec" id="data">
       <div class="wrap">
-        <header class="sec__head">
-          <p class="eyebrow">Data Kampung</p>
-          <h2>Kependudukan</h2>
-          <p class="lead" id="dataSumber"></p>
-        </header>
+        <header class="sec__head"><span class="sec__icon"><svg class="ic"><use href="#i-chart"/></svg></span><div><p class="eyebrow">Data kampung</p><h2>Kependudukan</h2><p class="lead" id="dataSumber"></p></div></header>
         <div class="stats" id="stats"></div>
-
         <div class="panel mt">
           <div class="panel__head">
-            <h3>Piramida Penduduk menurut Kelompok Umur</h3>
+            <h3>Piramida penduduk</h3>
             <div class="legend"><span class="sw sw--l"></span>Laki-laki <span class="sw sw--p"></span>Perempuan</div>
           </div>
-          <div class="pyramid" id="pyramid" role="img" aria-label="Piramida penduduk menurut kelompok umur dan jenis kelamin"></div>
+          <div class="pyramid" id="pyramid"></div>
         </div>
-
         <div class="grid-2 mt">
-          <div class="panel">
-            <h3>Penduduk Usia Sekolah</h3>
-            <div class="school" id="usiaSekolah"></div>
-          </div>
-          <div class="panel">
-            <h3>Pendidikan Terakhir</h3>
-            <div class="bars" id="pendidikan"></div>
-          </div>
-          <div class="panel">
-            <h3>Mata Pencaharian</h3>
-            <div class="bars" id="pekerjaan"></div>
-          </div>
-          <div class="panel">
-            <h3>Agama</h3>
-            <div class="bars" id="agama"></div>
-          </div>
+          <div class="panel"><h3>Penduduk usia sekolah</h3><div class="school" id="usiaSekolah"></div></div>
+          <div class="panel"><h3>Pendidikan terakhir</h3><div class="bars" id="pendidikan"></div></div>
+          <div class="panel"><h3>Mata pencaharian</h3><div class="bars" id="pekerjaan"></div></div>
+          <div class="panel"><h3>Agama</h3><div class="bars" id="agama"></div></div>
         </div>
-
         <div class="panel mt">
-          <h3>Fasilitas Umum</h3>
-          <div class="tablewrap">
-            <table class="tbl" id="fasilitas">
-              <thead><tr><th>Kategori</th><th>Fasilitas</th><th>Keterangan</th></tr></thead>
-              <tbody></tbody>
-            </table>
-          </div>
+          <h3>Fasilitas umum</h3>
+          <ul class="facil" id="fasilitas"></ul>
         </div>
       </div>
     </section>
 
-    <!-- PETA DRONE -->
-    <section class="sec sec--dark" id="peta">
+    <!-- ANGGARAN -->
+    <section class="sec sec--tint" id="anggaran">
       <div class="wrap">
-        <header class="sec__head">
-          <p class="eyebrow">Peta Drone</p>
-          <h2>Marga Mulya dari Udara</h2>
-          <p class="lead" id="petaLead">Ketuk titik pada peta untuk melihat keterangan lokasi.</p>
-        </header>
+        <header class="sec__head"><span class="sec__icon"><svg class="ic"><use href="#i-wallet"/></svg></span><div><p class="eyebrow">Transparansi anggaran</p><h2 id="apbTitle">APBKam</h2><p class="lead" id="apbLead"></p></div></header>
+        <div class="apb-sum" id="apbSum"></div>
+        <div class="grid-apb mt">
+          <div class="panel"><h3>Sumber pendapatan</h3><div class="bars" id="apbPendapatan"></div></div>
+          <div class="panel"><h3>Belanja per bidang</h3><p class="small">Ketuk bidang untuk melihat rincian kegiatan.</p><div class="bidang" id="apbBelanja"></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- INDEKS DESA -->
+    <section class="sec" id="indeks">
+      <div class="wrap">
+        <header class="sec__head"><span class="sec__icon"><svg class="ic"><use href="#i-gauge"/></svg></span><div><p class="eyebrow">Indeks Desa (dulu IDM)</p><h2>Status perkembangan kampung</h2><p class="lead" id="idmLead"></p></div></header>
+        <div class="idm">
+          <button class="idm__score" id="idmScore" type="button"></button>
+          <div class="idm__dims" id="idmDims"></div>
+        </div>
+        <h3 class="mt">Riwayat status</h3>
+        <ol class="steps" id="idmRiwayat"></ol>
+      </div>
+    </section>
+
+    <!-- PETA -->
+    <section class="sec sec--tint" id="peta">
+      <div class="wrap">
+        <header class="sec__head"><span class="sec__icon"><svg class="ic"><use href="#i-pin"/></svg></span><div><p class="eyebrow">Peta kampung</p><h2>Marga Mulya dari udara</h2><p class="lead">Pilih tampilan peta: hasil drone, citra satelit Google, peta jalan, atau Street View.</p></div></header>
+        <div class="tabs" role="tablist" aria-label="Jenis peta" id="mapTabs">
+          <button role="tab" aria-selected="true" data-tab="drone"><svg class="ic"><use href="#i-drone"/></svg>Peta drone</button>
+          <button role="tab" aria-selected="false" data-tab="satelit"><svg class="ic"><use href="#i-globe"/></svg>Satelit</button>
+          <button role="tab" aria-selected="false" data-tab="jalan"><svg class="ic"><use href="#i-layers"/></svg>Peta jalan</button>
+          <button role="tab" aria-selected="false" data-tab="street"><svg class="ic"><use href="#i-person"/></svg>Street View</button>
+        </div>
         <div class="mapwrap">
-          <div class="map" id="map">
-            <canvas id="sketch" aria-hidden="true"></canvas>
-            <img id="ortho" alt="Foto udara (ortofoto) Kampung Marga Mulya" hidden>
-            <div class="map__pins" id="pins"></div>
-            <span class="map__north" aria-hidden="true">U ↑</span>
-            <span class="map__tag" id="mapTag">Peta sketsa sementara</span>
+          <div class="mapstage">
+            <div class="map" id="panel-drone" role="tabpanel">
+              <canvas id="sketch" aria-hidden="true"></canvas>
+              <img id="ortho" alt="Foto udara (ortofoto) Kampung Marga Mulya" hidden>
+              <div class="map__pins" id="pins"></div>
+              <span class="map__north" aria-hidden="true">U ↑</span>
+              <span class="map__tag" id="mapTag">Peta sketsa sementara · ortofoto menyusul</span>
+            </div>
+            <div class="map map--frame" id="panel-satelit" role="tabpanel" hidden></div>
+            <div class="map map--frame" id="panel-jalan" role="tabpanel" hidden></div>
+            <div class="map map--street" id="panel-street" role="tabpanel" hidden></div>
           </div>
           <aside class="mapinfo">
             <div class="mapinfo__card" id="pinInfo" aria-live="polite">
               <p class="mapinfo__kat">Titik lokasi</p>
-              <h3>Pilih titik di peta</h3>
-              <p>Setiap titik menunjukkan fasilitas atau kawasan penting di kampung.</p>
+              <h3>Pilih titik di peta drone</h3>
+              <p>Setiap titik menandai fasilitas atau kawasan penting di kampung.</p>
             </div>
             <div class="mapfilter" id="mapFilter" role="group" aria-label="Saring kategori titik"></div>
-            <dl class="kv kv--dark" id="petaMeta"></dl>
-            <a class="btn btn--ghost" id="gmaps" target="_blank" rel="noopener">Buka lokasi di Google Maps</a>
+            <div class="maplinks">
+              <a class="btn btn--solid" id="gmOpen" target="_blank" rel="noopener"><svg class="ic"><use href="#i-pin"/></svg>Buka di Google Maps</a>
+              <a class="btn btn--line" id="gmDir" target="_blank" rel="noopener"><svg class="ic"><use href="#i-nav"/></svg>Petunjuk arah</a>
+              <a class="btn btn--line" id="gmStreet" target="_blank" rel="noopener"><svg class="ic"><use href="#i-person"/></svg>Street View</a>
+            </div>
+            <dl class="kv kv--sm" id="petaMeta"></dl>
           </aside>
         </div>
       </div>
@@ -192,22 +298,23 @@
     <!-- VIDEO -->
     <section class="sec" id="video">
       <div class="wrap">
-        <header class="sec__head">
-          <p class="eyebrow">Video Profil</p>
-          <h2 id="videoJudul">Video Profil Kampung Marga Mulya</h2>
-          <p class="lead" id="videoDesk"></p>
-        </header>
+        <header class="sec__head"><span class="sec__icon"><svg class="ic"><use href="#i-video"/></svg></span><div><p class="eyebrow">Video profil</p><h2 id="videoJudul">Video profil kampung</h2><p class="lead" id="videoDesk"></p></div></header>
         <div class="video" id="videoBox"></div>
       </div>
     </section>
 
-    <!-- POTENSI -->
-    <section class="sec sec--tint" id="potensi">
+    <!-- LAYANAN -->
+    <section class="sec sec--tint" id="layanan">
       <div class="wrap">
-        <header class="sec__head">
-          <p class="eyebrow">Potensi Kampung</p>
-          <h2>Pertanian, Ternak, dan Usaha Warga</h2>
-        </header>
+        <header class="sec__head"><span class="sec__icon"><svg class="ic"><use href="#i-doc"/></svg></span><div><p class="eyebrow">Layanan warga</p><h2>Layanan administrasi</h2><p class="lead">Ketuk jenis surat untuk melihat persyaratan dan lama prosesnya.</p></div></header>
+        <div class="services" id="layananList"></div>
+      </div>
+    </section>
+
+    <!-- POTENSI -->
+    <section class="sec" id="potensi">
+      <div class="wrap">
+        <header class="sec__head"><span class="sec__icon"><svg class="ic"><use href="#i-sprout"/></svg></span><div><p class="eyebrow">Potensi kampung</p><h2>Pertanian, ternak, dan usaha warga</h2></div></header>
         <div class="potensi" id="potensiList"></div>
         <h3 class="mt">Kegiatan Ekspedisi Patriot</h3>
         <ol class="timeline" id="kegiatan"></ol>
@@ -215,23 +322,21 @@
     </section>
 
     <!-- GALERI -->
-    <section class="sec" id="galeri">
+    <section class="sec sec--tint" id="galeri">
       <div class="wrap">
-        <header class="sec__head">
-          <p class="eyebrow">Galeri</p>
-          <h2>Kehidupan di Marga Mulya</h2>
-        </header>
+        <header class="sec__head"><span class="sec__icon"><svg class="ic"><use href="#i-image"/></svg></span><div><p class="eyebrow">Galeri</p><h2>Kehidupan di Marga Mulya</h2></div></header>
         <div class="gallery" id="gallery"></div>
       </div>
     </section>
 
     <!-- KONTAK -->
-    <section class="sec sec--tint" id="kontak">
+    <section class="sec" id="kontak">
       <div class="wrap grid-2">
         <div>
-          <p class="eyebrow">Kontak</p>
-          <h2>Kantor Kampung Marga Mulya</h2>
-          <dl class="kv" id="kontakList"></dl>
+          <header class="sec__head"><span class="sec__icon"><svg class="ic"><use href="#i-phone"/></svg></span><div><p class="eyebrow">Kontak</p><h2>Kantor Kampung Marga Mulya</h2></div></header>
+          <ul class="contact" id="kontakList"></ul>
+          <h3 class="mt">Media sosial kampung</h3>
+          <div class="social" id="sosmed"></div>
         </div>
         <div class="card card--collab">
           <p class="eyebrow">Tentang website ini</p>
@@ -248,10 +353,20 @@
         <b>Marga Mulya On Site</b>
         <p>Kampung Marga Mulya · Distrik Semangga · Kabupaten Merauke · Papua Selatan</p>
       </div>
-      <p class="foot__collab">Dikembangkan atas kerja sama <b>Tim Ekspedisi Patriot IPB University</b> dengan <b>Pemerintah Kampung Marga Mulya</b>.</p>
+      <div class="social social--foot" id="sosmedFoot"></div>
+      <p>Dikembangkan atas kerja sama <b>Tim Ekspedisi Patriot IPB University</b> dengan <b>Pemerintah Kampung Marga Mulya</b>.</p>
       <p class="foot__meta" id="footMeta"></p>
     </div>
   </footer>
+
+  <!-- Jendela informasi (muncul saat elemen diketuk) -->
+  <dialog class="modal" id="modal" aria-labelledby="modalTitle">
+    <div class="modal__head">
+      <div><p class="eyebrow" id="modalKat"></p><h3 id="modalTitle"></h3></div>
+      <button class="modal__close" id="modalClose" type="button" aria-label="Tutup"><svg class="ic"><use href="#i-close"/></svg></button>
+    </div>
+    <div class="modal__body" id="modalBody"></div>
+  </dialog>
 
   <script src="assets/js/data.js"></script>
   <script src="assets/js/app.js"></script>
