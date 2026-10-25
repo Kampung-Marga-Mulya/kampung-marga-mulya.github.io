@@ -91,6 +91,22 @@
    "waktu_menit": 25
   },
   {
+   "id": "lingkaran-brawijaya",
+   "nama": "Lingkaran Brawijaya (Libra)",
+   "kategori": "Sejarah & religi",
+   "area": "Pusat Kota Merauke",
+   "lat": -8.496885,
+   "lng": 140.403379,
+   "deskripsi": "Bundaran ikon Kota Merauke dengan monumen bola dunia, ramai dikunjungi warga pada sore dan malam hari.",
+   "cari": [
+    "Lingkaran Brawijaya, Merauke",
+    "Jalan Brawijaya, Merauke"
+   ],
+   "perkiraan": true,
+   "jarak_km": 19.2,
+   "waktu_menit": 25
+  },
+  {
    "id": "sate-rusa-sederhana",
    "nama": "Sate Rusa Sederhana",
    "kategori": "Kuliner",
@@ -143,6 +159,23 @@
    "deskripsi": "Kawasan jajanan malam di sekitar Lapangan Mandala dengan aneka warung, kafe, dan angkringan.",
    "jarak_km": 19.9,
    "waktu_menit": 25
+  },
+  {
+   "id": "pantai-payum",
+   "nama": "Pantai Payum",
+   "kategori": "Pantai",
+   "area": "Samkai, Kota Merauke",
+   "lat": -8.531597,
+   "lng": 140.416053,
+   "deskripsi": "Pantai di sisi selatan kota dekat Universitas Musamus, tempat bersantai sore warga Merauke.",
+   "cari": [
+    "Pantai Payum, Merauke",
+    "Universitas Musamus, Merauke",
+    "Samkai, Merauke"
+   ],
+   "perkiraan": true,
+   "jarak_km": 20.8,
+   "waktu_menit": 30
   },
   {
    "id": "warung-segeri",
@@ -382,33 +415,6 @@
    "kreditFoto": "visitmerauke.com",
    "jarak_km": 86.9,
    "waktu_menit": 90
-  },
-  {
-   "id": "lingkaran-brawijaya",
-   "nama": "Lingkaran Brawijaya (Libra)",
-   "kategori": "Sejarah & religi",
-   "area": "Pusat Kota Merauke",
-   "lat": null,
-   "lng": null,
-   "deskripsi": "Bundaran ikon Kota Merauke dengan monumen bola dunia, ramai dikunjungi warga pada sore dan malam hari.",
-   "cari": [
-    "Lingkaran Brawijaya, Merauke",
-    "Jalan Brawijaya, Merauke"
-   ]
-  },
-  {
-   "id": "pantai-payum",
-   "nama": "Pantai Payum",
-   "kategori": "Pantai",
-   "area": "Samkai, Kota Merauke",
-   "lat": null,
-   "lng": null,
-   "deskripsi": "Pantai di sisi selatan kota dekat Universitas Musamus, tempat bersantai sore warga Merauke.",
-   "cari": [
-    "Pantai Payum, Merauke",
-    "Universitas Musamus, Merauke",
-    "Samkai, Merauke"
-   ]
   },
   {
    "id": "pasar-wamanggu",
