@@ -75,15 +75,12 @@
     return '<a class="btn ' + (solid ? "btn--solid" : "btn--line") + '" href="' + esc(href) + '" target="_blank" rel="noopener">' + ic(icon || "pin") + esc(label) + "</a>";
   };
 
-  /* ---------- Menu ponsel ---------- */
-  var tog = $("#navtoggle"), menu = $("#menu");
-  tog.addEventListener("click", function () {
-    var open = menu.classList.toggle("is-open");
-    tog.setAttribute("aria-expanded", open ? "true" : "false");
+  /* ---------- Penanda versi draf ---------- */
+  var draft = $("#draftbar"), draftNote = $("#draftNote");
+  if (draft && draftNote) draft.addEventListener("click", function (e) {
+    e.stopPropagation(); draftNote.hidden = !draftNote.hidden; draft.setAttribute("aria-expanded", draftNote.hidden ? "false" : "true");
   });
-  menu.addEventListener("click", function (e) {
-    if (e.target.tagName === "A") { menu.classList.remove("is-open"); tog.setAttribute("aria-expanded", "false"); }
-  });
+  document.addEventListener("click", function () { if (draftNote && !draftNote.hidden) { draftNote.hidden = true; draft.setAttribute("aria-expanded", "false"); } });
   if (D.meta.dataContoh) $("#draftbar").hidden = false;
 
   /* =================== BERANDA =================== */
@@ -106,9 +103,23 @@
   }).join("");
   document.querySelectorAll(".fact").forEach(function (b, i) { if (facts[i].code) b.classList.add("fact--code"); });
 
-  var quick = [["profil", "home", "Profil"], ["pemerintahan", "users", "Pemerintah"], ["data", "chart", "Penduduk"], ["anggaran", "wallet", "Anggaran"],
-    ["indeks", "gauge", "Indeks Desa"], ["peta", "pin", "Peta"], ["layanan", "doc", "Layanan"], ["potensi", "sprout", "Potensi"]];
-  $("#quick").innerHTML = quick.map(function (q) { return '<a class="tap" href="#' + q[0] + '"><span>' + ic(q[1]) + "</span>" + q[2] + "</a>"; }).join("");
+  var quick = [
+    ["#tentang", "home", "Profil kampung", "Sejarah, identitas, visi misi, dan batas wilayah"],
+    ["#pemerintahan", "users", "Pemerintahan", "Struktur organisasi, Bamuskam, dan lembaga"],
+    ["#penduduk", "chart", "Data penduduk", "Piramida umur, pendidikan, pekerjaan, agama"],
+    ["#fasilitas", "school", "Fasilitas umum", "Sekolah, rumah ibadah, kesehatan, air bersih"],
+    ["#apbkam", "wallet", "Transparansi anggaran", "APBKam dan realisasi per bidang"],
+    ["#indeksdesa", "gauge", "Indeks Desa", "Status perkembangan kampung"],
+    ["#petakampung", "pin", "Peta kampung", "Peta drone, satelit, dan Street View"],
+    ["#wisatakuliner", "route", "Wisata & kuliner", "Tempat rekreasi dan makan 1–2 jam dari kampung"],
+    ["#surat", "doc", "Layanan surat", "Persyaratan dan lama proses surat"],
+    ["#media", "video", "Video & galeri", "Video profil dan dokumentasi kegiatan"],
+    ["#potensi", "sprout", "Potensi kampung", "Pertanian, ternak, UMKM, dan kegiatan"],
+    ["#kontakkampung", "phone", "Kontak & media sosial", "Kantor kampung, Facebook, Instagram, TikTok"]
+  ];
+  $("#quick").innerHTML = quick.map(function (q) {
+    return '<a class="xcard" href="' + q[0] + '"><span class="xcard__ic">' + ic(q[1]) + '</span><span class="xcard__t"><b>' + esc(q[2]) + "</b><small>" + esc(q[3]) + '</small></span><span class="xcard__go">' + ic("arrow") + "</span></a>";
+  }).join("");
 
   /* =================== BERITA (slider) =================== */
   var BULAN = ["Jan", "Feb", "Mar", "Apr", "Mei", "Jun", "Jul", "Agu", "Sep", "Okt", "Nov", "Des"];
@@ -135,6 +146,7 @@
   }
   renderNews((D.berita || []).slice());
   var newsInfo = $("#newsInfo");
+  var sudahDimuat = false;
   function muatBeritaOtomatis() {
     if (!window.fetch) return;
     fetch("data/berita-otomatis.json?t=" + Date.now(), { cache: "no-store" })
@@ -144,7 +156,8 @@
         var sebelum = news.length;
         renderNews((D.berita || []).concat(j.berita || []));
         if (j.diperiksa && newsInfo) newsInfo.textContent = "Diperbarui otomatis · dicek " + tgl(j.diperiksa);
-        if (sebelum && news.length > sebelum) toast((news.length - sebelum) + " berita baru ditambahkan");
+        if (sudahDimuat && news.length > sebelum) toast((news.length - sebelum) + " berita baru ditambahkan");
+        sudahDimuat = true;
       })
       .catch(function () { /* tetap tampilkan berita kurasi */ });
   }
@@ -587,6 +600,7 @@
     function fokus(id) {
       var t = W.tempat.filter(function (x) { return x.id === id; })[0]; if (!t) return;
       if (map && markers[id]) {
+        if (window.MM_ROUTE) window.MM_ROUTE("wisatakuliner", true);
         $("#wisataMap").scrollIntoView({ behavior: "smooth", block: "center" });
         map.flyTo([t.lat, t.lng], Math.max(map.getZoom(), 13), { duration: .8 });
         setTimeout(function () { markers[id].openPopup(); }, 850);
@@ -613,6 +627,7 @@
         m.addTo(map); markers[t.id] = m; b.push([t.lat, t.lng]);
       });
       map.fitBounds(b, { padding: [24, 24] });
+      (window.MM_MAPS = window.MM_MAPS || []).push({ el: el, map: map, fit: function () { map.invalidateSize(); map.fitBounds(b, { padding: [24, 24] }); } });
       el.addEventListener("click", function () { map.scrollWheelZoom.enable(); }, { once: true });
     }
 
@@ -722,6 +737,7 @@
         m.addTo(map); markers[f.id] = m; if (f.dalamKampung || (f.jarak_km || 99) < 8) b.push([f.lat, f.lng]);
       });
       map.fitBounds(b, { padding: [30, 30], maxZoom: 15 });
+      (window.MM_MAPS = window.MM_MAPS || []).push({ el: el, map: map, fit: function () { map.invalidateSize(); map.fitBounds(b, { padding: [30, 30], maxZoom: 15 }); } });
       el.addEventListener("click", function () { map.scrollWheelZoom.enable(); }, { once: true });
     }
 
