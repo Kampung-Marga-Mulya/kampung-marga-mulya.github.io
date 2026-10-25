@@ -37,6 +37,14 @@ Klik dua kali `index.html`. Atau, dari terminal di folder ini: `python3 -m http.
 
 **Video:** unggah ke YouTube, salin ID dari tautan (`https://youtu.be/ID_INI`) ke `video.youtubeId`. Atau taruh MP4 di `assets/video/` dan isi `video.fileLokal`.
 
+## Berita otomatis
+
+Robot di `.github/workflows/berita-otomatis.yml` menjalankan `scripts/update_berita.py` setiap 3 jam. Robot mencari berita baru tentang Kampung Marga Mulya di Bing News dan Google News, membuka setiap artikel untuk memastikan isinya memang membahas Marga Mulya di Merauke/Semangga, lalu menyimpannya ke `data/berita-otomatis.json` beserta gambar sampulnya. Website membaca file itu dan langsung menampilkan berita baru di slider, diberi label **Baru** selama 14 hari.
+
+- Jalankan manual: tab **Actions** → **Perbarui berita otomatis** → **Run workflow**.
+- Sembunyikan berita yang keliru: tambahkan tautannya ke `data/berita-abaikan.json`.
+- Berita pilihan tetap bisa ditambahkan langsung di bagian `berita` pada `data.js`.
+
 ## Data terverifikasi
 
 Kode wilayah 93.01.05.2008, kode pos 99631, Distrik Semangga, jumlah penduduk 2.882 jiwa (proyeksi BPS pertengahan 2024), dan SD Inpres Semangga 3 di Kampung Marga Mulya. Data lain masih contoh dan wajib diganti dengan data resmi kampung.

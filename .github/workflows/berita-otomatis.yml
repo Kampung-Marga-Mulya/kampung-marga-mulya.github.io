@@ -1,0 +1,53 @@
+name: Perbarui berita otomatis
+
+# Mencari berita baru tentang Kampung Marga Mulya setiap 3 jam.
+# Bisa juga dijalankan manual: tab Actions → "Perbarui berita otomatis" → Run workflow.
+on:
+  schedule:
+    - cron: "17 */3 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+
+concurrency:
+  group: berita-otomatis
+  cancel-in-progress: false
+
+jobs:
+  perbarui:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Pasang pustaka
+        run: pip install --quiet requests googlenewsdecoder
+
+      - name: Cari berita baru
+        run: python scripts/update_berita.py
+
+      - name: Simpan jika ada perubahan
+        id: simpan
+        run: |
+          if git diff --quiet -- data/; then
+            echo "Tidak ada perubahan."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/berita-otomatis.json
+          git commit -m "Perbarui berita otomatis"
+          git push
+          echo "berubah=1" >> "$GITHUB_OUTPUT"
+
+      - name: Terbitkan ulang website
+        if: steps.simpan.outputs.berubah == '1'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api -X POST "repos/${{ github.repository }}/pages/builds" || echo "Penerbitan akan berjalan otomatis."
