@@ -1,0 +1,42 @@
+name: Hitung jarak wisata
+
+# Menghitung ulang jarak & waktu tempuh dari Kampung Marga Mulya setiap kali data/wisata.json diubah.
+on:
+  push:
+    branches: [main]
+    paths: ["data/wisata.json"]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+
+concurrency:
+  group: wisata-jarak
+
+jobs:
+  hitung:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install --quiet requests
+      - run: python scripts/hitung_wisata.py
+      - name: Simpan
+        id: simpan
+        run: |
+          if git diff --quiet -- data/wisata.json; then exit 0; fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/wisata.json
+          git commit -m "Hitung jarak & waktu tempuh wisata"
+          git pull --rebase -q origin main
+          git push
+          echo "berubah=1" >> "$GITHUB_OUTPUT"
+      - name: Terbitkan ulang website
+        if: steps.simpan.outputs.berubah == '1'
+        env: { GH_TOKEN: "${{ github.token }}" }
+        run: gh api -X POST "repos/${{ github.repository }}/pages/builds" || true

@@ -521,4 +521,119 @@
   $("#collabText").textContent = D.kerjaSama.ringkas;
   $("#collabKetua").textContent = "Ketua Tim Ekspedisi Patriot IPB University: " + D.kerjaSama.ketuaTim;
   $("#footMeta").textContent = "Data diperbarui " + D.meta.diperbarui + " · © " + D.kerjaSama.tahun + " Pemerintah Kampung Marga Mulya";
+  /* =================== WISATA & KULINER =================== */
+  (function () {
+    var track = $("#wisataTrack"); if (!track) return;
+    var KAT = {
+      "Wisata alam": { ic: "tree", c: "#0B3A8F" }, "Pantai": { ic: "wave", c: "#1452C2" },
+      "Pemancingan & air": { ic: "fish", c: "#2563D6" }, "Sejarah & religi": { ic: "monument", c: "#082A66" },
+      "Taman keluarga": { ic: "sprout", c: "#346FDE" }, "Kuliner": { ic: "fork", c: "#4A7FE2" }
+    };
+    var W = null, aktif = "Semua", markers = {}, map = null, pusat = null;
+    var fmtKm = function (k) { return k == null ? "–" : "± " + k.toLocaleString("id-ID", { maximumFractionDigits: 1 }) + " km"; };
+    var fmtMnt = function (m) { if (m == null) return "–"; return m < 60 ? "± " + m + " menit" : "± " + Math.floor(m / 60) + " jam" + (m % 60 ? " " + (m % 60) + " menit" : ""); };
+    var gmCari = function (t) { return "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(t.nama + ", " + (t.perkiraan || t.lat == null ? t.area : "Merauke")); };
+    var gmRute = function (t) {
+      var dest = (!t.perkiraan && t.lat != null) ? t.lat + "," + t.lng : t.nama + ", " + t.area;
+      return "https://www.google.com/maps/dir/?api=1&origin=" + pusat.lat + "," + pusat.lng + "&destination=" + encodeURIComponent(dest);
+    };
+    var daftar = function () { return W.tempat.filter(function (t) { return aktif === "Semua" || t.kategori === aktif || (aktif === "Pemancingan & air" && (t.tag || []).indexOf("pemancingan") > -1); }); };
+
+    function kartu(t) {
+      var k = KAT[t.kategori] || { ic: "pin" };
+      var foto = t.foto ? '<img src="' + esc(t.foto) + '" alt="' + esc(t.nama) + '" loading="lazy" referrerpolicy="no-referrer">' : "";
+      var ph = '<span class="ncard__ph"' + (t.foto ? " hidden" : "") + ">" + ic(k.ic) + "<span>" + esc(t.kategori) + "</span><b>" + esc(t.nama) + "</b></span>";
+      var kredit = t.kreditFoto ? '<span class="wcard__credit">Foto: ' + esc(t.kreditFoto) + "</span>" : "";
+      return '<article class="ncard wcard">' +
+        '<button type="button" class="wcard__top" data-fokus="' + esc(t.id) + '" aria-label="Lihat ' + esc(t.nama) + ' di peta">' +
+        '<span class="ncard__cover">' + foto + ph + '<span class="ncard__badge">' + esc(t.kategori) + "</span>" + kredit + "</span>" +
+        '<span class="ncard__body"><span class="ncard__meta">' + esc(t.area) + '</span><span class="ncard__t">' + esc(t.nama) + "</span>" +
+        '<span class="wcard__dist"><span>' + ic("route") + fmtKm(t.jarak_km) + "</span><span>" + ic("clock") + fmtMnt(t.waktu_menit) + "</span></span>" +
+        '<span class="ncard__d">' + esc(t.deskripsi) + "</span>" +
+        (t.jam || t.tiket ? '<span class="wcard__info">' + (t.jam ? "Buka " + esc(t.jam) : "") + (t.jam && t.tiket ? " · " : "") + (t.tiket ? "Tiket " + esc(t.tiket) : "") + "</span>" : "") +
+        "</span></button>" +
+        '<span class="wcard__act"><a href="' + esc(gmCari(t)) + '" target="_blank" rel="noopener">' + ic("pin") + 'Google Maps</a><a href="' + esc(gmRute(t)) + '" target="_blank" rel="noopener">' + ic("nav") + "Rute</a></span></article>";
+    }
+
+    function render() {
+      var list = daftar();
+      track.innerHTML = list.map(kartu).join("");
+      track.scrollLeft = 0; nav();
+      $("#wisataList").innerHTML = list.map(function (t, i) {
+        return '<li><button type="button" data-fokus="' + esc(t.id) + '"><span class="dlist__no" style="background:' + ((KAT[t.kategori] || {}).c || "#1452C2") + '">' + (W.tempat.indexOf(t) + 1) + '</span><span class="dlist__n"><b>' + esc(t.nama) + "</b><small>" + esc(t.kategori) + (t.perkiraan ? " · lokasi perkiraan" : "") + '</small></span><span class="dlist__d"><b>' + fmtKm(t.jarak_km) + "</b><small>" + fmtMnt(t.waktu_menit) + "</small></span></button></li>";
+      }).join("");
+      Object.keys(markers).forEach(function (id) {
+        var vis = list.some(function (t) { return t.id === id; });
+        if (map) { if (vis) markers[id].addTo(map); else markers[id].remove(); }
+      });
+    }
+
+    // Slider berputar (sama seperti slider berita)
+    var prev = $("#wisataPrev"), next = $("#wisataNext"), count = $("#wisataCount");
+    var step = function () { var c = track.querySelector(".ncard"); return c ? c.getBoundingClientRect().width + 16 : 300; };
+    var atS = function () { return track.scrollLeft <= 2; }, atE = function () { return track.scrollLeft >= track.scrollWidth - track.clientWidth - 2; };
+    function nav() {
+      var n = track.children.length, first = Math.round(track.scrollLeft / step()) + 1, vis = Math.max(1, Math.round(track.clientWidth / step()));
+      count.textContent = n ? first + "–" + Math.min(n, first + vis - 1) + " dari " + n : "";
+    }
+    next.addEventListener("click", function () { atE() ? track.scrollTo({ left: 0, behavior: "smooth" }) : track.scrollBy({ left: step(), behavior: "smooth" }); });
+    prev.addEventListener("click", function () { atS() ? track.scrollTo({ left: track.scrollWidth, behavior: "smooth" }) : track.scrollBy({ left: -step(), behavior: "smooth" }); });
+    track.addEventListener("scroll", function () { requestAnimationFrame(nav); }, { passive: true });
+    window.addEventListener("resize", nav);
+    var tx = null, edge = "";
+    track.addEventListener("touchstart", function (e) { tx = e.touches[0].clientX; edge = atE() ? "e" : (atS() ? "s" : ""); }, { passive: true });
+    track.addEventListener("touchend", function (e) {
+      if (tx === null) return; var dx = e.changedTouches[0].clientX - tx; tx = null;
+      if (edge === "e" && dx < -40) track.scrollTo({ left: 0, behavior: "smooth" });
+      if (edge === "s" && dx > 40) track.scrollTo({ left: track.scrollWidth, behavior: "smooth" });
+    }, { passive: true });
+    track.addEventListener("error", function (e) {
+      if (e.target.tagName === "IMG") { var c = e.target.parentNode; e.target.remove(); var ph = c.querySelector(".ncard__ph"); if (ph) ph.hidden = false; var cr = c.querySelector(".wcard__credit"); if (cr) cr.remove(); }
+    }, true);
+
+    function fokus(id) {
+      var t = W.tempat.filter(function (x) { return x.id === id; })[0]; if (!t) return;
+      if (map && markers[id]) {
+        $("#wisataMap").scrollIntoView({ behavior: "smooth", block: "center" });
+        map.flyTo([t.lat, t.lng], Math.max(map.getZoom(), 13), { duration: .8 });
+        setTimeout(function () { markers[id].openPopup(); }, 850);
+      } else {
+        openModal({ kat: t.kategori, title: t.nama, html: "<p>" + esc(t.deskripsi) + "</p><div class='modal__actions'>" + mapBtn(gmCari(t), "Google Maps", "pin", true) + mapBtn(gmRute(t), "Rute dari Marga Mulya", "nav") + "</div>" });
+      }
+    }
+    document.addEventListener("click", function (e) { var b = e.target.closest("[data-fokus]"); if (b) fokus(b.getAttribute("data-fokus")); });
+
+    function petakan() {
+      var el = $("#wisataMap");
+      if (!window.L) { el.innerHTML = '<p class="wmap__load">Peta tidak dapat dimuat. Gunakan tombol Google Maps pada setiap tempat.</p>'; return; }
+      el.innerHTML = "";
+      map = L.map(el, { scrollWheelZoom: false, tap: true }).setView([pusat.lat, pusat.lng], 11);
+      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", { maxZoom: 18, attribution: "&copy; kontributor OpenStreetMap" }).addTo(map);
+      var home = L.marker([pusat.lat, pusat.lng], { icon: L.divIcon({ className: "", html: '<span class="mk mk--home"><svg class="ic"><use href="#i-home"/></svg></span>', iconSize: [36, 36], iconAnchor: [18, 18] }), zIndexOffset: 1000 })
+        .addTo(map).bindPopup("<b>" + esc(pusat.nama) + "</b><br>Titik awal perhitungan jarak");
+      var b = [[pusat.lat, pusat.lng]];
+      W.tempat.forEach(function (t, i) {
+        if (t.lat == null) return;
+        var k = KAT[t.kategori] || {};
+        var m = L.marker([t.lat, t.lng], { icon: L.divIcon({ className: "", html: '<span class="mk" style="background:' + (k.c || "#1452C2") + '">' + (i + 1) + "</span>", iconSize: [28, 28], iconAnchor: [14, 14] }) });
+        m.bindPopup('<div class="mpop">' + (t.foto ? '<img src="' + esc(t.foto) + '" alt="" referrerpolicy="no-referrer">' : "") + "<small>" + esc(t.kategori) + "</small><b>" + esc(t.nama) + "</b><span>" + fmtKm(t.jarak_km) + " · " + fmtMnt(t.waktu_menit) + " dari Marga Mulya" + (t.perkiraan ? "<br><i>Lokasi perkiraan</i>" : "") + '</span><span class="mpop__a"><a href="' + esc(gmCari(t)) + '" target="_blank" rel="noopener">Google Maps</a><a href="' + esc(gmRute(t)) + '" target="_blank" rel="noopener">Rute</a></span></div>', { maxWidth: 240 });
+        m.addTo(map); markers[t.id] = m; b.push([t.lat, t.lng]);
+      });
+      map.fitBounds(b, { padding: [24, 24] });
+      el.addEventListener("click", function () { map.scrollWheelZoom.enable(); }, { once: true });
+    }
+
+    fetch("data/wisata.json?t=" + Date.now(), { cache: "no-store" }).then(function (r) { return r.json(); }).then(function (j) {
+      W = j; pusat = j.pusat;
+      var kats = ["Semua"].concat(Object.keys(KAT).filter(function (k) { return j.tempat.some(function (t) { return t.kategori === k; }); }));
+      $("#wisataFilter").innerHTML = kats.map(function (k) { return '<button type="button" class="chipbtn" aria-pressed="' + (k === "Semua") + '" data-kat="' + esc(k) + '">' + (KAT[k] ? ic(KAT[k].ic) : "") + esc(k) + "</button>"; }).join("");
+      $("#wisataFilter").addEventListener("click", function (e) {
+        var c = e.target.closest("[data-kat]"); if (!c) return; aktif = c.getAttribute("data-kat");
+        this.querySelectorAll("[data-kat]").forEach(function (x) { x.setAttribute("aria-pressed", x === c ? "true" : "false"); });
+        render();
+      });
+      petakan(); render();
+      $("#wisataNote").innerHTML = "Jarak dan waktu adalah perkiraan rute jalan dari pusat Kampung Marga Mulya (data OpenStreetMap) dan dapat berbeda sesuai kondisi jalan. Jam buka dan harga tiket dapat berubah. Sumber informasi dan foto destinasi: visitmerauke.com, tempatrenang.com, Wikivoyage, dan Kompas.com.";
+    }).catch(function () { track.innerHTML = '<p class="small">Data wisata belum dapat dimuat.</p>'; });
+  })();
 })();
