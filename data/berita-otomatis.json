@@ -2,6 +2,16 @@
   "diperiksa": "2026-10-25",
   "berita": [
     {
+      "tanggal": "2026-10-01",
+      "sumber": "detikcom",
+      "judul": "Jadwal Sholat, Imsak, dan Buka Puasa Hari Ini Kota Bekasi - detikHikmah",
+      "ringkas": "Info jadwal sholat 5 waktu subuh, zuhur, ashar, magrib, isya dan jadwal Imsakiyah serta buka puasa Ramadan 1445 H untuk wilayah Kota Bekasi",
+      "url": "https://www.detik.com/hikmah/jadwal-sholat/kota-bekasi",
+      "cover": "https://awsimages.detik.net.id/community/media/visual/2022/09/28/logo-detik-hikmah.png",
+      "otomatis": true,
+      "ditemukan": "2026-10-25"
+    },
+    {
       "tanggal": "2024-01-28",
       "sumber": "Tribunnews",
       "judul": "Plt Ketua Umum PPP Sebut Ganjar-Mahfud Akan Bereskan Masalah di Papua",
