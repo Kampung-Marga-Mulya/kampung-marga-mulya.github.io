@@ -118,7 +118,11 @@
    ],
    "sumber": "Kemendikdasmen",
    "sumberUrl": "https://referensi.data.kemendikdasmen.go.id/pendidikan/npsn/60304640",
-   "status": "terverifikasi"
+   "status": "terverifikasi",
+   "lat": -8.4067,
+   "lng": 140.4669,
+   "jarak_km": 0.3,
+   "waktu_menit": 5
   },
   {
    "id": "musala-al-barokah",
