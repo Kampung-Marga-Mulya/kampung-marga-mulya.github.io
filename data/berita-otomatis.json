@@ -1,1 +1,15 @@
-{ "diperiksa": null, "berita": [] }
+{
+  "diperiksa": "2026-10-25",
+  "berita": [
+    {
+      "tanggal": "2022-03-08",
+      "sumber": "Mongabay-Indonesia",
+      "judul": "Kala Warga Marga Mulya Keluhkan Bau Busuk dari Peternakan Ayam",
+      "ringkas": "Bau busuk dari peternakan ayam, PT Harvest Paulus Papua (HPP) meresahkan warga Marga Mulya, Distrik Semangga, Merauke, Papua. Mereka protes, lapor ke berbagai instansi…",
+      "url": "https://mongabay.co.id/2022/03/07/kala-warga-marga-mulya-keluhkan-bau-busuk-dari-peternakan-ayam/",
+      "cover": "https://mongabay.co.id/wp-content/uploads/2017/08/Ayam1-sistem-kandang-baterai-saling-mematuk-hingga-bulu-rontok.-Foto-Tommy-Apriando.jpg",
+      "otomatis": true,
+      "ditemukan": "2026-10-25"
+    }
+  ]
+}
