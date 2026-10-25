@@ -392,7 +392,9 @@
    "status": "sebagian",
    "lat": -8.410949,
    "lng": 140.275549,
-   "perkiraan": true
+   "perkiraan": true,
+   "jarak_km": 32.9,
+   "waktu_menit": 55
   }
  ]
 }
