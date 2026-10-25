@@ -23,7 +23,9 @@
    "kontak": "sdinpressemangga@gmail.com",
    "sumber": "Kemendikdasmen",
    "sumberUrl": "https://referensi.data.kemendikdasmen.go.id/pendidikan/npsn/60300772",
-   "status": "terverifikasi"
+   "status": "terverifikasi",
+   "jarak_km": 1.5,
+   "waktu_menit": 5
   },
   {
    "id": "sd-muram",
@@ -43,7 +45,9 @@
    "kontak": "sdinpresmuram@gmail.com",
    "sumber": "Kemendikdasmen",
    "sumberUrl": "https://referensi.data.kemendikdasmen.go.id/pendidikan/npsn/60300762",
-   "status": "terverifikasi"
+   "status": "terverifikasi",
+   "jarak_km": 0.6,
+   "waktu_menit": 5
   },
   {
    "id": "paud-tk",
@@ -111,7 +115,12 @@
    ],
    "sumber": "paroki.org",
    "sumberUrl": "https://paroki.org/gereja-katolik-di-merauke/",
-   "status": "sebagian"
+   "status": "sebagian",
+   "lat": -8.465203,
+   "lng": 140.446686,
+   "perkiraan": true,
+   "jarak_km": 8.1,
+   "waktu_menit": 10
   },
   {
    "id": "kantor-kampung",
@@ -154,7 +163,12 @@
    "keterangan": [
     "Puskesmas di Distrik Semangga"
    ],
-   "status": "sebagian"
+   "status": "sebagian",
+   "lat": -8.457756,
+   "lng": 140.421301,
+   "perkiraan": true,
+   "jarak_km": 11.4,
+   "waktu_menit": 15
   },
   {
    "id": "air-isi-ulang",
@@ -251,7 +265,9 @@
    "kontak": "sdinpressemanggadua@gmail.com",
    "sumber": "Kemendikdasmen",
    "sumberUrl": "https://referensi.data.kemendikdasmen.go.id/pendidikan/npsn/60300773",
-   "status": "terverifikasi"
+   "status": "terverifikasi",
+   "jarak_km": 7.2,
+   "waktu_menit": 15
   },
   {
    "id": "smpn-3",
@@ -269,7 +285,9 @@
    "kontak": "smpn_3merauke@yahoo.com",
    "sumber": "Kemendikdasmen",
    "sumberUrl": "https://referensi.data.kemendikdasmen.go.id/pendidikan/npsn/60300609",
-   "status": "terverifikasi"
+   "status": "terverifikasi",
+   "jarak_km": 8.3,
+   "waktu_menit": 10
   },
   {
    "id": "smp-satap-2",
@@ -287,7 +305,9 @@
    "kontak": "smpsatapmuram@gmail.com",
    "sumber": "Kemendikdasmen",
    "sumberUrl": "https://referensi.data.kemendikdasmen.go.id/pendidikan/npsn/60304739",
-   "status": "terverifikasi"
+   "status": "terverifikasi",
+   "jarak_km": 15.8,
+   "waktu_menit": 45
   },
   {
    "id": "smk-eca",
@@ -302,7 +322,12 @@
    "keterangan": [
     "SMK di Distrik Semangga"
    ],
-   "status": "sebagian"
+   "status": "sebagian",
+   "lat": -8.357881,
+   "lng": 140.305161,
+   "perkiraan": true,
+   "jarak_km": 36.2,
+   "waktu_menit": 85
   }
  ]
 }
