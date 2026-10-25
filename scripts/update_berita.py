@@ -29,8 +29,10 @@ IGNORE = os.path.join(ROOT, "data", "berita-abaikan.json")
 DATAJS = os.path.join(ROOT, "assets", "js", "data.js")
 WIT = dt.timezone(dt.timedelta(hours=9))
 MAX_TAHUN = 5                      # hanya berita 5 tahun terakhir
-UA = {"User-Agent": "Mozilla/5.0 (compatible; MargaMulyaOnSite/1.0; +https://kampung-marga-mulya.github.io)",
+UA = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36",
+      "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
       "Accept-Language": "id-ID,id;q=0.9,en;q=0.6"}
+TERBLOKIR = "terblokir"   # artikel tidak bisa dibaca robot (situs menolak / kosong)
 
 KUERI = ['"Marga Mulya" Merauke', '"Marga Mulya" Semangga', '"Margamulya" Merauke', '"Kampung Marga Mulya"']
 # Kata yang wajib ada di isi artikel
@@ -134,11 +136,13 @@ def periksa(url):
     """Buka artikel, pastikan membahas Marga Mulya Merauke, ambil judul/gambar/ringkasan."""
     r = get(url)
     if r.status_code >= 400:
-        return None
+        return TERBLOKIR
     r.encoding = r.apparent_encoding or r.encoding
     page = r.text
     text = re.sub(r"<script.*?</script>|<style.*?</style>", " ", page, flags=re.S | re.I)
     text = html.unescape(re.sub(r"<[^>]+>", " ", text))
+    if len(re.sub(r"\s+", " ", text).strip()) < 400:
+        return TERBLOKIR
     if not (WAJIB_NAMA.search(text) and WAJIB_LOKASI.search(text)):
         return None
     # Kalimat di sekitar "Marga Mulya" harus terkait Merauke/Semangga, bukan desa lain
@@ -226,7 +230,16 @@ def main():
             info = periksa(url)
         except Exception as e:  # noqa: BLE001
             log("  gagal membuka", url, e)
-            continue
+            info = TERBLOKIR
+        if info == TERBLOKIR:
+            # Situs menolak robot: terima hanya bila judul/ringkasan RSS jelas menyebut Marga Mulya di Merauke/Semangga
+            rss_teks = (c["judul"] or "") + " " + (c["desk"] or "")
+            if WAJIB_NAMA.search(rss_teks) and WAJIB_LOKASI.search(rss_teks) and not DESA_LAIN.search(rss_teks):
+                info = {"url_akhir": url, "judul": None, "desk": None, "sumber": None, "cover": None, "terbit": None}
+                log("  diterima dari ringkasan RSS (situs menolak robot):", url)
+            else:
+                log("  dilewati (situs menolak robot, ringkasan tidak menyebut kampung):", url)
+                continue
         if not info:
             log("  dilewati (tidak membahas Marga Mulya Merauke):", url)
             continue
