@@ -62,12 +62,14 @@
   /* ---------- Tautan Google Maps ---------- */
   var G = D.google, hasKoord = !!(id.koordinat && id.koordinat.lat);
   var gQuery = hasKoord ? id.koordinat.lat + "," + id.koordinat.lng : G.pencarian;
+  // Titik Street View: koordinat kantor kampung bila ada, jika tidak titik pusat kampung
+  var SV = hasKoord ? id.koordinat : (G.streetView && G.streetView.lat ? G.streetView : { lat: -8.409726, lng: 140.463722 });
   var gm = {
     open: G.tautan || "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(gQuery),
     dir: "https://www.google.com/maps/dir/?api=1&destination=" + encodeURIComponent(gQuery),
-    street: hasKoord
-      ? "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=" + id.koordinat.lat + "," + id.koordinat.lng
-      : "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(G.pencarian),
+    street: "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=" + SV.lat + "," + SV.lng + "&heading=0&pitch=0&fov=90",
+    streetEmbed: "https://www.google.com/maps?layer=c&cbll=" + SV.lat + "," + SV.lng + "&cbp=12,0,0,0,0&hl=id&output=svembed",
+    streetLayer: "https://www.google.com/maps/@" + SV.lat + "," + SV.lng + ",17z/data=!5m1!1e5",
     embed: function (type) { return "https://maps.google.com/maps?q=" + encodeURIComponent(gQuery) + (!hasKoord && G.ftid ? "&ftid=" + G.ftid : "") + "&t=" + type + "&z=" + G.zoom + "&hl=id&ie=UTF8&iwloc=&output=embed"; },
     cari: function (nama) { return "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(nama + ", " + G.pencarian); }
   };
@@ -390,12 +392,14 @@
     el.innerHTML = '<div class="map__fallback"><div><p>Peta Google sedang dimuat. Bila tidak tampil, buka langsung:</p>' + mapBtn(gm.open, "Buka di Google Maps", "pin", true) + "</div></div>" +
       '<iframe title="Peta Google ' + (type === "k" ? "satelit" : "jalan") + ' Kampung Marga Mulya" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen src="' + esc(gm.embed(type)) + '"></iframe>';
   }
-  $("#panel-street").innerHTML = '<div class="street">' +
-    '<svg class="art" viewBox="0 0 200 140" aria-hidden="true"><rect x="0" y="0" width="200" height="140" rx="16" fill="#FFFFFF"/><path d="M0 104 L200 104" stroke="#DCE6F6" stroke-width="2"/><path d="M70 140 L92 104 L108 104 L130 140Z" fill="#DCE8FB"/><path d="M100 110 v8 M100 126 v8" stroke="#1452C2" stroke-width="3" stroke-linecap="round"/>' +
-    '<rect x="22" y="70" width="40" height="34" fill="#FFFFFF" stroke="#1452C2" stroke-width="2"/><path d="M16 72 L42 52 L68 72Z" fill="#1452C2"/><rect x="140" y="76" width="36" height="28" fill="#FFFFFF" stroke="#1452C2" stroke-width="2"/><path d="M134 78 L158 60 L182 78Z" fill="#0B3A8F"/>' +
-    '<circle cx="100" cy="44" r="9" fill="#1452C2"/><path d="M90 92 v-22 a10 10 0 0 1 20 0 v22" fill="#1452C2"/><path d="M96 92v12M104 92v12" stroke="#0B3A8F" stroke-width="4" stroke-linecap="round"/></svg>' +
-    "<h3>Jelajahi jalan kampung</h3><p>Street View membuka foto 360° Google di sekitar Kampung Marga Mulya. Ketersediaan foto bergantung pada liputan Google di Semangga." +
-    (hasKoord ? "" : " Bila belum langsung tampil, seret ikon orang kuning di Google Maps ke jalan berwarna biru.") + "</p>" + mapBtn(gm.street, "Buka Street View", "person", true) + "</div>";
+  var streetLoaded = false;
+  function streetView() {
+    if (streetLoaded) return; streetLoaded = true;
+    $("#panel-street").innerHTML =
+      '<iframe title="Google Street View Kampung Marga Mulya" loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade" src="' + esc(gm.streetEmbed) + '"></iframe>' +
+      '<div class="street__bar"><span>Foto 360° Google di sekitar Kampung Marga Mulya. Bila layar kosong atau abu-abu, Google belum punya foto tepat di titik ini—buka Google Maps lalu seret ikon orang kuning ke jalan bergaris biru.</span>' +
+      '<span class="street__btns">' + mapBtn(gm.street, "Buka Street View", "person", true) + mapBtn(gm.streetLayer, "Lihat jalur Street View", "layers") + "</span></div>";
+  }
   var tabs = $("#mapTabs");
   tabs.addEventListener("click", function (e) {
     var b = e.target.closest("button[data-tab]"); if (b) showTab(b.dataset.tab);
@@ -406,6 +410,7 @@
     if (t === "satelit") frame("satelit", "k");
     if (t === "jalan") frame("jalan", "m");
     if (t === "drone") drawSketch();
+    if (t === "street") streetView();
   }
 
   var ortho = $("#ortho"), canvas = $("#sketch");

@@ -46,7 +46,9 @@ window.KAMPUNG = {
     tautan: "https://maps.app.goo.gl/hsfJP5TVHHf9SKjVA",            // tautan Google Maps resmi kampung
     pencarian: "Marga Mulya, Semangga, Merauke Regency, South Papua", // nama tempat persis di Google Maps
     ftid: "0x69b53af011096ecb:0xb5940dce9198b34e",                  // ID tempat dari tautan di atas
-    zoom: 14
+    zoom: 14,
+    // Titik awal Street View (pusat kampung di Jl. Poros Semangga). Ganti dengan titik di jalan depan kantor kampung bila ada.
+    streetView: { lat: -8.409726, lng: 140.463722 }
   },
 
   // Isi tautan akun resmi kampung. Yang kosong akan tampil "belum tersedia".
