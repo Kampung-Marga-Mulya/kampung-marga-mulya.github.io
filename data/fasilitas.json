@@ -382,14 +382,13 @@
     "Matara, Semangga, Merauke"
    ],
    "keterangan": [
-    "SMK di Distrik Semangga"
+    "SMK di Distrik Semangga",
+    "Titik lokasi = pusat Kampung Matara (perkiraan)"
    ],
    "status": "sebagian",
-   "lat": -8.357881,
-   "lng": 140.305161,
-   "perkiraan": true,
-   "jarak_km": 36.2,
-   "waktu_menit": 85
+   "lat": -8.410949,
+   "lng": 140.275549,
+   "perkiraan": true
   }
  ]
 }
