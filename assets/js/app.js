@@ -616,7 +616,7 @@
         if (t.lat == null) return;
         var k = KAT[t.kategori] || {};
         var m = L.marker([t.lat, t.lng], { icon: L.divIcon({ className: "", html: '<span class="mk" style="background:' + (k.c || "#1452C2") + '">' + (i + 1) + "</span>", iconSize: [28, 28], iconAnchor: [14, 14] }) });
-        m.bindPopup('<div class="mpop">' + (t.foto ? '<img src="' + esc(t.foto) + '" alt="" referrerpolicy="no-referrer">' : "") + "<small>" + esc(t.kategori) + "</small><b>" + esc(t.nama) + "</b><span>" + fmtKm(t.jarak_km) + " · " + fmtMnt(t.waktu_menit) + " dari Marga Mulya" + (t.perkiraan ? "<br><i>Lokasi perkiraan</i>" : "") + '</span><span class="mpop__a"><a href="' + esc(gmCari(t)) + '" target="_blank" rel="noopener">Google Maps</a><a href="' + esc(gmRute(t)) + '" target="_blank" rel="noopener">Rute</a></span></div>', { maxWidth: 240 });
+        m.bindPopup('<div class="mpop">' + (t.foto ? '<img src="' + esc(t.foto) + '" alt="" referrerpolicy="no-referrer" onerror="this.remove()">' : "") + "<small>" + esc(t.kategori) + "</small><b>" + esc(t.nama) + "</b><span>" + fmtKm(t.jarak_km) + " · " + fmtMnt(t.waktu_menit) + " dari Marga Mulya" + (t.perkiraan ? "<br><i>Lokasi perkiraan</i>" : "") + '</span><span class="mpop__a"><a href="' + esc(gmCari(t)) + '" target="_blank" rel="noopener">Google Maps</a><a href="' + esc(gmRute(t)) + '" target="_blank" rel="noopener">Rute</a></span></div>', { maxWidth: 240 });
         m.addTo(map); markers[t.id] = m; b.push([t.lat, t.lng]);
       });
       map.fitBounds(b, { padding: [24, 24] });
