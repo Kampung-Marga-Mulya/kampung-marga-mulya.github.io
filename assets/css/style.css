@@ -593,3 +593,9 @@ body { background: var(--tint); }
   .vhead__ic { width: 40px; height: 40px; border-radius: 12px; }
   .vhead p { font-size: .88rem; }
 }
+
+/* Logo mitra di pojok kanan atas */
+.partners { display: flex; align-items: center; gap: 10px; flex: none; padding-left: 12px; margin-left: 4px; border-left: 1px solid var(--line); }
+.partners img { height: 40px; width: auto; display: block; }
+@media (max-width: 960px) { .partners { margin-left: auto; border-left: 0; padding-left: 0; gap: 8px; } .partners img { height: 36px; } }
+@media (max-width: 380px) { .brand__text i { display: none; } .partners img { height: 32px; } }

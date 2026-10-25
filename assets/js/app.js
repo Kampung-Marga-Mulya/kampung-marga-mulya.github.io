@@ -81,7 +81,7 @@
     e.stopPropagation(); draftNote.hidden = !draftNote.hidden; draft.setAttribute("aria-expanded", draftNote.hidden ? "false" : "true");
   });
   document.addEventListener("click", function () { if (draftNote && !draftNote.hidden) { draftNote.hidden = true; draft.setAttribute("aria-expanded", "false"); } });
-  if (D.meta.dataContoh) $("#draftbar").hidden = false;
+  if (D.meta.dataContoh && $("#draftbar")) $("#draftbar").hidden = false;
 
   /* =================== BERANDA =================== */
   $("#heroPlace").textContent = "Distrik " + id.distrik + " · Kabupaten " + id.kabupaten + " · " + id.provinsi;

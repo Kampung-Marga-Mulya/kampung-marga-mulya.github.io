@@ -14,7 +14,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
-  <link rel="stylesheet" href="assets/css/style.css?v=202610251946">
+  <link rel="stylesheet" href="assets/css/style.css?v=202610252010">
 </head>
 <body>
   <!-- Kumpulan ikon garis (dipakai dengan <svg><use href="#i-..."/></svg>) -->
@@ -79,8 +79,6 @@
         </span>
         <span class="brand__text"><b>Marga Mulya</b><i>On Site</i></span>
       </a>
-      <button type="button" class="draftchip" id="draftbar" hidden aria-expanded="false" aria-controls="draftNote">Versi draf</button>
-      <div class="draftnote" id="draftNote" hidden>Bagian bertanda <span class="chip chip--contoh">contoh</span> masih berisi data contoh dan akan diganti dengan data resmi kampung.</div>
       <nav class="menu" id="menu" aria-label="Navigasi utama">
         <a href="#beranda" data-nav="beranda">Beranda</a>
         <a href="#profil" data-nav="profil">Profil</a>
@@ -89,6 +87,10 @@
         <a href="#jelajah" data-nav="jelajah">Jelajah</a>
         <a href="#layanan-warga" data-nav="layanan-warga">Layanan</a>
       </nav>
+      <div class="partners" aria-label="Didukung oleh">
+        <img src="assets/img/logo-kementrans.png" width="44" height="44" alt="Kementerian Transmigrasi Republik Indonesia" title="Kementerian Transmigrasi">
+        <img src="assets/img/logo-ipb.png" height="44" alt="IPB University" title="IPB University" onerror="this.remove()">
+      </div>
     </div>
   </header>
 
@@ -437,8 +439,8 @@
   </dialog>
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
-  <script src="assets/js/data.js?v=202610251946"></script>
-  <script src="assets/js/app.js?v=202610251946"></script>
-  <script src="assets/js/router.js?v=202610251946"></script>
+  <script src="assets/js/data.js?v=202610252010"></script>
+  <script src="assets/js/app.js?v=202610252010"></script>
+  <script src="assets/js/router.js?v=202610252010"></script>
 </body>
 </html>
