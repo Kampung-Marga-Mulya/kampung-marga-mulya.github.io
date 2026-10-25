@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """
-Hitung jarak & waktu tempuh jalan dari Kampung Marga Mulya ke setiap tempat di data/wisata.json.
+Hitung jarak & waktu tempuh jalan dari Kampung Marga Mulya ke setiap tempat di data/wisata.json
+serta setiap fasilitas di data/fasilitas.json.
 
 - Tempat tanpa koordinat dicari lokasinya lewat OpenStreetMap (Nominatim) memakai kolom "cari".
   Hasilnya ditandai "perkiraan": true karena biasanya hanya sampai tingkat jalan/kelurahan.
@@ -30,38 +31,44 @@ def haversine(a, b):
     h = math.sin((la2-la1)/2)**2 + math.cos(la1)*math.cos(la2)*math.sin((lo2-lo1)/2)**2
     return 2 * R * math.asin(math.sqrt(h))
 
-data = json.load(open(PATH, encoding="utf-8"))
-pusat = (data["pusat"]["lat"], data["pusat"]["lng"])
-for t in data["tempat"]:
-    if t.get("lat") is None and t.get("cari"):
-        g = None
-        for q in ([t["cari"]] if isinstance(t["cari"], str) else t["cari"]):   # "cari" boleh berupa daftar alternatif
-            try:
-                g = geocode(q)
-            except Exception as e:
-                print("geocode gagal", t["nama"], q, e, file=sys.stderr)
+def proses(path, kunci):
+    data = json.load(open(path, encoding="utf-8"))
+    pusat = (data["pusat"]["lat"], data["pusat"]["lng"])
+    for t in data[kunci]:
+        if t.get("lat") is None and t.get("cari"):
+            g = None
+            for q in ([t["cari"]] if isinstance(t["cari"], str) else t["cari"]):   # "cari" boleh berupa daftar alternatif
+                try:
+                    g = geocode(q)
+                except Exception as e:
+                    print("geocode gagal", t["nama"], q, e, file=sys.stderr)
+                if g:
+                    break
             if g:
-                break
-        if g:
-            t["lat"], t["lng"] = round(g[0], 6), round(g[1], 6); t["perkiraan"] = True
-            print("lokasi perkiraan:", t["nama"], g, file=sys.stderr)
+                t["lat"], t["lng"] = round(g[0], 6), round(g[1], 6); t["perkiraan"] = True
+                print("lokasi perkiraan:", t["nama"], g, file=sys.stderr)
+    ada = [t for t in data[kunci] if t.get("lat") is not None]
+    if ada:
+        coords = ";".join([f"{pusat[1]},{pusat[0]}"] + [f'{t["lng"]},{t["lat"]}' for t in ada])
+        try:
+            r = requests.get(f"https://router.project-osrm.org/table/v1/driving/{coords}?sources=0&annotations=distance,duration",
+                             headers=UA, timeout=60); r.raise_for_status(); j = r.json()
+            for t, d, s_ in zip(ada, j["distances"][0][1:], j["durations"][0][1:]):
+                if d is None:
+                    continue
+                t["jarak_km"] = round(d / 1000, 1)
+                t["waktu_menit"] = max(5, int(round(s_ * FAKTOR_WAKTU / 60 / 5) * 5))
+        except Exception as e:
+            print("OSRM gagal, pakai jarak garis lurus x1,3:", e, file=sys.stderr)
+            for t in ada:
+                km = haversine(pusat, (t["lat"], t["lng"])) * 1.3
+                t["jarak_km"] = round(km, 1); t["waktu_menit"] = max(5, int(round(km / 40 * 60 / 5) * 5))
+    if kunci == "tempat":
+        data[kunci].sort(key=lambda t: t.get("jarak_km", 9999))
+    json.dump(data, open(path, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+    open(path, "a").write("\n")
+    print(path, "selesai:", sum(1 for t in data[kunci] if "jarak_km" in t), "berjarak")
 
-ada = [t for t in data["tempat"] if t.get("lat") is not None]
-coords = ";".join([f"{pusat[1]},{pusat[0]}"] + [f'{t["lng"]},{t["lat"]}' for t in ada])
-try:
-    r = requests.get(f"https://router.project-osrm.org/table/v1/driving/{coords}?sources=0&annotations=distance,duration",
-                     headers=UA, timeout=60); r.raise_for_status(); j = r.json()
-    for t, d, s in zip(ada, j["distances"][0][1:], j["durations"][0][1:]):
-        if d is None:
-            continue
-        t["jarak_km"] = round(d / 1000, 1)
-        t["waktu_menit"] = max(5, int(round(s * FAKTOR_WAKTU / 60 / 5) * 5))
-except Exception as e:
-    print("OSRM gagal, pakai jarak garis lurus x1,3:", e, file=sys.stderr)
-    for t in ada:
-        km = haversine(pusat, (t["lat"], t["lng"])) * 1.3
-        t["jarak_km"] = round(km, 1); t["waktu_menit"] = max(5, int(round(km / 40 * 60 / 5) * 5))
-data["tempat"].sort(key=lambda t: t.get("jarak_km", 9999))
-json.dump(data, open(PATH, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
-open(PATH, "a").write("\n")
-print("selesai:", sum(1 for t in data["tempat"] if "jarak_km" in t), "tempat berjarak")
+
+proses(PATH, "tempat")
+proses(os.path.join(ROOT, "data", "fasilitas.json"), "fasilitas")

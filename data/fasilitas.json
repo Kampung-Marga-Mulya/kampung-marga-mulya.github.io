@@ -1,0 +1,308 @@
+{
+ "keterangan": "Fasilitas umum di dan sekitar Kampung Marga Mulya. status: terverifikasi (ada sumber resmi + titik), sebagian (ada sumber, data/titik belum lengkap), perlu-data (diisi pemerintah kampung). Tambahkan 'foto' berisi path gambar di assets/img/fasilitas/.",
+ "pusat": {
+  "nama": "Kampung Marga Mulya",
+  "lat": -8.409726,
+  "lng": 140.463722
+ },
+ "fasilitas": [
+  {
+   "id": "sd-semangga-3",
+   "nama": "SD Inpres Semangga III",
+   "kategori": "Pendidikan",
+   "jenis": "SD Negeri",
+   "dalamKampung": true,
+   "alamat": "Kampung Marga Mulya, Distrik Semangga",
+   "lat": -8.4008,
+   "lng": 140.4586,
+   "keterangan": [
+    "NPSN 60300772",
+    "Akreditasi B",
+    "Sumur bor air bersih dari TNI AD (Agustus 2026)"
+   ],
+   "kontak": "sdinpressemangga@gmail.com",
+   "sumber": "Kemendikdasmen",
+   "sumberUrl": "https://referensi.data.kemendikdasmen.go.id/pendidikan/npsn/60300772",
+   "status": "terverifikasi"
+  },
+  {
+   "id": "sd-muram",
+   "nama": "SD Inpres Muram",
+   "kategori": "Pendidikan",
+   "jenis": "SD Negeri",
+   "dalamKampung": true,
+   "alamat": "Kampung Marga Mulya, Distrik Semangga",
+   "lat": -8.406785,
+   "lng": 140.467143,
+   "keterangan": [
+    "NPSN 60300762",
+    "Akreditasi B",
+    "Luas tanah 10.000 m²",
+    "Listrik PLN"
+   ],
+   "kontak": "sdinpresmuram@gmail.com",
+   "sumber": "Kemendikdasmen",
+   "sumberUrl": "https://referensi.data.kemendikdasmen.go.id/pendidikan/npsn/60300762",
+   "status": "terverifikasi"
+  },
+  {
+   "id": "paud-tk",
+   "nama": "PAUD / TK Kampung Marga Mulya",
+   "kategori": "Pendidikan",
+   "jenis": "PAUD/TK",
+   "dalamKampung": true,
+   "alamat": "Kampung Marga Mulya",
+   "keterangan": [
+    "Isi nama lembaga, NPSN, jumlah murid, dan jadwal belajar"
+   ],
+   "status": "perlu-data"
+  },
+  {
+   "id": "musala-al-barokah",
+   "nama": "Musala Al Barokah RT 09",
+   "kategori": "Ibadah",
+   "jenis": "Musala",
+   "dalamKampung": true,
+   "alamat": "RT 09, Kampung Marga Mulya",
+   "keterangan": [
+    "Sumur bor air bersih dari Karya Bakti TNI AD 2026"
+   ],
+   "sumber": "Barometer99",
+   "sumberUrl": "https://barometer99.com/tni-ad-wujudkan-air-bersih-kodim-1707-merauke-hadir-atasi-kesulitan-warga-rt-09-marga-mulya/",
+   "status": "sebagian"
+  },
+  {
+   "id": "masjid",
+   "nama": "Masjid Kampung Marga Mulya",
+   "kategori": "Ibadah",
+   "jenis": "Masjid",
+   "dalamKampung": true,
+   "alamat": "Kampung Marga Mulya",
+   "keterangan": [
+    "Isi nama masjid, RT, dan jadwal kegiatan"
+   ],
+   "status": "perlu-data"
+  },
+  {
+   "id": "gereja",
+   "nama": "Gereja di Kampung Marga Mulya",
+   "kategori": "Ibadah",
+   "jenis": "Gereja",
+   "dalamKampung": true,
+   "alamat": "Kampung Marga Mulya",
+   "keterangan": [
+    "Isi nama gereja/denominasi, RT, dan jadwal ibadah"
+   ],
+   "status": "perlu-data"
+  },
+  {
+   "id": "gereja-kuper",
+   "nama": "Gereja Katolik Bunda Hati Kudus Kuper",
+   "kategori": "Ibadah",
+   "jenis": "Gereja Katolik",
+   "dalamKampung": false,
+   "alamat": "Kampung Kuper, Distrik Semangga",
+   "cari": [
+    "Kuper, Semangga, Merauke"
+   ],
+   "keterangan": [
+    "Misa Minggu 08.00 WIT",
+    "Misa harian Senin, Rabu, Jumat 06.00 WIT"
+   ],
+   "sumber": "paroki.org",
+   "sumberUrl": "https://paroki.org/gereja-katolik-di-merauke/",
+   "status": "sebagian"
+  },
+  {
+   "id": "kantor-kampung",
+   "nama": "Kantor & Balai Kampung Marga Mulya",
+   "kategori": "Pemerintahan",
+   "jenis": "Kantor kampung",
+   "dalamKampung": true,
+   "alamat": "Kampung Marga Mulya",
+   "keterangan": [
+    "Pelayanan administrasi warga",
+    "Tempat musyawarah dan pelatihan warga"
+   ],
+   "sumber": "IPB University",
+   "sumberUrl": "https://www.ipb.ac.id/news/index/2026/10/tim-ekspedisi-patriot-ipb-university-kenalkan-data-desa-presisi-bantu-rumuskan-kebijakan-kampung-di-semangga",
+   "status": "sebagian"
+  },
+  {
+   "id": "posyandu",
+   "nama": "Posyandu Kampung Marga Mulya",
+   "kategori": "Kesehatan",
+   "jenis": "Posyandu",
+   "dalamKampung": true,
+   "alamat": "Kampung Marga Mulya",
+   "keterangan": [
+    "Isi nama posyandu, lokasi, dan jadwal bulanan"
+   ],
+   "status": "perlu-data"
+  },
+  {
+   "id": "puskesmas-kuprik",
+   "nama": "Puskesmas Kuprik",
+   "kategori": "Kesehatan",
+   "jenis": "Puskesmas",
+   "dalamKampung": false,
+   "alamat": "Kampung Kuprik, Distrik Semangga",
+   "cari": [
+    "Puskesmas Kuprik, Merauke",
+    "Kuprik, Semangga, Merauke"
+   ],
+   "keterangan": [
+    "Puskesmas di Distrik Semangga"
+   ],
+   "status": "sebagian"
+  },
+  {
+   "id": "air-isi-ulang",
+   "nama": "Depot Air Minum Isi Ulang",
+   "kategori": "Air bersih",
+   "jenis": "Depot air",
+   "dalamKampung": true,
+   "alamat": "Kampung Marga Mulya",
+   "keterangan": [
+    "Isi nama depot, pemilik, jam buka, dan nomor kontak"
+   ],
+   "status": "perlu-data"
+  },
+  {
+   "id": "sumur-bor",
+   "nama": "Sumur Bor Air Bersih (SD Inpres Semangga III & RT 09)",
+   "kategori": "Air bersih",
+   "jenis": "Sumur bor umum",
+   "dalamKampung": true,
+   "alamat": "SD Inpres Semangga III dan Musala RT 09",
+   "keterangan": [
+    "Dibangun Karya Bakti TNI AD 2026",
+    "Dua titik: SD Inpres Semangga III dan musala RT 09"
+   ],
+   "sumber": "Suara Media",
+   "sumberUrl": "https://suaramediaa.id/2026/08/28/peran-tni-ad-seskoad-dan-universitas-lppm-unjani-dalam-mewujudkan-infrastruktur-yang-bermanfaat-bagi-masyarakat-di-merauke/",
+   "status": "terverifikasi"
+  },
+  {
+   "id": "irigasi",
+   "nama": "Saluran Irigasi Primer & P3A Marga Mulya",
+   "kategori": "Pertanian",
+   "jenis": "Irigasi",
+   "dalamKampung": true,
+   "alamat": "Kampung Marga Mulya",
+   "keterangan": [
+    "Dikelola Perkumpulan Petani Pemakai Air (P3A) Marga Mulya"
+   ],
+   "sumber": "Tribun Papua",
+   "sumberUrl": "https://papua.tribunnews.com/2021/12/15/p3a-marga-mulya-khawatir-saluran-primer-tercemari-limbah-pt-harvest-pulus-papua",
+   "status": "sebagian"
+  },
+  {
+   "id": "sawah-lahan-1",
+   "nama": "Sawah Lahan 1 Marga Mulya",
+   "kategori": "Pertanian",
+   "jenis": "Hamparan sawah",
+   "dalamKampung": true,
+   "alamat": "Kampung Marga Mulya",
+   "keterangan": [
+    "Lokasi tanam padi serentak Brigade Pangan (September 2025)"
+   ],
+   "sumber": "Kodim 1707/Merauke",
+   "sumberUrl": "https://kodim1707merauke.com/berita/detail/semangat-petani-merauke-tanam-padi-serentak-demi-swasembada-pangan-nasional",
+   "status": "sebagian"
+  },
+  {
+   "id": "lapangan",
+   "nama": "Lapangan Olahraga Kampung",
+   "kategori": "Olahraga",
+   "jenis": "Lapangan",
+   "dalamKampung": true,
+   "alamat": "Kampung Marga Mulya",
+   "keterangan": [
+    "Isi jenis lapangan (sepak bola, voli, dll.) dan lokasinya"
+   ],
+   "status": "perlu-data"
+  },
+  {
+   "id": "kios",
+   "nama": "Kios & Warung Kebutuhan Harian",
+   "kategori": "Ekonomi",
+   "jenis": "Kios",
+   "dalamKampung": true,
+   "alamat": "Kampung Marga Mulya",
+   "keterangan": [
+    "Isi nama kios/warung, pemilik, dan jam buka"
+   ],
+   "status": "perlu-data"
+  },
+  {
+   "id": "sd-semangga-2",
+   "nama": "SD Inpres Semangga II",
+   "kategori": "Pendidikan",
+   "jenis": "SD Negeri",
+   "dalamKampung": false,
+   "alamat": "Jl. Ketapang, Semangga Jaya",
+   "lat": -8.4431417,
+   "lng": 140.436875,
+   "keterangan": [
+    "NPSN 60300773",
+    "Akreditasi C"
+   ],
+   "kontak": "sdinpressemanggadua@gmail.com",
+   "sumber": "Kemendikdasmen",
+   "sumberUrl": "https://referensi.data.kemendikdasmen.go.id/pendidikan/npsn/60300773",
+   "status": "terverifikasi"
+  },
+  {
+   "id": "smpn-3",
+   "nama": "SMP Negeri 3 Merauke",
+   "kategori": "Pendidikan",
+   "jenis": "SMP Negeri",
+   "dalamKampung": false,
+   "alamat": "Jl. Trikora, Kuper, Distrik Semangga",
+   "lat": -8.4682,
+   "lng": 140.4466,
+   "keterangan": [
+    "NPSN 60300609",
+    "Akreditasi A"
+   ],
+   "kontak": "smpn_3merauke@yahoo.com",
+   "sumber": "Kemendikdasmen",
+   "sumberUrl": "https://referensi.data.kemendikdasmen.go.id/pendidikan/npsn/60300609",
+   "status": "terverifikasi"
+  },
+  {
+   "id": "smp-satap-2",
+   "nama": "SMP Satap 2 Merauke",
+   "kategori": "Pendidikan",
+   "jenis": "SMP Negeri",
+   "dalamKampung": false,
+   "alamat": "Kampung Muram Sari, Distrik Semangga",
+   "lat": -8.363702,
+   "lng": 140.3683994,
+   "keterangan": [
+    "NPSN 60304739",
+    "Akreditasi C"
+   ],
+   "kontak": "smpsatapmuram@gmail.com",
+   "sumber": "Kemendikdasmen",
+   "sumberUrl": "https://referensi.data.kemendikdasmen.go.id/pendidikan/npsn/60304739",
+   "status": "terverifikasi"
+  },
+  {
+   "id": "smk-eca",
+   "nama": "SMK ECA",
+   "kategori": "Pendidikan",
+   "jenis": "SMK",
+   "dalamKampung": false,
+   "alamat": "Kampung Matara, Distrik Semangga",
+   "cari": [
+    "Matara, Semangga, Merauke"
+   ],
+   "keterangan": [
+    "SMK di Distrik Semangga"
+   ],
+   "status": "sebagian"
+  }
+ ]
+}

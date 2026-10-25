@@ -14,7 +14,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
-  <link rel="stylesheet" href="assets/css/style.css?v=202610251834">
+  <link rel="stylesheet" href="assets/css/style.css?v=202610251934">
 </head>
 <body>
   <!-- Kumpulan ikon garis (dipakai dengan <svg><use href="#i-..."/></svg>) -->
@@ -52,6 +52,12 @@
       <symbol id="i-fish" viewBox="0 0 24 24"><path d="M3 12c3-4 7-5 10-5 3 0 5 2 7 5-2 3-4 5-7 5-3 0-7-1-10-5z"/><path d="M3 12 1 9M3 12l-2 3"/><circle cx="15.5" cy="11" r=".9"/></symbol>
       <symbol id="i-monument" viewBox="0 0 24 24"><path d="M10 3h4l1 15H9zM6 21h12M7 18h10"/></symbol>
       <symbol id="i-route" viewBox="0 0 24 24"><circle cx="6" cy="19" r="2"/><circle cx="18" cy="5" r="2"/><path d="M8 19h7a3.5 3.5 0 0 0 0-7H9a3.5 3.5 0 0 1 0-7h7"/></symbol>
+      <symbol id="i-church" viewBox="0 0 24 24"><path d="M12 2v5M10 4h4M6 21V11l6-4 6 4v10M3 21h18M10 21v-4a2 2 0 0 1 4 0v4"/></symbol>
+      <symbol id="i-mosque" viewBox="0 0 24 24"><path d="M5 21v-7a7 7 0 0 1 14 0v7M3 21h18M12 4v3M10 21v-3a2 2 0 0 1 4 0v3"/><path d="M12 4a1.5 1.5 0 1 0 0-.01"/></symbol>
+      <symbol id="i-school" viewBox="0 0 24 24"><path d="M2 9 12 4l10 5-10 5z"/><path d="M6 11v5c2 1.5 4 2 6 2s4-.5 6-2v-5M22 9v6"/></symbol>
+      <symbol id="i-health" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M12 8v8M8 12h8"/></symbol>
+      <symbol id="i-drop" viewBox="0 0 24 24"><path d="M12 3s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11z"/></symbol>
+      <symbol id="i-ball" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7l4 3-1.5 4.5h-5L8 10z"/></symbol>
       <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
       <symbol id="i-ternak" viewBox="0 0 24 24"><path d="M6 9c0-1.7 1.3-3 3-3h6c1.7 0 3 1.3 3 3v4a4 4 0 0 1-4 4h-4a4 4 0 0 1-4-4z"/><path d="M3 6.5 6 9M21 6.5 18 9M10 17v3.5M14 17v3.5"/><circle cx="10" cy="11" r=".6"/><circle cx="14" cy="11" r=".6"/></symbol>
       <symbol id="i-toko" viewBox="0 0 24 24"><path d="M4 10h16l-1.5-5h-13zM5 10v10h14V10M10 20v-5h4v5"/></symbol>
@@ -79,6 +85,7 @@
         <a href="#profil">Profil</a>
         <a href="#pemerintahan">Pemerintahan</a>
         <a href="#data">Penduduk</a>
+        <a href="#fasilitas">Fasilitas</a>
         <a href="#anggaran">Anggaran</a>
         <a href="#indeks">Indeks Desa</a>
         <a href="#peta">Peta</a>
@@ -190,9 +197,30 @@
           <div class="panel"><h3>Mata pencaharian</h3><div class="bars" id="pekerjaan"></div></div>
           <div class="panel"><h3>Agama</h3><div class="bars" id="agama"></div></div>
         </div>
-        <div class="panel mt">
-          <h3>Fasilitas umum</h3>
-          <ul class="facil" id="fasilitas"></ul>
+      </div>
+    </section>
+
+    <!-- FASILITAS UMUM -->
+    <section class="sec" id="fasilitas">
+      <div class="wrap">
+        <header class="sec__head"><span class="sec__icon"><svg class="ic"><use href="#i-home"/></svg></span><div><p class="eyebrow">Fasilitas umum</p><h2>Sekolah, rumah ibadah, kesehatan, dan layanan warga</h2><p class="lead">Fasilitas di Kampung Marga Mulya dan fasilitas terdekat di Distrik Semangga. Ketuk kartu untuk melihat lokasinya di peta.</p></div></header>
+        <div class="fsum" id="fasilSum"></div>
+        <div class="chips mt-s" id="fasilFilter" role="group" aria-label="Saring kategori fasilitas"></div>
+        <div class="slider">
+          <div class="slider__nav">
+            <span class="news__count" id="fasilCount" aria-live="polite"></span>
+            <button type="button" class="news__btn" id="fasilPrev" aria-label="Fasilitas sebelumnya"><svg class="ic" style="transform:scaleX(-1)"><use href="#i-arrow"/></svg></button>
+            <button type="button" class="news__btn" id="fasilNext" aria-label="Fasilitas berikutnya"><svg class="ic"><use href="#i-arrow"/></svg></button>
+          </div>
+          <div class="news__track" id="fasilTrack" tabindex="0" aria-label="Daftar fasilitas, geser ke kiri atau kanan"></div>
+        </div>
+        <div class="wmap wmap--fasil mt">
+          <div class="wmap__map" id="fasilMap" role="region" aria-label="Peta fasilitas umum"><p class="wmap__load">Memuat peta…</p></div>
+          <div class="wmap__list">
+            <h3>Status data fasilitas</h3>
+            <ul class="fstat" id="fasilStatus"></ul>
+            <p class="small" id="fasilNote"></p>
+          </div>
         </div>
       </div>
     </section>
@@ -362,7 +390,7 @@
   </dialog>
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
-  <script src="assets/js/data.js?v=202610251834"></script>
-  <script src="assets/js/app.js?v=202610251834"></script>
+  <script src="assets/js/data.js?v=202610251934"></script>
+  <script src="assets/js/app.js?v=202610251934"></script>
 </body>
 </html>

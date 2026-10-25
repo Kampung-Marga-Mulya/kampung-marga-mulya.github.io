@@ -477,3 +477,31 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .mpop span { font-size: .85rem; color: var(--ink-2); }
 .mpop__a { display: flex; gap: 12px; margin-top: 4px; }
 .mpop__a a { font-weight: 700; }
+
+/* ---------- Fasilitas umum ---------- */
+.fsum { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; }
+.fsum__i { display: grid; grid-template-columns: auto 1fr; grid-template-rows: auto auto; column-gap: 10px; align-items: center; text-align: left; background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 12px; cursor: pointer; font: inherit; color: inherit; }
+.fsum__i:hover { border-color: var(--blue-mid); box-shadow: var(--shadow); }
+.fsum__i > span { grid-row: span 3; display: grid; place-items: center; width: 38px; height: 38px; border-radius: 10px; background: var(--soft); color: var(--blue); }
+.fsum__i b { font-size: 1.4rem; line-height: 1; color: var(--blue); font-variant-numeric: tabular-nums; }
+.fsum__i small { color: var(--ink-2); font-size: .8rem; line-height: 1.3; }
+.fbadge { display: inline-block; font-size: .72rem; font-weight: 700; padding: 3px 8px; border-radius: 99px; white-space: nowrap; }
+.ncard__cover .fbadge { position: absolute; top: 10px; right: 10px; }
+.fbadge.is-ok { background: #0A0A0A; color: #fff; }
+.fbadge.is-part { background: #fff; color: var(--blue); border: 1px solid var(--blue); }
+.fbadge.is-need { background: var(--soft); color: var(--ink-2); border: 1px dashed var(--blue-mid); }
+.fcard__loc { display: inline-flex; align-items: center; gap: 6px; font-weight: 700; color: var(--blue); font-size: .9rem; }
+.fcard__loc .ic, .fcard__addr .ic { width: 16px; height: 16px; flex: none; }
+.fcard__addr { display: flex; gap: 6px; align-items: center; font-size: .88rem; color: var(--ink-2); overflow-wrap: anywhere; }
+.fcard__ket { margin: 2px 0 0; padding-left: 1.1em; font-size: .88rem; color: var(--ink); display: grid; gap: 2px; }
+.fcard__ket li::marker { color: var(--blue); }
+.fcard .ncard__ph { justify-content: flex-end; }
+.fstat { list-style: none; padding: 0; margin: 10px 0 12px; display: grid; gap: 10px; }
+.fstat li { display: grid; grid-template-columns: auto auto 1fr; gap: 10px; align-items: center; }
+.fstat b { font-size: 1.2rem; color: var(--blue); font-variant-numeric: tabular-nums; }
+.fstat small { color: var(--ink-2); font-size: .86rem; }
+.mk--ic .ic { width: 16px; height: 16px; stroke: #fff; }
+.mk--ic { width: 30px; height: 30px; }
+.wmap--fasil .wmap__map { height: 440px; }
+@media (max-width: 600px) { .wmap--fasil .wmap__map { height: 360px; } }
+.fsum__i i { font-style: normal; font-size: .74rem; color: var(--blue); }

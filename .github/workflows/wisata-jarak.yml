@@ -1,10 +1,10 @@
-name: Hitung jarak wisata
+name: Hitung jarak wisata & fasilitas
 
 # Menghitung ulang jarak & waktu tempuh dari Kampung Marga Mulya setiap kali data/wisata.json diubah.
 on:
   push:
     branches: [main]
-    paths: ["data/wisata.json"]
+    paths: ["data/wisata.json", "data/fasilitas.json"]
   workflow_dispatch:
 
 permissions:
@@ -28,10 +28,10 @@ jobs:
       - name: Simpan
         id: simpan
         run: |
-          if git diff --quiet -- data/wisata.json; then exit 0; fi
+          if git diff --quiet -- data/; then exit 0; fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/wisata.json
+          git add data/wisata.json data/fasilitas.json
           git commit -m "Hitung jarak & waktu tempuh wisata"
           git pull --rebase -q origin main
           git push
