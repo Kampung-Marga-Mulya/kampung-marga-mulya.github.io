@@ -599,3 +599,4 @@ body { background: var(--tint); }
 .partners img { height: 40px; width: auto; display: block; }
 @media (max-width: 960px) { .partners { margin-left: auto; border-left: 0; padding-left: 0; gap: 8px; } .partners img { height: 36px; } }
 @media (max-width: 380px) { .brand__text i { display: none; } .partners img { height: 32px; } }
+.partners picture { display: block; }

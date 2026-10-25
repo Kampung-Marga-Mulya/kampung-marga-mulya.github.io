@@ -14,7 +14,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
-  <link rel="stylesheet" href="assets/css/style.css?v=202610252010">
+  <link rel="stylesheet" href="assets/css/style.css?v=202610252030">
 </head>
 <body>
   <!-- Kumpulan ikon garis (dipakai dengan <svg><use href="#i-..."/></svg>) -->
@@ -89,7 +89,10 @@
       </nav>
       <div class="partners" aria-label="Didukung oleh">
         <img src="assets/img/logo-kementrans.png" width="44" height="44" alt="Kementerian Transmigrasi Republik Indonesia" title="Kementerian Transmigrasi">
-        <img src="assets/img/logo-ipb.png" height="44" alt="IPB University" title="IPB University" onerror="this.remove()">
+        <picture>
+          <source media="(max-width: 600px)" srcset="assets/img/logo-ipb-lambang.png">
+          <img src="assets/img/logo-ipb.png" width="169" height="44" alt="IPB University" title="IPB University">
+        </picture>
       </div>
     </div>
   </header>
@@ -439,8 +442,8 @@
   </dialog>
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
-  <script src="assets/js/data.js?v=202610252010"></script>
-  <script src="assets/js/app.js?v=202610252010"></script>
-  <script src="assets/js/router.js?v=202610252010"></script>
+  <script src="assets/js/data.js?v=202610252030"></script>
+  <script src="assets/js/app.js?v=202610252030"></script>
+  <script src="assets/js/router.js?v=202610252030"></script>
 </body>
 </html>
