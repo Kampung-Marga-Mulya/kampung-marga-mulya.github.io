@@ -49,6 +49,33 @@ WAJIB_LOKASI = re.compile(r"merauke|semangga", re.I)
 DESA_LAIN = re.compile(r"\b(lahat|tangerang|mauk|kikim|rambah|rokan hulu|kutai timur|sungai bahar|muaro jambi)\b", re.I)
 
 
+# Halaman yang bukan artikel (tag, kategori, lowongan, lampiran foto WordPress, dsb.)
+SKIP_URL = re.compile(r"/(tag|tags|category|kategori|topik|search|cari|page|author|indeks)/|cariin-kerja|lowongan|"
+                      r"/\d{4}/\d{2}/\d{2}/[^/]+/[^/]+/?$", re.I)
+NAMA_MEDIA = {"papuaselatanpos.com": "Papua Selatan Pos", "metromerauke.co": "Metro Merauke", "papua.tribunnews.com": "Tribun Papua",
+              "tribunnews.com": "Tribunnews", "suara.merauke.go.id": "Suara Merauke (Pemkab Merauke)",
+              "portal.merauke.go.id": "Pemkab Merauke", "tiffanews.co.id": "Tiffa News", "barometer99.com": "Barometer99",
+              "suaramediaa.id": "Suara Media", "rri.co.id": "RRI", "antaranews.com": "ANTARA", "jubi.id": "Jubi",
+              "kodim1707merauke.com": "Kodim 1707/Merauke", "matapapua.com": "MataPapua", "suryapapua.com": "Surya Papua",
+              "mediatni-polri.com": "Media TNI Polri", "kompas.com": "Kompas.com", "mongabay.co.id": "Mongabay Indonesia"}
+
+
+def nama_media(url, fallback=None):
+    host = urllib.parse.urlsplit(url).netloc.lower().removeprefix("www.")
+    for dom, nama in NAMA_MEDIA.items():
+        if host == dom or host.endswith("." + dom):
+            return nama
+    return fallback or host
+
+
+def rapikan_judul(judul, sumber):
+    judul = re.sub(r"\s+", " ", html.unescape(judul or "")).strip()
+    for n in {sumber, sumber.split(" (")[0]} if sumber else set():
+        for pola in (r"^\s*" + re.escape(n) + r"\s*[-|–:]\s*", r"\s*[-|–]\s*" + re.escape(n) + r"\s*$"):
+            judul = re.sub(pola, "", judul, flags=re.I)
+    return judul.strip()
+
+
 def log(*a):
     print(*a, file=sys.stderr)
 
@@ -209,6 +236,14 @@ def main():
         kurasi = {norm(u) for u in re.findall(r'url:\s*"(https?://[^"]+)"', open(DATAJS, encoding="utf-8").read())}
     except OSError:
         kurasi = set()
+    bersih = []
+    for b in store["berita"]:
+        if SKIP_URL.search(b["url"]) or norm(b["url"]) in abaikan:
+            log("  dibuang (bukan artikel/diabaikan):", b["url"]); continue
+        b["sumber"] = nama_media(b["url"], b.get("sumber"))
+        b["judul"] = rapikan_judul(b["judul"], b["sumber"])
+        bersih.append(b)
+    store["berita"] = bersih
     sudah = {norm(b["url"]) for b in store["berita"]} | kurasi | abaikan
     judul_sudah = {norm_title(b["judul"]) for b in store["berita"]}
 
@@ -232,7 +267,7 @@ def main():
             if not asli:
                 continue
             url = asli
-        if norm(url) in sudah or norm_title(bersihkan_judul(c["judul"], c["sumber"])) in judul_sudah:
+        if SKIP_URL.search(url) or norm(url) in sudah or norm_title(bersihkan_judul(c["judul"], c["sumber"])) in judul_sudah:
             continue
         sudah.add(norm(url))
         try:
@@ -255,8 +290,11 @@ def main():
         tgl = tanggal(c["pub"], info["terbit"])
         if not tgl or tgl < batas:
             continue
-        sumber = c["sumber"] or info["sumber"] or urllib.parse.urlsplit(url).netloc.removeprefix("www.")
-        judul = bersihkan_judul(info["judul"] or c["judul"], sumber)
+        akhir = info["url_akhir"] or url
+        if SKIP_URL.search(akhir):
+            continue
+        sumber = nama_media(akhir, c["sumber"] or info["sumber"])
+        judul = rapikan_judul(bersihkan_judul(info["judul"] or c["judul"], c["sumber"] or ""), sumber)
         if norm_title(judul) in judul_sudah:
             continue
         judul_sudah.add(norm_title(judul))
