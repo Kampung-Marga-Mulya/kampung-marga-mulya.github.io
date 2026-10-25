@@ -84,8 +84,8 @@ if hasattr(r, "text"):
         p = aman(requests.get, html.unescape(L), headers={"User-Agent": "Mozilla/5.0"}, timeout=120)
         if hasattr(p, "content") and p.content[:4] == b"%PDF":
             open("/tmp/bps.pdf", "wb").write(p.content)
-            import subprocess
-            teks = subprocess.run(["pdftotext", "-layout", "/tmp/bps.pdf", "-"], capture_output=True, text=True).stdout
+            from pypdf import PdfReader
+            teks = "\n".join((pg.extract_text() or "") for pg in PdfReader("/tmp/bps.pdf").pages)
             baris = teks.splitlines()
             for i, b in enumerate(baris):
                 if re.search(r"wisata|rekreasi|tourism|objek", b, re.I):
