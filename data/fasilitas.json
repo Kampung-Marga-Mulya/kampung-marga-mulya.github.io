@@ -25,7 +25,8 @@
    "sumberUrl": "https://referensi.data.kemendikdasmen.go.id/pendidikan/npsn/60300772",
    "status": "terverifikasi",
    "jarak_km": 1.5,
-   "waktu_menit": 5
+   "waktu_menit": 5,
+   "npsn": "60300772"
   },
   {
    "id": "sd-muram",
@@ -47,19 +48,77 @@
    "sumberUrl": "https://referensi.data.kemendikdasmen.go.id/pendidikan/npsn/60300762",
    "status": "terverifikasi",
    "jarak_km": 0.6,
-   "waktu_menit": 5
+   "waktu_menit": 5,
+   "npsn": "60300762"
   },
   {
-   "id": "paud-tk",
-   "nama": "PAUD / TK Kampung Marga Mulya",
+   "id": "kb-azahro",
+   "nama": "KB PAUD Azahro",
    "kategori": "Pendidikan",
-   "jenis": "PAUD/TK",
+   "jenis": "PAUD (Kelompok Bermain)",
    "dalamKampung": true,
+   "npsn": "69972674",
    "alamat": "Kampung Marga Mulya",
    "keterangan": [
-    "Isi nama lembaga, NPSN, jumlah murid, dan jadwal belajar"
+    "NPSN 69972674",
+    "Akreditasi C",
+    "Swasta · izin operasional 2024",
+    "Luas tanah 800 m²"
    ],
-   "status": "perlu-data"
+   "sumber": "Kemendikdasmen",
+   "sumberUrl": "https://referensi.data.kemendikdasmen.go.id/pendidikan/npsn/69972674",
+   "status": "terverifikasi"
+  },
+  {
+   "id": "kb-an-nasiroh",
+   "nama": "PAUD KB An Nasiroh",
+   "kategori": "Pendidikan",
+   "jenis": "PAUD (Kelompok Bermain)",
+   "dalamKampung": true,
+   "npsn": "69980092",
+   "alamat": "Jl. Poros Semangga, Kampung Marga Mulya",
+   "keterangan": [
+    "NPSN 69980092",
+    "Akreditasi C",
+    "Swasta · berdiri sejak 2018"
+   ],
+   "sumber": "Kemendikdasmen",
+   "sumberUrl": "https://referensi.data.kemendikdasmen.go.id/pendidikan/npsn/69980092",
+   "status": "terverifikasi"
+  },
+  {
+   "id": "tk-al-ittihad",
+   "nama": "TK Al Ittihad",
+   "kategori": "Pendidikan",
+   "jenis": "TK",
+   "dalamKampung": true,
+   "npsn": "70040721",
+   "alamat": "Jl. Poros Semangga, Kampung Marga Mulya",
+   "keterangan": [
+    "NPSN 70040721",
+    "Akreditasi C",
+    "Swasta · luas tanah 1.740 m²"
+   ],
+   "sumber": "Kemendikdasmen",
+   "sumberUrl": "https://referensi.data.kemendikdasmen.go.id/pendidikan/npsn/70040721",
+   "status": "terverifikasi"
+  },
+  {
+   "id": "tk-mitra-mulia",
+   "nama": "TK Mitra Mulia",
+   "kategori": "Pendidikan",
+   "jenis": "TK",
+   "dalamKampung": true,
+   "npsn": "60304640",
+   "alamat": "Jl. Poros Semangga 2, Kampung Marga Mulya",
+   "keterangan": [
+    "NPSN 60304640",
+    "Akreditasi B",
+    "Swasta"
+   ],
+   "sumber": "Kemendikdasmen",
+   "sumberUrl": "https://referensi.data.kemendikdasmen.go.id/pendidikan/npsn/60304640",
+   "status": "terverifikasi"
   },
   {
    "id": "musala-al-barokah",
@@ -267,7 +326,8 @@
    "sumberUrl": "https://referensi.data.kemendikdasmen.go.id/pendidikan/npsn/60300773",
    "status": "terverifikasi",
    "jarak_km": 7.2,
-   "waktu_menit": 15
+   "waktu_menit": 15,
+   "npsn": "60300773"
   },
   {
    "id": "smpn-3",
@@ -287,7 +347,8 @@
    "sumberUrl": "https://referensi.data.kemendikdasmen.go.id/pendidikan/npsn/60300609",
    "status": "terverifikasi",
    "jarak_km": 8.3,
-   "waktu_menit": 10
+   "waktu_menit": 10,
+   "npsn": "60300609"
   },
   {
    "id": "smp-satap-2",
@@ -307,7 +368,8 @@
    "sumberUrl": "https://referensi.data.kemendikdasmen.go.id/pendidikan/npsn/60304739",
    "status": "terverifikasi",
    "jarak_km": 15.8,
-   "waktu_menit": 45
+   "waktu_menit": 45,
+   "npsn": "60304739"
   },
   {
    "id": "smk-eca",

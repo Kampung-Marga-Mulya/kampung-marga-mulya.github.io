@@ -10,7 +10,7 @@ serta setiap fasilitas di data/fasilitas.json.
 
 Dijalankan otomatis oleh GitHub Actions setiap kali data/wisata.json diubah.
 """
-import json, math, os, sys, time, urllib.parse
+import json, math, os, re, sys, time, urllib.parse
 import requests
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -26,6 +26,18 @@ def geocode(q):
     j = r.json(); time.sleep(1.1)   # aturan pemakaian Nominatim: maks 1 permintaan/detik
     return (float(j[0]["lat"]), float(j[0]["lon"])) if j else None
 
+def koordinat_npsn(npsn):
+    """Ambil lintang/bujur sekolah dari Data Referensi Kemendikdasmen."""
+    r = requests.get(f"https://referensi.data.kemendikdasmen.go.id/pendidikan/npsn/{npsn}", headers=UA, timeout=40)
+    t = re.sub(r"<[^>]+>", " ", r.text)
+    la = re.search(r"Lintang\D{0,60}?(-?\d{1,2}\.\d{3,})", t); lo = re.search(r"Bujur\D{0,60}?(\d{2,3}\.\d{3,})", t)
+    if la and lo:
+        lat, lon = float(la.group(1)), float(lo.group(1))
+        if -9.2 < lat < -7.9 and 139.8 < lon < 141.3:
+            return lat, lon
+    return None
+
+
 def haversine(a, b):
     R = 6371; la1, lo1, la2, lo2 = map(math.radians, (a[0], a[1], b[0], b[1]))
     h = math.sin((la2-la1)/2)**2 + math.cos(la1)*math.cos(la2)*math.sin((lo2-lo1)/2)**2
@@ -35,6 +47,14 @@ def proses(path, kunci):
     data = json.load(open(path, encoding="utf-8"))
     pusat = (data["pusat"]["lat"], data["pusat"]["lng"])
     for t in data[kunci]:
+        if t.get("lat") is None and t.get("npsn"):
+            try:
+                g = koordinat_npsn(t["npsn"])
+                if g:
+                    t["lat"], t["lng"] = round(g[0], 6), round(g[1], 6)
+                    print("koordinat NPSN:", t["nama"], g, file=sys.stderr)
+            except Exception as e:
+                print("NPSN gagal", t["nama"], e, file=sys.stderr)
         if t.get("lat") is None and t.get("cari"):
             g = None
             for q in ([t["cari"]] if isinstance(t["cari"], str) else t["cari"]):   # "cari" boleh berupa daftar alternatif
