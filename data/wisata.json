@@ -503,6 +503,16 @@
    "kategori": "Agrowisata",
    "area": "Distrik Tanah Miring",
    "deskripsi": "Kebun kakao di Distrik Tanah Miring yang tercatat di peta daring sebagai Kebun Coklat Distrik Tanah Miring. Perlu konfirmasi apakah kebun ini dibuka untuk kunjungan wisata. Titik lokasi, jam buka, dan harga tiket belum tersedia di sumber daring. Gunakan tombol Google Maps untuk mencari lokasinya; pengelola atau admin kampung dapat melengkapi data ini."
+  },
+  {
+   "id": "banyu-mulya",
+   "nama": "Kolam Pemancingan Wisata Banyu Mulya",
+   "kategori": "Pemancingan & air",
+   "tag": [
+    "pemancingan"
+   ],
+   "area": "Semangga II, Distrik Semangga",
+   "deskripsi": "Kolam pemancingan wisata di Semangga II, dekat Kampung Marga Mulya. Cocok untuk memancing santai bersama keluarga dan teman. Titik lokasi, jam buka, dan harga tiket menunggu data dari pengelola; gunakan tombol Google Maps untuk mencari lokasinya."
   }
  ]
 }
