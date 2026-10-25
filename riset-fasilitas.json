@@ -1,0 +1,235 @@
+{
+ "osm": [],
+ "paud": [
+  {
+   "src": "https://referensi.data.kemendikdasmen.go.id/pendidikan/paud/370105/3",
+   "row": "No NPSN Nama Satuan Pendidikan Alamat Kelurahan Status",
+   "npsn": []
+  },
+  {
+   "src": "https://referensi.data.kemendikdasmen.go.id/pendidikan/paud/370105/3",
+   "row": "1 69972674 KB PAUD AZAHRO Kampung Marga Mulya Marga Mulya SWASTA",
+   "npsn": [
+    "69972674"
+   ]
+  },
+  {
+   "src": "https://referensi.data.kemendikdasmen.go.id/pendidikan/paud/370105/3",
+   "row": "2 69972734 KB PAUD KARTIKA SARI PERTIWI Jl. Pembangunan Muram Sari SWASTA",
+   "npsn": [
+    "69972734"
+   ]
+  },
+  {
+   "src": "https://referensi.data.kemendikdasmen.go.id/pendidikan/paud/370105/3",
+   "row": "3 69974487 KB TUNAS JAYA Kampung Semangga Jaya Semangga Jaya SWASTA",
+   "npsn": [
+    "69974487"
+   ]
+  },
+  {
+   "src": "https://referensi.data.kemendikdasmen.go.id/pendidikan/paud/370105/3",
+   "row": "4 69992998 PAUD KASIH IBU Jl. Protokol Riadi Kampung Sidomulyo Sido Mulyo SWASTA",
+   "npsn": [
+    "69992998"
+   ]
+  },
+  {
+   "src": "https://referensi.data.kemendikdasmen.go.id/pendidikan/paud/370105/3",
+   "row": "5 69980092 PAUD KB AN NASIROH JL. POROS SEMANGGA Marga Mulya SWASTA",
+   "npsn": [
+    "69980092"
+   ]
+  },
+  {
+   "src": "https://referensi.data.kemendikdasmen.go.id/pendidikan/paud/370105/3",
+   "row": "6 69991008 PAUD KUPER JL. TRIKORA KAMPUNG KUPER Kuper SWASTA",
+   "npsn": [
+    "69991008"
+   ]
+  },
+  {
+   "src": "https://referensi.data.kemendikdasmen.go.id/pendidikan/paud/370105/3",
+   "row": "7 69980495 PAUD TUNAS MELATI Kampung Semangga Jaya Semangga Jaya SWASTA",
+   "npsn": [
+    "69980495"
+   ]
+  },
+  {
+   "src": "https://referensi.data.kemendikdasmen.go.id/pendidikan/paud/370105/3",
+   "row": "8 60304619 TK ABA MURAM SARI JL. Pendidikan Muram Sari SWASTA",
+   "npsn": [
+    "60304619"
+   ]
+  },
+  {
+   "src": "https://referensi.data.kemendikdasmen.go.id/pendidikan/paud/370105/3",
+   "row": "9 60304621 TK AL HIDAYAH I Jl. Pendidikan No.1 Semangga Jaya SWASTA",
+   "npsn": [
+    "60304621"
+   ]
+  },
+  {
+   "src": "https://referensi.data.kemendikdasmen.go.id/pendidikan/paud/370105/3",
+   "row": "10 60304622 TK AL HIDAYAH II SEMANGGA Waninggap Kai SWASTA",
+   "npsn": [
+    "60304622"
+   ]
+  },
+  {
+   "src": "https://referensi.data.kemendikdasmen.go.id/pendidikan/paud/370105/3",
+   "row": "11 70040721 TK AL ITTIHAD Jln. Poros Semangga Marga Mulya SWASTA",
+   "npsn": [
+    "70040721"
+   ]
+  },
+  {
+   "src": "https://referensi.data.kemendikdasmen.go.id/pendidikan/paud/370105/3",
+   "row": "12 60304629 TK DARUSSALAM JL. PROTOKOL KUPRIK Kuprik SWASTA",
+   "npsn": [
+    "60304629"
+   ]
+  },
+  {
+   "src": "https://referensi.data.kemendikdasmen.go.id/pendidikan/paud/370105/3",
+   "row": "13 60304640 TK MITRA MULIA Jl. Poros Semangga 2, Kamp. Marga Mulya Marga Mulya SWASTA",
+   "npsn": [
+    "60304640"
+   ]
+  },
+  {
+   "src": "https://referensi.data.kemendikdasmen.go.id/pendidikan/paud/370105/3",
+   "row": "14 70034553 TK Noh Tabuk Kampung Matara Matara SWASTA",
+   "npsn": [
+    "70034553"
+   ]
+  },
+  {
+   "src": "https://referensi.data.kemendikdasmen.go.id/pendidikan/paud/370105/3",
+   "row": "15 70000662 TK SAMB KAI BUNDA HATI KUDUS Jl. Kuprik-Kumbe, Wendu Waninggap Nanggo SWASTA",
+   "npsn": [
+    "70000662"
+   ]
+  },
+  {
+   "src": "https://referensi.data.kemendikdasmen.go.id/pendidikan/paud/370105/3",
+   "row": "16 60304655 TK YPK IMANUEL Jl. Gg. Gereja Kuprik SWASTA",
+   "npsn": [
+    "60304655"
+   ]
+  },
+  {
+   "src": "https://referensi.data.kemendikdasmen.go.id/pendidikan/paud/370105/3/jf/1/all",
+   "row": "No NPSN Nama Satuan Pendidikan Alamat Kelurahan Status",
+   "npsn": []
+  },
+  {
+   "src": "https://referensi.data.kemendikdasmen.go.id/pendidikan/paud/370105/3/jf/1/all",
+   "row": "1 60304619 TK ABA MURAM SARI JL. Pendidikan Muram Sari SWASTA",
+   "npsn": [
+    "60304619"
+   ]
+  },
+  {
+   "src": "https://referensi.data.kemendikdasmen.go.id/pendidikan/paud/370105/3/jf/1/all",
+   "row": "2 60304621 TK AL HIDAYAH I Jl. Pendidikan No.1 Semangga Jaya SWASTA",
+   "npsn": [
+    "60304621"
+   ]
+  },
+  {
+   "src": "https://referensi.data.kemendikdasmen.go.id/pendidikan/paud/370105/3/jf/1/all",
+   "row": "3 60304622 TK AL HIDAYAH II SEMANGGA Waninggap Kai SWASTA",
+   "npsn": [
+    "60304622"
+   ]
+  },
+  {
+   "src": "https://referensi.data.kemendikdasmen.go.id/pendidikan/paud/370105/3/jf/1/all",
+   "row": "4 70040721 TK AL ITTIHAD Jln. Poros Semangga Marga Mulya SWASTA",
+   "npsn": [
+    "70040721"
+   ]
+  },
+  {
+   "src": "https://referensi.data.kemendikdasmen.go.id/pendidikan/paud/370105/3/jf/1/all",
+   "row": "5 60304629 TK DARUSSALAM JL. PROTOKOL KUPRIK Kuprik SWASTA",
+   "npsn": [
+    "60304629"
+   ]
+  },
+  {
+   "src": "https://referensi.data.kemendikdasmen.go.id/pendidikan/paud/370105/3/jf/1/all",
+   "row": "6 60304640 TK MITRA MULIA Jl. Poros Semangga 2, Kamp. Marga Mulya Marga Mulya SWASTA",
+   "npsn": [
+    "60304640"
+   ]
+  },
+  {
+   "src": "https://referensi.data.kemendikdasmen.go.id/pendidikan/paud/370105/3/jf/1/all",
+   "row": "7 70034553 TK Noh Tabuk Kampung Matara Matara SWASTA",
+   "npsn": [
+    "70034553"
+   ]
+  },
+  {
+   "src": "https://referensi.data.kemendikdasmen.go.id/pendidikan/paud/370105/3/jf/1/all",
+   "row": "8 70000662 TK SAMB KAI BUNDA HATI KUDUS Jl. Kuprik-Kumbe, Wendu Waninggap Nanggo SWASTA",
+   "npsn": [
+    "70000662"
+   ]
+  },
+  {
+   "src": "https://referensi.data.kemendikdasmen.go.id/pendidikan/paud/370105/3/jf/1/all",
+   "row": "9 60304655 TK YPK IMANUEL Jl. Gg. Gereja Kuprik SWASTA",
+   "npsn": [
+    "60304655"
+   ]
+  },
+  {
+   "src": "https://referensi.data.kemendikdasmen.go.id/pendidikan/dikmen/370105/3",
+   "row": "No NPSN Nama Satuan Pendidikan Alamat Kelurahan Status",
+   "npsn": []
+  },
+  {
+   "src": "https://referensi.data.kemendikdasmen.go.id/pendidikan/dikmen/370105/3",
+   "row": "1 70001747 SMA ENTREPRENEURSHIP CHEVALIER ANASAI Jl. Raya Kuprik Kumbe Matara SWASTA",
+   "npsn": [
+    "70001747"
+   ]
+  },
+  {
+   "src": "https://referensi.data.kemendikdasmen.go.id/pendidikan/dikmen/370105/3",
+   "row": "2 60302714 SMA NEGERI PLUS URUMB URUMB Urumb NEGERI",
+   "npsn": [
+    "60302714"
+   ]
+  }
+ ],
+ "dikdas_html_marga": [
+  {
+   "npsn": "69972674",
+   "text": " Data Pendidikan Kemendikdasmen .btn-link { display: inline-block; padding: 0px 8px; border: 0.5px solid #007BFF; color: #007BFF; text-decoration: none !important; border-radius: 5px; transition: background-color 0.3s, color 0.3s; font-size: 14px; text-align: center; margin-left: 3px; } .btn-link:hover { background-color: #007BFF; color: #ffffff !important; text-decoration: none; } .btn-link:visited, .btn-link:active { background-color: #007BFF; color: #007BFF; text-decoration: none !important; } KB PAUD AZAHRO Identitas Satuan Pendidikan Nama : KB PAUD AZAHRO NPSN : 69972674 Alamat : Kampung Marga Mulya Desa/Kelurahan : MARGA MULYA Kecamatan/Kota (LN) : KEC. SEMANGGA Kab.-Kota/Negara (LN) : KAB. MERAUKE Propinsi/Luar Negeri (LN) : PROV. PAPUA SELATAN Status Sekolah : SWASTA Bentuk Pendidikan : KB Jenjang Pendidikan : PAUD Dokumen dan Perijinan Kementerian Pembina : Kementerian Pendidikan Dasar dan Menengah Naungan : Lainnya NPYP : - Nomor SK Izin Operasional : 421.1/070/2024 TMT SK Operasional : 13-03-2024 TST SK Operasional : 13-03-2027 File SK Operasional : Lihat SK Operasional Tanggal Upload SK Op. : 15-10-2026 07:53:40 Akreditasi : C Sarana dan Prasarana Luas Tanah : 800 m 2 Akses Internet : 1. - : 2. - Sumber Listrik : PLN Kontak Fax : - Telepon : Email : paudazahro@gmail.com Website : Operator : fatmawati Peta Lintang: .018389895243 Bujur: -.000858306885 Pusdatin © Kemendikdasmen "
+  },
+  {
+   "npsn": "69980092",
+   "text": " Data Pendidikan Kemendikdasmen .btn-link { display: inline-block; padding: 0px 8px; border: 0.5px solid #007BFF; color: #007BFF; text-decoration: none !important; border-radius: 5px; transition: background-color 0.3s, color 0.3s; font-size: 14px; text-align: center; margin-left: 3px; } .btn-link:hover { background-color: #007BFF; color: #ffffff !important; text-decoration: none; } .btn-link:visited, .btn-link:active { background-color: #007BFF; color: #007BFF; text-decoration: none !important; } PAUD KB AN NASIROH Identitas Satuan Pendidikan Nama : PAUD KB AN NASIROH NPSN : 69980092 Alamat : JL. POROS SEMANGGA Desa/Kelurahan : MARGA MULYA Kecamatan/Kota (LN) : KEC. SEMANGGA Kab.-Kota/Negara (LN) : KAB. MERAUKE Propinsi/Luar Negeri (LN) : PROV. PAPUA SELATAN Status Sekolah : SWASTA Bentuk Pendidikan : KB Jenjang Pendidikan : PAUD Dokumen dan Perijinan Kementerian Pembina : Kementerian Pendidikan Dasar dan Menengah Naungan : NPYP : - Nomor SK Izin Operasional : 421.1/039/2018 TMT SK Operasional : 13-02-2018 TST SK Operasional : - File SK Operasional : Lihat SK Operasional Tanggal Upload SK Op. : 28-08-2023 16:59:32 Akreditasi : C Sarana dan Prasarana Luas Tanah : 96 m 2 Akses Internet : 1. - : 2. - Sumber Listrik : PLN Kontak Fax : - Telepon : Email : annasirohpaud@gmail.com Website : Operator : Mirnawati Wahyu Farida Peta Lintang: .000000000000 Bujur: .000000000000 Pusdatin © Kemendikdasmen "
+  },
+  {
+   "npsn": "70040721",
+   "text": " Data Pendidikan Kemendikdasmen .btn-link { display: inline-block; padding: 0px 8px; border: 0.5px solid #007BFF; color: #007BFF; text-decoration: none !important; border-radius: 5px; transition: background-color 0.3s, color 0.3s; font-size: 14px; text-align: center; margin-left: 3px; } .btn-link:hover { background-color: #007BFF; color: #ffffff !important; text-decoration: none; } .btn-link:visited, .btn-link:active { background-color: #007BFF; color: #007BFF; text-decoration: none !important; } TK AL ITTIHAD Identitas Satuan Pendidikan Nama : TK AL ITTIHAD NPSN : 70040721 Alamat : Jln. Poros Semangga Desa/Kelurahan : MARGA MULYA Kecamatan/Kota (LN) : KEC. SEMANGGA Kab.-Kota/Negara (LN) : KAB. MERAUKE Propinsi/Luar Negeri (LN) : PROV. PAPUA SELATAN Status Sekolah : SWASTA Bentuk Pendidikan : TK Jenjang Pendidikan : PAUD Dokumen dan Perijinan Kementerian Pembina : Kementerian Pendidikan Dasar dan Menengah Naungan : Lainnya NPYP : - Nomor SK Izin Operasional : 421 / 138 / 2023 TMT SK Operasional : 13-04-2023 TST SK Operasional : - File SK Operasional : Lihat SK Operasional Tanggal Upload SK Op. : 10-07-2023 14:45:57 Akreditasi : C Sarana dan Prasarana Luas Tanah : 1.740 m 2 Akses Internet : 1. - : 2. - Sumber Listrik : PLN Kontak Fax : - Telepon : - Email : tkalittihad9@gmail.com Website : Operator : Rahmawati KOmsiah Peta Lintang: .000000000000 Bujur: .000000000000 Pusdatin © Kemendikdasmen "
+  },
+  {
+   "npsn": "60304640",
+   "text": " Data Pendidikan Kemendikdasmen .btn-link { display: inline-block; padding: 0px 8px; border: 0.5px solid #007BFF; color: #007BFF; text-decoration: none !important; border-radius: 5px; transition: background-color 0.3s, color 0.3s; font-size: 14px; text-align: center; margin-left: 3px; } .btn-link:hover { background-color: #007BFF; color: #ffffff !important; text-decoration: none; } .btn-link:visited, .btn-link:active { background-color: #007BFF; color: #007BFF; text-decoration: none !important; } TK MITRA MULIA Identitas Satuan Pendidikan Nama : TK MITRA MULIA NPSN : 60304640 Alamat : Jl. Poros Semangga 2, Kamp. Marga Mulya Desa/Kelurahan : MARGA MULYA Kecamatan/Kota (LN) : KEC. SEMANGGA Kab.-Kota/Negara (LN) : KAB. MERAUKE Propinsi/Luar Negeri (LN) : PROV. PAPUA SELATAN Status Sekolah : SWASTA Bentuk Pendidikan : TK Jenjang Pendidikan : PAUD Dokumen dan Perijinan Kementerian Pembina : Kementerian Pendidikan Dasar dan Menengah Naungan : NPYP : - Nomor SK Izin Operasional : 421/051/2023 TMT SK Operasional : 15-02-2023 TST SK Operasional : - File SK Operasional : Lihat SK Operasional Tanggal Upload SK Op. : 07-11-2024 08:35:22 Akreditasi : B Sarana dan Prasarana Luas Tanah : 6.007.500 m 2 Akses Internet : 1. - : 2. - Sumber Listrik : PLN Kontak Fax : - Telepon : - Email : tkmitramuliasmg2@yahoo.co.id Website : Operator : Resti Purwati Peta Lintang: -8.406700000000 Bujur: 140.466900000000 Pusdatin © Kemendikdasmen "
+  },
+  {
+   "npsn": "70040721",
+   "text": " Data Pendidikan Kemendikdasmen .btn-link { display: inline-block; padding: 0px 8px; border: 0.5px solid #007BFF; color: #007BFF; text-decoration: none !important; border-radius: 5px; transition: background-color 0.3s, color 0.3s; font-size: 14px; text-align: center; margin-left: 3px; } .btn-link:hover { background-color: #007BFF; color: #ffffff !important; text-decoration: none; } .btn-link:visited, .btn-link:active { background-color: #007BFF; color: #007BFF; text-decoration: none !important; } TK AL ITTIHAD Identitas Satuan Pendidikan Nama : TK AL ITTIHAD NPSN : 70040721 Alamat : Jln. Poros Semangga Desa/Kelurahan : MARGA MULYA Kecamatan/Kota (LN) : KEC. SEMANGGA Kab.-Kota/Negara (LN) : KAB. MERAUKE Propinsi/Luar Negeri (LN) : PROV. PAPUA SELATAN Status Sekolah : SWASTA Bentuk Pendidikan : TK Jenjang Pendidikan : PAUD Dokumen dan Perijinan Kementerian Pembina : Kementerian Pendidikan Dasar dan Menengah Naungan : Lainnya NPYP : - Nomor SK Izin Operasional : 421 / 138 / 2023 TMT SK Operasional : 13-04-2023 TST SK Operasional : - File SK Operasional : Lihat SK Operasional Tanggal Upload SK Op. : 10-07-2023 14:45:57 Akreditasi : C Sarana dan Prasarana Luas Tanah : 1.740 m 2 Akses Internet : 1. - : 2. - Sumber Listrik : PLN Kontak Fax : - Telepon : - Email : tkalittihad9@gmail.com Website : Operator : Rahmawati KOmsiah Peta Lintang: .000000000000 Bujur: .000000000000 Pusdatin © Kemendikdasmen "
+  },
+  {
+   "npsn": "60304640",
+   "text": " Data Pendidikan Kemendikdasmen .btn-link { display: inline-block; padding: 0px 8px; border: 0.5px solid #007BFF; color: #007BFF; text-decoration: none !important; border-radius: 5px; transition: background-color 0.3s, color 0.3s; font-size: 14px; text-align: center; margin-left: 3px; } .btn-link:hover { background-color: #007BFF; color: #ffffff !important; text-decoration: none; } .btn-link:visited, .btn-link:active { background-color: #007BFF; color: #007BFF; text-decoration: none !important; } TK MITRA MULIA Identitas Satuan Pendidikan Nama : TK MITRA MULIA NPSN : 60304640 Alamat : Jl. Poros Semangga 2, Kamp. Marga Mulya Desa/Kelurahan : MARGA MULYA Kecamatan/Kota (LN) : KEC. SEMANGGA Kab.-Kota/Negara (LN) : KAB. MERAUKE Propinsi/Luar Negeri (LN) : PROV. PAPUA SELATAN Status Sekolah : SWASTA Bentuk Pendidikan : TK Jenjang Pendidikan : PAUD Dokumen dan Perijinan Kementerian Pembina : Kementerian Pendidikan Dasar dan Menengah Naungan : NPYP : - Nomor SK Izin Operasional : 421/051/2023 TMT SK Operasional : 15-02-2023 TST SK Operasional : - File SK Operasional : Lihat SK Operasional Tanggal Upload SK Op. : 07-11-2024 08:35:22 Akreditasi : B Sarana dan Prasarana Luas Tanah : 6.007.500 m 2 Akses Internet : 1. - : 2. - Sumber Listrik : PLN Kontak Fax : - Telepon : - Email : tkmitramuliasmg2@yahoo.co.id Website : Operator : Resti Purwati Peta Lintang: -8.406700000000 Bujur: 140.466900000000 Pusdatin © Kemendikdasmen "
+  }
+ ]
+}
