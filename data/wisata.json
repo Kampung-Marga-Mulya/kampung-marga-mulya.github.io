@@ -391,7 +391,10 @@
    "lat": null,
    "lng": null,
    "deskripsi": "Bundaran ikon Kota Merauke dengan monumen bola dunia, ramai dikunjungi warga pada sore dan malam hari.",
-   "cari": "Lingkaran Brawijaya, Merauke"
+   "cari": [
+    "Lingkaran Brawijaya, Merauke",
+    "Jalan Brawijaya, Merauke"
+   ]
   },
   {
    "id": "pantai-payum",
@@ -401,7 +404,11 @@
    "lat": null,
    "lng": null,
    "deskripsi": "Pantai di sisi selatan kota dekat Universitas Musamus, tempat bersantai sore warga Merauke.",
-   "cari": "Pantai Payum, Merauke"
+   "cari": [
+    "Pantai Payum, Merauke",
+    "Universitas Musamus, Merauke",
+    "Samkai, Merauke"
+   ]
   },
   {
    "id": "pasar-wamanggu",
@@ -411,7 +418,10 @@
    "lat": null,
    "lng": null,
    "deskripsi": "Pasar tradisional utama Merauke untuk ikan segar, hasil bumi, dan jajanan lokal.",
-   "cari": "Pasar Wamanggu, Merauke"
+   "cari": [
+    "Pasar Wamanggu, Merauke",
+    "Wamanggu, Merauke"
+   ]
   }
  ]
 }

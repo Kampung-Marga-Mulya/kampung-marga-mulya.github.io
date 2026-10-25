@@ -34,10 +34,14 @@ data = json.load(open(PATH, encoding="utf-8"))
 pusat = (data["pusat"]["lat"], data["pusat"]["lng"])
 for t in data["tempat"]:
     if t.get("lat") is None and t.get("cari"):
-        try:
-            g = geocode(t["cari"])
-        except Exception as e:
-            print("geocode gagal", t["nama"], e, file=sys.stderr); g = None
+        g = None
+        for q in ([t["cari"]] if isinstance(t["cari"], str) else t["cari"]):   # "cari" boleh berupa daftar alternatif
+            try:
+                g = geocode(q)
+            except Exception as e:
+                print("geocode gagal", t["nama"], q, e, file=sys.stderr)
+            if g:
+                break
         if g:
             t["lat"], t["lng"] = round(g[0], 6), round(g[1], 6); t["perkiraan"] = True
             print("lokasi perkiraan:", t["nama"], g, file=sys.stderr)
