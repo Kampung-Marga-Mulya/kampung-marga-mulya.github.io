@@ -368,7 +368,8 @@ window.KAMPUNG = {
     { judul: "Padi sawah", ikon: "padi", ket: "Komoditas utama kampung.", detail: "Isi luas tanam (ha), produktivitas (ton/ha), jumlah musim tanam per tahun, dan kelompok tani yang mengelola." },
     { judul: "Hortikultura", ikon: "daun", ket: "Sayuran dan buah di pekarangan serta lahan kering.", detail: "Isi jenis tanaman, luas lahan, dan tujuan pemasaran hasil panen." },
     { judul: "Peternakan", ikon: "ternak", ket: "Sapi, kambing, dan unggas milik warga.", detail: "Isi jumlah ternak per jenis dan kelompok peternak yang ada." },
-    { judul: "UMKM", ikon: "toko", ket: "Olahan pangan, kios, dan jasa.", detail: "Daftarkan nama usaha, pemilik, produk, dan kontak agar mudah ditemukan pembeli." }
+    { judul: "UMKM", ikon: "toko", ket: "Olahan pangan, kios, dan jasa.", detail: "Daftarkan nama usaha, pemilik, produk, dan kontak agar mudah ditemukan pembeli." },
+    { judul: "Potensi wisata", ikon: "wisata", ket: "Agrowisata dan taman wisata di sekitar kampung hingga Distrik Tanah Miring.", detail: "Di sekitar Marga Mulya dan Distrik Tanah Miring terdapat Taman Wisata Alam Mandira Loka, Mandira Agro Park, Taman Bambu Mandira, Romans Garden, Hokkaido Farm, Kebun Percontohan Tanaman Porang, dan Kebun Pisang Akerezki Farm. Kawasan Mandira hanya beberapa kilometer dari pusat kampung, sehingga warga berpeluang mengembangkan usaha pendukung seperti kuliner, oleh-oleh, dan pemandu wisata.", tautan: "#wisata", tautanLabel: "Lihat peta, jarak & rute" }
   ],
 
   galeri: [

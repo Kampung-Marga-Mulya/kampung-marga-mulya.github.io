@@ -428,6 +428,75 @@
     "Pasar Wamanggu, Merauke",
     "Wamanggu, Merauke"
    ]
+  },
+  {
+   "id": "taman-bambu-mandira",
+   "nama": "Taman Bambu Mandira",
+   "kategori": "Taman keluarga",
+   "area": "Sekitar SP 1, perbatasan Semangga–Tanah Miring",
+   "lat": -8.399513,
+   "lng": 140.495891,
+   "deskripsi": "Taman wisata keluarga yang teduh oleh rumpun bambu, dengan danau buatan, rumah makan bernuansa Bali di tengah danau, perahu bebek, kolam renang, area bermain anak, dan banyak spot foto. Ramai pada hari Minggu dan hari libur. Salah satu tempat wisata terdekat dari Marga Mulya.",
+   "tiket": "Masuk ±Rp2.000; renang ±Rp5.000; perahu bebek ±Rp10.000 (info 2019)",
+   "fasilitas": "Parkir gratis, area bermain anak, rumah makan & kantin, perahu bebek, kolam renang",
+   "info": "https://www.infodantips.com/2019/05/obyek-wisata-taman-bambu-mandira-loka-merauke.html",
+   "sumberLokasi": "Plus Code JF2W+59R (trip.com)"
+  },
+  {
+   "id": "mandira-loka",
+   "nama": "Taman Wisata Alam Mandira Loka",
+   "kategori": "Wisata alam",
+   "area": "Kawasan Mandira, sekitar SP 1",
+   "lat": -8.399513,
+   "lng": 140.495891,
+   "perkiraan": true,
+   "deskripsi": "Taman wisata alam di kawasan Mandira dengan suasana hijau dan rindang. Sebagian sumber menyebut Mandira Loka satu kawasan dengan Taman Bambu Mandira, jadi titik di peta mengikuti lokasi Taman Bambu Mandira sampai ada konfirmasi.",
+   "info": "https://x.com/mandira_loka"
+  },
+  {
+   "id": "mandira-agro-park",
+   "nama": "Mandira Agro Park",
+   "kategori": "Agrowisata",
+   "area": "Kawasan Mandira, sekitar SP 1",
+   "lat": -8.399513,
+   "lng": 140.495891,
+   "perkiraan": true,
+   "deskripsi": "Taman agrowisata di kawasan Mandira untuk mengenal kebun dan hasil pertanian setempat. Titik di peta mengikuti kawasan Mandira; detail wahana, jam buka, dan tiket menunggu data dari pengelola."
+  },
+  {
+   "id": "romans-garden",
+   "nama": "Romans Garden",
+   "kategori": "Taman keluarga",
+   "area": "Distrik Tanah Miring",
+   "deskripsi": "Taman wisata di wilayah Distrik Tanah Miring, cocok untuk rekreasi keluarga dan berfoto. Titik lokasi, jam buka, dan harga tiket belum tersedia di sumber daring. Gunakan tombol Google Maps untuk mencari lokasinya; pengelola atau admin kampung dapat melengkapi data ini."
+  },
+  {
+   "id": "hokkaido-farm",
+   "nama": "Hokkaido Farm",
+   "kategori": "Agrowisata",
+   "area": "Distrik Tanah Miring",
+   "deskripsi": "Kebun agrowisata di wilayah Distrik Tanah Miring. Titik lokasi, jam buka, dan harga tiket belum tersedia di sumber daring. Gunakan tombol Google Maps untuk mencari lokasinya; pengelola atau admin kampung dapat melengkapi data ini."
+  },
+  {
+   "id": "kebun-porang",
+   "nama": "Kebun Percontohan Tanaman Porang",
+   "kategori": "Agrowisata",
+   "area": "Distrik Tanah Miring",
+   "deskripsi": "Kebun percontohan budi daya porang, umbi bernilai ekonomi tinggi untuk bahan pangan dan ekspor. Tempat belajar cara tanam dan perawatan porang bagi petani dan pengunjung. Titik lokasi, jam buka, dan harga tiket belum tersedia di sumber daring. Gunakan tombol Google Maps untuk mencari lokasinya; pengelola atau admin kampung dapat melengkapi data ini."
+  },
+  {
+   "id": "akerezki-farm",
+   "nama": "Kebun Pisang Akerezki Farm",
+   "kategori": "Agrowisata",
+   "area": "Distrik Tanah Miring",
+   "deskripsi": "Kebun pisang yang bisa dikunjungi untuk melihat budi daya dan hasil panen pisang. Titik lokasi, jam buka, dan harga tiket belum tersedia di sumber daring. Gunakan tombol Google Maps untuk mencari lokasinya; pengelola atau admin kampung dapat melengkapi data ini."
+  },
+  {
+   "id": "kebun-kakao-tanah-miring",
+   "nama": "Kebun Kakao (Cokelat) Tanah Miring",
+   "kategori": "Agrowisata",
+   "area": "Distrik Tanah Miring",
+   "deskripsi": "Kebun kakao di Distrik Tanah Miring yang tercatat di peta daring sebagai Kebun Coklat Distrik Tanah Miring. Perlu konfirmasi apakah kebun ini dibuka untuk kunjungan wisata. Titik lokasi, jam buka, dan harga tiket belum tersedia di sumber daring. Gunakan tombol Google Maps untuk mencari lokasinya; pengelola atau admin kampung dapat melengkapi data ini."
   }
  ]
 }
