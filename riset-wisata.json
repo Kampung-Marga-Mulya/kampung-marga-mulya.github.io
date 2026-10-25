@@ -1,0 +1,828 @@
+{
+ "pusat": {
+  "osm": "node/1308635699",
+  "name": "Marga Mulya",
+  "lat": -8.409726,
+  "lon": 140.463722,
+  "tags": {
+   "place": "village"
+  }
+ },
+ "poi": [
+  {
+   "osm": "node/5619339922",
+   "name": "warung makan",
+   "lat": -8.421157,
+   "lon": 140.998844,
+   "tags": {
+    "amenity": "cafe"
+   },
+   "jalan_km": 84.2,
+   "jalan_menit": 65
+  },
+  {
+   "osm": "node/6095164325",
+   "name": "Patung Kristus Raja",
+   "lat": -8.517718,
+   "lon": 140.414273,
+   "tags": {
+    "historic": "monument"
+   },
+   "jalan_km": 18.2,
+   "jalan_menit": 19
+  },
+  {
+   "osm": "node/9394172252",
+   "name": "Ayam geprek",
+   "lat": -8.520682,
+   "lon": 140.412784,
+   "tags": {
+    "amenity": "restaurant",
+    "opening_hours": "Mo-Su 09:00-22:00"
+   },
+   "jalan_km": 19.0,
+   "jalan_menit": 19
+  },
+  {
+   "osm": "node/12164560796",
+   "name": "Lapangan Mandala",
+   "lat": -8.494112,
+   "lon": 140.392989,
+   "tags": {
+    "addr:street": "Jalan Raya Mandala",
+    "leisure": "park"
+   },
+   "jalan_km": 19.9,
+   "jalan_menit": 19
+  },
+  {
+   "osm": "node/12165350527",
+   "name": "Valentine",
+   "lat": -8.484932,
+   "lon": 140.389182,
+   "tags": {
+    "addr:street": "Jalan Raya Mandala",
+    "amenity": "restaurant",
+    "cuisine": "burger;chinese;roti_lapissandwich;asian",
+    "opening_hours": "Mo-Su 09:00-21:30",
+    "phone": "+62 821 9929 4108"
+   },
+   "jalan_km": 21.1,
+   "jalan_menit": 20
+  },
+  {
+   "osm": "way/558674845",
+   "name": "Stadion Katalpal Merauke",
+   "lat": -8.526786,
+   "lon": 140.433658,
+   "tags": {
+    "addr:street": "Jalan Peternakan",
+    "leisure": "stadium"
+   },
+   "jalan_km": 17.8,
+   "jalan_menit": 21
+  },
+  {
+   "osm": "way/990609546",
+   "name": "Sirkuit Balap Waninggap Sai Gau Tak",
+   "lat": -8.327147,
+   "lon": 140.554044,
+   "tags": {
+    "leisure": "sports_centre"
+   },
+   "jalan_km": 16.9,
+   "jalan_menit": 20
+  },
+  {
+   "osm": "relation/7748401",
+   "name": "Taman Nasional Wasur",
+   "lat": -8.581796,
+   "lon": 140.75149,
+   "tags": {
+    "boundary": "protected_area",
+    "leisure": "nature_reserve",
+    "wikidata": "Q36607",
+    "wikipedia": "id:Taman Nasional Wasur"
+   },
+   "jalan_km": 56.3,
+   "jalan_menit": 56
+  }
+ ],
+ "places": [
+  {
+   "osm": "node/541933847",
+   "name": "Merauke",
+   "lat": -8.490277,
+   "lon": 140.395582,
+   "tags": {
+    "description": "City of Merauke comprises of Merauke District, and extends into peri-urban transmigrant villages (SPs) in the districts Semangga, Tanah Miring, Malind, and Kurik which future seat IC Salor is located.",
+    "place": "city",
+    "wikidata": "Q388245",
+    "wikipedia": "id:Merauke, Merauke"
+   }
+  },
+  {
+   "osm": "node/1308634517",
+   "name": "Semangga Jaya",
+   "lat": -8.433109,
+   "lon": 140.434775,
+   "tags": {
+    "place": "village",
+    "wikidata": "Q19732939"
+   }
+  },
+  {
+   "osm": "node/1308635069",
+   "name": "Jaya Makmur",
+   "lat": -8.248898,
+   "lon": 140.275622,
+   "tags": {
+    "place": "village"
+   }
+  },
+  {
+   "osm": "node/1308635699",
+   "name": "Marga Mulya",
+   "lat": -8.409726,
+   "lon": 140.463722,
+   "tags": {
+    "place": "village"
+   }
+  },
+  {
+   "osm": "node/1308635952",
+   "name": "Mandala",
+   "lat": -8.506773,
+   "lon": 140.405249,
+   "tags": {
+    "place": "village"
+   }
+  },
+  {
+   "osm": "node/1308636012",
+   "name": "Sumber Harapan",
+   "lat": -8.360724,
+   "lon": 140.485608,
+   "tags": {
+    "place": "village"
+   }
+  },
+  {
+   "osm": "node/1308636139",
+   "name": "Sumber Mulya",
+   "lat": -8.220508,
+   "lon": 140.214315,
+   "tags": {
+    "place": "village"
+   }
+  },
+  {
+   "osm": "node/1308636828",
+   "name": "Sido Mulyo",
+   "lat": -8.459995,
+   "lon": 140.426587,
+   "tags": {
+    "place": "village"
+   }
+  },
+  {
+   "osm": "node/1308636952",
+   "name": "Kumbe",
+   "lat": -8.344914,
+   "lon": 140.231221,
+   "tags": {
+    "place": "village"
+   }
+  },
+  {
+   "osm": "node/1308637531",
+   "name": "Tomer",
+   "lat": -8.73373,
+   "lon": 140.576929,
+   "tags": {
+    "place": "village",
+    "wikidata": "Q24734815"
+   }
+  },
+  {
+   "osm": "node/1308638068",
+   "name": "Harapan Makmur",
+   "lat": -8.271814,
+   "lon": 140.319109,
+   "tags": {
+    "place": "village"
+   }
+  },
+  {
+   "osm": "node/1308638570",
+   "name": "Urumb",
+   "lat": -8.456886,
+   "lon": 140.332904,
+   "tags": {
+    "place": "village",
+    "wikidata": "Q12523546"
+   }
+  },
+  {
+   "osm": "node/1308638993",
+   "name": "Ndalir",
+   "lat": -8.653813,
+   "lon": 140.519357,
+   "tags": {
+    "place": "village"
+   }
+  },
+  {
+   "osm": "node/1308639578",
+   "name": "Waninggap Miraf",
+   "lat": -8.342705,
+   "lon": 140.468656,
+   "tags": {
+    "place": "village",
+    "wikidata": "Q24733612"
+   }
+  },
+  {
+   "osm": "node/1308640135",
+   "name": "Salor Indah",
+   "lat": -8.246348,
+   "lon": 140.364907,
+   "tags": {
+    "place": "village",
+    "wikidata": "Q24734520"
+   }
+  },
+  {
+   "osm": "node/1308640668",
+   "name": "Kuprik",
+   "lat": -8.465977,
+   "lon": 140.435979,
+   "tags": {
+    "place": "village",
+    "wikidata": "Q12492987"
+   }
+  },
+  {
+   "osm": "node/1308641394",
+   "name": "Amunkai",
+   "lat": -8.327114,
+   "lon": 140.510561,
+   "tags": {
+    "place": "village"
+   }
+  },
+  {
+   "osm": "node/1308642218",
+   "name": "Korkari",
+   "lat": -8.857277,
+   "lon": 141.008706,
+   "tags": {
+    "place": "hamlet"
+   }
+  },
+  {
+   "osm": "node/1308643986",
+   "name": "Kondo",
+   "lat": -8.942561,
+   "lon": 140.778237,
+   "tags": {
+    "place": "village"
+   }
+  },
+  {
+   "osm": "node/1308644836",
+   "name": "Padang Raharja",
+   "lat": -8.287835,
+   "lon": 140.22299,
+   "tags": {
+    "place": "village",
+    "wikidata": "Q24737993"
+   }
+  },
+  {
+   "osm": "node/1308645522",
+   "name": "Onggaya",
+   "lat": -8.698226,
+   "lon": 140.541567,
+   "tags": {
+    "place": "village",
+    "wikidata": "Q24734787"
+   }
+  },
+  {
+   "osm": "node/1308645954",
+   "name": "Onggari",
+   "lat": -8.303037,
+   "lon": 140.143372,
+   "tags": {
+    "place": "village",
+    "wikidata": "Q24737948"
+   }
+  },
+  {
+   "osm": "node/1308646806",
+   "name": "Rawasari",
+   "lat": -8.302113,
+   "lon": 140.247813,
+   "tags": {
+    "place": "village"
+   }
+  },
+  {
+   "osm": "node/1308648169",
+   "name": "Karang Indah",
+   "lat": -8.484329,
+   "lon": 140.38481,
+   "tags": {
+    "place": "village"
+   }
+  },
+  {
+   "osm": "node/1308648341",
+   "name": "Yanggandur",
+   "lat": -8.537864,
+   "lon": 140.864627,
+   "tags": {
+    "place": "village",
+    "wikidata": "Q24729558"
+   }
+  },
+  {
+   "osm": "node/1308648689",
+   "name": "Ivi Mahid",
+   "lat": -8.27934,
+   "lon": 140.368133,
+   "tags": {
+    "place": "village"
+   }
+  },
+  {
+   "osm": "node/1308649392",
+   "name": "Waninggap Nanggo",
+   "lat": -8.425724,
+   "lon": 140.288946,
+   "tags": {
+    "place": "village",
+    "wikidata": "Q12524061"
+   }
+  },
+  {
+   "osm": "node/1308649972",
+   "name": "Yakyu",
+   "lat": -8.64082,
+   "lon": 141.008734,
+   "tags": {
+    "place": "hamlet"
+   }
+  },
+  {
+   "osm": "node/1308651143",
+   "name": "Kuper",
+   "lat": -8.465203,
+   "lon": 140.446686,
+   "tags": {
+    "place": "village",
+    "wikidata": "Q12492984"
+   }
+  },
+  {
+   "osm": "node/1308651537",
+   "name": "Maro",
+   "lat": -8.482755,
+   "lon": 140.398175,
+   "tags": {
+    "place": "village",
+    "wikidata": "Q24568949"
+   }
+  },
+  {
+   "osm": "node/1308652092",
+   "name": "Suka Maju",
+   "lat": -8.252181,
+   "lon": 140.189613,
+   "tags": {
+    "place": "village"
+   }
+  },
+  {
+   "osm": "node/1308652759",
+   "name": "Waninggap Sai",
+   "lat": -8.357419,
+   "lon": 140.514361,
+   "tags": {
+    "place": "village"
+   }
+  },
+  {
+   "osm": "node/1308653151",
+   "name": "Kaiburse",
+   "lat": -8.338189,
+   "lon": 140.185268,
+   "tags": {
+    "place": "village",
+    "wikidata": "Q24738052"
+   }
+  },
+  {
+   "osm": "node/1308654840",
+   "name": "Tomerau",
+   "lat": -8.833642,
+   "lon": 140.69399,
+   "tags": {
+    "place": "village",
+    "wikidata": "Q24734845"
+   }
+  },
+  {
+   "osm": "node/1308655228",
+   "name": "Tambat",
+   "lat": -8.332439,
+   "lon": 140.597724,
+   "tags": {
+    "place": "village",
+    "wikidata": "Q24733727"
+   }
+  },
+  {
+   "osm": "node/1308655930",
+   "name": "Kurik",
+   "lat": -8.287962,
+   "lon": 140.290317,
+   "tags": {
+    "place": "village"
+   }
+  },
+  {
+   "osm": "node/1308656271",
+   "name": "Kuler",
+   "lat": -8.676452,
+   "lon": 140.535341,
+   "tags": {
+    "place": "village",
+    "wikidata": "Q24734746"
+   }
+  },
+  {
+   "osm": "node/1308656389",
+   "name": "Barsehati",
+   "lat": -8.280674,
+   "lon": 140.725479,
+   "tags": {
+    "place": "village"
+   }
+  },
+  {
+   "osm": "node/1308656867",
+   "name": "Rawa Biru",
+   "lat": -8.673465,
+   "lon": 140.851725,
+   "tags": {
+    "place": "village",
+    "wikidata": "Q24729566"
+   }
+  },
+  {
+   "osm": "node/1308656898",
+   "name": "Matara",
+   "lat": -8.410949,
+   "lon": 140.275549,
+   "tags": {
+    "place": "village"
+   }
+  },
+  {
+   "osm": "node/1308656971",
+   "name": "Sarmayam Indah",
+   "lat": -8.292427,
+   "lon": 140.639747,
+   "tags": {
+    "place": "village",
+    "wikidata": "Q24733543"
+   }
+  },
+  {
+   "osm": "node/1308657886",
+   "name": "Sota",
+   "lat": -8.42827,
+   "lon": 141.003733,
+   "tags": {
+    "place": "village",
+    "wikidata": "Q24729535"
+   }
+  },
+  {
+   "osm": "node/5478562740",
+   "name": "Kamno Sari",
+   "lat": -8.199427,
+   "lon": 140.791683,
+   "tags": {
+    "place": "village",
+    "wikidata": "Q24719940"
+   }
+  },
+  {
+   "osm": "node/5478562741",
+   "name": "Gurinda Raya",
+   "lat": -8.189232,
+   "lon": 140.764904,
+   "tags": {
+    "place": "village"
+   }
+  },
+  {
+   "osm": "node/5478562743",
+   "name": "Jagebob Raya",
+   "lat": -8.156438,
+   "lon": 140.735035,
+   "tags": {
+    "place": "village",
+    "wikidata": "Q24720736"
+   }
+  },
+  {
+   "osm": "node/5478562744",
+   "name": "Mimi Baru",
+   "lat": -8.161196,
+   "lon": 140.783615,
+   "tags": {
+    "place": "village",
+    "wikidata": "Q24719612"
+   }
+  },
+  {
+   "osm": "node/5478592525",
+   "name": "Ngguti Bob",
+   "lat": -8.294393,
+   "lon": 140.69684,
+   "tags": {
+    "place": "village",
+    "wikidata": "Q24733581"
+   }
+  },
+  {
+   "osm": "node/5478592526",
+   "name": "Wenda Asri",
+   "lat": -8.252604,
+   "lon": 140.775032,
+   "tags": {
+    "place": "village",
+    "wikidata": "Q24720969"
+   }
+  },
+  {
+   "osm": "node/5478602986",
+   "name": "Isanombias",
+   "lat": -8.325308,
+   "lon": 140.450248,
+   "tags": {
+    "place": "village"
+   }
+  },
+  {
+   "osm": "node/5478602987",
+   "name": "Yabamaru",
+   "lat": -8.292355,
+   "lon": 140.485611,
+   "tags": {
+    "place": "village"
+   }
+  },
+  {
+   "osm": "node/5478602988",
+   "name": "Yasa Mulya",
+   "lat": -8.376939,
+   "lon": 140.51136,
+   "tags": {
+    "place": "village",
+    "wikidata": "Q24733333"
+   }
+  },
+  {
+   "osm": "node/5478602989",
+   "name": "Hidup Baru",
+   "lat": -8.344331,
+   "lon": 140.525779,
+   "tags": {
+    "place": "village"
+   }
+  },
+  {
+   "osm": "node/5478619481",
+   "name": "Telaga Sari",
+   "lat": -8.250565,
+   "lon": 140.406646,
+   "tags": {
+    "place": "village"
+   }
+  },
+  {
+   "osm": "node/5478630664",
+   "name": "Muram Sari",
+   "lat": -8.368617,
+   "lon": 140.359954,
+   "tags": {
+    "place": "village",
+    "wikidata": "Q12499586"
+   }
+  },
+  {
+   "osm": "node/5478630665",
+   "name": "Waninggap Kay",
+   "lat": -8.352356,
+   "lon": 140.396475,
+   "tags": {
+    "place": "village"
+   }
+  },
+  {
+   "osm": "node/9311915295",
+   "name": "Sumber Rejeki",
+   "lat": -8.205589,
+   "lon": 140.362575,
+   "tags": {
+    "place": "village"
+   }
+  },
+  {
+   "osm": "node/9312205672",
+   "name": "Anumbob",
+   "lat": -8.25478,
+   "lon": 140.26348,
+   "tags": {
+    "place": "village"
+   }
+  },
+  {
+   "osm": "node/9312205673",
+   "name": "Wapeko",
+   "lat": -8.16397,
+   "lon": 140.409626,
+   "tags": {
+    "place": "village",
+    "wikidata": "Q24734618"
+   }
+  },
+  {
+   "osm": "node/9312252350",
+   "name": "Candra Jaya",
+   "lat": -8.289459,
+   "lon": 140.260178,
+   "tags": {
+    "place": "village"
+   }
+  },
+  {
+   "osm": "node/9312264465",
+   "name": "Wonorejo",
+   "lat": -8.289693,
+   "lon": 140.274566,
+   "tags": {
+    "place": "village"
+   }
+  },
+  {
+   "osm": "node/9329159280",
+   "name": "Kelapa Lima",
+   "lat": -8.488157,
+   "lon": 140.406716,
+   "tags": {
+    "place": "village"
+   }
+  },
+  {
+   "osm": "node/9329323464",
+   "name": "Seringgu Jaya",
+   "lat": -8.49673,
+   "lon": 140.386441,
+   "tags": {
+    "place": "village",
+    "wikidata": "Q24575363"
+   }
+  },
+  {
+   "osm": "node/9329335620",
+   "name": "Bambu Pemali",
+   "lat": -8.504986,
+   "lon": 140.392555,
+   "tags": {
+    "place": "village",
+    "wikidata": "Q17998768"
+   }
+  },
+  {
+   "osm": "node/9329407012",
+   "name": "Samkai",
+   "lat": -8.50862,
+   "lon": 140.38049,
+   "tags": {
+    "place": "village",
+    "wikidata": "Q24567557"
+   }
+  },
+  {
+   "osm": "node/9329724522",
+   "name": "Bokem",
+   "lat": -8.568866,
+   "lon": 140.474393,
+   "tags": {
+    "place": "village",
+    "wikidata": "Q24634397"
+   }
+  },
+  {
+   "osm": "node/9329724523",
+   "name": "Muli",
+   "lat": -8.517154,
+   "lon": 140.403282,
+   "tags": {
+    "place": "village"
+   }
+  },
+  {
+   "osm": "node/9329724524",
+   "name": "Rimba Jaya",
+   "lat": -8.521747,
+   "lon": 140.422546,
+   "tags": {
+    "place": "village"
+   }
+  },
+  {
+   "osm": "node/9339349103",
+   "name": "Buti",
+   "lat": -8.517399,
+   "lon": 140.39064,
+   "tags": {
+    "place": "village"
+   }
+  },
+  {
+   "osm": "node/9342509393",
+   "name": "Wasur",
+   "lat": -8.522817,
+   "lon": 140.51433,
+   "tags": {
+    "place": "village",
+    "wikidata": "Q19745108"
+   }
+  },
+  {
+   "osm": "node/9364993175",
+   "name": "Nasem",
+   "lat": -8.621415,
+   "lon": 140.51248,
+   "tags": {
+    "place": "village",
+    "wikidata": "Q12500144"
+   }
+  },
+  {
+   "osm": "node/9365051035",
+   "name": "Nggolar",
+   "lat": -8.471887,
+   "lon": 140.491404,
+   "tags": {
+    "place": "village",
+    "wikidata": "Q24634565"
+   }
+  },
+  {
+   "osm": "node/9365051036",
+   "name": "Kamundu",
+   "lat": -8.503986,
+   "lon": 140.414385,
+   "tags": {
+    "place": "village",
+    "wikidata": "Q24575368"
+   }
+  },
+  {
+   "osm": "node/9365064687",
+   "name": "Kamahedoga",
+   "lat": -8.463629,
+   "lon": 140.396129,
+   "tags": {
+    "place": "village",
+    "wikidata": "Q24575386"
+   }
+  },
+  {
+   "osm": "node/10763397359",
+   "name": "Weam",
+   "lat": -8.619064,
+   "lon": 141.134695,
+   "tags": {
+    "place": "village"
+   }
+  },
+  {
+   "osm": "node/13566174203",
+   "name": "Wereavere",
+   "lat": -8.520102,
+   "lon": 141.107869,
+   "tags": {
+    "place": "village"
+   }
+  }
+ ]
+}
