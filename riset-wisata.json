@@ -1,0 +1,1200 @@
+{
+ "overpass": [
+  {
+   "id": "node/4241307490",
+   "lat": -8.4927098,
+   "lng": 140.3892842,
+   "tags": {
+    "addr:street": "Jl Kampung Timur",
+    "name": "Coreinn",
+    "tourism": "hotel"
+   }
+  },
+  {
+   "id": "node/9329335620",
+   "lat": -8.5049864,
+   "lng": 140.3925549,
+   "tags": {
+    "admin_level": "7",
+    "name": "Bambu Pemali",
+    "place": "village",
+    "ref": "93.01.01.1009",
+    "wikidata": "Q17998768"
+   }
+  },
+  {
+   "id": "node/9394122704",
+   "lat": -8.5204167,
+   "lng": 140.4132608,
+   "tags": {
+    "addr:housenumber": "no 6",
+    "addr:street": "Jl. PGT no 6",
+    "name": "Penginapan Yestoya",
+    "phone": "+62 812 4009 8221",
+    "tourism": "hotel"
+   }
+  },
+  {
+   "id": "node/12164560796",
+   "lat": -8.4941121,
+   "lng": 140.3929885,
+   "tags": {
+    "addr:city": "Merauke",
+    "addr:district": "Merauke",
+    "addr:province": "Papua Selatan",
+    "addr:street": "Jalan Raya Mandala",
+    "addr:subdistrict": "Merauke",
+    "leisure": "park",
+    "name": "Lapangan Mandala"
+   }
+  },
+  {
+   "id": "way/448007068",
+   "lat": -8.5042142,
+   "lng": 140.3985569,
+   "tags": {
+    "name": "Swissbell Hotel",
+    "tourism": "hotel"
+   }
+  },
+  {
+   "id": "way/557530990",
+   "lat": -8.5050053,
+   "lng": 140.3930713,
+   "tags": {
+    "admin_level": "7",
+    "building": "yes",
+    "government": "administrative",
+    "name": "Kantor Kelurahan Bambu Pemali",
+    "office": "government"
+   }
+  },
+  {
+   "id": "relation/7748401",
+   "lat": -8.5817959,
+   "lng": 140.7514905,
+   "tags": {
+    "boundary": "protected_area",
+    "leisure": "nature_reserve",
+    "name": "Taman Nasional Wasur",
+    "name:de": "Nationalpark Wasur",
+    "name:en": "Wasur National Park",
+    "name:es": "Parque nacional de Wasur",
+    "name:fr": "Parc national de Wasur",
+    "name:it": "Parco nazionale di Wasur",
+    "type": "multipolygon",
+    "wikidata": "Q36607",
+    "wikipedia": "id:Taman Nasional Wasur"
+   }
+  },
+  {
+   "id": "relation/13538574",
+   "lat": -8.5067205,
+   "lng": 140.394233,
+   "tags": {
+    "admin_level": "7",
+    "boundary": "administrative",
+    "name": "Bambu Pemali",
+    "type": "boundary"
+   }
+  }
+ ],
+ "nominatim": {
+  "Taman Wisata Alam Mandira Loka": [],
+  "Mandira Loka": [],
+  "Mandira Agro Park": [],
+  "Taman Bambu Mandira": [],
+  "Romans Garden": [],
+  "Roman Garden Merauke": [],
+  "Hokkaido Farm": [],
+  "Kebun Percontohan Porang": [],
+  "Porang Tanah Miring": [],
+  "Akerezki Farm": [],
+  "Kebun Pisang Akerezki": [],
+  "Kebun Coklat Tanah Miring": [],
+  "Kebun Anggur Rahe Grape": []
+ },
+ "photon": {
+  "Taman Wisata Alam Mandira Loka": [],
+  "Mandira Loka": [
+   {
+    "nama": "Bank Mandiri",
+    "lng": 140.388542,
+    "lat": -8.4831659,
+    "props": {
+     "osm_type": "N",
+     "osm_id": 12164560795,
+     "osm_key": "amenity",
+     "osm_value": "atm",
+     "type": "house",
+     "name": "Bank Mandiri",
+     "street": "Jalan Kalimantan",
+     "city": "Karang Indah",
+     "county": "Merauke",
+     "state": "Papua Selatan",
+     "country": "Indonesia",
+     "postcode": "99613",
+     "countrycode": "ID"
+    }
+   },
+   {
+    "nama": "A3Rajut Kerajinan Noken Lokal Kampung Urumb",
+    "lng": 140.3321602,
+    "lat": -8.4583143,
+    "props": {
+     "osm_type": "N",
+     "osm_id": 10218560680,
+     "osm_key": "shop",
+     "osm_value": "craft",
+     "type": "house",
+     "name": "A3Rajut Kerajinan Noken Lokal Kampung Urumb",
+     "street": "Kampung Urumb",
+     "district": "Merauke",
+     "city": "Urumb",
+     "county": "Merauke",
+     "state": "Papua Selatan",
+     "country": "Indonesia",
+     "countrycode": "ID"
+    }
+   },
+   {
+    "nama": "Merakeng Track",
+    "lng": 24.4474827,
+    "lat": -29.0697307,
+    "props": {
+     "osm_type": "W",
+     "osm_id": 1543187352,
+     "osm_key": "highway",
+     "osm_value": "track",
+     "type": "street",
+     "name": "Merakeng Track",
+     "district": "Siyancuma Ward 2",
+     "city": "Siyancuma Local Municipality",
+     "county": "Pixley ka Seme District Municipality",
+     "state": "Northern Cape",
+     "country": "South Africa",
+     "countrycode": "ZA",
+     "extent": [
+      24.4407732,
+      -29.067689,
+      24.4606138,
+      -29.079779
+     ]
+    }
+   },
+   {
+    "nama": "Mandirejo",
+    "lng": 111.9950293,
+    "lat": -6.8810121,
+    "props": {
+     "osm_type": "R",
+     "osm_id": 19922097,
+     "osm_key": "place",
+     "osm_value": "village",
+     "type": "district",
+     "name": "Mandirejo",
+     "city": "Merakurak",
+     "county": "Tuban",
+     "state": "Jawa Timur",
+     "country": "Indonesia",
+     "postcode": "62355",
+     "countrycode": "ID",
+     "extra": {
+      "admin_level": "7"
+     },
+     "extent": [
+      111.9846353,
+      -6.8640553,
+      112.0009962,
+      -6.8855331
+     ]
+    }
+   },
+   {
+    "nama": "Groblje sv. Leopolda B. Mandića",
+    "lng": 17.8337746,
+    "lat": 43.3684371,
+    "props": {
+     "osm_type": "W",
+     "osm_id": 309953432,
+     "osm_key": "landuse",
+     "osm_value": "cemetery",
+     "type": "other",
+     "name": "Groblje sv. Leopolda B. Mandića",
+     "district": "Raštani",
+     "city": "MZ Raštani",
+     "county": "Grad Mostar",
+     "state": "Federacija Bosne i Hercegovine",
+     "country": "Bosna i Hercegovina / Босна и Херцеговина",
+     "countrycode": "BA",
+     "extent": [
+      17.8327318,
+      43.3691136,
+      17.8348468,
+      43.3677871
+     ]
+    }
+   }
+  ],
+  "Mandira Agro Park": [],
+  "Taman Bambu Mandira": [],
+  "Romans Garden": [
+   {
+    "nama": "The Roman's Memorial Garden",
+    "lng": 120.8753067,
+    "lat": 14.1998299,
+    "props": {
+     "osm_type": "W",
+     "osm_id": 419387564,
+     "osm_key": "landuse",
+     "osm_value": "cemetery",
+     "type": "other",
+     "name": "The Roman's Memorial Garden",
+     "locality": "Barangay 3",
+     "district": "Kaytambog",
+     "city": "Indang",
+     "state": "Cavite",
+     "country": "Philippines",
+     "postcode": "4122",
+     "countrycode": "PH",
+     "extent": [
+      120.8747987,
+      14.2000897,
+      120.8766146,
+      14.1995699
+     ]
+    }
+   },
+   {
+    "nama": "Garden Road",
+    "lng": -0.9626868,
+    "lat": 52.9512705,
+    "props": {
+     "osm_type": "W",
+     "osm_id": 35338596,
+     "osm_key": "highway",
+     "osm_value": "residential",
+     "type": "street",
+     "name": "Garden Road",
+     "locality": "Romans Quarter",
+     "district": "Bingham",
+     "city": "Rushcliffe",
+     "county": "Nottinghamshire",
+     "state": "England",
+     "country": "United Kingdom",
+     "postcode": "NG13 8GB",
+     "countrycode": "GB",
+     "extent": [
+      -0.9627032,
+      52.9521567,
+      -0.9624845,
+      52.9503314
+     ]
+    }
+   },
+   {
+    "nama": "Grădina Botanică",
+    "lng": 26.0638294,
+    "lat": 44.4377513,
+    "props": {
+     "osm_type": "W",
+     "osm_id": 23557199,
+     "osm_key": "leisure",
+     "osm_value": "garden",
+     "type": "other",
+     "housenumber": "36",
+     "name": "Grădina Botanică",
+     "street": "Șoseaua Cotroceni",
+     "district": "Grozăvești",
+     "city": "București",
+     "country": "România",
+     "postcode": "060101",
+     "countrycode": "RO",
+     "extent": [
+      26.0597456,
+      44.4405653,
+      26.0669541,
+      44.434775
+     ]
+    }
+   },
+   {
+    "nama": "Grădina Botanică",
+    "lng": 26.066362,
+    "lat": 44.4369,
+    "props": {
+     "osm_type": "N",
+     "osm_id": 2634651900,
+     "osm_key": "leisure",
+     "osm_value": "garden",
+     "type": "other",
+     "name": "Grădina Botanică",
+     "district": "Grozăveşti",
+     "city": "București",
+     "country": "România",
+     "postcode": "060115",
+     "countrycode": "RO"
+    }
+   },
+   {
+    "nama": "Grădina Botanică",
+    "lng": 26.066362,
+    "lat": 44.4369,
+    "props": {
+     "osm_type": "N",
+     "osm_id": 2634651900,
+     "osm_key": "tourism",
+     "osm_value": "museum",
+     "type": "house",
+     "name": "Grădina Botanică",
+     "street": "Șoseaua Cotroceni",
+     "district": "Grozăveşti",
+     "city": "București",
+     "country": "România",
+     "postcode": "050481",
+     "countrycode": "RO"
+    }
+   }
+  ],
+  "Roman Garden Merauke": [
+   {
+    "nama": "Clot de Robanc",
+    "lng": 1.7348824,
+    "lat": 42.4676268,
+    "props": {
+     "osm_type": "N",
+     "osm_id": 1241599128,
+     "osm_key": "place",
+     "osm_value": "locality",
+     "type": "locality",
+     "name": "Clot de Robanc",
+     "city": "Meranges",
+     "county": "Girona",
+     "state": "Catalunya",
+     "country": "España",
+     "countrycode": "ES"
+    }
+   }
+  ],
+  "Hokkaido Farm": [
+   {
+    "nama": "Hokkaido green farm",
+    "lng": 140.810945,
+    "lat": 42.6571845,
+    "props": {
+     "osm_type": "W",
+     "osm_id": 1497814724,
+     "osm_key": "landuse",
+     "osm_value": "farmyard",
+     "type": "locality",
+     "name": "Hokkaido green farm",
+     "city": "洞爺湖町",
+     "county": "虻田郡",
+     "state": "北海道",
+     "country": "日本",
+     "countrycode": "JP",
+     "extent": [
+      140.8105925,
+      42.6573973,
+      140.8112975,
+      42.6569717
+     ]
+    }
+   },
+   {
+    "nama": "ノーザンファーム",
+    "lng": 141.8186333,
+    "lat": 42.7127477,
+    "props": {
+     "osm_type": "W",
+     "osm_id": 630381924,
+     "osm_key": "landuse",
+     "osm_value": "farmland",
+     "type": "other",
+     "name": "ノーザンファーム",
+     "city": "安平町",
+     "county": "勇払郡",
+     "state": "北海道",
+     "country": "日本",
+     "postcode": "059-1432",
+     "countrycode": "JP",
+     "extent": [
+      141.8049037,
+      42.7190934,
+      141.8344355,
+      42.7059057
+     ]
+    }
+   },
+   {
+    "nama": "北きつね牧場",
+    "lng": 143.4982079,
+    "lat": 43.7557336,
+    "props": {
+     "osm_type": "W",
+     "osm_id": 813362273,
+     "osm_key": "tourism",
+     "osm_value": "zoo",
+     "type": "house",
+     "housenumber": "1",
+     "name": "北きつね牧場",
+     "street": "52",
+     "locality": "留辺蘂町花丘",
+     "city": "北見市",
+     "county": "オホーツク総合振興局",
+     "state": "北海道",
+     "country": "日本",
+     "postcode": "091-0157",
+     "countrycode": "JP",
+     "extent": [
+      143.4945855,
+      43.7564165,
+      143.4997219,
+      43.755072
+     ]
+    }
+   },
+   {
+    "nama": "北海道大学 北方生物圏フィールド科学センター 静内研究牧場",
+    "lng": 142.4833254,
+    "lat": 42.4328567,
+    "props": {
+     "osm_type": "N",
+     "osm_id": 10168125879,
+     "osm_key": "amenity",
+     "osm_value": "university",
+     "type": "house",
+     "name": "北海道大学 北方生物圏フィールド科学センター 静内研究牧場",
+     "locality": "静内御園",
+     "city": "新ひだか町",
+     "county": "日高郡",
+     "state": "北海道",
+     "country": "日本",
+     "postcode": "056-0141",
+     "countrycode": "JP"
+    }
+   },
+   {
+    "nama": "ラベンダー畑",
+    "lng": 142.4310927,
+    "lat": 43.4173264,
+    "props": {
+     "osm_type": "N",
+     "osm_id": 1659492216,
+     "osm_key": "railway",
+     "osm_value": "station",
+     "type": "house",
+     "name": "ラベンダー畑",
+     "street": "町道基線",
+     "locality": "北町",
+     "city": "中富良野町",
+     "county": "空知郡",
+     "state": "北海道",
+     "country": "日本",
+     "postcode": "071-0772",
+     "countrycode": "JP"
+    }
+   }
+  ],
+  "Kebun Percontohan Porang": [],
+  "Porang Tanah Miring": [
+   {
+    "nama": "Jalan Poros Tanah Miring",
+    "lng": 140.4889552,
+    "lat": -8.3672588,
+    "props": {
+     "osm_type": "W",
+     "osm_id": 687778988,
+     "osm_key": "highway",
+     "osm_value": "tertiary",
+     "type": "street",
+     "name": "Jalan Poros Tanah Miring",
+     "city": "Sumber Harapan",
+     "county": "Merauke",
+     "state": "Papua Selatan",
+     "country": "Indonesia",
+     "countrycode": "ID",
+     "extent": [
+      140.4792957,
+      -8.34162,
+      140.5174092,
+      -8.385352
+     ]
+    }
+   },
+   {
+    "nama": "Jalan Poros Tanah Miring",
+    "lng": 140.3829739,
+    "lat": -8.2742871,
+    "props": {
+     "osm_type": "W",
+     "osm_id": 774598838,
+     "osm_key": "highway",
+     "osm_value": "primary",
+     "type": "street",
+     "name": "Jalan Poros Tanah Miring",
+     "district": "Ivi Mahid",
+     "county": "Merauke",
+     "state": "Papua Selatan",
+     "country": "Indonesia",
+     "countrycode": "ID",
+     "extent": [
+      140.3829588,
+      -8.273591,
+      140.3829787,
+      -8.2749833
+     ]
+    }
+   },
+   {
+    "nama": "SMA Negeri 1 Tanah Miring",
+    "lng": 140.4857182,
+    "lat": -8.3476906,
+    "props": {
+     "osm_type": "N",
+     "osm_id": 8379918951,
+     "osm_key": "amenity",
+     "osm_value": "school",
+     "type": "house",
+     "name": "SMA Negeri 1 Tanah Miring",
+     "street": "Jalan Poros Tanah Miring",
+     "city": "Sumber Harapan",
+     "county": "Merauke",
+     "state": "Papua Selatan",
+     "country": "Indonesia",
+     "countrycode": "ID"
+    }
+   }
+  ],
+  "Akerezki Farm": [
+   {
+    "nama": "Hoferhof Meransen - Urlaub auf dem Bauernhof",
+    "lng": 11.6665924,
+    "lat": 46.8137635,
+    "props": {
+     "osm_type": "N",
+     "osm_id": 13513200680,
+     "osm_key": "tourism",
+     "osm_value": "apartment",
+     "type": "house",
+     "housenumber": "6A",
+     "name": "Hoferhof Meransen - Urlaub auf dem Bauernhof",
+     "street": "Lindenstraße - Via dei Tigli",
+     "locality": "Mittereggen",
+     "district": "Meransen",
+     "city": "Meransen",
+     "county": "Bolzano - Bozen",
+     "state": "Trentino-Alto Adige/Südtirol",
+     "country": "Italia",
+     "postcode": "39037",
+     "countrycode": "IT"
+    }
+   }
+  ],
+  "Kebun Pisang Akerezki": [],
+  "Kebun Coklat Tanah Miring": [],
+  "Kebun Anggur Rahe Grape": []
+ },
+ "web": {
+  "Taman Wisata Alam Mandira Loka": [],
+  "Mandira Loka": [],
+  "Mandira Agro Park": [],
+  "Taman Bambu Mandira": [],
+  "Romans Garden": [],
+  "Roman Garden Merauke": [],
+  "Hokkaido Farm": [],
+  "Kebun Percontohan Porang": [],
+  "Porang Tanah Miring": [],
+  "Akerezki Farm": [],
+  "Kebun Pisang Akerezki": [],
+  "Kebun Coklat Tanah Miring": [],
+  "Kebun Anggur Rahe Grape": [],
+  "wisata Distrik Tanah Miring Merauke": [],
+  "agrowisata Tanah Miring Merauke": [],
+  "taman wisata Semangga Merauke": []
+ },
+ "kampung": [
+  {
+   "nama": "Semangga Jaya",
+   "place": "village",
+   "lat": -8.4331094,
+   "lng": 140.4347752,
+   "tags": {
+    "admin_level": "7",
+    "name": "Semangga Jaya",
+    "place": "village",
+    "ref": "93.01.05.2007",
+    "wikidata": "Q19732939"
+   }
+  },
+  {
+   "nama": "Marga Mulya",
+   "place": "village",
+   "lat": -8.4097264,
+   "lng": 140.4637216,
+   "tags": {
+    "name": "Marga Mulya",
+    "place": "village"
+   }
+  },
+  {
+   "nama": "Mandala",
+   "place": "village",
+   "lat": -8.5067725,
+   "lng": 140.4052487,
+   "tags": {
+    "name": "Mandala",
+    "place": "village"
+   }
+  },
+  {
+   "nama": "Sumber Harapan",
+   "place": "village",
+   "lat": -8.3607242,
+   "lng": 140.485608,
+   "tags": {
+    "name": "Sumber Harapan",
+    "place": "village"
+   }
+  },
+  {
+   "nama": "Sido Mulyo",
+   "place": "village",
+   "lat": -8.4599954,
+   "lng": 140.4265868,
+   "tags": {
+    "name": "Sido Mulyo",
+    "place": "village"
+   }
+  },
+  {
+   "nama": "Harapan Makmur",
+   "place": "village",
+   "lat": -8.2718138,
+   "lng": 140.3191088,
+   "tags": {
+    "name": "Harapan Makmur",
+    "place": "village"
+   }
+  },
+  {
+   "nama": "Urumb",
+   "place": "village",
+   "lat": -8.4568864,
+   "lng": 140.3329044,
+   "tags": {
+    "admin_level": "7",
+    "name": "Urumb",
+    "place": "village",
+    "ref": "93.01.05.2003",
+    "wikidata": "Q12523546"
+   }
+  },
+  {
+   "nama": "Waninggap Miraf",
+   "place": "village",
+   "lat": -8.3427049,
+   "lng": 140.4686557,
+   "tags": {
+    "admin_level": "7",
+    "name": "Waninggap Miraf",
+    "place": "village",
+    "ref": "93.01.06.2008",
+    "wikidata": "Q24733612"
+   }
+  },
+  {
+   "nama": "Salor Indah",
+   "place": "village",
+   "lat": -8.2463483,
+   "lng": 140.3649069,
+   "tags": {
+    "admin_level": "7",
+    "name": "Salor Indah",
+    "place": "village",
+    "ref": "93.01.11.2009",
+    "wikidata": "Q24734520"
+   }
+  },
+  {
+   "nama": "Kuprik",
+   "place": "village",
+   "lat": -8.4659775,
+   "lng": 140.4359786,
+   "tags": {
+    "admin_level": "7",
+    "name": "Kuprik",
+    "place": "village",
+    "ref": "93.01.05.2005",
+    "wikidata": "Q12492987"
+   }
+  },
+  {
+   "nama": "Amunkai",
+   "place": "village",
+   "lat": -8.3271138,
+   "lng": 140.5105612,
+   "tags": {
+    "name": "Amunkai",
+    "place": "village"
+   }
+  },
+  {
+   "nama": "Karang Indah",
+   "place": "village",
+   "lat": -8.4843289,
+   "lng": 140.3848103,
+   "tags": {
+    "name": "Karang Indah",
+    "place": "village"
+   }
+  },
+  {
+   "nama": "Ivi Mahid",
+   "place": "village",
+   "lat": -8.2793398,
+   "lng": 140.368133,
+   "tags": {
+    "alt_name": "Ivi Mahad",
+    "name": "Ivi Mahid",
+    "place": "village"
+   }
+  },
+  {
+   "nama": "Kuper",
+   "place": "village",
+   "lat": -8.4652026,
+   "lng": 140.4466859,
+   "tags": {
+    "admin_level": "7",
+    "name": "Kuper",
+    "place": "village",
+    "ref": "93.01.05.2006",
+    "wikidata": "Q12492984"
+   }
+  },
+  {
+   "nama": "Maro",
+   "place": "village",
+   "lat": -8.4827554,
+   "lng": 140.3981747,
+   "tags": {
+    "admin_level": "7",
+    "name": "Maro",
+    "place": "village",
+    "ref": "93.01.01.1005",
+    "wikidata": "Q24568949"
+   }
+  },
+  {
+   "nama": "Waninggap Sai",
+   "place": "village",
+   "lat": -8.3574186,
+   "lng": 140.5143614,
+   "tags": {
+    "name": "Waninggap Sai",
+    "place": "village"
+   }
+  },
+  {
+   "nama": "Tambat",
+   "place": "village",
+   "lat": -8.3324395,
+   "lng": 140.5977235,
+   "tags": {
+    "admin_level": "7",
+    "name": "Tambat",
+    "place": "village",
+    "ref": "93.01.06.2012",
+    "wikidata": "Q24733727"
+   }
+  },
+  {
+   "nama": "Barsehati",
+   "place": "village",
+   "lat": -8.2806738,
+   "lng": 140.7254786,
+   "tags": {
+    "name": "Barsehati",
+    "place": "village"
+   }
+  },
+  {
+   "nama": "Sarmayam Indah",
+   "place": "village",
+   "lat": -8.2924269,
+   "lng": 140.6397474,
+   "tags": {
+    "admin_level": "7",
+    "name": "Sarmayam Indah",
+    "place": "village",
+    "ref": "93.01.06.2006",
+    "wikidata": "Q24733543"
+   }
+  },
+  {
+   "nama": "Kamno Sari",
+   "place": "village",
+   "lat": -8.199427,
+   "lng": 140.791683,
+   "tags": {
+    "admin_level": "7",
+    "name": "Kamno Sari",
+    "place": "village",
+    "ref": "93.01.07.2007",
+    "wikidata": "Q24719940"
+   }
+  },
+  {
+   "nama": "Gurinda Raya",
+   "place": "village",
+   "lat": -8.1892324,
+   "lng": 140.7649039,
+   "tags": {
+    "name": "Gurinda Raya",
+    "place": "village"
+   }
+  },
+  {
+   "nama": "Jagebob Raya",
+   "place": "village",
+   "lat": -8.1564383,
+   "lng": 140.7350348,
+   "tags": {
+    "admin_level": "7",
+    "name": "Jagebob Raya",
+    "place": "village",
+    "ref": "93.01.07.2010",
+    "wikidata": "Q24720736"
+   }
+  },
+  {
+   "nama": "Mimi Baru",
+   "place": "village",
+   "lat": -8.1611961,
+   "lng": 140.7836149,
+   "tags": {
+    "admin_level": "7",
+    "name": "Mimi Baru",
+    "place": "village",
+    "ref": "93.01.07.2006",
+    "wikidata": "Q24719612"
+   }
+  },
+  {
+   "nama": "Angger Parmegi",
+   "place": "village",
+   "lat": -8.0840437,
+   "lng": 140.7836149,
+   "tags": {
+    "name": "Angger Parmegi",
+    "place": "village"
+   }
+  },
+  {
+   "nama": "Kartini",
+   "place": "village",
+   "lat": -8.05634,
+   "lng": 140.7659338,
+   "tags": {
+    "name": "Kartini",
+    "place": "village"
+   }
+  },
+  {
+   "nama": "Jagebob",
+   "place": "village",
+   "lat": -8.0531106,
+   "lng": 140.7412146,
+   "tags": {
+    "name": "Jagebob",
+    "place": "village"
+   }
+  },
+  {
+   "nama": "Ngguti Bob",
+   "place": "village",
+   "lat": -8.2943932,
+   "lng": 140.6968399,
+   "tags": {
+    "admin_level": "7",
+    "alt_name": "Poo",
+    "name": "Ngguti Bob",
+    "place": "village",
+    "ref": "93.01.06.2007",
+    "wikidata": "Q24733581"
+   }
+  },
+  {
+   "nama": "Wenda Asri",
+   "place": "village",
+   "lat": -8.252604,
+   "lng": 140.7750317,
+   "tags": {
+    "admin_level": "7",
+    "name": "Wenda Asri",
+    "place": "village",
+    "ref": "93.01.07.2011",
+    "wikidata": "Q24720969"
+   }
+  },
+  {
+   "nama": "Isanombias",
+   "place": "village",
+   "lat": -8.3253076,
+   "lng": 140.4502484,
+   "tags": {
+    "name": "Isanombias",
+    "place": "village"
+   }
+  },
+  {
+   "nama": "Yabamaru",
+   "place": "village",
+   "lat": -8.2923548,
+   "lng": 140.4856106,
+   "tags": {
+    "name": "Yabamaru",
+    "place": "village"
+   }
+  },
+  {
+   "nama": "Yasa Mulya",
+   "place": "village",
+   "lat": -8.3769393,
+   "lng": 140.5113598,
+   "tags": {
+    "admin_level": "7",
+    "name": "Yasa Mulya",
+    "place": "village",
+    "ref": "93.01.06.2001",
+    "wikidata": "Q24733333"
+   }
+  },
+  {
+   "nama": "Hidup Baru",
+   "place": "village",
+   "lat": -8.3443306,
+   "lng": 140.5257794,
+   "tags": {
+    "name": "Hidup Baru",
+    "place": "village"
+   }
+  },
+  {
+   "nama": "Telaga Sari",
+   "place": "village",
+   "lat": -8.2505654,
+   "lng": 140.4066464,
+   "tags": {
+    "name": "Telaga Sari",
+    "place": "village"
+   }
+  },
+  {
+   "nama": "Muram Sari",
+   "place": "village",
+   "lat": -8.3686175,
+   "lng": 140.3599545,
+   "tags": {
+    "admin_level": "7",
+    "name": "Muram Sari",
+    "place": "village",
+    "ref": "93.01.05.2009",
+    "wikidata": "Q12499586"
+   }
+  },
+  {
+   "nama": "Waninggap Kay",
+   "place": "village",
+   "lat": -8.3523556,
+   "lng": 140.3964754,
+   "tags": {
+    "name": "Waninggap Kay",
+    "place": "village"
+   }
+  },
+  {
+   "nama": "Baad",
+   "place": "village",
+   "lat": -8.106019,
+   "lng": 140.458718,
+   "tags": {
+    "admin_level": "7",
+    "name": "Baad",
+    "place": "village",
+    "ref": "93.01.13.2002",
+    "wikidata": "Q24735347"
+   }
+  },
+  {
+   "nama": "Sumber Rejeki",
+   "place": "village",
+   "lat": -8.2055892,
+   "lng": 140.3625755,
+   "tags": {
+    "name": "Sumber Rejeki",
+    "place": "village"
+   }
+  },
+  {
+   "nama": "Wapeko",
+   "place": "village",
+   "lat": -8.1639698,
+   "lng": 140.4096262,
+   "tags": {
+    "admin_level": "7",
+    "name": "Wapeko",
+    "place": "village",
+    "ref": "93.01.11.2013",
+    "wikidata": "Q24734618"
+   }
+  },
+  {
+   "nama": "Kelapa Lima",
+   "place": "village",
+   "lat": -8.4881575,
+   "lng": 140.4067165,
+   "tags": {
+    "name": "Kelapa Lima",
+    "place": "village"
+   }
+  },
+  {
+   "nama": "Seringgu Jaya",
+   "place": "village",
+   "lat": -8.4967302,
+   "lng": 140.3864408,
+   "tags": {
+    "admin_level": "7",
+    "name": "Seringgu Jaya",
+    "place": "village",
+    "ref": "93.01.01.1010",
+    "wikidata": "Q24575363"
+   }
+  },
+  {
+   "nama": "Bambu Pemali",
+   "place": "village",
+   "lat": -8.5049864,
+   "lng": 140.3925549,
+   "tags": {
+    "admin_level": "7",
+    "name": "Bambu Pemali",
+    "place": "village",
+    "ref": "93.01.01.1009",
+    "wikidata": "Q17998768"
+   }
+  },
+  {
+   "nama": "Samkai",
+   "place": "village",
+   "lat": -8.5086205,
+   "lng": 140.3804897,
+   "tags": {
+    "admin_level": "7",
+    "name": "Samkai",
+    "place": "village",
+    "ref": "93.01.01.1002",
+    "wikidata": "Q24567557"
+   }
+  },
+  {
+   "nama": "Bokem",
+   "place": "village",
+   "lat": -8.5688663,
+   "lng": 140.4743927,
+   "tags": {
+    "admin_level": "7",
+    "name": "Bokem",
+    "place": "village",
+    "ref": "93.01.01.2014",
+    "wikidata": "Q24634397"
+   }
+  },
+  {
+   "nama": "Muli",
+   "place": "village",
+   "lat": -8.5171543,
+   "lng": 140.4032822,
+   "tags": {
+    "name": "Muli",
+    "place": "village"
+   }
+  },
+  {
+   "nama": "Rimba Jaya",
+   "place": "village",
+   "lat": -8.5217465,
+   "lng": 140.422546,
+   "tags": {
+    "name": "Rimba Jaya",
+    "place": "village"
+   }
+  },
+  {
+   "nama": "Buti",
+   "place": "village",
+   "lat": -8.5173991,
+   "lng": 140.3906399,
+   "tags": {
+    "name": "Buti",
+    "place": "village"
+   }
+  },
+  {
+   "nama": "Wasur",
+   "place": "village",
+   "lat": -8.522817,
+   "lng": 140.5143305,
+   "tags": {
+    "admin_level": "7",
+    "name": "Wasur",
+    "place": "village",
+    "ref": "93.01.01.2008",
+    "wikidata": "Q19745108"
+   }
+  },
+  {
+   "nama": "Nggolar",
+   "place": "village",
+   "lat": -8.4718873,
+   "lng": 140.4914039,
+   "tags": {
+    "admin_level": "7",
+    "name": "Nggolar",
+    "place": "village",
+    "ref": "93.01.01.2016",
+    "wikidata": "Q24634565"
+   }
+  },
+  {
+   "nama": "Kamundu",
+   "place": "village",
+   "lat": -8.5039858,
+   "lng": 140.4143845,
+   "tags": {
+    "admin_level": "7",
+    "name": "Kamundu",
+    "place": "village",
+    "ref": "93.01.01.1011",
+    "wikidata": "Q24575368"
+   }
+  },
+  {
+   "nama": "Kamahedoga",
+   "place": "village",
+   "lat": -8.4636294,
+   "lng": 140.3961286,
+   "tags": {
+    "admin_level": "7",
+    "name": "Kamahedoga",
+    "place": "village",
+    "ref": "93.01.01.1012",
+    "wikidata": "Q24575386"
+   }
+  }
+ ],
+ "bps": [],
+ "bps_links": []
+}
