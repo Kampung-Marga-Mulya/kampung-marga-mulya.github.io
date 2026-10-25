@@ -34,7 +34,14 @@ UA = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.3
       "Accept-Language": "id-ID,id;q=0.9,en;q=0.6"}
 TERBLOKIR = "terblokir"   # artikel tidak bisa dibaca robot (situs menolak / kosong)
 
-KUERI = ['"Marga Mulya" Merauke', '"Marga Mulya" Semangga', '"Margamulya" Merauke', '"Kampung Marga Mulya"']
+KUERI = ['"Marga Mulya" Merauke', '"Marga Mulya" Semangga', '"Margamulya" Merauke', '"Kampung Marga Mulya"',
+         '"Semangga 3" Merauke', '"SD Inpres Semangga III" OR "SD Inpres Semangga 3"']
+# Media lokal & pemerintah yang dicari langsung (Bing: site:)
+MEDIA_LOKAL = ["metromerauke.co", "papuaselatanpos.com", "suara.merauke.go.id", "portal.merauke.go.id",
+               "papuaselatan.go.id", "tiffanews.co.id", "barometer99.com", "suaramediaa.id", "rri.co.id",
+               "antaranews.com", "jubi.id", "kodim1707merauke.com", "matapapua.com", "suryapapua.com",
+               "tribunnews.com", "mediatni-polri.com", "kompas.com", "detik.com"]
+KUERI_SITUS = ['"Marga Mulya" site:' + d for d in MEDIA_LOKAL]
 # Kata yang wajib ada di isi artikel
 WAJIB_NAMA = re.compile(r"marga\s*-?\s*mulya", re.I)
 WAJIB_LOKASI = re.compile(r"merauke|semangga", re.I)
@@ -149,6 +156,8 @@ def periksa(url):
     sekitar = " ".join(text[max(0, m.start() - 400): m.end() + 400] for m in WAJIB_NAMA.finditer(text))
     if DESA_LAIN.search(sekitar) and not WAJIB_LOKASI.search(sekitar):
         return None
+    if re.search(r"distrik\s+kurik", sekitar, re.I) and not re.search(r"semangga", sekitar, re.I):
+        return None   # Marga Mulya di Distrik Kurik bukan kampung ini
     img = meta(page, "og:image", "twitter:image")
     if img:
         img = urllib.parse.urljoin(r.url, img)
@@ -204,8 +213,8 @@ def main():
     judul_sudah = {norm_title(b["judul"]) for b in store["berita"]}
 
     calon = []
-    for q in KUERI:
-        for fn in (bing, google):
+    for q, sumber_fn in [(q, (bing, google)) for q in KUERI] + [(q, (bing,)) for q in KUERI_SITUS]:
+        for fn in sumber_fn:
             try:
                 hasil = fn(q)
                 log(f"{fn.__name__} {q!r}: {len(hasil)} hasil")
