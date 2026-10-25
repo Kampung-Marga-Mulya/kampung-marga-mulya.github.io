@@ -1,0 +1,24 @@
+name: Riset wisata (sekali jalan)
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  riset:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install --quiet requests
+      - run: python scripts/riset_wisata.py
+      - name: Simpan hasil ke cabang riset
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout --orphan riset
+          git rm -rq --cached .
+          git add -f riset-wisata.json
+          git commit -qm "Hasil riset wisata"
+          git push -f origin riset
