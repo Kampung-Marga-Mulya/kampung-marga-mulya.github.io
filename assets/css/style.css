@@ -323,8 +323,8 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 @media (max-width: 900px) { .potensi { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 480px) { .potensi { grid-template-columns: minmax(0, 1fr); } }
 .pot { border: 1px solid var(--line); border-radius: var(--r); padding: 18px; background: #fff; }
-.pot > span:first-of-type { display: grid; place-items: center; width: 48px; height: 48px; border-radius: 14px; background: var(--soft); color: var(--blue); margin-bottom: 12px; }
-.pot > span:first-of-type .ic { width: 26px; height: 26px; }
+.pot > .pot__ic { display: grid; place-items: center; width: 48px; height: 48px; border-radius: 14px; background: var(--soft); color: var(--blue); margin-bottom: 12px; }
+.pot > .pot__ic .ic { width: 26px; height: 26px; }
 .pot__t { display: block; font-size: 1.15rem; margin-bottom: .25em; }
 .pot__d { display: block; color: var(--ink-2); font-size: .95rem; }
 .timeline { list-style: none; padding: 0; margin: 0; border-left: 2px solid var(--blue-pale); }
@@ -712,8 +712,18 @@ details.more[open] > summary::before { transform: rotate(45deg); }
 
 /* Foto pada kartu potensi & linimasa kegiatan */
 .pot { position: relative; overflow: hidden; display: flex; flex-direction: column; align-items: flex-start; justify-content: flex-start; }
-.pot__img { display: block; align-self: stretch; width: auto; max-width: none; margin: -18px -18px 12px; height: 130px; object-fit: cover; }
-.pot__img + span { margin-top: -38px; position: relative; border: 3px solid #fff; background: var(--soft); }
+.pot__media { position: relative; display: block; align-self: stretch; margin: -18px -18px 12px; height: 140px; background: var(--soft); }
+.pot__img { display: block; width: 100%; height: 100%; max-width: none; object-fit: cover; }
+.pot__n { position: absolute; top: 8px; left: 8px; display: inline-flex; align-items: center; gap: 4px; background: rgba(10,10,10,.72); color: #fff; font-size: .72rem; font-weight: 700; padding: 3px 8px; border-radius: 99px; }
+.pot__n .ic { width: 13px; height: 13px; stroke: #fff; }
+.pot__cr { position: absolute; right: 6px; top: 8px; background: rgba(255,255,255,.88); color: var(--ink-2); font-size: .66rem; padding: 2px 6px; border-radius: 6px; max-width: 55%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.potgal { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; margin-bottom: 12px; }
+.potgal figure { margin: 0; }
+.potgal img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 10px; display: block; }
+.potgal figcaption { font-size: .82rem; margin-top: 4px; line-height: 1.35; }
+.potgal figcaption b { display: block; }
+.potgal figcaption span { color: var(--ink-2); }
+.pot__media + .pot__ic { margin-top: -38px; position: relative; border: 3px solid #fff; background: var(--soft); }
 .tl__img { display: block; width: 100%; max-width: 360px; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 10px; margin: 4px 0 8px; border: 1px solid var(--line); }
 .timeline .tap { text-align: left; }
 .tl__img[src*="tomat"], .pot__img[src*="tomat"] { object-position: center 70%; }

@@ -589,12 +589,25 @@
 
   /* =================== POTENSI, KEGIATAN, GALERI =================== */
   var ikonPot = { padi: "sprout", daun: "daun", ternak: "ternak", toko: "toko", wisata: "tree" };
+  // Foto potensi: dokumentasi tim (foto) + foto dari internet berlisensi bebas (fotoLain, dengan sumber)
+  var fotoPot = function (p) {
+    var a = p.foto ? [{ src: p.foto, ket: p.fotoKet || p.judul, kredit: p.kredit || "Dokumentasi Tim Ekspedisi Patriot" }] : [];
+    return a.concat(p.fotoLain || []);
+  };
+  var kreditHtml = function (f) {
+    return esc(f.kredit) + (f.lisensi ? " · " + esc(f.lisensi) : "") + (f.url ? ' · <a href="' + esc(f.url) + '" target="_blank" rel="noopener">sumber</a>' : "");
+  };
   $("#potensiList").innerHTML = D.potensi.map(function (p) {
+    var fs = fotoPot(p), f0 = fs[0];
     return '<button type="button" class="pot tap"' + act(function () {
-      openModal({ kat: "Potensi kampung", title: p.judul, html: (p.foto ? '<img class="modal__img" src="' + esc(p.foto) + '" alt="' + esc(p.judul) + '">' : "") + "<p>" + esc(p.ket) + "</p><p>" + esc(p.detail) + "</p>" +
+      openModal({ kat: "Potensi kampung", title: p.judul, html:
+        (fs.length ? '<div class="potgal">' + fs.map(function (f) { return '<figure><img src="' + esc(f.src) + '" alt="' + esc(f.ket) + '" loading="lazy"><figcaption><b>' + esc(f.ket) + "</b><span>Foto: " + kreditHtml(f) + "</span></figcaption></figure>"; }).join("") + "</div>" : "") +
+        "<p>" + esc(p.ket) + "</p><p>" + esc(p.detail) + "</p>" +
         (p.tautan ? "<div class='modal__actions'><a class='btn btn--solid' href='" + esc(p.tautan) + "'>" + ic("pin") + esc(p.tautanLabel || "Lihat selengkapnya") + "</a></div>" : "") });
-    }) + ">" + (p.foto ? '<img class="pot__img" src="' + esc(p.foto) + '" alt="" loading="lazy">' : "") + "<span>" + ic(ikonPot[p.ikon] || "sprout") + '</span><b class="pot__t">' + esc(p.judul) + '</b><span class="pot__d">' + esc(p.ket) + "</span></button>";
+    }) + ">" + (f0 ? '<span class="pot__media"><img class="pot__img" src="' + esc(f0.src) + '" alt="" loading="lazy">' + (fs.length > 1 ? '<span class="pot__n">' + ic("image") + fs.length + " foto</span>" : "") + '<span class="pot__cr">' + esc(f0.url ? f0.kredit.replace(" · Wikimedia Commons", "") + " · Wikimedia" : "Tim Ekspedisi Patriot") + "</span></span>" : "") +
+      '<span class="pot__ic">' + ic(ikonPot[p.ikon] || "sprout") + '</span><b class="pot__t">' + esc(p.judul) + '</b><span class="pot__d">' + esc(p.ket) + "</span></button>";
   }).join("");
+  if (D.potensi.some(function (p) { return (p.fotoLain || []).length; })) $("#potensiList").insertAdjacentHTML("afterend", '<p class="small">Sebagian foto potensi adalah foto ilustrasi berlisensi bebas dari Wikimedia Commons; nama pembuat, lisensi, dan tautan sumbernya tercantum saat kartu diketuk. Foto lainnya dokumentasi Tim Ekspedisi Patriot IPB University.</p>');
   var E = D.ekonomi;
   if (E) {
     var maxHa = Math.max.apply(null, E.lahan.map(function (x) { return x.ha; }));

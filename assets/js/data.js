@@ -365,11 +365,27 @@ window.KAMPUNG = {
   },
 
   potensi: [
-    { judul: "Tanaman pangan & hortikultura", ikon: "padi", foto: "assets/img/kegiatan/kebun-tomat.jpg", ket: "Lahan pertanian 207,15 ha: cabai, jagung, sayuran, dan padi.", detail: "Cabai menjadi tanaman terluas (118,25 ha, 127 petani), disusul jagung (46,5 ha, 41 petani) dan sayuran (41,25 ha, 62 petani). Padi tercatat dengan 771 petani; luas tanam padi di monografi (1,15 ha) sedang dicek ulang oleh pemerintah kampung." },
-    { judul: "Peternakan", ikon: "ternak", foto: "assets/img/kegiatan/periksa-sapi-2.jpg", ket: "411 sapi, 298 kambing, 117 kuda, dan 45.250 unggas.", detail: "Peternakan dikelola 119 peternak sapi, 93 peternak kambing, 51 peternak kuda, 3 peternak kerbau (9 ekor), dan 257 peternak unggas, di atas lahan peternakan seluas 7 ha." },
-    { judul: "Perkebunan jeruk", ikon: "daun", ket: "10 ha kebun jeruk milik 9 petani.", detail: "Perkebunan jeruk seluas 10 hektare menjadi peluang pengembangan agrowisata petik buah dan olahan buah." },
-    { judul: "BUMKam & usaha warga", ikon: "toko", ket: "BUMKam Bina Mulya Sejahtera, 25 UMKM, 33 kios, 11 toko.", detail: "BUMKam Bina Mulya Sejahtera mengelola depot air minum, wisata pemancingan, dan ayam petelur dengan modal Rp657.899.000. Usaha warga lain: 10 warung, 7 pom mini, 3 agen minyak tanah, 1 SPBU, dan 1 perusahaan. Layanan bank terdekat: BRI Unit Semangga." },
-    { judul: "Potensi wisata", ikon: "wisata", ket: "Agrowisata dan taman wisata di sekitar kampung hingga Distrik Tanah Miring.", detail: "Di sekitar Marga Mulya dan Distrik Tanah Miring terdapat Taman Wisata Alam Mandira Loka, Mandira Agro Park, Taman Bambu Mandira, Romans Garden, Hokkaido Farm, Kebun Percontohan Tanaman Porang, Kebun Pisang Akerezki Farm, dan Kolam Pemancingan Wisata Banyu Mulya. Kawasan Mandira hanya beberapa kilometer dari pusat kampung, sehingga warga berpeluang mengembangkan usaha pendukung seperti kuliner, oleh-oleh, dan pemandu wisata.", tautan: "#wisata", tautanLabel: "Lihat peta, jarak & rute" }
+    { judul: "Tanaman pangan & hortikultura", ikon: "padi", foto: "assets/img/kegiatan/kebun-tomat.jpg", fotoKet: "Petani merawat tanaman tomat", kredit: "Dokumentasi Tim Ekspedisi Patriot IPB University 2026",
+      fotoLain: [
+        { src: "assets/img/potensi/sawah-merauke.jpg", ket: "Panen perdana cetak sawah di Merauke (2012/2013)", kredit: "Pemerintah Kabupaten Merauke · Wikimedia Commons", lisensi: "Domain publik", url: "https://commons.wikimedia.org/wiki/File:Sawah_Merauke_2012.jpg" },
+        { src: "assets/img/potensi/petani-cabai.jpg", ket: "Ilustrasi: petani memetik cabai (Sukoharjo, Jawa Tengah)", kredit: "ANTARA TV · Wikimedia Commons", lisensi: "CC BY 3.0", url: "https://commons.wikimedia.org/wiki/File:Petani_Sedang_Memetik_Cabai.jpg" }
+      ], ket: "Lahan pertanian 207,15 ha: cabai, jagung, sayuran, dan padi.", detail: "Cabai menjadi tanaman terluas (118,25 ha, 127 petani), disusul jagung (46,5 ha, 41 petani) dan sayuran (41,25 ha, 62 petani). Padi tercatat dengan 771 petani; luas tanam padi di monografi (1,15 ha) sedang dicek ulang oleh pemerintah kampung." },
+    { judul: "Peternakan", ikon: "ternak", foto: "assets/img/kegiatan/periksa-sapi-2.jpg", fotoKet: "Pemeriksaan kesehatan sapi milik peternak", kredit: "Dokumentasi Tim Ekspedisi Patriot IPB University 2026",
+      fotoLain: [
+        { src: "assets/img/potensi/sapi-bali-ipb.jpg", ket: "Ilustrasi: sapi bali di kandang IPB Jonggol", kredit: "Btcpg · Wikimedia Commons", lisensi: "CC BY-SA 4.0", url: "https://commons.wikimedia.org/wiki/File:Bali_cattle_IPB_Jonggol.jpg" }
+      ], ket: "411 sapi, 298 kambing, 117 kuda, dan 45.250 unggas.", detail: "Peternakan dikelola 119 peternak sapi, 93 peternak kambing, 51 peternak kuda, 3 peternak kerbau (9 ekor), dan 257 peternak unggas, di atas lahan peternakan seluas 7 ha." },
+    { judul: "Perkebunan jeruk", ikon: "daun",
+      fotoLain: [
+        { src: "assets/img/potensi/kebun-jeruk.jpg", ket: "Ilustrasi: kebun jeruk berbuah", kredit: "BerkahAgeng · Wikimedia Commons", lisensi: "CC BY-SA 4.0", url: "https://commons.wikimedia.org/wiki/File:Kebun_jeruk.jpg" }
+      ], ket: "10 ha kebun jeruk milik 9 petani.", detail: "Perkebunan jeruk seluas 10 hektare menjadi peluang pengembangan agrowisata petik buah dan olahan buah." },
+    { judul: "BUMKam & usaha warga", ikon: "toko", foto: "assets/img/fasilitas/kopdes-merah-putih.jpg", fotoKet: "Koperasi Desa Merah Putih Kampung Marga Mulya", kredit: "Dokumentasi Tim Ekspedisi Patriot IPB University 2026",
+      fotoLain: [
+        { src: "assets/img/potensi/ayam-petelur.jpg", ket: "Ilustrasi: peternak ayam petelur memanen telur (Bojonegoro, Jawa Timur), seperti unit ayam petelur BUMKam", kredit: "Achmad Fazeri · Wikimedia Commons", lisensi: "CC BY-SA 4.0", url: "https://commons.wikimedia.org/wiki/File:Senyum_Peternak_Ayam_Petelur.jpg" }
+      ], ket: "BUMKam Bina Mulya Sejahtera, 25 UMKM, 33 kios, 11 toko.", detail: "BUMKam Bina Mulya Sejahtera mengelola depot air minum, wisata pemancingan, dan ayam petelur dengan modal Rp657.899.000. Usaha warga lain: 10 warung, 7 pom mini, 3 agen minyak tanah, 1 SPBU, dan 1 perusahaan. Layanan bank terdekat: BRI Unit Semangga." },
+    { judul: "Potensi wisata", ikon: "wisata",
+      fotoLain: [
+        { src: "assets/img/potensi/musamus-wasur.jpg", ket: "Musamus (sarang rayap raksasa) di Taman Nasional Wasur, Merauke", kredit: "Bonefasius Kondahon · Wikimedia Commons", lisensi: "CC BY-SA 4.0", url: "https://commons.wikimedia.org/wiki/File:Sarang_Semut-TamanNasionalWasur.jpg" }
+      ], ket: "Agrowisata dan taman wisata di sekitar kampung hingga Distrik Tanah Miring.", detail: "Di sekitar Marga Mulya dan Distrik Tanah Miring terdapat Taman Wisata Alam Mandira Loka, Mandira Agro Park, Taman Bambu Mandira, Romans Garden, Hokkaido Farm, Kebun Percontohan Tanaman Porang, Kebun Pisang Akerezki Farm, dan Kolam Pemancingan Wisata Banyu Mulya. Kawasan Mandira hanya beberapa kilometer dari pusat kampung, sehingga warga berpeluang mengembangkan usaha pendukung seperti kuliner, oleh-oleh, dan pemandu wisata.", tautan: "#wisata", tautanLabel: "Lihat peta, jarak & rute" }
   ],
 
   // Rincian ekonomi dari monografi (grafik di tab Potensi)
