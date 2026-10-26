@@ -829,7 +829,10 @@
     };
     var daftar = function () {
       return F.fasilitas.filter(function (f) { return aktif === "Semua" || (aktif === "Dalam kampung" ? f.dalamKampung : f.kategori === aktif); })
-        .sort(function (a, b) { return (b.dalamKampung - a.dalamKampung) || ((a.jarak_km || 0) - (b.jarak_km || 0)); });
+        .map(function (f, i) { return { f: f, i: i }; })
+        // Yang sudah ada fotonya tampil paling awal, lalu yang di dalam kampung, lalu yang terdekat
+        .sort(function (a, b) { return (!!b.f.foto - !!a.f.foto) || (b.f.dalamKampung - a.f.dalamKampung) || ((a.f.jarak_km || 0) - (b.f.jarak_km || 0)) || (a.i - b.i); })
+        .map(function (x) { return x.f; });
     };
     function kartu(f) {
       var st = STATUS[f.status] || STATUS["perlu-data"];
