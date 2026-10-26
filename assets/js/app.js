@@ -25,7 +25,9 @@
   };
   var ic = function (name, cls) { return '<svg class="ic' + (cls ? " " + cls : "") + '"><use href="#i-' + name + '"/></svg>'; };
   var sum = function (arr, key) { return arr.reduce(function (a, x) { return a + (key ? x[key] : x); }, 0); };
-  var CONTOH = D.meta.dataContoh ? ' <span class="chip chip--contoh">contoh</span>' : "";
+  var CHIP = ' <span class="chip chip--contoh">contoh</span>';
+  var CONTOH = D.meta.dataContoh ? CHIP : "";
+  var belumAda = function (v) { return v == null || v === "" || /^\[/.test(String(v)); };
   var id = D.identitas, P = D.penduduk;
 
   /* ---------- Aksi klik: setiap elemen diberi data-act berisi nomor fungsi ---------- */
@@ -62,8 +64,8 @@
   /* ---------- Tautan Google Maps ---------- */
   var G = D.google, hasKoord = !!(id.koordinat && id.koordinat.lat);
   var gQuery = hasKoord ? id.koordinat.lat + "," + id.koordinat.lng : G.pencarian;
-  // Titik Street View: koordinat kantor kampung bila ada, jika tidak titik pusat kampung
-  var SV = hasKoord ? id.koordinat : (G.streetView && G.streetView.lat ? G.streetView : { lat: -8.409726, lng: 140.463722 });
+  // Titik Street View: titik di jalan (google.streetView), jika tidak ada pakai koordinat kampung
+  var SV = (G.streetView && G.streetView.lat) ? G.streetView : (hasKoord ? id.koordinat : { lat: -8.409726, lng: 140.463722 });
   var gm = {
     open: G.tautan || "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(gQuery),
     dir: "https://www.google.com/maps/dir/?api=1&destination=" + encodeURIComponent(gQuery),
@@ -94,10 +96,10 @@
   }).replace(/^ data-act="|"$/g, ""));
 
   var facts = [
-    { ic: "users", t: "Penduduk", v: num(P.total), s: "jiwa", info: "Jumlah penduduk Kampung Marga Mulya menurut proyeksi BPS pertengahan 2024. Angka ini akan diperbarui dengan hasil pendataan kampung." },
-    { ic: "home", t: "Kepala keluarga", v: num(P.kk), s: "KK" + (D.meta.dataContoh ? " · contoh" : ""), info: "Jumlah kepala keluarga terdaftar. Rata-rata " + (P.total / P.kk).toLocaleString("id-ID", { maximumFractionDigits: 1 }) + " jiwa per keluarga." },
-    { ic: "pin", t: "Kode wilayah", v: id.kodeWilayah, s: "Kemendagri", code: true, info: "Kode wilayah administrasi pemerintahan untuk Kampung Marga Mulya. 93 = Papua Selatan, 01 = Kabupaten Merauke, 05 = Distrik Semangga, 2008 = Kampung Marga Mulya." },
-    { ic: "mail", t: "Kode pos", v: id.kodePos, s: "Distrik " + id.distrik, code: true, info: "Kode pos yang dipakai untuk seluruh kampung di Distrik Semangga." }
+    { ic: "users", t: "Penduduk", v: num(P.total), s: "jiwa", info: "Jumlah penduduk Kampung Marga Mulya menurut monografi kampung per 30 September 2026: " + num(P.laki) + " laki-laki dan " + num(P.perempuan) + " perempuan." },
+    { ic: "home", t: "Kepala keluarga", v: num(P.kk), s: "KK", info: "Jumlah kepala keluarga terdaftar. Rata-rata " + (P.total / P.kk).toLocaleString("id-ID", { maximumFractionDigits: 1 }) + " jiwa per keluarga." },
+    { ic: "layers", t: "Luas wilayah", v: num(Math.round(id.luasHa)), s: "hektare", info: "Luas wilayah Kampung Marga Mulya " + id.luas + " menurut monografi kampung. Peta resmi wilayah: " + id.petaResmi + "." },
+    { ic: "pin", t: "Wilayah", v: id.jumlahRW + " RW", s: id.jumlahRT + " RT", info: "Kampung Marga Mulya terbagi atas " + id.jumlahRW + " rukun warga (RW) dan " + id.jumlahRT + " rukun tetangga (RT). Kode wilayah Kemendagri " + id.kodeWilayah + ", kode pos " + id.kodePos + "." }
   ];
   $("#facts").innerHTML = facts.map(function (f) {
     return '<button type="button" class="fact tap"' + act(function () { openModal({ kat: "Beranda", title: f.t + ": " + f.v, html: "<p>" + esc(f.info) + "</p>" }); }) +
@@ -108,15 +110,15 @@
   var quick = [
     ["#tentang", "home", "Profil kampung", "Sejarah, identitas, visi misi, dan batas wilayah"],
     ["#pemerintahan", "users", "Pemerintahan", "Struktur organisasi, Bamuskam, dan lembaga"],
-    ["#penduduk", "chart", "Data penduduk", "Piramida umur, pendidikan, pekerjaan, agama"],
-    ["#fasilitas", "school", "Fasilitas umum", "Sekolah, rumah ibadah, kesehatan, air bersih"],
+    ["#penduduk", "chart", "Data penduduk", "Usia, kesejahteraan, pekerjaan, pendidikan, suku"],
+    ["#fasilitas", "school", "Sarana & fasilitas", "Sarana prasarana kampung dan peta fasilitas"],
     ["#apbkam", "wallet", "Transparansi anggaran", "APBKam dan realisasi per bidang"],
     ["#indeksdesa", "gauge", "Indeks Desa", "Status perkembangan kampung"],
     ["#petakampung", "pin", "Peta kampung", "Peta drone, satelit, dan Street View"],
     ["#wisatakuliner", "route", "Wisata & kuliner", "Tempat rekreasi dan makan 1–2 jam dari kampung"],
     ["#surat", "doc", "Layanan surat", "Persyaratan dan lama proses surat"],
     ["#media", "video", "Video & galeri", "Video profil dan dokumentasi kegiatan"],
-    ["#potensi", "sprout", "Potensi kampung", "Pertanian, ternak, UMKM, dan kegiatan"],
+    ["#potensi", "sprout", "Potensi kampung", "Lahan, ternak, BUMKam, dan usaha warga"],
     ["#kontakkampung", "phone", "Kontak & media sosial", "Kantor kampung, Facebook, Instagram, TikTok"]
   ];
   $("#quick").innerHTML = quick.map(function (q) {
@@ -204,11 +206,19 @@
   $("#sejarah").innerHTML = "<h3>Sejarah singkat</h3>" + D.sejarah.map(function (p) { return "<p>" + esc(p) + "</p>"; }).join("");
   $("#identitas").innerHTML = [
     ["Nama", id.nama], ["Distrik", id.distrik], ["Kabupaten", id.kabupaten], ["Provinsi", id.provinsi],
-    ["Kode wilayah", id.kodeWilayah], ["Kode pos", id.kodePos], ["Luas wilayah", id.luas], ["Ketinggian", id.ketinggian],
-    ["Jumlah dusun", id.jumlahDusun], ["Jumlah RT", id.jumlahRT], ["Zona waktu", id.zonaWaktu],
-    ["Koordinat", hasKoord ? id.koordinat.lat + ", " + id.koordinat.lng : "[isi koordinat kantor kampung]"]
-  ].map(function (r) { return "<dt>" + esc(r[0]) + "</dt><dd>" + esc(r[1]) + "</dd>"; }).join("");
+    ["Kode wilayah", id.kodeWilayah], ["Kode pos", id.kodePos], ["Tahun dibentuk", id.tahunBerdiri], ["Dasar hukum", id.dasarHukum],
+    ["Luas wilayah", id.luas], ["Wilayah", id.jumlahRW + " RW · " + id.jumlahRT + " RT"],
+    ["Tipologi", id.tipologi], ["Klasifikasi", id.klasifikasi], ["Kategori", id.kategori], ["Komoditas unggulan", id.komoditasUnggulan],
+    ["Peta resmi", id.petaResmi], ["Koordinat", id.koordinatTeks || (hasKoord ? id.koordinat.lat + ", " + id.koordinat.lng : "")], ["Zona waktu", id.zonaWaktu]
+  ].filter(function (r) { return !belumAda(r[1]); }).map(function (r) { return "<dt>" + esc(r[0]) + "</dt><dd>" + esc(r[1]) + "</dd>"; }).join("");
+  if (id.orbitasi || id.pertanahan) {
+    var orb = (id.orbitasi || []).map(function (o) { return [o.km + " km", "ke " + o.label]; });
+    var tn = id.pertanahan ? [[num(id.pertanahan.sertifikat), "sertifikat tanah"], [id.pertanahan.tanahKasHa + " ha", "tanah kas kampung"], [id.pertanahan.waduk + " unit", "waduk / danau / situ"]] : [];
+    $("#identitas").insertAdjacentHTML("afterend", '<h3 class="mt-s">Jarak tempuh</h3><div class="tiles tiles--3">' + orb.map(function (o) { return '<div class="tile"><b>' + esc(o[0]) + "</b><span>" + esc(o[1]) + "</span></div>"; }).join("") + "</div>" +
+      '<h3 class="mt-s">Pertanahan</h3><div class="tiles tiles--3">' + tn.map(function (o) { return '<div class="tile"><b>' + esc(o[0]) + "</b><span>" + esc(o[1]) + "</span></div>"; }).join("") + "</div>");
+  }
   $("#visi").textContent = D.visi;
+  if (D.visiContoh) $("#visi").insertAdjacentHTML("beforeend", CHIP);
   $("#misi").innerHTML = D.misi.map(function (m) { return "<li>" + esc(m) + "</li>"; }).join("");
   var arah = [["n", "Utara", D.batas.utara], ["w", "Barat", D.batas.barat], ["e", "Timur", D.batas.timur], ["s", "Selatan", D.batas.selatan]];
   $("#batas").innerHTML = arah.map(function (a) {
@@ -221,7 +231,7 @@
   var S = D.struktur;
   function pejabatModal(o) {
     var foto = o.foto ? '<img class="modal__img" src="' + esc(o.foto) + '" alt="Foto ' + esc(o.nama) + '">' : "";
-    openModal({ kat: "Pemerintah Kampung", title: o.jabatan, html: foto + "<p><b>" + esc(o.nama) + "</b></p><p>" + esc(o.tugas || "") + "</p>" + (o.kontak ? "<p>Kontak: " + esc(o.kontak) + "</p>" : "") });
+    openModal({ kat: "Pemerintah Kampung", title: o.jabatan, html: foto + "<p><b>" + esc(o.nama) + "</b>" + (o.pendidikan ? " · pendidikan terakhir " + esc(o.pendidikan) : "") + "</p><p>" + esc(o.tugas || "") + "</p>" + (o.kontak ? "<p>Kontak: " + esc(o.kontak) + "</p>" : "") });
   }
   var node = function (o, top) {
     var ph = top ? '<span class="node__photo">' + (o.foto ? '<img src="' + esc(o.foto) + '" alt="">' : ic("users")) + "</span>" : "";
@@ -232,55 +242,56 @@
     return '<div class="org__row">' + (label ? '<div class="org__label">' + esc(label) + "</div>" : "") + list.map(function (o) { return node(o); }).join("") + "</div>";
   };
   $("#org").innerHTML = '<div class="org__row">' + node(S.kepala, true) + "</div>" + row("", [S.sekretaris]) +
-    row("Kepala urusan", S.kaur) + row("Kepala seksi", S.kasi) + row("Pelaksana kewilayahan", S.kewilayahan);
+    row("Kepala urusan", S.kaur) + row("Kepala seksi", S.kasi) + row("Kewilayahan", S.kewilayahan);
+  if (S.jumlah) $("#org").insertAdjacentHTML("afterend", '<div class="tiles tiles--3 mt-s">' + S.jumlah.map(function (j) { return '<div class="tile"><b>' + num(j.jumlah) + "</b><span>" + esc(j.label) + "</span></div>"; }).join("") + "</div>");
   $("#bamuskam").innerHTML = S.bamuskam.map(function (o) {
     return '<li><button type="button" class="tap"' + act(function () {
-      openModal({ kat: "Badan Musyawarah Kampung", title: o.jabatan, html: "<p><b>" + esc(o.nama) + "</b></p><p>Bamuskam menampung aspirasi warga, membahas dan menyepakati rancangan peraturan kampung bersama Kepala Kampung, serta mengawasi kinerja pemerintah kampung.</p>" });
+      openModal({ kat: "Badan Musyawarah Kampung", title: o.jabatan, html: "<p><b>" + esc(o.nama) + "</b>" + (o.ket ? " — " + esc(o.ket) : "") + "</p><p>Bamuskam menampung aspirasi warga, membahas dan menyepakati rancangan peraturan kampung bersama Kepala Kampung, serta mengawasi kinerja pemerintah kampung.</p>" });
     }) + "><span>" + esc(o.jabatan) + "</span><span>" + esc(o.nama) + "</span></button></li>";
   }).join("");
   $("#lembaga").innerHTML = S.lembaga.map(function (o) {
     return '<li><button type="button" class="tap"' + act(function () {
-      openModal({ kat: "Lembaga kemasyarakatan", title: o.nama, html: "<p>" + esc(o.ket) + ".</p><p>Pimpinan: <b>" + esc(o.ketua) + "</b></p>" });
+      openModal({ kat: "Lembaga kemasyarakatan", title: o.nama, html: "<p>" + esc(o.ket) + ".</p>" + (o.detail ? "<p>" + esc(o.detail) + "</p>" : "") + (o.ketua && !belumAda(o.ketua) ? "<p>Pimpinan: <b>" + esc(o.ketua) + "</b></p>" : "") });
     }) + "><span>" + esc(o.nama) + "</span><span>" + esc(o.ket) + "</span></button></li>";
   }).join("");
 
   /* =================== KEPENDUDUKAN =================== */
-  $("#dataSumber").textContent = "Sumber: " + D.meta.sumberData + ". Diperbarui " + D.meta.diperbarui + ". Ketuk angka atau grafik untuk rincian.";
+  $("#dataSumber").textContent = "Sumber: " + D.meta.sumberData + ". Ketuk angka atau grafik untuk rincian.";
   var stats = [
-    [num(P.total), "Total penduduk", "", "Jumlah seluruh penduduk kampung (proyeksi BPS 2024)."],
-    [num(P.laki), "Laki-laki · " + pct(P.laki, P.total) + "%", CONTOH, "Penduduk laki-laki. Rasio jenis kelamin " + Math.round(P.laki / P.perempuan * 100) + " laki-laki per 100 perempuan."],
-    [num(P.perempuan), "Perempuan · " + pct(P.perempuan, P.total) + "%", CONTOH, "Penduduk perempuan kampung."],
-    [num(P.kk), "Kepala keluarga", CONTOH, "Jumlah kartu keluarga terdaftar di kampung."]
+    [num(P.total), "Total penduduk", "", "Jumlah seluruh penduduk Kampung Marga Mulya menurut monografi kampung."],
+    [num(P.laki), "Laki-laki · " + pct(P.laki, P.total) + "%", "", "Penduduk laki-laki. Rasio jenis kelamin " + Math.round(P.laki / P.perempuan * 100) + " laki-laki per 100 perempuan."],
+    [num(P.perempuan), "Perempuan · " + pct(P.perempuan, P.total) + "%", "", "Penduduk perempuan kampung."],
+    [num(P.kk), "Kepala keluarga", "", "Jumlah kepala keluarga terdaftar. Rata-rata " + (P.total / P.kk).toLocaleString("id-ID", { maximumFractionDigits: 1 }) + " jiwa per keluarga."]
   ];
   $("#stats").innerHTML = stats.map(function (s) {
     return '<button type="button" class="stat tap"' + act(function () { openModal({ kat: "Kependudukan", title: s[1].split(" · ")[0] + ": " + s[0], html: "<p>" + esc(s[3]) + "</p>" }); }) +
       "><b>" + s[0] + "</b><span>" + esc(s[1]) + "</span>" + s[2] + "</button>";
   }).join("");
-  ["#pyramid", "#usiaSekolah", "#pendidikan", "#pekerjaan", "#agama"].forEach(function (sel) {
-    var h = $(sel).closest(".panel").querySelector("h3");
-    if (h && CONTOH) h.insertAdjacentHTML("beforeend", CONTOH);
-  });
 
-  var maxAge = Math.max.apply(null, P.usia.map(function (u) { return Math.max(u.l, u.p); }));
-  $("#pyramid").innerHTML = P.usia.slice().reverse().map(function (u) {
-    return '<button type="button" class="pyr tap"' + act(function () {
-      var t = u.l + u.p;
-      openModal({ kat: "Piramida penduduk", title: "Kelompok umur " + u.k + " tahun",
-        html: '<div class="mini-stat"><div><b>' + num(t) + "</b><span>Jumlah</span></div><div><b>" + num(u.l) + "</b><span>Laki-laki</span></div><div><b>" + num(u.p) + "</b><span>Perempuan</span></div></div>" +
-          "<p>Kelompok ini mencakup " + pct(t, P.total) + "% dari seluruh penduduk kampung.</p>" });
-    }) + ' aria-label="Umur ' + esc(u.k) + '">' +
-      '<span class="pyr__side pyr__side--l"><span class="pyr__num">' + u.l + '</span><span class="pyr__bar" style="width:' + (u.l / maxAge * 100) + '%"></span></span>' +
-      '<span class="pyr__age">' + esc(u.k) + "</span>" +
-      '<span class="pyr__side pyr__side--p"><span class="pyr__bar" style="width:' + (u.p / maxAge * 100) + '%"></span><span class="pyr__num">' + u.p + "</span></span></button>";
-  }).join("");
+  // Piktogram laki-laki & perempuan (1 ikon ≈ 100 jiwa)
+  var nL = Math.round(P.laki / 100), nP = Math.round(P.perempuan / 100);
+  $("#picto").setAttribute("aria-label", num(P.laki) + " laki-laki dan " + num(P.perempuan) + " perempuan");
+  $("#picto").innerHTML = '<div class="picto__row">' + new Array(nL + 1).join('<i class="picto__l">' + ic("person") + "</i>") + '</div><div class="picto__row">' + new Array(nP + 1).join('<i class="picto__p">' + ic("person") + "</i>") + "</div>" +
+    '<div class="picto__lbl"><span><b>' + num(P.laki) + "</b> laki-laki</span><span><b>" + num(P.perempuan) + "</b> perempuan</span></div>";
 
-  $("#usiaSekolah").innerHTML = P.usiaSekolah.map(function (s) {
+  // Kelompok usia: batang bertumpuk + kartu
+  var totU = sum(P.kelompokUsia, "jumlah"), toneU = ["#7AAAF2", "#1452C2", "#0B3A8F"];
+  $("#kelUsia").innerHTML = '<div class="stackbar">' + P.kelompokUsia.map(function (u, i) { return '<i style="width:' + (u.jumlah / totU * 100) + "%;background:" + toneU[i % 3] + '"></i>'; }).join("") + "</div>" +
+    '<div class="agecards">' + P.kelompokUsia.map(function (u, i) {
+      return '<button type="button" class="tap"' + act(function () { openModal({ kat: "Kelompok usia", title: u.label, html: '<div class="mini-stat"><div><b>' + num(u.jumlah) + "</b><span>Jiwa</span></div><div><b>" + pct(u.jumlah, totU) + "%</b><span>Porsi</span></div></div><p>" + esc(u.ket) + "</p><p class='small'>Jumlah ketiga kelompok usia di monografi adalah " + num(totU) + " jiwa, selisih " + (P.total - totU) + " jiwa dari total penduduk.</p>" }); }) +
+        '><span class="dot" style="background:' + toneU[i % 3] + '"></span><b>' + num(u.jumlah) + "</b><span>" + esc(u.label) + "</span><small>" + pct(u.jumlah, totU) + "%</small></button>";
+    }).join("") + "</div>";
+
+  // Sekolah dan tenaga kesehatan
+  $("#usiaSekolah").innerHTML = P.sekolah.map(function (s) {
+    var r = Math.round(s.murid / s.guru);
     return '<button type="button" class="tap"' + act(function () {
-      openModal({ kat: "Penduduk usia sekolah", title: s.label + " (" + s.rentang + ")", html: "<p><b>" + num(s.jumlah) + " anak</b> berada pada usia jenjang ini.</p><p>" + esc(s.ket) + "</p>" });
-    }) + "><b>" + num(s.jumlah) + "</b><span>" + esc(s.label) + "</span><small>" + esc(s.rentang) + "</small></button>";
+      openModal({ kat: "Sekolah di kampung", title: s.label, html: '<div class="mini-stat"><div><b>' + num(s.murid) + "</b><span>Murid</span></div><div><b>" + num(s.guru) + "</b><span>Guru</span></div><div><b>" + r + "</b><span>Murid per guru</span></div></div><p>Data murid dan guru " + esc(s.label.toLowerCase()) + " di Kampung Marga Mulya menurut monografi kampung.</p>" });
+    }) + "><b>" + num(s.murid) + "</b><span>Murid " + esc(s.label) + "</span><small>" + num(s.guru) + " guru · " + r + " murid per guru</small></button>";
   }).join("");
+  $("#nakes").innerHTML = P.tenagaKesehatan.map(function (t) { return '<span class="nakes__i">' + ic("health") + "<b>" + num(t.jumlah) + "</b>" + esc(t.label) + "</span>"; }).join("");
 
-  function bars(sel, list, kat, fmt) {
+  function bars(sel, list, kat, fmt, tanpaPorsi) {
     var tot = sum(list, "jumlah"), max = Math.max.apply(null, list.map(function (x) { return x.jumlah; }));
     fmt = fmt || num;
     $(sel).innerHTML = list.map(function (x, i) {
@@ -288,39 +299,52 @@
       return '<button type="button" class="bar tap"' + act(function () {
         openModal({ kat: kat, title: x.label, html: '<div class="mini-stat"><div><b>' + fmt(x.jumlah) + "</b><span>" + (fmt === num ? "Jiwa" : "Jumlah") + "</span></div><div><b>" + pct(x.jumlah, tot) + "%</b><span>Porsi</span></div><div><b>#" + rank + "</b><span>Peringkat</span></div></div>" +
           "<p>" + esc(x.label) + " mencakup " + pct(x.jumlah, tot) + "% dari total " + fmt(tot) + ".</p>" });
-      }) + "><span>" + esc(x.label) + '</span><span class="bar__val"><b>' + fmt(x.jumlah) + "</b> · " + pct(x.jumlah, tot) + '%</span><span class="bar__track"><span class="bar__fill" style="display:block;width:' + (x.jumlah / max * 100) + '%"></span></span></button>';
+      }) + "><span>" + esc(x.label) + '</span><span class="bar__val"><b>' + fmt(x.jumlah) + "</b>" + (tanpaPorsi ? "" : " · " + pct(x.jumlah, tot) + "%") + '</span><span class="bar__track"><span class="bar__fill" style="display:block;width:' + (x.jumlah / max * 100) + '%"></span></span></button>';
     }).join("");
   }
   bars("#pendidikan", P.pendidikan, "Pendidikan terakhir");
   bars("#pekerjaan", P.pekerjaan, "Mata pencaharian");
   bars("#agama", P.agama, "Agama");
+  bars("#suku", P.suku, "Suku / etnis");
+  bars("#sejahtera", P.kesejahteraan, "Tingkat kesejahteraan keluarga", function (n) { return num(n) + " KK"; });
 
   /* =================== ANGGARAN (APBKam) =================== */
   var A = D.apbkam;
   var totPend = sum(A.pendapatan, "jumlah"), totBel = sum(A.belanja, "anggaran"), totReal = sum(A.belanja, "realisasi");
-  $("#apbTitle").innerHTML = "APBKam Tahun " + A.tahun + CONTOH;
-  $("#apbLead").textContent = "Anggaran Pendapatan dan Belanja Kampung Marga Mulya. Realisasi per " + A.realisasiPer + ". Ketuk setiap angka untuk penjelasan.";
+  var adaBelanja = A.belanja.length > 0;
+  $("#apbTitle").innerHTML = (adaBelanja ? "APBKam Tahun " + A.tahun : "Keuangan Kampung " + A.tahun) + (A.contoh ? CHIP : "");
+  $("#apbLead").textContent = adaBelanja
+    ? "Anggaran Pendapatan dan Belanja Kampung Marga Mulya. Realisasi per " + A.realisasiPer + ". Ketuk setiap angka untuk penjelasan."
+    : "Pendapatan kampung yang tercatat di " + A.dokumen + ". Rincian belanja per bidang akan ditampilkan setelah Peraturan Kampung tentang APBKam dan laporan realisasinya tersedia.";
   var sumCards = [
-    ["Pendapatan", rpS(totPend), A.pendapatan.length + " sumber", "Seluruh pendapatan kampung tahun " + A.tahun + ": " + rp(totPend) + ". Rincian ada di panel sumber pendapatan.", ""],
-    ["Belanja", rpS(totBel), "5 bidang", "Seluruh rencana belanja kampung: " + rp(totBel) + ", dibagi ke lima bidang sesuai aturan pengelolaan keuangan desa.", ""],
-    ["Pembiayaan", rpS(A.pembiayaan.jumlah), A.pembiayaan.label, A.pembiayaan.label + ": " + rp(A.pembiayaan.jumlah) + ". Pembiayaan menutup selisih antara belanja dan pendapatan.", ""],
-    ["Realisasi belanja", pct(totReal, totBel, 0) + "%", rpS(totReal) + " terpakai", "Belanja yang sudah terlaksana sampai " + A.realisasiPer + ": " + rp(totReal) + " dari " + rp(totBel) + ".", "blue"]
+    ["Pendapatan tercatat", rpS(totPend), A.pendapatan.length + " sumber", "Pendapatan kampung yang tercatat: " + rp(totPend) + ". Rincian ada di panel sumber pendapatan.", ""],
+    ["Pembiayaan", rpS(A.pembiayaan.jumlah), A.pembiayaan.label, A.pembiayaan.label + ": " + rp(A.pembiayaan.jumlah) + ". Sisa lebih perhitungan anggaran tahun sebelumnya yang dipakai pada tahun berjalan.", ""],
+    ["Total dana", rpS(totPend + A.pembiayaan.jumlah), "pendapatan + pembiayaan", "Total dana kampung yang tercatat: " + rp(totPend + A.pembiayaan.jumlah) + ".", "blue"],
+    adaBelanja
+      ? ["Realisasi belanja", pct(totReal, totBel, 0) + "%", rpS(totReal) + " terpakai", "Belanja yang sudah terlaksana sampai " + A.realisasiPer + ": " + rp(totReal) + " dari " + rp(totBel) + ".", ""]
+      : ["Belanja", "Belum ada", "rincian belum tersedia", "Monografi kampung belum memuat belanja rutin dan tidak rutin. Rincian akan diisi dari Perkam APBKam dan laporan realisasi.", ""]
   ];
   $("#apbSum").innerHTML = sumCards.map(function (c) {
-    return '<button type="button" class="apb-card tap' + (c[4] ? " apb-card--blue" : "") + '"' + act(function () { openModal({ kat: "APBKam " + A.tahun, title: c[0], html: "<p>" + esc(c[3]) + "</p><p class='small'>Dasar: " + esc(A.dokumen) + ".</p>" }); }) +
+    return '<button type="button" class="apb-card tap' + (c[4] ? " apb-card--blue" : "") + '"' + act(function () { openModal({ kat: "Keuangan kampung " + A.tahun, title: c[0], html: "<p>" + esc(c[3]) + "</p><p class='small'>Sumber: " + esc(A.dokumen) + ".</p>" }); }) +
       "><span>" + c[0] + "</span><b>" + c[1] + "</b><small>" + esc(c[2]) + "</small></button>";
   }).join("");
   bars("#apbPendapatan", A.pendapatan, "Sumber pendapatan", rpS);
-  $("#apbBelanja").innerHTML = A.belanja.map(function (b, i) {
+  if (A.pendapatanKosong && A.pendapatanKosong.length) $("#apbPendapatan").insertAdjacentHTML("afterend", '<p class="small">Belum tercatat: ' + esc(A.pendapatanKosong.join(", ")) + ".</p>");
+  if (A.danaLembaga) bars("#apbLembaga", A.danaLembaga, "Dana lembaga kampung", rpS, true);
+  if (!adaBelanja) {
+    $("#apbBelanjaNote").textContent = "";
+    $("#apbBelanja").innerHTML = '<div class="empty">' + ic("doc") + "<b>Rincian belanja belum tersedia</b><span>Belanja kampung dibagi ke lima bidang: penyelenggaraan pemerintahan, pembangunan, pembinaan kemasyarakatan, pemberdayaan masyarakat, serta penanggulangan bencana dan keadaan darurat. Angkanya akan ditampilkan setelah dokumen APBKam diterima.</span></div>";
+  }
+  $("#apbBelanja").insertAdjacentHTML("beforeend", A.belanja.map(function (b, i) {
     var p = pct(b.realisasi, b.anggaran, 0);
     return '<button type="button" class="bid tap"' + act(function () {
       openModal({ kat: "Bidang " + (i + 1) + " · APBKam " + A.tahun, title: b.bidang,
         html: '<div class="mini-stat"><div><b>' + rpS(b.anggaran) + "</b><span>Anggaran</span></div><div><b>" + rpS(b.realisasi) + "</b><span>Realisasi</span></div><div><b>" + p + "%</b><span>Terserap</span></div></div>" +
           '<div class="tablewrap"><table class="tbl"><thead><tr><th>Kegiatan</th><th class="num">Anggaran</th><th class="num">Realisasi</th></tr></thead><tbody>' +
-          b.kegiatan.map(function (k) { return "<tr><td>" + esc(k.nama) + '</td><td class="num">' + rpS(k.anggaran) + '</td><td class="num">' + pct(k.realisasi, k.anggaran, 0) + "%</td></tr>"; }).join("") +
+          (b.kegiatan || []).map(function (k) { return "<tr><td>" + esc(k.nama) + '</td><td class="num">' + rpS(k.anggaran) + '</td><td class="num">' + pct(k.realisasi, k.anggaran, 0) + "%</td></tr>"; }).join("") +
           "</tbody></table></div>" });
     }) + '><span class="bid__top"><span>' + (i + 1) + ". " + esc(b.bidang) + "</span><span>" + rpS(b.anggaran) + '</span></span><span class="bid__track" style="display:block"><span class="bid__fill" style="display:block;width:' + p + '%"></span></span><small>Realisasi ' + rpS(b.realisasi) + " · " + p + "% · " + pct(b.anggaran, totBel, 0) + "% dari total belanja</small></button>";
-  }).join("");
+  }).join(""));
 
   /* =================== INDEKS DESA =================== */
   var I = D.indeksDesa;
@@ -331,18 +355,25 @@
     "Tertinggal": "Kampung masih memiliki keterbatasan pada sejumlah layanan dasar dan akses.",
     "Sangat Tertinggal": "Kampung menghadapi keterbatasan besar pada layanan dasar, ekonomi, dan akses."
   };
-  $("#idmLead").innerHTML = esc(I.catatan) + CONTOH;
-  var C = 2 * Math.PI * 70, frac = Math.max(0, Math.min(1, I.nilai / I.skala));
+  $("#idmLead").innerHTML = esc(I.catatan) + (I.contoh ? CHIP : "");
+  var adaNilai = I.nilai != null;
+  var URUT = ["Sangat Tertinggal", "Tertinggal", "Berkembang", "Maju", "Mandiri"], posS = URUT.indexOf(I.status);
+  var C = 2 * Math.PI * 70, frac = adaNilai ? Math.max(0, Math.min(1, I.nilai / I.skala)) : (posS + 1) / URUT.length;
   $("#idmScore").innerHTML = '<svg class="ring" viewBox="0 0 170 170"><circle cx="85" cy="85" r="70" stroke="rgba(255,255,255,.22)"/>' +
     '<circle cx="85" cy="85" r="70" stroke="#FFFFFF" stroke-linecap="round" stroke-dasharray="' + (C * frac).toFixed(1) + " " + C.toFixed(1) + '" transform="rotate(-90 85 85)"/>' +
-    '<text x="85" y="86" text-anchor="middle" font-size="38" font-weight="700">' + I.nilai.toLocaleString("id-ID") + '</text><text x="85" y="112" text-anchor="middle" font-size="13" opacity=".85">dari ' + I.skala + "</text></svg>" +
-    '<span class="idm__status">' + esc(I.status) + "</span><small>Indeks Desa " + I.tahun + " · ketuk untuk penjelasan</small>";
+    (adaNilai
+      ? '<text x="85" y="86" text-anchor="middle" font-size="38" font-weight="700">' + I.nilai.toLocaleString("id-ID") + '</text><text x="85" y="112" text-anchor="middle" font-size="13" opacity=".85">dari ' + I.skala + "</text>"
+      : '<text x="85" y="88" text-anchor="middle" font-size="40" font-weight="700">' + (posS + 1) + '</text><text x="85" y="112" text-anchor="middle" font-size="13" opacity=".85">dari 5 tingkat</text>') + "</svg>" +
+    '<span class="idm__status">' + esc(I.status) + "</span><small>" + (adaNilai ? "Indeks Desa " + I.tahun : esc(I.sumberStatus || "")) + " · ketuk untuk penjelasan</small>";
   $("#idmScore").setAttribute("data-act", act(function () {
     openModal({ kat: "Indeks Desa " + I.tahun, title: "Status: " + I.status,
-      html: "<p>" + esc(statusInfo[I.status] || "") + "</p><p>Nilai Indeks Desa Kampung Marga Mulya tahun " + I.tahun + " adalah <b>" + I.nilai.toLocaleString("id-ID") + "</b> dari " + I.skala + ".</p><p>" + esc(I.catatan) + "</p><p>Urutan status dari terendah: Sangat Tertinggal, Tertinggal, Berkembang, Maju, Mandiri.</p>" });
+      html: "<p>" + esc(statusInfo[I.status] || "") + "</p>" + (adaNilai ? "<p>Nilai Indeks Desa Kampung Marga Mulya tahun " + I.tahun + " adalah <b>" + I.nilai.toLocaleString("id-ID") + "</b> dari " + I.skala + ".</p>" : "<p>Status ini berasal dari " + esc(I.sumberStatus || "data kampung") + (I.klasifikasi ? ", dengan klasifikasi desa <b>" + esc(I.klasifikasi.toLowerCase()) + "</b>" : "") + ". Nilai indeks resmi akan ditampilkan setelah tersedia.</p>") + "<p>" + esc(I.catatan) + "</p><p>Urutan status dari terendah: Sangat Tertinggal, Tertinggal, Berkembang, Maju, Mandiri.</p>" });
   }).replace(/^ data-act="|"$/g, ""));
-  var weakest = I.dimensi.slice().sort(function (a, b) { return a.nilai - b.nilai; })[0];
+  var weakest = I.dimensi.some(function (d) { return d.nilai == null; }) ? null : I.dimensi.slice().sort(function (a, b) { return a.nilai - b.nilai; })[0];
   $("#idmDims").innerHTML = I.dimensi.map(function (d) {
+    if (d.nilai == null) return '<button type="button" class="dim tap"' + act(function () {
+      openModal({ kat: "Dimensi Indeks Desa", title: d.nama, html: "<p>" + esc(d.ket) + "</p><p class='small'>Nilai dimensi ini untuk Marga Mulya belum tersedia.</p>" });
+    }) + '><span class="dim__top"><span>' + esc(d.nama) + '</span><small>nilai belum tersedia</small></span><span class="dim__track dim__track--kosong" style="display:block"></span><small>' + esc(d.ket) + "</small></button>";
     return '<button type="button" class="dim tap"' + act(function () {
       openModal({ kat: "Dimensi Indeks Desa", title: d.nama, html: '<div class="mini-stat"><div><b>' + d.nilai + "</b><span>Nilai</span></div><div><b>" + I.skala + "</b><span>Skala</span></div><div><b>" + (d === weakest ? "Prioritas" : "—") + "</b><span>Catatan</span></div></div><p>" + esc(d.ket) + "</p>" +
         (d === weakest ? "<p>Dimensi ini bernilai paling rendah sehingga menjadi prioritas perbaikan kampung.</p>" : "") });
@@ -484,7 +515,7 @@
           "<div class='modal__actions'>" + mapBtn(gm.dir, "Petunjuk arah ke kantor", "nav", true) + "</div>" });
     }) + "><span>" + ic("doc") + "</span><span><b>" + esc(l.nama) + "</b><small>" + ic("clock") + esc(l.waktu) + '</small></span><span class="go">' + ic("arrow") + "</span></button>";
   }).join("");
-  $("#layanan .lead").insertAdjacentHTML("beforeend", CONTOH);
+  if (D.layananContoh) $("#layanan .lead").insertAdjacentHTML("beforeend", CHIP);
 
   /* =================== POTENSI, KEGIATAN, GALERI =================== */
   var ikonPot = { padi: "sprout", daun: "daun", ternak: "ternak", toko: "toko", wisata: "tree" };
@@ -494,6 +525,29 @@
         (p.tautan ? "<div class='modal__actions'><a class='btn btn--solid' href='" + esc(p.tautan) + "'>" + ic("pin") + esc(p.tautanLabel || "Lihat selengkapnya") + "</a></div>" : "") });
     }) + "><span>" + ic(ikonPot[p.ikon] || "sprout") + '</span><b class="pot__t">' + esc(p.judul) + '</b><span class="pot__d">' + esc(p.ket) + "</span></button>";
   }).join("");
+  var E = D.ekonomi;
+  if (E) {
+    var maxHa = Math.max.apply(null, E.lahan.map(function (x) { return x.ha; }));
+    $("#ekoLahan").innerHTML = E.lahan.map(function (x) {
+      return '<button type="button" class="bar tap"' + act(function () {
+        openModal({ kat: "Komoditas pertanian", title: x.label, html: '<div class="mini-stat"><div><b>' + x.ha.toLocaleString("id-ID") + "</b><span>Hektare</span></div><div><b>" + num(x.petani) + "</b><span>Petani</span></div></div>" +
+          (x.cek ? "<p>Luas tanam padi di monografi tercatat " + x.ha.toLocaleString("id-ID") + " ha dengan " + num(x.petani) + " petani. Angka luas ini sedang dicek ulang karena padi termasuk komoditas utama kampung.</p>" : "<p>" + esc(x.label) + " ditanam di lahan seluas " + x.ha.toLocaleString("id-ID") + " ha oleh " + num(x.petani) + " petani.</p>") });
+      }) + "><span>" + esc(x.label) + (x.cek ? " *" : "") + '</span><span class="bar__val"><b>' + x.ha.toLocaleString("id-ID") + " ha</b> · " + num(x.petani) + ' petani</span><span class="bar__track"><span class="bar__fill" style="display:block;width:' + Math.max(1, x.ha / maxHa * 100) + '%"></span></span></button>';
+    }).join("") + '<p class="small">* Luas tanam padi sedang dicek ulang.</p>';
+    var IKT = { Unggas: "ternak", Sapi: "ternak", Kambing: "ternak", Kuda: "ternak", Kerbau: "ternak" };
+    $("#ekoTernak").innerHTML = E.ternak.map(function (t) {
+      return '<button type="button" class="herd__i tap"' + act(function () {
+        openModal({ kat: "Peternakan", title: t.label, html: '<div class="mini-stat"><div><b>' + num(t.ekor) + "</b><span>Ekor</span></div><div><b>" + num(t.peternak) + "</b><span>Peternak</span></div><div><b>" + (t.ekor / t.peternak).toLocaleString("id-ID", { maximumFractionDigits: 1 }) + "</b><span>Ekor per peternak</span></div></div>" });
+      }) + "><span>" + ic(IKT[t.label] || "ternak") + "</span><b>" + num(t.ekor) + "</b><small>" + esc(t.label) + " · " + num(t.peternak) + " peternak</small></button>";
+    }).join("");
+    var totG = sum(E.penggunaanLahan, "ha"), toneG = ["#0B3A8F", "#1452C2", "#3A72D6", "#6E98E6", "#A3BEF0"];
+    $("#ekoGuna").innerHTML = '<div class="stackbar">' + E.penggunaanLahan.map(function (g, i) { return '<i style="width:' + (g.ha / totG * 100) + "%;background:" + toneG[i % 5] + '"></i>'; }).join("") + "</div>" +
+      '<ul class="lgd">' + E.penggunaanLahan.map(function (g, i) { return '<li><span class="dot" style="background:' + toneG[i % 5] + '"></span>' + esc(g.label) + " <b>" + g.ha.toLocaleString("id-ID") + " ha</b></li>"; }).join("") + "</ul>" +
+      '<p class="small">Rincian ini mencakup ' + num(Math.round(totG)) + " ha dari luas wilayah " + id.luas + "; permukiman, sawah, dan pekarangan belum dirinci di monografi.</p>";
+    $("#ekoUsaha").innerHTML = E.usaha.map(function (u) { return '<div class="tile"><b>' + num(u.jumlah) + "</b><span>" + esc(u.label) + "</span></div>"; }).join("");
+    $("#ekoSumber").textContent = "Sumber: " + D.meta.sumberData + ". Ketuk grafik untuk rincian.";
+  }
+
   $("#kegiatan").innerHTML = D.kegiatan.map(function (k) {
     return '<li><button type="button" class="reset tap"' + act(function () {
       openModal({ kat: "Kegiatan Ekspedisi Patriot " + k.tanggal, title: k.judul, html: "<p>" + esc(k.ket) + "</p><p class='small'>Bagian dari kerja sama Tim Ekspedisi Patriot IPB University dengan Pemerintah Kampung Marga Mulya.</p>" });
@@ -504,6 +558,13 @@
       openModal({ kat: "Galeri", title: g.caption, html: g.src ? '<img class="modal__img" src="' + esc(g.src) + '" alt="' + esc(g.caption) + '">' : "<p>Foto untuk kegiatan ini akan segera ditambahkan.</p>" });
     }) + ">" + (g.src ? '<img src="' + esc(g.src) + '" alt="' + esc(g.caption) + '" loading="lazy">' : '<span class="ph">' + ic("image") + "</span>") + '<span class="cap">' + esc(g.caption) + "</span></button>";
   }).join("");
+
+  /* =================== SARANA PRASARANA (monografi) =================== */
+  if (D.sarana && $("#sarana")) {
+    $("#sarana").innerHTML = D.sarana.map(function (g) {
+      return '<div class="sarana__g"><h3>' + ic(g.ikon) + esc(g.kelompok) + "</h3><dl>" + g.isi.map(function (r) { return "<dt>" + esc(r.nama) + "</dt><dd>" + esc(r.nilai) + "</dd>"; }).join("") + "</dl></div>";
+    }).join("") + '<p class="small sarana__src">Rekap sarana dan prasarana dari ' + esc(D.meta.sumberData) + ".</p>";
+  }
 
   /* =================== KONTAK & SOSMED =================== */
   var K = D.kontak;

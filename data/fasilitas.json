@@ -2,8 +2,9 @@
  "keterangan": "Fasilitas umum di dan sekitar Kampung Marga Mulya. status: terverifikasi (ada sumber resmi + titik), sebagian (ada sumber, data/titik belum lengkap), perlu-data (diisi pemerintah kampung). Tambahkan 'foto' berisi path gambar di assets/img/fasilitas/.",
  "pusat": {
   "nama": "Kampung Marga Mulya",
-  "lat": -8.409726,
-  "lng": 140.463722
+  "lat": -8.405417,
+  "lng": 140.467787,
+  "catatan": "Koordinat resmi dari Monografi Kampung Marga Mulya (8°24'19,5\" LS, 140°28'4,0\" BT)."
  },
  "fasilitas": [
   {

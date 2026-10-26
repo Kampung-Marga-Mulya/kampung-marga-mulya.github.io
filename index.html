@@ -14,7 +14,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
-  <link rel="stylesheet" href="assets/css/style.css?v=202610252341">
+  <link rel="stylesheet" href="assets/css/style.css?v=202610262059">
 </head>
 <body>
   <!-- Kumpulan ikon garis (dipakai dengan <svg><use href="#i-..."/></svg>) -->
@@ -191,6 +191,13 @@
       <div class="wrap">
         <header class="sec__head"><span class="sec__icon"><svg class="ic"><use href="#i-sprout"/></svg></span><div><p class="eyebrow">Potensi kampung</p><h2>Pertanian, ternak, dan usaha warga</h2></div></header>
         <div class="potensi" id="potensiList"></div>
+        <div class="grid-2 mt">
+          <div class="panel"><h3>Luas tanam per komoditas</h3><div class="bars" id="ekoLahan"></div></div>
+          <div class="panel"><h3>Populasi ternak</h3><div class="herd" id="ekoTernak"></div></div>
+          <div class="panel"><h3>Penggunaan lahan yang tercatat</h3><div class="landuse" id="ekoGuna"></div></div>
+          <div class="panel"><h3>Sarana usaha warga</h3><div class="tiles" id="ekoUsaha"></div></div>
+        </div>
+        <p class="small" id="ekoSumber"></p>
         <h3 class="mt">Kegiatan Ekspedisi Patriot</h3>
         <ol class="timeline" id="kegiatan"></ol>
       </div>
@@ -215,7 +222,7 @@
     <div class="view" data-view="data" id="v-data" hidden>
       <div class="vhead">
         <div class="wrap">
-          <div class="vhead__t"><span class="vhead__ic"><svg class="ic"><use href="#i-chart"/></svg></span><div><h1>Data Kampung</h1><p>Kependudukan dan fasilitas umum di Kampung Marga Mulya.</p></div></div>
+          <div class="vhead__t"><span class="vhead__ic"><svg class="ic"><use href="#i-chart"/></svg></span><div><h1>Data Kampung</h1><p>Kependudukan, sarana prasarana, dan fasilitas umum Kampung Marga Mulya menurut monografi kampung.</p></div></div>
         </div>
         <div class="vtabs"><div class="wrap"><div class="vtabs__row" role="tablist" aria-label="Data Kampung"><button type="button" role="tab" data-tab="penduduk" aria-selected="true"><svg class="ic"><use href="#i-chart"/></svg>Penduduk</button><button type="button" role="tab" data-tab="fasilitas" aria-selected="false"><svg class="ic"><use href="#i-school"/></svg>Fasilitas Umum</button></div></div></div>
       </div>
@@ -224,17 +231,21 @@
       <div class="wrap">
         <header class="sec__head"><span class="sec__icon"><svg class="ic"><use href="#i-chart"/></svg></span><div><p class="eyebrow">Data kampung</p><h2>Kependudukan</h2><p class="lead" id="dataSumber"></p></div></header>
         <div class="stats" id="stats"></div>
-        <div class="panel mt">
-          <div class="panel__head">
-            <h3>Piramida penduduk</h3>
-            <div class="legend"><span class="sw sw--l"></span>Laki-laki <span class="sw sw--p"></span>Perempuan</div>
-          </div>
-          <div class="pyramid" id="pyramid"></div>
-        </div>
         <div class="grid-2 mt">
-          <div class="panel"><h3>Penduduk usia sekolah</h3><div class="school" id="usiaSekolah"></div></div>
-          <div class="panel"><h3>Pendidikan terakhir</h3><div class="bars" id="pendidikan"></div></div>
+          <div class="panel">
+            <div class="panel__head">
+              <h3>Laki-laki dan perempuan</h3>
+              <div class="legend"><span class="sw sw--l"></span>Laki-laki <span class="sw sw--p"></span>Perempuan</div>
+            </div>
+            <div class="picto" id="picto" role="img"></div>
+            <p class="small">Satu ikon mewakili sekitar 100 jiwa.</p>
+          </div>
+          <div class="panel"><h3>Kelompok usia</h3><div id="kelUsia"></div></div>
+          <div class="panel"><h3>Tingkat kesejahteraan keluarga</h3><div class="bars" id="sejahtera"></div></div>
+          <div class="panel"><h3>Sekolah dan tenaga kesehatan</h3><div class="school" id="usiaSekolah"></div><div class="nakes" id="nakes"></div></div>
           <div class="panel"><h3>Mata pencaharian</h3><div class="bars" id="pekerjaan"></div></div>
+          <div class="panel"><h3>Pendidikan terakhir</h3><div class="bars" id="pendidikan"></div></div>
+          <div class="panel"><h3>Suku / etnis</h3><div class="bars" id="suku"></div></div>
           <div class="panel"><h3>Agama</h3><div class="bars" id="agama"></div></div>
         </div>
       </div>
@@ -244,6 +255,8 @@
 <section class="sec" id="fasilitas">
       <div class="wrap">
         <header class="sec__head"><span class="sec__icon"><svg class="ic"><use href="#i-home"/></svg></span><div><p class="eyebrow">Fasilitas umum</p><h2>Sekolah, rumah ibadah, kesehatan, dan layanan warga</h2><p class="lead">Fasilitas di Kampung Marga Mulya dan fasilitas terdekat di Distrik Semangga. Ketuk kartu untuk melihat lokasinya di peta.</p></div></header>
+        <div class="sarana" id="sarana"></div>
+        <h3 class="mt">Lokasi fasilitas di peta</h3>
         <div class="fsum" id="fasilSum"></div>
         <div class="chips mt-s" id="fasilFilter" role="group" aria-label="Saring kategori fasilitas"></div>
         <div class="slider">
@@ -281,8 +294,9 @@
         <div class="apb-sum" id="apbSum"></div>
         <div class="grid-apb mt">
           <div class="panel"><h3>Sumber pendapatan</h3><div class="bars" id="apbPendapatan"></div></div>
-          <div class="panel"><h3>Belanja per bidang</h3><p class="small">Ketuk bidang untuk melihat rincian kegiatan.</p><div class="bidang" id="apbBelanja"></div></div>
+          <div class="panel"><h3>Belanja per bidang</h3><p class="small" id="apbBelanjaNote">Ketuk bidang untuk melihat rincian kegiatan.</p><div class="bidang" id="apbBelanja"></div></div>
         </div>
+        <div class="panel mt"><h3>Dana yang dikelola lembaga kampung</h3><div class="bars" id="apbLembaga"></div></div>
       </div>
     </section>
         </div>
@@ -443,8 +457,8 @@
   </dialog>
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
-  <script src="assets/js/data.js?v=202610252341"></script>
-  <script src="assets/js/app.js?v=202610252341"></script>
-  <script src="assets/js/router.js?v=202610252341"></script>
+  <script src="assets/js/data.js?v=202610262059"></script>
+  <script src="assets/js/app.js?v=202610262059"></script>
+  <script src="assets/js/router.js?v=202610262059"></script>
 </body>
 </html>

@@ -217,22 +217,23 @@
   // Daftar bagian di portal
   var SECTIONS = [
     { g: "Profil", id: "identitas", label: "Identitas wilayah", file: "assets/js/data.js", keys: ["identitas"], desc: "Nama, kode wilayah, luas, koordinat kantor kampung, dan data dasar lainnya." },
-    { g: "Profil", id: "sejarah", label: "Sejarah, visi & misi", file: "assets/js/data.js", keys: ["sejarah", "visi", "misi"], desc: "Paragraf sejarah kampung, visi, dan daftar misi." },
+    { g: "Profil", id: "sejarah", label: "Sejarah, visi & misi", file: "assets/js/data.js", keys: ["sejarah", "visiContoh", "visi", "misi"], desc: "Paragraf sejarah kampung, visi, dan daftar misi. Matikan \"visi & misi masih contoh\" setelah diisi dari RPJMKam." },
     { g: "Profil", id: "batas", label: "Batas wilayah", file: "assets/js/data.js", keys: ["batas"], desc: "Wilayah yang berbatasan di empat arah." },
     { g: "Profil", id: "kerjasama", label: "Kerja sama", file: "assets/js/data.js", keys: ["kerjaSama"], desc: "Teks kerja sama Tim Ekspedisi Patriot IPB University dan Pemerintah Kampung." },
     { g: "Pemerintahan", id: "struktur", label: "Struktur organisasi", file: "assets/js/data.js", keys: ["struktur"], desc: "Nama, foto, dan tugas perangkat kampung, Bamuskam, serta lembaga." },
-    { g: "Data", id: "penduduk", label: "Kependudukan", file: "assets/js/data.js", keys: ["penduduk"], desc: "Jumlah penduduk, kelompok umur, pendidikan, pekerjaan, dan agama." },
+    { g: "Data", id: "penduduk", label: "Kependudukan", file: "assets/js/data.js", keys: ["penduduk"], desc: "Jumlah penduduk, kelompok usia, kesejahteraan keluarga, sekolah, pendidikan, pekerjaan, agama, dan suku." },
+    { g: "Data", id: "sarana", label: "Sarana prasarana", file: "assets/js/data.js", keys: ["sarana"], desc: "Rekap jumlah sarana kesehatan, pendidikan, ibadah, umum, jalan, serta air bersih dan sanitasi." },
     { g: "Data", id: "fasilitas", label: "Fasilitas umum", file: "data/fasilitas.json", keys: ["fasilitas"], desc: "Sekolah, rumah ibadah, kesehatan, air bersih, dll. Status: terverifikasi, sebagian, atau perlu-data. Isi lat/lng atau biarkan kosong (robot mencarikan dari kolom 'cari')." },
-    { g: "Transparansi", id: "apbkam", label: "APBKam", file: "assets/js/data.js", keys: ["apbkam"], desc: "Pendapatan, belanja per bidang, kegiatan, dan realisasi. Angka dalam rupiah tanpa titik." },
+    { g: "Transparansi", id: "apbkam", label: "APBKam & keuangan", file: "assets/js/data.js", keys: ["apbkam"], desc: "Pendapatan, belanja per bidang, kegiatan, dan realisasi. Angka dalam rupiah tanpa titik." },
     { g: "Transparansi", id: "indeks", label: "Indeks Desa", file: "assets/js/data.js", keys: ["indeksDesa"], desc: "Nilai, status, enam dimensi, dan riwayat status." },
     { g: "Konten", id: "berita", label: "Berita pilihan", file: "assets/js/data.js", keys: ["berita"], desc: "Berita yang ditambahkan manual. Berita dari robot otomatis tidak perlu diisi di sini." },
     { g: "Konten", id: "beritaabaikan", label: "Sembunyikan berita robot", file: "data/berita-abaikan.json", keys: ["abaikan"], desc: "Tempel tautan berita temuan robot yang keliru agar tidak ditampilkan." },
     { g: "Konten", id: "galeri", label: "Galeri foto", file: "assets/js/data.js", keys: ["galeri"], desc: "Unggah foto kegiatan dan tulis keterangannya." },
     { g: "Konten", id: "video", label: "Video profil", file: "assets/js/data.js", keys: ["video"], desc: "ID video YouTube (bagian setelah youtu.be/)." },
-    { g: "Konten", id: "potensi", label: "Potensi & kegiatan", file: "assets/js/data.js", keys: ["potensi", "kegiatan"], desc: "Potensi kampung dan linimasa kegiatan." },
+    { g: "Konten", id: "potensi", label: "Potensi & kegiatan", file: "assets/js/data.js", keys: ["potensi", "ekonomi", "kegiatan"], desc: "Potensi kampung, data lahan, ternak, dan usaha warga, serta linimasa kegiatan." },
     { g: "Jelajah", id: "peta", label: "Peta drone", file: "assets/js/data.js", keys: ["peta", "google"], desc: "Ortofoto drone, titik-titik lokasi (x, y dalam persen), dan pengaturan Google Maps." },
     { g: "Jelajah", id: "wisata", label: "Wisata & kuliner", file: "data/wisata.json", keys: ["tempat"], desc: "Daftar tempat wisata dan kuliner. Jarak dan waktu dihitung ulang otomatis setelah disimpan." },
-    { g: "Layanan", id: "layanan", label: "Layanan surat", file: "assets/js/data.js", keys: ["layanan"], desc: "Jenis surat, persyaratan, dan lama proses." },
+    { g: "Layanan", id: "layanan", label: "Layanan surat", file: "assets/js/data.js", keys: ["layananContoh", "layanan"], desc: "Jenis surat, persyaratan, dan lama proses." },
     { g: "Layanan", id: "kontak", label: "Kontak & media sosial", file: "assets/js/data.js", keys: ["kontak", "sosmed"], desc: "Alamat, telepon, email, jam layanan, dan tautan media sosial." },
     { g: "Pengaturan", id: "meta", label: "Pengaturan website", file: "assets/js/data.js", keys: ["meta"], desc: "Label data contoh, sumber data, dan tanggal pembaruan." }
   ];
@@ -250,7 +251,7 @@
     kodeWilayah: "Kode wilayah", kodePos: "Kode pos", luas: "Luas wilayah", ketinggian: "Ketinggian", zonaWaktu: "Zona waktu", jumlahDusun: "Jumlah dusun", jumlahRT: "Jumlah RT",
     koordinat: "Koordinat kantor kampung", distrik: "Distrik", kabupaten: "Kabupaten", provinsi: "Provinsi", sejarah: "Sejarah (per paragraf)", visi: "Visi", misi: "Misi",
     utara: "Utara", selatan: "Selatan", timur: "Timur", barat: "Barat", kepala: "Kepala Kampung", sekretaris: "Sekretaris Kampung", kaur: "Kepala urusan",
-    kasi: "Kepala seksi", kewilayahan: "Kepala dusun", bamuskam: "Bamuskam", lembaga: "Lembaga kemasyarakatan", usia: "Kelompok umur", usiaSekolah: "Usia sekolah",
+    kasi: "Kepala seksi", kewilayahan: "Kewilayahan (RW/RT)", bamuskam: "Bamuskam", lembaga: "Lembaga kemasyarakatan", usia: "Kelompok umur", usiaSekolah: "Usia sekolah",
     pendidikan: "Pendidikan terakhir", pekerjaan: "Mata pencaharian", agama: "Agama", pendapatan: "Sumber pendapatan", pembiayaan: "Pembiayaan", belanja: "Belanja per bidang",
     realisasiPer: "Realisasi per tanggal", dokumen: "Dokumen dasar", dimensi: "Dimensi", riwayat: "Riwayat status", catatan: "Catatan", titik: "Titik lokasi di peta drone",
     tanggalTerbang: "Tanggal terbang", resolusi: "Resolusi", luasCakupan: "Luas cakupan", pencarian: "Nama tempat di Google Maps", tautan: "Tautan Google Maps", ftid: "ID tempat Google",
@@ -258,7 +259,14 @@
     abaikan: "Tautan yang disembunyikan", tempat: "Daftar tempat", pihak: "Pihak", ketuaTim: "Ketua tim", ringkasK: "Ringkasan", perkiraan: "Lokasi perkiraan",
     apbkam: "APBKam", indeksDesa: "Indeks Desa", identitas: "Identitas wilayah", struktur: "Struktur organisasi", penduduk: "Kependudukan", berita: "Berita",
     galeri: "Foto galeri", video: "Video profil", potensi: "Potensi", kerjaSama: "Kerja sama", layanan: "Jenis layanan", sosmed: "Media sosial", peta: "Peta drone", google: "Google Maps", meta: "Pengaturan",
-    jarak_km: "Jarak (km, otomatis)", waktu_menit: "Waktu (menit, otomatis)", tahunData: "Tahun data"
+    jarak_km: "Jarak (km, otomatis)", waktu_menit: "Waktu (menit, otomatis)", tahunData: "Tahun data",
+    visiContoh: "Visi & misi masih contoh", layananContoh: "Persyaratan layanan masih contoh", contoh: "Masih contoh", tahunBerdiri: "Tahun dibentuk", dasarHukum: "Dasar hukum",
+    luasHa: "Luas wilayah (ha)", tipologi: "Tipologi", klasifikasi: "Klasifikasi desa", komoditasUnggulan: "Komoditas unggulan", jumlahRW: "Jumlah RW", petaResmi: "Peta resmi",
+    koordinatTeks: "Koordinat (teks)", orbitasi: "Jarak tempuh", km: "Jarak (km)", pertanahan: "Pertanahan", sertifikat: "Sertifikat tanah", tanahKasHa: "Tanah kas (ha)", waduk: "Waduk/danau/situ",
+    kelompokUsia: "Kelompok usia", kesejahteraan: "Tingkat kesejahteraan (KK)", sekolah: "Murid dan guru", murid: "Murid", guru: "Guru", tenagaKesehatan: "Tenaga kesehatan", suku: "Suku / etnis",
+    pendapatanKosong: "Pendapatan yang belum tercatat", danaLembaga: "Dana lembaga kampung", sumberStatus: "Sumber status", sarana: "Sarana prasarana", kelompok: "Kelompok", isi: "Rincian",
+    ekonomi: "Data ekonomi", lahan: "Komoditas (luas tanam)", ha: "Luas (ha)", petani: "Jumlah petani", cek: "Perlu dicek ulang", ternak: "Ternak", ekor: "Jumlah ekor", peternak: "Jumlah peternak",
+    penggunaanLahan: "Penggunaan lahan", usaha: "Sarana usaha"
   };
   var PANJANG = /^(deskripsi|ringkas|ket|tugas|detail|catatan|visi|keterangan|alamat|ringkasan)$/;
   var GAMBAR = /^(foto|src|cover|poster|ortofoto)$/;

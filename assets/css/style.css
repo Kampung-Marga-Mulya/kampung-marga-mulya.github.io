@@ -318,12 +318,13 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .svc .go { margin-left: auto; color: var(--blue); }
 
 /* ---------- Potensi, kegiatan, galeri ---------- */
-.potensi { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+.potensi { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 12px; }
+.pot { text-align: left; }
 @media (max-width: 900px) { .potensi { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 480px) { .potensi { grid-template-columns: minmax(0, 1fr); } }
 .pot { border: 1px solid var(--line); border-radius: var(--r); padding: 18px; background: #fff; }
-.pot > span { display: grid; place-items: center; width: 48px; height: 48px; border-radius: 14px; background: var(--soft); color: var(--blue); margin-bottom: 12px; }
-.pot > span .ic { width: 26px; height: 26px; }
+.pot > span:first-child { display: grid; place-items: center; width: 48px; height: 48px; border-radius: 14px; background: var(--soft); color: var(--blue); margin-bottom: 12px; }
+.pot > span:first-child .ic { width: 26px; height: 26px; }
 .pot__t { display: block; font-size: 1.15rem; margin-bottom: .25em; }
 .pot__d { display: block; color: var(--ink-2); font-size: .95rem; }
 .timeline { list-style: none; padding: 0; margin: 0; border-left: 2px solid var(--blue-pale); }
@@ -612,3 +613,69 @@ body { background: var(--tint); }
 /* Penanda gabungan (beberapa tempat di satu titik) */
 .mk--grup { width: auto; min-width: 28px; padding: 0 8px; border-radius: 14px; font-size: .72rem; letter-spacing: .02em; }
 .mpop b + span { margin-bottom: 4px; }
+
+/* ===== Data monografi: komponen grafik & ilustrasi ===== */
+.mt-s { margin-top: 14px; }
+.tiles { display: grid; grid-template-columns: repeat(auto-fill, minmax(118px, 1fr)); gap: 8px; margin-top: 8px; }
+.tiles--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.tiles--5 { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+.tile { background: var(--tint); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; min-width: 0; }
+.tile b { display: block; font-family: var(--font-head); font-size: 1.35rem; line-height: 1.15; color: var(--blue); font-variant-numeric: tabular-nums; }
+.tile span { display: block; font-size: .84rem; color: var(--ink-2); line-height: 1.3; }
+@media (max-width: 600px) { .tiles--5 { grid-template-columns: repeat(3, minmax(0, 1fr)); } .tiles--3 .tile b { font-size: 1.1rem; } }
+
+.picto { display: grid; gap: 8px; margin-top: 10px; }
+.picto__row { display: flex; flex-wrap: wrap; gap: 2px; }
+.picto__row i { display: inline-grid; place-items: center; width: 28px; height: 34px; }
+.picto__row .ic { width: 28px; height: 32px; stroke-width: 2.4; }
+.picto__l .ic { stroke: var(--blue-deep); }
+.picto__p .ic { stroke: var(--blue-mid); }
+.picto__lbl { display: flex; justify-content: space-between; gap: 12px; font-size: .92rem; color: var(--ink-2); }
+.picto__lbl b { color: var(--ink); font-size: 1.05rem; }
+
+.stackbar { display: flex; height: 18px; border-radius: 9px; overflow: hidden; background: var(--soft); margin-top: 10px; }
+.stackbar i { display: block; height: 100%; }
+.stackbar i + i { box-shadow: -2px 0 0 #fff; }
+.dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; flex: none; }
+.agecards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin-top: 12px; }
+.agecards .tap { border: 1px solid var(--line); border-radius: 10px; padding: 10px; background: #fff; text-align: left; }
+.agecards b { display: block; font-family: var(--font-head); font-size: 1.45rem; line-height: 1.1; color: var(--ink); margin-top: 4px; }
+.agecards span:not(.dot) { display: block; font-size: .86rem; font-weight: 600; }
+.agecards small { color: var(--ink-2); }
+
+.nakes { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+.nakes__i { display: inline-flex; align-items: center; gap: 6px; padding: 6px 10px; border-radius: 20px; background: var(--soft); font-size: .88rem; }
+.nakes__i .ic { width: 16px; height: 16px; stroke: var(--blue); }
+.nakes__i b { color: var(--blue-deep); }
+
+.herd { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 8px; margin-top: 8px; }
+.herd__i { display: grid; gap: 2px; text-align: left; border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; background: #fff; }
+.herd__i > span { display: inline-grid; place-items: center; width: 34px; height: 34px; border-radius: 50%; background: var(--soft); }
+.herd__i .ic { width: 20px; height: 20px; stroke: var(--blue); }
+.herd__i b { font-family: var(--font-head); font-size: 1.35rem; line-height: 1.15; color: var(--ink); font-variant-numeric: tabular-nums; }
+.herd__i small { color: var(--ink-2); font-size: .82rem; }
+
+.lgd { list-style: none; padding: 0; margin: 10px 0 0; display: grid; gap: 4px; font-size: .9rem; }
+.lgd li { display: flex; align-items: center; gap: 8px; }
+.lgd b { margin-left: auto; font-variant-numeric: tabular-nums; }
+
+.sarana { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-bottom: 8px; }
+.sarana__g { background: #fff; border: 1px solid var(--line); border-radius: var(--r); padding: 14px 16px; min-width: 0; }
+.sarana__g h3 { display: flex; align-items: center; gap: 8px; margin: 0 0 8px; font-size: 1rem; }
+.sarana__g h3 .ic { width: 20px; height: 20px; stroke: var(--blue); }
+.sarana__g dl { display: grid; grid-template-columns: 1fr auto; gap: 4px 10px; margin: 0; font-size: .9rem; }
+.sarana__g dt { color: var(--ink-2); }
+.sarana__g dd { margin: 0; font-weight: 700; text-align: right; font-variant-numeric: tabular-nums; }
+.sarana__src { grid-column: 1 / -1; margin: 0; }
+@media (max-width: 900px) { .sarana { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 560px) { .sarana { grid-template-columns: 1fr; } }
+
+.empty { display: grid; justify-items: start; gap: 6px; padding: 16px; border: 1px dashed var(--blue-mid); border-radius: 12px; background: var(--tint); }
+.empty .ic { width: 24px; height: 24px; stroke: var(--blue); }
+.empty span { font-size: .92rem; color: var(--ink-2); }
+.dim__track--kosong { height: 8px; border-radius: 4px; background: repeating-linear-gradient(90deg, var(--soft) 0 8px, #fff 8px 12px); border: 1px solid var(--line); margin: 6px 0; }
+.dim__top small { color: var(--ink-2); font-weight: 400; }
+@media (max-width: 600px) {
+  .kv { grid-template-columns: minmax(0, 42%) minmax(0, 1fr); gap: 6px 12px; }
+  .kv dd { overflow-wrap: normal; word-break: normal; }
+}

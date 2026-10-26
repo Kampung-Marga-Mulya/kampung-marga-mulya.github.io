@@ -4,23 +4,21 @@
    SEMUA isi website diambil dari file ini. Untuk memperbarui website,
    cukup ubah teks/angka di bawah, simpan, lalu unggah ulang.
 
-   PENTING:
-   - Angka bertanda  // CONTOH  adalah data contoh agar tampilan terisi.
-     Ganti dengan data resmi kampung (Profil Kampung, APBKam, Indeks Desa,
-     pendataan Tim Ekspedisi Patriot), lalu ubah  dataContoh: false
-     agar pita "versi draf" di website hilang.
-   - Data yang SUDAH terverifikasi dari sumber publik:
-       kode wilayah, kode pos, distrik, jumlah penduduk (proyeksi BPS 2024),
-       SD Inpres Semangga 3 berlokasi di Kampung Marga Mulya.
+   SUMBER UTAMA: Monografi Tingkat Kampung Marga Mulya, ditandatangani
+   Plt. Kepala Kampung dan Sekretaris Kampung pada 30 September 2026.
+   - Bagian yang masih contoh diberi tanda  contoh: true  dan tampil dengan
+     label "contoh" di website. Ganti isinya lalu hapus tanda tersebut.
+   - Bagian yang kosong di monografi ditulis null / [] dan tampil sebagai
+     "belum tersedia".
    ===================================================================== */
 
 window.KAMPUNG = {
   meta: {
     namaSitus: "Marga Mulya On Site",
     alamatWeb: "https://kampung-marga-mulya.github.io",
-    dataContoh: true,                       // ubah ke false bila semua data sudah resmi
+    dataContoh: false,                      // label contoh kini per bagian (contoh: true)
     tahunData: "2026",
-    sumberData: "Pemerintah Kampung Marga Mulya; BPS Kabupaten Merauke; pendataan Tim Ekspedisi Patriot IPB University 2026",
+    sumberData: "Monografi Tingkat Kampung Marga Mulya per 30 September 2026",
     diperbarui: "Oktober 2026"
   },
 
@@ -31,14 +29,27 @@ window.KAMPUNG = {
     provinsi: "Papua Selatan",
     kodeWilayah: "93.01.05.2008",
     kodePos: "99631",
-    luas: "[isi luas] km²",
-    ketinggian: "[isi] mdpl",
+    tahunBerdiri: 1983,
+    dasarHukum: "UU No. 6 Tahun 2014 tentang Desa",
+    luasHa: 4176.90,                        // hektare
+    luas: "4.176,90 ha (± 41,8 km²)",
+    tipologi: "Desa",
+    klasifikasi: "Swasembada",
+    kategori: "Berkembang",
+    komoditasUnggulan: "Pertanian dan peternakan",
     zonaWaktu: "WIT (UTC+9)",
-    jumlahDusun: 3,                         // CONTOH
-    jumlahRT: 12,                           // CONTOH
-    // Koordinat GPS kantor kampung. Isi dengan angka dari survei, mis. { lat: -8.4, lng: 140.4 }.
-    // Selama null, peta Google memakai pencarian nama kampung di bawah.
-    koordinat: null
+    jumlahRW: 7,
+    jumlahRT: 18,
+    petaResmi: "Skala 1:50.000 (BIG)",
+    koordinatTeks: "8°24′19,5″ LS · 140°28′4,0″ BT",
+    // Koordinat dari monografi kampung (8°24'19,5" LS, 140°28'4,034" BT).
+    koordinat: { lat: -8.405417, lng: 140.467787 },
+    orbitasi: [
+      { label: "Pusat Distrik Semangga", km: 15 },
+      { label: "Pusat Kota Merauke", km: 20 },
+      { label: "Ibu kota Kabupaten Merauke", km: 20 }
+    ],
+    pertanahan: { sertifikat: 2831, tanahKasHa: 1, waduk: 6 }
   },
 
   // Dipakai untuk Google Maps, petunjuk arah, dan Street View.
@@ -68,10 +79,12 @@ window.KAMPUNG = {
   },
 
   sejarah: [
-    "Kampung Marga Mulya adalah salah satu kampung di Distrik Semangga, Kabupaten Merauke, Provinsi Papua Selatan. Wilayahnya berada di dataran rendah dan sebagian besar warganya hidup dari pertanian, terutama sawah padi.",
-    "Paragraf ini adalah draf. Lengkapi dengan asal-usul nama Marga Mulya, tahun berdirinya kampung, kedatangan warga pertama, serta tokoh-tokoh yang berperan dalam pembangunan kampung."
+    "Kampung Marga Mulya adalah salah satu kampung di Distrik Semangga, Kabupaten Merauke, Provinsi Papua Selatan. Kampung ini dibentuk pada tahun 1983 dan kini terdiri atas 7 RW dan 18 RT dengan luas wilayah 4.176,90 hektare. Letaknya sekitar 15 km dari pusat Distrik Semangga dan 20 km dari Kota Merauke.",
+    "Marga Mulya dihuni 3.201 jiwa dalam 986 kepala keluarga. Sebagian besar warga berasal dari suku Jawa dan hidup berdampingan dengan warga suku Marind, Mandobo, dan Mappi serta pendatang dari Sunda, Makassar, Maluku, NTB, NTT, dan Batak. Pertanian dan peternakan menjadi komoditas unggulan kampung, dan dua pertiga penduduk bekerja sebagai petani.",
+    "Menurut monografi kampung, Marga Mulya berklasifikasi desa swasembada dengan kategori berkembang."
   ],
 
+  visiContoh: true,   // visi & misi belum tercantum di monografi; ganti dengan RPJMKam lalu hapus baris ini
   visi: "Terwujudnya Kampung Marga Mulya yang mandiri, sejahtera, dan berbudaya melalui pertanian yang maju dan pelayanan publik yang terbuka.",   // CONTOH
   misi: [                                                                                                           // CONTOH
     "Meningkatkan kualitas pelayanan administrasi kepada warga.",
@@ -82,82 +95,98 @@ window.KAMPUNG = {
   ],
 
   batas: {
-    utara: "[nama kampung/wilayah di utara]",
-    selatan: "[nama kampung/wilayah di selatan]",
-    timur: "[nama kampung/wilayah di timur]",
-    barat: "[nama kampung/wilayah di barat]"
+    utara: "Distrik Tanah Miring (Kampung Sumber Harapan dan Kampung Yasa Mulya)",
+    selatan: "Kampung Semangga Jaya dan Kampung Kuper",
+    timur: "Kampung Kamangi dan Kali Maro",
+    barat: "Kampung Waninggap Kay"
   },
 
   struktur: {
     // tugas = ringkasan tugas pokok jabatan; tampil saat kotak jabatan diklik.
-    kepala: { jabatan: "Kepala Kampung", nama: "[Nama Kepala Kampung]", foto: "", kontak: "",
-      tugas: "Memimpin penyelenggaraan pemerintahan kampung, melaksanakan pembangunan, pembinaan kemasyarakatan, dan pemberdayaan masyarakat." },
-    sekretaris: { jabatan: "Sekretaris Kampung", nama: "[Nama Sekretaris]",
+    kepala: { jabatan: "Plt. Kepala Kampung", nama: "Sunaryo, A.Md.", pendidikan: "S1", foto: "", kontak: "",
+      tugas: "Memimpin penyelenggaraan pemerintahan kampung, melaksanakan pembangunan, pembinaan kemasyarakatan, dan pemberdayaan masyarakat. Saat ini juga merangkap Sekretaris Kampung." },
+    sekretaris: { jabatan: "Sekretaris Kampung", nama: "Sunaryo, A.Md.", pendidikan: "S1",
       tugas: "Membantu Kepala Kampung di bidang administrasi pemerintahan dan mengoordinasikan kepala urusan." },
     kaur: [
-      { jabatan: "Kaur Keuangan", nama: "[Nama]", tugas: "Menatausahakan keuangan kampung: penerimaan, pengeluaran, pembukuan, dan laporan pertanggungjawaban APBKam." },
-      { jabatan: "Kaur Umum & Perencanaan", nama: "[Nama]", tugas: "Mengurus surat-menyurat, arsip, aset, serta menyusun rencana pembangunan (RPJMKam dan RKPKam)." }
+      { jabatan: "Kaur Keuangan", nama: "Eko Wahyudi", pendidikan: "S1", tugas: "Menatausahakan keuangan kampung: penerimaan, pengeluaran, pembukuan, dan laporan pertanggungjawaban APBKam." },
+      { jabatan: "Kaur Perencanaan", nama: "Ramdan Sidik Suseno", pendidikan: "S1", tugas: "Menyusun rencana pembangunan kampung (RPJMKam dan RKPKam) serta memantau pelaksanaannya." },
+      { jabatan: "Kaur Tata Usaha dan Umum", nama: "Nurdaiyah", pendidikan: "S1", tugas: "Mengurus surat-menyurat, arsip, inventaris aset, dan keperluan umum kantor kampung." }
     ],
     kasi: [
-      { jabatan: "Kasi Pemerintahan", nama: "[Nama]", tugas: "Menangani administrasi kependudukan, pertanahan, ketertiban, dan penyusunan produk hukum kampung." },
-      { jabatan: "Kasi Kesejahteraan", nama: "[Nama]", tugas: "Melaksanakan pembangunan sarana prasarana dan program pemberdayaan masyarakat." },
-      { jabatan: "Kasi Pelayanan", nama: "[Nama]", tugas: "Melaksanakan penyuluhan, pelayanan sosial, keagamaan, dan ketenagakerjaan." }
+      { jabatan: "Kasi Pemerintahan", nama: "Mitra Setiawan", pendidikan: "S1", tugas: "Menangani administrasi kependudukan, pertanahan, ketertiban, dan penyusunan produk hukum kampung." },
+      { jabatan: "Kasi Kesejahteraan", nama: "Kidin", pendidikan: "SMEA", tugas: "Melaksanakan pembangunan sarana prasarana dan program pemberdayaan masyarakat." },
+      { jabatan: "Kasi Pelayanan", nama: "Wati", pendidikan: "D-III", tugas: "Melaksanakan penyuluhan, pelayanan sosial, keagamaan, dan ketenagakerjaan." }
     ],
     kewilayahan: [
-      { jabatan: "Kepala Dusun I", nama: "[Nama]", tugas: "Membantu Kepala Kampung di wilayah Dusun I: ketertiban, pendataan, dan pembangunan." },
-      { jabatan: "Kepala Dusun II", nama: "[Nama]", tugas: "Membantu Kepala Kampung di wilayah Dusun II: ketertiban, pendataan, dan pembangunan." },
-      { jabatan: "Kepala Dusun III", nama: "[Nama]", tugas: "Membantu Kepala Kampung di wilayah Dusun III: ketertiban, pendataan, dan pembangunan." }
+      { jabatan: "Ketua RW", nama: "7 orang", tugas: "Membantu pemerintah kampung mengoordinasikan RT di wilayahnya. Marga Mulya memiliki 7 RW." },
+      { jabatan: "Ketua RT", nama: "18 orang", tugas: "Membantu pelayanan warga, pendataan, dan ketertiban di lingkungan RT. Marga Mulya memiliki 18 RT." }
+    ],
+    // Jumlah perangkat & unsur pendukung (monografi)
+    jumlah: [
+      { label: "Aparat kampung", jumlah: 8 }, { label: "Anggota Bamuskam", jumlah: 9 }, { label: "Anggota Linmas", jumlah: 14 }
     ],
     bamuskam: [
-      { jabatan: "Ketua Bamuskam", nama: "[Nama]" },
-      { jabatan: "Wakil Ketua", nama: "[Nama]" },
-      { jabatan: "Sekretaris", nama: "[Nama]" },
-      { jabatan: "Anggota", nama: "[Nama], [Nama]" }
+      { jabatan: "Anggota Bamuskam", nama: "9 orang", ket: "Nama-nama anggota belum tercantum di monografi." }
     ],
     lembaga: [
-      { nama: "TP PKK Kampung", ket: "Pemberdayaan dan kesejahteraan keluarga", ketua: "[Nama ketua]" },
-      { nama: "Karang Taruna", ket: "Wadah kegiatan kepemudaan", ketua: "[Nama ketua]" },
-      { nama: "Posyandu", ket: "Kesehatan ibu, bayi, dan balita", ketua: "[Nama ketua]" },
-      { nama: "LPMK", ket: "Lembaga Pemberdayaan Masyarakat Kampung", ketua: "[Nama ketua]" },
-      { nama: "BUMKam", ket: "Badan Usaha Milik Kampung", ketua: "[Nama direktur]" },
-      { nama: "Gapoktan", ket: "Gabungan kelompok tani", ketua: "[Nama ketua]" }
+      { nama: "TP PKK Kampung", ket: "Pemberdayaan dan kesejahteraan keluarga", detail: "21 pengurus dan 35 anggota, 4 kegiatan setiap bulan, 3 buku administrasi, dan dana kelola Rp86.000.000." },
+      { nama: "Karang Taruna Cahaya Muda", ket: "Wadah kegiatan kepemudaan", detail: "13 pengurus dan 17 anggota. Kegiatan utama: bakti sosial." },
+      { nama: "BUMKam Bina Mulya Sejahtera", ket: "Badan Usaha Milik Kampung", detail: "3 unit usaha: depot air minum, wisata pemancingan, dan ayam petelur. Modal Rp657.899.000; keuangan yang dikelola Rp84.000.000." },
+      { nama: "Linmas", ket: "Perlindungan masyarakat", detail: "14 anggota Linmas dan 18 pos kamling. Kampung juga memiliki 1 tim tanggap dan siaga bencana (Tagana)." },
+      { nama: "Majelis taklim", ket: "9 kelompok · 300 anggota", detail: "Al Kautsar (65), Al Muhajir (60), Al Qodri (35), Al Jannah (32), Nurul Huda (29), Attaubah (26), Al Amin (22), Al Karimah (19), dan Nurul Hikmah (12 orang)." },
+      { nama: "Kelompok kepemudaan", ket: "4 kelompok · 118 anggota", detail: "Remaja Masjid Nurul Huda (37), Remaja Masjid Al Amin (36), Pemuda Gereja (26), dan Karang Taruna (19 orang)." },
+      { nama: "Paguyuban kuda lumping", ket: "Seni budaya", detail: "2 kelompok dengan 58 anggota." }
     ]
   },
 
   penduduk: {
-    total: 2882,               // proyeksi BPS pertengahan 2024
-    laki: 1480,                // CONTOH
-    perempuan: 1402,           // CONTOH
-    kk: 812,                   // CONTOH
-    usia: [                    // CONTOH — jumlahnya disamakan dengan total
-      { k: "0–4", l: 136, p: 128 }, { k: "5–9", l: 133, p: 125 }, { k: "10–14", l: 130, p: 122 },
-      { k: "15–19", l: 124, p: 116 }, { k: "20–24", l: 113, p: 105 }, { k: "25–29", l: 110, p: 103 },
-      { k: "30–34", l: 112, p: 105 }, { k: "35–39", l: 111, p: 104 }, { k: "40–44", l: 108, p: 101 },
-      { k: "45–49", l: 101, p: 94 }, { k: "50–54", l: 89, p: 83 }, { k: "55–59", l: 74, p: 75 },
-      { k: "60–64", l: 59, p: 60 }, { k: "65+", l: 80, p: 81 }
+    total: 3201,
+    laki: 1674,
+    perempuan: 1527,
+    kk: 986,
+    // Kelompok usia di monografi hanya tiga kelompok (jumlahnya 3.197, selisih 4 dari total).
+    kelompokUsia: [
+      { label: "0–17 tahun", jumlah: 897, ket: "Anak dan remaja usia sekolah." },
+      { label: "18–56 tahun", jumlah: 1728, ket: "Penduduk usia produktif." },
+      { label: "Di atas 56 tahun", jumlah: 572, ket: "Penduduk lanjut usia." }
     ],
-    usiaSekolah: [             // CONTOH
-      { label: "PAUD / TK", rentang: "3–6 tahun", jumlah: 205, ket: "Anak usia prasekolah. Layanan terdekat: PAUD/TK kampung." },
-      { label: "SD", rentang: "7–12 tahun", jumlah: 301, ket: "Anak usia sekolah dasar. Sekolah di kampung: SD Inpres Semangga 3." },
-      { label: "SMP", rentang: "13–15 tahun", jumlah: 150, ket: "Anak usia SMP. Isi nama sekolah tujuan terdekat." },
-      { label: "SMA / SMK", rentang: "16–18 tahun", jumlah: 144, ket: "Remaja usia SMA/SMK. Isi nama sekolah tujuan terdekat." }
+    kesejahteraan: [
+      { label: "Pra sejahtera", jumlah: 206 }, { label: "Sejahtera I", jumlah: 361 },
+      { label: "Sejahtera II", jumlah: 376 }, { label: "Sejahtera III", jumlah: 16 }, { label: "Sejahtera III Plus", jumlah: 27 }
     ],
-    pendidikan: [              // CONTOH
-      { label: "Tidak / belum sekolah", jumlah: 410 }, { label: "Belum tamat SD", jumlah: 352 },
-      { label: "Tamat SD", jumlah: 690 }, { label: "Tamat SMP", jumlah: 548 },
-      { label: "Tamat SMA / SMK", jumlah: 662 }, { label: "Diploma (D1–D3)", jumlah: 82 },
-      { label: "Sarjana (S1)", jumlah: 128 }, { label: "Pascasarjana", jumlah: 10 }
+    // Murid & guru di sekolah kampung, serta tenaga kesehatan
+    sekolah: [
+      { label: "Taman kanak-kanak", murid: 117, guru: 9 },
+      { label: "Sekolah dasar", murid: 214, guru: 12 }
     ],
-    pekerjaan: [               // CONTOH
-      { label: "Petani", jumlah: 612 }, { label: "Buruh tani", jumlah: 214 },
-      { label: "Pedagang / wiraswasta", jumlah: 168 }, { label: "Karyawan swasta", jumlah: 74 },
-      { label: "Peternak", jumlah: 52 }, { label: "PNS / TNI / Polri", jumlah: 46 },
-      { label: "Pelajar / mahasiswa", jumlah: 590 }, { label: "Mengurus rumah tangga", jumlah: 420 },
-      { label: "Belum / tidak bekerja", jumlah: 706 }
+    tenagaKesehatan: [
+      { label: "Dokter umum", jumlah: 1 }, { label: "Bidan / dukun bayi terlatih", jumlah: 2 }, { label: "Perawat", jumlah: 13 }
     ],
-    agama: [                   // CONTOH
-      { label: "Islam", jumlah: 1610 }, { label: "Katolik", jumlah: 812 },
-      { label: "Kristen Protestan", jumlah: 436 }, { label: "Hindu", jumlah: 18 }, { label: "Buddha", jumlah: 6 }
+    pendidikan: [
+      { label: "Tidak / belum sekolah", jumlah: 230 }, { label: "Tidak lulus", jumlah: 403 },
+      { label: "Taman kanak-kanak", jumlah: 212 }, { label: "SD / sederajat", jumlah: 615 },
+      { label: "SMP / sederajat", jumlah: 538 }, { label: "SMA / sederajat", jumlah: 962 },
+      { label: "Akademi / D1–D3", jumlah: 52 }, { label: "Sarjana (S1)", jumlah: 129 },
+      { label: "Magister (S2)", jumlah: 2 }, { label: "Pondok pesantren", jumlah: 41 },
+      { label: "Pendidikan keagamaan", jumlah: 17 }
+    ],
+    pekerjaan: [
+      { label: "Petani", jumlah: 2161 }, { label: "Tidak / belum bekerja", jumlah: 314 },
+      { label: "Lainnya", jumlah: 193 }, { label: "Peternak", jumlah: 127 },
+      { label: "Pegawai swasta", jumlah: 123 }, { label: "Karyawan swasta", jumlah: 68 },
+      { label: "Wiraswasta / pedagang", jumlah: 65 }, { label: "Pegawai negeri sipil", jumlah: 40 },
+      { label: "Jasa", jumlah: 25 }, { label: "Buruh tani", jumlah: 24 },
+      { label: "TNI / Polri", jumlah: 21 }, { label: "Pensiunan", jumlah: 17 },
+      { label: "Pengrajin / mebel", jumlah: 11 }, { label: "Pekerja seni", jumlah: 11 }, { label: "Nelayan", jumlah: 1 }
+    ],
+    agama: [
+      { label: "Islam", jumlah: 2916 }, { label: "Katolik", jumlah: 258 },
+      { label: "Kristen", jumlah: 18 }, { label: "Hindu", jumlah: 9 }
+    ],
+    suku: [
+      { label: "Jawa", jumlah: 2801 }, { label: "Mandobo", jumlah: 139 }, { label: "Mappi", jumlah: 65 },
+      { label: "Sunda", jumlah: 64 }, { label: "Makassar", jumlah: 34 }, { label: "Marind", jumlah: 28 },
+      { label: "Maluku", jumlah: 20 }, { label: "NTB", jumlah: 18 }, { label: "Batak", jumlah: 18 }, { label: "NTT", jumlah: 14 }
     ]
   },
 
@@ -243,80 +272,52 @@ window.KAMPUNG = {
       cover: "" }
   ],
 
-  /* ---------- TRANSPARANSI ANGGARAN (APBKam) ---------- */
-  apbkam: {                    // CONTOH SELURUHNYA — ganti dengan Perkam APBKam & laporan realisasi
+  /* ---------- TRANSPARANSI ANGGARAN ----------
+     Monografi baru mencatat pendapatan (bantuan) dan SILPA. Rincian belanja
+     per bidang diisi setelah Perkam APBKam & laporan realisasi tersedia. */
+  apbkam: {
     tahun: 2026,
     realisasiPer: "30 September 2026",
-    dokumen: "Peraturan Kampung tentang APBKam Tahun Anggaran 2026",
+    dokumen: "Monografi Tingkat Kampung Marga Mulya per 30 September 2026",
     pendapatan: [
-      { label: "Dana Desa (APBN)", jumlah: 1120000000 },
-      { label: "Alokasi Dana Kampung (ADK)", jumlah: 450000000 },
-      { label: "Bantuan Keuangan Provinsi", jumlah: 100000000 },
-      { label: "Bagi Hasil Pajak & Retribusi", jumlah: 35000000 },
-      { label: "Pendapatan Asli Kampung", jumlah: 15000000 }
+      { label: "Bantuan pemerintah", jumlah: 373456000 },
+      { label: "Bantuan kabupaten", jumlah: 521227062 }
     ],
-    pembiayaan: { label: "SiLPA tahun sebelumnya", jumlah: 30000000 },
-    belanja: [
-      { bidang: "Penyelenggaraan Pemerintahan Kampung", anggaran: 560000000, realisasi: 418000000,
-        kegiatan: [
-          { nama: "Penghasilan tetap & tunjangan perangkat", anggaran: 410000000, realisasi: 307500000 },
-          { nama: "Operasional kantor kampung", anggaran: 85000000, realisasi: 66000000 },
-          { nama: "Administrasi kependudukan & pendataan", anggaran: 40000000, realisasi: 30000000 },
-          { nama: "Musyawarah kampung & penyusunan RKPKam", anggaran: 25000000, realisasi: 14500000 }
-        ] },
-      { bidang: "Pelaksanaan Pembangunan Kampung", anggaran: 620000000, realisasi: 372000000,
-        kegiatan: [
-          { nama: "Jalan usaha tani (rabat beton)", anggaran: 260000000, realisasi: 182000000 },
-          { nama: "Saluran irigasi tersier", anggaran: 150000000, realisasi: 90000000 },
-          { nama: "Posyandu & pencegahan stunting", anggaran: 110000000, realisasi: 60000000 },
-          { nama: "Dukungan PAUD kampung", anggaran: 100000000, realisasi: 40000000 }
-        ] },
-      { bidang: "Pembinaan Kemasyarakatan", anggaran: 140000000, realisasi: 92000000,
-        kegiatan: [
-          { nama: "Kegiatan PKK", anggaran: 45000000, realisasi: 30000000 },
-          { nama: "Karang Taruna & olahraga", anggaran: 35000000, realisasi: 22000000 },
-          { nama: "Linmas & keamanan lingkungan", anggaran: 30000000, realisasi: 22500000 },
-          { nama: "Kegiatan keagamaan", anggaran: 30000000, realisasi: 17500000 }
-        ] },
-      { bidang: "Pemberdayaan Masyarakat", anggaran: 380000000, realisasi: 205000000,
-        kegiatan: [
-          { nama: "Ketahanan pangan (benih & alsintan)", anggaran: 230000000, realisasi: 140000000 },
-          { nama: "Pelatihan petani & UMKM", anggaran: 60000000, realisasi: 35000000 },
-          { nama: "Penyertaan modal BUMKam", anggaran: 90000000, realisasi: 30000000 }
-        ] },
-      { bidang: "Penanggulangan Bencana, Darurat & Mendesak", anggaran: 50000000, realisasi: 37500000,
-        kegiatan: [
-          { nama: "BLT Dana Desa", anggaran: 45000000, realisasi: 33750000 },
-          { nama: "Siaga bencana banjir", anggaran: 5000000, realisasi: 3750000 }
-        ] }
+    pendapatanKosong: ["Pendapatan asli kampung", "Bantuan provinsi", "Bantuan lain tidak mengikat", "Dana cadangan"],
+    pembiayaan: { label: "SILPA / SIKPA", jumlah: 60288048 },
+    belanja: [],                // isi per bidang: { bidang, anggaran, realisasi, kegiatan: [{ nama, anggaran, realisasi }] }
+    danaLembaga: [
+      { label: "Modal BUMKam Bina Mulya Sejahtera", jumlah: 657899000 },
+      { label: "Keuangan dikelola BUMKam", jumlah: 84000000 },
+      { label: "Dana dikelola TP PKK", jumlah: 86000000 }
     ]
   },
 
   /* ---------- INDEKS DESA (pengganti IDM) ---------- */
-  indeksDesa: {                // CONTOH — ganti dengan hasil resmi Kemendes
-    tahun: 2025,
-    nilai: 61.2,
+  indeksDesa: {
+    tahun: 2026,
+    nilai: null,                // isi nilai resmi Indeks Desa Kemendes bila sudah ada, mis. 61.2
     skala: 100,
     status: "Berkembang",
-    catatan: "Sejak 2025 Indeks Desa Membangun (IDM) diperbarui menjadi Indeks Desa, yang menilai enam dimensi pembangunan kampung.",
+    sumberStatus: "Monografi kampung (kategori desa), 30 September 2026",
+    klasifikasi: "Swasembada",
+    catatan: "Sejak 2025 Indeks Desa Membangun (IDM) diperbarui menjadi Indeks Desa, yang menilai enam dimensi pembangunan kampung. Menurut monografi, Marga Mulya berkategori berkembang dengan klasifikasi swasembada; nilai indeks resmi per dimensi belum dicantumkan.",
     dimensi: [
-      { nama: "Layanan Dasar", nilai: 66, ket: "Akses pendidikan, kesehatan, air bersih, sanitasi, dan listrik." },
-      { nama: "Sosial", nilai: 70, ket: "Kerukunan, gotong royong, keamanan, dan modal sosial warga." },
-      { nama: "Ekonomi", nilai: 58, ket: "Keragaman usaha, akses pasar, lembaga ekonomi, dan BUMKam." },
-      { nama: "Lingkungan", nilai: 63, ket: "Pengelolaan sampah, risiko bencana, dan kualitas lingkungan." },
-      { nama: "Aksesibilitas", nilai: 52, ket: "Kondisi jalan, transportasi, dan jarak ke pusat layanan." },
-      { nama: "Tata Kelola Pemerintahan", nilai: 58, ket: "Perencanaan, keuangan, pelayanan, dan keterbukaan informasi kampung." }
+      { nama: "Layanan Dasar", nilai: null, ket: "Akses pendidikan, kesehatan, air bersih, sanitasi, dan listrik." },
+      { nama: "Sosial", nilai: null, ket: "Kerukunan, gotong royong, keamanan, dan modal sosial warga." },
+      { nama: "Ekonomi", nilai: null, ket: "Keragaman usaha, akses pasar, lembaga ekonomi, dan BUMKam." },
+      { nama: "Lingkungan", nilai: null, ket: "Pengelolaan sampah, risiko bencana, dan kualitas lingkungan." },
+      { nama: "Aksesibilitas", nilai: null, ket: "Kondisi jalan, transportasi, dan jarak ke pusat layanan." },
+      { nama: "Tata Kelola Pemerintahan", nilai: null, ket: "Perencanaan, keuangan, pelayanan, dan keterbukaan informasi kampung." }
     ],
     riwayat: [
-      { tahun: 2022, status: "Tertinggal" },
-      { tahun: 2023, status: "Berkembang" },
-      { tahun: 2024, status: "Berkembang" },
-      { tahun: 2025, status: "Berkembang" }
+      { tahun: 2026, status: "Berkembang" }
     ]
   },
 
   /* ---------- LAYANAN ADMINISTRASI ---------- */
-  layanan: [                   // CONTOH — sesuaikan dengan prosedur kantor kampung
+  layananContoh: true,         // persyaratan umum; sesuaikan dengan prosedur kantor kampung lalu hapus baris ini
+  layanan: [
     { nama: "Surat Pengantar KTP-el / KK", waktu: "1 hari kerja", syarat: ["Fotokopi KK", "Surat pengantar RT", "Akta kelahiran (KTP pertama)"] },
     { nama: "Surat Keterangan Domisili", waktu: "1 hari kerja", syarat: ["Fotokopi KTP-el", "Fotokopi KK", "Surat pengantar RT"] },
     { nama: "Surat Keterangan Tidak Mampu", waktu: "1 hari kerja", syarat: ["Fotokopi KTP-el dan KK", "Surat pengantar RT", "Keterangan keperluan (sekolah/berobat)"] },
@@ -326,15 +327,14 @@ window.KAMPUNG = {
     { nama: "Surat Keterangan Pindah", waktu: "1–2 hari kerja", syarat: ["KK asli", "KTP-el", "Alamat tujuan lengkap"] }
   ],
 
-  fasilitas: [
-    { kategori: "Pendidikan", nama: "SD Inpres Semangga 3", ket: "Sekolah dasar negeri di Kampung Marga Mulya." },
-    { kategori: "Pendidikan", nama: "PAUD / TK Kampung", ket: "CONTOH — sesuaikan nama dan jumlahnya." },
-    { kategori: "Kesehatan", nama: "Posyandu", ket: "CONTOH — isi jumlah pos dan jadwal pelayanan." },
-    { kategori: "Kesehatan", nama: "Pustu / Polindes", ket: "CONTOH — sesuaikan." },
-    { kategori: "Ibadah", nama: "Rumah ibadah", ket: "CONTOH — rinci jumlah masjid, gereja, dan pura." },
-    { kategori: "Pemerintahan", nama: "Kantor Kampung Marga Mulya", ket: "Pusat pelayanan administrasi warga." },
-    { kategori: "Pertanian", nama: "Saluran irigasi & lahan sawah", ket: "CONTOH — isi luas sawah (ha)." },
-    { kategori: "Olahraga", nama: "Lapangan kampung", ket: "CONTOH — sesuaikan." }
+  // Rekap sarana dan prasarana dari monografi (tampil di tab Fasilitas Umum)
+  sarana: [
+    { kelompok: "Kesehatan", ikon: "health", isi: [{ nama: "Puskesmas pembantu", nilai: "2 unit" }, { nama: "Posyandu & polindes", nilai: "1 unit" }, { nama: "Gedung posyandu", nilai: "1 unit" }, { nama: "Klinik", nilai: "1 unit" }, { nama: "Apotek", nilai: "1 unit" }] },
+    { kelompok: "Pendidikan", ikon: "school", isi: [{ nama: "Gedung PAUD", nilai: "2 unit" }, { nama: "Gedung TK", nilai: "1 unit" }, { nama: "Gedung SD", nilai: "2 unit" }] },
+    { kelompok: "Ibadah", ikon: "mosque", isi: [{ nama: "Masjid", nilai: "3 unit" }, { nama: "Musala", nilai: "16 unit" }, { nama: "Gereja", nilai: "1 unit" }] },
+    { kelompok: "Umum", ikon: "home", isi: [{ nama: "Kantor kampung", nilai: "2 unit" }, { nama: "Sarana olahraga", nilai: "2 unit" }, { nama: "Balai pertemuan", nilai: "2 unit" }, { nama: "Gedung serba guna", nilai: "1 unit" }, { nama: "Sumur desa", nilai: "1 unit" }, { nama: "Makam", nilai: "2 ha" }] },
+    { kelompok: "Jalan & komunikasi", ikon: "route", isi: [{ nama: "Jalan kampung (aspal/beton)", nilai: "12 km" }, { nama: "Jalan kabupaten", nilai: "4,16 km" }, { nama: "Jalan provinsi", nilai: "5,10 km" }, { nama: "Menara Telkomsel 4G", nilai: "2 unit" }] },
+    { kelompok: "Air bersih & sanitasi", ikon: "drop", isi: [{ nama: "Penampung air hujan", nilai: "6" }, { nama: "Pamsimas", nilai: "1" }, { nama: "Sumur gali", nilai: "8" }, { nama: "MCK umum", nilai: "11" }, { nama: "Jamban keluarga", nilai: "892" }, { nama: "Saluran drainase", nilai: "46 km" }, { nama: "Pintu air", nilai: "10" }] }
   ],
 
   peta: {
@@ -365,12 +365,32 @@ window.KAMPUNG = {
   },
 
   potensi: [
-    { judul: "Padi sawah", ikon: "padi", ket: "Komoditas utama kampung.", detail: "Isi luas tanam (ha), produktivitas (ton/ha), jumlah musim tanam per tahun, dan kelompok tani yang mengelola." },
-    { judul: "Hortikultura", ikon: "daun", ket: "Sayuran dan buah di pekarangan serta lahan kering.", detail: "Isi jenis tanaman, luas lahan, dan tujuan pemasaran hasil panen." },
-    { judul: "Peternakan", ikon: "ternak", ket: "Sapi, kambing, dan unggas milik warga.", detail: "Isi jumlah ternak per jenis dan kelompok peternak yang ada." },
-    { judul: "UMKM", ikon: "toko", ket: "Olahan pangan, kios, dan jasa.", detail: "Daftarkan nama usaha, pemilik, produk, dan kontak agar mudah ditemukan pembeli." },
-    { judul: "Potensi wisata", ikon: "wisata", ket: "Agrowisata dan taman wisata di sekitar kampung hingga Distrik Tanah Miring.", detail: "Di sekitar Marga Mulya dan Distrik Tanah Miring terdapat Taman Wisata Alam Mandira Loka, Mandira Agro Park, Taman Bambu Mandira, Romans Garden, Hokkaido Farm, Kebun Percontohan Tanaman Porang, dan Kebun Pisang Akerezki Farm. Kawasan Mandira hanya beberapa kilometer dari pusat kampung, sehingga warga berpeluang mengembangkan usaha pendukung seperti kuliner, oleh-oleh, dan pemandu wisata.", tautan: "#wisata", tautanLabel: "Lihat peta, jarak & rute" }
+    { judul: "Tanaman pangan & hortikultura", ikon: "padi", ket: "Lahan pertanian 207,15 ha: cabai, jagung, sayuran, dan padi.", detail: "Cabai menjadi tanaman terluas (118,25 ha, 127 petani), disusul jagung (46,5 ha, 41 petani) dan sayuran (41,25 ha, 62 petani). Padi tercatat dengan 771 petani; luas tanam padi di monografi (1,15 ha) sedang dicek ulang oleh pemerintah kampung." },
+    { judul: "Peternakan", ikon: "ternak", ket: "411 sapi, 298 kambing, 117 kuda, dan 45.250 unggas.", detail: "Peternakan dikelola 119 peternak sapi, 93 peternak kambing, 51 peternak kuda, 3 peternak kerbau (9 ekor), dan 257 peternak unggas, di atas lahan peternakan seluas 7 ha." },
+    { judul: "Perkebunan jeruk", ikon: "daun", ket: "10 ha kebun jeruk milik 9 petani.", detail: "Perkebunan jeruk seluas 10 hektare menjadi peluang pengembangan agrowisata petik buah dan olahan buah." },
+    { judul: "BUMKam & usaha warga", ikon: "toko", ket: "BUMKam Bina Mulya Sejahtera, 25 UMKM, 33 kios, 11 toko.", detail: "BUMKam Bina Mulya Sejahtera mengelola depot air minum, wisata pemancingan, dan ayam petelur dengan modal Rp657.899.000. Usaha warga lain: 10 warung, 7 pom mini, 3 agen minyak tanah, 1 SPBU, dan 1 perusahaan. Layanan bank terdekat: BRI Unit Semangga." },
+    { judul: "Potensi wisata", ikon: "wisata", ket: "Agrowisata dan taman wisata di sekitar kampung hingga Distrik Tanah Miring.", detail: "Di sekitar Marga Mulya dan Distrik Tanah Miring terdapat Taman Wisata Alam Mandira Loka, Mandira Agro Park, Taman Bambu Mandira, Romans Garden, Hokkaido Farm, Kebun Percontohan Tanaman Porang, Kebun Pisang Akerezki Farm, dan Kolam Pemancingan Wisata Banyu Mulya. Kawasan Mandira hanya beberapa kilometer dari pusat kampung, sehingga warga berpeluang mengembangkan usaha pendukung seperti kuliner, oleh-oleh, dan pemandu wisata.", tautan: "#wisata", tautanLabel: "Lihat peta, jarak & rute" }
   ],
+
+  // Rincian ekonomi dari monografi (grafik di tab Potensi)
+  ekonomi: {
+    lahan: [
+      { label: "Cabai", ha: 118.25, petani: 127 }, { label: "Jagung", ha: 46.5, petani: 41 },
+      { label: "Sayuran", ha: 41.25, petani: 62 }, { label: "Jeruk", ha: 10, petani: 9 }, { label: "Padi", ha: 1.15, petani: 771, cek: true }
+    ],
+    ternak: [
+      { label: "Unggas", ekor: 45250, peternak: 257 }, { label: "Sapi", ekor: 411, peternak: 119 },
+      { label: "Kambing", ekor: 298, peternak: 93 }, { label: "Kuda", ekor: 117, peternak: 51 }, { label: "Kerbau", ekor: 9, peternak: 3 }
+    ],
+    penggunaanLahan: [
+      { label: "Lahan pertanian", ha: 207.15 }, { label: "Lahan perkebunan", ha: 10 }, { label: "Lahan peternakan", ha: 7 },
+      { label: "Hutan", ha: 61 }, { label: "Lahan lainnya", ha: 766 }
+    ],
+    usaha: [
+      { label: "Kios", jumlah: 33 }, { label: "UMKM", jumlah: 25 }, { label: "Pertokoan", jumlah: 11 }, { label: "Warung", jumlah: 10 },
+      { label: "Pom mini (BBM)", jumlah: 7 }, { label: "Agen minyak tanah", jumlah: 3 }, { label: "BUMKam", jumlah: 1 }, { label: "SPBU", jumlah: 1 }, { label: "Perusahaan", jumlah: 1 }
+    ]
+  },
 
   galeri: [
     { src: "assets/img/galeri-ekspedisi-patriot.jpg", caption: "Tim Ekspedisi Patriot bersama perangkat kampung dan distrik" },
@@ -392,6 +412,6 @@ window.KAMPUNG = {
     alamat: "Kantor Kampung Marga Mulya, Distrik Semangga, Kabupaten Merauke, Papua Selatan 99631",
     telepon: "[nomor telepon / WhatsApp kantor kampung]",
     email: "[email resmi kampung]",
-    jamLayanan: "Senin–Jumat, 08.00–14.00 WIT"   // CONTOH
+    jamLayanan: "Senin–Jumat, 08.00–14.00 WIT"   // perkiraan; sesuaikan dengan jam kantor kampung
   }
 };
