@@ -898,7 +898,12 @@
     "Sekitar 6–7 km dari pusat kampung"
    ],
    "sumber": "Google Maps",
-   "status": "sebagian"
+   "status": "sebagian",
+   "lat": -8.465203,
+   "lng": 140.446686,
+   "perkiraan": true,
+   "jarak_km": 7.9,
+   "waktu_menit": 10
   }
  ]
 }
