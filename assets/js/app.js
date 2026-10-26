@@ -255,6 +255,60 @@
     }) + "><span>" + esc(o.nama) + "</span><span>" + esc(o.ket) + "</span></button></li>";
   }).join("");
 
+  /* =================== DIAGRAM LINGKARAN (donat) ===================
+     Maks. 6 irisan; sisanya digabung "Lainnya". Warna: biru (identitas tema). */
+  var PAL_KAT = ["#082A66", "#1452C2", "#5B8DE6", "#9DBCF2", "#0F7FB8", "#C9DBF8"];
+  var PAL_URUT = ["#C9DBF8", "#9DBCF2", "#5B8DE6", "#1452C2", "#0B3A8F", "#082A66"];
+  function ringkas(list, n) {
+    // Kategori bernama "Lainnya" di data asli selalu masuk ke irisan gabungan
+    var lain = list.filter(function (x) { return /^lain/i.test(x.label); });
+    var urut = list.filter(function (x) { return lain.indexOf(x) < 0; }).sort(function (a, b) { return b.jumlah - a.jumlah; });
+    if (urut.length + (lain.length ? 1 : 0) <= n) return urut.concat(lain);
+    var sisa = urut.slice(n - 1).concat(lain);
+    return urut.slice(0, n - 1).concat([{ label: "Lainnya", jumlah: sum(sisa, "jumlah"), isi: sisa }]);
+  }
+  function donut(sel, list, o) {
+    o = o || {};
+    var el = $(sel); if (!el) return;
+    var fmt = o.fmt || num, satuan = o.satuan || "", tot = sum(list, "jumlah");
+    var pal = o.warna || (o.urut ? list.map(function (_, i) { return PAL_URUT[list.length > 1 ? Math.round(i * (PAL_URUT.length - 1) / (list.length - 1)) : 3]; }) : PAL_KAT);
+    var R = 42, C = 2 * Math.PI * R, gap = list.length > 1 ? 1.4 : 0, off = 0;
+    var arcs = list.map(function (x, i) {
+      var len = x.jumlah / tot * C, vis = Math.max(0.01, len - gap);
+      var a = '<circle class="donut__seg" data-i="' + i + '" cx="60" cy="60" r="' + R + '" stroke="' + pal[i % pal.length] + '" stroke-dasharray="' + vis.toFixed(2) + " " + (C - vis).toFixed(2) + '" stroke-dashoffset="' + (-off).toFixed(2) + '" transform="rotate(-90 60 60)"><title>' + esc(x.label) + ": " + fmt(x.jumlah) + (satuan ? " " + satuan : "") + " (" + pct(x.jumlah, tot) + "%)</title></circle>";
+      off += len; return a;
+    }).join("");
+    var tengah = o.tengah || [fmt(tot), o.tengahLabel || "total"];
+    var info = function (x) {
+      var isi = x.isi ? "<p>Termasuk: " + x.isi.map(function (y) { return esc(y.label) + " (" + fmt(y.jumlah) + ")"; }).join(", ") + ".</p>" : "";
+      openModal({ kat: o.kat || "Diagram", title: x.label, html: '<div class="mini-stat"><div><b>' + fmt(x.jumlah) + "</b><span>" + esc(satuan || "Jumlah") + "</span></div><div><b>" + pct(x.jumlah, tot) + "%</b><span>Porsi</span></div><div><b>" + fmt(tot) + "</b><span>Total</span></div></div>" + isi });
+    };
+    el.innerHTML = '<div class="donut"><div class="donut__fig"><svg viewBox="0 0 120 120" role="img" aria-label="' + esc(o.kat || "Diagram lingkaran") + '"><circle cx="60" cy="60" r="' + R + '" class="donut__bg"/>' + arcs +
+      '<text x="60" y="58" text-anchor="middle" class="donut__v' + (String(tengah[0]).length > 6 ? " donut__v--s" : "") + '">' + esc(tengah[0]) + '</text><text x="60" y="73" text-anchor="middle" class="donut__l">' + esc(tengah[1]) + "</text></svg></div>" +
+      '<ul class="donut__lgd">' + list.map(function (x, i) {
+        return '<li><button type="button" class="tap" data-i="' + i + '"' + act(function () { info(x); }) + '><span class="sw" style="background:' + pal[i % pal.length] + '"></span><span class="donut__n">' + esc(x.label) + '</span><span class="donut__p"><b>' + pct(x.jumlah, tot, 1) + "%</b><small>" + fmt(x.jumlah) + (satuan ? " " + esc(satuan) : "") + "</small></span></button></li>";
+      }).join("") + "</ul></div>";
+    var segs = el.querySelectorAll(".donut__seg"), items = el.querySelectorAll(".donut__lgd button");
+    var sorot = function (i) {
+      segs.forEach(function (s, j) { s.classList.toggle("is-dim", i != null && j !== i); });
+      items.forEach(function (b, j) { b.classList.toggle("is-on", i != null && j === i); });
+      var t = el.querySelector(".donut__v"), l = el.querySelector(".donut__l");
+      if (i == null) { t.textContent = tengah[0]; l.textContent = tengah[1]; }
+      else { t.textContent = pct(list[i].jumlah, tot, 1) + "%"; l.textContent = list[i].label.length > 16 ? list[i].label.slice(0, 15) + "…" : list[i].label; }
+    };
+    segs.forEach(function (s, i) {
+      s.addEventListener("mouseenter", function () { sorot(i); });
+      s.addEventListener("mouseleave", function () { sorot(null); });
+      s.addEventListener("click", function () { info(list[i]); });
+    });
+    items.forEach(function (b, i) {
+      b.addEventListener("mouseenter", function () { sorot(i); });
+      b.addEventListener("mouseleave", function () { sorot(null); });
+      b.addEventListener("focus", function () { sorot(i); });
+      b.addEventListener("blur", function () { sorot(null); });
+    });
+  }
+
   /* =================== KEPENDUDUKAN =================== */
   $("#dataSumber").textContent = "Sumber: " + D.meta.sumberData + ". Ketuk angka atau grafik untuk rincian.";
   var stats = [
@@ -274,13 +328,11 @@
   $("#picto").innerHTML = '<div class="picto__row">' + new Array(nL + 1).join('<i class="picto__l">' + ic("person") + "</i>") + '</div><div class="picto__row">' + new Array(nP + 1).join('<i class="picto__p">' + ic("person") + "</i>") + "</div>" +
     '<div class="picto__lbl"><span><b>' + num(P.laki) + "</b> laki-laki</span><span><b>" + num(P.perempuan) + "</b> perempuan</span></div>";
 
-  // Kelompok usia: batang bertumpuk + kartu
-  var totU = sum(P.kelompokUsia, "jumlah"), toneU = ["#7AAAF2", "#1452C2", "#0B3A8F"];
-  $("#kelUsia").innerHTML = '<div class="stackbar">' + P.kelompokUsia.map(function (u, i) { return '<i style="width:' + (u.jumlah / totU * 100) + "%;background:" + toneU[i % 3] + '"></i>'; }).join("") + "</div>" +
-    '<div class="agecards">' + P.kelompokUsia.map(function (u, i) {
-      return '<button type="button" class="tap"' + act(function () { openModal({ kat: "Kelompok usia", title: u.label, html: '<div class="mini-stat"><div><b>' + num(u.jumlah) + "</b><span>Jiwa</span></div><div><b>" + pct(u.jumlah, totU) + "%</b><span>Porsi</span></div></div><p>" + esc(u.ket) + "</p><p class='small'>Jumlah ketiga kelompok usia di monografi adalah " + num(totU) + " jiwa, selisih " + (P.total - totU) + " jiwa dari total penduduk.</p>" }); }) +
-        '><span class="dot" style="background:' + toneU[i % 3] + '"></span><b>' + num(u.jumlah) + "</b><span>" + esc(u.label) + "</span><small>" + pct(u.jumlah, totU) + "%</small></button>";
-    }).join("") + "</div>";
+  donut("#dGender", [{ label: "Laki-laki", jumlah: P.laki }, { label: "Perempuan", jumlah: P.perempuan }], { kat: "Jenis kelamin", satuan: "jiwa", tengahLabel: "jiwa", warna: ["#0B3A8F", "#7AAAF2"] });
+  // Kelompok usia: diagram lingkaran berurutan (muda → tua)
+  var totU = sum(P.kelompokUsia, "jumlah");
+  donut("#kelUsia", P.kelompokUsia, { kat: "Kelompok usia", satuan: "jiwa", urut: true, tengahLabel: "jiwa" });
+  $("#kelUsia").insertAdjacentHTML("beforeend", '<p class="small">Penduduk usia produktif (18–56 tahun) ' + pct(P.kelompokUsia[1].jumlah, totU, 0) + "%. Jumlah ketiga kelompok di monografi " + num(totU) + " jiwa, selisih " + (P.total - totU) + " jiwa dari total penduduk.</p>");
 
   // Sekolah dan tenaga kesehatan
   $("#usiaSekolah").innerHTML = P.sekolah.map(function (s) {
@@ -307,6 +359,22 @@
   bars("#agama", P.agama, "Agama");
   bars("#suku", P.suku, "Suku / etnis");
   bars("#sejahtera", P.kesejahteraan, "Tingkat kesejahteraan keluarga", function (n) { return num(n) + " KK"; });
+  donut("#dSejahtera", P.kesejahteraan, { kat: "Tingkat kesejahteraan keluarga", satuan: "KK", urut: true, tengahLabel: "kepala keluarga" });
+  donut("#dPekerjaan", ringkas(P.pekerjaan, 6), { kat: "Mata pencaharian", satuan: "orang", tengahLabel: "jiwa" });
+  donut("#dSuku", ringkas(P.suku, 6), { kat: "Suku / etnis", satuan: "jiwa", tengahLabel: "jiwa" });
+  donut("#dAgama", P.agama, { kat: "Agama", satuan: "jiwa", tengahLabel: "jiwa" });
+  // Pendidikan dikelompokkan menjadi 6 jenjang
+  var pdk = function (labels) { return sum(P.pendidikan.filter(function (x) { return labels.indexOf(x.label) > -1; }), "jumlah"); };
+  var pdkIsi = function (labels) { return P.pendidikan.filter(function (x) { return labels.indexOf(x.label) > -1; }); };
+  var JENJANG = [
+    ["Belum / tidak sekolah, tidak lulus", ["Tidak / belum sekolah", "Tidak lulus"]],
+    ["TK dan SD", ["Taman kanak-kanak", "SD / sederajat"]],
+    ["SMP / sederajat", ["SMP / sederajat"]],
+    ["SMA / sederajat", ["SMA / sederajat"]],
+    ["Perguruan tinggi", ["Akademi / D1–D3", "Sarjana (S1)", "Magister (S2)"]],
+    ["Pendidikan keagamaan", ["Pondok pesantren", "Pendidikan keagamaan"]]
+  ];
+  donut("#dPendidikan", JENJANG.map(function (j) { var isi = pdkIsi(j[1]); return { label: j[0], jumlah: pdk(j[1]), isi: isi.length > 1 ? isi : null }; }), { kat: "Pendidikan terakhir", satuan: "orang", urut: true, tengahLabel: "jiwa" });
 
   /* =================== ANGGARAN (APBKam) =================== */
   var A = D.apbkam;
@@ -329,6 +397,8 @@
       "><span>" + c[0] + "</span><b>" + c[1] + "</b><small>" + esc(c[2]) + "</small></button>";
   }).join("");
   bars("#apbPendapatan", A.pendapatan, "Sumber pendapatan", rpS);
+  donut("#dPendapatan", A.pendapatan.concat(A.pembiayaan && A.pembiayaan.jumlah ? [{ label: A.pembiayaan.label + " (pembiayaan)", jumlah: A.pembiayaan.jumlah }] : []),
+    { kat: "Sumber dana kampung", fmt: rpS, tengah: [rpS(totPend + (A.pembiayaan ? A.pembiayaan.jumlah : 0)).replace("Rp ", "Rp"), "total dana"] });
   if (A.pendapatanKosong && A.pendapatanKosong.length) $("#apbPendapatan").insertAdjacentHTML("afterend", '<p class="small">Belum tercatat: ' + esc(A.pendapatanKosong.join(", ")) + ".</p>");
   if (A.danaLembaga) bars("#apbLembaga", A.danaLembaga, "Dana lembaga kampung", rpS, true);
   if (!adaBelanja) {
@@ -541,9 +611,11 @@
       }) + "><span>" + ic(IKT[t.label] || "ternak") + "</span><b>" + num(t.ekor) + "</b><small>" + esc(t.label) + " · " + num(t.peternak) + " peternak</small></button>";
     }).join("");
     var totG = sum(E.penggunaanLahan, "ha"), toneG = ["#0B3A8F", "#1452C2", "#3A72D6", "#6E98E6", "#A3BEF0"];
-    $("#ekoGuna").innerHTML = '<div class="stackbar">' + E.penggunaanLahan.map(function (g, i) { return '<i style="width:' + (g.ha / totG * 100) + "%;background:" + toneG[i % 5] + '"></i>'; }).join("") + "</div>" +
-      '<ul class="lgd">' + E.penggunaanLahan.map(function (g, i) { return '<li><span class="dot" style="background:' + toneG[i % 5] + '"></span>' + esc(g.label) + " <b>" + g.ha.toLocaleString("id-ID") + " ha</b></li>"; }).join("") + "</ul>" +
-      '<p class="small">Rincian ini mencakup ' + num(Math.round(totG)) + " ha dari luas wilayah " + id.luas + "; permukiman, sawah, dan pekarangan belum dirinci di monografi.</p>";
+    var haFmt = function (v) { return v.toLocaleString("id-ID", { maximumFractionDigits: 2 }); };
+    donut("#ekoGuna", E.penggunaanLahan.map(function (g) { return { label: g.label, jumlah: g.ha }; }), { kat: "Penggunaan lahan", satuan: "ha", fmt: haFmt, tengah: [num(Math.round(totG)), "hektare"] });
+    donut("#dLahan", E.lahan.map(function (g) { return { label: g.label + (g.cek ? " *" : ""), jumlah: g.ha }; }), { kat: "Luas tanam per komoditas", satuan: "ha", fmt: haFmt, tengah: [num(Math.round(sum(E.lahan, "ha"))), "hektare"] });
+    if (E.lahan.some(function (g) { return g.cek; })) $("#dLahan").insertAdjacentHTML("beforeend", '<p class="small">* Luas tanam padi di monografi sedang dicek ulang.</p>');
+    $("#ekoGuna").insertAdjacentHTML("beforeend", '<p class="small">Rincian ini mencakup ' + num(Math.round(totG)) + " ha dari luas wilayah " + id.luas + "; permukiman, sawah, dan pekarangan belum dirinci di monografi.</p>");
     $("#ekoUsaha").innerHTML = E.usaha.map(function (u) { return '<div class="tile"><b>' + num(u.jumlah) + "</b><span>" + esc(u.label) + "</span></div>"; }).join("");
     $("#ekoSumber").textContent = "Sumber: " + D.meta.sumberData + ". Ketuk grafik untuk rincian.";
   }

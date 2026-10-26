@@ -14,7 +14,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
-  <link rel="stylesheet" href="assets/css/style.css?v=202610262059">
+  <link rel="stylesheet" href="assets/css/style.css?v=202610262125">
 </head>
 <body>
   <!-- Kumpulan ikon garis (dipakai dengan <svg><use href="#i-..."/></svg>) -->
@@ -192,7 +192,7 @@
         <header class="sec__head"><span class="sec__icon"><svg class="ic"><use href="#i-sprout"/></svg></span><div><p class="eyebrow">Potensi kampung</p><h2>Pertanian, ternak, dan usaha warga</h2></div></header>
         <div class="potensi" id="potensiList"></div>
         <div class="grid-2 mt">
-          <div class="panel"><h3>Luas tanam per komoditas</h3><div class="bars" id="ekoLahan"></div></div>
+          <div class="panel"><h3>Luas tanam per komoditas</h3><div id="dLahan"></div><details class="more"><summary>Lihat luas dan jumlah petani</summary><div class="bars" id="ekoLahan"></div></details></div>
           <div class="panel"><h3>Populasi ternak</h3><div class="herd" id="ekoTernak"></div></div>
           <div class="panel"><h3>Penggunaan lahan yang tercatat</h3><div class="landuse" id="ekoGuna"></div></div>
           <div class="panel"><h3>Sarana usaha warga</h3><div class="tiles" id="ekoUsaha"></div></div>
@@ -237,16 +237,17 @@
               <h3>Laki-laki dan perempuan</h3>
               <div class="legend"><span class="sw sw--l"></span>Laki-laki <span class="sw sw--p"></span>Perempuan</div>
             </div>
+            <div id="dGender"></div>
             <div class="picto" id="picto" role="img"></div>
             <p class="small">Satu ikon mewakili sekitar 100 jiwa.</p>
           </div>
           <div class="panel"><h3>Kelompok usia</h3><div id="kelUsia"></div></div>
-          <div class="panel"><h3>Tingkat kesejahteraan keluarga</h3><div class="bars" id="sejahtera"></div></div>
+          <div class="panel"><h3>Tingkat kesejahteraan keluarga</h3><div id="dSejahtera"></div><details class="more"><summary>Lihat dalam grafik batang</summary><div class="bars" id="sejahtera"></div></details></div>
           <div class="panel"><h3>Sekolah dan tenaga kesehatan</h3><div class="school" id="usiaSekolah"></div><div class="nakes" id="nakes"></div></div>
-          <div class="panel"><h3>Mata pencaharian</h3><div class="bars" id="pekerjaan"></div></div>
-          <div class="panel"><h3>Pendidikan terakhir</h3><div class="bars" id="pendidikan"></div></div>
-          <div class="panel"><h3>Suku / etnis</h3><div class="bars" id="suku"></div></div>
-          <div class="panel"><h3>Agama</h3><div class="bars" id="agama"></div></div>
+          <div class="panel"><h3>Mata pencaharian</h3><div id="dPekerjaan"></div><details class="more"><summary>Lihat semua 15 jenis pekerjaan</summary><div class="bars" id="pekerjaan"></div></details></div>
+          <div class="panel"><h3>Pendidikan terakhir</h3><div id="dPendidikan"></div><details class="more"><summary>Lihat rincian per jenjang</summary><div class="bars" id="pendidikan"></div></details></div>
+          <div class="panel"><h3>Suku / etnis</h3><div id="dSuku"></div><details class="more"><summary>Lihat semua 10 suku</summary><div class="bars" id="suku"></div></details></div>
+          <div class="panel"><h3>Agama</h3><div id="dAgama"></div><details class="more"><summary>Lihat dalam grafik batang</summary><div class="bars" id="agama"></div></details></div>
         </div>
       </div>
     </section>
@@ -293,7 +294,7 @@
         <header class="sec__head"><span class="sec__icon"><svg class="ic"><use href="#i-wallet"/></svg></span><div><p class="eyebrow">Transparansi anggaran</p><h2 id="apbTitle">APBKam</h2><p class="lead" id="apbLead"></p></div></header>
         <div class="apb-sum" id="apbSum"></div>
         <div class="grid-apb mt">
-          <div class="panel"><h3>Sumber pendapatan</h3><div class="bars" id="apbPendapatan"></div></div>
+          <div class="panel"><h3>Sumber pendapatan</h3><div id="dPendapatan"></div><details class="more"><summary>Lihat dalam grafik batang</summary><div class="bars" id="apbPendapatan"></div></details></div>
           <div class="panel"><h3>Belanja per bidang</h3><p class="small" id="apbBelanjaNote">Ketuk bidang untuk melihat rincian kegiatan.</p><div class="bidang" id="apbBelanja"></div></div>
         </div>
         <div class="panel mt"><h3>Dana yang dikelola lembaga kampung</h3><div class="bars" id="apbLembaga"></div></div>
@@ -457,8 +458,8 @@
   </dialog>
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
-  <script src="assets/js/data.js?v=202610262059"></script>
-  <script src="assets/js/app.js?v=202610262059"></script>
-  <script src="assets/js/router.js?v=202610262059"></script>
+  <script src="assets/js/data.js?v=202610262125"></script>
+  <script src="assets/js/app.js?v=202610262125"></script>
+  <script src="assets/js/router.js?v=202610262125"></script>
 </body>
 </html>
