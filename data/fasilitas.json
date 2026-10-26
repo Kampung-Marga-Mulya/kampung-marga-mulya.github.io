@@ -94,7 +94,9 @@
     "jam": "11.08",
     "arah": "272° Barat",
     "alat": "Kamera GPS"
-   }
+   },
+   "jarak_km": 0.1,
+   "waktu_menit": 5
   },
   {
    "id": "masjid-al-jihad",
@@ -118,7 +120,9 @@
     "jam": "09.55",
     "arah": "293° Barat Laut",
     "alat": "Kamera GPS"
-   }
+   },
+   "jarak_km": 1.7,
+   "waktu_menit": 5
   },
   {
    "id": "masjid-nurul-huda",
@@ -509,7 +513,9 @@
     "jam": "10.50",
     "arah": "291° Barat Laut",
     "alat": "Marki"
-   }
+   },
+   "jarak_km": 1.2,
+   "waktu_menit": 5
   },
   {
    "id": "posyandu-bina-putra",
