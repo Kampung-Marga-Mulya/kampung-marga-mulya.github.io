@@ -25,7 +25,7 @@
    "sumber": "Kemendikdasmen",
    "sumberUrl": "https://referensi.data.kemendikdasmen.go.id/pendidikan/npsn/60300772",
    "status": "terverifikasi",
-   "jarak_km": 1.5,
+   "jarak_km": 1.2,
    "waktu_menit": 5,
    "npsn": "60300772"
   },
@@ -48,7 +48,7 @@
    "sumber": "Kemendikdasmen",
    "sumberUrl": "https://referensi.data.kemendikdasmen.go.id/pendidikan/npsn/60300762",
    "status": "terverifikasi",
-   "jarak_km": 0.6,
+   "jarak_km": 0.2,
    "waktu_menit": 5,
    "npsn": "60300762"
   },
@@ -183,7 +183,7 @@
    "lat": -8.465203,
    "lng": 140.446686,
    "perkiraan": true,
-   "jarak_km": 8.1,
+   "jarak_km": 7.9,
    "waktu_menit": 10
   },
   {
@@ -231,7 +231,7 @@
    "lat": -8.457756,
    "lng": 140.421301,
    "perkiraan": true,
-   "jarak_km": 11.4,
+   "jarak_km": 11.2,
    "waktu_menit": 15
   },
   {
@@ -330,8 +330,8 @@
    "sumber": "Kemendikdasmen",
    "sumberUrl": "https://referensi.data.kemendikdasmen.go.id/pendidikan/npsn/60300773",
    "status": "terverifikasi",
-   "jarak_km": 7.2,
-   "waktu_menit": 15,
+   "jarak_km": 7.1,
+   "waktu_menit": 10,
    "npsn": "60300773"
   },
   {
@@ -351,7 +351,7 @@
    "sumber": "Kemendikdasmen",
    "sumberUrl": "https://referensi.data.kemendikdasmen.go.id/pendidikan/npsn/60300609",
    "status": "terverifikasi",
-   "jarak_km": 8.3,
+   "jarak_km": 8.2,
    "waktu_menit": 10,
    "npsn": "60300609"
   },
@@ -372,8 +372,8 @@
    "sumber": "Kemendikdasmen",
    "sumberUrl": "https://referensi.data.kemendikdasmen.go.id/pendidikan/npsn/60304739",
    "status": "terverifikasi",
-   "jarak_km": 15.8,
-   "waktu_menit": 45,
+   "jarak_km": 15.7,
+   "waktu_menit": 40,
    "npsn": "60304739"
   },
   {
@@ -394,7 +394,7 @@
    "lat": -8.410949,
    "lng": 140.275549,
    "perkiraan": true,
-   "jarak_km": 32.9,
+   "jarak_km": 32.8,
    "waktu_menit": 55
   }
  ]

@@ -19,7 +19,7 @@
    "fasilitas": "Parkir gratis, area bermain anak, rumah makan & kantin, perahu bebek, kolam renang",
    "info": "https://www.infodantips.com/2019/05/obyek-wisata-taman-bambu-mandira-loka-merauke.html",
    "sumberLokasi": "Plus Code JF2W+59R (trip.com)",
-   "jarak_km": 4.0,
+   "jarak_km": 3.4,
    "waktu_menit": 5
   },
   {
@@ -32,7 +32,7 @@
    "perkiraan": true,
    "deskripsi": "Taman wisata alam di kawasan Mandira dengan suasana hijau dan rindang. Sebagian sumber menyebut Mandira Loka satu kawasan dengan Taman Bambu Mandira, jadi titik di peta mengikuti lokasi Taman Bambu Mandira sampai ada konfirmasi.",
    "info": "https://x.com/mandira_loka",
-   "jarak_km": 4.0,
+   "jarak_km": 3.4,
    "waktu_menit": 5
   },
   {
@@ -44,7 +44,7 @@
    "lng": 140.495891,
    "perkiraan": true,
    "deskripsi": "Taman agrowisata di kawasan Mandira untuk mengenal kebun dan hasil pertanian setempat. Titik di peta mengikuti kawasan Mandira; detail wahana, jam buka, dan tiket menunggu data dari pengelola.",
-   "jarak_km": 4.0,
+   "jarak_km": 3.4,
    "waktu_menit": 5
   },
   {
@@ -61,7 +61,7 @@
    "foto": "https://res.cloudinary.com/ddrepuzxq/image/upload/v1781514224/tourism_places/c6yd5e36aoiu9bvnxmc4.jpg",
    "info": "https://visitmerauke.com/wisata/lotus-garden-merauke-wisata-hutan-alam",
    "kreditFoto": "visitmerauke.com",
-   "jarak_km": 8.5,
+   "jarak_km": 8.4,
    "waktu_menit": 20
   },
   {
@@ -82,8 +82,8 @@
     "kolam renang"
    ],
    "kreditFoto": "visitmerauke.com",
-   "jarak_km": 9.6,
-   "waktu_menit": 15
+   "jarak_km": 9.5,
+   "waktu_menit": 10
   },
   {
    "id": "kolam-biru-bicu",
@@ -96,7 +96,7 @@
    "jam": "08.00–17.00 WIT",
    "cari": "Sidomulyo, Semangga, Merauke",
    "perkiraan": true,
-   "jarak_km": 10.7,
+   "jarak_km": 10.6,
    "waktu_menit": 15
   },
   {
@@ -111,8 +111,8 @@
    "foto": "https://res.cloudinary.com/ddrepuzxq/image/upload/v1781511602/tourism_places/empvemf7ivadngwucuhj.jpg",
    "info": "https://visitmerauke.com/wisata/taman-patung-hati-kudus-yesus",
    "kreditFoto": "visitmerauke.com",
-   "jarak_km": 17.6,
-   "waktu_menit": 25
+   "jarak_km": 17.5,
+   "waktu_menit": 20
   },
   {
    "id": "monumen-kapsul-waktu",
@@ -127,8 +127,8 @@
    "foto": "https://res.cloudinary.com/ddrepuzxq/image/upload/v1781511173/tourism_places/yxj8pombdlrffspe4nky.png",
    "info": "https://visitmerauke.com/wisata/monumen-kapsul-waktu",
    "kreditFoto": "visitmerauke.com",
-   "jarak_km": 18.4,
-   "waktu_menit": 25
+   "jarak_km": 18.3,
+   "waktu_menit": 20
   },
   {
    "id": "lingkaran-brawijaya",
@@ -143,7 +143,34 @@
     "Jalan Brawijaya, Merauke"
    ],
    "perkiraan": true,
-   "jarak_km": 19.2,
+   "jarak_km": 19.1,
+   "waktu_menit": 20
+  },
+  {
+   "id": "bampel-kopi",
+   "nama": "Bampel Kopi",
+   "kategori": "Kuliner",
+   "area": "Jl. Raya Mandala, Bambu Pemali, Kota Merauke",
+   "lat": -8.504986,
+   "lng": 140.392555,
+   "deskripsi": "Kedai kopi dan tempat makan dengan menu udang mandala, ayam goreng, dan pancake.",
+   "jam": "06.00–21.00 WIT",
+   "cari": "Bambu Pemali, Merauke",
+   "perkiraan": true,
+   "jarak_km": 19.6,
+   "waktu_menit": 25
+  },
+  {
+   "id": "pinang-sirih",
+   "nama": "Restoran Pinang Sirih",
+   "kategori": "Kuliner",
+   "area": "Bambu Pemali, Kota Merauke",
+   "lat": -8.504986,
+   "lng": 140.392555,
+   "deskripsi": "Restoran dengan menu sapi lada hitam, gurami, dan salad lobster.",
+   "cari": "Bambu Pemali, Merauke",
+   "perkiraan": true,
+   "jarak_km": 19.6,
    "waktu_menit": 25
   },
   {
@@ -159,34 +186,7 @@
     "sate rusa"
    ],
    "perkiraan": true,
-   "jarak_km": 19.8,
-   "waktu_menit": 25
-  },
-  {
-   "id": "bampel-kopi",
-   "nama": "Bampel Kopi",
-   "kategori": "Kuliner",
-   "area": "Jl. Raya Mandala, Bambu Pemali, Kota Merauke",
-   "lat": -8.504986,
-   "lng": 140.392555,
-   "deskripsi": "Kedai kopi dan tempat makan dengan menu udang mandala, ayam goreng, dan pancake.",
-   "jam": "06.00–21.00 WIT",
-   "cari": "Bambu Pemali, Merauke",
-   "perkiraan": true,
-   "jarak_km": 19.8,
-   "waktu_menit": 25
-  },
-  {
-   "id": "pinang-sirih",
-   "nama": "Restoran Pinang Sirih",
-   "kategori": "Kuliner",
-   "area": "Bambu Pemali, Kota Merauke",
-   "lat": -8.504986,
-   "lng": 140.392555,
-   "deskripsi": "Restoran dengan menu sapi lada hitam, gurami, dan salad lobster.",
-   "cari": "Bambu Pemali, Merauke",
-   "perkiraan": true,
-   "jarak_km": 19.8,
+   "jarak_km": 19.7,
    "waktu_menit": 25
   },
   {
@@ -197,8 +197,8 @@
    "lat": -8.494112,
    "lng": 140.392989,
    "deskripsi": "Kawasan jajanan malam di sekitar Lapangan Mandala dengan aneka warung, kafe, dan angkringan.",
-   "jarak_km": 19.9,
-   "waktu_menit": 25
+   "jarak_km": 19.8,
+   "waktu_menit": 20
   },
   {
    "id": "pantai-payum",
@@ -214,7 +214,7 @@
     "Samkai, Merauke"
    ],
    "perkiraan": true,
-   "jarak_km": 20.8,
+   "jarak_km": 20.7,
    "waktu_menit": 30
   },
   {
@@ -227,8 +227,8 @@
    "deskripsi": "Warung makan dengan olahan hasil laut dan daging sapi.",
    "cari": "Seringgu Jaya, Merauke",
    "perkiraan": true,
-   "jarak_km": 21.0,
-   "waktu_menit": 30
+   "jarak_km": 20.9,
+   "waktu_menit": 25
   },
   {
    "id": "valentine",
@@ -239,7 +239,7 @@
    "lng": 140.389182,
    "deskripsi": "Rumah makan dengan menu burger, roti, dan masakan Asia.",
    "jam": "09.00–21.30 WIT",
-   "jarak_km": 21.1,
+   "jarak_km": 21.0,
    "waktu_menit": 25
   },
   {
@@ -256,7 +256,7 @@
    "foto": "https://res.cloudinary.com/ddrepuzxq/image/upload/v1775824884/tourism_places/n4pmexxty5pi0sp1ejrk.jpg",
    "info": "https://visitmerauke.com/wisata/taman-satwa-yamai-atid",
    "kreditFoto": "visitmerauke.com",
-   "jarak_km": 21.2,
+   "jarak_km": 21.1,
    "waktu_menit": 25
   },
   {
@@ -271,7 +271,7 @@
    "foto": "https://res.cloudinary.com/ddrepuzxq/image/upload/v1781617495/tourism_places/czvazk24ehqxjeusdhdl.jpg",
    "info": "https://visitmerauke.com/wisata/tugu-penentuan-pendapat-rakyat-pepera",
    "kreditFoto": "visitmerauke.com",
-   "jarak_km": 21.4,
+   "jarak_km": 21.3,
    "waktu_menit": 25
   },
   {
@@ -286,8 +286,8 @@
    "tiket": "Rp30.000 (hari kerja), Rp50.000 (akhir pekan)",
    "cari": "Samkai, Merauke",
    "perkiraan": true,
-   "jarak_km": 21.6,
-   "waktu_menit": 30
+   "jarak_km": 21.5,
+   "waktu_menit": 25
   },
   {
    "id": "bakso-noari",
@@ -299,7 +299,7 @@
    "deskripsi": "Warung bakso yang dikenal dengan bakso dan sup rusa.",
    "cari": "Karang Indah, Merauke",
    "perkiraan": true,
-   "jarak_km": 21.8,
+   "jarak_km": 21.7,
    "waktu_menit": 25
   },
   {
@@ -319,7 +319,7 @@
     "kolam renang"
    ],
    "kreditFoto": "visitmerauke.com",
-   "jarak_km": 22.3,
+   "jarak_km": 22.2,
    "waktu_menit": 25
   },
   {
@@ -338,8 +338,8 @@
     "kuliner"
    ],
    "kreditFoto": "visitmerauke.com",
-   "jarak_km": 24.5,
-   "waktu_menit": 35
+   "jarak_km": 24.3,
+   "waktu_menit": 30
   },
   {
    "id": "tn-wasur",
@@ -353,7 +353,7 @@
    "foto": "https://res.cloudinary.com/ddrepuzxq/image/upload/v1775890291/tourism_places/pgpmnafrrnb39z6zx7z0.jpg",
    "info": "https://visitmerauke.com/wisata/taman-nasional-wasur",
    "kreditFoto": "visitmerauke.com",
-   "jarak_km": 31.7,
+   "jarak_km": 31.5,
    "waktu_menit": 35
   },
   {
@@ -370,8 +370,8 @@
    "foto": "https://res.cloudinary.com/ddrepuzxq/image/upload/v1781512221/tourism_places/xlremu7py2qph5rvjza5.jpg",
    "info": "https://visitmerauke.com/wisata/pantai-wisata-anasai",
    "kreditFoto": "visitmerauke.com",
-   "jarak_km": 33.3,
-   "waktu_menit": 60
+   "jarak_km": 33.2,
+   "waktu_menit": 55
   },
   {
    "id": "1000-musamus",
@@ -386,7 +386,7 @@
    "foto": "https://res.cloudinary.com/ddrepuzxq/image/upload/v1781202236/tourism_places/abc7djhvm1jipymscui3.jpg",
    "info": "https://visitmerauke.com/wisata/taman-wisata-1000-musamus",
    "kreditFoto": "visitmerauke.com",
-   "jarak_km": 40.0,
+   "jarak_km": 39.4,
    "waktu_menit": 55
   },
   {
@@ -403,8 +403,8 @@
    "foto": "https://res.cloudinary.com/ddrepuzxq/image/upload/v1781203877/tourism_places/rdmsxrbis84qgta7btpa.jpg",
    "info": "https://visitmerauke.com/wisata/tablem-country",
    "kreditFoto": "visitmerauke.com",
-   "jarak_km": 49.7,
-   "waktu_menit": 70
+   "jarak_km": 49.2,
+   "waktu_menit": 65
   },
   {
    "id": "pantai-kaiburse",
@@ -420,7 +420,7 @@
    "foto": "https://res.cloudinary.com/ddrepuzxq/image/upload/v1781618342/tourism_places/cipo1q9deejjybgbtyde.jpg",
    "info": "https://visitmerauke.com/wisata/pantai-wisata-kampung-kaiburse",
    "kreditFoto": "visitmerauke.com",
-   "jarak_km": 67.4,
+   "jarak_km": 66.9,
    "waktu_menit": 110
   },
   {
@@ -437,8 +437,8 @@
    "foto": "https://res.cloudinary.com/ddrepuzxq/image/upload/v1781615579/tourism_places/ltxmgqunii7g7nsrb6hh.jpg",
    "info": "https://visitmerauke.com/wisata/pelangi-rawa-biru",
    "kreditFoto": "visitmerauke.com",
-   "jarak_km": 72.4,
-   "waktu_menit": 120
+   "jarak_km": 72.3,
+   "waktu_menit": 115
   },
   {
    "id": "plbn-sota",
@@ -453,8 +453,8 @@
    "foto": "https://res.cloudinary.com/ddrepuzxq/image/upload/v1775888888/tourism_places/qhshunn1slczymclxpwh.jpg",
    "info": "https://visitmerauke.com/wisata/plbn-sota-pos-lintas-batas-negara-sota",
    "kreditFoto": "visitmerauke.com",
-   "jarak_km": 86.9,
-   "waktu_menit": 90
+   "jarak_km": 86.8,
+   "waktu_menit": 85
   },
   {
    "id": "pasar-wamanggu",
