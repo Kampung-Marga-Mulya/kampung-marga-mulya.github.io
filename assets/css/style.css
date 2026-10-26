@@ -705,3 +705,7 @@ details.more > summary::before { content: ""; width: 8px; height: 8px; border-ri
 details.more[open] > summary::before { transform: rotate(45deg); }
 .donut__v--s { font-size: 12.5px; }
 .donut__fig text { pointer-events: none; }
+/* Fasilitas: info survei & penanda gabungan */
+.fcard__srv { font-size: .8rem; }
+.mk--ic.mk--grup { width: auto; min-width: 30px; padding: 0 8px 0 6px; gap: 3px; border-radius: 15px; display: inline-flex; align-items: center; color: #fff; font: 700 .76rem/1 var(--font-body); }
+.mpop__hr { border: 0; border-top: 1px solid var(--line); margin: 6px 0; width: 100%; }

@@ -807,9 +807,15 @@
     var KAT = {
       "Pendidikan": { ic: "school", c: "#0B3A8F" }, "Ibadah": { ic: "home", c: "#082A66" }, "Kesehatan": { ic: "health", c: "#1452C2" },
       "Air bersih": { ic: "drop", c: "#2563D6" }, "Pemerintahan": { ic: "users", c: "#346FDE" }, "Pertanian": { ic: "sprout", c: "#1046A8" },
-      "Olahraga": { ic: "ball", c: "#4A7FE2" }, "Ekonomi": { ic: "toko", c: "#5B8BE6" }
+      "Olahraga": { ic: "ball", c: "#4A7FE2" }, "Ekonomi": { ic: "toko", c: "#5B8BE6" }, "Keamanan": { ic: "person", c: "#0F3F99" }
     };
-    var JENIS_IC = { "Gereja": "church", "Gereja Katolik": "church", "Masjid": "mosque", "Musala": "mosque" };
+    var JENIS_IC = { "Gereja": "church", "Gereja Katolik": "church", "Masjid": "mosque", "Musala": "mosque", "Madrasah": "school", "Bank": "wallet", "Koperasi": "toko", "Pertashop (BBM)": "drop", "Kantor polisi": "person", "Pos Linmas": "person" };
+    var BLN = ["Jan", "Feb", "Mar", "Apr", "Mei", "Jun", "Jul", "Agu", "Sep", "Okt", "Nov", "Des"];
+    var survei = function (f) {
+      if (!f.survei) return "";
+      var t = f.survei.tanggal.split("-");
+      return "Difoto " + (+t[2]) + " " + BLN[+t[1] - 1] + " " + t[0] + ", " + f.survei.jam + " WIT · titik dari foto bertimestamp";
+    };
     var STATUS = { "terverifikasi": ["Terverifikasi", "is-ok"], "sebagian": ["Data sebagian", "is-part"], "perlu-data": ["Perlu dilengkapi", "is-need"] };
     var F = null, aktif = "Semua", map = null, markers = {};
     var icon = function (f) { return JENIS_IC[f.jenis] || (KAT[f.kategori] || {}).ic || "pin"; };
@@ -837,19 +843,21 @@
         '<span class="fcard__addr">' + esc(f.alamat) + "</span>" +
         '<ul class="fcard__ket">' + (f.keterangan || []).map(function (k) { return "<li>" + esc(k) + "</li>"; }).join("") + "</ul>" +
         (f.kontak ? '<span class="fcard__addr">' + ic("mail") + esc(f.kontak) + "</span>" : "") +
+        (f.survei ? '<span class="fcard__addr fcard__srv">' + ic("camera") + esc(survei(f)) + "</span>" : "") +
         "</span></button>" +
         '<span class="wcard__act"><a href="' + esc(gmaps(f)) + '" target="_blank" rel="noopener">' + ic("pin") + "Google Maps</a>" +
-        (f.sumberUrl ? '<a href="' + esc(f.sumberUrl) + '" target="_blank" rel="noopener">' + ic("external") + "Sumber: " + esc(f.sumber) + "</a>" : '<a href="#kontak">' + ic("phone") + "Kirim data</a>") +
+        (f.sumberUrl ? '<a href="' + esc(f.sumberUrl) + '" target="_blank" rel="noopener">' + ic("external") + "Sumber: " + esc(f.sumber) + "</a>" : (f.foto ? '<a href="' + esc(f.foto) + '" target="_blank" rel="noopener">' + ic("image") + "Lihat foto</a>" : '<a href="#kontak">' + ic("phone") + "Kirim data</a>")) +
         "</span></article>";
     }
     function render() {
       var list = daftar();
       track.innerHTML = list.map(kartu).join(""); track.scrollLeft = 0; nav();
-      Object.keys(markers).forEach(function (id) {
-        var vis = list.some(function (f) { return f.id === id; });
-        if (map) { if (vis) markers[id].addTo(map); else markers[id].remove(); }
+      if (map) grupF.forEach(function (g) {
+        var vis = g.ids.some(function (id) { return list.some(function (f) { return f.id === id; }); });
+        if (vis) g.m.addTo(map); else g.m.remove();
       });
     }
+    var grupF = [];
     var prev = $("#fasilPrev"), next = $("#fasilNext"), count = $("#fasilCount");
     var step = function () { var c = track.querySelector(".ncard"); return c ? c.getBoundingClientRect().width + 16 : 300; };
     var atS = function () { return track.scrollLeft <= 2; }, atE = function () { return track.scrollLeft >= track.scrollWidth - track.clientWidth - 2; };
@@ -870,7 +878,7 @@
         map.flyTo([f.lat, f.lng], Math.max(map.getZoom(), 15), { duration: .8 });
         setTimeout(function () { markers[id].openPopup(); }, 850);
       } else {
-        openModal({ kat: f.kategori, title: f.nama, html: "<p>" + esc(f.alamat) + "</p><ul>" + (f.keterangan || []).map(function (k) { return "<li>" + esc(k) + "</li>"; }).join("") + "</ul>" +
+        openModal({ kat: f.kategori, title: f.nama, html: (f.foto ? '<img class="modal__img" src="' + esc(f.foto) + '" alt="' + esc(f.nama) + '">' : "") + "<p>" + esc(f.alamat) + "</p><ul>" + (f.keterangan || []).map(function (k) { return "<li>" + esc(k) + "</li>"; }).join("") + "</ul>" +
           "<p class='small'>Titik lokasi fasilitas ini belum tersedia. Pemerintah kampung dapat mengirimkan koordinat atau tautan Google Maps-nya.</p><div class='modal__actions'>" + mapBtn(gmaps(f), "Cari di Google Maps", "pin", true) + "</div>" });
       }
     }
@@ -886,12 +894,26 @@
       L.marker([P.lat, P.lng], { icon: L.divIcon({ className: "", html: '<span class="mk mk--home"><svg class="ic"><use href="#i-home"/></svg></span>', iconSize: [36, 36], iconAnchor: [18, 18] }), zIndexOffset: 1000 })
         .addTo(map).bindPopup("<b>" + esc(P.nama) + "</b><br>Pusat kampung");
       var b = [[P.lat, P.lng]];
+      // Fasilitas yang titiknya berdekatan (< ±5 m) digabung dalam satu penanda
+      var byKey = {};
       F.fasilitas.forEach(function (f) {
         if (f.lat == null) return;
-        var c = (KAT[f.kategori] || {}).c || "#1452C2";
-        var m = L.marker([f.lat, f.lng], { icon: L.divIcon({ className: "", html: '<span class="mk mk--ic" style="background:' + c + '"><svg class="ic"><use href="#i-' + icon(f) + '"/></svg></span>', iconSize: [30, 30], iconAnchor: [15, 15] }) });
-        m.bindPopup('<div class="mpop"><small>' + esc(f.jenis || f.kategori) + "</small><b>" + esc(f.nama) + "</b><span>" + esc(f.alamat) + (f.perkiraan ? "<br><i>Lokasi perkiraan</i>" : "") + '</span><span class="mpop__a"><a href="' + esc(gmaps(f)) + '" target="_blank" rel="noopener">Google Maps</a>' + (f.sumberUrl ? '<a href="' + esc(f.sumberUrl) + '" target="_blank" rel="noopener">Sumber</a>' : "") + "</span></div>", { maxWidth: 240 });
-        m.addTo(map); markers[f.id] = m; if (f.dalamKampung || (f.jarak_km || 99) < 8) b.push([f.lat, f.lng]);
+        var key = f.lat.toFixed(4) + "," + f.lng.toFixed(4);
+        (byKey[key] = byKey[key] || []).push(f);
+      });
+      var pop = function (f) {
+        return (f.foto ? '<img src="' + esc(f.foto) + '" alt="" onerror="this.remove()">' : "") + "<small>" + esc(f.jenis || f.kategori) + "</small><b>" + esc(f.nama) + "</b><span>" + esc(f.alamat) + (f.perkiraan ? "<br><i>Lokasi perkiraan</i>" : "") + (f.survei ? "<br>" + esc(survei(f)) : "") + "</span>" +
+          '<span class="mpop__a"><a href="' + esc(gmaps(f)) + '" target="_blank" rel="noopener">Google Maps</a>' + (f.sumberUrl ? '<a href="' + esc(f.sumberUrl) + '" target="_blank" rel="noopener">Sumber</a>' : "") + "</span>";
+      };
+      Object.keys(byKey).forEach(function (key) {
+        var g = byKey[key], f0 = g[0], c = (KAT[f0.kategori] || {}).c || "#1452C2";
+        var html = g.length > 1 ? '<span class="mk mk--ic mk--grup" style="background:' + c + '"><svg class="ic"><use href="#i-' + icon(f0) + '"/></svg>' + g.length + "</span>"
+          : '<span class="mk mk--ic" style="background:' + c + '"><svg class="ic"><use href="#i-' + icon(f0) + '"/></svg></span>';
+        var m = L.marker([f0.lat, f0.lng], { icon: L.divIcon({ className: "", html: html, iconSize: [g.length > 1 ? 44 : 30, 30], iconAnchor: [g.length > 1 ? 22 : 15, 15] }) });
+        m.bindPopup('<div class="mpop">' + (g.length > 1 ? "<small>" + g.length + " fasilitas di titik ini</small>" : "") + g.map(pop).join('<hr class="mpop__hr">') + "</div>", { maxWidth: 250, maxHeight: 340 });
+        m.addTo(map); grupF.push({ m: m, ids: g.map(function (f) { return f.id; }) });
+        g.forEach(function (f) { markers[f.id] = m; });
+        if (f0.dalamKampung || (f0.jarak_km || 99) < 8) b.push([f0.lat, f0.lng]);
       });
       map.fitBounds(b, { padding: [30, 30], maxZoom: 15 });
       (window.MM_MAPS = window.MM_MAPS || []).push({ el: el, map: map, fit: function () { map.invalidateSize(); map.fitBounds(b, { padding: [30, 30], maxZoom: 15 }); } });
@@ -914,10 +936,10 @@
         render(); if (c.classList.contains("fsum__i")) $("#fasilFilter").scrollIntoView({ behavior: "smooth", block: "start" });
       });
       var hit = function (s_) { return j.fasilitas.filter(function (f) { return f.status === s_; }).length; };
-      $("#fasilStatus").innerHTML = [["terverifikasi", "Terverifikasi dari sumber resmi"], ["sebagian", "Ada sumber, data belum lengkap"], ["perlu-data", "Menunggu data dari kampung"]].map(function (s_) {
+      $("#fasilStatus").innerHTML = [["terverifikasi", "Ada foto/sumber dan titik lokasi"], ["sebagian", "Ada sumber, data belum lengkap"], ["perlu-data", "Menunggu data dari kampung"]].map(function (s_) {
         return '<li><span class="fbadge ' + STATUS[s_[0]][1] + '">' + STATUS[s_[0]][0] + "</span><b>" + hit(s_[0]) + "</b><small>" + s_[1] + "</small></li>";
       }).join("");
-      $("#fasilNote").innerHTML = "Data sekolah bersumber dari Data Referensi Kemendikdasmen; data lain dari pemberitaan dan pemerintah kampung. Fasilitas bertanda <b>Perlu dilengkapi</b> menunggu nama, foto, dan titik lokasi dari Pemerintah Kampung Marga Mulya.";
+      $("#fasilNote").innerHTML = "Foto dan titik lokasi berasal dari survei Tim Ekspedisi Patriot IPB University pada 26 Oktober 2026; titik di peta adalah koordinat foto bertimestamp (posisi juru foto). Data sekolah juga bersumber dari Data Referensi Kemendikdasmen. Jumlah resmi seluruh sarana menurut monografi kampung ada di rekap di atas. Musala yang belum diketahui namanya diberi nomor urut angka Romawi.";
       petakan(); render();
     }).catch(function () { track.innerHTML = '<p class="small">Data fasilitas belum dapat dimuat.</p>'; });
   })();
