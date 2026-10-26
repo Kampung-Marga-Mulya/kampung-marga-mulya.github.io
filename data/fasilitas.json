@@ -73,19 +73,20 @@
    "waktu_menit": 5
   },
   {
-   "id": "masjid-al-jihad",
-   "nama": "Masjid Al Jihad",
+   "id": "masjid-al-amin",
+   "nama": "Masjid Al Amin",
    "kategori": "Ibadah",
    "jenis": "Masjid",
    "dalamKampung": true,
    "alamat": "Kampung Marga Mulya, Distrik Semangga",
    "keterangan": [
     "Masjid dengan dua menara dan kubah emas",
-    "Bersebelahan dengan kantor kampung"
+    "Bersebelahan dengan kantor kampung",
+    "Ada Remaja Masjid Al Amin (36 anggota) dan Majelis Al Amin"
    ],
    "sumber": "Survei Tim Ekspedisi Patriot IPB, 26 Okt 2026",
    "status": "terverifikasi",
-   "foto": "assets/img/fasilitas/masjid-al-jihad.jpg",
+   "foto": "assets/img/fasilitas/masjid-al-amin.jpg",
    "lat": -8.4059333,
    "lng": 140.4684333,
    "survei": {
@@ -93,9 +94,31 @@
     "jam": "11.08",
     "arah": "272° Barat",
     "alat": "Kamera GPS"
-   },
-   "jarak_km": 0.1,
-   "waktu_menit": 5
+   }
+  },
+  {
+   "id": "masjid-al-jihad",
+   "nama": "Masjid Al Jihad",
+   "kategori": "Ibadah",
+   "jenis": "Masjid",
+   "dalamKampung": true,
+   "alamat": "Kampung Marga Mulya, Distrik Semangga",
+   "keterangan": [
+    "Masjid berkubah emas dengan serambi berpilar",
+    "Papan nama: Masjid Al-Jihad Kampung Marga Mulya",
+    "Bersebelahan dengan bangunan TNI Manunggal Air"
+   ],
+   "sumber": "Survei Tim Ekspedisi Patriot IPB, 26 Okt 2026",
+   "status": "terverifikasi",
+   "foto": "assets/img/fasilitas/masjid-al-jihad.jpg",
+   "lat": -8.417265,
+   "lng": 140.46508,
+   "survei": {
+    "tanggal": "2026-10-26",
+    "jam": "09.55",
+    "arah": "293° Barat Laut",
+    "alat": "Kamera GPS"
+   }
   },
   {
    "id": "masjid-nurul-huda",
@@ -223,6 +246,58 @@
    },
    "jarak_km": 2.3,
    "waktu_menit": 5
+  },
+  {
+   "id": "musala-nurul-janah",
+   "nama": "Musholla Nurul Janah",
+   "kategori": "Ibadah",
+   "jenis": "Musala",
+   "dalamKampung": true,
+   "alamat": "Kampung Marga Mulya, Distrik Semangga",
+   "keterangan": [
+    "Tercatat di Google Maps; foto dan titik survei belum ada"
+   ],
+   "sumber": "Google Maps",
+   "status": "sebagian"
+  },
+  {
+   "id": "musala-rhoudlotut-tholabah",
+   "nama": "Musholla Rhoudlotut Tholabah",
+   "kategori": "Ibadah",
+   "jenis": "Musala",
+   "dalamKampung": true,
+   "alamat": "Kampung Marga Mulya, Distrik Semangga",
+   "keterangan": [
+    "Tercatat di Google Maps; foto dan titik survei belum ada"
+   ],
+   "sumber": "Google Maps",
+   "status": "sebagian"
+  },
+  {
+   "id": "musala-al-hidayah",
+   "nama": "Mushola Al Hidayah",
+   "kategori": "Ibadah",
+   "jenis": "Musala",
+   "dalamKampung": true,
+   "alamat": "Kampung Marga Mulya, Distrik Semangga",
+   "keterangan": [
+    "Tercatat di Google Maps; foto dan titik survei belum ada"
+   ],
+   "sumber": "Google Maps",
+   "status": "sebagian"
+  },
+  {
+   "id": "musala-at-taubah",
+   "nama": "Mushollah At Taubah",
+   "kategori": "Ibadah",
+   "jenis": "Musala",
+   "dalamKampung": true,
+   "alamat": "Kampung Marga Mulya, Distrik Semangga",
+   "keterangan": [
+    "Tercatat di Google Maps; foto dan titik survei belum ada"
+   ],
+   "sumber": "Google Maps",
+   "status": "sebagian"
   },
   {
    "id": "gereja-st-paulus",
@@ -422,11 +497,19 @@
    "alamat": "Kampung Marga Mulya, Distrik Semangga",
    "keterangan": [
     "Pustu Kampung Marga Mulya, Distrik Semangga",
-    "Titik lokasi menunggu foto bertimestamp"
+    "Satu dari 2 puskesmas pembantu menurut monografi 2026"
    ],
    "sumber": "Survei Tim Ekspedisi Patriot IPB, 26 Okt 2026",
-   "status": "sebagian",
-   "foto": "assets/img/fasilitas/pustu-marga-mulya.jpg"
+   "status": "terverifikasi",
+   "foto": "assets/img/fasilitas/pustu-marga-mulya.jpg",
+   "lat": -8.401077,
+   "lng": 140.45868,
+   "survei": {
+    "tanggal": "2026-10-26",
+    "jam": "10.50",
+    "arah": "291° Barat Laut",
+    "alat": "Marki"
+   }
   },
   {
    "id": "posyandu-bina-putra",
