@@ -365,8 +365,8 @@ window.KAMPUNG = {
   },
 
   potensi: [
-    { judul: "Tanaman pangan & hortikultura", ikon: "padi", ket: "Lahan pertanian 207,15 ha: cabai, jagung, sayuran, dan padi.", detail: "Cabai menjadi tanaman terluas (118,25 ha, 127 petani), disusul jagung (46,5 ha, 41 petani) dan sayuran (41,25 ha, 62 petani). Padi tercatat dengan 771 petani; luas tanam padi di monografi (1,15 ha) sedang dicek ulang oleh pemerintah kampung." },
-    { judul: "Peternakan", ikon: "ternak", ket: "411 sapi, 298 kambing, 117 kuda, dan 45.250 unggas.", detail: "Peternakan dikelola 119 peternak sapi, 93 peternak kambing, 51 peternak kuda, 3 peternak kerbau (9 ekor), dan 257 peternak unggas, di atas lahan peternakan seluas 7 ha." },
+    { judul: "Tanaman pangan & hortikultura", ikon: "padi", foto: "assets/img/kegiatan/kebun-tomat.jpg", ket: "Lahan pertanian 207,15 ha: cabai, jagung, sayuran, dan padi.", detail: "Cabai menjadi tanaman terluas (118,25 ha, 127 petani), disusul jagung (46,5 ha, 41 petani) dan sayuran (41,25 ha, 62 petani). Padi tercatat dengan 771 petani; luas tanam padi di monografi (1,15 ha) sedang dicek ulang oleh pemerintah kampung." },
+    { judul: "Peternakan", ikon: "ternak", foto: "assets/img/kegiatan/periksa-sapi-2.jpg", ket: "411 sapi, 298 kambing, 117 kuda, dan 45.250 unggas.", detail: "Peternakan dikelola 119 peternak sapi, 93 peternak kambing, 51 peternak kuda, 3 peternak kerbau (9 ekor), dan 257 peternak unggas, di atas lahan peternakan seluas 7 ha." },
     { judul: "Perkebunan jeruk", ikon: "daun", ket: "10 ha kebun jeruk milik 9 petani.", detail: "Perkebunan jeruk seluas 10 hektare menjadi peluang pengembangan agrowisata petik buah dan olahan buah." },
     { judul: "BUMKam & usaha warga", ikon: "toko", ket: "BUMKam Bina Mulya Sejahtera, 25 UMKM, 33 kios, 11 toko.", detail: "BUMKam Bina Mulya Sejahtera mengelola depot air minum, wisata pemancingan, dan ayam petelur dengan modal Rp657.899.000. Usaha warga lain: 10 warung, 7 pom mini, 3 agen minyak tanah, 1 SPBU, dan 1 perusahaan. Layanan bank terdekat: BRI Unit Semangga." },
     { judul: "Potensi wisata", ikon: "wisata", ket: "Agrowisata dan taman wisata di sekitar kampung hingga Distrik Tanah Miring.", detail: "Di sekitar Marga Mulya dan Distrik Tanah Miring terdapat Taman Wisata Alam Mandira Loka, Mandira Agro Park, Taman Bambu Mandira, Romans Garden, Hokkaido Farm, Kebun Percontohan Tanaman Porang, Kebun Pisang Akerezki Farm, dan Kolam Pemancingan Wisata Banyu Mulya. Kawasan Mandira hanya beberapa kilometer dari pusat kampung, sehingga warga berpeluang mengembangkan usaha pendukung seperti kuliner, oleh-oleh, dan pemandu wisata.", tautan: "#wisata", tautanLabel: "Lihat peta, jarak & rute" }
@@ -394,6 +394,11 @@ window.KAMPUNG = {
 
   galeri: [
     { src: "assets/img/galeri-ekspedisi-patriot.jpg", caption: "Tim Ekspedisi Patriot bersama perangkat kampung dan distrik" },
+    { src: "assets/img/kegiatan/pelatihan-peternakan.jpg", caption: "Pelatihan Manajemen Sistem Peternakan Skala Industri dan Pengembangan Pertanian Terintegrasi Berkelanjutan" },
+    { src: "assets/img/kegiatan/periksa-sapi-1.jpg", caption: "Pemeriksaan kesehatan sapi milik peternak oleh Tim Ekspedisi Patriot" },
+    { src: "assets/img/kegiatan/periksa-sapi-2.jpg", caption: "Tim Ekspedisi Patriot memeriksa dan mendata kesehatan ternak bersama peternak" },
+    { src: "assets/img/kegiatan/petik-tomat.jpg", caption: "Tim Ekspedisi Patriot ikut memetik tomat bersama petani" },
+    { src: "assets/img/kegiatan/kebun-tomat.jpg", caption: "Petani merawat tanaman tomat di kebun hortikultura" },
     { src: "", caption: "Musyawarah kampung" },
     { src: "", caption: "Panen padi" },
     { src: "", caption: "Pemetaan drone bersama warga" },
@@ -405,7 +410,13 @@ window.KAMPUNG = {
   kegiatan: [
     { tanggal: "2026", judul: "Pemetaan wilayah dengan drone", ket: "Pengambilan foto udara untuk peta kampung bersama perangkat kampung." },
     { tanggal: "2026", judul: "Pendataan penduduk", ket: "Pemutakhiran data kependudukan, pendidikan, dan pekerjaan warga." },
-    { tanggal: "2026", judul: "Produksi video profil", ket: "Pengambilan gambar potensi dan kehidupan warga kampung." }
+    { tanggal: "2026", judul: "Produksi video profil", ket: "Pengambilan gambar potensi dan kehidupan warga kampung." },
+    { tanggal: "2026", judul: "Pelatihan peternakan skala industri & pertanian terintegrasi", foto: "assets/img/kegiatan/pelatihan-peternakan.jpg",
+      ket: "Pelatihan Manajemen Sistem Peternakan Skala Industri dan Pengembangan Pertanian Terintegrasi Berkelanjutan bersama peternak, petani, dan perangkat kampung." },
+    { tanggal: "2026", judul: "Pemeriksaan kesehatan ternak sapi", foto: "assets/img/kegiatan/periksa-sapi-1.jpg",
+      ket: "Tim memeriksa kesehatan sapi milik peternak di kandang dan mencatat kondisinya sebagai bahan pendampingan peternakan." },
+    { tanggal: "2026", judul: "Pendampingan petani hortikultura", foto: "assets/img/kegiatan/petik-tomat.jpg",
+      ket: "Tim turun ke kebun tomat warga, ikut memetik hasil panen, dan berdiskusi dengan petani tentang budi daya hortikultura." }
   ],
 
   kontak: {

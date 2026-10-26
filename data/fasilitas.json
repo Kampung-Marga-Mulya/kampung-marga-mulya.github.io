@@ -631,14 +631,15 @@
   },
   {
    "id": "pertashop",
-   "nama": "Pertashop 8P.99614",
+   "nama": "Pertashop CV Amanah Jaya Papua",
    "kategori": "Ekonomi",
    "jenis": "Pertashop (BBM)",
    "dalamKampung": true,
-   "alamat": "Kampung Marga Mulya, Distrik Semangga",
+   "alamat": "Blok B1, RT 003/RW 002, Kampung Marga Mulya",
    "keterangan": [
-    "Pertashop Pertamina, Pertamax 92",
-    "Bersebelahan dengan usaha Amanah Jaya Papua (warmindo, ATK, fotokopi, gas LPG, sembako)"
+    "Satu-satunya penjual BBM resmi yang tercatat di Marga Mulya pada Google Maps (kode 8P.99614)",
+    "Menjual Pertamax 92",
+    "Di lokasi yang sama ada usaha Amanah Jaya Papua: warmindo, ATK, fotokopi, gas LPG, dan sembako"
    ],
    "sumber": "Survei Tim Ekspedisi Patriot IPB, 26 Okt 2026",
    "status": "terverifikasi",
@@ -880,6 +881,24 @@
    "perkiraan": true,
    "jarak_km": 32.8,
    "waktu_menit": 55
+  },
+  {
+   "id": "spbu-kuprik",
+   "nama": "SPBU Kuprik (Kampung Kuper)",
+   "kategori": "Ekonomi",
+   "jenis": "SPBU",
+   "dalamKampung": false,
+   "alamat": "Kampung Kuper, Distrik Semangga",
+   "cari": [
+    "Kuper, Semangga, Merauke"
+   ],
+   "keterangan": [
+    "SPBU Pertamina terdekat dari Marga Mulya; di Google Maps tercatat sebagai Pom Bensin Kuprik / Kuper Gas Station",
+    "Belum ada SPBU bernama Marga Mulya di Google Maps",
+    "Sekitar 6–7 km dari pusat kampung"
+   ],
+   "sumber": "Google Maps",
+   "status": "sebagian"
   }
  ]
 }

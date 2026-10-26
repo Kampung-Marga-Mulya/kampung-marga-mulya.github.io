@@ -591,9 +591,9 @@
   var ikonPot = { padi: "sprout", daun: "daun", ternak: "ternak", toko: "toko", wisata: "tree" };
   $("#potensiList").innerHTML = D.potensi.map(function (p) {
     return '<button type="button" class="pot tap"' + act(function () {
-      openModal({ kat: "Potensi kampung", title: p.judul, html: "<p>" + esc(p.ket) + "</p><p>" + esc(p.detail) + "</p>" +
+      openModal({ kat: "Potensi kampung", title: p.judul, html: (p.foto ? '<img class="modal__img" src="' + esc(p.foto) + '" alt="' + esc(p.judul) + '">' : "") + "<p>" + esc(p.ket) + "</p><p>" + esc(p.detail) + "</p>" +
         (p.tautan ? "<div class='modal__actions'><a class='btn btn--solid' href='" + esc(p.tautan) + "'>" + ic("pin") + esc(p.tautanLabel || "Lihat selengkapnya") + "</a></div>" : "") });
-    }) + "><span>" + ic(ikonPot[p.ikon] || "sprout") + '</span><b class="pot__t">' + esc(p.judul) + '</b><span class="pot__d">' + esc(p.ket) + "</span></button>";
+    }) + ">" + (p.foto ? '<img class="pot__img" src="' + esc(p.foto) + '" alt="" loading="lazy">' : "") + "<span>" + ic(ikonPot[p.ikon] || "sprout") + '</span><b class="pot__t">' + esc(p.judul) + '</b><span class="pot__d">' + esc(p.ket) + "</span></button>";
   }).join("");
   var E = D.ekonomi;
   if (E) {
@@ -622,8 +622,8 @@
 
   $("#kegiatan").innerHTML = D.kegiatan.map(function (k) {
     return '<li><button type="button" class="reset tap"' + act(function () {
-      openModal({ kat: "Kegiatan Ekspedisi Patriot " + k.tanggal, title: k.judul, html: "<p>" + esc(k.ket) + "</p><p class='small'>Bagian dari kerja sama Tim Ekspedisi Patriot IPB University dengan Pemerintah Kampung Marga Mulya.</p>" });
-    }) + "><time>" + esc(k.tanggal) + "</time><b>" + esc(k.judul) + '</b><span class="tl__d">' + esc(k.ket) + "</span></button></li>";
+      openModal({ kat: "Kegiatan Ekspedisi Patriot " + k.tanggal, title: k.judul, html: (k.foto ? '<img class="modal__img" src="' + esc(k.foto) + '" alt="' + esc(k.judul) + '">' : "") + "<p>" + esc(k.ket) + "</p><p class='small'>Bagian dari kerja sama Tim Ekspedisi Patriot IPB University dengan Pemerintah Kampung Marga Mulya.</p>" });
+    }) + ">" + (k.foto ? '<img class="tl__img" src="' + esc(k.foto) + '" alt="" loading="lazy">' : "") + "<time>" + esc(k.tanggal) + "</time><b>" + esc(k.judul) + '</b><span class="tl__d">' + esc(k.ket) + "</span></button></li>";
   }).join("");
   $("#gallery").innerHTML = D.galeri.map(function (g) {
     return '<button type="button"' + act(function () {
