@@ -513,6 +513,21 @@
    ],
    "area": "Semangga II, Distrik Semangga",
    "deskripsi": "Kolam pemancingan wisata di Semangga II, dekat Kampung Marga Mulya. Cocok untuk memancing santai bersama keluarga dan teman. Titik lokasi, jam buka, dan harga tiket menunggu data dari pengelola; gunakan tombol Google Maps untuk mencari lokasinya."
+  },
+  {
+   "id": "kolam-pemancingan-kampung",
+   "nama": "Kolam Pemancingan Kampung Marga Mulya",
+   "kategori": "Pemancingan & air",
+   "tag": [
+    "pemancingan"
+   ],
+   "area": "Kampung Marga Mulya, Distrik Semangga",
+   "lat": -8.400433,
+   "lng": 140.460145,
+   "deskripsi": "Kolam pemancingan di dalam kampung dengan pondok tempat duduk di tepi kolam, dilengkapi pendopo joglo dan gazebo untuk bersantai. Wisata pemancingan tercatat sebagai salah satu unit usaha BUMKam Bina Mulya Sejahtera.",
+   "fasilitas": "Pondok pemancingan, pendopo joglo, gazebo",
+   "foto": "assets/img/fasilitas/2023/f035.jpg",
+   "kreditFoto": "Dokumen Fasilitas Umum Kampung, Des 2023"
   }
  ]
 }
