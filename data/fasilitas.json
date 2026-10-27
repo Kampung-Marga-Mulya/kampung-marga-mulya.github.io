@@ -1,5 +1,5 @@
 {
- "keterangan": "Fasilitas umum di dan sekitar Kampung Marga Mulya. Foto = foto dokumentasi tanpa timestamp (assets/img/fasilitas/); lat/lng = koordinat dari foto bertimestamp survei 26 Oktober 2026 (posisi juru foto). status: terverifikasi (ada titik + sumber), sebagian (data/titik belum lengkap), perlu-data.",
+ "keterangan": "Fasilitas umum di dan sekitar Kampung Marga Mulya. Foto = foto dokumentasi tanpa timestamp (assets/img/fasilitas/); lat/lng = koordinat dari foto bertimestamp survei 26 Oktober 2026 (posisi juru foto). status: terverifikasi (ada titik + sumber), sebagian (data/titik belum lengkap), perlu-data. Foto dan titik tambahan dari Dokumen Fasilitas Umum Kampung Marga Mulya (foto GPS Desember 2023); cap waktu foto dipotong. Titik yang GPS-nya tidak berubah antarfoto tidak dipakai.",
  "pusat": {
   "nama": "Kampung Marga Mulya",
   "lat": -8.405417,
@@ -15,17 +15,138 @@
    "dalamKampung": true,
    "alamat": "Jl. Hasanudin, Kampung Marga Mulya",
    "keterangan": [
-    "Gedung kantor lama Pemerintah Kampung",
+    "Kantor Pemerintah Kampung Marga Mulya, Jl. Hasanudin",
     "Pelayanan administrasi dan musyawarah warga",
-    "Titik lokasi menunggu foto bertimestamp"
+    "Titik sesuai koordinat resmi monografi kampung"
    ],
    "sumber": "Survei Tim Ekspedisi Patriot IPB, 26 Okt 2026",
-   "status": "sebagian",
-   "foto": "assets/img/fasilitas/kantor-kampung.jpg"
+   "status": "terverifikasi",
+   "foto": "assets/img/fasilitas/kantor-kampung.jpg",
+   "lat": -8.406154,
+   "lng": 140.467644,
+   "titikDari": "Koordinat foto dokumentasi Desember 2023",
+   "galeri": [
+    {
+     "src": "assets/img/fasilitas/2023/f059.jpg",
+     "ket": "",
+     "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya, Desember 2023"
+    },
+    {
+     "src": "assets/img/fasilitas/2023/f060.jpg",
+     "ket": "",
+     "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya, Desember 2023"
+    },
+    {
+     "src": "assets/img/fasilitas/2023/f061.jpg",
+     "ket": "",
+     "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya, Desember 2023"
+    }
+   ]
+  },
+  {
+   "id": "kantor-kampung-semangga3",
+   "nama": "Gedung Kantor Kampung Marga Mulya (Semangga III)",
+   "kategori": "Pemerintahan",
+   "jenis": "Kantor kampung",
+   "dalamKampung": true,
+   "alamat": "Kampung Marga Mulya, Distrik Semangga",
+   "keterangan": [
+    "Gedung kantor kampung di wilayah Semangga III, dekat SD Inpres Semangga III",
+    "Papan nama: Kantor Pemerintah Kampung Marga Mulya Distrik Semangga"
+   ],
+   "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya",
+   "foto": "assets/img/fasilitas/2023/f001.jpg",
+   "galeri": [
+    {
+     "src": "assets/img/fasilitas/2023/f001.jpg",
+     "ket": "",
+     "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya, Desember 2023"
+    },
+    {
+     "src": "assets/img/fasilitas/2023/f002.jpg",
+     "ket": "",
+     "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya, Desember 2023"
+    },
+    {
+     "src": "assets/img/fasilitas/2023/f003.jpg",
+     "ket": "",
+     "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya, Desember 2023"
+    }
+   ],
+   "lat": -8.401639,
+   "lng": 140.459705,
+   "status": "terverifikasi",
+   "titikDari": "Koordinat foto dokumentasi 2023-12-07"
+  },
+  {
+   "id": "gedung-serbaguna",
+   "nama": "Gedung Serba Guna Kampung",
+   "kategori": "Umum",
+   "jenis": "Gedung serba guna",
+   "dalamKampung": true,
+   "alamat": "Kampung Marga Mulya, Distrik Semangga",
+   "keterangan": [
+    "Gedung pertemuan dan kegiatan warga di kompleks kantor kampung"
+   ],
+   "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya",
+   "foto": "assets/img/fasilitas/2023/f062.jpg",
+   "galeri": [
+    {
+     "src": "assets/img/fasilitas/2023/f062.jpg",
+     "ket": "",
+     "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya, Desember 2023"
+    },
+    {
+     "src": "assets/img/fasilitas/2023/f063.jpg",
+     "ket": "",
+     "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya, Desember 2023"
+    },
+    {
+     "src": "assets/img/fasilitas/2023/f064.jpg",
+     "ket": "",
+     "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya, Desember 2023"
+    }
+   ],
+   "lat": -8.40607,
+   "lng": 140.467551,
+   "status": "terverifikasi",
+   "titikDari": "Koordinat foto dokumentasi 2023-12-07"
+  },
+  {
+   "id": "bpp-semangga",
+   "nama": "Balai Penyuluhan Pertanian (BPP) Distrik Semangga",
+   "kategori": "Pemerintahan",
+   "jenis": "Kantor dinas",
+   "dalamKampung": true,
+   "alamat": "Kampung Marga Mulya, Distrik Semangga",
+   "keterangan": [
+    "Kantor Dinas Tanaman Pangan dan Hortikultura Kabupaten Merauke – BPP Distrik Semangga",
+    "Titik lokasi belum valid (GPS foto tidak berubah)"
+   ],
+   "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya",
+   "foto": "assets/img/fasilitas/2023/f101.jpg",
+   "galeri": [
+    {
+     "src": "assets/img/fasilitas/2023/f101.jpg",
+     "ket": "",
+     "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya, Desember 2023"
+    },
+    {
+     "src": "assets/img/fasilitas/2023/f102.jpg",
+     "ket": "",
+     "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya, Desember 2023"
+    },
+    {
+     "src": "assets/img/fasilitas/2023/f103.jpg",
+     "ket": "",
+     "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya, Desember 2023"
+    }
+   ],
+   "status": "sebagian"
   },
   {
    "id": "pos-linmas",
-   "nama": "Pos Linmas Kampung Marga Mulya",
+   "nama": "Pos Linmas dan Parkiran Kampung",
    "kategori": "Keamanan",
    "jenis": "Pos Linmas",
    "dalamKampung": true,
@@ -46,7 +167,24 @@
     "alat": "Kamera GPS"
    },
    "jarak_km": 0.2,
-   "waktu_menit": 5
+   "waktu_menit": 5,
+   "galeri": [
+    {
+     "src": "assets/img/fasilitas/2023/f065.jpg",
+     "ket": "",
+     "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya, Desember 2023"
+    },
+    {
+     "src": "assets/img/fasilitas/2023/f066.jpg",
+     "ket": "",
+     "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya, Desember 2023"
+    },
+    {
+     "src": "assets/img/fasilitas/2023/f067.jpg",
+     "ket": "",
+     "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya, Desember 2023"
+    }
+   ]
   },
   {
    "id": "polsubsektor-semangga",
@@ -70,7 +208,24 @@
     "alat": "Kamera GPS"
    },
    "jarak_km": 1.3,
-   "waktu_menit": 5
+   "waktu_menit": 5,
+   "galeri": [
+    {
+     "src": "assets/img/fasilitas/2023/f004.jpg",
+     "ket": "",
+     "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya, Desember 2023"
+    },
+    {
+     "src": "assets/img/fasilitas/2023/f005.jpg",
+     "ket": "",
+     "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya, Desember 2023"
+    },
+    {
+     "src": "assets/img/fasilitas/2023/f006.jpg",
+     "ket": "",
+     "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya, Desember 2023"
+    }
+   ]
   },
   {
    "id": "masjid-al-amin",
@@ -96,7 +251,24 @@
     "alat": "Kamera GPS"
    },
    "jarak_km": 0.1,
-   "waktu_menit": 5
+   "waktu_menit": 5,
+   "galeri": [
+    {
+     "src": "assets/img/fasilitas/2023/f089.jpg",
+     "ket": "",
+     "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya, Desember 2023"
+    },
+    {
+     "src": "assets/img/fasilitas/2023/f090.jpg",
+     "ket": "",
+     "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya, Desember 2023"
+    },
+    {
+     "src": "assets/img/fasilitas/2023/f091.jpg",
+     "ket": "",
+     "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya, Desember 2023"
+    }
+   ]
   },
   {
    "id": "masjid-al-jihad",
@@ -122,7 +294,24 @@
     "alat": "Kamera GPS"
    },
    "jarak_km": 1.7,
-   "waktu_menit": 5
+   "waktu_menit": 5,
+   "galeri": [
+    {
+     "src": "assets/img/fasilitas/2023/f092.jpg",
+     "ket": "",
+     "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya, Desember 2023"
+    },
+    {
+     "src": "assets/img/fasilitas/2023/f093.jpg",
+     "ket": "",
+     "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya, Desember 2023"
+    },
+    {
+     "src": "assets/img/fasilitas/2023/f094.jpg",
+     "ket": "",
+     "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya, Desember 2023"
+    }
+   ]
   },
   {
    "id": "masjid-nurul-huda",
@@ -132,9 +321,9 @@
    "dalamKampung": true,
    "alamat": "Kampung Marga Mulya, Distrik Semangga",
    "keterangan": [
-    "Sedang dalam pembangunan (Oktober 2026)",
-    "Satu kompleks dengan Madrasah Yayasan Nurul Huda",
-    "Foto dipotong dari foto survei bertimestamp"
+    "Foto Desember 2023: masjid sebelum renovasi",
+    "Sedang dibangun ulang dengan menara baru (Oktober 2026)",
+    "Satu kompleks dengan TPQ Nurul Huda; ada MCK masjid"
    ],
    "sumber": "Survei Tim Ekspedisi Patriot IPB, 26 Okt 2026",
    "status": "terverifikasi",
@@ -148,7 +337,24 @@
     "alat": "Marki"
    },
    "jarak_km": 1.3,
-   "waktu_menit": 5
+   "waktu_menit": 5,
+   "galeri": [
+    {
+     "src": "assets/img/fasilitas/2023/f016.jpg",
+     "ket": "",
+     "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya, Desember 2023"
+    },
+    {
+     "src": "assets/img/fasilitas/2023/f017.jpg",
+     "ket": "",
+     "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya, Desember 2023"
+    },
+    {
+     "src": "assets/img/fasilitas/2023/f018.jpg",
+     "ket": "",
+     "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya, Desember 2023"
+    }
+   ]
   },
   {
    "id": "musala-1",
@@ -325,7 +531,75 @@
     "alat": "Kamera GPS"
    },
    "jarak_km": 0.4,
-   "waktu_menit": 5
+   "waktu_menit": 5,
+   "galeri": [
+    {
+     "src": "assets/img/fasilitas/2023/f095.jpg",
+     "ket": "",
+     "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya, Desember 2023"
+    },
+    {
+     "src": "assets/img/fasilitas/2023/f096.jpg",
+     "ket": "",
+     "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya, Desember 2023"
+    }
+   ]
+  },
+  {
+   "id": "lahan-gereja-protestan",
+   "nama": "Lahan Gereja Protestan",
+   "kategori": "Ibadah",
+   "jenis": "Lahan gereja",
+   "dalamKampung": true,
+   "alamat": "Kampung Marga Mulya, Distrik Semangga",
+   "keterangan": [
+    "Lahan untuk pembangunan gereja Protestan, dekat Gereja Katolik"
+   ],
+   "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya",
+   "foto": "assets/img/fasilitas/2023/f097.jpg",
+   "galeri": [
+    {
+     "src": "assets/img/fasilitas/2023/f097.jpg",
+     "ket": "",
+     "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya, Desember 2023"
+    }
+   ],
+   "lat": -8.404459,
+   "lng": 140.46438,
+   "status": "terverifikasi",
+   "titikDari": "Koordinat foto dokumentasi 2023-12-07"
+  },
+  {
+   "id": "majelis-nu",
+   "nama": "Kantor Majelis Wakil Cabang NU Semangga",
+   "kategori": "Ibadah",
+   "jenis": "Organisasi keagamaan",
+   "dalamKampung": true,
+   "alamat": "Kampung Marga Mulya, Distrik Semangga",
+   "keterangan": [
+    "Majelis Wakil Cabang Nahdlatul Ulama",
+    "Titik lokasi belum valid (GPS foto tidak berubah)"
+   ],
+   "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya",
+   "foto": "assets/img/fasilitas/2023/f086.jpg",
+   "galeri": [
+    {
+     "src": "assets/img/fasilitas/2023/f086.jpg",
+     "ket": "",
+     "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya, Desember 2023"
+    },
+    {
+     "src": "assets/img/fasilitas/2023/f087.jpg",
+     "ket": "",
+     "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya, Desember 2023"
+    },
+    {
+     "src": "assets/img/fasilitas/2023/f088.jpg",
+     "ket": "",
+     "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya, Desember 2023"
+    }
+   ],
+   "status": "sebagian"
   },
   {
    "id": "sd-muram",
@@ -340,7 +614,8 @@
     "NPSN 60300762",
     "Akreditasi B",
     "Luas tanah 10.000 m²",
-    "Listrik PLN"
+    "Listrik PLN",
+    "Ada kantor dan laboratorium sekolah"
    ],
    "kontak": "sdinpresmuram@gmail.com",
    "sumber": "Kemendikdasmen",
@@ -355,7 +630,39 @@
     "alat": "Kamera GPS"
    },
    "jarak_km": 0.2,
-   "waktu_menit": 5
+   "waktu_menit": 5,
+   "galeri": [
+    {
+     "src": "assets/img/fasilitas/2023/f071.jpg",
+     "ket": "",
+     "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya, Desember 2023"
+    },
+    {
+     "src": "assets/img/fasilitas/2023/f072.jpg",
+     "ket": "",
+     "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya, Desember 2023"
+    },
+    {
+     "src": "assets/img/fasilitas/2023/f073.jpg",
+     "ket": "",
+     "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya, Desember 2023"
+    },
+    {
+     "src": "assets/img/fasilitas/2023/f074.jpg",
+     "ket": "Kantor sekolah",
+     "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya, Desember 2023"
+    },
+    {
+     "src": "assets/img/fasilitas/2023/f075.jpg",
+     "ket": "Laboratorium",
+     "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya, Desember 2023"
+    },
+    {
+     "src": "assets/img/fasilitas/2023/f076.jpg",
+     "ket": "Ruang sekolah",
+     "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya, Desember 2023"
+    }
+   ]
   },
   {
    "id": "sd-semangga-3",
@@ -384,7 +691,24 @@
     "alat": "Marki"
    },
    "jarak_km": 1.2,
-   "waktu_menit": 5
+   "waktu_menit": 5,
+   "galeri": [
+    {
+     "src": "assets/img/fasilitas/2023/f007.jpg",
+     "ket": "",
+     "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya, Desember 2023"
+    },
+    {
+     "src": "assets/img/fasilitas/2023/f008.jpg",
+     "ket": "",
+     "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya, Desember 2023"
+    },
+    {
+     "src": "assets/img/fasilitas/2023/f009.jpg",
+     "ket": "",
+     "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya, Desember 2023"
+    }
+   ]
   },
   {
    "id": "tk-mitra-mulia",
@@ -412,17 +736,34 @@
     "alat": "Kamera GPS"
    },
    "jarak_km": 0.2,
-   "waktu_menit": 5
+   "waktu_menit": 5,
+   "galeri": [
+    {
+     "src": "assets/img/fasilitas/2023/f077.jpg",
+     "ket": "",
+     "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya, Desember 2023"
+    },
+    {
+     "src": "assets/img/fasilitas/2023/f078.jpg",
+     "ket": "",
+     "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya, Desember 2023"
+    },
+    {
+     "src": "assets/img/fasilitas/2023/f079.jpg",
+     "ket": "",
+     "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya, Desember 2023"
+    }
+   ]
   },
   {
    "id": "madrasah-nurul-huda",
-   "nama": "Madrasah Yayasan Nurul Huda Marga Mulya",
+   "nama": "TPQ Nurul Huda (Yayasan Nurul Huda Marga Mulya)",
    "kategori": "Pendidikan",
-   "jenis": "Madrasah",
+   "jenis": "TPQ / pondok pesantren",
    "dalamKampung": true,
    "alamat": "Kampung Marga Mulya, Distrik Semangga",
    "keterangan": [
-    "Dikelola Yayasan Nurul Huda Marga Mulya",
+    "Taman Pendidikan Al-Qur'an dan Pondok Pesantren Nurul Huda",
     "Ada Unit Koperasi Syariah yayasan",
     "Satu kompleks dengan Masjid Nurul Huda"
    ],
@@ -438,11 +779,60 @@
     "alat": "Marki"
    },
    "jarak_km": 1.3,
-   "waktu_menit": 5
+   "waktu_menit": 5,
+   "galeri": [
+    {
+     "src": "assets/img/fasilitas/2023/f013.jpg",
+     "ket": "",
+     "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya, Desember 2023"
+    },
+    {
+     "src": "assets/img/fasilitas/2023/f014.jpg",
+     "ket": "",
+     "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya, Desember 2023"
+    },
+    {
+     "src": "assets/img/fasilitas/2023/f015.jpg",
+     "ket": "",
+     "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya, Desember 2023"
+    }
+   ]
+  },
+  {
+   "id": "tpq-roudhotul-hidayah",
+   "nama": "TPQ Roudhotul Hidayah",
+   "kategori": "Pendidikan",
+   "jenis": "TPQ",
+   "dalamKampung": true,
+   "alamat": "Kampung Marga Mulya, Distrik Semangga",
+   "keterangan": [
+    "Taman Pendidikan Al-Qur'an dengan panggung aksi dan kreasi santri",
+    "Titik lokasi belum valid (GPS foto tidak berubah)"
+   ],
+   "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya",
+   "foto": "assets/img/fasilitas/2023/f083.jpg",
+   "galeri": [
+    {
+     "src": "assets/img/fasilitas/2023/f083.jpg",
+     "ket": "",
+     "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya, Desember 2023"
+    },
+    {
+     "src": "assets/img/fasilitas/2023/f084.jpg",
+     "ket": "",
+     "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya, Desember 2023"
+    },
+    {
+     "src": "assets/img/fasilitas/2023/f085.jpg",
+     "ket": "",
+     "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya, Desember 2023"
+    }
+   ],
+   "status": "sebagian"
   },
   {
    "id": "kb-azahro",
-   "nama": "KB PAUD Azahro",
+   "nama": "PAUD Azzahro",
    "kategori": "Pendidikan",
    "jenis": "PAUD (Kelompok Bermain)",
    "dalamKampung": true,
@@ -456,11 +846,32 @@
    ],
    "sumber": "Kemendikdasmen",
    "sumberUrl": "https://referensi.data.kemendikdasmen.go.id/pendidikan/npsn/69972674",
-   "status": "terverifikasi"
+   "status": "terverifikasi",
+   "foto": "assets/img/fasilitas/2023/f010.jpg",
+   "galeri": [
+    {
+     "src": "assets/img/fasilitas/2023/f010.jpg",
+     "ket": "",
+     "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya, Desember 2023"
+    },
+    {
+     "src": "assets/img/fasilitas/2023/f011.jpg",
+     "ket": "",
+     "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya, Desember 2023"
+    },
+    {
+     "src": "assets/img/fasilitas/2023/f012.jpg",
+     "ket": "",
+     "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya, Desember 2023"
+    }
+   ],
+   "lat": -8.401255,
+   "lng": 140.459904,
+   "titikDari": "Koordinat foto dokumentasi Desember 2023"
   },
   {
    "id": "kb-an-nasiroh",
-   "nama": "PAUD KB An Nasiroh",
+   "nama": "PAUD An-Nasiroh",
    "kategori": "Pendidikan",
    "jenis": "PAUD (Kelompok Bermain)",
    "dalamKampung": true,
@@ -473,7 +884,28 @@
    ],
    "sumber": "Kemendikdasmen",
    "sumberUrl": "https://referensi.data.kemendikdasmen.go.id/pendidikan/npsn/69980092",
-   "status": "terverifikasi"
+   "status": "terverifikasi",
+   "foto": "assets/img/fasilitas/2023/f080.jpg",
+   "galeri": [
+    {
+     "src": "assets/img/fasilitas/2023/f080.jpg",
+     "ket": "",
+     "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya, Desember 2023"
+    },
+    {
+     "src": "assets/img/fasilitas/2023/f081.jpg",
+     "ket": "",
+     "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya, Desember 2023"
+    },
+    {
+     "src": "assets/img/fasilitas/2023/f082.jpg",
+     "ket": "",
+     "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya, Desember 2023"
+    }
+   ],
+   "lat": -8.416926,
+   "lng": 140.465164,
+   "titikDari": "Koordinat foto dokumentasi Desember 2023"
   },
   {
    "id": "tk-al-ittihad",
@@ -515,7 +947,24 @@
     "alat": "Marki"
    },
    "jarak_km": 1.2,
-   "waktu_menit": 5
+   "waktu_menit": 5,
+   "galeri": [
+    {
+     "src": "assets/img/fasilitas/2023/f022.jpg",
+     "ket": "",
+     "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya, Desember 2023"
+    },
+    {
+     "src": "assets/img/fasilitas/2023/f023.jpg",
+     "ket": "",
+     "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya, Desember 2023"
+    },
+    {
+     "src": "assets/img/fasilitas/2023/f024.jpg",
+     "ket": "",
+     "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya, Desember 2023"
+    }
+   ]
   },
   {
    "id": "posyandu-bina-putra",
@@ -542,6 +991,41 @@
    "waktu_menit": 5
   },
   {
+   "id": "posyandu-bina-putra-lama",
+   "nama": "Gedung Posyandu Bina Putra (Semangga III)",
+   "kategori": "Kesehatan",
+   "jenis": "Posyandu",
+   "dalamKampung": true,
+   "alamat": "Kampung Marga Mulya, Distrik Semangga",
+   "keterangan": [
+    "Gedung posyandu kayu dengan papan nama Posyandu Bina Putra",
+    "Foto Desember 2023; gedung posyandu yang disurvei 2026 berada di dekat kantor kampung"
+   ],
+   "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya",
+   "foto": "assets/img/fasilitas/2023/f025.jpg",
+   "galeri": [
+    {
+     "src": "assets/img/fasilitas/2023/f025.jpg",
+     "ket": "",
+     "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya, Desember 2023"
+    },
+    {
+     "src": "assets/img/fasilitas/2023/f026.jpg",
+     "ket": "",
+     "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya, Desember 2023"
+    },
+    {
+     "src": "assets/img/fasilitas/2023/f027.jpg",
+     "ket": "",
+     "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya, Desember 2023"
+    }
+   ],
+   "lat": -8.401457,
+   "lng": 140.459907,
+   "status": "terverifikasi",
+   "titikDari": "Koordinat foto dokumentasi 2023-12-07"
+  },
+  {
    "id": "klinik-santa-lusia",
    "nama": "Klinik Santa Lusia",
    "kategori": "Kesehatan",
@@ -563,7 +1047,14 @@
     "alat": "Kamera GPS"
    },
    "jarak_km": 0.6,
-   "waktu_menit": 5
+   "waktu_menit": 5,
+   "galeri": [
+    {
+     "src": "assets/img/fasilitas/2023/f098.jpg",
+     "ket": "",
+     "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya, Desember 2023"
+    }
+   ]
   },
   {
    "id": "praktik-dr-ani",
@@ -588,7 +1079,36 @@
     "alat": "Kamera GPS"
    },
    "jarak_km": 0.3,
-   "waktu_menit": 5
+   "waktu_menit": 5,
+   "galeri": [
+    {
+     "src": "assets/img/fasilitas/2023/f099.jpg",
+     "ket": "",
+     "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya, Desember 2023"
+    }
+   ]
+  },
+  {
+   "id": "apotek-berkah-farma",
+   "nama": "Apotek Berkah Farma",
+   "kategori": "Kesehatan",
+   "jenis": "Apotek",
+   "dalamKampung": true,
+   "alamat": "Kampung Marga Mulya, Distrik Semangga",
+   "keterangan": [
+    "Apotek di Kampung Marga Mulya",
+    "Titik lokasi belum tersedia"
+   ],
+   "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya",
+   "foto": "assets/img/fasilitas/2023/f100.jpg",
+   "galeri": [
+    {
+     "src": "assets/img/fasilitas/2023/f100.jpg",
+     "ket": "",
+     "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya, Desember 2023"
+    }
+   ],
+   "status": "sebagian"
   },
   {
    "id": "bri-semangga",
@@ -602,8 +1122,103 @@
     "Titik lokasi menunggu foto bertimestamp"
    ],
    "sumber": "Survei Tim Ekspedisi Patriot IPB, 26 Okt 2026",
-   "status": "sebagian",
-   "foto": "assets/img/fasilitas/bri-semangga.jpg"
+   "status": "terverifikasi",
+   "foto": "assets/img/fasilitas/bri-semangga.jpg",
+   "galeri": [
+    {
+     "src": "assets/img/fasilitas/2023/f107.jpg",
+     "ket": "",
+     "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya, Desember 2023"
+    }
+   ],
+   "lat": -8.407374,
+   "lng": 140.470952,
+   "titikDari": "Koordinat foto dokumentasi Desember 2023"
+  },
+  {
+   "id": "bengkel",
+   "nama": "Bengkel Kampung",
+   "kategori": "Ekonomi",
+   "jenis": "Bengkel",
+   "dalamKampung": true,
+   "alamat": "Kampung Marga Mulya, Distrik Semangga",
+   "keterangan": [
+    "Bengkel kendaraan di Kampung Marga Mulya"
+   ],
+   "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya",
+   "foto": "assets/img/fasilitas/2023/f031.jpg",
+   "galeri": [
+    {
+     "src": "assets/img/fasilitas/2023/f031.jpg",
+     "ket": "",
+     "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya, Desember 2023"
+    },
+    {
+     "src": "assets/img/fasilitas/2023/f032.jpg",
+     "ket": "",
+     "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya, Desember 2023"
+    },
+    {
+     "src": "assets/img/fasilitas/2023/f033.jpg",
+     "ket": "",
+     "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya, Desember 2023"
+    }
+   ],
+   "lat": -8.401132,
+   "lng": 140.460113,
+   "status": "terverifikasi",
+   "titikDari": "Koordinat foto dokumentasi 2023-12-07"
+  },
+  {
+   "id": "warung-makan",
+   "nama": "Warung Makan Bu Uli & Warung Jalan Poros",
+   "kategori": "Ekonomi",
+   "jenis": "Warung makan",
+   "dalamKampung": true,
+   "alamat": "Kampung Marga Mulya, Distrik Semangga",
+   "keterangan": [
+    "Warung makan di tepi jalan poros dekat BRI Unit Semangga"
+   ],
+   "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya",
+   "foto": "assets/img/fasilitas/2023/f108.jpg",
+   "galeri": [
+    {
+     "src": "assets/img/fasilitas/2023/f108.jpg",
+     "ket": "",
+     "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya, Desember 2023"
+    },
+    {
+     "src": "assets/img/fasilitas/2023/f109.jpg",
+     "ket": "",
+     "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya, Desember 2023"
+    }
+   ],
+   "lat": -8.407468,
+   "lng": 140.470883,
+   "status": "terverifikasi",
+   "titikDari": "Koordinat foto dokumentasi 2023-12-07"
+  },
+  {
+   "id": "pengolahan-aspal",
+   "nama": "Pengolahan Aspal (AMP)",
+   "kategori": "Ekonomi",
+   "jenis": "Usaha konstruksi",
+   "dalamKampung": true,
+   "alamat": "Kampung Marga Mulya, Distrik Semangga",
+   "keterangan": [
+    "Unit pengolahan/penggorengan aspal dan material jalan (“Toko 2”)",
+    "Titik lokasi belum tersedia"
+   ],
+   "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya",
+   "foto": "assets/img/fasilitas/2023/f110.jpg",
+   "galeri": [
+    {
+     "src": "assets/img/fasilitas/2023/f110.jpg",
+     "ket": "",
+     "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya, Desember 2023"
+    }
+   ],
+   "status": "sebagian"
   },
   {
    "id": "kopdes-merah-putih",
@@ -639,7 +1254,8 @@
    "keterangan": [
     "Satu-satunya penjual BBM resmi yang tercatat di Marga Mulya pada Google Maps (kode 8P.99614)",
     "Menjual Pertamax 92",
-    "Di lokasi yang sama ada usaha Amanah Jaya Papua: warmindo, ATK, fotokopi, gas LPG, dan sembako"
+    "Di lokasi yang sama ada usaha Amanah Jaya Papua: warmindo, ATK, fotokopi, gas LPG, dan sembako",
+    "Juga pengecer resmi minyak tanah"
    ],
    "sumber": "Survei Tim Ekspedisi Patriot IPB, 26 Okt 2026",
    "status": "terverifikasi",
@@ -653,7 +1269,53 @@
     "alat": "Marki"
    },
    "jarak_km": 1.3,
-   "waktu_menit": 5
+   "waktu_menit": 5,
+   "galeri": [
+    {
+     "src": "assets/img/fasilitas/2023/f048.jpg",
+     "ket": "",
+     "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya, Desember 2023"
+    },
+    {
+     "src": "assets/img/fasilitas/2023/f049.jpg",
+     "ket": "",
+     "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya, Desember 2023"
+    }
+   ]
+  },
+  {
+   "id": "spbu-marga-mulya",
+   "nama": "SPBU Marga Mulya",
+   "kategori": "Ekonomi",
+   "jenis": "SPBU",
+   "dalamKampung": true,
+   "alamat": "Kampung Marga Mulya, Distrik Semangga",
+   "keterangan": [
+    "SPBU Pertamina di wilayah Kampung Marga Mulya"
+   ],
+   "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya",
+   "foto": "assets/img/fasilitas/2023/f104.jpg",
+   "galeri": [
+    {
+     "src": "assets/img/fasilitas/2023/f104.jpg",
+     "ket": "",
+     "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya, Desember 2023"
+    },
+    {
+     "src": "assets/img/fasilitas/2023/f105.jpg",
+     "ket": "",
+     "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya, Desember 2023"
+    },
+    {
+     "src": "assets/img/fasilitas/2023/f106.jpg",
+     "ket": "",
+     "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya, Desember 2023"
+    }
+   ],
+   "lat": -8.412621,
+   "lng": 140.467927,
+   "status": "terverifikasi",
+   "titikDari": "Koordinat foto dokumentasi 2023-12-07"
   },
   {
    "id": "musala-al-barokah",
@@ -686,17 +1348,209 @@
   },
   {
    "id": "air-isi-ulang",
-   "nama": "Depot Air Minum BUMKam Bina Mulya Sejahtera",
+   "nama": "Depot Air Minum BUMKam (Air Galon Mulya)",
    "kategori": "Air bersih",
    "jenis": "Depot air",
    "dalamKampung": true,
    "alamat": "Kampung Marga Mulya",
    "keterangan": [
-    "Unit usaha BUMKam Bina Mulya Sejahtera (monografi 2026)",
-    "Isi lokasi, jam buka, dan nomor kontak"
+    "Gedung depot air minum isi ulang milik BUMKam Bina Mulya Sejahtera",
+    "Unit usaha BUMKam (monografi 2026)"
    ],
-   "status": "sebagian",
-   "sumber": "Monografi Kampung 2026"
+   "status": "terverifikasi",
+   "sumber": "Monografi Kampung 2026",
+   "foto": "assets/img/fasilitas/2023/f068.jpg",
+   "galeri": [
+    {
+     "src": "assets/img/fasilitas/2023/f068.jpg",
+     "ket": "",
+     "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya, Desember 2023"
+    },
+    {
+     "src": "assets/img/fasilitas/2023/f069.jpg",
+     "ket": "",
+     "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya, Desember 2023"
+    },
+    {
+     "src": "assets/img/fasilitas/2023/f070.jpg",
+     "ket": "",
+     "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya, Desember 2023"
+    }
+   ],
+   "lat": -8.405844,
+   "lng": 140.467128,
+   "titikDari": "Koordinat foto dokumentasi Desember 2023"
+  },
+  {
+   "id": "bendali",
+   "nama": "Kolam Bendali / Waduk Kampung",
+   "kategori": "Air bersih",
+   "jenis": "Waduk",
+   "dalamKampung": true,
+   "alamat": "Kampung Marga Mulya, Distrik Semangga",
+   "keterangan": [
+    "Kolam penampung air (bendungan kecil) untuk cadangan air dan pertanian"
+   ],
+   "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya",
+   "foto": "assets/img/fasilitas/2023/f053.jpg",
+   "galeri": [
+    {
+     "src": "assets/img/fasilitas/2023/f053.jpg",
+     "ket": "",
+     "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya, Desember 2023"
+    },
+    {
+     "src": "assets/img/fasilitas/2023/f054.jpg",
+     "ket": "",
+     "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya, Desember 2023"
+    },
+    {
+     "src": "assets/img/fasilitas/2023/f055.jpg",
+     "ket": "",
+     "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya, Desember 2023"
+    }
+   ],
+   "lat": -8.398148,
+   "lng": 140.465725,
+   "status": "terverifikasi",
+   "titikDari": "Koordinat foto dokumentasi 2023-12-07"
+  },
+  {
+   "id": "mck-posyandu",
+   "nama": "MCK Posyandu",
+   "kategori": "Air bersih",
+   "jenis": "MCK umum",
+   "dalamKampung": true,
+   "alamat": "Kampung Marga Mulya, Distrik Semangga",
+   "keterangan": [
+    "MCK umum dan menara tandon air di kompleks posyandu"
+   ],
+   "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya",
+   "foto": "assets/img/fasilitas/2023/f028.jpg",
+   "galeri": [
+    {
+     "src": "assets/img/fasilitas/2023/f028.jpg",
+     "ket": "",
+     "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya, Desember 2023"
+    },
+    {
+     "src": "assets/img/fasilitas/2023/f029.jpg",
+     "ket": "",
+     "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya, Desember 2023"
+    },
+    {
+     "src": "assets/img/fasilitas/2023/f030.jpg",
+     "ket": "",
+     "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya, Desember 2023"
+    }
+   ],
+   "lat": -8.401441,
+   "lng": 140.459682,
+   "status": "terverifikasi",
+   "titikDari": "Koordinat foto dokumentasi 2023-12-07"
+  },
+  {
+   "id": "mck-masjid-nurul-huda",
+   "nama": "MCK Masjid Nurul Huda",
+   "kategori": "Air bersih",
+   "jenis": "MCK umum",
+   "dalamKampung": true,
+   "alamat": "Kampung Marga Mulya, Distrik Semangga",
+   "keterangan": [
+    "MCK umum dan tandon air di kompleks Masjid Nurul Huda"
+   ],
+   "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya",
+   "foto": "assets/img/fasilitas/2023/f019.jpg",
+   "galeri": [
+    {
+     "src": "assets/img/fasilitas/2023/f019.jpg",
+     "ket": "",
+     "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya, Desember 2023"
+    },
+    {
+     "src": "assets/img/fasilitas/2023/f020.jpg",
+     "ket": "",
+     "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya, Desember 2023"
+    },
+    {
+     "src": "assets/img/fasilitas/2023/f021.jpg",
+     "ket": "",
+     "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya, Desember 2023"
+    }
+   ],
+   "lat": -8.40011,
+   "lng": 140.457762,
+   "status": "terverifikasi",
+   "titikDari": "Koordinat foto dokumentasi 2023-12-07"
+  },
+  {
+   "id": "pengering-padi",
+   "nama": "Gedung Pengering Padi (Dryer)",
+   "kategori": "Pertanian",
+   "jenis": "Pengering padi",
+   "dalamKampung": true,
+   "alamat": "Kampung Marga Mulya, Distrik Semangga",
+   "keterangan": [
+    "Gedung pengering gabah untuk pascapanen padi",
+    "Alamat GPS: jalan tanpa nama, perbatasan Semangga Jaya"
+   ],
+   "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya",
+   "foto": "assets/img/fasilitas/2023/f042.jpg",
+   "galeri": [
+    {
+     "src": "assets/img/fasilitas/2023/f042.jpg",
+     "ket": "",
+     "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya, Desember 2023"
+    },
+    {
+     "src": "assets/img/fasilitas/2023/f043.jpg",
+     "ket": "",
+     "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya, Desember 2023"
+    },
+    {
+     "src": "assets/img/fasilitas/2023/f044.jpg",
+     "ket": "",
+     "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya, Desember 2023"
+    }
+   ],
+   "lat": -8.41016,
+   "lng": 140.449648,
+   "status": "terverifikasi",
+   "titikDari": "Koordinat foto dokumentasi 2023-12-07"
+  },
+  {
+   "id": "pengecer-pupuk",
+   "nama": "Pengecer Resmi Pupuk Bersubsidi",
+   "kategori": "Pertanian",
+   "jenis": "Kios pupuk",
+   "dalamKampung": true,
+   "alamat": "Kampung Marga Mulya, Distrik Semangga",
+   "keterangan": [
+    "Kios pengecer resmi pupuk bersubsidi untuk petani"
+   ],
+   "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya",
+   "foto": "assets/img/fasilitas/2023/f045.jpg",
+   "galeri": [
+    {
+     "src": "assets/img/fasilitas/2023/f045.jpg",
+     "ket": "",
+     "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya, Desember 2023"
+    },
+    {
+     "src": "assets/img/fasilitas/2023/f046.jpg",
+     "ket": "",
+     "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya, Desember 2023"
+    },
+    {
+     "src": "assets/img/fasilitas/2023/f047.jpg",
+     "ket": "",
+     "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya, Desember 2023"
+    }
+   ],
+   "lat": -8.401613,
+   "lng": 140.456961,
+   "status": "terverifikasi",
+   "titikDari": "Koordinat foto dokumentasi 2023-12-07"
   },
   {
    "id": "irigasi",
@@ -728,17 +1582,226 @@
   },
   {
    "id": "lapangan",
-   "nama": "Sarana Olahraga Kampung",
+   "nama": "Lapangan Kampung Marga Mulya",
    "kategori": "Olahraga",
    "jenis": "Lapangan",
    "dalamKampung": true,
    "alamat": "Kampung Marga Mulya",
    "keterangan": [
-    "Monografi 2026: 2 unit sarana olahraga",
-    "Isi jenis lapangan dan lokasinya"
+    "Lapangan terbuka untuk olahraga dan kegiatan warga",
+    "Monografi 2026: 2 unit sarana olahraga"
    ],
-   "status": "sebagian",
-   "sumber": "Monografi Kampung 2026"
+   "status": "terverifikasi",
+   "sumber": "Monografi Kampung 2026",
+   "foto": "assets/img/fasilitas/2023/f050.jpg",
+   "galeri": [
+    {
+     "src": "assets/img/fasilitas/2023/f050.jpg",
+     "ket": "",
+     "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya, Desember 2023"
+    },
+    {
+     "src": "assets/img/fasilitas/2023/f051.jpg",
+     "ket": "",
+     "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya, Desember 2023"
+    },
+    {
+     "src": "assets/img/fasilitas/2023/f052.jpg",
+     "ket": "",
+     "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya, Desember 2023"
+    }
+   ],
+   "lat": -8.400028,
+   "lng": 140.458425,
+   "titikDari": "Koordinat foto dokumentasi Desember 2023"
+  },
+  {
+   "id": "kolam-pemancingan",
+   "nama": "Kolam Pemancingan Kampung",
+   "kategori": "Olahraga",
+   "jenis": "Kolam pemancingan",
+   "dalamKampung": true,
+   "alamat": "Kampung Marga Mulya, Distrik Semangga",
+   "keterangan": [
+    "Kolam pemancingan dengan pondok tempat duduk",
+    "BUMKam mencatat unit usaha wisata pemancingan (monografi 2026)"
+   ],
+   "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya",
+   "foto": "assets/img/fasilitas/2023/f034.jpg",
+   "galeri": [
+    {
+     "src": "assets/img/fasilitas/2023/f034.jpg",
+     "ket": "",
+     "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya, Desember 2023"
+    },
+    {
+     "src": "assets/img/fasilitas/2023/f035.jpg",
+     "ket": "",
+     "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya, Desember 2023"
+    },
+    {
+     "src": "assets/img/fasilitas/2023/f036.jpg",
+     "ket": "",
+     "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya, Desember 2023"
+    }
+   ],
+   "lat": -8.400433,
+   "lng": 140.460145,
+   "status": "terverifikasi",
+   "titikDari": "Koordinat foto dokumentasi 2023-12-07"
+  },
+  {
+   "id": "joglo-gazebo",
+   "nama": "Rumah Joglo dan Gazebo",
+   "kategori": "Olahraga",
+   "jenis": "Area rekreasi",
+   "dalamKampung": true,
+   "alamat": "Kampung Marga Mulya, Distrik Semangga",
+   "keterangan": [
+    "Pendopo joglo, gazebo, dan rumah kecil di sekitar kolam pemancingan"
+   ],
+   "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya",
+   "foto": "assets/img/fasilitas/2023/f037.jpg",
+   "galeri": [
+    {
+     "src": "assets/img/fasilitas/2023/f037.jpg",
+     "ket": "",
+     "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya, Desember 2023"
+    },
+    {
+     "src": "assets/img/fasilitas/2023/f038.jpg",
+     "ket": "",
+     "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya, Desember 2023"
+    },
+    {
+     "src": "assets/img/fasilitas/2023/f039.jpg",
+     "ket": "",
+     "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya, Desember 2023"
+    }
+   ],
+   "lat": -8.400439,
+   "lng": 140.46007,
+   "status": "terverifikasi",
+   "titikDari": "Koordinat foto dokumentasi 2023-12-07"
+  },
+  {
+   "id": "tower-pemancar",
+   "nama": "Menara Pemancar Telekomunikasi",
+   "kategori": "Umum",
+   "jenis": "Menara telekomunikasi",
+   "dalamKampung": true,
+   "alamat": "Kampung Marga Mulya, Distrik Semangga",
+   "keterangan": [
+    "Menara pemancar sinyal seluler",
+    "Monografi 2026: 2 menara Telkomsel 4G"
+   ],
+   "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya",
+   "foto": "assets/img/fasilitas/2023/f111.jpg",
+   "galeri": [
+    {
+     "src": "assets/img/fasilitas/2023/f111.jpg",
+     "ket": "",
+     "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya, Desember 2023"
+    }
+   ],
+   "lat": -8.406233,
+   "lng": 140.471618,
+   "status": "terverifikasi",
+   "titikDari": "Koordinat foto dokumentasi 2023-12-13"
+  },
+  {
+   "id": "tower-sinyal",
+   "nama": "Tower Sinyal Kampung",
+   "kategori": "Umum",
+   "jenis": "Menara telekomunikasi",
+   "dalamKampung": true,
+   "alamat": "Kampung Marga Mulya, Distrik Semangga",
+   "keterangan": [
+    "Menara sinyal bergerak (mobile BTS)",
+    "Titik lokasi belum valid (GPS foto tidak berubah)"
+   ],
+   "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya",
+   "foto": "assets/img/fasilitas/2023/f040.jpg",
+   "galeri": [
+    {
+     "src": "assets/img/fasilitas/2023/f040.jpg",
+     "ket": "",
+     "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya, Desember 2023"
+    },
+    {
+     "src": "assets/img/fasilitas/2023/f041.jpg",
+     "ket": "",
+     "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya, Desember 2023"
+    }
+   ],
+   "status": "sebagian"
+  },
+  {
+   "id": "makam-1",
+   "nama": "Lahan Makam Kampung I",
+   "kategori": "Umum",
+   "jenis": "Pemakaman umum",
+   "dalamKampung": true,
+   "alamat": "Kampung Marga Mulya, Distrik Semangga",
+   "keterangan": [
+    "Lahan pemakaman umum warga",
+    "Monografi 2026: lahan makam 2 ha"
+   ],
+   "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya",
+   "foto": "assets/img/fasilitas/2023/f056.jpg",
+   "galeri": [
+    {
+     "src": "assets/img/fasilitas/2023/f056.jpg",
+     "ket": "",
+     "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya, Desember 2023"
+    },
+    {
+     "src": "assets/img/fasilitas/2023/f057.jpg",
+     "ket": "",
+     "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya, Desember 2023"
+    },
+    {
+     "src": "assets/img/fasilitas/2023/f058.jpg",
+     "ket": "",
+     "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya, Desember 2023"
+    }
+   ],
+   "lat": -8.39694,
+   "lng": 140.456989,
+   "status": "terverifikasi",
+   "titikDari": "Koordinat foto dokumentasi 2023-12-13"
+  },
+  {
+   "id": "makam-2",
+   "nama": "Lahan Makam Kampung II",
+   "kategori": "Umum",
+   "jenis": "Pemakaman umum",
+   "dalamKampung": true,
+   "alamat": "Kampung Marga Mulya, Distrik Semangga",
+   "keterangan": [
+    "Lahan pemakaman umum dengan gapura dan pondok",
+    "Titik lokasi belum valid (GPS foto tidak berubah)"
+   ],
+   "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya",
+   "foto": "assets/img/fasilitas/2023/f112.jpg",
+   "galeri": [
+    {
+     "src": "assets/img/fasilitas/2023/f112.jpg",
+     "ket": "",
+     "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya, Desember 2023"
+    },
+    {
+     "src": "assets/img/fasilitas/2023/f113.jpg",
+     "ket": "",
+     "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya, Desember 2023"
+    },
+    {
+     "src": "assets/img/fasilitas/2023/f114.jpg",
+     "ket": "",
+     "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya, Desember 2023"
+    }
+   ],
+   "status": "sebagian"
   },
   {
    "id": "kios",
@@ -894,7 +1957,6 @@
    ],
    "keterangan": [
     "SPBU Pertamina terdekat dari Marga Mulya; di Google Maps tercatat sebagai Pom Bensin Kuprik / Kuper Gas Station",
-    "Belum ada SPBU bernama Marga Mulya di Google Maps",
     "Sekitar 6–7 km dari pusat kampung"
    ],
    "sumber": "Google Maps",

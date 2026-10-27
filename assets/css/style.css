@@ -727,3 +727,5 @@ details.more[open] > summary::before { transform: rotate(45deg); }
 .tl__img { display: block; width: 100%; max-width: 360px; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 10px; margin: 4px 0 8px; border: 1px solid var(--line); }
 .timeline .tap { text-align: left; }
 .tl__img[src*="tomat"], .pot__img[src*="tomat"] { object-position: center 70%; }
+.wcard__act .linkbtn { background: none; border: 0; border-left: 1px solid var(--line); padding: 11px 6px; font: inherit; font-weight: 700; font-size: .92rem; color: var(--blue); display: inline-flex; justify-content: center; align-items: center; gap: 6px; cursor: pointer; }
+.wcard__act .linkbtn:hover { background: var(--soft); }

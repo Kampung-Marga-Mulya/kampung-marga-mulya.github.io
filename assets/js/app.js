@@ -820,9 +820,13 @@
     var KAT = {
       "Pendidikan": { ic: "school", c: "#0B3A8F" }, "Ibadah": { ic: "home", c: "#082A66" }, "Kesehatan": { ic: "health", c: "#1452C2" },
       "Air bersih": { ic: "drop", c: "#2563D6" }, "Pemerintahan": { ic: "users", c: "#346FDE" }, "Pertanian": { ic: "sprout", c: "#1046A8" },
-      "Olahraga": { ic: "ball", c: "#4A7FE2" }, "Ekonomi": { ic: "toko", c: "#5B8BE6" }, "Keamanan": { ic: "person", c: "#0F3F99" }
+      "Olahraga": { ic: "ball", c: "#4A7FE2" }, "Ekonomi": { ic: "toko", c: "#5B8BE6" }, "Keamanan": { ic: "person", c: "#0F3F99" },
+      "Umum": { ic: "layers", c: "#2F5FB8" }
     };
-    var JENIS_IC = { "Gereja": "church", "Gereja Katolik": "church", "Masjid": "mosque", "Musala": "mosque", "Madrasah": "school", "Bank": "wallet", "Koperasi": "toko", "Pertashop (BBM)": "drop", "Kantor polisi": "person", "Pos Linmas": "person" };
+    var JENIS_IC = { "Gereja": "church", "Gereja Katolik": "church", "Masjid": "mosque", "Musala": "mosque", "Madrasah": "school", "Bank": "wallet", "Koperasi": "toko", "Pertashop (BBM)": "drop", "Kantor polisi": "person", "Pos Linmas": "person",
+      "TPQ": "school", "TPQ / pondok pesantren": "school", "Organisasi keagamaan": "mosque", "Lahan gereja": "church", "Apotek": "health",
+      "MCK umum": "drop", "Waduk": "wave", "Pengering padi": "sprout", "Kios pupuk": "sprout", "Kolam pemancingan": "fish", "Area rekreasi": "tree",
+      "SPBU": "drop", "Bengkel": "toko", "Warung makan": "fork", "Usaha konstruksi": "toko", "Menara telekomunikasi": "layers", "Pemakaman umum": "tree", "Gedung serba guna": "users", "Kantor dinas": "sprout" };
     var BLN = ["Jan", "Feb", "Mar", "Apr", "Mei", "Jun", "Jul", "Agu", "Sep", "Okt", "Nov", "Des"];
     var survei = function (f) {
       if (!f.survei) return "";
@@ -859,10 +863,12 @@
         '<span class="fcard__addr">' + esc(f.alamat) + "</span>" +
         '<ul class="fcard__ket">' + (f.keterangan || []).map(function (k) { return "<li>" + esc(k) + "</li>"; }).join("") + "</ul>" +
         (f.kontak ? '<span class="fcard__addr">' + ic("mail") + esc(f.kontak) + "</span>" : "") +
-        (f.survei ? '<span class="fcard__addr fcard__srv">' + ic("camera") + esc(survei(f)) + "</span>" : "") +
+        (f.foto && f.sumberUrl ? '<span class="fcard__addr fcard__srv">' + ic("external") + "Data: " + esc(f.sumber) + "</span>" : "") +
+        (f.survei ? '<span class="fcard__addr fcard__srv">' + ic("camera") + esc(survei(f)) + "</span>" : (f.titikDari ? '<span class="fcard__addr fcard__srv">' + ic("pin") + esc(f.titikDari.replace(/2023-12-0?(\d+)/, function (_, d) { return d + " Des 2023"; })) + "</span>" : "")) +
         "</span></button>" +
         '<span class="wcard__act"><a href="' + esc(gmaps(f)) + '" target="_blank" rel="noopener">' + ic("pin") + "Google Maps</a>" +
-        (f.sumberUrl ? '<a href="' + esc(f.sumberUrl) + '" target="_blank" rel="noopener">' + ic("external") + "Sumber: " + esc(f.sumber) + "</a>" : (f.foto ? '<a href="' + esc(f.foto) + '" target="_blank" rel="noopener">' + ic("image") + "Lihat foto</a>" : '<a href="#kontak">' + ic("phone") + "Kirim data</a>")) +
+        (f.foto ? '<button type="button" class="linkbtn" data-fgal="' + esc(f.id) + '">' + ic("image") + "Lihat foto" + (fotoF(f).length > 1 ? " (" + fotoF(f).length + ")" : "") + "</button>"
+          : (f.sumberUrl ? '<a href="' + esc(f.sumberUrl) + '" target="_blank" rel="noopener">' + ic("external") + "Sumber: " + esc(f.sumber) + "</a>" : '<a href="#kontak">' + ic("phone") + "Kirim data</a>")) +
         "</span></article>";
     }
     function render() {
@@ -874,6 +880,17 @@
       });
     }
     var grupF = [];
+    var fotoF = function (f) {
+      var a = f.foto ? [{ src: f.foto, ket: f.survei ? "Foto survei 26 Oktober 2026" : "", sumber: f.survei ? "Survei Tim Ekspedisi Patriot IPB University" : (f.galeri && f.galeri[0] && f.galeri[0].src === f.foto ? f.galeri[0].sumber : f.sumber) }] : [];
+      return a.concat((f.galeri || []).filter(function (g) { return g.src !== f.foto; }));
+    };
+    document.addEventListener("click", function (e) {
+      var b = e.target.closest("[data-fgal]"); if (!b) return;
+      var f = F.fasilitas.filter(function (x) { return x.id === b.getAttribute("data-fgal"); })[0]; if (!f) return;
+      openModal({ kat: f.kategori + " · " + (f.jenis || ""), title: f.nama, html: '<div class="potgal">' + fotoF(f).map(function (g) {
+        return '<figure><img src="' + esc(g.src) + '" alt="' + esc(f.nama) + '" loading="lazy"><figcaption>' + (g.ket ? "<b>" + esc(g.ket) + "</b>" : "") + "<span>Foto: " + esc(g.sumber || "") + "</span></figcaption></figure>";
+      }).join("") + "</div><p>" + esc(f.alamat) + "</p>" });
+    });
     var prev = $("#fasilPrev"), next = $("#fasilNext"), count = $("#fasilCount");
     var step = function () { var c = track.querySelector(".ncard"); return c ? c.getBoundingClientRect().width + 16 : 300; };
     var atS = function () { return track.scrollLeft <= 2; }, atE = function () { return track.scrollLeft >= track.scrollWidth - track.clientWidth - 2; };
@@ -955,7 +972,7 @@
       $("#fasilStatus").innerHTML = [["terverifikasi", "Ada foto/sumber dan titik lokasi"], ["sebagian", "Ada sumber, data belum lengkap"], ["perlu-data", "Menunggu data dari kampung"]].map(function (s_) {
         return '<li><span class="fbadge ' + STATUS[s_[0]][1] + '">' + STATUS[s_[0]][0] + "</span><b>" + hit(s_[0]) + "</b><small>" + s_[1] + "</small></li>";
       }).join("");
-      $("#fasilNote").innerHTML = "Foto dan titik lokasi berasal dari survei Tim Ekspedisi Patriot IPB University pada 26 Oktober 2026; titik di peta adalah koordinat foto bertimestamp (posisi juru foto). Data sekolah juga bersumber dari Data Referensi Kemendikdasmen. Jumlah resmi seluruh sarana menurut monografi kampung ada di rekap di atas. Musala yang belum diketahui namanya diberi nomor urut angka Romawi.";
+      $("#fasilNote").innerHTML = "Foto dan titik lokasi berasal dari Dokumen Fasilitas Umum Kampung Marga Mulya (foto GPS Desember 2023) dan survei Tim Ekspedisi Patriot IPB University 26 Oktober 2026; titik di peta adalah koordinat foto (posisi juru foto) dan cap waktu pada foto yang dipajang sudah dipotong. Data sekolah juga bersumber dari Data Referensi Kemendikdasmen. Jumlah resmi seluruh sarana menurut monografi kampung ada di rekap di atas. Musala yang belum diketahui namanya diberi nomor urut angka Romawi.";
       petakan(); render();
     }).catch(function () { track.innerHTML = '<p class="small">Data fasilitas belum dapat dimuat.</p>'; });
   })();
