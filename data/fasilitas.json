@@ -41,7 +41,9 @@
      "ket": "",
      "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya, Desember 2023"
     }
-   ]
+   ],
+   "jarak_km": 0.2,
+   "waktu_menit": 5
   },
   {
    "id": "kantor-kampung-semangga3",
@@ -76,7 +78,9 @@
    "lat": -8.401639,
    "lng": 140.459705,
    "status": "terverifikasi",
-   "titikDari": "Koordinat foto dokumentasi 2023-12-07"
+   "titikDari": "Koordinat foto dokumentasi 2023-12-07",
+   "jarak_km": 1.1,
+   "waktu_menit": 5
   },
   {
    "id": "gedung-serbaguna",
@@ -110,7 +114,9 @@
    "lat": -8.40607,
    "lng": 140.467551,
    "status": "terverifikasi",
-   "titikDari": "Koordinat foto dokumentasi 2023-12-07"
+   "titikDari": "Koordinat foto dokumentasi 2023-12-07",
+   "jarak_km": 0.2,
+   "waktu_menit": 5
   },
   {
    "id": "bpp-semangga",
@@ -567,7 +573,9 @@
    "lat": -8.404459,
    "lng": 140.46438,
    "status": "terverifikasi",
-   "titikDari": "Koordinat foto dokumentasi 2023-12-07"
+   "titikDari": "Koordinat foto dokumentasi 2023-12-07",
+   "jarak_km": 0.5,
+   "waktu_menit": 5
   },
   {
    "id": "majelis-nu",
@@ -867,7 +875,9 @@
    ],
    "lat": -8.401255,
    "lng": 140.459904,
-   "titikDari": "Koordinat foto dokumentasi Desember 2023"
+   "titikDari": "Koordinat foto dokumentasi Desember 2023",
+   "jarak_km": 1.1,
+   "waktu_menit": 5
   },
   {
    "id": "kb-an-nasiroh",
@@ -905,7 +915,9 @@
    ],
    "lat": -8.416926,
    "lng": 140.465164,
-   "titikDari": "Koordinat foto dokumentasi Desember 2023"
+   "titikDari": "Koordinat foto dokumentasi Desember 2023",
+   "jarak_km": 1.7,
+   "waktu_menit": 5
   },
   {
    "id": "tk-al-ittihad",
@@ -1023,7 +1035,9 @@
    "lat": -8.401457,
    "lng": 140.459907,
    "status": "terverifikasi",
-   "titikDari": "Koordinat foto dokumentasi 2023-12-07"
+   "titikDari": "Koordinat foto dokumentasi 2023-12-07",
+   "jarak_km": 1.1,
+   "waktu_menit": 5
   },
   {
    "id": "klinik-santa-lusia",
@@ -1133,7 +1147,9 @@
    ],
    "lat": -8.407374,
    "lng": 140.470952,
-   "titikDari": "Koordinat foto dokumentasi Desember 2023"
+   "titikDari": "Koordinat foto dokumentasi Desember 2023",
+   "jarak_km": 0.4,
+   "waktu_menit": 5
   },
   {
    "id": "bengkel",
@@ -1167,7 +1183,9 @@
    "lat": -8.401132,
    "lng": 140.460113,
    "status": "terverifikasi",
-   "titikDari": "Koordinat foto dokumentasi 2023-12-07"
+   "titikDari": "Koordinat foto dokumentasi 2023-12-07",
+   "jarak_km": 1.2,
+   "waktu_menit": 5
   },
   {
    "id": "warung-makan",
@@ -1196,7 +1214,9 @@
    "lat": -8.407468,
    "lng": 140.470883,
    "status": "terverifikasi",
-   "titikDari": "Koordinat foto dokumentasi 2023-12-07"
+   "titikDari": "Koordinat foto dokumentasi 2023-12-07",
+   "jarak_km": 0.4,
+   "waktu_menit": 5
   },
   {
    "id": "pengolahan-aspal",
@@ -1315,7 +1335,9 @@
    "lat": -8.412621,
    "lng": 140.467927,
    "status": "terverifikasi",
-   "titikDari": "Koordinat foto dokumentasi 2023-12-07"
+   "titikDari": "Koordinat foto dokumentasi 2023-12-07",
+   "jarak_km": 1.1,
+   "waktu_menit": 5
   },
   {
    "id": "musala-al-barokah",
@@ -1379,7 +1401,9 @@
    ],
    "lat": -8.405844,
    "lng": 140.467128,
-   "titikDari": "Koordinat foto dokumentasi Desember 2023"
+   "titikDari": "Koordinat foto dokumentasi Desember 2023",
+   "jarak_km": 0.3,
+   "waktu_menit": 5
   },
   {
    "id": "bendali",
@@ -1413,7 +1437,9 @@
    "lat": -8.398148,
    "lng": 140.465725,
    "status": "terverifikasi",
-   "titikDari": "Koordinat foto dokumentasi 2023-12-07"
+   "titikDari": "Koordinat foto dokumentasi 2023-12-07",
+   "jarak_km": 1.9,
+   "waktu_menit": 5
   },
   {
    "id": "mck-posyandu",
@@ -1447,7 +1473,9 @@
    "lat": -8.401441,
    "lng": 140.459682,
    "status": "terverifikasi",
-   "titikDari": "Koordinat foto dokumentasi 2023-12-07"
+   "titikDari": "Koordinat foto dokumentasi 2023-12-07",
+   "jarak_km": 1.1,
+   "waktu_menit": 5
   },
   {
    "id": "mck-masjid-nurul-huda",
@@ -1481,7 +1509,9 @@
    "lat": -8.40011,
    "lng": 140.457762,
    "status": "terverifikasi",
-   "titikDari": "Koordinat foto dokumentasi 2023-12-07"
+   "titikDari": "Koordinat foto dokumentasi 2023-12-07",
+   "jarak_km": 1.4,
+   "waktu_menit": 5
   },
   {
    "id": "pengering-padi",
@@ -1516,7 +1546,9 @@
    "lat": -8.41016,
    "lng": 140.449648,
    "status": "terverifikasi",
-   "titikDari": "Koordinat foto dokumentasi 2023-12-07"
+   "titikDari": "Koordinat foto dokumentasi 2023-12-07",
+   "jarak_km": 2.9,
+   "waktu_menit": 10
   },
   {
    "id": "pengecer-pupuk",
@@ -1550,7 +1582,9 @@
    "lat": -8.401613,
    "lng": 140.456961,
    "status": "terverifikasi",
-   "titikDari": "Koordinat foto dokumentasi 2023-12-07"
+   "titikDari": "Koordinat foto dokumentasi 2023-12-07",
+   "jarak_km": 1.5,
+   "waktu_menit": 5
   },
   {
    "id": "irigasi",
@@ -1613,7 +1647,9 @@
    ],
    "lat": -8.400028,
    "lng": 140.458425,
-   "titikDari": "Koordinat foto dokumentasi Desember 2023"
+   "titikDari": "Koordinat foto dokumentasi Desember 2023",
+   "jarak_km": 1.5,
+   "waktu_menit": 5
   },
   {
    "id": "kolam-pemancingan",
@@ -1648,7 +1684,9 @@
    "lat": -8.400433,
    "lng": 140.460145,
    "status": "terverifikasi",
-   "titikDari": "Koordinat foto dokumentasi 2023-12-07"
+   "titikDari": "Koordinat foto dokumentasi 2023-12-07",
+   "jarak_km": 1.2,
+   "waktu_menit": 5
   },
   {
    "id": "joglo-gazebo",
@@ -1682,7 +1720,9 @@
    "lat": -8.400439,
    "lng": 140.46007,
    "status": "terverifikasi",
-   "titikDari": "Koordinat foto dokumentasi 2023-12-07"
+   "titikDari": "Koordinat foto dokumentasi 2023-12-07",
+   "jarak_km": 1.2,
+   "waktu_menit": 5
   },
   {
    "id": "tower-pemancar",
@@ -1707,7 +1747,9 @@
    "lat": -8.406233,
    "lng": 140.471618,
    "status": "terverifikasi",
-   "titikDari": "Koordinat foto dokumentasi 2023-12-13"
+   "titikDari": "Koordinat foto dokumentasi 2023-12-13",
+   "jarak_km": 0.5,
+   "waktu_menit": 5
   },
   {
    "id": "tower-sinyal",
@@ -1769,7 +1811,9 @@
    "lat": -8.39694,
    "lng": 140.456989,
    "status": "terverifikasi",
-   "titikDari": "Koordinat foto dokumentasi 2023-12-13"
+   "titikDari": "Koordinat foto dokumentasi 2023-12-13",
+   "jarak_km": 1.9,
+   "waktu_menit": 5
   },
   {
    "id": "makam-2",
