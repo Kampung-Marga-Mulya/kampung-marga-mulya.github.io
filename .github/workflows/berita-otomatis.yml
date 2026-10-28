@@ -1,6 +1,7 @@
 name: Perbarui berita otomatis
 
-# Mencari berita baru tentang Kampung Marga Mulya setiap 3 jam.
+# Mencari berita baru tentang Kampung Marga Mulya dan berita terkait harian
+# (Semangga, pertanian, harga pangan Merauke) setiap 3 jam.
 # Bisa juga dijalankan manual: tab Actions → "Perbarui berita otomatis" → Run workflow.
 on:
   schedule:
@@ -18,7 +19,7 @@ concurrency:
 jobs:
   perbarui:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 25
     steps:
       - uses: actions/checkout@v4
 
@@ -41,7 +42,7 @@ jobs:
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/berita-otomatis.json
+          git add data/berita-otomatis.json data/berita-abaikan.json
           git commit -m "Perbarui berita otomatis"
           git push
           echo "berubah=1" >> "$GITHUB_OUTPUT"

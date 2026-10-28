@@ -14,7 +14,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
-  <link rel="stylesheet" href="assets/css/style.css?v=202610290239">
+  <link rel="stylesheet" href="assets/css/style.css?v=202610290250">
 </head>
 <body>
   <!-- Kumpulan ikon garis (dipakai dengan <svg><use href="#i-..."/></svg>) -->
@@ -130,7 +130,12 @@
             <button type="button" class="news__btn" id="newsNext" aria-label="Berita berikutnya"><svg class="ic"><use href="#i-arrow"/></svg></button>
           </div>
         </div>
-        <div class="news__track" id="newsTrack" tabindex="0" aria-label="Daftar berita, geser ke kiri atau kanan"></div>
+        <div class="chips news__filter" id="newsFilter" role="group" aria-label="Saring berita">
+          <button type="button" class="chipbtn" data-f="semua" aria-pressed="true">Semua</button>
+          <button type="button" class="chipbtn" data-f="utama" aria-pressed="false">Marga Mulya</button>
+          <button type="button" class="chipbtn" data-f="terkait" aria-pressed="false">Semangga &amp; Merauke</button>
+        </div>
+        <div class="news__track" id="newsTrack" tabindex="0" aria-label="Daftar berita yang bergulir otomatis; geser atau gunakan tombol panah"></div>
       </div>
     </section>
     <section class="wrap explore" aria-labelledby="exploreTitle">
@@ -488,8 +493,8 @@
   </dialog>
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
-  <script src="assets/js/data.js?v=202610290239"></script>
-  <script src="assets/js/app.js?v=202610290239"></script>
-  <script src="assets/js/router.js?v=202610290239"></script>
+  <script src="assets/js/data.js?v=202610290250"></script>
+  <script src="assets/js/app.js?v=202610290250"></script>
+  <script src="assets/js/router.js?v=202610290250"></script>
 </body>
 </html>

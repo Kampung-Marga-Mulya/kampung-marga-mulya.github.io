@@ -915,3 +915,12 @@ html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
   .hero .collab { padding: 10px 12px; margin-bottom: 1rem; font-size: .92rem; }
 }
 .hero__in.wrap { width: calc(100% - 32px); max-width: 1128px; }
+
+/* ---------- Berita: bergulir terus tanpa henti dan berputar mulus ---------- */
+.news__track { scroll-snap-type: none; scroll-behavior: auto; scrollbar-width: none; overscroll-behavior-x: contain; }
+.news__track::-webkit-scrollbar { display: none; }
+.news__track .ncard { scroll-snap-align: none; }
+.news__filter { margin: -4px 0 12px; }
+.news__filter .chipbtn { padding: 6px 12px; font-size: .88rem; }
+.ncard__kat { position: absolute; left: 10px; bottom: 10px; max-width: calc(100% - 20px); background: rgba(10,10,10,.6); color: #fff; font-size: .72rem; font-weight: 700; letter-spacing: .02em; padding: 3px 9px; border-radius: 99px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.ncard--terkait .ncard__kat { background: var(--blue); }

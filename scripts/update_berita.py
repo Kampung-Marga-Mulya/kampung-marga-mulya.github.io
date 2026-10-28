@@ -8,6 +8,11 @@ Bing News dan Google News, memastikan isi artikel benar-benar menyebut kampung
 ini, mengambil gambar sampulnya, lalu menyimpannya ke data/berita-otomatis.json.
 Website membaca file itu dan langsung menampilkan berita barunya di slider.
 
+Selain berita utama (yang menyebut Kampung Marga Mulya), robot juga mengumpulkan
+"berita terkait" harian: kabar Distrik Semangga, pertanian, harga gabah/beras/cabai,
+peternakan, dan transmigrasi di Kabupaten Merauke. Berita terkait disimpan di kunci
+"terkait", hanya yang terbit 30 hari terakhir, paling banyak 24 berita.
+
 Berita yang keliru bisa disembunyikan dengan menambahkan tautannya ke
 data/berita-abaikan.json.
 """
@@ -49,9 +54,30 @@ WAJIB_LOKASI = re.compile(r"merauke|semangga", re.I)
 DESA_LAIN = re.compile(r"\b(lahat|tangerang|mauk|kikim|rambah|rokan hulu|kutai timur|sungai bahar|muaro jambi)\b", re.I)
 
 
+# ---------------- Berita terkait (harian) ----------------
+# (kueri, kategori). Google News memakai operator when:Nd agar hasilnya terbaru.
+KUERI_TERKAIT = [
+    ('"Semangga" Merauke', "Semangga"), ('"Distrik Semangga"', "Semangga"),
+    ('harga gabah Merauke', "Harga pangan"), ('harga beras Merauke', "Harga pangan"),
+    ('harga cabai Merauke', "Harga pangan"), ('harga pangan Merauke', "Harga pangan"),
+    ('petani Merauke', "Pertanian Merauke"), ('panen padi Merauke', "Pertanian Merauke"),
+    ('sawah Merauke', "Pertanian Merauke"), ('pupuk petani Merauke', "Pertanian Merauke"),
+    ('jagung Merauke', "Pertanian Merauke"), ('peternak Merauke', "Peternakan"),
+    ('transmigrasi Merauke', "Transmigrasi"), ('kampung Merauke dana desa', "Kampung Merauke"),
+]
+TERKAIT_HARI = 30          # umur maksimal berita terkait
+TERKAIT_MAKS = 24          # jumlah maksimal yang disimpan
+LOKAL = re.compile(r"merauke|semangga|papua selatan", re.I)
+TOPIK = re.compile(r"petani|pertanian|padi|beras|gabah|cabai|cabe|sawah|panen|tanam|pupuk|jagung|kedelai|hortikultura|"
+                   r"ternak|peternak|sapi|ayam|telur|pangan|harga|inflasi|transmigra|irigasi|alsintan|bulog|semangga|"
+                   r"kampung|distrik|bumkam|dana desa|swasembada|food estate|lumbung|nelayan|pasar", re.I)
+TOPIK_TAJAM = re.compile(r"petani|pertanian|padi|beras|gabah|cabai|cabe|sawah|panen|pupuk|jagung|ternak|peternak|pangan|"
+                         r"harga|transmigra|irigasi|alsintan|bulog|semangga|swasembada|lumbung|kampung", re.I)
+
+
 # Halaman yang bukan artikel (tag, kategori, lowongan, lampiran foto WordPress, dsb.)
 SKIP_URL = re.compile(r"/(tag|tags|category|kategori|topik|search|cari|page|author|indeks)/|cariin-kerja|lowongan|"
-                      r"/\d{4}/\d{2}/\d{2}/[^/]+/[^/]+/?$", re.I)
+                      r"/\d{4}/\d{2}/\d{2}/[^/]+/[^/]+/?$|jadwal-sholat|jadwal-imsak|/live-?report|/video/", re.I)
 NAMA_MEDIA = {"papuaselatanpos.com": "Papua Selatan Pos", "metromerauke.co": "Metro Merauke", "papua.tribunnews.com": "Tribun Papua",
               "tribunnews.com": "Tribunnews", "suara.merauke.go.id": "Suara Merauke (Pemkab Merauke)",
               "portal.merauke.go.id": "Pemkab Merauke", "tiffanews.co.id": "Tiffa News", "barometer99.com": "Barometer99",
@@ -198,6 +224,103 @@ def periksa(url):
     }
 
 
+def periksa_terkait(url):
+    """Buka artikel terkait: harus berlokasi Merauke/Semangga dan bertopik pertanian/kampung."""
+    r = get(url)
+    if r.status_code >= 400:
+        return TERBLOKIR
+    r.encoding = r.apparent_encoding or r.encoding
+    page = r.text
+    text = re.sub(r"<script.*?</script>|<style.*?</style>", " ", page, flags=re.S | re.I)
+    text = re.sub(r"\s+", " ", html.unescape(re.sub(r"<[^>]+>", " ", text))).strip()
+    if len(text) < 400:
+        return TERBLOKIR
+    judul = meta(page, "og:title", "twitter:title") or ""
+    desk = meta(page, "og:description", "description", "twitter:description") or ""
+    kepala = judul + " " + desk
+    if len(LOKAL.findall(text)) < 2 or not (LOKAL.search(kepala) or LOKAL.search(text[:3000])):
+        return None
+    if not TOPIK_TAJAM.search(kepala):
+        return None
+    img = meta(page, "og:image", "twitter:image")
+    if img:
+        img = urllib.parse.urljoin(r.url, img)
+    return {"url_akhir": r.url, "judul": judul or None, "desk": desk or None, "sumber": meta(page, "og:site_name"),
+            "cover": img, "terbit": meta(page, "article:published_time", "og:published_time", "datePublished"),
+            "marga_mulya": bool(WAJIB_NAMA.search(text) and not DESA_LAIN.search(text))}
+
+
+def cari_terkait(now, sudah, judul_sudah, abaikan):
+    batas = (now - dt.timedelta(days=TERKAIT_HARI)).date().isoformat()
+    calon = []
+    for q, kat in KUERI_TERKAIT:
+        for fn, kueri in ((google, q + " when:7d"), (bing, q)):
+            try:
+                hasil = fn(kueri)
+                log(f"[terkait] {fn.__name__} {kueri!r}: {len(hasil)} hasil")
+                for h in hasil[:12]:
+                    h["kategori"] = kat
+                calon += hasil[:12]
+            except Exception as e:  # noqa: BLE001
+                log(f"[terkait] {fn.__name__} {kueri!r} gagal:", e)
+    # dahulukan yang terbaru menurut RSS
+    def pubkey(c):
+        return tanggal(c.get("pub"), None) or ""
+    calon.sort(key=pubkey, reverse=True)
+    baru, utama = [], []
+    for c in calon:
+        if len(baru) >= TERKAIT_MAKS * 2:
+            break
+        tgl_rss = pubkey(c)
+        if tgl_rss and tgl_rss < batas:
+            continue
+        rss_teks = (c["judul"] or "") + " " + (c["desk"] or "")
+        if not (TOPIK.search(rss_teks) or LOKAL.search(rss_teks)):
+            continue
+        url = c["url"]
+        if not url:
+            continue
+        if c.get("google"):
+            url = decode_google(url)
+            if not url:
+                continue
+        if SKIP_URL.search(url) or norm(url) in sudah or norm(url) in abaikan:
+            continue
+        if norm_title(bersihkan_judul(c["judul"], c["sumber"])) in judul_sudah:
+            continue
+        sudah.add(norm(url))
+        try:
+            info = periksa_terkait(url)
+        except Exception as e:  # noqa: BLE001
+            log("  [terkait] gagal membuka", url, e)
+            info = TERBLOKIR
+        if info == TERBLOKIR:
+            if LOKAL.search(rss_teks) and TOPIK_TAJAM.search(rss_teks):
+                info = {"url_akhir": url, "judul": None, "desk": None, "sumber": None, "cover": None, "terbit": None, "marga_mulya": False}
+            else:
+                continue
+        if not info:
+            log("  [terkait] dilewati (tidak lokal/tidak relevan):", url)
+            continue
+        tgl = tanggal(c["pub"], info["terbit"])
+        if not tgl or tgl < batas:
+            continue
+        akhir = info["url_akhir"] or url
+        if SKIP_URL.search(akhir):
+            continue
+        sumber = nama_media(akhir, c["sumber"] or info["sumber"])
+        judul = rapikan_judul(bersihkan_judul(info["judul"] or c["judul"], c["sumber"] or ""), sumber)
+        if norm_title(judul) in judul_sudah:
+            continue
+        judul_sudah.add(norm_title(judul))
+        item = {"tanggal": tgl, "sumber": sumber, "judul": judul, "ringkas": ringkas(info["desk"] or c["desk"]),
+                "url": akhir, "cover": info["cover"] or c["cover"] or "", "otomatis": True,
+                "kategori": "Marga Mulya" if info.get("marga_mulya") else c["kategori"], "ditemukan": now.date().isoformat()}
+        (utama if info.get("marga_mulya") else baru).append(item)
+        log("  + [terkait]" if not info.get("marga_mulya") else "  + [utama via terkait]", tgl, judul)
+    return baru, utama
+
+
 def tanggal(pub, terbit):
     for raw in (terbit, pub):
         if not raw:
@@ -300,10 +423,23 @@ def main():
         judul_sudah.add(norm_title(judul))
         item = {"tanggal": tgl, "sumber": sumber, "judul": judul,
                 "ringkas": ringkas(info["desk"] or c["desk"]), "url": info["url_akhir"] or url,
-                "cover": info["cover"] or c["cover"] or "", "otomatis": True,
+                "cover": info["cover"] or c["cover"] or "", "otomatis": True, "kategori": "Marga Mulya",
                 "ditemukan": now.date().isoformat()}
         log("  + BARU:", tgl, judul)
         baru.append(item)
+
+    # Berita terkait harian (Semangga, pertanian, harga pangan Merauke)
+    batas_t = (now - dt.timedelta(days=TERKAIT_HARI)).date().isoformat()
+    lama = [b for b in store.get("terkait", []) if b.get("tanggal", "") >= batas_t and norm(b["url"]) not in abaikan]
+    sudah_t = sudah | {norm(b["url"]) for b in lama}
+    judul_t = judul_sudah | {norm_title(b["judul"]) for b in lama}
+    try:
+        t_baru, t_utama = cari_terkait(now, sudah_t, judul_t, abaikan)
+    except Exception as e:  # noqa: BLE001
+        log("pencarian berita terkait gagal:", e)
+        t_baru, t_utama = [], []
+    baru += t_utama
+    store["terkait"] = sorted(lama + t_baru, key=lambda b: b["tanggal"], reverse=True)[:TERKAIT_MAKS]
 
     store["berita"] = sorted(store["berita"] + baru, key=lambda b: b["tanggal"], reverse=True)
     store["diperiksa"] = now.date().isoformat()   # cukup per hari agar tidak commit tiap jam
@@ -311,7 +447,7 @@ def main():
     with open(OUT, "w", encoding="utf-8") as f:
         json.dump(store, f, ensure_ascii=False, indent=2)
         f.write("\n")
-    print(f"{len(baru)} berita baru; total otomatis {len(store['berita'])}")
+    print(f"{len(baru)} berita utama baru; total utama otomatis {len(store['berita'])}; terkait {len(store['terkait'])} ({len(t_baru)} baru)")
 
 
 if __name__ == "__main__":

@@ -140,27 +140,44 @@
   /* =================== BERITA (slider) =================== */
   var BULAN = ["Jan", "Feb", "Mar", "Apr", "Mei", "Jun", "Jul", "Agu", "Sep", "Okt", "Nov", "Des"];
   var tgl = function (iso) { var p = iso.split("-"); return +p[2] + " " + BULAN[+p[1] - 1] + " " + p[0]; };
-  var track = $("#newsTrack"), news = [], newsReady = false;
+  var track = $("#newsTrack"), news = [], newsReady = false, beritaUtama = (D.berita || []).slice(), beritaTerkait = [], filterNews = "semua";
   var keyUrl = function (u) { return String(u || "").replace(/^https?:\/\/(www\.|m\.)?/i, "").replace(/[?#].*$/, "").replace(/\/+$/, "").toLowerCase(); };
   var hariIni = new Date(), BARU_HARI = 14;
   var umurHari = function (iso) { return (hariIni - new Date(iso + "T00:00:00+09:00")) / 864e5; };
-  // Gabungkan berita kurasi (data.js) dengan berita temuan robot (data/berita-otomatis.json)
-  function renderNews(list) {
-    var seen = {};
-    news = list.filter(function (n) { var k = keyUrl(n.url); if (!n.url || seen[k]) return false; seen[k] = 1; return true; })
+  var unik = function (list, seen) {
+    return list.filter(function (n) { var k = keyUrl(n.url); if (!n.url || seen[k]) return false; seen[k] = 1; return true; })
       .sort(function (a, b) { return a.tanggal < b.tanggal ? 1 : -1; });
-    track.innerHTML = news.map(function (n) {
-      var ph = '<span class="ncard__ph"' + (n.cover ? " hidden" : "") + ">" + ic("doc") + "<span>" + esc(n.sumber) + "</span><b>Kampung Marga Mulya</b></span>";
-      var img = n.cover ? '<img src="' + esc(n.cover) + '" alt="" loading="lazy" referrerpolicy="no-referrer">' : "";
-      var baru = umurHari(n.tanggal) <= BARU_HARI;
-      return '<a class="ncard" href="' + esc(n.url) + '" target="_blank" rel="noopener">' +
-        '<span class="ncard__cover">' + img + ph + '<span class="ncard__badge' + (baru ? " ncard__badge--new" : "") + '">' + (baru ? "Baru" : n.tanggal.slice(0, 4)) + "</span></span>" +
-        '<span class="ncard__body"><span class="ncard__meta">' + esc(n.sumber) + " · " + tgl(n.tanggal) + '</span><span class="ncard__t">' + esc(n.judul) + "</span>" +
-        '<span class="ncard__d">' + esc(n.ringkas || "Baca selengkapnya di " + n.sumber + ".") + '</span><span class="ncard__go">Baca berita ' + ic("external") + "</span></span></a>";
-    }).join("");
-    if (newsReady) updNav();
+  };
+  // Susunan: berita utama Marga Mulya tetap jadi fokus; berita terkait harian disisipkan setiap 2 berita utama.
+  function susun() {
+    var seen = {}, utama = unik(beritaUtama, seen), terkait = unik(beritaTerkait, seen);
+    if (filterNews === "utama") return utama;
+    if (filterNews === "terkait") return terkait;
+    var out = [], i = 0, j = 0;
+    while (i < utama.length || j < terkait.length) {
+      if (i < utama.length) out.push(utama[i++]);
+      if (i < utama.length) out.push(utama[i++]);
+      if (j < terkait.length) out.push(terkait[j++]);
+    }
+    return out;
   }
-  renderNews((D.berita || []).slice());
+  function kartu(n, dup) {
+    var kat = n.kategori && n.kategori !== "Marga Mulya" ? n.kategori : "";
+    var ph = '<span class="ncard__ph"' + (n.cover ? " hidden" : "") + ">" + ic("doc") + "<span>" + esc(n.sumber) + "</span><b>" + esc(kat ? kat : "Kampung Marga Mulya") + "</b></span>";
+    var img = n.cover ? '<img src="' + esc(n.cover) + '" alt="" loading="lazy" referrerpolicy="no-referrer">' : "";
+    var baru = umurHari(n.tanggal) <= BARU_HARI;
+    return '<a class="ncard' + (kat ? " ncard--terkait" : "") + '" href="' + esc(n.url) + '" target="_blank" rel="noopener"' + (dup ? ' aria-hidden="true" tabindex="-1" data-dup="1"' : "") + ">" +
+      '<span class="ncard__cover">' + img + ph + '<span class="ncard__badge' + (baru ? " ncard__badge--new" : "") + '">' + (baru ? "Baru" : n.tanggal.slice(0, 4)) + "</span>" +
+      '<span class="ncard__kat">' + esc(kat || "Marga Mulya") + "</span></span>" +
+      '<span class="ncard__body"><span class="ncard__meta">' + esc(n.sumber) + " · " + tgl(n.tanggal) + '</span><span class="ncard__t">' + esc(n.judul) + "</span>" +
+      '<span class="ncard__d">' + esc(n.ringkas || "Baca selengkapnya di " + n.sumber + ".") + '</span><span class="ncard__go">Baca berita ' + ic("external") + "</span></span></a>";
+  }
+  function renderNews() {
+    news = susun();
+    // Daftar ditulis dua kali agar slider bisa berputar terus tanpa melompat balik
+    track.innerHTML = news.map(function (n) { return kartu(n); }).join("") + (news.length > 1 ? news.map(function (n) { return kartu(n, true); }).join("") : "");
+    if (newsReady) { ukur(); posisi = 0; terapkan(); updNav(); }
+  }
   var newsInfo = $("#newsInfo");
   var sudahDimuat = false;
   function muatBeritaOtomatis() {
@@ -170,8 +187,10 @@
       .then(function (j) {
         if (!j) return;
         var sebelum = news.length;
-        renderNews((D.berita || []).concat(j.berita || []));
-        if (j.diperiksa && newsInfo) newsInfo.textContent = "Diperbarui otomatis · dicek " + tgl(j.diperiksa);
+        beritaUtama = (D.berita || []).concat(j.berita || []);
+        beritaTerkait = (j.terkait || []).filter(function (n) { return umurHari(n.tanggal) <= 45; });
+        renderNews();
+        if (j.diperiksa && newsInfo) newsInfo.textContent = "Diperbarui otomatis · dicek " + tgl(j.diperiksa) + (beritaTerkait.length ? " · termasuk kabar harian Semangga & Merauke" : "");
         if (sudahDimuat && news.length > sebelum) toast((news.length - sebelum) + " berita baru ditambahkan");
         sudahDimuat = true;
       })
@@ -181,35 +200,75 @@
   track.addEventListener("error", function (e) {
     if (e.target.tagName === "IMG") { var c = e.target.parentNode; e.target.remove(); var ph = c.querySelector(".ncard__ph"); if (ph) ph.hidden = false; }
   }, true);
+
+  /* ---- Slider berjalan terus dan berputar mulus ----
+     posisi = jarak gulir virtual; ditampilkan sebagai posisi modulo lebar satu set berita,
+     sehingga setelah berita terakhir langsung tersambung ke berita pertama. */
   var prev = $("#newsPrev"), next = $("#newsNext"), count = $("#newsCount");
+  var lebarSet = 0, posisi = 0, jeda = 0, diatas = false, tween = null, tujuan = null, terakhirDiset = -1, waktu = 0;
+  var KECEPATAN = 32; // piksel per detik
+  var kurangiGerak = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   function step() { var c = track.querySelector(".ncard"); return c ? c.getBoundingClientRect().width + 16 : 300; }
-  function updNav() {
-    var max = track.scrollWidth - track.clientWidth - 2;
-    var first = Math.round(track.scrollLeft / step()) + 1;
-    var vis = Math.max(1, Math.round(track.clientWidth / step()));
-    count.textContent = first + "–" + Math.min(news.length, first + vis - 1) + " dari " + news.length;
+  function ukur() {
+    var c = track.querySelectorAll(".ncard"), n = news.length;
+    lebarSet = (n > 1 && c.length > n) ? c[n].offsetLeft - c[0].offsetLeft : 0;
+    if (lebarSet && lebarSet <= track.clientWidth) lebarSet = 0;   // berita terlalu sedikit untuk berputar
   }
-  // Berputar: setelah berita terakhir kembali ke berita pertama, dan sebaliknya.
-  var atStart = function () { return track.scrollLeft <= 2; };
-  var atEnd = function () { return track.scrollLeft >= track.scrollWidth - track.clientWidth - 2; };
-  function goNext() { if (atEnd()) track.scrollTo({ left: 0, behavior: "smooth" }); else track.scrollBy({ left: step(), behavior: "smooth" }); }
-  function goPrev() { if (atStart()) track.scrollTo({ left: track.scrollWidth, behavior: "smooth" }); else track.scrollBy({ left: -step(), behavior: "smooth" }); }
-  prev.addEventListener("click", goPrev);
-  next.addEventListener("click", goNext);
-  // Geser jari melewati ujung slider juga berputar ke awal/akhir
-  var tx = null, edge = "";
-  track.addEventListener("touchstart", function (e) { tx = e.touches[0].clientX; edge = atEnd() ? "end" : (atStart() ? "start" : ""); }, { passive: true });
-  track.addEventListener("touchend", function (e) {
-    if (tx === null) return; var dx = e.changedTouches[0].clientX - tx; tx = null;
-    if (edge === "end" && dx < -40) track.scrollTo({ left: 0, behavior: "smooth" });
-    if (edge === "start" && dx > 40) track.scrollTo({ left: track.scrollWidth, behavior: "smooth" });
+  var bungkus = function (p) { return lebarSet ? ((p % lebarSet) + lebarSet) % lebarSet : Math.max(0, Math.min(p, track.scrollWidth - track.clientWidth)); };
+  function terapkan() { var v = bungkus(posisi); if (Math.abs(track.scrollLeft - v) >= 0.5) { terakhirDiset = v; track.scrollLeft = v; } }
+  function updNav() {
+    var n = news.length; if (!n) { count.textContent = ""; return; }
+    var first = (Math.round(bungkus(posisi) / step()) % n) + 1;
+    var vis = Math.max(1, Math.round(track.clientWidth / step()));
+    var last = ((first - 1 + vis - 1) % n) + 1;
+    count.textContent = (vis > 1 ? first + "–" + last : first) + " dari " + n;
+  }
+  var tunda = function (ms) { jeda = Math.max(jeda, performance.now() + ms); };
+  function geserKe(d) {
+    var dari = posisi, dasar = tween && tujuan != null ? tujuan : posisi, ke = Math.round((dasar + d * step()) / step()) * step(), t0 = performance.now();
+    tujuan = ke;
+    tween = function (t) { var k = Math.min(1, (t - t0) / 450), e = k < .5 ? 2 * k * k : 1 - Math.pow(-2 * k + 2, 2) / 2; posisi = dari + (ke - dari) * e; if (k >= 1) { tween = null; tujuan = null; } };
+    tunda(5000);
+  }
+  function loop(t) {
+    var dt = waktu ? Math.min(0.1, (t - waktu) / 1000) : 0; waktu = t;
+    var tampak = !document.hidden && track.offsetParent !== null;
+    if (tween) { tween(t); terapkan(); updNav(); }
+    else if (tampak && lebarSet && !kurangiGerak && !diatas && t > jeda) { posisi += KECEPATAN * dt; terapkan(); }
+    window.requestAnimationFrame(loop);
+  }
+  prev.addEventListener("click", function () { geserKe(-1); });
+  next.addEventListener("click", function () { geserKe(1); });
+  // Jeda saat disentuh, diarahkan tetikus, atau difokus; jalan lagi setelah beberapa detik
+  track.addEventListener("mouseenter", function () { diatas = true; });
+  track.addEventListener("mouseleave", function () { diatas = false; tunda(1200); });
+  ["pointerdown", "touchstart", "wheel", "focusin"].forEach(function (ev) { track.addEventListener(ev, function () { tween = null; tunda(4000); }, { passive: true }); });
+  // Geser manual: ikuti posisi jari, dan sambungkan ujung ke awal tanpa terlihat melompat
+  track.addEventListener("scroll", function () {
+    if (Math.abs(track.scrollLeft - terakhirDiset) < 1) return;
+    terakhirDiset = -1;
+    if (lebarSet) {
+      if (track.scrollLeft >= lebarSet) { terakhirDiset = track.scrollLeft - lebarSet; track.scrollLeft = terakhirDiset; }
+      else if (track.scrollLeft <= 0) { terakhirDiset = lebarSet; track.scrollLeft = lebarSet; }
+    }
+    posisi = track.scrollLeft; tunda(4000);
+    window.requestAnimationFrame(updNav);
   }, { passive: true });
-  track.addEventListener("scroll", function () { window.requestAnimationFrame(updNav); }, { passive: true });
   track.addEventListener("keydown", function (e) {
-    if (e.key === "ArrowRight") { e.preventDefault(); goNext(); }
-    if (e.key === "ArrowLeft") { e.preventDefault(); goPrev(); }
+    if (e.key === "ArrowRight") { e.preventDefault(); geserKe(1); }
+    if (e.key === "ArrowLeft") { e.preventDefault(); geserKe(-1); }
   });
-  window.addEventListener("resize", updNav); newsReady = true; updNav();
+  setInterval(updNav, 1000);
+  // Filter berita
+  var fBox = $("#newsFilter");
+  if (fBox) fBox.addEventListener("click", function (e) {
+    var b = e.target.closest("[data-f]"); if (!b) return;
+    filterNews = b.getAttribute("data-f");
+    [].forEach.call(fBox.querySelectorAll("[data-f]"), function (x) { x.setAttribute("aria-pressed", x === b ? "true" : "false"); });
+    renderNews();
+  });
+  window.addEventListener("resize", function () { ukur(); terapkan(); updNav(); });
+  newsReady = true; renderNews(); window.requestAnimationFrame(loop);
   muatBeritaOtomatis();
   setInterval(muatBeritaOtomatis, 10 * 60 * 1000);   // cek ulang tiap 10 menit selama halaman dibuka
 
