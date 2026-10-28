@@ -16,8 +16,7 @@
    "alamat": "Jl. Hasanudin, Kampung Marga Mulya",
    "keterangan": [
     "Kantor Pemerintah Kampung Marga Mulya, Jl. Hasanudin",
-    "Pelayanan administrasi dan musyawarah warga",
-    "Titik sesuai koordinat resmi monografi kampung"
+    "Titik kantor tercantum pada Peta Batas Kampung"
    ],
    "sumber": "Survei Tim Ekspedisi Patriot IPB, 26 Okt 2026",
    "status": "terverifikasi",
@@ -90,7 +89,7 @@
    "dalamKampung": true,
    "alamat": "Kampung Marga Mulya, Distrik Semangga",
    "keterangan": [
-    "Gedung pertemuan dan kegiatan warga di kompleks kantor kampung"
+    "Gedung serba guna di kompleks kantor kampung"
    ],
    "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya",
    "foto": "assets/img/fasilitas/2023/f062.jpg",
@@ -559,7 +558,7 @@
    "dalamKampung": true,
    "alamat": "Kampung Marga Mulya, Distrik Semangga",
    "keterangan": [
-    "Lahan untuk pembangunan gereja Protestan, dekat Gereja Katolik"
+    "Lahan Gereja Protestan, dekat Gereja Katolik"
    ],
    "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya",
    "foto": "assets/img/fasilitas/2023/f097.jpg",
@@ -1189,7 +1188,7 @@
   },
   {
    "id": "warung-makan",
-   "nama": "Warung Makan Bu Uli & Warung Jalan Poros",
+   "nama": "Warung Makan di Jalan Poros",
    "kategori": "Ekonomi",
    "jenis": "Warung makan",
    "dalamKampung": true,
@@ -1220,7 +1219,7 @@
   },
   {
    "id": "pengolahan-aspal",
-   "nama": "Pengolahan Aspal (AMP)",
+   "nama": "Pengolahan Aspal (Toko 2)",
    "kategori": "Ekonomi",
    "jenis": "Usaha konstruksi",
    "dalamKampung": true,
@@ -1272,7 +1271,6 @@
    "dalamKampung": true,
    "alamat": "Blok B1, RT 003/RW 002, Kampung Marga Mulya",
    "keterangan": [
-    "Satu-satunya penjual BBM resmi yang tercatat di Marga Mulya pada Google Maps (kode 8P.99614)",
     "Menjual Pertamax 92",
     "Di lokasi yang sama ada usaha Amanah Jaya Papua: warmindo, ATK, fotokopi, gas LPG, dan sembako",
     "Juga pengecer resmi minyak tanah"
@@ -1413,7 +1411,7 @@
    "dalamKampung": true,
    "alamat": "Kampung Marga Mulya, Distrik Semangga",
    "keterangan": [
-    "Kolam penampung air (bendungan kecil) untuk cadangan air dan pertanian"
+    "Kolam bendali / waduk kampung"
    ],
    "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya",
    "foto": "assets/img/fasilitas/2023/f053.jpg",
@@ -1521,7 +1519,7 @@
    "dalamKampung": true,
    "alamat": "Kampung Marga Mulya, Distrik Semangga",
    "keterangan": [
-    "Gedung pengering gabah untuk pascapanen padi",
+    "Gedung pengering padi",
     "Alamat GPS: jalan tanpa nama, perbatasan Semangga Jaya"
    ],
    "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya",
@@ -1558,7 +1556,7 @@
    "dalamKampung": true,
    "alamat": "Kampung Marga Mulya, Distrik Semangga",
    "keterangan": [
-    "Kios pengecer resmi pupuk bersubsidi untuk petani"
+    "Pengecer resmi pupuk bersubsidi"
    ],
    "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya",
    "foto": "assets/img/fasilitas/2023/f045.jpg",
@@ -1622,7 +1620,7 @@
    "dalamKampung": true,
    "alamat": "Kampung Marga Mulya",
    "keterangan": [
-    "Lapangan terbuka untuk olahraga dan kegiatan warga",
+    "Lapangan kampung",
     "Monografi 2026: 2 unit sarana olahraga"
    ],
    "status": "terverifikasi",
@@ -1660,7 +1658,6 @@
    "alamat": "Kampung Marga Mulya, Distrik Semangga",
    "keterangan": [
     "Kolam pemancingan dengan pondok tempat duduk",
-    "BUMKam mencatat unit usaha wisata pemancingan (monografi 2026)",
     "Juga tercantum di Jelajah → Wisata & kuliner"
    ],
    "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya",
@@ -1760,7 +1757,7 @@
    "dalamKampung": true,
    "alamat": "Kampung Marga Mulya, Distrik Semangga",
    "keterangan": [
-    "Menara sinyal bergerak (mobile BTS)",
+    "Menara sinyal seluler",
     "Titik lokasi belum valid (GPS foto tidak berubah)"
    ],
    "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya",
@@ -1857,7 +1854,7 @@
    "alamat": "Kampung Marga Mulya",
    "keterangan": [
     "Monografi 2026: 33 kios, 11 toko, 10 warung, 25 UMKM",
-    "Isi nama usaha dan lokasinya"
+    "Nama dan lokasi usaha belum terdata"
    ],
    "status": "sebagian",
    "sumber": "Monografi Kampung 2026"
@@ -1869,21 +1866,13 @@
    "jenis": "Gereja Katolik",
    "dalamKampung": false,
    "alamat": "Kampung Kuper, Distrik Semangga",
-   "cari": [
-    "Kuper, Semangga, Merauke"
-   ],
    "keterangan": [
     "Misa Minggu 08.00 WIT",
     "Misa harian Senin, Rabu, Jumat 06.00 WIT"
    ],
    "sumber": "paroki.org",
    "sumberUrl": "https://paroki.org/gereja-katolik-di-merauke/",
-   "status": "sebagian",
-   "lat": -8.465203,
-   "lng": 140.446686,
-   "perkiraan": true,
-   "jarak_km": 7.8,
-   "waktu_menit": 10
+   "status": "sebagian"
   },
   {
    "id": "puskesmas-kuprik",
@@ -1892,19 +1881,10 @@
    "jenis": "Puskesmas",
    "dalamKampung": false,
    "alamat": "Kampung Kuprik, Distrik Semangga",
-   "cari": [
-    "Puskesmas Kuprik, Merauke",
-    "Kuprik, Semangga, Merauke"
-   ],
    "keterangan": [
     "Puskesmas di Distrik Semangga"
    ],
-   "status": "sebagian",
-   "lat": -8.457756,
-   "lng": 140.421301,
-   "perkiraan": true,
-   "jarak_km": 11.1,
-   "waktu_menit": 15
+   "status": "sebagian"
   },
   {
    "id": "sd-semangga-2",
@@ -1976,19 +1956,10 @@
    "jenis": "SMK",
    "dalamKampung": false,
    "alamat": "Kampung Matara, Distrik Semangga",
-   "cari": [
-    "Matara, Semangga, Merauke"
-   ],
    "keterangan": [
-    "SMK di Distrik Semangga",
-    "Titik lokasi = pusat Kampung Matara (perkiraan)"
+    "SMK di Distrik Semangga"
    ],
-   "status": "sebagian",
-   "lat": -8.410949,
-   "lng": 140.275549,
-   "perkiraan": true,
-   "jarak_km": 32.7,
-   "waktu_menit": 55
+   "status": "sebagian"
   },
   {
    "id": "spbu-kuprik",
@@ -1997,20 +1968,11 @@
    "jenis": "SPBU",
    "dalamKampung": false,
    "alamat": "Kampung Kuper, Distrik Semangga",
-   "cari": [
-    "Kuper, Semangga, Merauke"
-   ],
    "keterangan": [
-    "SPBU Pertamina terdekat dari Marga Mulya; di Google Maps tercatat sebagai Pom Bensin Kuprik / Kuper Gas Station",
-    "Sekitar 6–7 km dari pusat kampung"
+    "SPBU Pertamina di Kampung Kuper; di Google Maps tercatat sebagai Pom Bensin Kuprik / Kuper Gas Station"
    ],
    "sumber": "Google Maps",
-   "status": "sebagian",
-   "lat": -8.465203,
-   "lng": 140.446686,
-   "perkiraan": true,
-   "jarak_km": 7.8,
-   "waktu_menit": 10
+   "status": "sebagian"
   }
  ]
 }

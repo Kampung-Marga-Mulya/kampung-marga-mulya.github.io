@@ -17,7 +17,7 @@
    "area": "Kampung Marga Mulya, Distrik Semangga",
    "lat": -8.400433,
    "lng": 140.460145,
-   "deskripsi": "Kolam pemancingan di dalam kampung dengan pondok tempat duduk di tepi kolam, dilengkapi pendopo joglo dan gazebo untuk bersantai. Wisata pemancingan tercatat sebagai salah satu unit usaha BUMKam Bina Mulya Sejahtera.",
+   "deskripsi": "Kolam pemancingan di dalam kampung dengan pondok tempat duduk di tepi kolam, pendopo joglo, dan gazebo.",
    "fasilitas": "Pondok pemancingan, pendopo joglo, gazebo",
    "foto": "assets/img/fasilitas/2023/f035.jpg",
    "kreditFoto": "Dokumen Fasilitas Umum Kampung, Des 2023",
@@ -31,8 +31,7 @@
    "area": "Sekitar SP 1, perbatasan Semangga–Tanah Miring",
    "lat": -8.399513,
    "lng": 140.495891,
-   "deskripsi": "Taman wisata keluarga yang teduh oleh rumpun bambu, dengan danau buatan, rumah makan bernuansa Bali di tengah danau, perahu bebek, kolam renang, area bermain anak, dan banyak spot foto. Ramai pada hari Minggu dan hari libur. Salah satu tempat wisata terdekat dari Marga Mulya.",
-   "tiket": "Masuk ±Rp2.000; renang ±Rp5.000; perahu bebek ±Rp10.000 (info 2019)",
+   "deskripsi": "Taman wisata dengan rumpun bambu, danau buatan, rumah makan di tengah danau, perahu bebek, kolam renang, dan area bermain anak (menurut infodantips.com, 2019).",
    "fasilitas": "Parkir gratis, area bermain anak, rumah makan & kantin, perahu bebek, kolam renang",
    "info": "https://www.infodantips.com/2019/05/obyek-wisata-taman-bambu-mandira-loka-merauke.html",
    "sumberLokasi": "Plus Code JF2W+59R (trip.com)",
@@ -43,26 +42,16 @@
    "id": "mandira-loka",
    "nama": "Taman Wisata Alam Mandira Loka",
    "kategori": "Wisata alam",
-   "area": "Kawasan Mandira, sekitar SP 1",
-   "lat": -8.399513,
-   "lng": 140.495891,
-   "perkiraan": true,
-   "deskripsi": "Taman wisata alam di kawasan Mandira dengan suasana hijau dan rindang. Sebagian sumber menyebut Mandira Loka satu kawasan dengan Taman Bambu Mandira, jadi titik di peta mengikuti lokasi Taman Bambu Mandira sampai ada konfirmasi.",
-   "info": "https://x.com/mandira_loka",
-   "jarak_km": 3.4,
-   "waktu_menit": 5
+   "area": "Kawasan Mandira (titik belum tersedia)",
+   "deskripsi": "Taman wisata alam di kawasan Mandira. Titik lokasi belum tersedia.",
+   "info": "https://x.com/mandira_loka"
   },
   {
    "id": "mandira-agro-park",
    "nama": "Mandira Agro Park",
    "kategori": "Agrowisata",
-   "area": "Kawasan Mandira, sekitar SP 1",
-   "lat": -8.399513,
-   "lng": 140.495891,
-   "perkiraan": true,
-   "deskripsi": "Taman agrowisata di kawasan Mandira untuk mengenal kebun dan hasil pertanian setempat. Titik di peta mengikuti kawasan Mandira; detail wahana, jam buka, dan tiket menunggu data dari pengelola.",
-   "jarak_km": 3.4,
-   "waktu_menit": 5
+   "area": "Kawasan Mandira (titik belum tersedia)",
+   "deskripsi": "Taman agrowisata di kawasan Mandira. Titik lokasi dan keterangan fasilitas belum tersedia."
   },
   {
    "id": "lotus-garden",
@@ -71,9 +60,8 @@
    "area": "Dekat Semangga",
    "lat": -8.3980517,
    "lng": 140.4238535,
-   "deskripsi": "Taman keluarga yang asri dan tertata rapi dengan suasana hutan alam, cocok untuk bersantai, berfoto, dan berkumpul bersama keluarga.",
+   "deskripsi": "Taman wisata dengan suasana hutan alam.",
    "jam": "09.00–18.00 WIT",
-   "tiket": "Mulai Rp20.000",
    "fasilitas": "Parkir, toilet, musala",
    "foto": "https://res.cloudinary.com/ddrepuzxq/image/upload/v1781514224/tourism_places/c6yd5e36aoiu9bvnxmc4.jpg",
    "info": "https://visitmerauke.com/wisata/lotus-garden-merauke-wisata-hutan-alam",
@@ -90,7 +78,6 @@
    "lng": 140.4370715,
    "deskripsi": "Ekowisata hutan mangrove seluas sekitar 11 hektare menghadap Kali Maro. Ada area pemancingan, kolam renang, villa, area berkemah, spot foto, dan tempat bermain anak.",
    "jam": "09.00–18.00 WIT",
-   "tiket": "Mulai Rp10.000",
    "fasilitas": "Pemancingan, kolam renang, villa, camping, parkir, toilet, musala",
    "foto": "https://res.cloudinary.com/ddrepuzxq/image/upload/v1781615949/tourism_places/ezcb8k3mfce6uxdu2pyb.jpg",
    "info": "https://visitmerauke.com/wisata/mangrove-garden-maro",
@@ -109,7 +96,7 @@
    "area": "Sidomulyo, Distrik Semangga",
    "lat": -8.461786,
    "lng": 140.425597,
-   "deskripsi": "Pemandian alami berair jernih di Distrik Semangga dengan suasana alam yang asri.",
+   "deskripsi": "Pemandian alami berair jernih di Distrik Semangga.",
    "jam": "08.00–17.00 WIT",
    "cari": "Sidomulyo, Semangga, Merauke",
    "perkiraan": true,
@@ -123,7 +110,7 @@
    "area": "Kota Merauke, dekat Bandara Mopah",
    "lat": -8.5164525,
    "lng": 140.4130686,
-   "deskripsi": "Taman religi dengan patung Hati Kudus Yesus, salah satu ikon Kota Merauke untuk berdoa, bersantai, dan berfoto.",
+   "deskripsi": "Taman religi dengan patung Hati Kudus Yesus, salah satu ikon Kota Merauke.",
    "jam": "07.00–18.00 WIT",
    "foto": "https://res.cloudinary.com/ddrepuzxq/image/upload/v1781511602/tourism_places/empvemf7ivadngwucuhj.jpg",
    "info": "https://visitmerauke.com/wisata/taman-patung-hati-kudus-yesus",
@@ -154,7 +141,7 @@
    "area": "Pusat Kota Merauke",
    "lat": -8.496885,
    "lng": 140.403379,
-   "deskripsi": "Bundaran ikon Kota Merauke dengan monumen bola dunia, ramai dikunjungi warga pada sore dan malam hari.",
+   "deskripsi": "Bundaran ikon Kota Merauke dengan monumen bola dunia.",
    "cari": [
     "Lingkaran Brawijaya, Merauke",
     "Jalan Brawijaya, Merauke"
@@ -197,7 +184,7 @@
    "area": "Jl. Raya Mandala No. 67, Kota Merauke",
    "lat": -8.499476,
    "lng": 140.39651,
-   "deskripsi": "Tempat mencicipi sate rusa, kuliner paling khas Merauke.",
+   "deskripsi": "Rumah makan sate rusa.",
    "cari": "Jalan Raya Mandala, Merauke",
    "tag": [
     "sate rusa"
@@ -224,7 +211,7 @@
    "area": "Samkai, Kota Merauke",
    "lat": -8.531597,
    "lng": 140.416053,
-   "deskripsi": "Pantai di sisi selatan kota dekat Universitas Musamus, tempat bersantai sore warga Merauke.",
+   "deskripsi": "Pantai di sisi selatan Kota Merauke, dekat Universitas Musamus.",
    "cari": [
     "Pantai Payum, Merauke",
     "Universitas Musamus, Merauke",
@@ -268,7 +255,6 @@
    "lng": 140.3907495,
    "deskripsi": "Taman edukasi dan konservasi tempat melihat serta memberi makan satwa khas Papua.",
    "jam": "07.30–17.00 WIT",
-   "tiket": "Gratis",
    "fasilitas": "Parkir, toilet, kafe",
    "foto": "https://res.cloudinary.com/ddrepuzxq/image/upload/v1775824884/tourism_places/n4pmexxty5pi0sp1ejrk.jpg",
    "info": "https://visitmerauke.com/wisata/taman-satwa-yamai-atid",
@@ -300,7 +286,6 @@
    "lng": 140.38049,
    "deskripsi": "Kolam renang terbuka dengan empat kolam untuk dewasa, remaja, anak, dan balita.",
    "jam": "10.00–18.00 WIT (akhir pekan 09.00)",
-   "tiket": "Rp30.000 (hari kerja), Rp50.000 (akhir pekan)",
    "cari": "Samkai, Merauke",
    "perkiraan": true,
    "jarak_km": 21.3,
@@ -328,7 +313,6 @@
    "lng": 140.4756641,
    "deskripsi": "Kolam pemandian keluarga dengan kolam anak dan dewasa, gazebo untuk berkumpul, dan pedagang makanan.",
    "jam": "09.00–18.00 WIT",
-   "tiket": "Mulai Rp5.000",
    "fasilitas": "Parkir, toilet, musala, gazebo",
    "foto": "https://res.cloudinary.com/ddrepuzxq/image/upload/v1775889463/tourism_places/x8zntx058nuyhorktzmn.jpg",
    "info": "https://visitmerauke.com/wisata/taman-nasional-wasur-1",
@@ -346,7 +330,7 @@
    "area": "Kota Merauke",
    "lat": -8.5023493,
    "lng": 140.3706099,
-   "deskripsi": "Pantai dekat pusat kota menghadap Laut Arafura, terkenal dengan pemandangan matahari terbenam, jajanan UMKM, dan wahana keluarga.",
+   "deskripsi": "Pantai dekat pusat kota menghadap Laut Arafura.",
    "jam": "06.00–18.30 WIT",
    "fasilitas": "Parkir, toilet, warung/kafe",
    "foto": "https://res.cloudinary.com/ddrepuzxq/image/upload/v1775827150/tourism_places/jkvwa4nl6vconsbrolkk.jpg",
@@ -365,7 +349,7 @@
    "area": "Distrik Merauke–Sota",
    "lat": -8.5181761,
    "lng": 140.5591226,
-   "deskripsi": "Kawasan konservasi sabana dan lahan basah yang dijuluki Serengeti-nya Papua, habitat ratusan jenis burung, rusa, kanguru, dan musamus.",
+   "deskripsi": "Kawasan konservasi sabana dan lahan basah, habitat burung, rusa, kanguru, dan musamus.",
    "jam": "08.00–17.00 WIT",
    "foto": "https://res.cloudinary.com/ddrepuzxq/image/upload/v1775890291/tourism_places/pgpmnafrrnb39z6zx7z0.jpg",
    "info": "https://visitmerauke.com/wisata/taman-nasional-wasur",
@@ -380,9 +364,8 @@
    "area": "Pesisir barat Merauke",
    "lat": -8.4156101,
    "lng": 140.26882,
-   "deskripsi": "Pantai dengan pemandangan Laut Arafura dan suasana tenang, cocok untuk bersantai bersama keluarga atau teman.",
+   "deskripsi": "Pantai yang menghadap Laut Arafura.",
    "jam": "06.00–20.00 WIT",
-   "tiket": "Mulai Rp5.000",
    "fasilitas": "Parkir, toilet, warung/kafe",
    "foto": "https://res.cloudinary.com/ddrepuzxq/image/upload/v1781512221/tourism_places/xlremu7py2qph5rvjza5.jpg",
    "info": "https://visitmerauke.com/wisata/pantai-wisata-anasai",
@@ -397,7 +380,7 @@
    "area": "Kampung Salor Indah, Distrik Kurik",
    "lat": -8.2455916,
    "lng": 140.3703614,
-   "deskripsi": "Padang sabana dengan ratusan musamus (sarang rayap raksasa) khas Merauke, menarik untuk edukasi dan fotografi.",
+   "deskripsi": "Padang sabana dengan ratusan musamus (sarang rayap raksasa) khas Merauke.",
    "jam": "08.00–17.00 WIT",
    "fasilitas": "Parkir, toilet",
    "foto": "https://res.cloudinary.com/ddrepuzxq/image/upload/v1781202236/tourism_places/abc7djhvm1jipymscui3.jpg",
@@ -413,9 +396,8 @@
    "area": "Merauke bagian utara",
    "lat": -8.2406744,
    "lng": 140.7859897,
-   "deskripsi": "Wisata alam yang sejuk dan hijau, cocok untuk piknik keluarga, berkemah, dan fotografi.",
+   "deskripsi": "Kawasan wisata alam di Merauke bagian utara.",
    "jam": "08.00–17.00 WIT",
-   "tiket": "Mulai Rp20.000",
    "fasilitas": "Parkir, toilet, musala",
    "foto": "https://res.cloudinary.com/ddrepuzxq/image/upload/v1781203877/tourism_places/rdmsxrbis84qgta7btpa.jpg",
    "info": "https://visitmerauke.com/wisata/tablem-country",
@@ -430,9 +412,8 @@
    "area": "Kampung Kaiburse",
    "lat": -8.342052,
    "lng": 140.181244,
-   "deskripsi": "Pantai alami berpasir luas menghadap Laut Arafura, ramai saat festival dan pacuan kuda di musim libur.",
+   "deskripsi": "Pantai berpasir luas menghadap Laut Arafura.",
    "jam": "08.00–18.00 WIT",
-   "tiket": "Mulai Rp25.000",
    "fasilitas": "Parkir, toilet",
    "foto": "https://res.cloudinary.com/ddrepuzxq/image/upload/v1781618342/tourism_places/cipo1q9deejjybgbtyde.jpg",
    "info": "https://visitmerauke.com/wisata/pantai-wisata-kampung-kaiburse",
@@ -447,9 +428,8 @@
    "area": "Taman Nasional Wasur",
    "lat": -8.6734842,
    "lng": 140.8512895,
-   "deskripsi": "Rawa berair jernih kebiruan di dalam Taman Nasional Wasur, dikelilingi hutan dan sabana.",
+   "deskripsi": "Rawa berair jernih kebiruan di dalam Taman Nasional Wasur.",
    "jam": "09.00–18.00 WIT",
-   "tiket": "Mulai Rp10.000",
    "fasilitas": "Parkir, toilet",
    "foto": "https://res.cloudinary.com/ddrepuzxq/image/upload/v1781615579/tourism_places/ltxmgqunii7g7nsrb6hh.jpg",
    "info": "https://visitmerauke.com/wisata/pelangi-rawa-biru",
@@ -464,7 +444,7 @@
    "area": "Distrik Sota, perbatasan RI–PNG",
    "lat": -8.4282309,
    "lng": 141.0172796,
-   "deskripsi": "Pos lintas batas negara Indonesia–Papua Nugini sekaligus lokasi Tugu Sabang–Merauke, tujuan wisata edukasi dan sejarah.",
+   "deskripsi": "Pos lintas batas negara Indonesia–Papua Nugini sekaligus lokasi Tugu Sabang–Merauke.",
    "jam": "08.00–17.00 WIT",
    "fasilitas": "Parkir, toilet",
    "foto": "https://res.cloudinary.com/ddrepuzxq/image/upload/v1775888888/tourism_places/qhshunn1slczymclxpwh.jpg",
@@ -480,7 +460,7 @@
    "area": "Kota Merauke",
    "lat": null,
    "lng": null,
-   "deskripsi": "Pasar tradisional utama Merauke untuk ikan segar, hasil bumi, dan jajanan lokal.",
+   "deskripsi": "Pasar tradisional utama Kota Merauke.",
    "cari": [
     "Pasar Wamanggu, Merauke",
     "Wamanggu, Merauke"
@@ -491,35 +471,35 @@
    "nama": "Romans Garden",
    "kategori": "Taman keluarga",
    "area": "Distrik Tanah Miring",
-   "deskripsi": "Taman wisata di wilayah Distrik Tanah Miring, cocok untuk rekreasi keluarga dan berfoto. Titik lokasi, jam buka, dan harga tiket belum tersedia di sumber daring. Gunakan tombol Google Maps untuk mencari lokasinya; pengelola atau admin kampung dapat melengkapi data ini."
+   "deskripsi": "Taman wisata di wilayah Distrik Tanah Miring. Titik lokasi dan keterangan lain belum tersedia."
   },
   {
    "id": "hokkaido-farm",
    "nama": "Hokkaido Farm",
    "kategori": "Agrowisata",
    "area": "Distrik Tanah Miring",
-   "deskripsi": "Kebun agrowisata di wilayah Distrik Tanah Miring. Titik lokasi, jam buka, dan harga tiket belum tersedia di sumber daring. Gunakan tombol Google Maps untuk mencari lokasinya; pengelola atau admin kampung dapat melengkapi data ini."
+   "deskripsi": "Kebun di wilayah Distrik Tanah Miring. Titik lokasi dan keterangan lain belum tersedia."
   },
   {
    "id": "kebun-porang",
    "nama": "Kebun Percontohan Tanaman Porang",
    "kategori": "Agrowisata",
    "area": "Distrik Tanah Miring",
-   "deskripsi": "Kebun percontohan budi daya porang, umbi bernilai ekonomi tinggi untuk bahan pangan dan ekspor. Tempat belajar cara tanam dan perawatan porang bagi petani dan pengunjung. Titik lokasi, jam buka, dan harga tiket belum tersedia di sumber daring. Gunakan tombol Google Maps untuk mencari lokasinya; pengelola atau admin kampung dapat melengkapi data ini."
+   "deskripsi": "Kebun percontohan tanaman porang di wilayah Distrik Tanah Miring. Titik lokasi dan keterangan lain belum tersedia."
   },
   {
    "id": "akerezki-farm",
    "nama": "Kebun Pisang Akerezki Farm",
    "kategori": "Agrowisata",
    "area": "Distrik Tanah Miring",
-   "deskripsi": "Kebun pisang yang bisa dikunjungi untuk melihat budi daya dan hasil panen pisang. Titik lokasi, jam buka, dan harga tiket belum tersedia di sumber daring. Gunakan tombol Google Maps untuk mencari lokasinya; pengelola atau admin kampung dapat melengkapi data ini."
+   "deskripsi": "Kebun pisang di wilayah Distrik Tanah Miring. Titik lokasi dan keterangan lain belum tersedia."
   },
   {
    "id": "kebun-kakao-tanah-miring",
    "nama": "Kebun Kakao (Cokelat) Tanah Miring",
    "kategori": "Agrowisata",
    "area": "Distrik Tanah Miring",
-   "deskripsi": "Kebun kakao di Distrik Tanah Miring yang tercatat di peta daring sebagai Kebun Coklat Distrik Tanah Miring. Perlu konfirmasi apakah kebun ini dibuka untuk kunjungan wisata. Titik lokasi, jam buka, dan harga tiket belum tersedia di sumber daring. Gunakan tombol Google Maps untuk mencari lokasinya; pengelola atau admin kampung dapat melengkapi data ini."
+   "deskripsi": "Kebun kakao yang tercatat di peta daring sebagai Kebun Coklat Distrik Tanah Miring. Belum ada keterangan apakah dibuka untuk kunjungan wisata."
   },
   {
    "id": "banyu-mulya",
@@ -529,7 +509,7 @@
     "pemancingan"
    ],
    "area": "Semangga II, Distrik Semangga",
-   "deskripsi": "Kolam pemancingan wisata di Semangga II, dekat Kampung Marga Mulya. Cocok untuk memancing santai bersama keluarga dan teman. Titik lokasi, jam buka, dan harga tiket menunggu data dari pengelola; gunakan tombol Google Maps untuk mencari lokasinya."
+   "deskripsi": "Kolam pemancingan wisata di Semangga II. Titik lokasi dan keterangan lain belum tersedia."
   }
  ]
 }

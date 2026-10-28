@@ -75,15 +75,9 @@ window.KAMPUNG = {
     "Menurut monografi kampung, Marga Mulya berklasifikasi desa swasembada dengan kategori berkembang."
   ],
 
-  visiContoh: true,   // visi & misi belum tercantum di monografi; ganti dengan RPJMKam lalu hapus baris ini
-  visi: "Terwujudnya Kampung Marga Mulya yang mandiri, sejahtera, dan berbudaya melalui pertanian yang maju dan pelayanan publik yang terbuka.",   // CONTOH
-  misi: [                                                                                                           // CONTOH
-    "Meningkatkan kualitas pelayanan administrasi kepada warga.",
-    "Mengembangkan pertanian padi dan hortikultura yang berkelanjutan.",
-    "Memperkuat ekonomi warga melalui UMKM dan BUMKam.",
-    "Meningkatkan kualitas pendidikan, kesehatan, dan keluarga.",
-    "Menjaga kerukunan antarwarga dan kelestarian lingkungan."
-  ],
+  // Visi & misi resmi belum tercantum di monografi. Isi dari dokumen RPJMKam.
+  visi: "",
+  misi: [],
 
   batas: {
     utara: "Distrik Tanah Miring (Kampung Sumber Harapan dan Kampung Yasa Mulya)",
@@ -307,15 +301,15 @@ window.KAMPUNG = {
   },
 
   /* ---------- LAYANAN ADMINISTRASI ---------- */
-  layananContoh: true,         // persyaratan umum; sesuaikan dengan prosedur kantor kampung lalu hapus baris ini
+  // Persyaratan & lama proses belum ada data resmi. Isi "syarat" dan "waktu" dari kantor kampung.
   layanan: [
-    { nama: "Surat Pengantar KTP-el / KK", waktu: "1 hari kerja", syarat: ["Fotokopi KK", "Surat pengantar RT", "Akta kelahiran (KTP pertama)"] },
-    { nama: "Surat Keterangan Domisili", waktu: "1 hari kerja", syarat: ["Fotokopi KTP-el", "Fotokopi KK", "Surat pengantar RT"] },
-    { nama: "Surat Keterangan Tidak Mampu", waktu: "1 hari kerja", syarat: ["Fotokopi KTP-el dan KK", "Surat pengantar RT", "Keterangan keperluan (sekolah/berobat)"] },
-    { nama: "Surat Keterangan Usaha", waktu: "1–2 hari kerja", syarat: ["Fotokopi KTP-el", "Foto tempat usaha", "Surat pengantar RT"] },
-    { nama: "Surat Keterangan Kelahiran", waktu: "1 hari kerja", syarat: ["Surat keterangan lahir dari bidan/puskesmas", "Fotokopi KTP-el orang tua", "Fotokopi KK"] },
-    { nama: "Surat Keterangan Kematian", waktu: "1 hari kerja", syarat: ["Fotokopi KTP-el almarhum", "Fotokopi KK", "Keterangan dari RT/saksi"] },
-    { nama: "Surat Keterangan Pindah", waktu: "1–2 hari kerja", syarat: ["KK asli", "KTP-el", "Alamat tujuan lengkap"] }
+    { nama: "Surat Pengantar KTP-el / KK", waktu: "", syarat: [] },
+    { nama: "Surat Keterangan Domisili", waktu: "", syarat: [] },
+    { nama: "Surat Keterangan Tidak Mampu", waktu: "", syarat: [] },
+    { nama: "Surat Keterangan Usaha", waktu: "", syarat: [] },
+    { nama: "Surat Keterangan Kelahiran", waktu: "", syarat: [] },
+    { nama: "Surat Keterangan Kematian", waktu: "", syarat: [] },
+    { nama: "Surat Keterangan Pindah", waktu: "", syarat: [] }
   ],
 
   // Rekap sarana dan prasarana dari monografi (tampil di tab Fasilitas Umum)
@@ -359,17 +353,17 @@ window.KAMPUNG = {
     { judul: "Perkebunan jeruk", ikon: "daun",
       fotoLain: [
         { src: "assets/img/potensi/kebun-jeruk.jpg", ket: "Ilustrasi: kebun jeruk berbuah", kredit: "BerkahAgeng · Wikimedia Commons", lisensi: "CC BY-SA 4.0", url: "https://commons.wikimedia.org/wiki/File:Kebun_jeruk.jpg" }
-      ], ket: "10 ha kebun jeruk milik 9 petani.", detail: "Perkebunan jeruk seluas 10 hektare menjadi peluang pengembangan agrowisata petik buah dan olahan buah." },
+      ], ket: "10 ha kebun jeruk milik 9 petani.", detail: "Perkebunan jeruk seluas 10 hektare dikelola 9 petani (Monografi Kampung 2026)." },
     { judul: "BUMKam & usaha warga", ikon: "toko", foto: "assets/img/fasilitas/kopdes-merah-putih.jpg", fotoKet: "Koperasi Desa Merah Putih Kampung Marga Mulya", kredit: "Dokumentasi Tim Ekspedisi Patriot IPB University 2026",
       fotoLain: [
         { src: "assets/img/potensi/ayam-petelur.jpg", ket: "Ilustrasi: peternak ayam petelur memanen telur (Bojonegoro, Jawa Timur), seperti unit ayam petelur BUMKam", kredit: "Achmad Fazeri · Wikimedia Commons", lisensi: "CC BY-SA 4.0", url: "https://commons.wikimedia.org/wiki/File:Senyum_Peternak_Ayam_Petelur.jpg" }
-      ], ket: "BUMKam Bina Mulya Sejahtera, 25 UMKM, 33 kios, 11 toko.", detail: "BUMKam Bina Mulya Sejahtera mengelola depot air minum, wisata pemancingan, dan ayam petelur dengan modal Rp657.899.000. Usaha warga lain: 10 warung, 7 pom mini, 3 agen minyak tanah, 1 SPBU, dan 1 perusahaan. Layanan bank terdekat: BRI Unit Semangga." },
+      ], ket: "BUMKam Bina Mulya Sejahtera, 25 UMKM, 33 kios, 11 toko.", detail: "BUMKam Bina Mulya Sejahtera mengelola depot air minum, wisata pemancingan, dan ayam petelur dengan modal Rp657.899.000. Usaha warga lain: 10 warung, 7 pom mini, 3 agen minyak tanah, 1 SPBU, dan 1 perusahaan. Perbankan: BRI Unit Semangga." },
     { judul: "Potensi wisata", ikon: "wisata", foto: "assets/img/fasilitas/2023/f035.jpg", fotoKet: "Kolam pemancingan kampung dengan pondok tempat duduk", kredit: "Dokumen Fasilitas Umum Kampung Marga Mulya, Desember 2023",
       fotoLain: [
         { src: "assets/img/fasilitas/2023/f034.jpg", ket: "Kolam pemancingan Kampung Marga Mulya", kredit: "Dokumen Fasilitas Umum Kampung Marga Mulya, Desember 2023" },
         { src: "assets/img/fasilitas/2023/f037.jpg", ket: "Pendopo joglo dan gazebo di sekitar kolam pemancingan", kredit: "Dokumen Fasilitas Umum Kampung Marga Mulya, Desember 2023" },
         { src: "assets/img/potensi/musamus-wasur.jpg", ket: "Musamus (sarang rayap raksasa) di Taman Nasional Wasur, Merauke", kredit: "Bonefasius Kondahon · Wikimedia Commons", lisensi: "CC BY-SA 4.0", url: "https://commons.wikimedia.org/wiki/File:Sarang_Semut-TamanNasionalWasur.jpg" }
-      ], ket: "Kolam pemancingan kampung, agrowisata, dan taman wisata hingga Distrik Tanah Miring.", detail: "Di dalam kampung terdapat kolam pemancingan yang dilengkapi pondok tempat duduk, pendopo joglo, dan gazebo; wisata pemancingan juga tercatat sebagai salah satu unit usaha BUMKam Bina Mulya Sejahtera. Di sekitar Marga Mulya dan Distrik Tanah Miring terdapat Taman Wisata Alam Mandira Loka, Mandira Agro Park, Taman Bambu Mandira, Romans Garden, Hokkaido Farm, Kebun Percontohan Tanaman Porang, Kebun Pisang Akerezki Farm, dan Kolam Pemancingan Wisata Banyu Mulya. Kawasan Mandira hanya beberapa kilometer dari pusat kampung, sehingga warga berpeluang mengembangkan usaha pendukung seperti kuliner, oleh-oleh, dan pemandu wisata.", tautan: "#wisata", tautanLabel: "Lihat peta, jarak & rute" }
+      ], ket: "Kolam pemancingan kampung, agrowisata, dan taman wisata hingga Distrik Tanah Miring.", detail: "Di dalam kampung terdapat kolam pemancingan dengan pondok tempat duduk, pendopo joglo, dan gazebo. Monografi kampung mencatat wisata pemancingan sebagai salah satu unit usaha BUMKam Bina Mulya Sejahtera. Di sekitar Marga Mulya dan Distrik Tanah Miring terdapat Taman Wisata Alam Mandira Loka, Mandira Agro Park, Taman Bambu Mandira, Romans Garden, Hokkaido Farm, Kebun Percontohan Tanaman Porang, Kebun Pisang Akerezki Farm, dan Kolam Pemancingan Wisata Banyu Mulya.", tautan: "#wisata", tautanLabel: "Lihat peta, jarak & rute" }
   ],
 
   // Rincian ekonomi dari monografi (grafik di tab Potensi)
@@ -398,31 +392,25 @@ window.KAMPUNG = {
     { src: "assets/img/kegiatan/periksa-sapi-1.jpg", caption: "Pemeriksaan kesehatan sapi milik peternak oleh Tim Ekspedisi Patriot" },
     { src: "assets/img/kegiatan/periksa-sapi-2.jpg", caption: "Tim Ekspedisi Patriot memeriksa dan mendata kesehatan ternak bersama peternak" },
     { src: "assets/img/kegiatan/petik-tomat.jpg", caption: "Tim Ekspedisi Patriot ikut memetik tomat bersama petani" },
-    { src: "assets/img/kegiatan/kebun-tomat.jpg", caption: "Petani merawat tanaman tomat di kebun hortikultura" },
-    { src: "", caption: "Musyawarah kampung" },
-    { src: "", caption: "Panen padi" },
-    { src: "", caption: "Pemetaan drone bersama warga" },
-    { src: "", caption: "Kegiatan Posyandu" },
-    { src: "", caption: "Sekolah Keluarga Berkualitas" },
-    { src: "", caption: "Kerja bakti kampung" }
+    { src: "assets/img/kegiatan/kebun-tomat.jpg", caption: "Petani merawat tanaman tomat di kebun hortikultura" }
   ],
 
   kegiatan: [
-    { tanggal: "2026", judul: "Pemetaan wilayah dengan drone", ket: "Pengambilan foto udara untuk peta kampung bersama perangkat kampung." },
-    { tanggal: "2026", judul: "Pendataan penduduk", ket: "Pemutakhiran data kependudukan, pendidikan, dan pekerjaan warga." },
-    { tanggal: "2026", judul: "Produksi video profil", ket: "Pengambilan gambar potensi dan kehidupan warga kampung." },
-    { tanggal: "2026", judul: "Pelatihan peternakan skala industri & pertanian terintegrasi", foto: "assets/img/kegiatan/pelatihan-peternakan.jpg",
-      ket: "Pelatihan Manajemen Sistem Peternakan Skala Industri dan Pengembangan Pertanian Terintegrasi Berkelanjutan bersama peternak, petani, dan perangkat kampung." },
+    { tanggal: "Okt 2026", judul: "Lokakarya data desa presisi", ket: "Lokakarya data desa presisi bagi perangkat dan kader kampung di Balai Kampung Marga Mulya (IPB University, 19 Oktober 2026)." },
+    { tanggal: "Okt 2026", judul: "Amoniasi jerami untuk pakan ternak", ket: "Peternak di Distrik Semangga, termasuk Marga Mulya, belajar mengolah jerami padi menjadi pakan sapi (MataPapua, 9 Oktober 2026)." },
+    { tanggal: "2026", judul: "Pelatihan Manajemen Sistem Peternakan Skala Industri dan Pengembangan Pertanian Terintegrasi Berkelanjutan", foto: "assets/img/kegiatan/pelatihan-peternakan.jpg",
+      ket: "Pelatihan oleh Tim Ekspedisi Patriot IPB University. Foto bersama peserta pelatihan." },
     { tanggal: "2026", judul: "Pemeriksaan kesehatan ternak sapi", foto: "assets/img/kegiatan/periksa-sapi-1.jpg",
-      ket: "Tim memeriksa kesehatan sapi milik peternak di kandang dan mencatat kondisinya sebagai bahan pendampingan peternakan." },
-    { tanggal: "2026", judul: "Pendampingan petani hortikultura", foto: "assets/img/kegiatan/petik-tomat.jpg",
-      ket: "Tim turun ke kebun tomat warga, ikut memetik hasil panen, dan berdiskusi dengan petani tentang budi daya hortikultura." }
+      ket: "Tim Ekspedisi Patriot memeriksa sapi milik peternak di kandang." },
+    { tanggal: "2026", judul: "Kunjungan ke kebun tomat warga", foto: "assets/img/kegiatan/petik-tomat.jpg",
+      ket: "Tim Ekspedisi Patriot ikut memetik tomat bersama petani." },
+    { tanggal: "2026", judul: "Video profil kampung", ket: "Video profil Kampung Marga Mulya; dapat ditonton di menu Profil → Video & Galeri." }
   ],
 
   kontak: {
     alamat: "Kantor Kampung Marga Mulya, Distrik Semangga, Kabupaten Merauke, Papua Selatan 99631",
     telepon: "[nomor telepon / WhatsApp kantor kampung]",
     email: "[email resmi kampung]",
-    jamLayanan: "Senin–Jumat, 08.00–14.00 WIT"   // perkiraan; sesuaikan dengan jam kantor kampung
+    jamLayanan: ""   // isi jam layanan resmi kantor kampung
   }
 };

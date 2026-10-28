@@ -229,9 +229,10 @@
     $("#identitas").insertAdjacentHTML("afterend", '<h3 class="mt-s">Jarak tempuh</h3><div class="tiles tiles--3">' + orb.map(function (o) { return '<div class="tile"><b>' + esc(o[0]) + "</b><span>" + esc(o[1]) + "</span></div>"; }).join("") + "</div>" +
       '<h3 class="mt-s">Pertanahan</h3><div class="tiles tiles--3">' + tn.map(function (o) { return '<div class="tile"><b>' + esc(o[0]) + "</b><span>" + esc(o[1]) + "</span></div>"; }).join("") + "</div>");
   }
-  $("#visi").textContent = D.visi;
-  if (D.visiContoh) $("#visi").insertAdjacentHTML("beforeend", CHIP);
-  $("#misi").innerHTML = D.misi.map(function (m) { return "<li>" + esc(m) + "</li>"; }).join("");
+  if (D.visi) $("#visi").textContent = D.visi;
+  else $("#visi").innerHTML = '<span class="small">Visi resmi kampung akan dicantumkan setelah dokumen RPJMKam tersedia.</span>';
+  $("#misi").innerHTML = (D.misi || []).map(function (m) { return "<li>" + esc(m) + "</li>"; }).join("");
+  if (!(D.misi || []).length) $("#misi").outerHTML = '<p class="small">Misi resmi kampung akan dicantumkan setelah dokumen RPJMKam tersedia.</p>';
   var arah = [["n", "Utara", D.batas.utara], ["w", "Barat", D.batas.barat], ["e", "Timur", D.batas.timur], ["s", "Selatan", D.batas.selatan]];
   $("#batas").innerHTML = arah.map(function (a) {
     return '<button type="button" class="c tap ' + a[0] + '"' + act(function () {
@@ -573,10 +574,10 @@
   $("#layananList").innerHTML = D.layanan.map(function (l) {
     return '<button type="button" class="svc tap"' + act(function () {
       openModal({ kat: "Layanan administrasi", title: l.nama,
-        html: "<p><b>Persyaratan:</b></p><ul>" + l.syarat.map(function (s) { return "<li>" + esc(s) + "</li>"; }).join("") + "</ul>" +
-          "<p><b>Lama proses:</b> " + esc(l.waktu) + "<br><b>Jam layanan:</b> " + esc(D.kontak.jamLayanan) + "</p><p>Bawa berkas ke Kantor Kampung Marga Mulya. Pelayanan tidak dipungut biaya.</p>" +
+        html: ((l.syarat || []).length ? "<p><b>Persyaratan:</b></p><ul>" + l.syarat.map(function (s) { return "<li>" + esc(s) + "</li>"; }).join("") + "</ul>" : "<p>Persyaratan resmi untuk surat ini belum dicantumkan. Silakan tanyakan langsung ke Kantor Kampung Marga Mulya.</p>") +
+          (l.waktu ? "<p><b>Lama proses:</b> " + esc(l.waktu) + "</p>" : "") + (D.kontak.jamLayanan ? "<p><b>Jam layanan:</b> " + esc(D.kontak.jamLayanan) + "</p>" : "") +
           "<div class='modal__actions'>" + mapBtn(gm.dir, "Petunjuk arah ke kantor (OpenStreetMap)", "nav", true) + "</div>" });
-    }) + "><span>" + ic("doc") + "</span><span><b>" + esc(l.nama) + "</b><small>" + ic("clock") + esc(l.waktu) + '</small></span><span class="go">' + ic("arrow") + "</span></button>";
+    }) + "><span>" + ic("doc") + "</span><span><b>" + esc(l.nama) + "</b>" + (l.waktu ? "<small>" + ic("clock") + esc(l.waktu) + "</small>" : "") + '</span><span class="go">' + ic("arrow") + "</span></button>";
   }).join("");
   if (D.layananContoh) $("#layanan .lead").insertAdjacentHTML("beforeend", CHIP);
 
@@ -650,8 +651,11 @@
     ["pin", "Alamat", K.alamat, function () { openModal({ kat: "Kontak", title: "Alamat kantor", html: "<p>" + esc(K.alamat) + "</p><div class='modal__actions'>" + "<a class='btn btn--solid' href='#petakampung'>" + ic("pin") + "Lihat di peta kampung</a>" + mapBtn(gm.dir, "Petunjuk arah", "nav") + "</div>" }); }],
     ["phone", "Telepon / WhatsApp", K.telepon, function () { copy(K.telepon); }],
     ["mail", "Email", K.email, function () { copy(K.email); }],
-    ["clock", "Jam layanan", K.jamLayanan, function () { openModal({ kat: "Kontak", title: "Jam layanan", html: "<p>" + esc(K.jamLayanan) + ". Di luar jam tersebut, hubungi perangkat kampung melalui telepon/WhatsApp.</p>" }); }]
-  ];
+    ["clock", "Jam layanan", K.jamLayanan, function () { openModal({ kat: "Kontak", title: "Jam layanan", html: "<p>" + esc(K.jamLayanan) + "</p>" }); }]
+  ].map(function (k) {
+    if (!belumAda(k[2])) return k;
+    return [k[0], k[1], "Belum tersedia", function () { openModal({ kat: "Kontak", title: k[1], html: "<p>" + esc(k[1]) + " resmi Kantor Kampung Marga Mulya belum dicantumkan.</p>" }); }];
+  });
   $("#kontakList").innerHTML = kontak.map(function (k) {
     return '<li><button type="button" class="tap"' + act(k[3]) + "><span>" + ic(k[0]) + "</span><span><small>" + esc(k[1]) + "</small><b>" + esc(k[2]) + "</b></span></button></li>";
   }).join("");
@@ -703,7 +707,7 @@
         (t.lat == null ? '<span class="wcard__dist"><span>' + ic("pin") + "Titik lokasi belum dipetakan</span></span>" :
           '<span class="wcard__dist"><span>' + ic("route") + fmtKm(t.jarak_km) + "</span><span>" + ic("clock") + fmtMnt(t.waktu_menit) + "</span></span>") +
         '<span class="ncard__d">' + esc(t.deskripsi) + "</span>" +
-        (t.jam || t.tiket ? '<span class="wcard__info">' + (t.jam ? "Buka " + esc(t.jam) : "") + (t.jam && t.tiket ? " · " : "") + (t.tiket ? "Tiket " + esc(t.tiket) : "") + "</span>" : "") +
+        (t.jam ? '<span class="wcard__info">Buka ' + esc(t.jam) + "</span>" : "") +
         "</span></button>" +
         '<span class="wcard__act"><a href="' + esc(gmCari(t)) + '" target="_blank" rel="noopener">' + ic("pin") + 'Google Maps</a><a href="' + esc(gmRute(t)) + '" target="_blank" rel="noopener">' + ic("nav") + "Rute</a></span></article>";
     }
@@ -753,7 +757,7 @@
         setTimeout(function () { markers[id].openPopup(); }, 850);
       } else {
         openModal({ kat: t.kategori + " · " + t.area, title: t.nama, html: "<p>" + esc(t.deskripsi) + "</p>" +
-          (t.jam ? "<p><b>Jam buka:</b> " + esc(t.jam) + "</p>" : "") + (t.tiket ? "<p><b>Tiket:</b> " + esc(t.tiket) + "</p>" : "") + (t.fasilitas ? "<p><b>Fasilitas:</b> " + esc(t.fasilitas) + "</p>" : "") +
+          (t.jam ? "<p><b>Jam buka:</b> " + esc(t.jam) + "</p>" : "") + (t.fasilitas ? "<p><b>Fasilitas:</b> " + esc(t.fasilitas) + "</p>" : "") +
           "<div class='modal__actions'>" + mapBtn(gmCari(t), "Cari di Google Maps", "pin", true) + mapBtn(gmRute(t), "Rute dari Marga Mulya", "nav") + (t.info ? mapBtn(t.info, "Info lengkap", "external") : "") + "</div>" });
       }
     }
@@ -805,7 +809,7 @@
         render();
       });
       petakan(); render();
-      $("#wisataNote").innerHTML = "Jarak dan waktu adalah perkiraan rute jalan dari pusat Kampung Marga Mulya (data OpenStreetMap) dan dapat berbeda sesuai kondisi jalan. Jam buka dan harga tiket dapat berubah. Tempat bertanda \u201clokasi perkiraan\u201d atau \u201cbelum dipetakan\u201d menunggu konfirmasi titik dari pengelola atau admin kampung. Sumber informasi dan foto destinasi: visitmerauke.com, tempatrenang.com, infodantips.com, trip.com, Wikivoyage, dan Kompas.com.";
+      $("#wisataNote").innerHTML = "Jarak dan waktu adalah perkiraan rute jalan dari pusat Kampung Marga Mulya (data OpenStreetMap) dan dapat berbeda sesuai kondisi jalan. Jam buka mengikuti sumber yang dikutip dan dapat berubah. Tempat bertanda \u201clokasi perkiraan\u201d dipetakan dari alamatnya; tempat bertanda \u201cbelum dipetakan\u201d belum memiliki titik lokasi. Sumber informasi dan foto destinasi: visitmerauke.com, tempatrenang.com, infodantips.com, trip.com, Wikivoyage, dan Kompas.com.";
     }).catch(function () { track.innerHTML = '<p class="small">Data wisata belum dapat dimuat.</p>'; });
   })();
   /* =================== FASILITAS UMUM =================== */
