@@ -14,7 +14,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
-  <link rel="stylesheet" href="assets/css/style.css?v=202610290135">
+  <link rel="stylesheet" href="assets/css/style.css?v=202610290145">
 </head>
 <body>
   <!-- Kumpulan ikon garis (dipakai dengan <svg><use href="#i-..."/></svg>) -->
@@ -315,10 +315,16 @@
         <header class="sec__head"><span class="sec__icon"><svg class="ic"><use href="#i-wallet"/></svg></span><div><p class="eyebrow">Transparansi anggaran</p><h2 id="apbTitle">APBKam</h2><p class="lead" id="apbLead"></p></div></header>
         <div class="apb-sum" id="apbSum"></div>
         <div class="grid-apb mt">
-          <div class="panel"><h3>Sumber pendapatan</h3><div id="dPendapatan"></div><details class="more"><summary>Lihat dalam grafik batang</summary><div class="bars" id="apbPendapatan"></div></details></div>
-          <div class="panel"><h3>Belanja per bidang</h3><p class="small" id="apbBelanjaNote">Ketuk bidang untuk melihat rincian kegiatan.</p><div class="bidang" id="apbBelanja"></div></div>
+          <div class="panel"><h3>Pendapatan per kelompok</h3><p class="small">Ketuk kelompok untuk melihat rinciannya.</p><div id="dPendapatan"></div><div class="kelompok" id="apbPendapatan"></div></div>
+          <div class="panel"><h3>Belanja per bidang</h3><p class="small" id="apbBelanjaNote">Ketuk bidang untuk melihat sub bidang dan kegiatannya.</p><div class="bidang" id="apbBelanja"></div></div>
         </div>
-        <div class="panel mt"><h3>Dana yang dikelola lembaga kampung</h3><div class="bars" id="apbLembaga"></div></div>
+        <div class="grid-2 mt-s">
+          <div class="panel"><h3>Belanja per jenis</h3><p class="small">Pengelompokan menurut jenis belanja: pegawai, barang dan jasa, modal, dan tak terduga.</p><div id="dJenis"></div></div>
+          <div class="panel"><h3>Belanja menurut sumber dana</h3><p class="small">Asal dana yang membiayai setiap kegiatan.</p><div class="bars" id="apbSumber"></div></div>
+        </div>
+        <div class="panel mt-s"><h3>Pembiayaan</h3><div id="apbPembiayaan"></div></div>
+        <div class="apb-more mt-s" id="apbMore"></div>
+        <div class="panel mt"><h3>Dana yang dikelola lembaga kampung</h3><p class="small" id="apbLembagaNote"></p><div class="bars" id="apbLembaga"></div></div>
       </div>
     </section>
         </div>
@@ -484,8 +490,8 @@
   </dialog>
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
-  <script src="assets/js/data.js?v=202610290135"></script>
-  <script src="assets/js/app.js?v=202610290135"></script>
-  <script src="assets/js/router.js?v=202610290135"></script>
+  <script src="assets/js/data.js?v=202610290145"></script>
+  <script src="assets/js/app.js?v=202610290145"></script>
+  <script src="assets/js/router.js?v=202610290145"></script>
 </body>
 </html>

@@ -124,7 +124,7 @@
     ["#pemerintahan", "users", "Pemerintahan", "Struktur organisasi, Bamuskam, dan lembaga"],
     ["#penduduk", "chart", "Data penduduk", "Usia, kesejahteraan, pekerjaan, pendidikan, suku"],
     ["#fasilitas", "school", "Sarana & fasilitas", "Sarana prasarana kampung dan peta fasilitas"],
-    ["#apbkam", "wallet", "Transparansi anggaran", "APBKam dan realisasi per bidang"],
+    ["#apbkam", "wallet", "Transparansi anggaran", "APBKam 2026 per bidang dan sumber dana"],
     ["#indeksdesa", "gauge", "Indeks Desa", "Status perkembangan kampung"],
     ["#petakampung", "pin", "Peta batas kampung", "Peta resmi batas wilayah dan letak fasilitas"],
     ["#wisatakuliner", "route", "Wisata & kuliner", "Tempat rekreasi dan makan 1–2 jam dari kampung"],
@@ -455,43 +455,68 @@
 
   /* =================== ANGGARAN (APBKam) =================== */
   var A = D.apbkam;
-  var totPend = sum(A.pendapatan, "jumlah"), totBel = sum(A.belanja, "anggaran"), totReal = sum(A.belanja, "realisasi");
-  var adaBelanja = A.belanja.length > 0;
-  $("#apbTitle").innerHTML = (adaBelanja ? "APBKam Tahun " + A.tahun : "Keuangan Kampung " + A.tahun) + (A.contoh ? CHIP : "");
-  $("#apbLead").textContent = adaBelanja
-    ? "Anggaran Pendapatan dan Belanja Kampung Marga Mulya. Realisasi per " + A.realisasiPer + ". Ketuk setiap angka untuk penjelasan."
-    : "Pendapatan kampung yang tercatat di " + A.dokumen + ". Rincian belanja per bidang akan ditampilkan setelah Peraturan Kampung tentang APBKam dan laporan realisasinya tersedia.";
-  var sumCards = [
-    ["Pendapatan tercatat", rpS(totPend), A.pendapatan.length + " sumber", "Pendapatan kampung yang tercatat: " + rp(totPend) + ". Rincian ada di panel sumber pendapatan.", ""],
-    ["Pembiayaan", rpS(A.pembiayaan.jumlah), A.pembiayaan.label, A.pembiayaan.label + ": " + rp(A.pembiayaan.jumlah) + ". Sisa lebih perhitungan anggaran tahun sebelumnya yang dipakai pada tahun berjalan.", ""],
-    ["Total dana", rpS(totPend + A.pembiayaan.jumlah), "pendapatan + pembiayaan", "Total dana kampung yang tercatat: " + rp(totPend + A.pembiayaan.jumlah) + ".", "blue"],
-    adaBelanja
-      ? ["Realisasi belanja", pct(totReal, totBel, 0) + "%", rpS(totReal) + " terpakai", "Belanja yang sudah terlaksana sampai " + A.realisasiPer + ": " + rp(totReal) + " dari " + rp(totBel) + ".", ""]
-      : ["Belanja", "Belum ada", "rincian belum tersedia", "Monografi kampung belum memuat belanja rutin dan tidak rutin. Rincian akan diisi dari Perkam APBKam dan laporan realisasi.", ""]
-  ];
-  $("#apbSum").innerHTML = sumCards.map(function (c) {
-    return '<button type="button" class="apb-card tap' + (c[4] ? " apb-card--blue" : "") + '"' + act(function () { openModal({ kat: "Keuangan kampung " + A.tahun, title: c[0], html: "<p>" + esc(c[3]) + "</p><p class='small'>Sumber: " + esc(A.dokumen) + ".</p>" }); }) +
-      "><span>" + c[0] + "</span><b>" + c[1] + "</b><small>" + esc(c[2]) + "</small></button>";
-  }).join("");
-  bars("#apbPendapatan", A.pendapatan, "Sumber pendapatan", rpS);
-  donut("#dPendapatan", A.pendapatan.concat(A.pembiayaan && A.pembiayaan.jumlah ? [{ label: A.pembiayaan.label + " (pembiayaan)", jumlah: A.pembiayaan.jumlah }] : []),
-    { kat: "Sumber dana kampung", fmt: rpS, tengah: [rpS(totPend + (A.pembiayaan ? A.pembiayaan.jumlah : 0)).replace("Rp ", "Rp"), "total dana"] });
-  if (A.pendapatanKosong && A.pendapatanKosong.length) $("#apbPendapatan").insertAdjacentHTML("afterend", '<p class="small">Belum tercatat: ' + esc(A.pendapatanKosong.join(", ")) + ".</p>");
-  if (A.danaLembaga) bars("#apbLembaga", A.danaLembaga, "Dana lembaga kampung", rpS, true);
-  if (!adaBelanja) {
-    $("#apbBelanjaNote").textContent = "";
-    $("#apbBelanja").innerHTML = '<div class="empty">' + ic("doc") + "<b>Rincian belanja belum tersedia</b><span>Belanja kampung dibagi ke lima bidang: penyelenggaraan pemerintahan, pembangunan, pembinaan kemasyarakatan, pemberdayaan masyarakat, serta penanggulangan bencana dan keadaan darurat. Angkanya akan ditampilkan setelah dokumen APBKam diterima.</span></div>";
-  }
-  $("#apbBelanja").insertAdjacentHTML("beforeend", A.belanja.map(function (b, i) {
-    var p = pct(b.realisasi, b.anggaran, 0);
-    return '<button type="button" class="bid tap"' + act(function () {
-      openModal({ kat: "Bidang " + (i + 1) + " · APBKam " + A.tahun, title: b.bidang,
-        html: '<div class="mini-stat"><div><b>' + rpS(b.anggaran) + "</b><span>Anggaran</span></div><div><b>" + rpS(b.realisasi) + "</b><span>Realisasi</span></div><div><b>" + p + "%</b><span>Terserap</span></div></div>" +
-          '<div class="tablewrap"><table class="tbl"><thead><tr><th>Kegiatan</th><th class="num">Anggaran</th><th class="num">Realisasi</th></tr></thead><tbody>' +
-          (b.kegiatan || []).map(function (k) { return "<tr><td>" + esc(k.nama) + '</td><td class="num">' + rpS(k.anggaran) + '</td><td class="num">' + pct(k.realisasi, k.anggaran, 0) + "%</td></tr>"; }).join("") +
-          "</tbody></table></div>" });
-    }) + '><span class="bid__top"><span>' + (i + 1) + ". " + esc(b.bidang) + "</span><span>" + rpS(b.anggaran) + '</span></span><span class="bid__track" style="display:block"><span class="bid__fill" style="display:block;width:' + p + '%"></span></span><small>Realisasi ' + rpS(b.realisasi) + " · " + p + "% · " + pct(b.anggaran, totBel, 0) + "% dari total belanja</small></button>";
-  }).join(""));
+  (function () {
+    var totPend = sum(A.pendapatan, "jumlah"), totBel = sum(A.belanja, "anggaran"), P = A.pembiayaan || {};
+    var tanda = function (n) { return (n < 0 ? "−" : "") + rpS(Math.abs(n)); };
+    var sumberDok = "Sumber: " + A.dokumen + ", ditandatangani " + A.penandatangan + " pada " + A.tanggal + ".";
+    $("#apbTitle").textContent = "APBKam Tahun Anggaran " + A.tahun;
+    $("#apbLead").textContent = "Anggaran Pendapatan dan Belanja Kampung Marga Mulya tahun " + A.tahun + " menurut " + A.dokumen + " (" + A.tanggal + "). Ketuk setiap angka atau bidang untuk melihat rinciannya.";
+    var cards = [
+      ["Pendapatan", rpS(totPend), A.pendapatan.filter(function (k) { return k.jumlah; }).length + " kelompok pendapatan", "Total pendapatan kampung tahun " + A.tahun + ": " + rp(totPend) + ", terdiri atas " + A.pendapatan.filter(function (k) { return k.jumlah; }).map(function (k) { return k.kelompok.toLowerCase() + " " + rp(k.jumlah); }).join(" dan ") + ".", ""],
+      ["Belanja", rpS(totBel), A.belanja.filter(function (b) { return b.anggaran; }).length + " bidang · " + A.belanja.reduce(function (n, b) { return n + b.sub.reduce(function (m, s) { return m + s.kegiatan.length; }, 0); }, 0) + " kegiatan", "Total belanja yang dianggarkan: " + rp(totBel) + ".", "blue"],
+      ["Surplus", rpS(A.surplus), "pendapatan − belanja", "Selisih pendapatan dan belanja: " + rp(totPend) + " − " + rp(totBel) + " = " + rp(A.surplus) + ".", ""],
+      ["Pembiayaan netto", tanda(P.netto), "SiLPA " + rpS(P.totalPenerimaan) + " · keluar " + rpS(P.totalPengeluaran), "Penerimaan pembiayaan (SiLPA 2025) " + rp(P.totalPenerimaan) + " dikurangi pengeluaran pembiayaan " + rp(P.totalPengeluaran) + " = " + tanda(P.netto).replace("Rp ", "Rp") + ".", ""]
+    ];
+    $("#apbSum").innerHTML = cards.map(function (c) {
+      return '<button type="button" class="apb-card tap' + (c[4] ? " apb-card--blue" : "") + '"' + act(function () { openModal({ kat: "APBKam " + A.tahun, title: c[0], html: "<p>" + esc(c[3]) + "</p><p class='small'>" + esc(sumberDok) + "</p>" }); }) +
+        "><span>" + c[0] + "</span><b>" + c[1] + "</b><small>" + esc(c[2]) + "</small></button>";
+    }).join("");
+
+    // Pendapatan per kelompok
+    var pendIsi = A.pendapatan.filter(function (k) { return k.jumlah; });
+    donut("#dPendapatan", pendIsi.map(function (k) { return { label: k.kelompok, jumlah: k.jumlah, isi: k.rincian.length > 1 ? k.rincian.map(function (r) { return { label: r.nama, jumlah: r.jumlah }; }) : null }; }),
+      { kat: "Pendapatan APBKam " + A.tahun, fmt: rpS, tengah: [rpS(totPend).replace("Rp ", "Rp"), "pendapatan"] });
+    $("#apbPendapatan").innerHTML = A.pendapatan.map(function (k) {
+      return '<button type="button" class="kel tap"' + act(function () {
+        openModal({ kat: "Pendapatan · APBKam " + A.tahun, title: k.kelompok,
+          html: '<div class="mini-stat"><div><b>' + rpS(k.jumlah) + "</b><span>Jumlah</span></div><div><b>" + pct(k.jumlah, totPend) + "%</b><span>dari pendapatan</span></div><div><b>" + k.rincian.length + "</b><span>rincian</span></div></div>" +
+            "<p>" + esc(k.ket) + "</p>" + (k.rincian.length ? '<div class="tablewrap"><table class="tbl"><tbody>' + k.rincian.map(function (r) { return "<tr><td>" + esc(r.nama) + '</td><td class="num">' + rp(r.jumlah) + "</td></tr>"; }).join("") + "</tbody></table></div>" : "") });
+      }) + '><span class="kel__h"><b>' + esc(k.kelompok) + "</b><span>" + rpS(k.jumlah) + "</span></span><small>" +
+        (k.rincian.length ? k.rincian.map(function (r) { return esc(r.nama) + " " + rpS(r.jumlah); }).join(" · ") : esc(k.ket)) + "</small></button>";
+    }).join("");
+
+    // Belanja per bidang
+    $("#apbBelanja").innerHTML = A.belanja.map(function (b) {
+      var p = pct(b.anggaran, totBel, 1), nK = b.sub.reduce(function (m, s) { return m + s.kegiatan.length; }, 0);
+      return '<button type="button" class="bid tap"' + act(function () {
+        openModal({ kat: "Bidang " + b.kode + " · APBKam " + A.tahun, title: b.bidang,
+          html: '<div class="mini-stat"><div><b>' + rpS(b.anggaran) + "</b><span>Anggaran</span></div><div><b>" + p + "%</b><span>dari total belanja</span></div><div><b>" + nK + "</b><span>kegiatan</span></div></div>" +
+            (b.sub.length ? b.sub.map(function (s) {
+              return '<h4 class="mt-s">' + esc(s.nama) + ' <span class="small">· ' + rpS(s.anggaran) + '</span></h4><div class="tablewrap"><table class="tbl"><thead><tr><th>Kegiatan</th><th class="num">Anggaran</th></tr></thead><tbody>' +
+                s.kegiatan.map(function (k) { return "<tr><td>" + esc(k.nama) + '<br><span class="small">' + esc(k.sumber) + '</span></td><td class="num">' + rp(k.anggaran) + "</td></tr>"; }).join("") + "</tbody></table></div>";
+            }).join("") : "<p>Bidang ini tidak dianggarkan pada APBKam " + A.tahun + ".</p>") +
+            "<div class='modal__actions'><a class='btn btn--solid' href='" + esc(A.halaman) + "#bidang-" + esc(b.kode) + "'>" + ic("doc") + "Lihat rincian belanja lengkap</a></div>" });
+      }) + '><span class="bid__top"><span>' + esc(b.kode) + ". " + esc(b.bidang) + "</span><span>" + rpS(b.anggaran) + '</span></span><span class="bid__track" style="display:block"><span class="bid__fill" style="display:block;width:' + Math.max(b.anggaran ? 1 : 0, b.anggaran / totBel * 100) + '%"></span></span><small>' +
+        (b.anggaran ? p + "% dari total belanja · " + b.sub.length + " sub bidang · " + nK + " kegiatan" : "Tidak dianggarkan tahun ini") + "</small></button>";
+    }).join("");
+
+    // Jenis belanja & sumber dana
+    donut("#dJenis", (A.jenisBelanja || []).map(function (j) { return { label: j.nama, jumlah: j.jumlah }; }), { kat: "Jenis belanja APBKam " + A.tahun, fmt: rpS, tengah: [rpS(totBel).replace("Rp ", "Rp"), "belanja"] });
+    bars("#apbSumber", (A.sumberDana || []).map(function (s) { return { label: s.nama, jumlah: s.jumlah }; }), "Sumber dana belanja", rpS);
+
+    // Pembiayaan
+    var pTab = function (judul, list, tot) {
+      return '<div><h4>' + judul + ' <span class="small">· ' + rpS(tot) + '</span></h4><div class="tablewrap"><table class="tbl"><tbody>' + list.map(function (r) {
+        return "<tr><td>" + esc(r.nama) + (r.sumber ? '<br><span class="small">Sumber: ' + esc(r.sumber) + "</span>" : "") + '</td><td class="num">' + rp(r.jumlah) + "</td></tr>";
+      }).join("") + "</tbody></table></div></div>";
+    };
+    $("#apbPembiayaan").innerHTML = '<div class="grid-2">' + pTab("Penerimaan pembiayaan", P.penerimaan || [], P.totalPenerimaan) + pTab("Pengeluaran pembiayaan", P.pengeluaran || [], P.totalPengeluaran) + "</div>" +
+      '<p class="small mt-s">Pembiayaan netto ' + esc(tanda(P.netto)) + ". Dokumen mencatat selisih pembiayaan (surplus ditambah pembiayaan netto) sebesar " + esc(tanda(A.selisih)) + ".</p>";
+
+    $("#apbMore").innerHTML = '<div class="apb-more__t"><b>Ingin melihat anggaran lengkap?</b><span>Semua kegiatan beserta rincian volume, harga satuan, dan jumlahnya ada di halaman rincian APBKam.</span></div><a class="btn btn--solid" href="' + esc(A.halaman) + '">' + ic("doc") + "Baca selengkapnya</a>";
+    if (A.danaLembaga) bars("#apbLembaga", A.danaLembaga, "Dana lembaga kampung", rpS, true);
+    if (A.danaLembagaSumber) $("#apbLembagaNote").textContent = "Di luar APBKam. Sumber: " + A.danaLembagaSumber + ".";
+  })();
 
   /* =================== INDEKS DESA =================== */
   var I = D.indeksDesa;

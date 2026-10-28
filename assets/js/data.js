@@ -393,22 +393,380 @@ window.KAMPUNG = {
   /* ---------- TRANSPARANSI ANGGARAN ----------
      Monografi baru mencatat pendapatan (bantuan) dan SILPA. Rincian belanja
      per bidang diisi setelah Perkam APBKam & laporan realisasi tersedia. */
+  // APBKam 2026 dari Penjabaran APBKam (ditandatangani Kepala Kampung, 4 Mei 2026).
+  // Rincian lengkap per kegiatan: data/apbk-2026.json (dibaca halaman apbk.html).
   apbkam: {
     tahun: 2026,
-    realisasiPer: "30 September 2026",
-    dokumen: "Monografi Tingkat Kampung Marga Mulya per 30 September 2026",
+    judul: "Penjabaran Anggaran Pendapatan dan Belanja Kampung (APBKam) Marga Mulya Tahun Anggaran 2026",
+    dokumen: "Penjabaran APBKam Kampung Marga Mulya Tahun Anggaran 2026",
+    tanggal: "4 Mei 2026",
+    penandatangan: "Kepala Kampung Marga Mulya",
+    halaman: "apbk.html",
+    rinciJson: "data/apbk-2026.json",
     pendapatan: [
-      { label: "Bantuan pemerintah", jumlah: 373456000 },
-      { label: "Bantuan kabupaten", jumlah: 521227062 }
+      {
+        kelompok: "Pendapatan Asli Kampung",
+        jumlah: 12000000,
+        rincian: [
+          {
+            nama: "Pendapatan asli kampung (PAD tahun 2025)",
+            jumlah: 6500000
+          },
+          {
+            nama: "Pendapatan asli kampung (PAD tahun 2024)",
+            jumlah: 5500000
+          }
+        ],
+        ket: "Pendapatan dari usaha dan aset kampung yang dicatat dari tahun sebelumnya."
+      },
+      {
+        kelompok: "Pendapatan Transfer",
+        jumlah: 894683062,
+        rincian: [
+          {
+            nama: "Dana Desa (DD) 2026",
+            jumlah: 373456000
+          },
+          {
+            nama: "Alokasi Dana Kampung (ADK) 2026",
+            jumlah: 521227062
+          }
+        ],
+        ket: "Dana Desa dari APBN dan Alokasi Dana Kampung dari APBD Kabupaten Merauke."
+      },
+      {
+        kelompok: "Pendapatan Lain-lain",
+        jumlah: 0,
+        rincian: [],
+        ket: "Bunga bank dan pendapatan lain yang sah; tidak dianggarkan tahun ini."
+      }
     ],
-    pendapatanKosong: ["Pendapatan asli kampung", "Bantuan provinsi", "Bantuan lain tidak mengikat", "Dana cadangan"],
-    pembiayaan: { label: "SILPA / SIKPA", jumlah: 60288048 },
-    belanja: [],                // isi per bidang: { bidang, anggaran, realisasi, kegiatan: [{ nama, anggaran, realisasi }] }
+    belanja: [
+      {
+        kode: "1",
+        bidang: "Bidang Penyelenggaraan Pemerintahan Desa",
+        anggaran: 504267062,
+        sub: [
+          {
+            nama: "Penyelenggara Belanja Penghasilan Tetap, Tunjangan dan Operasional Pemerintah Desa",
+            anggaran: 437568000,
+            kegiatan: [
+              {
+                nama: "Penyediaan Penghasilan Tetap dan Tunjangan Kepala Desa",
+                anggaran: 0,
+                sumber: "Alokasi Dana Kampung 2026"
+              },
+              {
+                nama: "Penyediaan Penghasilan Tetap dan Tunjangan Perangkat Desa",
+                anggaran: 180000000,
+                sumber: "Alokasi Dana Kampung 2026"
+              },
+              {
+                nama: "Penyediaan Jaminan Sosial bagi Kepala Desa dan Perangkat Desa",
+                anggaran: 11232000,
+                sumber: "Alokasi Dana Kampung 2026"
+              },
+              {
+                nama: "Penyediaan Operasional Pemerintah Desa (ATK, Honorarium PKPKD dan PPKD, perlengkapan perkantoran, Pakaian dinas/atribut, listrik/telpon, dll)",
+                anggaran: 68986000,
+                sumber: "Alokasi Dana Kampung 2026"
+              },
+              {
+                nama: "Penyediaan Tunjangan BAMUSKAM",
+                anggaran: 84600000,
+                sumber: "Alokasi Dana Kampung 2026"
+              },
+              {
+                nama: "Penyediaan Operasional BPD (Rapat-rapat (ATK, makan-minum), perlengkapan perkantoran, Pakaian Seragam, perjalanan dinas, listrik/telpon, dll)",
+                anggaran: 6950000,
+                sumber: "Alokasi Dana Kampung 2026"
+              },
+              {
+                nama: "Penyediaan Insentif/Operasional RT/RW",
+                anggaran: 75000000,
+                sumber: "Alokasi Dana Kampung 2026"
+              },
+              {
+                nama: "Biaya Pemerintah Desa yang bersumber Dari Dana Desa",
+                anggaran: 10800000,
+                sumber: "Dana Desa 2026"
+              }
+            ]
+          },
+          {
+            nama: "Administrasi Kependudukan, Pencatatan Sipil, Statistik dan Kearsipan",
+            anggaran: 5840000,
+            kegiatan: [
+              {
+                nama: "Pemutakhiran Data IDM Berbasis SDGs Desa Tahun 2022",
+                anggaran: 5840000,
+                sumber: "Dana Desa 2026"
+              }
+            ]
+          },
+          {
+            nama: "Tata Praja Pemerintahan, Perencanaan, Keuangan dan Pelaporan",
+            anggaran: 57763062,
+            kegiatan: [
+              {
+                nama: "Penyelenggaraan Musyawarah Desa Lainnya (musdus, rembug warga dll yang bersifat non reguler sesuai kebutuhan desa)",
+                anggaran: 3800000,
+                sumber: "Alokasi Dana Kampung 2026"
+              },
+              {
+                nama: "Penyusunan Dokumen Perencanaan Kampung (RPJMK, RKPK, dll)",
+                anggaran: 22005000,
+                sumber: "Alokasi Dana Kampung 2026"
+              },
+              {
+                nama: "Pengembangan Sistem Informasi Desa",
+                anggaran: 1200000,
+                sumber: "Alokasi Dana Kampung 2026"
+              },
+              {
+                nama: "Dukungan Pelaksanaan dan Sosialisasi Pilkades, Pemilihan Kepala Wilayah dan Pemilihan BPD (Yang Menjadi wewenang Desa)",
+                anggaran: 30758062,
+                sumber: "Alokasi Dana Kampung 2026"
+              }
+            ]
+          },
+          {
+            nama: "Pertanahan",
+            anggaran: 3096000,
+            kegiatan: [
+              {
+                nama: "Penentuan/Penegasan/Pembangunan Batas/Patok Tanah Desa",
+                anggaran: 3096000,
+                sumber: "Alokasi Dana Kampung 2026"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        kode: "2",
+        bidang: "Bidang Pelaksanaan Pembangunan Desa",
+        anggaran: 280836048,
+        sub: [
+          {
+            nama: "Pendidikan",
+            anggaran: 100639500,
+            kegiatan: [
+              {
+                nama: "Penyelenggaraan PAUD/TK/TPA/TKA/TPQ/Madrasah Non-Formal Milik Desa (Bantuan Honor Pengajar, Pakaian Seragam, Operasional, dst)",
+                anggaran: 69050000,
+                sumber: "Dana Desa 2026"
+              },
+              {
+                nama: "Pembangunan/Rehabilitasi/Peningkatan/Pengadaan Sarana/Prasarana/Alat Peraga Edukatif (APE) PAUD/ TK/TPA/TKA/TPQ/Madrasah Non-Formal Milik Desa",
+                anggaran: 31589500,
+                sumber: "Dana Desa 2026"
+              }
+            ]
+          },
+          {
+            nama: "Kesehatan",
+            anggaran: 81806500,
+            kegiatan: [
+              {
+                nama: "Penyelenggaraan Pos Kesehatan Desa (PKD)/Polindes Milik Desa (Obat-obatan; Tambahan Insentif Bidan Desa/Perawat Desa; Penyediaan Pelayanan KB dan Alat Kontrasepsi bagi Keluarga Miskin, dst)",
+                anggaran: 8594000,
+                sumber: "Dana Desa 2026"
+              },
+              {
+                nama: "Penyelenggaraan Posyandu (Makanan Tambahan, Kelas Ibu Hamil, Kelas Lansia, Insentif Kader Posyandu)",
+                anggaran: 66800000,
+                sumber: "Dana Desa 2026"
+              },
+              {
+                nama: "Pemeliharaan Sarana/Prasarana / Posyandu/Polindes/PKD",
+                anggaran: 860000,
+                sumber: "Dana Desa 2026"
+              },
+              {
+                nama: "Pembangunan/Rehabilitasi/Peningkatan/Pengadaan Sarana/Prasarana Posyandu/Polindes/PKD",
+                anggaran: 5552500,
+                sumber: "Dana Desa 2026"
+              }
+            ]
+          },
+          {
+            nama: "Pekerjaan Umum dan Penataan Ruang",
+            anggaran: 97040048,
+            kegiatan: [
+              {
+                nama: "Pemeliharaan Gedung/Prasarana Balai Desa/Balai Kemasyarakatan",
+                anggaran: 18580771,
+                sumber: "SiLPA Alokasi Dana Kampung 2025"
+              },
+              {
+                nama: "Pemeliharaan Pemakaman Milik Desa/Situs Bersejarah Milik Desa/Petilasan Milik Desa",
+                anggaran: 9600000,
+                sumber: "Dana Desa 2026"
+              },
+              {
+                nama: "Pemeliharaan Makam (Penimbunan Makam dan Peningkatan badan Jalan Makam = 100 Meter)",
+                anggaran: 30920000,
+                sumber: "Dana Desa 2026"
+              },
+              {
+                nama: "Pembangunan Gorong-Gorong (RT.15)",
+                anggaran: 17154723,
+                sumber: "SiLPA Dana Desa 2025"
+              },
+              {
+                nama: "Pembangunan Gorong-Gorong (RT.13)",
+                anggaran: 14502554,
+                sumber: "SiLPA Dana Desa 2025"
+              },
+              {
+                nama: "Pembangunan Peningkatan Balai Desa (Rehab Balai Desa)",
+                anggaran: 6282000,
+                sumber: "SiLPA Alokasi Dana Kampung 2025"
+              }
+            ]
+          },
+          {
+            nama: "Perhubungan, Komunikasi, dan Informatika",
+            anggaran: 1350000,
+            kegiatan: [
+              {
+                nama: "Penyelenggaraan Informasi Publik Kampung",
+                anggaran: 1350000,
+                sumber: "Dana Desa 2026"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        kode: "3",
+        bidang: "Bidang Pembinaan Kemasyarakatan Desa",
+        anggaran: 37368000,
+        sub: [
+          {
+            nama: "Ketenteraman, Ketertiban Umum, dan Pelindungan Masyarakat",
+            anggaran: 37368000,
+            kegiatan: [
+              {
+                nama: "Pengadaan/Penyelenggaraan Pos Keamanan Desa (Pelaksanaan jadwal ronda/patroli, dll.)",
+                anggaran: 3768000,
+                sumber: "SiLPA Alokasi Dana Kampung 2025"
+              },
+              {
+                nama: "Penguatan dan Peningkatan Kapasitas Tenaga Keamanan/Ketertiban oleh Pemerintah Desa (Satlinmas desa)",
+                anggaran: 33600000,
+                sumber: "Alokasi Dana Kampung 2026"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        kode: "4",
+        bidang: "Bidang Pemberdayaan Masyarakat Desa",
+        anggaran: 0,
+        sub: []
+      },
+      {
+        kode: "5",
+        bidang: "Bidang Penanggulangan Bencana, Keadaan Darurat dan Mendesak Desa",
+        anggaran: 84000000,
+        sub: [
+          {
+            nama: "Keadaan Mendesak",
+            anggaran: 84000000,
+            kegiatan: [
+              {
+                nama: "Keadaan Mendesak",
+                anggaran: 84000000,
+                sumber: "Dana Desa 2026"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    jenisBelanja: [
+      {
+        nama: "Belanja pegawai",
+        jumlah: 286632000
+      },
+      {
+        nama: "Belanja barang dan jasa",
+        jumlah: 418157292
+      },
+      {
+        nama: "Belanja modal",
+        jumlah: 117681818
+      },
+      {
+        nama: "Belanja tak terduga",
+        jumlah: 84000000
+      }
+    ],
+    sumberDana: [
+      {
+        nama: "Alokasi Dana Kampung 2026",
+        jumlah: 521227062
+      },
+      {
+        nama: "Dana Desa 2026",
+        jumlah: 324956000
+      },
+      {
+        nama: "SiLPA Dana Desa 2025",
+        jumlah: 31657277
+      },
+      {
+        nama: "SiLPA Alokasi Dana Kampung 2025",
+        jumlah: 28630771
+      }
+    ],
+    surplus: 211952,
+    pembiayaan: {
+      penerimaan: [
+        {
+          nama: "SiLPA Dana Desa 2025",
+          jumlah: 31657277
+        },
+        {
+          nama: "SiLPA Alokasi Dana Kampung 2025",
+          jumlah: 28630771
+        }
+      ],
+      pengeluaran: [
+        {
+          nama: "Pembentukan Dana Cadangan",
+          jumlah: 12000000,
+          sumber: "PAD 2025"
+        },
+        {
+          nama: "Penyertaan Modal Desa (Ketahanan Pangan)",
+          jumlah: 54000000,
+          sumber: "Dana Desa 2026"
+        }
+      ],
+      totalPenerimaan: 60288048,
+      totalPengeluaran: 66000000,
+      netto: -5711952
+    },
+    selisih: -5500000,
     danaLembaga: [
-      { label: "Modal BUMKam Bina Mulya Sejahtera", jumlah: 657899000 },
-      { label: "Keuangan dikelola BUMKam", jumlah: 84000000 },
-      { label: "Dana dikelola TP PKK", jumlah: 86000000 }
-    ]
+      {
+        label: "Modal BUMKam Bina Mulya Sejahtera",
+        jumlah: 657899000
+      },
+      {
+        label: "Keuangan dikelola BUMKam",
+        jumlah: 84000000
+      },
+      {
+        label: "Dana dikelola TP PKK",
+        jumlah: 86000000
+      }
+    ],
+    danaLembagaSumber: "Monografi Kampung Marga Mulya, 30 September 2026"
   },
 
   /* ---------- INDEKS DESA (pengganti IDM) ---------- */
