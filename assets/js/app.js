@@ -346,7 +346,7 @@
   }
   function donut(sel, list, o) {
     o = o || {};
-    var el = $(sel); if (!el) return;
+    var el = $(sel); if (!el) return; el.classList.add("donut-host");
     var fmt = o.fmt || num, satuan = o.satuan || "", tot = sum(list, "jumlah");
     var pal = o.warna || (o.urut ? list.map(function (_, i) { return PAL_URUT[list.length > 1 ? Math.round(i * (PAL_URUT.length - 1) / (list.length - 1)) : 3]; }) : PAL_KAT);
     var R = 42, C = 2 * Math.PI * R, gap = list.length > 1 ? 1.4 : 0, off = 0;
