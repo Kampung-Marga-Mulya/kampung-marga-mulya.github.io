@@ -693,7 +693,7 @@
         openModal({ kat: "Komoditas pertanian", title: x.label, html: '<div class="mini-stat"><div><b>' + x.ha.toLocaleString("id-ID") + "</b><span>Hektare</span></div><div><b>" + num(x.petani) + "</b><span>Petani</span></div></div>" +
           (x.cek ? "<p>Luas tanam padi di monografi tercatat " + x.ha.toLocaleString("id-ID") + " ha dengan " + num(x.petani) + " petani. Angka luas ini sedang dicek ulang karena padi termasuk komoditas utama kampung.</p>" : "<p>" + esc(x.label) + " ditanam di lahan seluas " + x.ha.toLocaleString("id-ID") + " ha oleh " + num(x.petani) + " petani.</p>") });
       }) + "><span>" + esc(x.label) + (x.cek ? " *" : "") + '</span><span class="bar__val"><b>' + x.ha.toLocaleString("id-ID") + " ha</b> · " + num(x.petani) + ' petani</span><span class="bar__track"><span class="bar__fill" style="display:block;width:' + Math.max(1, x.ha / maxHa * 100) + '%"></span></span></button>';
-    }).join("") + '<p class="small">* Luas tanam padi sedang dicek ulang.</p>';
+    }).join("") + (E.lahan.some(function (g) { return g.cek; }) ? '<p class="small">* Luas tanam padi sedang dicek ulang.</p>' : "");
     var IKT = { Unggas: "ternak", Sapi: "ternak", Kambing: "ternak", Kuda: "ternak", Kerbau: "ternak" };
     $("#ekoTernak").innerHTML = E.ternak.map(function (t) {
       return '<button type="button" class="herd__i tap"' + act(function () {
@@ -705,7 +705,7 @@
     donut("#ekoGuna", E.penggunaanLahan.map(function (g) { return { label: g.label, jumlah: g.ha }; }), { kat: "Penggunaan lahan", satuan: "ha", fmt: haFmt, tengah: [num(Math.round(totG)), "hektare"] });
     donut("#dLahan", E.lahan.map(function (g) { return { label: g.label + (g.cek ? " *" : ""), jumlah: g.ha }; }), { kat: "Luas tanam per komoditas", satuan: "ha", fmt: haFmt, tengah: [num(Math.round(sum(E.lahan, "ha"))), "hektare"] });
     if (E.lahan.some(function (g) { return g.cek; })) $("#dLahan").insertAdjacentHTML("beforeend", '<p class="small">* Luas tanam padi di monografi sedang dicek ulang.</p>');
-    $("#ekoGuna").insertAdjacentHTML("beforeend", '<p class="small">Rincian ini mencakup ' + num(Math.round(totG)) + " ha dari luas wilayah " + id.luas + "; permukiman, sawah, dan pekarangan belum dirinci di monografi.</p>");
+    $("#ekoGuna").insertAdjacentHTML("beforeend", '<p class="small">Rincian ini mencakup ' + num(Math.round(totG)) + " ha dari luas wilayah " + id.luas + ". " + (function () { var pd = E.lahan.filter(function (g) { return g.label === "Padi"; })[0]; return pd ? "Lahan pertanian sudah termasuk sawah padi " + pd.ha.toLocaleString("id-ID") + " ha; " : ""; })() + "permukiman dan pekarangan belum dirinci di monografi.</p>");
     $("#ekoUsaha").innerHTML = E.usaha.map(function (u) { return '<div class="tile"><b>' + num(u.jumlah) + "</b><span>" + esc(u.label) + "</span></div>"; }).join("");
     $("#ekoSumber").textContent = "Sumber: " + D.meta.sumberData + ". Ketuk grafik untuk rincian.";
   }
