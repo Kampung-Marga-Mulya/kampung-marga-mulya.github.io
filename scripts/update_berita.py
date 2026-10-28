@@ -247,7 +247,35 @@ def periksa_terkait(url):
         img = urllib.parse.urljoin(r.url, img)
     return {"url_akhir": r.url, "judul": judul or None, "desk": desk or None, "sumber": meta(page, "og:site_name"),
             "cover": img, "terbit": meta(page, "article:published_time", "og:published_time", "datePublished"),
-            "marga_mulya": bool(WAJIB_NAMA.search(text) and not DESA_LAIN.search(text))}
+            "marga_mulya": bool(WAJIB_NAMA.search(text) and not DESA_LAIN.search(text)),
+            "kategori": kategori_isi(kepala, text)}
+
+
+def kategori_isi(kepala, text):
+    """Kategori dari isi berita, bukan dari kata kunci pencarian."""
+    if re.search(r"semangga", kepala + " " + text, re.I):
+        return "Semangga"
+    if re.search(r"harga|inflasi|hpp|het\b", kepala, re.I) and re.search(r"beras|gabah|cabai|cabe|pangan|bawang|jagung|telur|daging", kepala, re.I):
+        return "Harga pangan"
+    if re.search(r"ternak|peternak|sapi|ayam|kambing|unggas", kepala, re.I):
+        return "Peternakan"
+    if re.search(r"transmigra", kepala, re.I):
+        return "Transmigrasi"
+    if re.search(r"petani|pertanian|padi|beras|gabah|sawah|panen|pupuk|jagung|cabai|hortikultura|pangan|irigasi|alsintan", kepala, re.I):
+        return "Pertanian Merauke"
+    return "Kampung Merauke"
+
+
+def mirip(judul, daftar):
+    """True bila judul sangat mirip dengan judul lain (berita sama dari media berbeda)."""
+    a = set(w for w in norm_title(judul).split() if len(w) > 3)
+    if len(a) < 3:
+        return False
+    for b in daftar:
+        sama = len(a & b)
+        if sama >= 4 and sama / max(1, min(len(a), len(b))) >= 0.5:
+            return True
+    return False
 
 
 def cari_terkait(now, sudah, judul_sudah, abaikan):
@@ -268,6 +296,7 @@ def cari_terkait(now, sudah, judul_sudah, abaikan):
         return tanggal(c.get("pub"), None) or ""
     calon.sort(key=pubkey, reverse=True)
     baru, utama = [], []
+    token_sudah = [set(w for w in t.split() if len(w) > 3) for t in judul_sudah]
     for c in calon:
         if len(baru) >= TERKAIT_MAKS * 2:
             break
@@ -296,7 +325,8 @@ def cari_terkait(now, sudah, judul_sudah, abaikan):
             info = TERBLOKIR
         if info == TERBLOKIR:
             if LOKAL.search(rss_teks) and TOPIK_TAJAM.search(rss_teks):
-                info = {"url_akhir": url, "judul": None, "desk": None, "sumber": None, "cover": None, "terbit": None, "marga_mulya": False}
+                info = {"url_akhir": url, "judul": None, "desk": None, "sumber": None, "cover": None, "terbit": None, "marga_mulya": False,
+                        "kategori": kategori_isi(rss_teks, rss_teks)}
             else:
                 continue
         if not info:
@@ -310,12 +340,13 @@ def cari_terkait(now, sudah, judul_sudah, abaikan):
             continue
         sumber = nama_media(akhir, c["sumber"] or info["sumber"])
         judul = rapikan_judul(bersihkan_judul(info["judul"] or c["judul"], c["sumber"] or ""), sumber)
-        if norm_title(judul) in judul_sudah:
+        if norm_title(judul) in judul_sudah or mirip(judul, token_sudah):
             continue
         judul_sudah.add(norm_title(judul))
+        token_sudah.append(set(w for w in norm_title(judul).split() if len(w) > 3))
         item = {"tanggal": tgl, "sumber": sumber, "judul": judul, "ringkas": ringkas(info["desk"] or c["desk"]),
                 "url": akhir, "cover": info["cover"] or c["cover"] or "", "otomatis": True,
-                "kategori": "Marga Mulya" if info.get("marga_mulya") else c["kategori"], "ditemukan": now.date().isoformat()}
+                "kategori": "Marga Mulya" if info.get("marga_mulya") else (info.get("kategori") or c["kategori"]), "ditemukan": now.date().isoformat()}
         (utama if info.get("marga_mulya") else baru).append(item)
         log("  + [terkait]" if not info.get("marga_mulya") else "  + [utama via terkait]", tgl, judul)
     return baru, utama
@@ -430,7 +461,14 @@ def main():
 
     # Berita terkait harian (Semangga, pertanian, harga pangan Merauke)
     batas_t = (now - dt.timedelta(days=TERKAIT_HARI)).date().isoformat()
-    lama = [b for b in store.get("terkait", []) if b.get("tanggal", "") >= batas_t and norm(b["url"]) not in abaikan]
+    lama, tok = [], []
+    for b in sorted(store.get("terkait", []), key=lambda b: b["tanggal"]):
+        if b.get("tanggal", "") < batas_t or norm(b["url"]) in abaikan or mirip(b["judul"], tok):
+            continue
+        b["kategori"] = kategori_isi(b["judul"] + " " + (b.get("ringkas") or ""), b["judul"] + " " + (b.get("ringkas") or "")) \
+            if b.get("kategori") != "Marga Mulya" else b["kategori"]
+        tok.append(set(w for w in norm_title(b["judul"]).split() if len(w) > 3))
+        lama.append(b)
     sudah_t = sudah | {norm(b["url"]) for b in lama}
     judul_t = judul_sudah | {norm_title(b["judul"]) for b in lama}
     try:
