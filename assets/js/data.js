@@ -87,34 +87,58 @@ window.KAMPUNG = {
   },
 
   struktur: {
-    // tugas = ringkasan tugas pokok jabatan; tampil saat kotak jabatan diklik.
-    kepala: { jabatan: "Plt. Kepala Kampung", nama: "Sunaryo, A.Md.", pendidikan: "S1", foto: "", kontak: "",
+    // Sumber: papan Struktur Pemerintahan Kampung Marga Mulya di kantor kampung (foto Oktober 2026),
+    // dengan Kepala Kampung saat ini Sunaryo, S.AP (Plt., merangkap Sekretaris Kampung).
+    kepala: { jabatan: "Plt. Kepala Kampung", nama: "Sunaryo, S.AP", pendidikan: "S1", foto: "", kontak: "",
       tugas: "Memimpin penyelenggaraan pemerintahan kampung, melaksanakan pembangunan, pembinaan kemasyarakatan, dan pemberdayaan masyarakat. Saat ini juga merangkap Sekretaris Kampung." },
-    sekretaris: { jabatan: "Sekretaris Kampung", nama: "Sunaryo, A.Md.", pendidikan: "S1",
+    sekretaris: { jabatan: "Sekretaris Kampung", nama: "Sunaryo, S.AP", pendidikan: "S1",
       tugas: "Membantu Kepala Kampung di bidang administrasi pemerintahan dan mengoordinasikan kepala urusan." },
     kaur: [
-      { jabatan: "Kaur Keuangan", nama: "Eko Wahyudi", pendidikan: "S1", tugas: "Menatausahakan keuangan kampung: penerimaan, pengeluaran, pembukuan, dan laporan pertanggungjawaban APBKam." },
-      { jabatan: "Kaur Perencanaan", nama: "Ramdan Sidik Suseno", pendidikan: "S1", tugas: "Menyusun rencana pembangunan kampung (RPJMKam dan RKPKam) serta memantau pelaksanaannya." },
-      { jabatan: "Kaur Tata Usaha dan Umum", nama: "Nurdaiyah", pendidikan: "S1", tugas: "Mengurus surat-menyurat, arsip, inventaris aset, dan keperluan umum kantor kampung." }
+      { jabatan: "Kaur Umum dan Tata Usaha", nama: "Nurdhaiyah, S.P", pendidikan: "S1", tugas: "Mengurus surat-menyurat, arsip, inventaris aset, dan keperluan umum kantor kampung." },
+      { jabatan: "Kaur Keuangan", nama: "Eko Wahyudi, S.Sos", pendidikan: "S1", tugas: "Menatausahakan keuangan kampung: penerimaan, pengeluaran, pembukuan, dan laporan pertanggungjawaban APBKam." },
+      { jabatan: "Kaur Perencanaan", nama: "Ramdan Sidik Suseno, S.T", pendidikan: "S1", tugas: "Menyusun rencana pembangunan kampung (RPJMKam dan RKPKam) serta memantau pelaksanaannya." }
     ],
     kasi: [
-      { jabatan: "Kasi Pemerintahan", nama: "Mitra Setiawan", pendidikan: "S1", tugas: "Menangani administrasi kependudukan, pertanahan, ketertiban, dan penyusunan produk hukum kampung." },
+      { jabatan: "Kasi Pemerintahan", nama: "Mitra Setiawan, S.Pd", pendidikan: "S1", tugas: "Menangani administrasi kependudukan, pertanahan, ketertiban, dan penyusunan produk hukum kampung." },
       { jabatan: "Kasi Kesejahteraan", nama: "Kidin", pendidikan: "SMEA", tugas: "Melaksanakan pembangunan sarana prasarana dan program pemberdayaan masyarakat." },
-      { jabatan: "Kasi Pelayanan", nama: "Wati", pendidikan: "D-III", tugas: "Melaksanakan penyuluhan, pelayanan sosial, keagamaan, dan ketenagakerjaan." }
+      { jabatan: "Kasi Pelayanan", nama: "Wati, A.Md", pendidikan: "D-III", tugas: "Melaksanakan penyuluhan, pelayanan sosial, keagamaan, dan ketenagakerjaan." }
     ],
-    kewilayahan: [
-      { jabatan: "Ketua RW", nama: "7 orang", tugas: "Membantu pemerintah kampung mengoordinasikan RT di wilayahnya. Marga Mulya memiliki 7 RW." },
-      { jabatan: "Ketua RT", nama: "18 orang", tugas: "Membantu pelayanan warga, pendataan, dan ketertiban di lingkungan RT. Marga Mulya memiliki 18 RT." }
+    // Ketua RW dan Ketua RT per wilayah
+    rw: [
+      { rw: "01", ketua: "Suparman", rt: [["01", "Sriyanto"], ["02", "Suyadi"], ["08", "Karsan"]] },
+      { rw: "02", ketua: "Sutarto", rt: [["03", "Maksun"], ["06", "Ach. Amirudin"], ["07", "Ridho"]] },
+      { rw: "03", ketua: "Saridi", rt: [["04", "Nur Hadi"], ["05", "Sugino"], ["09", "Tumirin"], ["10", "Suyah"]] },
+      { rw: "04", ketua: "Triono", rt: [["11", "Ari Saputra"], ["12", "Sarinoto"]] },
+      { rw: "05", ketua: "Dalimin", rt: [["13", "Jimin"], ["14", "Meseri"]] },
+      { rw: "06", ketua: "Supomo", rt: [["15", "Sugiyanto"], ["16", "Kadaro"]] },
+      { rw: "07", ketua: "Suhartono", rt: [["17", "Tugiran"], ["18", "Rebo"]] }
     ],
-    // Jumlah perangkat & unsur pendukung (monografi)
     jumlah: [
       { label: "Aparat kampung", jumlah: 8 }, { label: "Anggota Bamuskam", jumlah: 9 }, { label: "Anggota Linmas", jumlah: 14 }
     ],
+    // Sumber: papan Struktur Badan Musyawarah Kampung (Bamuskam) Kampung Marga Mulya
     bamuskam: [
-      { jabatan: "Anggota Bamuskam", nama: "9 orang", ket: "Nama-nama anggota belum tercantum di monografi." }
+      { jabatan: "Ketua", nama: "Azwari Subhan, S.Ag" },
+      { jabatan: "Wakil Ketua", nama: "A. Suprianto" },
+      { jabatan: "Sekretaris", nama: "Purwanto" },
+      { jabatan: "Anggota", nama: "Siti Nurlia Pakaimu" },
+      { jabatan: "Anggota", nama: "Jaeni L. Basik-Basik" },
+      { jabatan: "Anggota", nama: "M. Ali" },
+      { jabatan: "Anggota", nama: "Suradi" },
+      { jabatan: "Anggota", nama: "Riyadi" },
+      { jabatan: "Anggota", nama: "Sutikno" }
     ],
     lembaga: [
-      { nama: "TP PKK Kampung", ket: "Pemberdayaan dan kesejahteraan keluarga", detail: "21 pengurus dan 35 anggota, 4 kegiatan setiap bulan, 3 buku administrasi, dan dana kelola Rp86.000.000." },
+      { nama: "TP PKK Kampung", ket: "Pemberdayaan dan kesejahteraan keluarga", ketua: "Nur Hidayah",
+        detail: "Monografi 2026: 21 pengurus dan 35 anggota, 4 kegiatan setiap bulan, 3 buku administrasi, dan dana kelola Rp86.000.000.",
+        pengurus: [
+          ["Ketua", "Nur Hidayah"], ["Wakil Ketua I", "Nur Heni Susilo Wulan"], ["Wakil Ketua II", "Anik Endang Susilo Wati"],
+          ["Sekretaris", "Rini Anjayani, Jumiati"], ["Bendahara", "Ngatmi, Eva Purnamasari"],
+          ["Pokja I", "Koordinator Fatmawati · Bendahara Endang · Sekretaris Sugiati · 10 anggota"],
+          ["Pokja II", "Koordinator Sunarni · Bendahara Astri Dewi Ningsih · Sekretaris Pariyem · 9 anggota"],
+          ["Pokja III", "Koordinator Wagini · Bendahara Dustik · Sekretaris Siti Nuraini · 9 anggota"],
+          ["Pokja IV", "Koordinator Suprihati · Bendahara Mistinah · Sekretaris Nurhayati · 10 anggota"]
+        ] },
       { nama: "Karang Taruna Cahaya Muda", ket: "Wadah kegiatan kepemudaan", detail: "13 pengurus dan 17 anggota. Kegiatan utama: bakti sosial." },
       { nama: "BUMKam Bina Mulya Sejahtera", ket: "Badan Usaha Milik Kampung", detail: "3 unit usaha: depot air minum, wisata pemancingan, dan ayam petelur. Modal Rp657.899.000; keuangan yang dikelola Rp84.000.000." },
       { nama: "Linmas", ket: "Perlindungan masyarakat", detail: "14 anggota Linmas dan 18 pos kamling. Kampung juga memiliki 1 tim tanggap dan siaga bencana (Tagana)." },
@@ -123,6 +147,31 @@ window.KAMPUNG = {
       { nama: "Paguyuban kuda lumping", ket: "Seni budaya", detail: "2 kelompok dengan 58 anggota." }
     ]
   },
+
+  /* ---------- PRESTASI KAMPUNG ----------
+     Sumber: piagam dan sertifikat di Kantor Kampung Marga Mulya (foto Oktober 2026). */
+  prestasi: [
+    { tahun: 2025, judul: "Tuan rumah Jambore Cabang XII Gerakan Pramuka Merauke", pemberi: "Kwartir Cabang Gerakan Pramuka Merauke",
+      dokumen: "Piagam Penghargaan No. 169/2601/JAMCAB/2025, Merauke, 1 Juni 2025",
+      ket: "Penghargaan kepada Pemerintah Kampung Marga Mulya yang berpartisipasi dan menyukseskan Jambore Cabang XII Kwartir Cabang Merauke pada 29 Mei–1 Juni 2025, yang diselenggarakan di Kampung Marga Mulya.",
+      tentang: "Jambore Cabang adalah perkemahan besar Pramuka penggalang tingkat kabupaten/kota yang diselenggarakan Kwartir Cabang.",
+      foto: ["assets/img/prestasi/jamcab-2025.jpg"] },
+    { tahun: 2024, judul: "Juara 1 Paritrana Award 2023 Tingkat Provinsi Papua Selatan", pemberi: "Menteri Koordinator Bidang Pembangunan Manusia dan Kebudayaan RI",
+      dokumen: "Piagam Penghargaan, Merauke, November 2024; juga piagam dari Pemerintah Provinsi Papua Selatan",
+      ket: "Juara 1 Penghargaan Jaminan Sosial Ketenagakerjaan (Paritrana Award) Tahun 2023 kategori Pemerintah Desa/Kelurahan tingkat Provinsi Papua Selatan.",
+      tentang: "Paritrana Award adalah penghargaan pemerintah bersama BPJS Ketenagakerjaan bagi pemerintah daerah, desa, dan badan usaha yang mendukung perlindungan jaminan sosial ketenagakerjaan bagi pekerja.",
+      foto: ["assets/img/prestasi/paritrana-kemenko-pmk.jpg", "assets/img/prestasi/paritrana-papua-selatan.jpg"] },
+    { tahun: 2023, judul: "Desa Cantik Terbaik Wilayah Papua – kategori Kelengkapan Dokumen", pemberi: "Badan Pusat Statistik Provinsi Papua",
+      dokumen: "Sertifikat Penghargaan No. B-139/94523/VS.190/12/2023, Jayapura, 6 Desember 2023",
+      ket: "Desa Marga Mulya ditetapkan sebagai Desa Cinta Statistik (Desa Cantik) terbaik untuk wilayah Papua pada Pembinaan Desa Cantik 2023 Program Nasional, kategori Kelengkapan Dokumen.",
+      tentang: "Desa Cantik (Desa Cinta Statistik) adalah program pembinaan BPS agar perangkat desa mampu mengumpulkan, mengelola, dan memanfaatkan data statistik untuk perencanaan pembangunan desa.",
+      foto: ["assets/img/prestasi/desa-cantik-2023.jpg"] },
+    { tahun: 2022, judul: "Desa Utama Program Desa Cinta Statistik (Desa Cantik)", pemberi: "Badan Pusat Statistik",
+      dokumen: "Sertifikat Kepala Badan Pusat Statistik, 2022",
+      ket: "Penghargaan BPS kepada Desa Marga Mulya atas partisipasinya sebagai desa/kelurahan utama dalam Program Desa Cinta Statistik (Desa Cantik) Tahun 2022.",
+      tentang: "Desa/kelurahan utama adalah desa yang dipilih menjadi lokasi pembinaan Desa Cantik pada tahun tersebut.",
+      foto: ["assets/img/prestasi/desa-cantik-2022.jpg"] }
+  ],
 
   penduduk: {
     total: 3201,

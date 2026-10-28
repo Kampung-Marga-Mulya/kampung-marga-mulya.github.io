@@ -120,7 +120,7 @@
   document.querySelectorAll(".fact").forEach(function (b, i) { if (facts[i].code) b.classList.add("fact--code"); });
 
   var quick = [
-    ["#tentang", "home", "Profil kampung", "Sejarah, identitas, visi misi, dan batas wilayah"],
+    ["#tentang", "home", "Profil kampung", "Sejarah, identitas, batas wilayah, dan prestasi"],
     ["#pemerintahan", "users", "Pemerintahan", "Struktur organisasi, Bamuskam, dan lembaga"],
     ["#penduduk", "chart", "Data penduduk", "Usia, kesejahteraan, pekerjaan, pendidikan, suku"],
     ["#fasilitas", "school", "Sarana & fasilitas", "Sarana prasarana kampung dan peta fasilitas"],
@@ -240,6 +240,19 @@
     }) + "><b>" + a[1] + "</b>" + esc(a[2]) + "</button>";
   }).join("") + '<div class="mid">Marga<br>Mulya</div>';
 
+  /* =================== PRESTASI =================== */
+  if (D.prestasi && $("#prestasi")) {
+    $("#prestasi").innerHTML = D.prestasi.map(function (p) {
+      return '<button type="button" class="pres tap"' + act(function () {
+        openModal({ kat: "Prestasi " + p.tahun, title: p.judul, html:
+          (p.foto && p.foto.length ? '<div class="potgal">' + p.foto.map(function (f) { return '<figure><img src="' + esc(f) + '" alt="Piagam ' + esc(p.judul) + '" loading="lazy"><figcaption><span>Foto: dokumentasi Kantor Kampung Marga Mulya</span></figcaption></figure>'; }).join("") + "</div>" : "") +
+          "<p>" + esc(p.ket) + "</p>" + (p.tentang ? "<p><b>Tentang penghargaan ini:</b> " + esc(p.tentang) + "</p>" : "") +
+          "<p class='small'>Pemberi: " + esc(p.pemberi) + ". " + esc(p.dokumen) + ".</p>" });
+      }) + ">" + (p.foto && p.foto[0] ? '<img class="pres__img" src="' + esc(p.foto[0]) + '" alt="" loading="lazy">' : "") +
+        '<span class="pres__body"><span class="pres__th">' + p.tahun + '</span><b>' + esc(p.judul) + "</b><small>" + esc(p.pemberi) + "</small></span></button>";
+    }).join("");
+  }
+
   /* =================== PEMERINTAHAN =================== */
   var S = D.struktur;
   function pejabatModal(o) {
@@ -255,7 +268,13 @@
     return '<div class="org__row">' + (label ? '<div class="org__label">' + esc(label) + "</div>" : "") + list.map(function (o) { return node(o); }).join("") + "</div>";
   };
   $("#org").innerHTML = '<div class="org__row">' + node(S.kepala, true) + "</div>" + row("", [S.sekretaris]) +
-    row("Kepala urusan", S.kaur) + row("Kepala seksi", S.kasi) + row("Kewilayahan", S.kewilayahan);
+    row("Kepala urusan", S.kaur) + row("Kepala seksi", S.kasi);
+  $("#rwgrid").innerHTML = (S.rw || []).map(function (w) {
+    return '<button type="button" class="rwcard tap"' + act(function () {
+      openModal({ kat: "Rukun Warga", title: "RW " + w.rw + " · " + w.ketua, html: "<p><b>Ketua RW " + esc(w.rw) + ":</b> " + esc(w.ketua) + "</p><ul>" + w.rt.map(function (r) { return "<li>Ketua RT " + esc(r[0]) + ": " + esc(r[1]) + "</li>"; }).join("") + "</ul><p class='small'>Ketua RW dan RT membantu pemerintah kampung dalam pelayanan warga, pendataan, dan ketertiban lingkungan.</p>" });
+    }) + '><span class="rwcard__h"><small>Ketua RW ' + esc(w.rw) + "</small><b>" + esc(w.ketua) + '</b></span><span class="rwcard__rt">' +
+      w.rt.map(function (r) { return "<span><i>RT " + esc(r[0]) + "</i>" + esc(r[1]) + "</span>"; }).join("") + "</span></button>";
+  }).join("");
   if (S.jumlah) $("#org").insertAdjacentHTML("afterend", '<div class="tiles tiles--3 mt-s">' + S.jumlah.map(function (j) { return '<div class="tile"><b>' + num(j.jumlah) + "</b><span>" + esc(j.label) + "</span></div>"; }).join("") + "</div>");
   $("#bamuskam").innerHTML = S.bamuskam.map(function (o) {
     return '<li><button type="button" class="tap"' + act(function () {
@@ -264,7 +283,8 @@
   }).join("");
   $("#lembaga").innerHTML = S.lembaga.map(function (o) {
     return '<li><button type="button" class="tap"' + act(function () {
-      openModal({ kat: "Lembaga kemasyarakatan", title: o.nama, html: "<p>" + esc(o.ket) + ".</p>" + (o.detail ? "<p>" + esc(o.detail) + "</p>" : "") + (o.ketua && !belumAda(o.ketua) ? "<p>Pimpinan: <b>" + esc(o.ketua) + "</b></p>" : "") });
+      openModal({ kat: "Lembaga kemasyarakatan", title: o.nama, html: "<p>" + esc(o.ket) + ".</p>" + (o.detail ? "<p>" + esc(o.detail) + "</p>" : "") + (o.ketua && !belumAda(o.ketua) ? "<p>Pimpinan: <b>" + esc(o.ketua) + "</b></p>" : "") +
+        (o.pengurus ? '<div class="tablewrap"><table class="tbl"><tbody>' + o.pengurus.map(function (r) { return "<tr><th>" + esc(r[0]) + "</th><td>" + esc(r[1]) + "</td></tr>"; }).join("") + "</tbody></table></div>" : "") });
     }) + "><span>" + esc(o.nama) + "</span><span>" + esc(o.ket) + "</span></button></li>";
   }).join("");
 
