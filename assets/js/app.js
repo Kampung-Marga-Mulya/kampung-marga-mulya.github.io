@@ -321,6 +321,17 @@
     }) + "><span>" + esc(o.nama) + "</span><span>" + esc(o.ket) + "</span></button></li>";
   }).join("");
 
+  // Keterangan singkat pada judul lipatan pemerintahan
+  (function () {
+    var set = function (id, t) { var el = document.getElementById(id); if (el && t) el.textContent = t; };
+    set("accOrgSub", (S.kepala ? S.kepala.jabatan + " " + S.kepala.nama + " · " : "") + "sekretaris, " + (S.kaur || []).length + " kaur, dan " + (S.kasi || []).length + " kasi");
+    var nRT = (S.rw || []).reduce(function (a, w) { return a + (w.rt || []).length; }, 0);
+    if ((S.rw || []).length) set("accRwSub", S.rw.length + " RW · " + nRT + " RT");
+    var ket = (S.bamuskam || []).filter(function (o) { return /^ketua$/i.test(o.jabatan); })[0];
+    set("accBamSub", (S.bamuskam || []).length + " orang" + (ket ? " · Ketua " + ket.nama : ""));
+    set("accLemSub", (S.lembaga || []).map(function (o) { return o.nama; }).slice(0, 4).join(", ") + ((S.lembaga || []).length > 4 ? ", dan lainnya" : ""));
+  })();
+
   /* =================== DIAGRAM LINGKARAN (donat) ===================
      Maks. 6 irisan; sisanya digabung "Lainnya". Warna: biru (identitas tema). */
   var PAL_KAT = ["#082A66", "#1452C2", "#5B8DE6", "#9DBCF2", "#0F7FB8", "#C9DBF8"];

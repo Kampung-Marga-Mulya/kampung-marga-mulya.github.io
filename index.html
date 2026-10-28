@@ -14,7 +14,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
-  <link rel="stylesheet" href="assets/css/style.css?v=202610290124">
+  <link rel="stylesheet" href="assets/css/style.css?v=202610290135">
 </head>
 <body>
   <!-- Kumpulan ikon garis (dipakai dengan <svg><use href="#i-..."/></svg>) -->
@@ -183,13 +183,24 @@
         <div class="tabpanel" role="tabpanel" data-panel="pemerintahan" hidden>
 <section class="sec" id="pemerintahan">
       <div class="wrap">
-        <header class="sec__head"><span class="sec__icon"><svg class="ic"><use href="#i-users"/></svg></span><div><p class="eyebrow">Pemerintahan kampung</p><h2>Struktur organisasi</h2><p class="lead">Ketuk kotak jabatan untuk melihat tugas pokoknya.</p></div></header>
-        <div class="org" id="org"></div>
-        <h3 class="mt">Ketua RW dan Ketua RT</h3>
-        <div class="rwgrid" id="rwgrid"></div>
-        <div class="grid-2 mt">
-          <div><h3>Badan Musyawarah Kampung</h3><ul class="roster" id="bamuskam"></ul></div>
-          <div><h3>Lembaga kemasyarakatan</h3><ul class="roster" id="lembaga"></ul></div>
+        <header class="sec__head"><span class="sec__icon"><svg class="ic"><use href="#i-users"/></svg></span><div><p class="eyebrow">Pemerintahan kampung</p><h2>Susunan organisasi kampung</h2><p class="lead">Ketuk salah satu bagian di bawah untuk melihat susunannya.</p></div></header>
+        <div class="accs">
+          <details class="acc" id="acc-org">
+            <summary><span class="acc__ic"><svg class="ic"><use href="#i-users"/></svg></span><span class="acc__t"><b>Struktur organisasi pemerintah kampung</b><small id="accOrgSub">Kepala kampung, sekretaris, kepala urusan, dan kepala seksi</small></span></summary>
+            <div class="acc__body"><p class="small">Ketuk kotak jabatan untuk melihat tugas pokoknya.</p><div class="org" id="org"></div></div>
+          </details>
+          <details class="acc" id="acc-rw">
+            <summary><span class="acc__ic"><svg class="ic"><use href="#i-pin"/></svg></span><span class="acc__t"><b>Ketua RW dan Ketua RT</b><small id="accRwSub">Rukun warga dan rukun tetangga</small></span></summary>
+            <div class="acc__body"><div class="rwgrid" id="rwgrid"></div></div>
+          </details>
+          <details class="acc" id="acc-bamuskam">
+            <summary><span class="acc__ic"><svg class="ic"><use href="#i-chat"/></svg></span><span class="acc__t"><b>Badan Musyawarah Kampung (Bamuskam)</b><small id="accBamSub">Pimpinan dan anggota Bamuskam</small></span></summary>
+            <div class="acc__body"><ul class="roster" id="bamuskam"></ul></div>
+          </details>
+          <details class="acc" id="acc-lembaga">
+            <summary><span class="acc__ic"><svg class="ic"><use href="#i-layers"/></svg></span><span class="acc__t"><b>Lembaga kemasyarakatan</b><small id="accLemSub">PKK, Karang Taruna, dan lembaga lainnya</small></span></summary>
+            <div class="acc__body"><ul class="roster" id="lembaga"></ul></div>
+          </details>
         </div>
       </div>
     </section>
@@ -473,8 +484,8 @@
   </dialog>
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
-  <script src="assets/js/data.js?v=202610290124"></script>
-  <script src="assets/js/app.js?v=202610290124"></script>
-  <script src="assets/js/router.js?v=202610290124"></script>
+  <script src="assets/js/data.js?v=202610290135"></script>
+  <script src="assets/js/app.js?v=202610290135"></script>
+  <script src="assets/js/router.js?v=202610290135"></script>
 </body>
 </html>
