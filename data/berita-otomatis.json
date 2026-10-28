@@ -2,16 +2,6 @@
   "diperiksa": "2026-10-29",
   "berita": [
     {
-      "tanggal": "2026-10-01",
-      "sumber": "detikcom",
-      "judul": "Jadwal Sholat, Imsak, dan Buka Puasa Hari Ini Kota Bekasi - detikHikmah",
-      "ringkas": "Info jadwal sholat 5 waktu subuh, zuhur, ashar, magrib, isya dan jadwal Imsakiyah serta buka puasa Ramadan 1445 H untuk wilayah Kota Bekasi",
-      "url": "https://www.detik.com/hikmah/jadwal-sholat/kota-bekasi",
-      "cover": "https://awsimages.detik.net.id/community/media/visual/2022/09/28/logo-detik-hikmah.png",
-      "otomatis": true,
-      "ditemukan": "2026-10-25"
-    },
-    {
       "tanggal": "2024-01-28",
       "sumber": "Tribunnews",
       "judul": "Plt Ketua Umum PPP Sebut Ganjar-Mahfud Akan Bereskan Masalah di Papua",
@@ -100,6 +90,151 @@
       "cover": "",
       "otomatis": true,
       "ditemukan": "2026-10-25"
+    }
+  ],
+  "terkait": [
+    {
+      "tanggal": "2026-10-25",
+      "sumber": "Koran Jakarta",
+      "judul": "Cetak Sawah Papua Selatan Capai 45.993 Hektare, Wamentan Soroti Kebutuhan Petani",
+      "ringkas": "Cetak Sawah Papua Selatan Capai 45.993 Hektare, Wamentan Soroti Kebutuhan Petani - Pemerintah memacu program Cetak Sawah Rakyat (CSR) di Merauke, Papua Selatan, melalui…",
+      "url": "https://koran-jakarta.com/2026-10-25/cetak-sawah-papua-selatan-capai-45993-hektare-wamentan-soroti-kebutuhan-petani",
+      "cover": "https://www.bing.com/th?id=ONUT.dpwZHFHlrQQCxBZYKP1UNw&pid=News&w=640&h=360&c=14",
+      "otomatis": true,
+      "kategori": "Semangga",
+      "ditemukan": "2026-10-29"
+    },
+    {
+      "tanggal": "2026-10-25",
+      "sumber": "Inilah.com",
+      "judul": "Dorong Program CSR , Kementan Upayakan Perlindungan Petani Merauke",
+      "ringkas": "Wakil Menteri Pertanian (Wamentan), Muhammad Saleh Mustafa menegaskan, program CSR ini harus memberi perlindungan ekonomi nyata bagi petani.",
+      "url": "https://www.inilah.com/dorong-program-csr-kementan-upayakan-perlindungan-petani-merauke",
+      "cover": "https://c.inilah.com/reborn/2026/08/Whats_App_Image_2026_09_19_at_15_03_47_8bcf4655ec.jpeg",
+      "otomatis": true,
+      "kategori": "Semangga",
+      "ditemukan": "2026-10-29"
+    },
+    {
+      "tanggal": "2026-10-25",
+      "sumber": "Viva.co.id",
+      "judul": "Pemerintah Kebut Cetak Sawah 45.993 Hektare di Papua Selatan, Merauke Disiapkan Jadi Lumbung Pangan Nasional",
+      "ringkas": "Pemerintah mempercepat cetak sawah 45.993 hektare di Papua Selatan. Wamentan Saleh Mustafa menyoroti masalah pupuk, benih, irigasi, dan kesejahteraan petani.",
+      "url": "https://www.viva.co.id/bisnis/1938478-pemerintah-kebut-cetak-sawah-45993-hektare-di-papua-selatan-merauke-disiapkan-jadi-lumbung-pangan-nasional",
+      "cover": "https://thumb.viva.co.id/media/frontend/thumbs3/2024/11/03/672788db36624-kementan-terus-mempercepat-program-swasembada-di-kabupaten-merauke_1265_711.jpeg",
+      "otomatis": true,
+      "kategori": "Pertanian Merauke",
+      "ditemukan": "2026-10-29"
+    },
+    {
+      "tanggal": "2026-10-25",
+      "sumber": "ANTARA",
+      "judul": "Pemerintah pacu cetak sawah di Merauke agar tingkatkan produksi pangan",
+      "ringkas": "Pemerintah memacu program Cetak Sawah Rakyat (CSR) di Merauke, Papua Selatan, melalui penguatan sarana produksi, infrastruktur, dan kelembagaan petani untuk ...",
+      "url": "https://www.antaranews.com/berita/5810535/pemerintah-pacu-cetak-sawah-di-merauke-agar-tingkatkan-produksi-pangan",
+      "cover": "https://cdn.antaranews.com/cache/1200x800/2026/10/25/C5899A24-E555-47DA-B5FA-9C3AF8747F28.jpeg",
+      "otomatis": true,
+      "kategori": "Pertanian Merauke",
+      "ditemukan": "2026-10-29"
+    },
+    {
+      "tanggal": "2026-10-21",
+      "sumber": "Metro TV News",
+      "judul": "Perkuat Kompetensi, Pelatihan Pengolahan Tanah Diberikan ke Petani",
+      "ringkas": "Sehingga, petani dapat mengelola lahan secara mandiri.",
+      "url": "https://www.metrotvnews.com/read/NG9Cw27Z-perkuat-kompetensi-pelatihan-pengolahan-tanah-diberikan-ke-petani",
+      "cover": "https://cdn25.metrotvnews.com/dynamic/content/2026/10/21/NG9Cw27Z/a_6ad8a98110020.jpeg?w=1024",
+      "otomatis": true,
+      "kategori": "Pertanian Merauke",
+      "ditemukan": "2026-10-29"
+    },
+    {
+      "tanggal": "2026-10-20",
+      "sumber": "Kompasiana",
+      "judul": "VCO Lebih dari Sekadar Minyak: Sociopreneurship untuk Produk Lokal Papua",
+      "ringkas": "Di Distrik Semangga, kelapa mudah ditemukan. Banyak pelaku usaha sudah mengolahnya menjadi minyak kelapa dan virgin coconut oil (VCO). Ada pula yang m ...",
+      "url": "https://www.kompasiana.com/farhanfauzulazhim/6ad654e7ed641519f5507b57/vco-lebih-dari-sekadar-minyak-sociopreneurship-untuk-produk-lokal-papua",
+      "cover": "https://www.bing.com/th?id=ONUT.M62lwAcIbFavC71ElTdYtQ&pid=News&w=640&h=360&c=14",
+      "otomatis": true,
+      "kategori": "Semangga",
+      "ditemukan": "2026-10-29"
+    },
+    {
+      "tanggal": "2026-10-19",
+      "sumber": "ANTARA",
+      "judul": "Kementrans-TEP UGM uji pemasaran produk unggulan dari Muting Merauke",
+      "ringkas": "Kementerian Transmigrasi (Kementrans) melalui Tim Ekspedisi Patriot (TEP) Universitas Gadjah Mada (UGM) menguji pemasaran kolektif produk unggulan kawasan ...",
+      "url": "https://www.antaranews.com/berita/5797093/kementrans-tep-ugm-uji-pemasaran-produk-unggulan-dari-muting-merauke",
+      "cover": "https://cdn.antaranews.com/cache/1200x800/2026/10/19/1000209078.jpg",
+      "otomatis": true,
+      "kategori": "Semangga",
+      "ditemukan": "2026-10-29"
+    },
+    {
+      "tanggal": "2026-10-18",
+      "sumber": "Kompas TV",
+      "judul": "Polisi Ungkap Pembukaan Lahan untuk Cetak Sawah Picu Kabut Asap di Merauke | SAPA MALAM",
+      "ringkas": "Asap menyelimuti jalan poros dari Distrik Tanah Miring menuju Distrik Jagebob, Merauke, Papua Selatan. Polisi mengungkap, asap ini merupakan",
+      "url": "https://www.kompas.tv/regional/696703/polisi-ungkap-pembukaan-lahan-untuk-cetak-sawah-picu-kabut-asap-di-merauke-sapa-malam",
+      "cover": "https://media-origin.kompas.tv/library/image/thumbnail/61792328997/SHINTA_-_OKTOBER_61792328997.a_1256_753.png",
+      "otomatis": true,
+      "kategori": "Pertanian Merauke",
+      "ditemukan": "2026-10-29"
+    },
+    {
+      "tanggal": "2026-10-15",
+      "sumber": "jurnas.com",
+      "judul": "Mentrans Sambut Baik Usulan Tiongkok Kolaborasi Pusat Riset Padi di Merauke",
+      "ringkas": "Saya setuju dengan semua usulan tersebut, tinggal kita konkretkan. Saya sangat setuju membuka litbang bersama",
+      "url": "https://www.jurnas.com/artikel/1667143/mentrans-sambut-baik-usulan-tiongkok-kolaborasi-pusat-riset-padi-di-merauke/",
+      "cover": "https://mxms.jurnas.com/uploads/1/2026/2026-10-15/ad32d5a068e9b1413a4042000f408ba2_1.jpg",
+      "otomatis": true,
+      "kategori": "Pertanian Merauke",
+      "ditemukan": "2026-10-29"
+    },
+    {
+      "tanggal": "2026-10-15",
+      "sumber": "ANTARA",
+      "judul": "Mentrans sambut tawaran kerja sama riset padi di Merauke dengan China",
+      "ringkas": "Menteri Transmigrasi Muhammad Iftitah Sulaiman Suryanagara menyambut tawaran kerja sama China untuk mengembangkan pusat penelitian padi bersama di Merauke, ...",
+      "url": "https://www.antaranews.com/berita/5788821/mentrans-sambut-tawaran-kerja-sama-riset-padi-di-merauke-dengan-china",
+      "cover": "https://cdn.antaranews.com/cache/1200x800/2026/10/15/1000207393.jpg",
+      "otomatis": true,
+      "kategori": "Transmigrasi",
+      "ditemukan": "2026-10-29"
+    },
+    {
+      "tanggal": "2026-10-15",
+      "sumber": "Tribunnews",
+      "judul": "Tiongkok Tawarkan Pusat Riset Padi Bersama di Merauke, Iftitah Ingin Segera Konkretkan Kerja Sama",
+      "ringkas": "Usulan riset padi bersama di Merauke disambut Iftitah. Ia mendorong pembahasan teknis agar kerja sama bisa menjawab kebutuhan petani.",
+      "url": "https://www.tribunnews.com/kilas-kementerian/7897119/tiongkok-tawarkan-pusat-riset-padi-bersama-di-merauke-iftitah-ingin-segera-konkretkan-kerja-sama",
+      "cover": "https://www.bing.com/th?id=ONUT.aXRvWXRwHXFvpqJuZebKkQ&pid=News&w=640&h=360&c=14",
+      "otomatis": true,
+      "kategori": "Transmigrasi",
+      "ditemukan": "2026-10-29"
+    },
+    {
+      "tanggal": "2026-10-14",
+      "sumber": "Koran Jakarta",
+      "judul": "Hasil Tembus 10 Ton per Hektar, IPB Boyong Padi Ajaib Hemat Air ke Merauke",
+      "ringkas": "Hasil Tembus 10 Ton per Hektar, IPB Boyong Padi Ajaib Hemat Air ke Merauke - IPB dan Kementerian Transmigrasi menguji coba varietas padi hemat air IPB 9G dan IPB 15S di…",
+      "url": "https://koran-jakarta.com/2026-10-14/hasil-tembus-10-ton-per-hektar-ipb-boyong-padi-ajaib-hemat-air-ke-merauke",
+      "cover": "",
+      "otomatis": true,
+      "kategori": "Transmigrasi",
+      "ditemukan": "2026-10-29"
+    },
+    {
+      "tanggal": "2026-10-09",
+      "sumber": "Detik News",
+      "judul": "TEP UGM Dorong Produk UMKM Kawasan Transmigrasi Muting Merauke Naik Kelas",
+      "ringkas": "Warga Kawasan Transmigrasi Muting, Merauke, belajar memanfaatkan AI untuk promosi produk pangan. Pelatihan ini meningkatkan daya saing dan pemasaran mereka.",
+      "url": "https://news.detik.com/berita/d-8699497/tep-ugm-dorong-produk-umkm-kawasan-transmigrasi-muting-merauke-naik-kelas",
+      "cover": "https://awsimages.detik.net.id/api/wm/2026/10/09/tep-ugm-dorong-produk-umkm-kawasan-transmigrasi-muting-merauke-naik-kelas-1791528870213_169.jpeg?wid=54&w=1200&v=1&t=jpeg",
+      "otomatis": true,
+      "kategori": "Transmigrasi",
+      "ditemukan": "2026-10-29"
     }
   ]
 }
