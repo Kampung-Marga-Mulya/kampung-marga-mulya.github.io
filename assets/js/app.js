@@ -167,8 +167,8 @@
     var img = n.cover ? '<img src="' + esc(n.cover) + '" alt="" loading="lazy" referrerpolicy="no-referrer">' : "";
     var baru = umurHari(n.tanggal) <= BARU_HARI;
     return '<a class="ncard' + (kat ? " ncard--terkait" : "") + '" href="' + esc(n.url) + '" target="_blank" rel="noopener"' + (dup ? ' aria-hidden="true" tabindex="-1" data-dup="1"' : "") + ">" +
-      '<span class="ncard__cover">' + img + ph + '<span class="ncard__badge' + (baru ? " ncard__badge--new" : "") + '">' + (baru ? "Baru" : n.tanggal.slice(0, 4)) + "</span>" +
-      '<span class="ncard__kat">' + esc(kat || "Marga Mulya") + "</span></span>" +
+      '<span class="ncard__cover">' + img + ph + '<span class="ncard__tags"><span class="ncard__badge' + (baru ? " ncard__badge--new" : "") + '">' + (baru ? "Baru" : n.tanggal.slice(0, 4)) + "</span>" +
+      '<span class="ncard__kat">' + esc(kat || "Marga Mulya") + "</span></span></span>" +
       '<span class="ncard__body"><span class="ncard__meta">' + esc(n.sumber) + " · " + tgl(n.tanggal) + '</span><span class="ncard__t">' + esc(n.judul) + "</span>" +
       '<span class="ncard__d">' + esc(n.ringkas || "Baca selengkapnya di " + n.sumber + ".") + '</span><span class="ncard__go">Baca berita ' + ic("external") + "</span></span></a>";
   }
@@ -190,7 +190,7 @@
         beritaUtama = (D.berita || []).concat(j.berita || []);
         beritaTerkait = (j.terkait || []).filter(function (n) { return umurHari(n.tanggal) <= 45; });
         renderNews();
-        if (j.diperiksa && newsInfo) newsInfo.textContent = "Diperbarui otomatis · dicek " + tgl(j.diperiksa) + (beritaTerkait.length ? " · termasuk kabar harian Semangga & Merauke" : "");
+        if (j.diperiksa && newsInfo) newsInfo.textContent = "Diperbarui otomatis · dicek " + tgl(j.diperiksa);
         if (sudahDimuat && news.length > sebelum) toast((news.length - sebelum) + " berita baru ditambahkan");
         sudahDimuat = true;
       })

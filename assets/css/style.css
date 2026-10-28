@@ -924,3 +924,7 @@ html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 .news__filter .chipbtn { padding: 6px 12px; font-size: .88rem; }
 .ncard__kat { position: absolute; left: 10px; bottom: 10px; max-width: calc(100% - 20px); background: rgba(10,10,10,.6); color: #fff; font-size: .72rem; font-weight: 700; letter-spacing: .02em; padding: 3px 9px; border-radius: 99px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .ncard--terkait .ncard__kat { background: var(--blue); }
+.ncard__tags { position: absolute; top: 10px; left: 10px; right: 50px; display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.ncard__tags .ncard__badge { position: static; }
+.ncard__tags .ncard__kat { position: static; max-width: 100%; font-size: .72rem; padding: 3px 9px; }
+.ncard__badge--new { box-shadow: 0 0 0 1.5px #fff; }
