@@ -598,7 +598,7 @@ body { background: var(--tint); }
 .partners { display: flex; align-items: center; gap: 10px; flex: none; padding-left: 12px; margin-left: 4px; border-left: 1px solid var(--line); }
 .partners img { height: 40px; width: auto; display: block; }
 @media (max-width: 960px) { .partners { margin-left: auto; border-left: 0; padding-left: 0; gap: 8px; } .partners img { height: 36px; } }
-@media (max-width: 380px) { .brand__text i { display: none; } .partners img { height: 32px; } }
+@media (max-width: 380px) { .brand__text b, .brand__text i { font-size: .98rem; } .brand__text { gap: .2em; } .partners { gap: 4px; } .partners img { height: 28px; } }
 .partners picture { display: block; }
 
 /* Street View tertanam */
@@ -870,8 +870,8 @@ html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
   .menu { gap: 2px; }
   .menu a { padding: 8px 10px; font-size: .9rem; }
   .partners { gap: 6px; padding-left: 8px; }
-  .partners img { height: 32px; }
-  .brand__text i { display: none; }
+  .partners img { height: 30px; }
+  .brand__text b, .brand__text i { font-size: 1.05rem; }
 }
 .bid, .kel { display: block; width: 100%; min-width: 0; text-align: left; }
 .bid__top span:first-child, .kel__h b { min-width: 0; overflow-wrap: anywhere; }
@@ -884,3 +884,34 @@ html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 .potvid figcaption { font-size: .82rem; margin-top: 6px; line-height: 1.35; }
 .potvid figcaption b { display: block; }
 .potvid figcaption span { color: var(--ink-2); }
+
+/* ---------- Beranda: tulisan menyatu di atas foto utama dengan lapisan hitam tipis ---------- */
+#v-beranda .hero { padding-block: 20px 6px; }
+.hero__in { position: relative; display: flex; align-items: flex-end; min-height: clamp(460px, 62vh, 620px); padding: clamp(24px, 5vw, 56px); border-radius: 22px; overflow: hidden; isolation: isolate; background: #0A0A0A; }
+.hero__photo { position: absolute; inset: 0; z-index: -1; border-radius: 0; background: #0A0A0A; order: 0; }
+.hero__photo img { width: 100%; height: 100%; aspect-ratio: auto; object-fit: cover; object-position: 50% 40%; }
+.hero__photo::after { content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(180deg, rgba(0,0,0,.10) 0%, rgba(0,0,0,.22) 45%, rgba(0,0,0,.62) 100%), rgba(0,0,0,.22); }
+.hero__photo figcaption { position: absolute; top: 14px; right: 14px; left: auto; bottom: auto; width: auto; max-width: min(360px, calc(100% - 28px)); background: rgba(0,0,0,.42); color: #fff; font-weight: 500; font-size: .78rem; padding: 5px 10px; border-radius: 99px; backdrop-filter: blur(4px); z-index: 1; }
+.hero__text { position: relative; z-index: 1; max-width: 660px; color: #fff; text-shadow: 0 1px 14px rgba(0,0,0,.35); }
+.hero__text .eyebrow { color: #DCE8FB; }
+.hero h1 { color: #fff; }
+.hero__place { color: rgba(255,255,255,.92); }
+.hero .collab { background: rgba(255,255,255,.14); border-color: rgba(255,255,255,.38); color: #fff; backdrop-filter: blur(6px); text-shadow: none; }
+.hero .collab:hover { background: rgba(255,255,255,.22); border-color: #fff; box-shadow: none; }
+.hero .collab__label, .hero .collab__x { color: #DCE8FB; }
+.hero__cta .btn { text-shadow: none; }
+.hero__cta .btn--line { background: rgba(255,255,255,.1); color: #fff; border-color: rgba(255,255,255,.85); backdrop-filter: blur(4px); }
+.hero__cta .btn--line:hover { background: #fff; color: var(--blue-deep); }
+@media (max-width: 820px) {
+  #v-beranda .hero { padding-top: 12px; }
+  .hero__in { min-height: 540px; padding: 22px 18px; border-radius: 18px; }
+  .hero__photo { order: 0; }
+  .hero__photo img { aspect-ratio: auto; object-position: 50% 35%; }
+  .hero__photo figcaption { position: absolute; top: 10px; right: 10px; left: 10px; width: fit-content; margin-left: auto; font-size: .72rem; background: rgba(0,0,0,.42); border-radius: 99px; }
+  .hero__photo::after { background: linear-gradient(180deg, rgba(0,0,0,.10) 0%, rgba(0,0,0,.30) 35%, rgba(0,0,0,.70) 100%), rgba(0,0,0,.18); }
+  .hero h1 { font-size: clamp(2.1rem, 9vw, 2.8rem); }
+  .hero__place { font-size: 1rem; margin-bottom: 1rem; }
+  .hero .collab { padding: 10px 12px; margin-bottom: 1rem; font-size: .92rem; }
+}
+.hero__in.wrap { width: calc(100% - 32px); max-width: 1128px; }
