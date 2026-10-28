@@ -14,7 +14,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
-  <link rel="stylesheet" href="assets/css/style.css?v=202610272306">
+  <link rel="stylesheet" href="assets/css/style.css?v=202610290028">
 </head>
 <body>
   <!-- Kumpulan ikon garis (dipakai dengan <svg><use href="#i-..."/></svg>) -->
@@ -326,41 +326,34 @@
         <div class="tabpanel" role="tabpanel" data-panel="petakampung">
 <section class="sec" id="peta">
       <div class="wrap">
-        <header class="sec__head"><span class="sec__icon"><svg class="ic"><use href="#i-pin"/></svg></span><div><p class="eyebrow">Peta kampung</p><h2>Marga Mulya dari udara</h2><p class="lead">Peta Kampung Marga Mulya bisa digeser dan diperbesar langsung di halaman ini. Pilih tampilan satelit, peta jalan, hasil drone, atau Street View.</p></div></header>
+        <header class="sec__head"><span class="sec__icon"><svg class="ic"><use href="#i-pin"/></svg></span><div><p class="eyebrow">Peta kampung</p><h2>Peta Batas Kampung Marga Mulya</h2><p class="lead">Peta resmi batas wilayah dari Pemerintah Kabupaten Merauke (Dinas Pemberdayaan Masyarakat dan Kampung). Pilih peta interaktif untuk melihat batas wilayah, titik kartometrik, dan letak fasilitas umum di atas citra satelit peta tersebut.</p></div></header>
         <div class="tabs" role="tablist" aria-label="Jenis peta" id="mapTabs">
-          <button role="tab" aria-selected="false" data-tab="drone"><svg class="ic"><use href="#i-drone"/></svg>Peta drone</button>
-          <button role="tab" aria-selected="true" data-tab="satelit"><svg class="ic"><use href="#i-globe"/></svg>Satelit</button>
-          <button role="tab" aria-selected="false" data-tab="jalan"><svg class="ic"><use href="#i-layers"/></svg>Peta jalan</button>
-          <button role="tab" aria-selected="false" data-tab="street"><svg class="ic"><use href="#i-person"/></svg>Street View</button>
+          <button role="tab" aria-selected="true" data-tab="interaktif"><svg class="ic"><use href="#i-layers"/></svg>Peta interaktif</button>
+          <button role="tab" aria-selected="false" data-tab="resmi"><svg class="ic"><use href="#i-doc"/></svg>Peta batas resmi</button>
         </div>
         <div class="mapwrap">
           <div class="mapstage">
-            <div class="map" id="panel-drone" role="tabpanel">
-              <canvas id="sketch" aria-hidden="true"></canvas>
-              <img id="ortho" alt="Foto udara (ortofoto) Kampung Marga Mulya" hidden>
-              <div class="map__pins" id="pins"></div>
-              <span class="map__north" aria-hidden="true">U ↑</span>
-              <span class="map__tag" id="mapTag">Peta sketsa sementara · ortofoto menyusul</span>
+            <div class="map map--leaflet" id="panel-interaktif" role="tabpanel"><div id="batasMap" class="batasmap" role="region" aria-label="Peta interaktif batas Kampung Marga Mulya"><p class="wmap__load">Memuat peta…</p></div></div>
+            <div class="map map--img" id="panel-resmi" role="tabpanel" hidden>
+              <div class="imgzoom" id="petaZoom"><img id="petaImg" alt="Peta Batas Kampung Marga Mulya, Distrik Semangga, Kabupaten Merauke, skala 1:14.000" loading="lazy"></div>
+              <div class="imgzoom__ctl"><button type="button" class="news__btn" id="zoomIn" aria-label="Perbesar">+</button><button type="button" class="news__btn" id="zoomOut" aria-label="Perkecil">−</button></div>
             </div>
-            <div class="map map--frame" id="panel-satelit" role="tabpanel" hidden></div>
-            <div class="map map--frame" id="panel-jalan" role="tabpanel" hidden></div>
-            <div class="map map--street" id="panel-street" role="tabpanel" hidden></div>
           </div>
           <aside class="mapinfo">
             <div class="mapinfo__card" id="pinInfo" aria-live="polite">
-              <p class="mapinfo__kat">Titik lokasi</p>
-              <h3>Pilih titik di peta drone</h3>
-              <p>Setiap titik menandai fasilitas atau kawasan penting di kampung.</p>
+              <p class="mapinfo__kat">Wilayah kampung</p>
+              <h3>Kampung Marga Mulya</h3>
+              <p id="batasRingkas">Ketuk batas wilayah, titik kartometrik, atau fasilitas di peta untuk melihat keterangannya.</p>
             </div>
-            <div class="mapfilter" id="mapFilter" role="group" aria-label="Saring kategori titik"></div>
+            <div class="mapfilter" id="mapFilter" role="group" aria-label="Lapisan peta"></div>
             <div class="maplinks">
-              <a class="btn btn--solid" id="gmOpen" target="_blank" rel="noopener"><svg class="ic"><use href="#i-pin"/></svg>Buka di Google Maps</a>
-              <a class="btn btn--line" id="gmDir" target="_blank" rel="noopener"><svg class="ic"><use href="#i-nav"/></svg>Petunjuk arah</a>
-              <a class="btn btn--line" id="gmStreet" target="_blank" rel="noopener"><svg class="ic"><use href="#i-person"/></svg>Street View</a>
+              <a class="btn btn--solid" id="petaUnduh" download><svg class="ic"><use href="#i-doc"/></svg>Unduh peta batas (JPG)</a>
+              <a class="btn btn--line" href="#fasilitas"><svg class="ic"><use href="#i-school"/></svg>Daftar fasilitas umum</a>
             </div>
             <dl class="kv kv--sm" id="petaMeta"></dl>
           </aside>
         </div>
+        <details class="more mt-s"><summary>Daftar 18 titik kartometrik batas kampung</summary><div class="tablewrap"><table class="tbl" id="tkTabel"></table></div></details>
       </div>
     </section>
         </div>
@@ -458,8 +451,8 @@
   </dialog>
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
-  <script src="assets/js/data.js?v=202610272306"></script>
-  <script src="assets/js/app.js?v=202610272306"></script>
-  <script src="assets/js/router.js?v=202610272306"></script>
+  <script src="assets/js/data.js?v=202610290028"></script>
+  <script src="assets/js/app.js?v=202610290028"></script>
+  <script src="assets/js/router.js?v=202610290028"></script>
 </body>
 </html>

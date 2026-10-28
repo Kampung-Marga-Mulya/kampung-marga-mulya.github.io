@@ -2,9 +2,9 @@
  "keterangan": "Fasilitas umum di dan sekitar Kampung Marga Mulya. Foto = foto dokumentasi tanpa timestamp (assets/img/fasilitas/); lat/lng = koordinat dari foto bertimestamp survei 26 Oktober 2026 (posisi juru foto). status: terverifikasi (ada titik + sumber), sebagian (data/titik belum lengkap), perlu-data. Foto dan titik tambahan dari Dokumen Fasilitas Umum Kampung Marga Mulya (foto GPS Desember 2023); cap waktu foto dipotong. Titik yang GPS-nya tidak berubah antarfoto tidak dipakai.",
  "pusat": {
   "nama": "Kampung Marga Mulya",
-  "lat": -8.405417,
-  "lng": 140.467787,
-  "catatan": "Koordinat resmi dari Monografi Kampung Marga Mulya (8°24'19,5\" LS, 140°28'4,0\" BT)."
+  "lat": -8.405899,
+  "lng": 140.467687,
+  "catatan": "Titik Kantor Kampung pada Peta Batas Kampung Marga Mulya (DPMK Kabupaten Merauke)."
  },
  "fasilitas": [
   {

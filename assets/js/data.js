@@ -42,8 +42,8 @@ window.KAMPUNG = {
     jumlahRT: 18,
     petaResmi: "Skala 1:50.000 (BIG)",
     koordinatTeks: "8°24′19,5″ LS · 140°28′4,0″ BT",
-    // Koordinat dari monografi kampung (8°24'19,5" LS, 140°28'4,034" BT).
-    koordinat: { lat: -8.405417, lng: 140.467787 },
+    // Titik Kantor Kampung pada Peta Batas Kampung (DPMK Merauke); monografi: 8°24'19,5" LS, 140°28'4,0" BT.
+    koordinat: { lat: -8.405899, lng: 140.467687 },
     orbitasi: [
       { label: "Pusat Distrik Semangga", km: 15 },
       { label: "Pusat Kota Merauke", km: 20 },
@@ -52,15 +52,6 @@ window.KAMPUNG = {
     pertanahan: { sertifikat: 2831, tanahKasHa: 1, waduk: 6 }
   },
 
-  // Dipakai untuk Google Maps, petunjuk arah, dan Street View.
-  google: {
-    tautan: "https://maps.app.goo.gl/hsfJP5TVHHf9SKjVA",            // tautan Google Maps resmi kampung
-    pencarian: "Marga Mulya, Semangga, Merauke Regency, South Papua", // nama tempat persis di Google Maps
-    ftid: "0x69b53af011096ecb:0xb5940dce9198b34e",                  // ID tempat dari tautan di atas
-    zoom: 14,
-    // Titik awal Street View (pusat kampung di Jl. Poros Semangga). Ganti dengan titik di jalan depan kantor kampung bila ada.
-    streetView: { lat: -8.409726, lng: 140.463722 }
-  },
 
   // Isi tautan akun resmi kampung. Yang kosong akan tampil "belum tersedia".
   sosmed: [
@@ -337,24 +328,15 @@ window.KAMPUNG = {
     { kelompok: "Air bersih & sanitasi", ikon: "drop", isi: [{ nama: "Penampung air hujan", nilai: "6" }, { nama: "Pamsimas", nilai: "1" }, { nama: "Sumur gali", nilai: "8" }, { nama: "MCK umum", nilai: "11" }, { nama: "Jamban keluarga", nilai: "892" }, { nama: "Saluran drainase", nilai: "46 km" }, { nama: "Pintu air", nilai: "10" }] }
   ],
 
+  // Peta kampung memakai Peta Batas Kampung resmi (data/batas-kampung.json, digitasi dari peta DPMK Merauke).
   peta: {
-    ortofoto: "",                          // mis. "assets/peta/ortofoto-marga-mulya.webp"
-    sumber: "Pemetaan drone Tim Ekspedisi Patriot IPB University, 2026",
-    tanggalTerbang: "[tanggal penerbangan]",
-    resolusi: "[mis. 5 cm/piksel]",
-    luasCakupan: "[mis. 350 ha]",
-    // x, y = posisi titik dalam PERSEN pada gambar ortofoto. lat/lng opsional untuk Google Maps.
-    titik: [
-      { nama: "Kantor Kampung", kategori: "Pemerintahan", x: 48, y: 44, ket: "Pelayanan administrasi, surat-menyurat, dan musyawarah kampung." },
-      { nama: "SD Inpres Semangga 3", kategori: "Pendidikan", x: 57, y: 38, ket: "Sekolah dasar negeri di kampung." },
-      { nama: "Posyandu", kategori: "Kesehatan", x: 42, y: 52, ket: "Layanan kesehatan ibu dan anak setiap bulan." },
-      { nama: "Rumah Ibadah", kategori: "Ibadah", x: 62, y: 50, ket: "Contoh titik — sesuaikan nama dan lokasinya." },
-      { nama: "Hamparan Sawah", kategori: "Pertanian", x: 22, y: 24, ket: "Lahan sawah padi utama kampung." },
-      { nama: "Saluran Irigasi", kategori: "Pertanian", x: 78, y: 70, ket: "Saluran pengairan sawah." },
-      { nama: "Kios & UMKM", kategori: "Ekonomi", x: 52, y: 60, ket: "Pusat jual beli kebutuhan warga." },
-      { nama: "Lapangan Kampung", kategori: "Olahraga", x: 34, y: 66, ket: "Lapangan olahraga dan kegiatan warga." }
-    ]
+    sumber: "Peta Batas Kampung Marga Mulya – Dinas Pemberdayaan Masyarakat dan Kampung Kabupaten Merauke",
+    gambar: "assets/img/peta/peta-batas-kampung-marga-mulya.jpg",
+    skala: "1:14.000",
+    citra: "SPOT 6/SPOT 7 tahun 2015–2018 (resolusi 1,5 m), Badan Informasi Geospasial",
+    ortofoto: ""                          // bila ortofoto drone sudah ada, isi path gambarnya di sini
   },
+
 
   video: {
     judul: "Video Profil Kampung Marga Mulya",

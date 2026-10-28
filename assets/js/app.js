@@ -61,19 +61,31 @@
     try { navigator.clipboard.writeText(text).then(done, function () { toast(text); }); } catch (e) { toast(text); }
   }
 
-  /* ---------- Tautan Google Maps ---------- */
-  var G = D.google, hasKoord = !!(id.koordinat && id.koordinat.lat);
-  var gQuery = hasKoord ? id.koordinat.lat + "," + id.koordinat.lng : G.pencarian;
-  // Titik Street View: titik di jalan (google.streetView), jika tidak ada pakai koordinat kampung
-  var SV = (G.streetView && G.streetView.lat) ? G.streetView : (hasKoord ? id.koordinat : { lat: -8.409726, lng: 140.463722 });
+  /* ---------- Titik kantor & tautan peta (tanpa Google Maps) ----------
+     Peta kampung memakai Peta Batas Kampung resmi (data/batas-kampung.json).
+     Petunjuk arah memakai OpenStreetMap. */
+  var hasKoord = !!(id.koordinat && id.koordinat.lat);
+  var KANTOR = hasKoord ? id.koordinat : { lat: -8.405899, lng: 140.467687 };
   var gm = {
-    open: G.tautan || "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(gQuery),
-    dir: "https://www.google.com/maps/dir/?api=1&destination=" + encodeURIComponent(gQuery),
-    street: "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=" + SV.lat + "," + SV.lng + "&heading=0&pitch=0&fov=90",
-    streetEmbed: "https://www.google.com/maps?layer=c&cbll=" + SV.lat + "," + SV.lng + "&cbp=12,0,0,0,0&hl=id&output=svembed",
-    streetLayer: "https://www.google.com/maps/@" + SV.lat + "," + SV.lng + ",17z/data=!5m1!1e5",
-    embed: function (type) { return "https://maps.google.com/maps?q=" + encodeURIComponent(gQuery) + (!hasKoord && G.ftid ? "&ftid=" + G.ftid : "") + "&t=" + type + "&z=" + G.zoom + "&hl=id&ie=UTF8&iwloc=&output=embed"; },
-    cari: function (nama) { return "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(nama + ", " + G.pencarian); }
+    open: "#petakampung",
+    dir: "https://www.openstreetmap.org/directions?engine=fossgis_osrm_car&route=%3B" + KANTOR.lat + "%2C" + KANTOR.lng + "#map=16/" + KANTOR.lat + "/" + KANTOR.lng,
+    osm: function (lat, lng) { return "https://www.openstreetmap.org/?mlat=" + lat + "&mlon=" + lng + "#map=18/" + lat + "/" + lng; }
+  };
+  // Data batas kampung dimuat sekali dan dipakai semua peta di website
+  var batasP = null;
+  window.MM_BATAS = function () {
+    if (!batasP) batasP = fetch("data/batas-kampung.json?v=" + (D.meta.diperbarui || ""), { cache: "no-cache" }).then(function (r) { return r.json(); });
+    return batasP;
+  };
+  // Tambahkan citra peta batas + garis batas ke peta Leaflet mana pun
+  window.MM_LAPIS_BATAS = function (map, B, o) {
+    o = o || {};
+    var lap = {};
+    lap.citra = L.imageOverlay(B.citra.src, B.citra.bounds, { opacity: o.citraOpacity == null ? 1 : o.citraOpacity, interactive: false, className: "citra-batas" });
+    if (o.citra !== false) lap.citra.addTo(map);
+    lap.halo = L.polygon(B.batas, { color: "#FFFFFF", weight: o.tebal || 5, opacity: .9, fill: false, interactive: false }).addTo(map);
+    lap.batas = L.polygon(B.batas, { color: "#1452C2", weight: (o.tebal || 5) - 2.5, dashArray: "8 6", fillColor: "#1452C2", fillOpacity: o.isi == null ? 0 : o.isi }).addTo(map);
+    return lap;
   };
   var mapBtn = function (href, label, icon, solid) {
     return '<a class="btn ' + (solid ? "btn--solid" : "btn--line") + '" href="' + esc(href) + '" target="_blank" rel="noopener">' + ic(icon || "pin") + esc(label) + "</a>";
@@ -114,7 +126,7 @@
     ["#fasilitas", "school", "Sarana & fasilitas", "Sarana prasarana kampung dan peta fasilitas"],
     ["#apbkam", "wallet", "Transparansi anggaran", "APBKam dan realisasi per bidang"],
     ["#indeksdesa", "gauge", "Indeks Desa", "Status perkembangan kampung"],
-    ["#petakampung", "pin", "Peta kampung", "Peta drone, satelit, dan Street View"],
+    ["#petakampung", "pin", "Peta batas kampung", "Peta resmi batas wilayah dan letak fasilitas"],
     ["#wisatakuliner", "route", "Wisata & kuliner", "Tempat rekreasi dan makan 1–2 jam dari kampung"],
     ["#surat", "doc", "Layanan surat", "Persyaratan dan lama proses surat"],
     ["#media", "video", "Video & galeri", "Video profil dan dokumentasi kegiatan"],
@@ -223,7 +235,7 @@
   var arah = [["n", "Utara", D.batas.utara], ["w", "Barat", D.batas.barat], ["e", "Timur", D.batas.timur], ["s", "Selatan", D.batas.selatan]];
   $("#batas").innerHTML = arah.map(function (a) {
     return '<button type="button" class="c tap ' + a[0] + '"' + act(function () {
-      openModal({ kat: "Batas wilayah", title: "Sebelah " + a[1].toLowerCase(), html: "<p>Kampung Marga Mulya di sebelah " + a[1].toLowerCase() + " berbatasan dengan <b>" + esc(a[2]) + "</b>.</p><div class='modal__actions'>" + mapBtn(gm.open, "Lihat wilayah di Google Maps", "pin", true) + "</div>" });
+      openModal({ kat: "Batas wilayah", title: "Sebelah " + a[1].toLowerCase(), html: "<p>Kampung Marga Mulya di sebelah " + a[1].toLowerCase() + " berbatasan dengan <b>" + esc(a[2]) + "</b>.</p><div class='modal__actions'>" + "<a class='btn btn--solid' href='#petakampung'>" + ic("pin") + "Lihat di peta batas kampung</a>" + "</div>" });
     }) + "><b>" + a[1] + "</b>" + esc(a[2]) + "</button>";
   }).join("") + '<div class="mid">Marga<br>Mulya</div>';
 
@@ -455,110 +467,91 @@
     }) + "><b>" + r.tahun + "</b><span>" + esc(r.status) + "</span></button></li>";
   }).join("");
 
-  /* =================== PETA =================== */
-  var PT = D.peta;
-  var warna = { Pemerintahan: "#082A66", Pendidikan: "#0B3A8F", Kesehatan: "#1046A8", Ibadah: "#1452C2", Pertanian: "#2563D6", Ekonomi: "#346FDE", Olahraga: "#4A7FE2" };
-  var kat = Array.from(new Set(PT.titik.map(function (t) { return t.kategori; })));
-  var aktifKat = {}; kat.forEach(function (k) { aktifKat[k] = true; });
-  $("#petaMeta").innerHTML = [["Sumber", PT.sumber], ["Tanggal terbang", PT.tanggalTerbang], ["Resolusi", PT.resolusi], ["Cakupan", PT.luasCakupan]]
-    .map(function (r) { return "<dt>" + esc(r[0]) + "</dt><dd>" + esc(r[1]) + "</dd>"; }).join("");
-  $("#gmOpen").href = gm.open; $("#gmDir").href = gm.dir; $("#gmStreet").href = gm.street;
+  /* =================== PETA BATAS KAMPUNG =================== */
+  (function () {
+    var tabs = $("#mapTabs"); if (!tabs) return;
+    var map = null, lap = {}, B = null, aktifLap = { citra: true, batas: true, titik: true, fasilitas: true, tetangga: true };
+    var info = $("#pinInfo");
+    var dms = function (v, pos, neg) { var a = Math.abs(v), d = Math.floor(a), m = Math.floor((a - d) * 60), s_ = ((a - d) * 60 - m) * 60; return d + "° " + m + "′ " + s_.toLocaleString("id-ID", { maximumFractionDigits: 2 }) + "″ " + (v < 0 ? neg : pos); };
+    var tampil = function (kat, judul, isi) { info.innerHTML = '<p class="mapinfo__kat">' + esc(kat) + "</p><h3>" + esc(judul) + "</h3>" + isi; };
 
-  var pins = $("#pins"), info = $("#pinInfo");
-  pins.innerHTML = PT.titik.map(function (t, i) {
-    return '<button class="pin" type="button" data-i="' + i + '" style="left:' + t.x + "%;top:" + t.y + "%;--pin:" + (warna[t.kategori] || "#1452C2") + '" aria-label="' + esc(t.nama) + '"><span class="pin__dot"><i>' + (i + 1) + "</i></span></button>";
-  }).join("");
-  pins.addEventListener("click", function (e) {
-    var btn = e.target.closest(".pin"); if (!btn) return;
-    var t = PT.titik[+btn.dataset.i];
-    pins.querySelectorAll(".pin").forEach(function (p) { p.classList.toggle("is-active", p === btn); });
-    var link = (t.lat && t.lng) ? "https://www.google.com/maps/search/?api=1&query=" + t.lat + "," + t.lng : gm.cari(t.nama);
-    info.innerHTML = '<p class="mapinfo__kat">' + esc(t.kategori) + " · titik " + (+btn.dataset.i + 1) + "</p><h3>" + esc(t.nama) + "</h3><p>" + esc(t.ket) + '</p><p><a href="' + esc(link) + '" target="_blank" rel="noopener">Lihat di Google Maps →</a></p>';
-  });
-  $("#mapFilter").innerHTML = kat.map(function (k) {
-    return '<button class="fbtn" type="button" aria-pressed="true" data-k="' + esc(k) + '" style="--pin:' + (warna[k] || "#1452C2") + '">' + esc(k) + "</button>";
-  }).join("");
-  $("#mapFilter").addEventListener("click", function (e) {
-    var f = e.target.closest(".fbtn"); if (!f) return;
-    var k = f.dataset.k; aktifKat[k] = !aktifKat[k];
-    f.setAttribute("aria-pressed", aktifKat[k] ? "true" : "false");
-    pins.querySelectorAll(".pin").forEach(function (p) { p.hidden = !aktifKat[PT.titik[+p.dataset.i].kategori]; });
-  });
-
-  // Tab peta: drone, satelit Google, peta jalan Google, Street View
-  var loaded = {};
-  function frame(panel, type) {
-    if (loaded[panel]) return; loaded[panel] = true;
-    var el = $("#panel-" + panel);
-    el.innerHTML = '<div class="map__fallback"><div><p>Peta Google sedang dimuat. Bila tidak tampil, buka langsung:</p>' + mapBtn(gm.open, "Buka di Google Maps", "pin", true) + "</div></div>" +
-      '<iframe title="Peta Google ' + (type === "k" ? "satelit" : "jalan") + ' Kampung Marga Mulya" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen src="' + esc(gm.embed(type)) + '"></iframe>';
-  }
-  var streetLoaded = false;
-  function streetView() {
-    if (streetLoaded) return; streetLoaded = true;
-    $("#panel-street").innerHTML =
-      '<iframe title="Google Street View Kampung Marga Mulya" loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade" src="' + esc(gm.streetEmbed) + '"></iframe>' +
-      '<div class="street__bar"><span>Foto 360° Google di sekitar Kampung Marga Mulya. Bila layar kosong atau abu-abu, Google belum punya foto tepat di titik ini—buka Google Maps lalu seret ikon orang kuning ke jalan bergaris biru.</span>' +
-      '<span class="street__btns">' + mapBtn(gm.street, "Buka Street View", "person", true) + mapBtn(gm.streetLayer, "Lihat jalur Street View", "layers") + "</span></div>";
-  }
-  var tabs = $("#mapTabs");
-  tabs.addEventListener("click", function (e) {
-    var b = e.target.closest("button[data-tab]"); if (b) showTab(b.dataset.tab);
-  });
-  function showTab(t) {
-    tabs.querySelectorAll("button").forEach(function (x) { x.setAttribute("aria-selected", x.dataset.tab === t ? "true" : "false"); });
-    ["drone", "satelit", "jalan", "street"].forEach(function (p) { $("#panel-" + p).hidden = p !== t; });
-    if (t === "satelit") frame("satelit", "k");
-    if (t === "jalan") frame("jalan", "m");
-    if (t === "drone") drawSketch();
-    if (t === "street") streetView();
-  }
-
-  var ortho = $("#ortho"), canvas = $("#sketch");
-  if (PT.ortofoto) {
-    ortho.onload = function () { ortho.hidden = false; canvas.hidden = true; $("#mapTag").textContent = "Ortofoto drone · " + PT.tanggalTerbang; };
-    ortho.onerror = drawSketch;
-    ortho.src = PT.ortofoto;
-  }
-  // Selama ortofoto belum ada, peta Google satelit tampil lebih dulu di halaman.
-  showTab(PT.ortofoto ? "drone" : "satelit");
-  var rT; window.addEventListener("resize", function () { clearTimeout(rT); rT = setTimeout(function () { if (!canvas.hidden) drawSketch(); }, 150); });
-
-  // Peta sketsa sementara (warna biru): petak sawah, jalan, saluran irigasi, permukiman.
-  function drawSketch() {
-    var box = canvas.parentElement.getBoundingClientRect();
-    if (!box.width) return;
-    var dpr = Math.min(window.devicePixelRatio || 1, 2);
-    var W = Math.round(box.width), H = Math.round(box.height);
-    canvas.width = W * dpr; canvas.height = H * dpr;
-    var c = canvas.getContext("2d"); c.setTransform(dpr, 0, 0, dpr, 0, 0);
-    var seed = 7; var rnd = function () { seed = (seed * 16807) % 2147483647; return seed / 2147483647; };
-    c.fillStyle = "#FFFFFF"; c.fillRect(0, 0, W, H);
-    var tones = ["#EEF4FD", "#E2ECFB", "#D3E3FA", "#C5DAF8", "#B7D0F5", "#DCE8FB", "#CADDF8"];
-    var cw = W / 9, ch = H / 7;
-    c.save(); c.translate(W / 2, H / 2); c.rotate(-0.08); c.translate(-W / 2, -H / 2);
-    for (var gx = -1; gx < 11; gx++) for (var gy = -1; gy < 9; gy++) {
-      var cols = 2 + Math.floor(rnd() * 3);
-      for (var k = 0; k < cols; k++) { c.fillStyle = tones[Math.floor(rnd() * tones.length)]; c.fillRect(gx * cw + k * cw / cols + 1, gy * ch + 1, cw / cols - 2, ch - 2); }
+    function showTab(t) {
+      tabs.querySelectorAll("button").forEach(function (x) { x.setAttribute("aria-selected", x.dataset.tab === t ? "true" : "false"); });
+      ["interaktif", "resmi"].forEach(function (p) { $("#panel-" + p).hidden = p !== t; });
+      if (t === "interaktif" && map) setTimeout(function () { map.invalidateSize(); }, 50);
+      if (t === "resmi" && B && !$("#petaImg").src) $("#petaImg").src = B.petaGambar;
     }
-    c.restore();
-    var roadY = function (x) { return H * 0.47 + Math.sin(x / W * 3.1) * H * 0.05; };
-    c.fillStyle = "#FFFFFF"; c.fillRect(W * 0.3, H * 0.33, W * 0.42, H * 0.36);
-    for (var i = 0; i < 90; i++) {
-      var x = W * 0.3 + rnd() * W * 0.42, y = H * 0.34 + rnd() * H * 0.34;
-      if (Math.abs(y - roadY(x)) < 9) continue;
-      c.fillStyle = rnd() > 0.5 ? "#1452C2" : (rnd() > 0.5 ? "#7AAAF2" : "#0B3A8F");
-      c.fillRect(x, y, 7 + rnd() * 6, 6 + rnd() * 5);
+    tabs.addEventListener("click", function (e) { var b = e.target.closest("button[data-tab]"); if (b) showTab(b.dataset.tab); });
+
+    // Peta resmi: perbesar / perkecil dan geser
+    var zoom = 1, box = $("#petaZoom");
+    var setZoom = function (z) { zoom = Math.max(1, Math.min(5, z)); $("#petaImg").style.width = (zoom * 100) + "%"; };
+    $("#zoomIn").addEventListener("click", function () { setZoom(zoom * 1.5); });
+    $("#zoomOut").addEventListener("click", function () { setZoom(zoom / 1.5); });
+
+    function bangun(F) {
+      var el = $("#batasMap");
+      if (!window.L) { el.innerHTML = '<p class="wmap__load">Peta interaktif tidak dapat dimuat. Gunakan tab Peta batas resmi.</p>'; return; }
+      el.innerHTML = "";
+      map = L.map(el, { scrollWheelZoom: false, zoomSnap: .25 });
+      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", { maxZoom: 19, attribution: "&copy; kontributor OpenStreetMap" }).addTo(map);
+      map.attributionControl.addAttribution("Peta Batas Kampung &copy; DPMK Kabupaten Merauke");
+      var L2 = window.MM_LAPIS_BATAS(map, B, { isi: .06 });
+      lap.citra = L2.citra; lap.batas = L.layerGroup([L2.halo, L2.batas]);
+      L2.batas.on("click", function () {
+        tampil("Batas wilayah", "Kampung Marga Mulya", "<p>Luas menurut monografi kampung <b>" + esc(id.luas) + "</b>; hasil digitasi peta batas ± " + B.luasDigitasiHa.toLocaleString("id-ID", { maximumFractionDigits: 0 }) + " ha.</p><p class='small'>Utara: " + esc(D.batas.utara) + ". Timur: " + esc(D.batas.timur) + ". Selatan: " + esc(D.batas.selatan) + ". Barat: " + esc(D.batas.barat) + ".</p>");
+      });
+      // Titik kartometrik
+      lap.titik = L.layerGroup(B.titik.map(function (t) {
+        var m = L.marker([t.lat, t.lng], { icon: L.divIcon({ className: "", html: '<span class="tk">' + t.no + "</span>", iconSize: [22, 22], iconAnchor: [11, 11] }) });
+        m.on("click", function () {
+          tampil("Titik kartometrik " + t.no, t.kode, "<p>" + dms(t.lat, "LU", "LS") + "<br>" + dms(t.lng, "BT", "BB") + "</p><p class='small'>UTM 54S: X " + t.x.toLocaleString("id-ID") + " · Y " + t.y.toLocaleString("id-ID") + "</p>");
+        });
+        return m.bindTooltip("Titik " + t.no, { direction: "top", offset: [0, -10] });
+      }));
+      // Nama kampung tetangga
+      lap.tetangga = L.layerGroup(B.tetangga.map(function (t) {
+        return L.marker([t.lat, t.lng], { interactive: false, icon: L.divIcon({ className: "", html: '<span class="tetangga">' + esc(t.nama).replace(" · ", "<br>") + "</span>", iconSize: [150, 34], iconAnchor: [75, 17] }) });
+      }));
+      // Kantor kampung
+      var kantor = L.marker([B.kantor.lat, B.kantor.lng], { zIndexOffset: 1000, icon: L.divIcon({ className: "", html: '<span class="mk mk--home"><svg class="ic"><use href="#i-home"/></svg></span>', iconSize: [36, 36], iconAnchor: [18, 18] }) }).addTo(map);
+      kantor.on("click", function () { tampil("Pemerintahan", B.kantor.nama, "<p>" + esc(B.kantor.ket) + ".</p><p class='small'>" + dms(B.kantor.lat, "LU", "LS") + " · " + dms(B.kantor.lng, "BT", "BB") + "</p><p><a href='" + esc(gm.dir) + "' target='_blank' rel='noopener'>Petunjuk arah (OpenStreetMap) →</a></p>"); });
+      // Fasilitas umum (titik dari foto GPS)
+      lap.fasilitas = L.layerGroup((F || []).filter(function (f) { return f.lat != null && f.dalamKampung; }).map(function (f) {
+        var m = L.circleMarker([f.lat, f.lng], { radius: 6, color: "#FFFFFF", weight: 2, fillColor: "#0B3A8F", fillOpacity: 1 });
+        m.on("click", function () {
+          tampil(f.kategori + " · " + (f.jenis || ""), f.nama, (f.foto ? '<img class="mapinfo__img" src="' + esc(f.foto) + '" alt="">' : "") + "<p>" + esc((f.keterangan || [])[0] || f.alamat) + "</p><p><a href='#fasilitas' data-fokus-fasil='" + esc(f.id) + "'>Lihat di daftar fasilitas →</a></p>");
+        });
+        return m.bindTooltip(f.nama, { direction: "top", offset: [0, -6] });
+      }));
+      ["titik", "fasilitas", "tetangga"].forEach(function (k) { lap[k].addTo(map); });
+      var fit = function () { map.invalidateSize(); map.fitBounds(L2.batas.getBounds(), { padding: [12, 12] }); };
+      fit();
+      (window.MM_MAPS = window.MM_MAPS || []).push({ el: el, map: map, fit: fit });
+      el.addEventListener("click", function () { map.scrollWheelZoom.enable(); }, { once: true });
+
+      // Saringan lapisan
+      var NAMA = { citra: "Citra peta batas", batas: "Garis batas", titik: "Titik kartometrik", fasilitas: "Fasilitas umum", tetangga: "Kampung tetangga" };
+      $("#mapFilter").innerHTML = Object.keys(NAMA).map(function (k) { return '<button class="fbtn" type="button" aria-pressed="true" data-lap="' + k + '">' + NAMA[k] + "</button>"; }).join("");
+      $("#mapFilter").addEventListener("click", function (e) {
+        var b = e.target.closest("[data-lap]"); if (!b) return; var k = b.dataset.lap; aktifLap[k] = !aktifLap[k];
+        b.setAttribute("aria-pressed", aktifLap[k] ? "true" : "false");
+        if (aktifLap[k]) lap[k].addTo(map); else lap[k].remove();
+      });
     }
-    c.strokeStyle = "#1452C2"; c.lineWidth = 4; c.beginPath();
-    c.moveTo(W * 0.1, H * 1.02); c.bezierCurveTo(W * 0.4, H * 0.8, W * 0.7, H * 0.85, W * 1.02, H * 0.62); c.stroke();
-    c.strokeStyle = "#9DBDF0"; c.lineWidth = 6; c.beginPath();
-    for (var xx = 0; xx <= W; xx += 8) { var yy = roadY(xx); if (xx === 0) c.moveTo(xx, yy); else c.lineTo(xx, yy); } c.stroke();
-    c.lineWidth = 4; c.beginPath(); c.moveTo(W * 0.52, 0); c.lineTo(W * 0.5, roadY(W * 0.5)); c.lineTo(W * 0.46, H); c.stroke();
-    c.lineWidth = 2.5;
-    c.beginPath(); c.moveTo(W * 0.3, roadY(W * 0.3)); c.lineTo(W * 0.26, H * 0.12); c.stroke();
-    c.beginPath(); c.moveTo(W * 0.7, roadY(W * 0.7)); c.lineTo(W * 0.76, H * 0.95); c.stroke();
-  }
+
+    window.MM_BATAS().then(function (b) {
+      B = b;
+      $("#petaUnduh").href = B.petaGambar;
+      $("#batasRingkas").innerHTML = "Luas wilayah <b>" + esc(id.luas) + "</b>. Ketuk batas wilayah, titik kartometrik, kantor, atau fasilitas di peta untuk melihat keterangannya.";
+      $("#petaMeta").innerHTML = [["Sumber", "Pemkab Merauke · DPMK"], ["Kode wilayah", B.kodeWilayah], ["Skala", B.skala], ["Citra", B.citraSumber], ["Koordinat", B.sistemKoordinat], ["Titik kartometrik", B.titik.length + " titik"]]
+        .map(function (r) { return "<dt>" + esc(r[0]) + "</dt><dd>" + esc(r[1]) + "</dd>"; }).join("");
+      $("#tkTabel").innerHTML = "<thead><tr><th>No</th><th>Titik kartometrik</th><th>Bujur</th><th>Lintang</th><th class='num'>X (m)</th><th class='num'>Y (m)</th></tr></thead><tbody>" +
+        B.titik.map(function (t) { return "<tr><td>" + t.no + "</td><td>" + esc(t.kode) + "</td><td>" + dms(t.lng, "BT", "BB") + "</td><td>" + dms(t.lat, "LU", "LS") + "</td><td class='num'>" + t.x.toLocaleString("id-ID") + "</td><td class='num'>" + t.y.toLocaleString("id-ID") + "</td></tr>"; }).join("") + "</tbody>";
+      return fetch("data/fasilitas.json?t=" + Date.now(), { cache: "no-store" }).then(function (r) { return r.json(); }).then(function (j) { bangun(j.fasilitas); }, function () { bangun([]); });
+    }).catch(function () { $("#batasMap").innerHTML = '<p class="wmap__load">Data peta batas belum dapat dimuat.</p>'; });
+    showTab("interaktif");
+  })();
 
   /* =================== VIDEO =================== */
   var V = D.video, vb = $("#videoBox");
@@ -582,7 +575,7 @@
       openModal({ kat: "Layanan administrasi", title: l.nama,
         html: "<p><b>Persyaratan:</b></p><ul>" + l.syarat.map(function (s) { return "<li>" + esc(s) + "</li>"; }).join("") + "</ul>" +
           "<p><b>Lama proses:</b> " + esc(l.waktu) + "<br><b>Jam layanan:</b> " + esc(D.kontak.jamLayanan) + "</p><p>Bawa berkas ke Kantor Kampung Marga Mulya. Pelayanan tidak dipungut biaya.</p>" +
-          "<div class='modal__actions'>" + mapBtn(gm.dir, "Petunjuk arah ke kantor", "nav", true) + "</div>" });
+          "<div class='modal__actions'>" + mapBtn(gm.dir, "Petunjuk arah ke kantor (OpenStreetMap)", "nav", true) + "</div>" });
     }) + "><span>" + ic("doc") + "</span><span><b>" + esc(l.nama) + "</b><small>" + ic("clock") + esc(l.waktu) + '</small></span><span class="go">' + ic("arrow") + "</span></button>";
   }).join("");
   if (D.layananContoh) $("#layanan .lead").insertAdjacentHTML("beforeend", CHIP);
@@ -654,7 +647,7 @@
   /* =================== KONTAK & SOSMED =================== */
   var K = D.kontak;
   var kontak = [
-    ["pin", "Alamat", K.alamat, function () { openModal({ kat: "Kontak", title: "Alamat kantor", html: "<p>" + esc(K.alamat) + "</p><div class='modal__actions'>" + mapBtn(gm.open, "Buka di Google Maps", "pin", true) + mapBtn(gm.dir, "Petunjuk arah", "nav") + "</div>" }); }],
+    ["pin", "Alamat", K.alamat, function () { openModal({ kat: "Kontak", title: "Alamat kantor", html: "<p>" + esc(K.alamat) + "</p><div class='modal__actions'>" + "<a class='btn btn--solid' href='#petakampung'>" + ic("pin") + "Lihat di peta kampung</a>" + mapBtn(gm.dir, "Petunjuk arah", "nav") + "</div>" }); }],
     ["phone", "Telepon / WhatsApp", K.telepon, function () { copy(K.telepon); }],
     ["mail", "Email", K.email, function () { copy(K.email); }],
     ["clock", "Jam layanan", K.jamLayanan, function () { openModal({ kat: "Kontak", title: "Jam layanan", html: "<p>" + esc(K.jamLayanan) + ". Di luar jam tersebut, hubungi perangkat kampung melalui telepon/WhatsApp.</p>" }); }]
@@ -772,6 +765,7 @@
       el.innerHTML = "";
       map = L.map(el, { scrollWheelZoom: false, tap: true }).setView([pusat.lat, pusat.lng], 11);
       L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", { maxZoom: 18, attribution: "&copy; kontributor OpenStreetMap" }).addTo(map);
+      window.MM_BATAS().then(function (B) { map.attributionControl.addAttribution("Peta Batas Kampung &copy; DPMK Merauke"); var l = window.MM_LAPIS_BATAS(map, B, { tebal: 4, isi: .08 }); l.batas.bindTooltip("Wilayah Kampung Marga Mulya"); }).catch(function () {});
       var home = L.marker([pusat.lat, pusat.lng], { icon: L.divIcon({ className: "", html: '<span class="mk mk--home"><svg class="ic"><use href="#i-home"/></svg></span>', iconSize: [36, 36], iconAnchor: [18, 18] }), zIndexOffset: 1000 })
         .addTo(map).bindPopup("<b>" + esc(pusat.nama) + "</b><br>Titik awal perhitungan jarak");
       var b = [[pusat.lat, pusat.lng]];
@@ -836,10 +830,8 @@
     var STATUS = { "terverifikasi": ["Terverifikasi", "is-ok"], "sebagian": ["Data sebagian", "is-part"], "perlu-data": ["Perlu dilengkapi", "is-need"] };
     var F = null, aktif = "Semua", map = null, markers = {};
     var icon = function (f) { return JENIS_IC[f.jenis] || (KAT[f.kategori] || {}).ic || "pin"; };
-    var gmaps = function (f) {
-      return (!f.perkiraan && f.lat != null) ? "https://www.google.com/maps/search/?api=1&query=" + f.lat + "," + f.lng
-        : "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(f.nama + ", " + f.alamat + ", Merauke");
-    };
+    // Fasilitas di luar kampung: tautan OpenStreetMap; di dalam kampung: peta batas kampung di halaman ini
+    var osm = function (f) { return f.lat != null ? gm.osm(f.lat, f.lng) : "https://www.openstreetmap.org/search?query=" + encodeURIComponent(f.nama + ", " + f.alamat + ", Merauke"); };
     var lokasi = function (f) {
       if (f.dalamKampung) return "Di Kampung Marga Mulya";
       return f.jarak_km != null ? "± " + f.jarak_km.toLocaleString("id-ID") + " km · ± " + f.waktu_menit + " menit dari kampung" : "Sekitar Distrik Semangga";
@@ -866,7 +858,7 @@
         (f.foto && f.sumberUrl ? '<span class="fcard__addr fcard__srv">' + ic("external") + "Data: " + esc(f.sumber) + "</span>" : "") +
         (f.survei ? '<span class="fcard__addr fcard__srv">' + ic("camera") + esc(survei(f)) + "</span>" : (f.titikDari ? '<span class="fcard__addr fcard__srv">' + ic("pin") + esc(f.titikDari.replace(/2023-12-0?(\d+)/, function (_, d) { return d + " Des 2023"; })) + "</span>" : "")) +
         "</span></button>" +
-        '<span class="wcard__act"><a href="' + esc(gmaps(f)) + '" target="_blank" rel="noopener">' + ic("pin") + "Google Maps</a>" +
+        '<span class="wcard__act"><button type="button" class="linkbtn linkbtn--first" data-fasil="' + esc(f.id) + '">' + ic("pin") + "Lihat di peta</button>" +
         (f.foto ? '<button type="button" class="linkbtn" data-fgal="' + esc(f.id) + '">' + ic("image") + "Lihat foto" + (fotoF(f).length > 1 ? " (" + fotoF(f).length + ")" : "") + "</button>"
           : (f.sumberUrl ? '<a href="' + esc(f.sumberUrl) + '" target="_blank" rel="noopener">' + ic("external") + "Sumber: " + esc(f.sumber) + "</a>" : '<a href="#kontak">' + ic("phone") + "Kirim data</a>")) +
         "</span></article>";
@@ -885,7 +877,7 @@
       return a.concat((f.galeri || []).filter(function (g) { return g.src !== f.foto; }));
     };
     document.addEventListener("click", function (e) {
-      var b = e.target.closest("[data-fgal]"); if (!b) return;
+      var b = e.target.closest("[data-fgal]"); if (!b) return; e.preventDefault();
       var f = F.fasilitas.filter(function (x) { return x.id === b.getAttribute("data-fgal"); })[0]; if (!f) return;
       openModal({ kat: f.kategori + " · " + (f.jenis || ""), title: f.nama, html: '<div class="potgal">' + fotoF(f).map(function (g) {
         return '<figure><img src="' + esc(g.src) + '" alt="' + esc(f.nama) + '" loading="lazy"><figcaption>' + (g.ket ? "<b>" + esc(g.ket) + "</b>" : "") + "<span>Foto: " + esc(g.sumber || "") + "</span></figcaption></figure>";
@@ -912,20 +904,22 @@
         setTimeout(function () { markers[id].openPopup(); }, 850);
       } else {
         openModal({ kat: f.kategori, title: f.nama, html: (f.foto ? '<img class="modal__img" src="' + esc(f.foto) + '" alt="' + esc(f.nama) + '">' : "") + "<p>" + esc(f.alamat) + "</p><ul>" + (f.keterangan || []).map(function (k) { return "<li>" + esc(k) + "</li>"; }).join("") + "</ul>" +
-          "<p class='small'>Titik lokasi fasilitas ini belum tersedia. Pemerintah kampung dapat mengirimkan koordinat atau tautan Google Maps-nya.</p><div class='modal__actions'>" + mapBtn(gmaps(f), "Cari di Google Maps", "pin", true) + "</div>" });
+          "<p class='small'>Titik lokasi fasilitas ini belum tersedia di peta batas kampung. Pemerintah kampung dapat mengirimkan foto bertitik GPS untuk melengkapinya.</p>" });
       }
     }
     document.addEventListener("click", function (e) { var b = e.target.closest("[data-fasil]"); if (b) fokus(b.getAttribute("data-fasil")); });
 
     function petakan() {
       var el = $("#fasilMap");
-      if (!window.L) { el.innerHTML = '<p class="wmap__load">Peta tidak dapat dimuat. Gunakan tombol Google Maps pada setiap fasilitas.</p>'; return; }
+      if (!window.L) { el.innerHTML = '<p class="wmap__load">Peta tidak dapat dimuat.</p>'; return; }
       el.innerHTML = "";
       var P = F.pusat;
       map = L.map(el, { scrollWheelZoom: false }).setView([P.lat, P.lng], 14);
       L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", { maxZoom: 19, attribution: "&copy; kontributor OpenStreetMap" }).addTo(map);
+      map.attributionControl.addAttribution("Peta Batas Kampung &copy; DPMK Kabupaten Merauke");
+      if (BATAS) window.MM_LAPIS_BATAS(map, BATAS, { tebal: 4 });
       L.marker([P.lat, P.lng], { icon: L.divIcon({ className: "", html: '<span class="mk mk--home"><svg class="ic"><use href="#i-home"/></svg></span>', iconSize: [36, 36], iconAnchor: [18, 18] }), zIndexOffset: 1000 })
-        .addTo(map).bindPopup("<b>" + esc(P.nama) + "</b><br>Pusat kampung");
+        .addTo(map).bindPopup("<b>Kantor Kampung Marga Mulya</b><br>Titik kantor pada Peta Batas Kampung");
       var b = [[P.lat, P.lng]];
       // Fasilitas yang titiknya berdekatan (< ±5 m) digabung dalam satu penanda
       var byKey = {};
@@ -936,7 +930,7 @@
       });
       var pop = function (f) {
         return (f.foto ? '<img src="' + esc(f.foto) + '" alt="" onerror="this.remove()">' : "") + "<small>" + esc(f.jenis || f.kategori) + "</small><b>" + esc(f.nama) + "</b><span>" + esc(f.alamat) + (f.perkiraan ? "<br><i>Lokasi perkiraan</i>" : "") + (f.survei ? "<br>" + esc(survei(f)) : "") + "</span>" +
-          '<span class="mpop__a"><a href="' + esc(gmaps(f)) + '" target="_blank" rel="noopener">Google Maps</a>' + (f.sumberUrl ? '<a href="' + esc(f.sumberUrl) + '" target="_blank" rel="noopener">Sumber</a>' : "") + "</span>";
+          '<span class="mpop__a">' + (f.foto ? '<a href="#" data-fgal="' + esc(f.id) + '">Foto</a>' : "") + (!f.dalamKampung ? '<a href="' + esc(osm(f)) + '" target="_blank" rel="noopener">OpenStreetMap</a>' : "") + (f.sumberUrl ? '<a href="' + esc(f.sumberUrl) + '" target="_blank" rel="noopener">Sumber</a>' : "") + "</span>";
       };
       Object.keys(byKey).forEach(function (key) {
         var g = byKey[key], f0 = g[0], c = (KAT[f0.kategori] || {}).c || "#1452C2";
@@ -948,12 +942,21 @@
         g.forEach(function (f) { markers[f.id] = m; });
         if (f0.dalamKampung || (f0.jarak_km || 99) < 8) b.push([f0.lat, f0.lng]);
       });
-      map.fitBounds(b, { padding: [30, 30], maxZoom: 15 });
-      (window.MM_MAPS = window.MM_MAPS || []).push({ el: el, map: map, fit: function () { map.invalidateSize(); map.fitBounds(b, { padding: [30, 30], maxZoom: 15 }); } });
+      // Fokus awal: kawasan permukiman (fasilitas di dalam kampung); geser/perkecil untuk melihat seluruh batas
+      var dalam = F.fasilitas.filter(function (f) { return f.dalamKampung && f.lat != null; }).map(function (f) { return [f.lat, f.lng]; });
+      var bb = L.latLngBounds(dalam.length ? dalam : b);
+      map.fitBounds(bb, { padding: [16, 16] });
+      (window.MM_MAPS = window.MM_MAPS || []).push({ el: el, map: map, fit: function () { map.invalidateSize(); map.fitBounds(bb, { padding: [16, 16] }); } });
       el.addEventListener("click", function () { map.scrollWheelZoom.enable(); }, { once: true });
     }
 
-    fetch("data/fasilitas.json?t=" + Date.now(), { cache: "no-store" }).then(function (r) { return r.json(); }).then(function (j) {
+    var BATAS = null;
+    document.addEventListener("click", function (e) {
+      var a = e.target.closest("[data-fokus-fasil]"); if (!a) return;
+      var idf = a.getAttribute("data-fokus-fasil"); setTimeout(function () { if (F) fokus(idf); }, 400);
+    });
+    Promise.all([fetch("data/fasilitas.json?t=" + Date.now(), { cache: "no-store" }).then(function (r) { return r.json(); }), window.MM_BATAS().catch(function () { return null; })]).then(function (res) {
+      var j = res[0]; BATAS = res[1];
       F = j;
       var dalam = j.fasilitas.filter(function (f) { return f.dalamKampung; });
       var kats = Object.keys(KAT).filter(function (k) { return j.fasilitas.some(function (f) { return f.kategori === k; }); });
