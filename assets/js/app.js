@@ -215,7 +215,29 @@
 
 
   /* =================== PROFIL =================== */
-  $("#sejarah").innerHTML = "<h3>Sejarah singkat</h3>" + D.sejarah.map(function (p) { return "<p>" + esc(p) + "</p>"; }).join("");
+  // Tombol "Baca selengkapnya" yang membuka/menutup bagian tersembunyi
+  function bacaLagi(btnTeks, tutupTeks) {
+    return '<button type="button" class="readmore" aria-expanded="false" data-buka="' + esc(btnTeks) + '" data-tutup="' + esc(tutupTeks || "Tutup") + '">' + esc(btnTeks) + "</button>";
+  }
+  document.addEventListener("click", function (e) {
+    var b = e.target.closest && e.target.closest(".readmore");
+    if (!b) return;
+    var box = b.previousElementSibling, buka = b.getAttribute("aria-expanded") !== "true";
+    if (box) box.hidden = !buka;
+    b.setAttribute("aria-expanded", buka ? "true" : "false");
+    b.textContent = buka ? b.getAttribute("data-tutup") : b.getAttribute("data-buka");
+    if (!buka) b.closest("section, .panel, div").scrollIntoView({ block: "nearest" });
+  });
+  (function () {
+    var n = D.sejarahRingkas || D.sejarah.length, awal = D.sejarah.slice(0, n), sisa = D.sejarah.slice(n);
+    var p = function (t) { return "<p>" + esc(t) + "</p>"; };
+    var lini = (D.sejarahLini || []).length ? '<h4 class="mt-s">Lini masa kepemimpinan</h4><ol class="lini">' + D.sejarahLini.map(function (l) {
+      return "<li><b>" + esc(l.tahun) + "</b><span><strong>" + esc(l.nama) + "</strong>" + (l.ket ? " · " + esc(l.ket) : "") + "</span></li>";
+    }).join("") + "</ol>" : "";
+    var src = D.sejarahSumber ? '<p class="small">Sumber: ' + esc(D.sejarahSumber) + (D.rpjmk ? ' · <a href="' + esc(D.rpjmk.halaman) + '#bab-ii-1">baca teks aslinya</a>' : "") + "</p>" : "";
+    $("#sejarah").innerHTML = "<h3>Sejarah singkat</h3>" + awal.map(p).join("") +
+      (sisa.length || lini ? '<div class="more-body" hidden>' + sisa.map(p).join("") + lini + src + "</div>" + bacaLagi("Baca selengkapnya", "Tutup sejarah") : src);
+  })();
   $("#identitas").innerHTML = [
     ["Nama", id.nama], ["Distrik", id.distrik], ["Kabupaten", id.kabupaten], ["Provinsi", id.provinsi],
     ["Kode wilayah", id.kodeWilayah], ["Kode pos", id.kodePos], ["Tahun dibentuk", id.tahunBerdiri], ["Dasar hukum", id.dasarHukum],
@@ -231,8 +253,19 @@
   }
   if (D.visi) $("#visi").textContent = D.visi;
   else $("#visi").innerHTML = '<span class="small">Visi resmi kampung akan dicantumkan setelah dokumen RPJMKam tersedia.</span>';
-  $("#misi").innerHTML = (D.misi || []).map(function (m) { return "<li>" + esc(m) + "</li>"; }).join("");
-  if (!(D.misi || []).length) $("#misi").outerHTML = '<p class="small">Misi resmi kampung akan dicantumkan setelah dokumen RPJMKam tersedia.</p>';
+  if (D.visi && D.visiMakna) $("#visi").insertAdjacentHTML("afterend", '<details class="more"><summary>Makna visi</summary><p class="small">' + esc(D.visiMakna) + "</p></details>");
+  (function () {
+    var M = D.misi || [], n = D.misiRingkas || M.length;
+    var li = function (m) { return "<li>" + esc(m) + "</li>"; };
+    if (!M.length) { $("#misi").outerHTML = '<p class="small">Misi resmi kampung akan dicantumkan setelah dokumen RPJMKam tersedia.</p>'; return; }
+    $("#misi").innerHTML = M.slice(0, n).map(li).join("");
+    if (M.length > n) $("#misi").insertAdjacentHTML("afterend", '<ol class="misi more-body" start="' + (n + 1) + '" hidden>' + M.slice(n).map(li).join("") + "</ol>" + bacaLagi("Baca selengkapnya (" + (M.length - n) + " misi lainnya)", "Tampilkan lebih sedikit"));
+  })();
+  if (D.rpjmk) {
+    var R = D.rpjmk;
+    $("#rpjmkCard").innerHTML = '<div class="rpjmk-card"><p class="small">Visi dan misi di atas tercantum dalam <b>' + esc(R.judul) + "</b>, ditetapkan dengan " + esc(R.perkam) + ".</p>" +
+      '<div class="rpjmk-cta"><a class="btn btn--solid" href="' + esc(R.halaman) + '">' + ic("doc") + 'Baca RPJMK lengkap</a><a class="btn btn--line" href="#perencanaan">Ringkasan &amp; dasar hukum</a></div></div>';
+  }
   var arah = [["n", "Utara", D.batas.utara], ["w", "Barat", D.batas.barat], ["e", "Timur", D.batas.timur], ["s", "Selatan", D.batas.selatan]];
   $("#batas").innerHTML = arah.map(function (a) {
     return '<button type="button" class="c tap ' + a[0] + '"' + act(function () {
@@ -488,6 +521,22 @@
     }) + "><b>" + r.tahun + "</b><span>" + esc(r.status) + "</span></button></li>";
   }).join("");
 
+  /* =================== RPJMK (Transparansi) =================== */
+  if (D.rpjmk) (function () {
+    var R = D.rpjmk, n = R.dasarHukumRingkas || R.dasarHukum.length;
+    $("#rpjmkLead").textContent = "Rencana Pembangunan Jangka Menengah Kampung adalah dokumen perencanaan enam tahun yang memuat visi-misi kepala kampung, arah kebijakan, dan rencana kegiatan. RPJMK menjadi pedoman penyusunan RKPK dan APBKam setiap tahun.";
+    $("#rpjmkMeta").innerHTML = [["Dokumen", R.judul], ["Ditetapkan dengan", R.perkam], ["Periode", R.periode], ["Ditetapkan", R.ditetapkan], ["Landasan utama", R.landasan]]
+      .map(function (r) { return "<dt>" + esc(r[0]) + "</dt><dd>" + esc(r[1]) + "</dd>"; }).join("");
+    var li = function (t) { return "<li>" + esc(t) + "</li>"; };
+    $("#rpjmkDasar").innerHTML = R.dasarHukum.slice(0, n).map(li).join("");
+    if (R.dasarHukum.length > n) $("#rpjmkDasar").insertAdjacentHTML("afterend", '<ol class="dh more-body" start="' + (n + 1) + '" hidden>' + R.dasarHukum.slice(n).map(li).join("") +
+      '</ol>' + bacaLagi("Lihat semua dasar hukum (" + R.dasarHukum.length + ")", "Tampilkan lebih sedikit"));
+    $("#rpjmkBidang").innerHTML = R.bidang.map(function (b, i) {
+      return '<details class="bid"' + (i === 0 ? " open" : "") + "><summary><b>" + (i + 1) + "</b>" + esc(b.nama) + "</summary><ul>" + b.kegiatan.map(li).join("") + "</ul></details>";
+    }).join("") + '<p class="small mt-s">Daftar ini adalah rencana dan usulan dalam dokumen, bukan laporan realisasi.</p>';
+    $("#rpjmkCta").innerHTML = '<a class="btn btn--solid" href="' + esc(R.halaman) + '">' + ic("doc") + 'Baca RPJMK lengkap</a><a class="btn btn--line" href="' + esc(R.pdf) + '" download>Unduh PDF dokumen asli</a>';
+  })();
+
   /* =================== PETA BATAS KAMPUNG =================== */
   (function () {
     var tabs = $("#mapTabs"); if (!tabs) return;
@@ -611,6 +660,20 @@
   var kreditHtml = function (f) {
     return esc(f.kredit) + (f.lisensi ? " · " + esc(f.lisensi) : "") + (f.url ? ' · <a href="' + esc(f.url) + '" target="_blank" rel="noopener">sumber</a>' : "");
   };
+  if (D.potensiSD) (function () {
+    var P = D.potensiSD, H = (D.rpjmk && D.rpjmk.halaman) || "rpjmk.html";
+    var BLN = ["Jan", "Feb", "Mar", "Apr", "Mei", "Jun", "Jul", "Agu", "Sep", "Okt", "Nov", "Des"];
+    var kal = (P.kalender || []).length ? '<div class="panel mt-s"><h3>Kalender musim kampung</h3><p class="small">Kapan warga menanam, memanen, dan menghadapi kendala musiman. Warna makin pekat berarti makin puncak.</p><div class="kalwrap"><table class="kal"><thead><tr><th scope="col"><span class="sr">Kegiatan</span></th>' +
+      BLN.map(function (b) { return '<th scope="col">' + b + "</th>"; }).join("") + "</tr></thead><tbody>" +
+      P.kalender.map(function (r) { return '<tr><th scope="row">' + esc(r[0]) + "</th>" + r[1].map(function (v, i) { return '<td class="k' + v + '" title="' + esc(r[0]) + " · " + BLN[i] + (v ? (v === 3 ? " (puncak)" : "") : " (tidak ada)") + '"></td>'; }).join("") + "</tr>"; }).join("") +
+      '</tbody></table></div><p class="small kal__legend"><span class="k1"></span>sedikit <span class="k2"></span>sedang <span class="k3"></span>puncak · Tabel II.6 RPJMK</p></div>' : "";
+    $("#potensiSD").innerHTML = '<div class="sdintro"><h3>Potensi sumber daya</h3><p>' + esc(P.pengantar) + "</p></div>" +
+      '<div class="sdgrid">' + P.daftar.map(function (d) {
+        return '<article class="panel sd"><h4>' + esc(d.judul) + '</h4><div class="tiles tiles--3">' + d.angka.map(function (a) { return '<div class="tile"><b>' + esc(a[0]) + "</b><span>" + esc(a[1]) + "</span></div>"; }).join("") +
+          '</div><p class="small">' + esc(d.isi) + '</p><a class="linkmore" href="' + esc(H) + "#" + esc(d.bab) + '">Baca selengkapnya</a></article>';
+      }).join("") + "</div>" + kal +
+      '<p class="small mt-s">Sumber: ' + esc(P.sumber) + '. Angka adalah kondisi saat dokumen disusun (2019); data terbaru ada di menu <a href="#penduduk">Data Kampung</a>.</p>';
+  })();
   $("#potensiList").innerHTML = D.potensi.map(function (p) {
     var fs = fotoPot(p), f0 = fs[0];
     return '<button type="button" class="pot tap"' + act(function () {

@@ -14,7 +14,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
-  <link rel="stylesheet" href="assets/css/style.css?v=202610290050">
+  <link rel="stylesheet" href="assets/css/style.css?v=202610290117">
 </head>
 <body>
   <!-- Kumpulan ikon garis (dipakai dengan <svg><use href="#i-..."/></svg>) -->
@@ -165,6 +165,7 @@
             <p class="visi" id="visi"></p>
             <h3>Misi</h3>
             <ol class="misi" id="misi"></ol>
+            <div id="rpjmkCard"></div>
           </div>
           <div>
             <h3>Batas wilayah</h3>
@@ -197,6 +198,8 @@
 <section class="sec" id="potensi">
       <div class="wrap">
         <header class="sec__head"><span class="sec__icon"><svg class="ic"><use href="#i-sprout"/></svg></span><div><p class="eyebrow">Potensi kampung</p><h2>Pertanian, ternak, dan usaha warga</h2></div></header>
+        <div id="potensiSD"></div>
+        <h3 class="mt">Komoditas dan usaha unggulan</h3>
         <div class="potensi" id="potensiList"></div>
         <div class="grid-2 mt">
           <div class="panel"><h3>Luas tanam per komoditas</h3><div id="dLahan"></div><details class="more"><summary>Lihat luas dan jumlah petani</summary><div class="bars" id="ekoLahan"></div></details></div>
@@ -291,9 +294,9 @@
     <div class="view" data-view="transparansi" id="v-transparansi" hidden>
       <div class="vhead">
         <div class="wrap">
-          <div class="vhead__t"><span class="vhead__ic"><svg class="ic"><use href="#i-wallet"/></svg></span><div><h1>Transparansi</h1><p>Anggaran kampung dan status perkembangan desa.</p></div></div>
+          <div class="vhead__t"><span class="vhead__ic"><svg class="ic"><use href="#i-wallet"/></svg></span><div><h1>Transparansi</h1><p>Anggaran kampung, status perkembangan desa, dan rencana pembangunan (RPJMK).</p></div></div>
         </div>
-        <div class="vtabs"><div class="wrap"><div class="vtabs__row" role="tablist" aria-label="Transparansi"><button type="button" role="tab" data-tab="apbkam" aria-selected="true"><svg class="ic"><use href="#i-wallet"/></svg>APBKam</button><button type="button" role="tab" data-tab="indeksdesa" aria-selected="false"><svg class="ic"><use href="#i-gauge"/></svg>Indeks Desa</button></div></div></div>
+        <div class="vtabs"><div class="wrap"><div class="vtabs__row" role="tablist" aria-label="Transparansi"><button type="button" role="tab" data-tab="apbkam" aria-selected="true"><svg class="ic"><use href="#i-wallet"/></svg>APBKam</button><button type="button" role="tab" data-tab="indeksdesa" aria-selected="false"><svg class="ic"><use href="#i-gauge"/></svg>Indeks Desa</button><button type="button" role="tab" data-tab="perencanaan" aria-selected="false"><svg class="ic"><use href="#i-doc"/></svg>RPJMK</button></div></div></div>
       </div>
         <div class="tabpanel" role="tabpanel" data-panel="apbkam">
 <section class="sec" id="anggaran">
@@ -318,6 +321,18 @@
         </div>
         <h3 class="mt">Riwayat status</h3>
         <ol class="steps" id="idmRiwayat"></ol>
+      </div>
+    </section>
+        </div>
+        <div class="tabpanel" role="tabpanel" data-panel="perencanaan" hidden>
+<section class="sec" id="rpjmk">
+      <div class="wrap">
+        <header class="sec__head"><span class="sec__icon"><svg class="ic"><use href="#i-doc"/></svg></span><div><p class="eyebrow">Perencanaan pembangunan</p><h2>RPJMK Kampung Marga Mulya</h2><p class="lead" id="rpjmkLead"></p></div></header>
+        <div class="grid-2">
+          <div class="panel"><h3>Landasan</h3><dl class="kv" id="rpjmkMeta"></dl><h3 class="mt-s">Dasar hukum</h3><ol class="dh" id="rpjmkDasar"></ol></div>
+          <div class="panel"><h3>Bidang dan rencana kegiatan</h3><p class="small">Ringkasan usulan kegiatan per bidang dalam Bab IV RPJMK.</p><div id="rpjmkBidang"></div></div>
+        </div>
+        <div class="rpjmk-cta mt-s" id="rpjmkCta"></div>
       </div>
     </section>
         </div>
@@ -458,8 +473,8 @@
   </dialog>
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
-  <script src="assets/js/data.js?v=202610290050"></script>
-  <script src="assets/js/app.js?v=202610290050"></script>
-  <script src="assets/js/router.js?v=202610290050"></script>
+  <script src="assets/js/data.js?v=202610290117"></script>
+  <script src="assets/js/app.js?v=202610290117"></script>
+  <script src="assets/js/router.js?v=202610290117"></script>
 </body>
 </html>

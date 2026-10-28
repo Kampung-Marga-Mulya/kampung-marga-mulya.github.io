@@ -69,15 +69,99 @@ window.KAMPUNG = {
     ketuaTim: "Dr. rer. pol. M. Iqbal Irfany, S.E., M.App.Ec."
   },
 
+  // Sejarah disarikan dari RPJMK Kampung Marga Mulya 2019–2024 (Bab II, Sejarah Kampung).
+  // sejarahRingkas = jumlah paragraf yang tampil sebelum tombol "Baca selengkapnya".
   sejarah: [
-    "Kampung Marga Mulya adalah salah satu kampung di Distrik Semangga, Kabupaten Merauke, Provinsi Papua Selatan. Kampung ini dibentuk pada tahun 1983 dan kini terdiri atas 7 RW dan 18 RT dengan luas wilayah 4.176,90 hektare. Letaknya sekitar 15 km dari pusat Distrik Semangga dan 20 km dari Kota Merauke.",
-    "Marga Mulya dihuni 3.201 jiwa dalam 986 kepala keluarga. Sebagian besar warga berasal dari suku Jawa dan hidup berdampingan dengan warga suku Marind, Mandobo, dan Mappi serta pendatang dari Sunda, Makassar, Maluku, NTB, NTT, dan Batak. Pertanian dan peternakan menjadi komoditas unggulan kampung, dan dua pertiga penduduk bekerja sebagai petani.",
-    "Menurut monografi kampung, Marga Mulya berklasifikasi desa swasembada dengan kategori berkembang."
+    "Marga Mulya berawal dari permukiman transmigrasi. Pada 19 Januari 1983, rombongan transmigran pertama dari Jawa Tengah (Wonogiri, Boyolali, Grobogan) dan Jawa Timur (Banyuwangi) ditempatkan di lokasi yang saat itu bernama Desa Semangga 1 B. Rombongan kedua datang pada 1984, lalu 40 KK pada 1985. Permukiman mereka sampai sekarang dikenal sebagai Lokasi 40.",
+    "Tahun 1985, desa yang sudah dihuni 350 kepala keluarga ini lepas dari pembinaan KUPT dan menggelar pemilihan kepala desa pertama. Sejak itu namanya menjadi Desa Marga Mulya, masih di wilayah Kecamatan Merauke, dengan Lasiman sebagai kepala desa sampai 1988.",
+    "Di masa Kepala Desa Suyoto (1988–1998), pertanian berkembang bersama koperasi KUD Usaha Tama yang dipimpin almarhum Sudiono. Pemilihan ketiga pada 1998 memilih Poniman Sabariyanto (1998–2006). Pada masa inilah sebutan desa berganti menjadi kampung, pertanian dan peternakan maju, dan warung-warung di pinggir jalan poros yang dikenal sebagai Warung Jagung mulai tumbuh.",
+    "Kepala kampung keempat, Eva Hardianto (terpilih 2007), mengundurkan diri pada 2011. Pemerintahan lalu dilanjutkan Sekretaris Kampung Sunaryo sebagai Plt. Kepala Kampung berdasarkan SK Kepala Distrik Semangga. Pembangunan masa itu banyak bertumpu pada swadaya warga, sampai dana bantuan pembangunan dari Pemerintah Kabupaten makin besar. Kampung juga menyiapkan pemekaran dengan fasilitas kembar: 2 kantor/balai kampung, 2 pustu, 2 SD, 2 PAUD, 1 TK, dan 2 lapangan olahraga.",
+    "Muntamah, perwakilan perempuan, terpilih sebagai kepala kampung kelima untuk periode 2012–2018. Pemilihan serentak pada 11 September 2018 memilih Zubaidah Alfakir untuk periode 2019–2024, yang menetapkan RPJMK Marga Mulya 2019–2024. Saat ini pemerintahan kampung dijalankan oleh Plt. Kepala Kampung Sunaryo, S.AP."
   ],
+  sejarahRingkas: 2,
+  sejarahLini: [
+    { tahun: "1983", nama: "Transmigran pertama tiba", ket: "Ditempatkan di Desa Semangga 1 B (19 Januari 1983)" },
+    { tahun: "1985–1988", nama: "Lasiman", ket: "Kepala desa pertama; nama Desa Marga Mulya" },
+    { tahun: "1988–1998", nama: "Suyoto", ket: "Kepala desa kedua" },
+    { tahun: "1998–2006", nama: "Poniman Sabariyanto", ket: "Sebutan desa berganti menjadi kampung" },
+    { tahun: "2007–2011", nama: "Eva Hardianto", ket: "Mengundurkan diri 2011, dilanjutkan Plt. Sunaryo" },
+    { tahun: "2012–2018", nama: "Muntamah", ket: "Kepala kampung kelima" },
+    { tahun: "2019–2024", nama: "Zubaidah Alfakir", ket: "Menetapkan RPJMK 2019–2024" },
+    { tahun: "Kini", nama: "Sunaryo, S.AP", ket: "Plt. Kepala Kampung" }
+  ],
+  sejarahSumber: "RPJMK Kampung Marga Mulya 2019–2024, Bab II",
 
-  // Visi & misi resmi belum tercantum di monografi. Isi dari dokumen RPJMKam.
-  visi: "",
-  misi: [],
+  // Visi & misi dari RPJMK Kampung Marga Mulya 2019–2024 (Peraturan Kampung Nomor 1 Tahun 2019)
+  visi: "Terwujudnya Kampung Marga Mulya yang Maju, Mandiri, Bermartabat dan Religius",
+  visiMakna: "Maju, mandiri, dan bermartabat berarti pelayanan yang lebih baik di berbagai bidang, lapangan kerja lewat Badan Usaha Milik Kampung, serta kampung yang kreatif menggali potensi pertanian dan wisata lokal. Religius berarti masyarakat yang beriman, bertakwa, dan berakhlak mulia, dengan nilai luhur budaya seperti kejujuran dihayati dalam keseharian.",
+  misi: [
+    "Mengoptimalkan kinerja perangkat kampung dan kelembagaan kampung sesuai tugas pokok dan fungsi, agar pelayanan kepada masyarakat di berbagai aspek meningkat secara tuntas.",
+    "Menciptakan pendapatan asli kampung melalui penggalian potensi dan pengelolaan aset kampung dengan membentuk Badan Usaha Milik Kampung, guna membuka lapangan kerja bagi masyarakat.",
+    "Meningkatkan infrastruktur jalan lingkungan, jalan usaha tani, dan saluran pengendali banjir.",
+    "Meningkatkan kepedulian dan keberpihakan terhadap kesehatan, pendidikan, dan keamanan masyarakat.",
+    "Meningkatkan pemberdayaan masyarakat agar partisipasi dan peran serta warga tertib dalam seluruh aspek pembangunan kampung.",
+    "Meningkatkan sistem keamanan swakarsa demi rasa aman, serta mengapresiasi Linmas dengan insentif yang layak.",
+    "Menyusun peraturan kampung untuk mewujudkan pengayoman kepada masyarakat.",
+    "Menggali dan memanfaatkan potensi sumber daya alam (pertanian, perkebunan) menjadi aset kampung, menuju Kampung Agrowisata dan wisata lokal.",
+    "Membangun mental spiritual masyarakat menuju masyarakat religius yang berlandaskan Pancasila dan UUD 1945.",
+    "Mendorong terealisasinya pemekaran Kampung Marga Mulya."
+  ],
+  misiRingkas: 5,
+
+  // Ringkasan RPJMK. Dokumen lengkap: rpjmk.html, PDF asli: assets/dok/
+  rpjmk: {
+    judul: "Rencana Pembangunan Jangka Menengah Kampung (RPJMK) Marga Mulya Tahun 2019–2024",
+    perkam: "Peraturan Kampung Marga Mulya Nomor 1 Tahun 2019",
+    periode: "2019–2024",
+    ditetapkan: "01 Mei 2019 oleh Kepala Kampung Zubaidah Alfakir, atas persetujuan bersama Bamuskam",
+    landasan: "Pasal 79 ayat (3) Undang-Undang Nomor 6 Tahun 2014 tentang Desa",
+    halaman: "rpjmk.html",
+    pdf: "assets/dok/RPJMK-Kampung-Marga-Mulya-2019-2024.pdf",
+    dasarHukum: [
+      "UU Nomor 6 Tahun 2014 tentang Desa",
+      "UU Nomor 21 Tahun 2001 tentang Otonomi Khusus bagi Provinsi Papua (diubah dengan UU Nomor 35 Tahun 2008)",
+      "UU Nomor 25 Tahun 2004 tentang Sistem Perencanaan Pembangunan Nasional",
+      "UU Nomor 23 Tahun 2014 tentang Pemerintahan Daerah",
+      "PP Nomor 43 Tahun 2014 tentang Peraturan Pelaksanaan UU Desa",
+      "PP Nomor 60 Tahun 2014 tentang Dana Desa yang Bersumber dari APBN",
+      "Permendagri Nomor 114 Tahun 2014 tentang Pedoman Pembangunan Desa",
+      "Permendagri Nomor 20 Tahun 2018 tentang Pengelolaan Keuangan Desa",
+      "Permendesa PDTT Nomor 1 Tahun 2015 tentang Kewenangan Berdasarkan Hak Asal Usul dan Kewenangan Lokal Berskala Desa",
+      "Peraturan Bupati Merauke Nomor 11 Tahun 2015 tentang Pedoman Penyusunan Perencanaan Pembangunan Kampung",
+      "Perda Kabupaten Merauke tentang RPJMD Kabupaten Merauke",
+      "UU Nomor 12 Tahun 1969, UU Nomor 12 Tahun 2011, dan PP Nomor 40 Tahun 2006"
+    ],
+    dasarHukumRingkas: 4,
+    bidang: [
+      { nama: "Penyelenggaraan pemerintahan kampung", kegiatan: ["Penetapan dan penegasan batas kampung", "Pendataan kampung, peta, dan papan informasi kampung", "Musyawarah kampung dan musrenbang", "Penyusunan RPJMK dan RKPK", "Sarana dan fasilitas kantor kampung"] },
+      { nama: "Pelaksanaan pembangunan kampung", kegiatan: ["Rabat beton jalan permukiman dan gorong-gorong", "Jalan dan gorong-gorong usaha tani", "Air bersih, sanitasi, dan saluran air", "Posyandu, PAUD, dan taman bacaan", "Pengembangan BUMK dan alat pertanian"] },
+      { nama: "Pembinaan kemasyarakatan", kegiatan: ["Pos kamling dan pembinaan Linmas", "Pembinaan kerukunan umat beragama", "Sarana olahraga", "Kesenian dan sosial budaya (kuda lumping)"] },
+      { nama: "Pemberdayaan masyarakat", kegiatan: ["Pelatihan teknologi tepat guna", "Pelatihan aparat kampung dan Bamuskam", "Peningkatan kapasitas kelompok perempuan, tani ternak, usaha, dan pemuda", "Pelatihan menjahit bagi PKK"] }
+    ]
+  },
+
+  // Potensi sumber daya menurut RPJMK 2019–2024 (Bab II). Angka kondisi tahun penyusunan.
+  potensiSD: {
+    pengantar: "Kajian sumber daya dalam RPJMK menempatkan Marga Mulya sebagai sentra produksi padi. Tanahnya paling cocok untuk persawahan, dan hampir semua keluarga menggantungkan penghasilan pada pertanian.",
+    sumber: "RPJMK Kampung Marga Mulya 2019–2024, Bab II",
+    daftar: [
+      { judul: "Sumber daya alam", isi: "Sawah seluas 1.116 ha menjadi tumpuan utama, ditambah 183 ha lahan palawija dan 118 ha lahan yang sudah dibersihkan dan direncanakan menjadi sawah. Ada pula 282 ha permukiman, 46 ha rawa, dan 2 km sungai.", angka: [["1.116 ha", "sawah"], ["183 ha", "palawija"], ["118 ha", "siap dibuka"]], bab: "bab-ii-3" },
+      { judul: "Sumber daya manusia", isi: "586 keluarga hidup dari pertanian dan perkebunan; lainnya dari perdagangan, angkutan, industri pengolahan, dan jasa. Petani menanam padi dua kali setahun (rendengan dan gadu), dan 1 ha sawah menghasilkan sekitar 4 ton gabah.", angka: [["586 KK", "petani"], ["2 kali", "panen padi setahun"], ["±4 ton", "gabah per hektare"]], bab: "bab-ii-4" },
+      { judul: "Sumber daya pembangunan", isi: "Kampung memiliki 38 km jalan kampung, 41 km jalan usaha tani, 24 jembatan, 49 km drainase, dan 5 bendali (kolam tadah air). Alat pertanian warga mencakup 42 hand tractor, 4 jonder, dan 3 mesin perontok padi, digerakkan oleh 18 kelompok tani.", angka: [["42", "hand tractor"], ["18", "kelompok tani"], ["41 km", "jalan usaha tani"]], bab: "bab-ii-5" },
+      { judul: "Sumber daya sosial budaya", isi: "Gotong royong dan kegiatan keagamaan menjadi perekat warga: 18 kelompok yasinan (satu di tiap RT), pengajian Jumat Pahing se-kampung dengan 350–450 jamaah, 6 majelis taklim/grup rebana, 3 TPQ dengan 227 santri, sekolah minggu, dan kelompok kesenian kuda lumping.", angka: [["18", "kelompok yasinan"], ["3", "TPQ"], ["1", "grup kuda lumping"]], bab: "bab-ii-6" }
+    ],
+    // Kalender musim (Tabel II.6). Nilai 0–3 = tidak ada sampai puncak.
+    kalender: [
+      ["Tanam padi rendengan", [3,2,0,0,0,0,0,0,0,3,3,0]],
+      ["Panen padi rendengan", [0,0,0,2,3,0,0,0,0,0,0,0]],
+      ["Tanam padi gadu",      [0,0,0,0,2,3,0,0,0,0,0,0]],
+      ["Panen padi gadu",      [0,0,0,0,0,0,0,2,3,0,0,0]],
+      ["Hama tanaman",         [0,0,2,0,0,0,1,0,0,0,0,0]],
+      ["Banjir",               [0,1,2,0,0,0,0,0,0,0,0,0]],
+      ["Keterbatasan air",     [0,0,0,0,0,0,1,1,2,3,3,2]],
+      ["Musim hajatan",        [0,0,0,3,0,3,2,0,0,0,0,0]]
+    ]
+  },
 
   batas: {
     utara: "Distrik Tanah Miring (Kampung Sumber Harapan dan Kampung Yasa Mulya)",

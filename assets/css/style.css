@@ -766,3 +766,55 @@ details.more[open] > summary::before { transform: rotate(45deg); }
 .rwcard__rt i { font-style: normal; color: var(--ink-2); min-width: 44px; }
 .tbl th { text-align: left; font-weight: 600; color: var(--ink-2); padding-right: 12px; vertical-align: top; }
 .rwcard { align-content: start; }
+
+/* ---------- RPJMK: baca selengkapnya, lini masa, potensi sumber daya, kalender musim ---------- */
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.readmore { display: inline-flex; align-items: center; gap: 6px; margin-top: 4px; padding: 6px 0; background: none; border: 0; color: var(--blue); font-weight: 700; font-size: .95rem; cursor: pointer; }
+.readmore::after { content: ""; width: 7px; height: 7px; border-right: 2px solid currentColor; border-bottom: 2px solid currentColor; transform: rotate(45deg) translateY(-2px); transition: transform .15s; }
+.readmore[aria-expanded="true"]::after { transform: rotate(-135deg) translateY(-2px); }
+.readmore:hover { text-decoration: underline; }
+.misi.more-body { margin-top: 0; }
+.lini { list-style: none; margin: 6px 0 12px; padding: 0 0 0 4px; }
+.lini li { position: relative; display: grid; grid-template-columns: 92px minmax(0, 1fr); gap: 10px; padding: 0 0 12px 18px; border-left: 2px solid var(--blue-pale); }
+.lini li:last-child { border-left-color: transparent; padding-bottom: 0; }
+.lini li::before { content: ""; position: absolute; left: -7px; top: 5px; width: 12px; height: 12px; border-radius: 50%; background: #fff; border: 3px solid var(--blue); }
+.lini li:last-child::before { background: var(--blue); }
+.lini b { font-variant-numeric: tabular-nums; color: var(--blue-deep); font-size: .92rem; }
+.lini span { font-size: .95rem; }
+@media (max-width: 520px) { .lini li { grid-template-columns: 1fr; gap: 0; } }
+.rpjmk-card { margin-top: 16px; background: var(--tint); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; }
+.rpjmk-card .small { margin-bottom: 10px; }
+.rpjmk-cta { display: flex; flex-wrap: wrap; gap: 10px; }
+.sdintro { max-width: 70ch; }
+.sdgrid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+@media (max-width: 820px) { .sdgrid { grid-template-columns: minmax(0, 1fr); } }
+.sd h4 { margin: 0 0 8px; font-size: 1.05rem; }
+.sd .small { margin: 10px 0 6px; }
+.sd .tile b { font-size: 1.12rem; }
+.linkmore { font-weight: 700; font-size: .92rem; text-decoration: none; }
+.linkmore::after { content: " →"; }
+.linkmore:hover { text-decoration: underline; }
+.kalwrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.kal { border-collapse: separate; border-spacing: 3px; width: 100%; min-width: 560px; font-size: .86rem; }
+.kal th { font-weight: 600; color: var(--ink-2); padding: 2px 4px; text-align: center; }
+.kal tbody th { text-align: left; color: var(--ink); white-space: nowrap; padding-right: 10px; font-weight: 600; }
+.kal td { height: 24px; border-radius: 5px; background: var(--tint); border: 1px solid var(--line); }
+.kal .k1, .kal__legend .k1 { background: var(--blue-pale); border-color: var(--blue-pale); }
+.kal .k2, .kal__legend .k2 { background: var(--blue-mid); border-color: var(--blue-mid); }
+.kal .k3, .kal__legend .k3 { background: var(--blue); border-color: var(--blue); }
+.kal__legend span { display: inline-block; width: 14px; height: 14px; border-radius: 4px; vertical-align: -2px; margin: 0 4px 0 8px; border: 1px solid var(--line); }
+.kal__legend span:first-child { margin-left: 0; }
+ol.dh { padding-left: 1.3em; margin: 0; font-size: .95rem; }
+ol.dh li { margin-bottom: .35em; }
+ol.dh.more-body { margin-top: .35em; }
+details.bid { border: 1px solid var(--line); border-radius: 10px; margin-bottom: 8px; background: #fff; }
+details.bid > summary { cursor: pointer; list-style: none; display: flex; align-items: center; gap: 10px; padding: 10px 12px; font-weight: 700; }
+details.bid > summary::-webkit-details-marker { display: none; }
+details.bid > summary b { display: grid; place-items: center; width: 26px; height: 26px; border-radius: 50%; background: var(--blue); color: #fff; font-size: .85rem; flex: none; }
+details.bid > summary::after { content: ""; margin-left: auto; width: 8px; height: 8px; border-right: 2px solid var(--blue); border-bottom: 2px solid var(--blue); transform: rotate(45deg); transition: transform .15s; flex: none; }
+details.bid[open] > summary::after { transform: rotate(-135deg); }
+details.bid ul { margin: 0; padding: 0 14px 12px 50px; font-size: .95rem; }
+details.bid li { margin-bottom: .3em; }
+.kal tbody th { position: sticky; left: 0; background: #fff; z-index: 1; }
+.panel .kal tbody th { background: inherit; }
+@media (max-width: 520px) { .sd .tile { padding: 8px 9px; } .sd .tile b { font-size: 1rem; } .kal tbody th { background: #fff; } }
