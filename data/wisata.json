@@ -39,21 +39,6 @@
    "waktu_menit": 5
   },
   {
-   "id": "mandira-loka",
-   "nama": "Taman Wisata Alam Mandira Loka",
-   "kategori": "Wisata alam",
-   "area": "Kawasan Mandira (titik belum tersedia)",
-   "deskripsi": "Taman wisata alam di kawasan Mandira. Titik lokasi belum tersedia.",
-   "info": "https://x.com/mandira_loka"
-  },
-  {
-   "id": "mandira-agro-park",
-   "nama": "Mandira Agro Park",
-   "kategori": "Agrowisata",
-   "area": "Kawasan Mandira (titik belum tersedia)",
-   "deskripsi": "Taman agrowisata di kawasan Mandira. Titik lokasi dan keterangan fasilitas belum tersedia."
-  },
-  {
    "id": "lotus-garden",
    "nama": "Lotus Garden Merauke",
    "kategori": "Taman keluarga",
@@ -452,6 +437,21 @@
    "kreditFoto": "visitmerauke.com",
    "jarak_km": 86.7,
    "waktu_menit": 85
+  },
+  {
+   "id": "mandira-loka",
+   "nama": "Taman Wisata Alam Mandira Loka",
+   "kategori": "Wisata alam",
+   "area": "Kawasan Mandira (titik belum tersedia)",
+   "deskripsi": "Taman wisata alam di kawasan Mandira. Titik lokasi belum tersedia.",
+   "info": "https://x.com/mandira_loka"
+  },
+  {
+   "id": "mandira-agro-park",
+   "nama": "Mandira Agro Park",
+   "kategori": "Agrowisata",
+   "area": "Kawasan Mandira (titik belum tersedia)",
+   "deskripsi": "Taman agrowisata di kawasan Mandira. Titik lokasi dan keterangan fasilitas belum tersedia."
   },
   {
    "id": "pasar-wamanggu",
