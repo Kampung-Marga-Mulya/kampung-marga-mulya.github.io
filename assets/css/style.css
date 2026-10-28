@@ -875,3 +875,12 @@ html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 }
 .bid, .kel { display: block; width: 100%; min-width: 0; text-align: left; }
 .bid__top span:first-child, .kel__h b { min-width: 0; overflow-wrap: anywhere; }
+/* Sorotan dalam kartu potensi (mis. ayam petelur BUMKam) */
+.sorot { background: var(--tint); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; margin: 4px 0 12px; }
+.sorot h4 { margin: 0 0 6px; font-size: 1.02rem; color: var(--blue-deep); }
+.sorot p { margin: 0 0 10px; }
+.potvid { margin: 0; }
+.potvid video { display: block; width: 100%; max-width: 320px; max-height: 70vh; aspect-ratio: 474 / 850; background: #0A0A0A; border-radius: 12px; }
+.potvid figcaption { font-size: .82rem; margin-top: 6px; line-height: 1.35; }
+.potvid figcaption b { display: block; }
+.potvid figcaption span { color: var(--ink-2); }

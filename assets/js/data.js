@@ -839,15 +839,21 @@ window.KAMPUNG = {
       ], ket: "Lahan pertanian 1.356 ha, terluas sawah padi 1.150 ha.", detail: "Padi adalah komoditas utama: sawah seluas 1.150 ha digarap 771 petani. Tanaman lain adalah cabai (118,25 ha, 127 petani), jagung (46,5 ha, 41 petani), dan sayuran (41,25 ha, 62 petani)." },
     { judul: "Peternakan", ikon: "ternak", foto: "assets/img/kegiatan/periksa-sapi-2.jpg", fotoKet: "Pemeriksaan kesehatan sapi milik peternak", kredit: "Dokumentasi Tim Ekspedisi Patriot IPB University 2026",
       fotoLain: [
+        { src: "assets/img/potensi/bumkam-ayam-petelur-1.jpg", ket: "Kandang ayam petelur BUMKam Bina Mulya Sejahtera", kredit: "Dokumentasi Tim Ekspedisi Patriot IPB University 2026" },
+        { src: "assets/img/potensi/bumkam-ayam-petelur-2.jpg", ket: "Deretan kandang baterai bertingkat berisi ayam petelur BUMKam", kredit: "Dokumentasi Tim Ekspedisi Patriot IPB University 2026" },
+        { src: "assets/img/potensi/bumkam-ayam-petelur-3.jpg", ket: "Kandang baterai dengan talang pakan dan pipa air minum", kredit: "Dokumentasi Tim Ekspedisi Patriot IPB University 2026" },
         { src: "assets/img/potensi/sapi-bali-ipb.jpg", ket: "Ilustrasi: sapi bali di kandang IPB Jonggol", kredit: "Btcpg · Wikimedia Commons", lisensi: "CC BY-SA 4.0", url: "https://commons.wikimedia.org/wiki/File:Bali_cattle_IPB_Jonggol.jpg" }
-      ], ket: "411 sapi, 298 kambing, 117 kuda, dan 45.250 unggas.", detail: "Peternakan dikelola 119 peternak sapi, 93 peternak kambing, 51 peternak kuda, 3 peternak kerbau (9 ekor), dan 257 peternak unggas, di atas lahan peternakan seluas 7 ha." },
+      ],
+      video: { src: "assets/video/bumkam-ayam-petelur.mp4", poster: "assets/video/bumkam-ayam-petelur-poster.jpg", ket: "Video kandang ayam petelur BUMKam Bina Mulya Sejahtera", kredit: "Dokumentasi Tim Ekspedisi Patriot IPB University 2026" },
+      ket: "411 sapi, 298 kambing, 117 kuda, 45.250 unggas, dan peternakan ayam petelur BUMKam.", detail: "Peternakan dikelola 119 peternak sapi, 93 peternak kambing, 51 peternak kuda, 3 peternak kerbau (9 ekor), dan 257 peternak unggas, di atas lahan peternakan seluas 7 ha.",
+      sorotan: { judul: "Peternakan ayam petelur BUMKam", isi: "Badan Usaha Milik Kampung (BUMKam) Bina Mulya Sejahtera menjalankan unit usaha peternakan ayam petelur. Ayam dipelihara di kandang baterai bertingkat di bawah bangunan kandang beratap seng, lengkap dengan talang pakan dan pipa air minum di setiap baris. Unit ini menjadi salah satu usaha BUMKam di samping depot air minum dan wisata pemancingan." } },
     { judul: "Perkebunan jeruk", ikon: "daun",
       fotoLain: [
         { src: "assets/img/potensi/kebun-jeruk.jpg", ket: "Ilustrasi: kebun jeruk berbuah", kredit: "BerkahAgeng · Wikimedia Commons", lisensi: "CC BY-SA 4.0", url: "https://commons.wikimedia.org/wiki/File:Kebun_jeruk.jpg" }
       ], ket: "10 ha kebun jeruk milik 9 petani.", detail: "Perkebunan jeruk seluas 10 hektare dikelola 9 petani (Monografi Kampung 2026)." },
     { judul: "BUMKam & usaha warga", ikon: "toko", foto: "assets/img/fasilitas/kopdes-merah-putih.jpg", fotoKet: "Koperasi Desa Merah Putih Kampung Marga Mulya", kredit: "Dokumentasi Tim Ekspedisi Patriot IPB University 2026",
       fotoLain: [
-        { src: "assets/img/potensi/ayam-petelur.jpg", ket: "Ilustrasi: peternak ayam petelur memanen telur (Bojonegoro, Jawa Timur), seperti unit ayam petelur BUMKam", kredit: "Achmad Fazeri · Wikimedia Commons", lisensi: "CC BY-SA 4.0", url: "https://commons.wikimedia.org/wiki/File:Senyum_Peternak_Ayam_Petelur.jpg" }
+        { src: "assets/img/potensi/bumkam-ayam-petelur-2.jpg", ket: "Unit ayam petelur BUMKam Bina Mulya Sejahtera", kredit: "Dokumentasi Tim Ekspedisi Patriot IPB University 2026" }
       ], ket: "BUMKam Bina Mulya Sejahtera, 25 UMKM, 33 kios, 11 toko.", detail: "BUMKam Bina Mulya Sejahtera mengelola depot air minum, wisata pemancingan, dan ayam petelur dengan modal Rp657.899.000. Usaha warga lain: 10 warung, 7 pom mini, 3 agen minyak tanah, 1 SPBU, dan 1 perusahaan. Perbankan: BRI Unit Semangga." },
     { judul: "Potensi wisata", ikon: "wisata", foto: "assets/img/fasilitas/2023/f035.jpg", fotoKet: "Kolam pemancingan kampung dengan pondok tempat duduk", kredit: "Dokumen Fasilitas Umum Kampung Marga Mulya, Desember 2023",
       fotoLain: [
