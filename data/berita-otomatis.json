@@ -1,5 +1,5 @@
 {
-  "diperiksa": "2026-10-30",
+  "diperiksa": "2026-10-31",
   "berita": [
     {
       "tanggal": "2024-01-28",
@@ -93,6 +93,17 @@
     }
   ],
   "terkait": [
+    {
+      "tanggal": "2026-10-29",
+      "sumber": "Republika Online",
+      "judul": "Ketua Harian DPP Partai Ummat Dorong Petani Bisa Sejahtera",
+      "ringkas": "Heikal mengikuti panen raya padi di Desa Sukamulya, Kecamatan Sukatani, Bekasi.",
+      "url": "https://news.republika.co.id/berita/tnmjbi484/ketua-harian-dpp-partai-ummat-dorong-petani-bisa-sejahtera",
+      "cover": "https://static.republika.co.id/uploads/images/kanal_slide/_261028223407-679.png",
+      "otomatis": true,
+      "kategori": "Pertanian Merauke",
+      "ditemukan": "2026-10-31"
+    },
     {
       "tanggal": "2026-10-25",
       "sumber": "Koran Jakarta",
