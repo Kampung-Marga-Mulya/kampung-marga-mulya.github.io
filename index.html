@@ -10,11 +10,11 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://kampung-marga-mulya.github.io/">
   <meta name="theme-color" content="#FFFFFF">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap">
+  <script>document.documentElement.classList.add("js")</script>
+  <link rel="preload" href="assets/fonts/bebas-neue-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/eb-garamond-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
-  <link rel="stylesheet" href="assets/css/style.css?v=202610290302">
+  <link rel="stylesheet" href="assets/css/style.css?v=202611011143">
 </head>
 <body>
   <!-- Kumpulan ikon garis (dipakai dengan <svg><use href="#i-..."/></svg>) -->
@@ -80,7 +80,6 @@
         <span class="brand__text"><b>Marga Mulya</b><i>On Site</i></span>
       </a>
       <nav class="menu" id="menu" aria-label="Navigasi utama">
-        <a href="#beranda" data-nav="beranda">Beranda</a>
         <a href="#profil" data-nav="profil">Profil</a>
         <a href="#data" data-nav="data">Data</a>
         <a href="#transparansi" data-nav="transparansi">Transparansi</a>
@@ -99,62 +98,96 @@
     <div class="view" data-view="beranda" id="v-beranda">
     <!-- BERANDA -->
     <section class="hero" id="beranda">
-      <div class="wrap hero__in">
-        <div class="hero__text">
-          <p class="eyebrow">Selamat datang di</p>
-          <h1>Kampung Marga Mulya</h1>
-          <p class="hero__place" id="heroPlace">Distrik Semangga · Kabupaten Merauke · Papua Selatan</p>
-          <button class="collab" id="collabBtn" type="button">
-            <span class="collab__label">Kerja sama</span>
-            <span><b>Tim Ekspedisi Patriot IPB University</b> <span class="collab__x">×</span> <b>Pemerintah Kampung Marga Mulya</b></span>
-          </button>
-          <div class="hero__cta">
-            <a class="btn btn--solid" href="#peta"><svg class="ic"><use href="#i-pin"/></svg>Lihat peta kampung</a>
-            <a class="btn btn--line" href="#layanan"><svg class="ic"><use href="#i-doc"/></svg>Layanan surat</a>
+      <figure class="hero__photo" data-open>
+        <img src="assets/img/hero-ekspedisi-patriot.jpg" width="1800" height="900" alt="Tim Ekspedisi Patriot IPB University berfoto bersama perangkat Kampung Marga Mulya dan Distrik Semangga di depan spanduk Tim 20 Ekspedisi Patriot" fetchpriority="high">
+      </figure>
+      <div class="hero__in">
+        <h1 class="hero__name lines"><span class="line"><span data-line style="--i:0">Kampung</span></span> <span class="line"><span data-line style="--i:1">Marga Mulya</span></span></h1>
+        <div class="hero__row">
+          <div class="hero__text" data-load style="--d:420ms">
+            <p class="hero__lead">Pusat informasi kampung transmigrasi penghasil padi di <span id="heroPlace">Distrik Semangga, Kabupaten Merauke, Papua Selatan</span>: profil, data warga, anggaran, peta, dan layanan.</p>
+            <button class="hero__collab" id="collabBtn" type="button">Dibuat bersama Tim Ekspedisi Patriot IPB University</button>
+          </div>
+          <div class="hero__cta" data-load style="--d:520ms">
+            <a class="btn btn--paper" href="#layanan-warga">Urus surat di kantor kampung</a>
+            <a class="hero__link" href="#petakampung">Lihat peta batas kampung</a>
           </div>
         </div>
-        <figure class="hero__photo">
-          <img src="assets/img/hero-ekspedisi-patriot.jpg" width="1800" height="900" alt="Tim Ekspedisi Patriot IPB University berfoto bersama perangkat kampung dan Distrik Semangga di depan spanduk Tim 20 Ekspedisi Patriot" fetchpriority="high">
-          <figcaption>Tim Ekspedisi Patriot IPB University bersama perangkat kampung dan Distrik Semangga.</figcaption>
-        </figure>
-      </div>
-      <div class="wrap">
-        <div class="facts" id="facts"></div>
-      </div>
-      <div class="wrap news" id="berita" aria-labelledby="newsTitle">
-        <div class="news__head">
-          <div><p class="eyebrow">Kabar kampung</p><h2 id="newsTitle">Berita tentang Marga Mulya</h2><p class="news__info" id="newsInfo">Diperbarui otomatis dari media daring</p></div>
-          <div class="news__nav">
-            <span class="news__count" id="newsCount" aria-live="polite"></span>
-            <button type="button" class="news__btn" id="newsPrev" aria-label="Berita sebelumnya"><svg class="ic" style="transform:scaleX(-1)"><use href="#i-arrow"/></svg></button>
-            <button type="button" class="news__btn" id="newsNext" aria-label="Berita berikutnya"><svg class="ic"><use href="#i-arrow"/></svg></button>
-          </div>
-        </div>
-        <div class="chips news__filter" id="newsFilter" role="group" aria-label="Saring berita">
-          <button type="button" class="chipbtn" data-f="semua" aria-pressed="true">Semua</button>
-          <button type="button" class="chipbtn" data-f="utama" aria-pressed="false">Marga Mulya</button>
-          <button type="button" class="chipbtn" data-f="terkait" aria-pressed="false">Semangga &amp; Merauke</button>
-        </div>
-        <div class="news__track" id="newsTrack" tabindex="0" aria-label="Daftar berita yang bergulir otomatis; geser atau gunakan tombol panah"></div>
       </div>
     </section>
-    <section class="wrap explore" aria-labelledby="exploreTitle">
-      <div class="explore__head"><p class="eyebrow">Jelajahi website</p><h2 id="exploreTitle">Semua informasi kampung</h2></div>
-      <div class="explore__grid" id="quick"></div>
+
+    <section class="luas" aria-labelledby="luasTitle">
+      <figure class="luas__photo" data-reveal>
+        <img src="assets/img/peta/citra-batas-georef.jpg" width="1800" height="1730" alt="Citra satelit wilayah Kampung Marga Mulya dari Peta Batas Kampung" decoding="async">
+        <figcaption class="luas__in">
+          <h2 class="luas__title" id="luasTitle">Luas wilayah kampung</h2>
+          <p class="luas__fig" id="luasFig">4.177 <span>ha</span></p>
+          <p class="luas__note" id="luasNote">Diukur dari Peta Batas Kampung resmi. Sawahnya 1.150 hektare, dibatasi Kali Maro di timur.</p>
+        </figcaption>
+      </figure>
+      <div class="wrap luas__facts" id="facts"></div>
+      <div class="wrap musim" id="musim" aria-labelledby="musimTitle">
+        <div class="musim__head">
+          <h2 id="musimTitle">Di sawah bulan ini</h2>
+          <p class="musim__src">Kalender musim warga, dari RPJMK Kampung Marga Mulya. Pilih bulan untuk melihat musimnya.</p>
+        </div>
+        <div class="musim__months" id="musimBulan" role="group" aria-label="Pilih bulan"></div>
+        <div class="musim__out" id="musimOut" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <section class="wrap news" id="berita" aria-labelledby="newsTitle">
+      <div class="news__head">
+        <div><h2 id="newsTitle">Kabar dari Marga Mulya</h2><p class="news__info" id="newsInfo">Diperbarui otomatis dari media daring</p></div>
+        <div class="news__nav">
+          <span class="news__count" id="newsCount" aria-live="polite"></span>
+          <button type="button" class="news__btn" id="newsPrev" aria-label="Berita sebelumnya"><svg class="ic" style="transform:scaleX(-1)"><use href="#i-arrow"/></svg></button>
+          <button type="button" class="news__btn" id="newsNext" aria-label="Berita berikutnya"><svg class="ic"><use href="#i-arrow"/></svg></button>
+        </div>
+      </div>
+      <div class="news__filter" id="newsFilter" role="group" aria-label="Saring berita">
+        <button type="button" data-f="semua" aria-pressed="true">Semua</button>
+        <button type="button" data-f="utama" aria-pressed="false">Marga Mulya</button>
+        <button type="button" data-f="terkait" aria-pressed="false">Semangga dan Merauke</button>
+      </div>
+      <div class="news__track" id="newsTrack" tabindex="0" aria-label="Daftar berita yang bergulir otomatis; geser atau gunakan tombol panah"></div>
+    </section>
+
+    <section class="wrap index" aria-labelledby="exploreTitle">
+      <h2 class="index__title" id="exploreTitle"><span>Semua informasi</span> <span>kampung</span></h2>
+      <div class="index__body">
+        <figure class="index__photo" data-reveal>
+          <img src="assets/img/sampul/kantor-kampung-4x5.jpg" width="600" height="750" alt="Kantor Kampung Marga Mulya" loading="lazy">
+          <figcaption>Kantor Kampung Marga Mulya</figcaption>
+        </figure>
+        <div class="index__list" id="quick"></div>
+      </div>
+    </section>
+
+    <section class="wrap galeri-b" aria-labelledby="galeriBTitle">
+      <h2 id="galeriBTitle">Sehari-hari di Marga Mulya</h2>
+      <div class="stagger">
+        <figure class="st st--a" data-reveal><img src="assets/img/kegiatan/periksa-sapi-2.jpg" width="1400" height="1050" alt="Pemeriksaan kesehatan sapi milik peternak Marga Mulya" loading="lazy"><figcaption>Pemeriksaan kesehatan sapi milik peternak</figcaption></figure>
+        <figure class="st st--b" data-reveal><video src="assets/video/bumkam-ayam-petelur.mp4" poster="assets/video/bumkam-ayam-petelur-poster.jpg" muted loop playsinline autoplay preload="metadata" aria-label="Video kandang ayam petelur BUMKam"></video><figcaption>Kandang ayam petelur BUMKam Bina Mulya Sejahtera</figcaption></figure>
+        <figure class="st st--c" data-reveal><img src="assets/img/kegiatan/petik-tomat.jpg" width="787" height="1400" alt="Petani memetik tomat di kebun warga" loading="lazy"><figcaption>Panen tomat di kebun warga</figcaption></figure>
+        <figure class="st st--d" data-reveal><img src="assets/img/fasilitas/masjid-al-amin.jpg" width="1000" height="750" alt="Masjid Al Amin Kampung Marga Mulya" loading="lazy"><figcaption>Masjid Al Amin</figcaption></figure>
+        <figure class="st st--e" data-reveal><img src="assets/img/kegiatan/pelatihan-peternakan.jpg" width="1040" height="584" alt="Pelatihan peternakan bersama warga" loading="lazy"><figcaption>Pelatihan peternakan bersama warga</figcaption></figure>
+        <figure class="st st--f" data-reveal><img src="assets/img/fasilitas/2023/f054.jpg" width="960" height="479" alt="Saluran air dan kolam bendali kampung" loading="lazy"><figcaption>Saluran air menuju kolam bendali kampung</figcaption></figure>
+      </div>
     </section>
     </div>
 
     <div class="view" data-view="profil" id="v-profil" hidden>
       <div class="vhead">
         <div class="wrap">
-          <div class="vhead__t"><span class="vhead__ic"><svg class="ic"><use href="#i-home"/></svg></span><div><h1>Profil Kampung</h1><p>Sejarah, identitas wilayah, pemerintahan, potensi, dan dokumentasi Kampung Marga Mulya.</p></div></div>
+          <div class="vhead__t"><div><h1>Profil Kampung</h1><p>Sejarah, identitas wilayah, pemerintahan, potensi, dan dokumentasi Kampung Marga Mulya.</p></div></div>
         </div>
         <div class="vtabs"><div class="wrap"><div class="vtabs__row" role="tablist" aria-label="Profil Kampung"><button type="button" role="tab" data-tab="tentang" aria-selected="true"><svg class="ic"><use href="#i-home"/></svg>Tentang</button><button type="button" role="tab" data-tab="pemerintahan" aria-selected="false"><svg class="ic"><use href="#i-users"/></svg>Pemerintahan</button><button type="button" role="tab" data-tab="potensi" aria-selected="false"><svg class="ic"><use href="#i-sprout"/></svg>Potensi</button><button type="button" role="tab" data-tab="media" aria-selected="false"><svg class="ic"><use href="#i-video"/></svg>Video & Galeri</button></div></div></div>
       </div>
         <div class="tabpanel" role="tabpanel" data-panel="tentang">
 <section class="sec" id="profil">
       <div class="wrap">
-        <header class="sec__head"><span class="sec__icon"><svg class="ic"><use href="#i-home"/></svg></span><div><p class="eyebrow">Profil kampung</p><h2>Mengenal Marga Mulya</h2></div></header>
+        <header class="sec__head"><div><h2>Mengenal Marga Mulya</h2></div></header>
         <div class="grid-2">
           <div class="prose" id="sejarah"></div>
           <aside class="card">
@@ -186,7 +219,7 @@
         <div class="tabpanel" role="tabpanel" data-panel="pemerintahan" hidden>
 <section class="sec" id="pemerintahan">
       <div class="wrap">
-        <header class="sec__head"><span class="sec__icon"><svg class="ic"><use href="#i-users"/></svg></span><div><p class="eyebrow">Pemerintahan kampung</p><h2>Susunan organisasi kampung</h2><p class="lead">Ketuk salah satu bagian di bawah untuk melihat susunannya.</p></div></header>
+        <header class="sec__head"><div><h2>Susunan organisasi kampung</h2><p class="lead">Ketuk salah satu bagian di bawah untuk melihat susunannya.</p></div></header>
         <div class="accs">
           <details class="acc" id="acc-org">
             <summary><span class="acc__ic"><svg class="ic"><use href="#i-users"/></svg></span><span class="acc__t"><b>Struktur organisasi pemerintah kampung</b><small id="accOrgSub">Kepala kampung, sekretaris, kepala urusan, dan kepala seksi</small></span></summary>
@@ -211,7 +244,7 @@
         <div class="tabpanel" role="tabpanel" data-panel="potensi" hidden>
 <section class="sec" id="potensi">
       <div class="wrap">
-        <header class="sec__head"><span class="sec__icon"><svg class="ic"><use href="#i-sprout"/></svg></span><div><p class="eyebrow">Potensi kampung</p><h2>Pertanian, ternak, dan usaha warga</h2></div></header>
+        <header class="sec__head"><div><h2>Pertanian, ternak, dan usaha warga</h2></div></header>
         <div id="potensiSD"></div>
         <h3 class="mt">Komoditas dan usaha unggulan</h3>
         <div class="potensi" id="potensiList"></div>
@@ -230,13 +263,13 @@
         <div class="tabpanel" role="tabpanel" data-panel="media" hidden>
 <section class="sec" id="video">
       <div class="wrap">
-        <header class="sec__head"><span class="sec__icon"><svg class="ic"><use href="#i-video"/></svg></span><div><p class="eyebrow">Video profil</p><h2 id="videoJudul">Video profil kampung</h2><p class="lead" id="videoDesk"></p></div></header>
+        <header class="sec__head"><div><h2 id="videoJudul">Video profil kampung</h2><p class="lead" id="videoDesk"></p></div></header>
         <div class="video" id="videoBox"></div>
       </div>
     </section>
 <section class="sec" id="galeri">
       <div class="wrap">
-        <header class="sec__head"><span class="sec__icon"><svg class="ic"><use href="#i-image"/></svg></span><div><p class="eyebrow">Galeri</p><h2>Kehidupan di Marga Mulya</h2></div></header>
+        <header class="sec__head"><div><h2>Kehidupan di Marga Mulya</h2></div></header>
         <div class="gallery" id="gallery"></div>
       </div>
     </section>
@@ -246,14 +279,14 @@
     <div class="view" data-view="data" id="v-data" hidden>
       <div class="vhead">
         <div class="wrap">
-          <div class="vhead__t"><span class="vhead__ic"><svg class="ic"><use href="#i-chart"/></svg></span><div><h1>Data Kampung</h1><p>Kependudukan, sarana prasarana, dan fasilitas umum Kampung Marga Mulya menurut monografi kampung.</p></div></div>
+          <div class="vhead__t"><div><h1>Data Kampung</h1><p>Kependudukan, sarana prasarana, dan fasilitas umum Kampung Marga Mulya menurut monografi kampung.</p></div></div>
         </div>
         <div class="vtabs"><div class="wrap"><div class="vtabs__row" role="tablist" aria-label="Data Kampung"><button type="button" role="tab" data-tab="penduduk" aria-selected="true"><svg class="ic"><use href="#i-chart"/></svg>Penduduk</button><button type="button" role="tab" data-tab="fasilitas" aria-selected="false"><svg class="ic"><use href="#i-school"/></svg>Fasilitas Umum</button></div></div></div>
       </div>
         <div class="tabpanel" role="tabpanel" data-panel="penduduk">
 <section class="sec" id="data">
       <div class="wrap">
-        <header class="sec__head"><span class="sec__icon"><svg class="ic"><use href="#i-chart"/></svg></span><div><p class="eyebrow">Data kampung</p><h2>Kependudukan</h2><p class="lead" id="dataSumber"></p></div></header>
+        <header class="sec__head"><div><h2>Kependudukan</h2><p class="lead" id="dataSumber"></p></div></header>
         <div class="stats" id="stats"></div>
         <div class="grid-2 mt">
           <div class="panel">
@@ -279,7 +312,7 @@
         <div class="tabpanel" role="tabpanel" data-panel="fasilitas" hidden>
 <section class="sec" id="fasilitas">
       <div class="wrap">
-        <header class="sec__head"><span class="sec__icon"><svg class="ic"><use href="#i-home"/></svg></span><div><p class="eyebrow">Fasilitas umum</p><h2>Sekolah, rumah ibadah, kesehatan, dan layanan warga</h2><p class="lead">Fasilitas di Kampung Marga Mulya dan fasilitas terdekat di Distrik Semangga. Ketuk kartu untuk melihat lokasinya di peta.</p></div></header>
+        <header class="sec__head"><div><h2>Sekolah, rumah ibadah, kesehatan, dan layanan warga</h2><p class="lead">Fasilitas di Kampung Marga Mulya dan fasilitas terdekat di Distrik Semangga. Ketuk kartu untuk melihat lokasinya di peta.</p></div></header>
         <div class="sarana" id="sarana"></div>
         <h3 class="mt">Lokasi fasilitas di peta</h3>
         <div class="fsum" id="fasilSum"></div>
@@ -308,14 +341,14 @@
     <div class="view" data-view="transparansi" id="v-transparansi" hidden>
       <div class="vhead">
         <div class="wrap">
-          <div class="vhead__t"><span class="vhead__ic"><svg class="ic"><use href="#i-wallet"/></svg></span><div><h1>Transparansi</h1><p>Anggaran kampung, status perkembangan desa, dan rencana pembangunan (RPJMK).</p></div></div>
+          <div class="vhead__t"><div><h1>Transparansi</h1><p>Anggaran kampung, status perkembangan desa, dan rencana pembangunan (RPJMK).</p></div></div>
         </div>
         <div class="vtabs"><div class="wrap"><div class="vtabs__row" role="tablist" aria-label="Transparansi"><button type="button" role="tab" data-tab="apbkam" aria-selected="true"><svg class="ic"><use href="#i-wallet"/></svg>APBKam</button><button type="button" role="tab" data-tab="indeksdesa" aria-selected="false"><svg class="ic"><use href="#i-gauge"/></svg>Indeks Desa</button><button type="button" role="tab" data-tab="perencanaan" aria-selected="false"><svg class="ic"><use href="#i-doc"/></svg>RPJMK</button></div></div></div>
       </div>
         <div class="tabpanel" role="tabpanel" data-panel="apbkam">
 <section class="sec" id="anggaran">
       <div class="wrap">
-        <header class="sec__head"><span class="sec__icon"><svg class="ic"><use href="#i-wallet"/></svg></span><div><p class="eyebrow">Transparansi anggaran</p><h2 id="apbTitle">APBKam</h2><p class="lead" id="apbLead"></p></div></header>
+        <header class="sec__head"><div><h2 id="apbTitle">APBKam</h2><p class="lead" id="apbLead"></p></div></header>
         <div class="apb-sum" id="apbSum"></div>
         <div class="grid-apb mt">
           <div class="panel"><h3>Pendapatan per kelompok</h3><p class="small">Ketuk kelompok untuk melihat rinciannya.</p><div id="dPendapatan"></div><div class="kelompok" id="apbPendapatan"></div></div>
@@ -334,7 +367,7 @@
         <div class="tabpanel" role="tabpanel" data-panel="indeksdesa" hidden>
 <section class="sec" id="indeks">
       <div class="wrap">
-        <header class="sec__head"><span class="sec__icon"><svg class="ic"><use href="#i-gauge"/></svg></span><div><p class="eyebrow">Indeks Desa (dulu IDM)</p><h2>Status perkembangan kampung</h2><p class="lead" id="idmLead"></p></div></header>
+        <header class="sec__head"><div><h2>Status perkembangan kampung</h2><p class="lead" id="idmLead"></p></div></header>
         <div class="idm">
           <button class="idm__score" id="idmScore" type="button"></button>
           <div class="idm__dims" id="idmDims"></div>
@@ -347,7 +380,7 @@
         <div class="tabpanel" role="tabpanel" data-panel="perencanaan" hidden>
 <section class="sec" id="rpjmk">
       <div class="wrap">
-        <header class="sec__head"><span class="sec__icon"><svg class="ic"><use href="#i-doc"/></svg></span><div><p class="eyebrow">Perencanaan pembangunan</p><h2>RPJMK Kampung Marga Mulya</h2><p class="lead" id="rpjmkLead"></p></div></header>
+        <header class="sec__head"><div><h2>RPJMK Kampung Marga Mulya</h2><p class="lead" id="rpjmkLead"></p></div></header>
         <div class="grid-2">
           <div class="panel"><h3>Landasan</h3><dl class="kv" id="rpjmkMeta"></dl><h3 class="mt-s">Dasar hukum</h3><ol class="dh" id="rpjmkDasar"></ol></div>
           <div class="panel"><h3>Bidang dan rencana kegiatan</h3><p class="small">Ringkasan usulan kegiatan per bidang dalam Bab IV RPJMK.</p><div id="rpjmkBidang"></div></div>
@@ -361,14 +394,14 @@
     <div class="view" data-view="jelajah" id="v-jelajah" hidden>
       <div class="vhead">
         <div class="wrap">
-          <div class="vhead__t"><span class="vhead__ic"><svg class="ic"><use href="#i-pin"/></svg></span><div><h1>Jelajah</h1><p>Peta kampung serta wisata dan kuliner dari Semangga sampai Kota Merauke.</p></div></div>
+          <div class="vhead__t"><div><h1>Jelajah</h1><p>Peta kampung serta wisata dan kuliner dari Semangga sampai Kota Merauke.</p></div></div>
         </div>
         <div class="vtabs"><div class="wrap"><div class="vtabs__row" role="tablist" aria-label="Jelajah"><button type="button" role="tab" data-tab="petakampung" aria-selected="true"><svg class="ic"><use href="#i-pin"/></svg>Peta Kampung</button><button type="button" role="tab" data-tab="wisatakuliner" aria-selected="false"><svg class="ic"><use href="#i-route"/></svg>Wisata & Kuliner</button></div></div></div>
       </div>
         <div class="tabpanel" role="tabpanel" data-panel="petakampung">
 <section class="sec" id="peta">
       <div class="wrap">
-        <header class="sec__head"><span class="sec__icon"><svg class="ic"><use href="#i-pin"/></svg></span><div><p class="eyebrow">Peta kampung</p><h2>Peta Batas Kampung Marga Mulya</h2><p class="lead">Peta resmi batas wilayah dari Pemerintah Kabupaten Merauke (Dinas Pemberdayaan Masyarakat dan Kampung). Pilih peta interaktif untuk melihat batas wilayah, titik kartometrik, dan letak fasilitas umum di atas citra satelit peta tersebut.</p></div></header>
+        <header class="sec__head"><div><h2>Peta Batas Kampung Marga Mulya</h2><p class="lead">Peta resmi batas wilayah dari Pemerintah Kabupaten Merauke (Dinas Pemberdayaan Masyarakat dan Kampung). Pilih peta interaktif untuk melihat batas wilayah, titik kartometrik, dan letak fasilitas umum di atas citra satelit peta tersebut.</p></div></header>
         <div class="tabs" role="tablist" aria-label="Jenis peta" id="mapTabs">
           <button role="tab" aria-selected="true" data-tab="interaktif"><svg class="ic"><use href="#i-layers"/></svg>Peta interaktif</button>
           <button role="tab" aria-selected="false" data-tab="resmi"><svg class="ic"><use href="#i-doc"/></svg>Peta batas resmi</button>
@@ -402,7 +435,7 @@
         <div class="tabpanel" role="tabpanel" data-panel="wisatakuliner" hidden>
 <section class="sec" id="wisata">
       <div class="wrap">
-        <header class="sec__head"><span class="sec__icon"><svg class="ic"><use href="#i-route"/></svg></span><div><p class="eyebrow">Wisata &amp; kuliner sekitar</p><h2>Jelajah Semangga, Tanah Miring, hingga Kota Merauke</h2><p class="lead">Tempat wisata, agrowisata, pemancingan, kolam renang, dan kuliner dalam jangkauan sekitar 1–2 jam dari Kampung Marga Mulya. Jarak dan waktu dihitung dari pusat kampung mengikuti rute jalan.</p></div></header>
+        <header class="sec__head"><div><h2>Jelajah Semangga, Tanah Miring, hingga Kota Merauke</h2><p class="lead">Tempat wisata, agrowisata, pemancingan, kolam renang, dan kuliner dalam jangkauan sekitar 1–2 jam dari Kampung Marga Mulya. Jarak dan waktu dihitung dari pusat kampung mengikuti rute jalan.</p></div></header>
         <div class="chips" id="wisataFilter" role="group" aria-label="Saring kategori wisata"></div>
         <div class="slider">
           <div class="slider__nav">
@@ -429,14 +462,14 @@
     <div class="view" data-view="layanan-warga" id="v-layanan-warga" hidden>
       <div class="vhead">
         <div class="wrap">
-          <div class="vhead__t"><span class="vhead__ic"><svg class="ic"><use href="#i-doc"/></svg></span><div><h1>Layanan & Kontak</h1><p>Layanan administrasi, kontak kantor kampung, dan media sosial.</p></div></div>
+          <div class="vhead__t"><div><h1>Layanan & Kontak</h1><p>Layanan administrasi, kontak kantor kampung, dan media sosial.</p></div></div>
         </div>
         <div class="vtabs"><div class="wrap"><div class="vtabs__row" role="tablist" aria-label="Layanan & Kontak"><button type="button" role="tab" data-tab="surat" aria-selected="true"><svg class="ic"><use href="#i-doc"/></svg>Layanan Surat</button><button type="button" role="tab" data-tab="kontakkampung" aria-selected="false"><svg class="ic"><use href="#i-phone"/></svg>Kontak</button></div></div></div>
       </div>
         <div class="tabpanel" role="tabpanel" data-panel="surat">
 <section class="sec" id="layanan">
       <div class="wrap">
-        <header class="sec__head"><span class="sec__icon"><svg class="ic"><use href="#i-doc"/></svg></span><div><p class="eyebrow">Layanan warga</p><h2>Layanan administrasi</h2><p class="lead">Jenis surat yang dilayani Kantor Kampung Marga Mulya. Persyaratan dan lama proses ditampilkan setelah ada keterangan resmi dari kantor kampung.</p></div></header>
+        <header class="sec__head"><div><h2>Layanan administrasi</h2><p class="lead">Jenis surat yang dilayani Kantor Kampung Marga Mulya. Persyaratan dan lama proses ditampilkan setelah ada keterangan resmi dari kantor kampung.</p></div></header>
         <div class="services" id="layananList"></div>
       </div>
     </section>
@@ -445,13 +478,13 @@
 <section class="sec" id="kontak">
       <div class="wrap grid-2">
         <div>
-          <header class="sec__head"><span class="sec__icon"><svg class="ic"><use href="#i-phone"/></svg></span><div><p class="eyebrow">Kontak</p><h2>Kantor Kampung Marga Mulya</h2></div></header>
+          <header class="sec__head"><div><h2>Kantor Kampung Marga Mulya</h2></div></header>
           <ul class="contact" id="kontakList"></ul>
           <h3 class="mt">Media sosial kampung</h3>
           <div class="social" id="sosmed"></div>
         </div>
         <div class="card card--collab">
-          <p class="eyebrow">Tentang website ini</p>
+          <h3>Tentang website ini</h3>
           <p id="collabText"></p>
           <p class="small" id="collabKetua"></p>
         </div>
@@ -471,30 +504,40 @@
   </nav>
 
   <footer class="foot">
-    <div class="wrap foot__in">
-      <div>
-        <span class="foot__brand"><b>Marga Mulya</b> <i>On Site</i></span>
-        <p>Kampung Marga Mulya · Distrik Semangga · Kabupaten Merauke · Papua Selatan</p>
+    <img class="foot__img" src="assets/img/sampul/sd-inpres-semangga-3.jpg" width="1600" height="1200" alt="" loading="lazy">
+    <div class="foot__in">
+      <div class="foot__top">
+        <nav class="foot__links" aria-label="Tautan bawah">
+          <a href="#profil">Profil kampung</a>
+          <a href="#data">Data penduduk</a>
+          <a href="#transparansi">APBKam dan RPJMK</a>
+          <a href="#petakampung">Peta batas</a>
+          <a href="#layanan-warga">Layanan dan kontak</a>
+          <a href="admin/" rel="nofollow">Masuk admin</a>
+        </nav>
+        <div class="foot__contact">
+          <p>Kantor Kampung Marga Mulya, Distrik Semangga, Kabupaten Merauke, Papua Selatan</p>
+          <div class="social social--foot" id="sosmedFoot"></div>
+          <p>Dikembangkan atas kerja sama Tim Ekspedisi Patriot IPB University dengan Pemerintah Kampung Marga Mulya.</p>
+        </div>
       </div>
-      <div class="social social--foot" id="sosmedFoot"></div>
-      <p>Dikembangkan atas kerja sama <b>Tim Ekspedisi Patriot IPB University</b> dengan <b>Pemerintah Kampung Marga Mulya</b>.</p>
-      <p class="foot__meta" id="footMeta"></p>
-      <p class="foot__meta"><a href="admin/" rel="nofollow" style="color:inherit">Masuk admin</a></p>
+      <p class="foot__name" aria-hidden="true">Marga Mulya</p>
+      <p class="foot__meta"><span id="footMeta"></span> Foto penutup: SD Inpres Semangga III, dokumentasi Tim Ekspedisi Patriot IPB University 2026.</p>
     </div>
   </footer>
 
   <!-- Jendela informasi (muncul saat elemen diketuk) -->
   <dialog class="modal" id="modal" aria-labelledby="modalTitle">
     <div class="modal__head">
-      <div><p class="eyebrow" id="modalKat"></p><h3 id="modalTitle"></h3></div>
+      <div><h3 id="modalTitle"></h3><p class="modal__kat" id="modalKat"></p></div>
       <button class="modal__close" id="modalClose" type="button" aria-label="Tutup"><svg class="ic"><use href="#i-close"/></svg></button>
     </div>
     <div class="modal__body" id="modalBody"></div>
   </dialog>
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
-  <script src="assets/js/data.js?v=202610290302"></script>
-  <script src="assets/js/app.js?v=202610290302"></script>
-  <script src="assets/js/router.js?v=202610290302"></script>
+  <script src="assets/js/data.js?v=202611011143"></script>
+  <script src="assets/js/app.js?v=202611011143"></script>
+  <script src="assets/js/router.js?v=202611011143"></script>
 </body>
 </html>
