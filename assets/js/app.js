@@ -1163,4 +1163,46 @@
       petakan(); render();
     }).catch(function () { track.innerHTML = '<p class="small">Data fasilitas belum dapat dimuat.</p>'; });
   })();
+
+  /* ---- Foto beranda berganti otomatis tiap 2 detik.
+     Semua foto berbentuk sama (2:1) dengan foto utama, jadi tampil utuh tanpa dipotong. ---- */
+  (function () {
+    var fig = $("#heroFoto"), bg = $("#heroBg"), cap = $("#heroCap");
+    if (!fig || !bg) return;
+    var KREDIT = "Foto: Dokumen Fasilitas Umum Kampung Marga Mulya, Desember 2023.";
+    var foto = [
+      { src: "assets/img/hero-ekspedisi-patriot.jpg", ket: "Tim Ekspedisi Patriot IPB University bersama perangkat kampung dan Distrik Semangga." },
+      { src: "assets/img/fasilitas/2023/f059.jpg", ket: "Kantor Kampung Marga Mulya (kantor lama). " + KREDIT },
+      { src: "assets/img/fasilitas/2023/f007.jpg", ket: "SD Inpres Semangga III. " + KREDIT },
+      { src: "assets/img/fasilitas/2023/f090.jpg", ket: "Masjid Al Amin. " + KREDIT },
+      { src: "assets/img/fasilitas/2023/f024.jpg", ket: "Puskesmas Pembantu Kampung Marga Mulya. " + KREDIT },
+      { src: "assets/img/fasilitas/2023/f043.jpg", ket: "Gedung pengering padi (dryer). " + KREDIT },
+      { src: "assets/img/fasilitas/2023/f068.jpg", ket: "Depot Air Minum BUMKam (Air Galon Mulya). " + KREDIT },
+      { src: "assets/img/fasilitas/2023/f035.jpg", ket: "Kolam pemancingan kampung. " + KREDIT }
+    ];
+    var slides = [fig.querySelector(".hero__slide")], bgs = [bg.querySelector("img")];
+    var i = 0, timer = null, siap = false;
+    function bangun() {
+      if (siap) return; siap = true;
+      foto.slice(1).forEach(function (f) {
+        var a = new Image(); a.className = "hero__slide"; a.src = f.src; a.alt = f.ket.split(". ")[0]; a.width = 960; a.height = 479; a.decoding = "async";
+        fig.insertBefore(a, cap); slides.push(a);
+        var b = new Image(); b.src = f.src; b.alt = ""; b.decoding = "async"; bg.appendChild(b); bgs.push(b);
+      });
+    }
+    function ke(n) {
+      var j = (n + slides.length) % slides.length;
+      if (!slides[j].complete) return; // tunggu foto selesai dimuat agar tidak berkedip
+      slides[i].classList.remove("is-on"); bgs[i].classList.remove("is-on");
+      i = j;
+      slides[i].classList.add("is-on"); bgs[i].classList.add("is-on");
+      if (cap) cap.textContent = foto[i].ket;
+    }
+    function mulai() { if (!timer) timer = setInterval(function () { ke(i + 1); }, 2000); }
+    function henti() { clearInterval(timer); timer = null; }
+    var tenang = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+    function jalan() { bangun(); if (!tenang) mulai(); }
+    if (document.readyState === "complete") jalan(); else window.addEventListener("load", jalan);
+    document.addEventListener("visibilitychange", function () { if (document.hidden) henti(); else if (siap && !tenang) mulai(); });
+  })();
 })();

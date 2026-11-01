@@ -14,7 +14,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
-  <link rel="stylesheet" href="assets/css/style.css?v=202611011202">
+  <link rel="stylesheet" href="assets/css/style.css?v=202611011234">
 </head>
 <body>
   <!-- Kumpulan ikon garis (dipakai dengan <svg><use href="#i-..."/></svg>) -->
@@ -113,9 +113,10 @@
             <a class="btn btn--line" href="#layanan"><svg class="ic"><use href="#i-doc"/></svg>Layanan surat</a>
           </div>
         </div>
-        <figure class="hero__photo">
-          <img src="assets/img/hero-ekspedisi-patriot.jpg" width="1800" height="900" alt="Tim Ekspedisi Patriot IPB University berfoto bersama perangkat kampung dan Distrik Semangga di depan spanduk Tim 20 Ekspedisi Patriot" fetchpriority="high">
-          <figcaption>Tim Ekspedisi Patriot IPB University bersama perangkat kampung dan Distrik Semangga.</figcaption>
+        <div class="hero__bg" id="heroBg" aria-hidden="true"><img class="is-on" src="assets/img/hero-ekspedisi-patriot.jpg" alt=""></div>
+        <figure class="hero__photo" id="heroFoto">
+          <img class="hero__slide is-on" src="assets/img/hero-ekspedisi-patriot.jpg" width="1800" height="900" alt="Tim Ekspedisi Patriot IPB University berfoto bersama perangkat kampung dan Distrik Semangga di depan spanduk Tim 20 Ekspedisi Patriot" fetchpriority="high">
+          <figcaption id="heroCap">Tim Ekspedisi Patriot IPB University bersama perangkat kampung dan Distrik Semangga.</figcaption>
         </figure>
       </div>
       <div class="wrap">
@@ -493,8 +494,8 @@
   </dialog>
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
-  <script src="assets/js/data.js?v=202611011202"></script>
-  <script src="assets/js/app.js?v=202611011202"></script>
-  <script src="assets/js/router.js?v=202611011202"></script>
+  <script src="assets/js/data.js?v=202611011234"></script>
+  <script src="assets/js/app.js?v=202611011234"></script>
+  <script src="assets/js/router.js?v=202611011234"></script>
 </body>
 </html>

@@ -961,3 +961,21 @@ html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 .mpop img { height: auto; max-height: none; object-fit: contain; }
 .modal__img { width: 100%; height: auto; object-fit: contain; }
 .prestasi { align-items: start; }
+
+/* ---------- Foto beranda bergantian ---------- */
+.hero__bg { display: none; }
+.hero__photo .hero__slide { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; opacity: 0; transition: opacity 700ms ease; }
+.hero__photo .hero__slide.is-on { opacity: 1; }
+.hero__photo figcaption { z-index: 2; }
+@media (max-width: 900px) {
+  /* Bagian tulisan: foto yang sama, dibaurkan, dengan lapisan hitam tipis (bukan hitam penuh) */
+  .hero__in { background: #1b2430; }
+  .hero__bg { display: block; position: absolute; inset: 0; z-index: -1; overflow: hidden; }
+  .hero__bg img { position: absolute; inset: -40px; width: calc(100% + 80px); height: calc(100% + 80px); max-width: none; object-fit: cover; filter: blur(22px) saturate(1.1); opacity: 0; transition: opacity 700ms ease; }
+  .hero__bg img.is-on { opacity: 1; }
+  .hero__bg::after { content: ""; position: absolute; inset: 0; background: rgba(0,0,0,.42); }
+  .hero__photo { background: transparent; padding-top: 50%; }
+  .hero__photo .hero__slide { inset: 0 0 auto 0; height: auto; aspect-ratio: 1800 / 900; }
+  .hero__photo figcaption { position: static; }
+}
+@media (prefers-reduced-motion: reduce) { .hero__photo .hero__slide, .hero__bg img { transition: none; } }
