@@ -100,66 +100,42 @@
   if (D.meta.dataContoh && $("#draftbar")) $("#draftbar").hidden = false;
 
   /* =================== BERANDA =================== */
-  $("#heroPlace").textContent = "Distrik " + id.distrik + ", Kabupaten " + id.kabupaten + ", " + id.provinsi;
+  $("#heroPlace").textContent = "Distrik " + id.distrik + " · Kabupaten " + id.kabupaten + " · " + id.provinsi;
   $("#collabBtn").setAttribute("data-act", act(function () {
     openModal({ kat: "Kerja sama " + D.kerjaSama.tahun, title: "Tentang Marga Mulya On Site",
       html: "<p>" + esc(D.kerjaSama.ringkas) + "</p><p><b>Pihak yang bekerja sama:</b></p><ul>" + D.kerjaSama.pihak.map(function (p) { return "<li>" + esc(p) + "</li>"; }).join("") +
         "</ul><p class='small'>Ketua Tim Ekspedisi Patriot IPB University: " + esc(D.kerjaSama.ketuaTim) + "</p>" });
   }).replace(/^ data-act="|"$/g, ""));
 
-  // Angka pendukung di bawah foto luas wilayah
-  var luasHa = Math.round(id.luasHa);
-  $("#luasFig").innerHTML = num(luasHa) + " <span>ha</span>";
-  var sawah = (D.ekonomi && D.ekonomi.lahan || []).filter(function (x) { return x.label === "Padi"; })[0];
-  if (sawah) $("#luasNote").textContent = "Diukur dari Peta Batas Kampung resmi. Sawahnya " + num(sawah.ha) + " hektare, dibatasi Kali Maro di sebelah timur.";
   var facts = [
-    { v: num(P.total), t: "warga tercatat, " + num(P.laki) + " laki-laki dan " + num(P.perempuan) + " perempuan", href: "#penduduk" },
-    { v: num(P.kk), t: "kepala keluarga, rata-rata " + (P.total / P.kk).toLocaleString("id-ID", { maximumFractionDigits: 1 }) + " jiwa per rumah", href: "#penduduk" },
-    { v: id.jumlahRW + " RW", t: "dan " + id.jumlahRT + " RT, dipimpin ketua masing-masing", href: "#pemerintahan" },
-    { v: id.tahunBerdiri || "1983", t: "tahun transmigran pertama tiba dari Jawa Tengah dan Jawa Timur", href: "#tentang" }
+    { ic: "users", t: "Penduduk", v: num(P.total), s: "jiwa", info: "Jumlah penduduk Kampung Marga Mulya menurut monografi kampung per 30 September 2026: " + num(P.laki) + " laki-laki dan " + num(P.perempuan) + " perempuan." },
+    { ic: "home", t: "Kepala keluarga", v: num(P.kk), s: "KK", info: "Jumlah kepala keluarga terdaftar. Rata-rata " + (P.total / P.kk).toLocaleString("id-ID", { maximumFractionDigits: 1 }) + " jiwa per keluarga." },
+    { ic: "layers", t: "Luas wilayah", v: num(Math.round(id.luasHa)), s: "hektare", info: "Luas wilayah Kampung Marga Mulya " + id.luas + " menurut monografi kampung. Peta resmi wilayah: " + id.petaResmi + "." },
+    { ic: "pin", t: "Wilayah", v: id.jumlahRW + " RW", s: id.jumlahRT + " RT", info: "Kampung Marga Mulya terbagi atas " + id.jumlahRW + " rukun warga (RW) dan " + id.jumlahRT + " rukun tetangga (RT). Kode wilayah Kemendagri " + id.kodeWilayah + ", kode pos " + id.kodePos + "." }
   ];
   $("#facts").innerHTML = facts.map(function (f) {
-    return '<a class="fig" href="' + f.href + '" data-reveal><b>' + esc(f.v) + "</b><span>" + esc(f.t) + "</span></a>";
+    return '<button type="button" class="fact tap"' + act(function () { openModal({ kat: "Beranda", title: f.t + ": " + f.v, html: "<p>" + esc(f.info) + "</p>" }); }) +
+      '><span class="fact__t">' + ic(f.ic) + esc(f.t) + '</span><span class="fact__v">' + esc(f.v) + "<small>" + esc(f.s) + "</small></span></button>";
   }).join("");
-
-  // Hal yang bisa dilakukan pengunjung: melihat musim sawah bulan ini (kalender musim RPJMK)
-  (function () {
-    var K = (D.potensiSD && D.potensiSD.kalender) || [];
-    var box = $("#musim"); if (!K.length || !box) { if (box) box.hidden = true; return; }
-    var NAMA = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
-    var SKALA = { 1: "mulai", 2: "ramai", 3: "puncak" };
-    var kini = new Date().getMonth(), pilih = kini;
-    function tampil(m) {
-      pilih = m;
-      [].forEach.call($("#musimBulan").children, function (b, i) { b.setAttribute("aria-pressed", i === m ? "true" : "false"); });
-      var ada = K.filter(function (r) { return r[1][m] > 0; }).sort(function (a, b) { return b[1][m] - a[1][m]; });
-      $("#musimOut").innerHTML = '<p class="musim__bulan">' + NAMA[m] + (m === kini ? " (bulan ini)" : "") + "</p>" +
-        (ada.length ? '<ul class="musim__list">' + ada.map(function (r) {
-          return '<li><b>' + esc(r[0]) + "</b><span>" + SKALA[r[1][m]] + "</span></li>";
-        }).join("") + "</ul>" : '<p class="musim__none">Tidak ada kegiatan musiman yang tercatat. Sawah beristirahat di antara musim tanam.</p>');
-    }
-    $("#musimBulan").innerHTML = NAMA.map(function (n, i) { return '<button type="button" data-m="' + i + '" aria-pressed="false" aria-label="' + n + '">' + n.slice(0, 3) + "</button>"; }).join("");
-    $("#musimBulan").addEventListener("click", function (e) { var b = e.target.closest("[data-m]"); if (b) tampil(+b.getAttribute("data-m")); });
-    tampil(kini);
-  })();
+  document.querySelectorAll(".fact").forEach(function (b, i) { if (facts[i].code) b.classList.add("fact--code"); });
 
   var quick = [
-    ["#tentang", "Profil kampung", "Sejarah, identitas, batas wilayah, prestasi"],
-    ["#pemerintahan", "Pemerintahan", "Struktur organisasi, RW dan RT, Bamuskam, lembaga"],
-    ["#potensi", "Potensi", "Sawah, ternak, BUMKam, usaha warga"],
-    ["#media", "Video dan galeri", "Video profil dan dokumentasi kegiatan"],
-    ["#penduduk", "Data penduduk", "Usia, pekerjaan, pendidikan, suku, agama"],
-    ["#fasilitas", "Fasilitas umum", "Sekolah, rumah ibadah, kesehatan, beserta petanya"],
-    ["#apbkam", "APBKam 2026", "Pendapatan dan belanja per bidang, rinci"],
-    ["#perencanaan", "RPJMK", "Visi, misi, dan rencana pembangunan kampung"],
-    ["#petakampung", "Peta batas kampung", "Peta resmi dan letak fasilitas"],
-    ["#wisatakuliner", "Wisata dan kuliner", "Tempat rekreasi dan makan di sekitar Semangga"],
-    ["#surat", "Layanan surat", "Persyaratan dan lama proses"],
-    ["#kontakkampung", "Kontak", "Kantor kampung dan media sosial"]
+    ["#tentang", "home", "Profil kampung", "Sejarah, identitas, batas wilayah, dan prestasi"],
+    ["#pemerintahan", "users", "Pemerintahan", "Struktur organisasi, Bamuskam, dan lembaga"],
+    ["#penduduk", "chart", "Data penduduk", "Usia, kesejahteraan, pekerjaan, pendidikan, suku"],
+    ["#fasilitas", "school", "Sarana & fasilitas", "Sarana prasarana kampung dan peta fasilitas"],
+    ["#apbkam", "wallet", "Transparansi anggaran", "APBKam 2026 per bidang dan sumber dana"],
+    ["#indeksdesa", "gauge", "Indeks Desa", "Status perkembangan kampung"],
+    ["#petakampung", "pin", "Peta batas kampung", "Peta resmi batas wilayah dan letak fasilitas"],
+    ["#wisatakuliner", "route", "Wisata & kuliner", "Tempat rekreasi dan makan 1–2 jam dari kampung"],
+    ["#surat", "doc", "Layanan surat", "Persyaratan dan lama proses surat"],
+    ["#media", "video", "Video & galeri", "Video profil dan dokumentasi kegiatan"],
+    ["#potensi", "sprout", "Potensi kampung", "Lahan, ternak, BUMKam, dan usaha warga"],
+    ["#kontakkampung", "phone", "Kontak & media sosial", "Kantor kampung, Facebook, Instagram, TikTok"]
   ];
-  $("#quick").innerHTML = '<ul class="rows">' + quick.map(function (q, i) {
-    return '<li' + (i && i % 4 === 0 ? ' class="rows__gap"' : "") + ' data-reveal><a href="' + q[0] + '"><b>' + esc(q[1]) + "</b><span>" + esc(q[2]) + "</span>" + ic("arrow") + "</a></li>";
-  }).join("") + "</ul>";
+  $("#quick").innerHTML = quick.map(function (q) {
+    return '<a class="xcard" href="' + q[0] + '"><span class="xcard__ic">' + ic(q[1]) + '</span><span class="xcard__t"><b>' + esc(q[2]) + "</b><small>" + esc(q[3]) + '</small></span><span class="xcard__go">' + ic("arrow") + "</span></a>";
+  }).join("");
 
   /* =================== BERITA (slider) =================== */
   var BULAN = ["Jan", "Feb", "Mar", "Apr", "Mei", "Jun", "Jul", "Agu", "Sep", "Okt", "Nov", "Des"];
@@ -186,13 +162,14 @@
     return out;
   }
   function kartu(n, dup) {
-    var kat = n.kategori && n.kategori !== "Marga Mulya" ? n.kategori : "Marga Mulya";
-    var ph = '<span class="ncard__ph"' + (n.cover ? " hidden" : "") + "><b>" + esc(n.sumber) + "</b></span>";
+    var kat = n.kategori && n.kategori !== "Marga Mulya" ? n.kategori : "";
+    var ph = '<span class="ncard__ph"' + (n.cover ? " hidden" : "") + ">" + ic("doc") + "<span>" + esc(n.sumber) + "</span><b>" + esc(kat ? kat : "Kampung Marga Mulya") + "</b></span>";
     var img = n.cover ? '<img src="' + esc(n.cover) + '" alt="" loading="lazy" referrerpolicy="no-referrer">' : "";
     var baru = umurHari(n.tanggal) <= BARU_HARI;
-    return '<a class="ncard' + (kat !== "Marga Mulya" ? " ncard--terkait" : "") + '" href="' + esc(n.url) + '" target="_blank" rel="noopener"' + (dup ? ' aria-hidden="true" tabindex="-1" data-dup="1"' : "") + ">" +
-      '<span class="ncard__cover">' + img + ph + "</span>" +
-      '<span class="ncard__body"><span class="ncard__meta"><b>' + (baru ? "Baru, " : "") + esc(kat) + "</b> · " + esc(n.sumber) + " · " + tgl(n.tanggal) + '</span><span class="ncard__t">' + esc(n.judul) + "</span>" +
+    return '<a class="ncard' + (kat ? " ncard--terkait" : "") + '" href="' + esc(n.url) + '" target="_blank" rel="noopener"' + (dup ? ' aria-hidden="true" tabindex="-1" data-dup="1"' : "") + ">" +
+      '<span class="ncard__cover">' + img + ph + '<span class="ncard__tags"><span class="ncard__badge' + (baru ? " ncard__badge--new" : "") + '">' + (baru ? "Baru" : n.tanggal.slice(0, 4)) + "</span>" +
+      '<span class="ncard__kat">' + esc(kat || "Marga Mulya") + "</span></span></span>" +
+      '<span class="ncard__body"><span class="ncard__meta">' + esc(n.sumber) + " · " + tgl(n.tanggal) + '</span><span class="ncard__t">' + esc(n.judul) + "</span>" +
       '<span class="ncard__d">' + esc(n.ringkas || "Baca selengkapnya di " + n.sumber + ".") + '</span><span class="ncard__go">Baca berita ' + ic("external") + "</span></span></a>";
   }
   function renderNews() {
@@ -231,7 +208,7 @@
   var lebarSet = 0, posisi = 0, jeda = 0, diatas = false, tween = null, tujuan = null, terakhirDiset = -1, waktu = 0;
   var KECEPATAN = 32; // piksel per detik
   var kurangiGerak = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  function step() { var c = track.querySelectorAll(".ncard"); return c.length > 1 ? c[1].offsetLeft - c[0].offsetLeft : (c[0] ? c[0].getBoundingClientRect().width + 32 : 300); }
+  function step() { var c = track.querySelector(".ncard"); return c ? c.getBoundingClientRect().width + 16 : 300; }
   function ukur() {
     var c = track.querySelectorAll(".ncard"), n = news.length;
     lebarSet = (n > 1 && c.length > n) ? c[n].offsetLeft - c[0].offsetLeft : 0;
@@ -878,7 +855,7 @@
 
   $("#collabText").textContent = D.kerjaSama.ringkas;
   $("#collabKetua").textContent = "Ketua Tim Ekspedisi Patriot IPB University: " + D.kerjaSama.ketuaTim;
-  $("#footMeta").textContent = "Data diperbarui " + D.meta.diperbarui + ". © " + D.kerjaSama.tahun + " Pemerintah Kampung Marga Mulya.";
+  $("#footMeta").textContent = "Data diperbarui " + D.meta.diperbarui + " · © " + D.kerjaSama.tahun + " Pemerintah Kampung Marga Mulya";
   /* =================== WISATA & KULINER =================== */
   (function () {
     var track = $("#wisataTrack"); if (!track) return;
@@ -901,7 +878,7 @@
     function kartu(t) {
       var k = KAT[t.kategori] || { ic: "pin" };
       var foto = t.foto ? '<img src="' + esc(t.foto) + '" alt="' + esc(t.nama) + '" loading="lazy" referrerpolicy="no-referrer">' : "";
-      var ph = '<span class="ncard__ph"' + (t.foto ? " hidden" : "") + ">" + ic(k.ic) + "<b>" + esc(t.nama) + "</b><span>" + esc(t.kategori) + "</span></span>";
+      var ph = '<span class="ncard__ph"' + (t.foto ? " hidden" : "") + ">" + ic(k.ic) + "<span>" + esc(t.kategori) + "</span><b>" + esc(t.nama) + "</b></span>";
       var kredit = t.kreditFoto ? '<span class="wcard__credit">Foto: ' + esc(t.kreditFoto) + "</span>" : "";
       return '<article class="ncard wcard">' +
         '<button type="button" class="wcard__top" data-fokus="' + esc(t.id) + '" aria-label="Lihat ' + esc(t.nama) + ' di peta">' +
@@ -1053,7 +1030,7 @@
     function kartu(f) {
       var st = STATUS[f.status] || STATUS["perlu-data"];
       var foto = f.foto ? '<img src="' + esc(f.foto) + '" alt="' + esc(f.nama) + '" loading="lazy">' : "";
-      var ph = '<span class="ncard__ph"' + (f.foto ? " hidden" : "") + ">" + ic(icon(f)) + "<b>" + esc(f.nama) + "</b><span>" + esc(f.jenis || f.kategori) + "</span></span>";
+      var ph = '<span class="ncard__ph"' + (f.foto ? " hidden" : "") + ">" + ic(icon(f)) + "<span>" + esc(f.jenis || f.kategori) + "</span><b>" + esc(f.nama) + "</b></span>";
       return '<article class="ncard wcard fcard">' +
         '<button type="button" class="wcard__top" data-fasil="' + esc(f.id) + '" aria-label="Lihat ' + esc(f.nama) + ' di peta">' +
         '<span class="ncard__cover">' + foto + ph + '<span class="ncard__badge">' + esc(f.kategori) + '</span><span class="fbadge ' + st[1] + '">' + st[0] + "</span></span>" +
@@ -1144,7 +1121,7 @@
         var html = g.length > 1 ? '<span class="mk mk--ic mk--grup" style="background:' + c + '"><svg class="ic"><use href="#i-' + icon(f0) + '"/></svg>' + g.length + "</span>"
           : '<span class="mk mk--ic" style="background:' + c + '"><svg class="ic"><use href="#i-' + icon(f0) + '"/></svg></span>';
         var m = L.marker([f0.lat, f0.lng], { icon: L.divIcon({ className: "", html: html, iconSize: [g.length > 1 ? 44 : 30, 30], iconAnchor: [g.length > 1 ? 22 : 15, 15] }) });
-        m.bindPopup('<div class="mpop">' + (g.length > 1 ? "<small>" + g.length + " fasilitas di titik ini</small>" : "") + g.map(pop).join('<span class="mpop__gap"></span>') + "</div>", { maxWidth: 250, maxHeight: 340 });
+        m.bindPopup('<div class="mpop">' + (g.length > 1 ? "<small>" + g.length + " fasilitas di titik ini</small>" : "") + g.map(pop).join('<hr class="mpop__hr">') + "</div>", { maxWidth: 250, maxHeight: 340 });
         m.addTo(map); grupF.push({ m: m, ids: g.map(function (f) { return f.id; }) });
         g.forEach(function (f) { markers[f.id] = m; });
         if (f0.dalamKampung || (f0.jarak_km || 99) < 8) b.push([f0.lat, f0.lng]);
@@ -1185,18 +1162,5 @@
       $("#fasilNote").innerHTML = "Foto dan titik lokasi berasal dari Dokumen Fasilitas Umum Kampung Marga Mulya (foto GPS Desember 2023) dan survei Tim Ekspedisi Patriot IPB University 26 Oktober 2026; titik di peta adalah koordinat foto (posisi juru foto) dan cap waktu pada foto yang dipajang sudah dipotong. Data sekolah juga bersumber dari Data Referensi Kemendikdasmen. Jumlah resmi seluruh sarana menurut monografi kampung ada di rekap di atas. Musala yang belum diketahui namanya diberi nomor urut angka Romawi.";
       petakan(); render();
     }).catch(function () { track.innerHTML = '<p class="small">Data fasilitas belum dapat dimuat.</p>'; });
-  })();
-  /* ---- Muncul sekali saat masuk layar (tidak pernah menyembunyikan isi bila skrip gagal) ---- */
-  (function () {
-    var els = [].slice.call(document.querySelectorAll("[data-reveal]"));
-    if (!els.length) return;
-    if (!("IntersectionObserver" in window)) { els.forEach(function (e) { e.classList.add("is-in"); }); return; }
-    var io = new IntersectionObserver(function (en) {
-      en.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("is-in"); io.unobserve(e.target); } });
-    }, { rootMargin: "0px 0px -10% 0px", threshold: 0.08 });
-    els.forEach(function (e) { io.observe(e); });
-    window.addEventListener("load", function () { setTimeout(function () {
-      els.forEach(function (e) { var r = e.getBoundingClientRect(); if (r.top < innerHeight && r.bottom > 0) e.classList.add("is-in"); });
-    }, 2500); });
   })();
 })();
