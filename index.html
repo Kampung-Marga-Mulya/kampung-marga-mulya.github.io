@@ -26,7 +26,7 @@
   <link rel="preload" href="assets/fonts/source-sans-3-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="assets/css/fonts.css?v=1">
   <link rel="stylesheet" href="assets/vendor/leaflet/leaflet.css?v=1.9.4">
-  <link rel="stylesheet" href="assets/css/style.css?v=202611031921">
+  <link rel="stylesheet" href="assets/css/style.css?v=202611032202">
 </head>
 <body>
   <!-- Kumpulan ikon garis (dipakai dengan <svg><use href="#i-..."/></svg>) -->
@@ -134,6 +134,13 @@
       <div class="wrap">
         <div class="facts" id="facts"></div>
       </div>
+      <div class="wrap keg" aria-labelledby="kegTitle">
+        <div class="keg__head">
+          <div><p class="eyebrow">Kegiatan kampung</p><h2 id="kegTitle">Kegiatan di Marga Mulya</h2><p class="keg__info">Foto setiap kegiatan berganti otomatis. Ketuk kartu untuk melihat semua fotonya.</p></div>
+          <a class="btn btn--line" href="#kegiatan"><svg class="ic"><use href="#i-calendar"/></svg>Lihat semua kegiatan</a>
+        </div>
+        <div class="keg__grid" id="kegBeranda"></div>
+      </div>
       <div class="wrap news" id="berita" aria-labelledby="newsTitle">
         <div class="news__head">
           <div><p class="eyebrow">Kabar kampung</p><h2 id="newsTitle">Berita tentang Marga Mulya</h2><p class="news__info" id="newsInfo">Diperbarui otomatis dari media daring</p></div>
@@ -160,9 +167,9 @@
     <div class="view" data-view="profil" id="v-profil" hidden>
       <div class="vhead">
         <div class="wrap">
-          <div class="vhead__t"><span class="vhead__ic"><svg class="ic"><use href="#i-home"/></svg></span><div><h1>Profil Kampung</h1><p>Sejarah, identitas wilayah, pemerintahan, potensi, dan dokumentasi Kampung Marga Mulya.</p></div></div>
+          <div class="vhead__t"><span class="vhead__ic"><svg class="ic"><use href="#i-home"/></svg></span><div><h1>Profil Kampung</h1><p>Sejarah, identitas wilayah, pemerintahan, potensi, kegiatan, dan dokumentasi Kampung Marga Mulya.</p></div></div>
         </div>
-        <div class="vtabs"><div class="wrap"><div class="vtabs__row" role="tablist" aria-label="Profil Kampung"><button type="button" role="tab" data-tab="tentang" aria-selected="true"><svg class="ic"><use href="#i-home"/></svg>Tentang</button><button type="button" role="tab" data-tab="pemerintahan" aria-selected="false"><svg class="ic"><use href="#i-users"/></svg>Pemerintahan</button><button type="button" role="tab" data-tab="potensi" aria-selected="false"><svg class="ic"><use href="#i-sprout"/></svg>Potensi</button><button type="button" role="tab" data-tab="media" aria-selected="false"><svg class="ic"><use href="#i-video"/></svg>Video & Galeri</button></div></div></div>
+        <div class="vtabs"><div class="wrap"><div class="vtabs__row" role="tablist" aria-label="Profil Kampung"><button type="button" role="tab" data-tab="tentang" aria-selected="true"><svg class="ic"><use href="#i-home"/></svg>Tentang</button><button type="button" role="tab" data-tab="pemerintahan" aria-selected="false"><svg class="ic"><use href="#i-users"/></svg>Pemerintahan</button><button type="button" role="tab" data-tab="potensi" aria-selected="false"><svg class="ic"><use href="#i-sprout"/></svg>Potensi</button><button type="button" role="tab" data-tab="media" aria-selected="false"><svg class="ic"><use href="#i-video"/></svg>Video & Galeri</button><button type="button" role="tab" data-tab="kegiatan" aria-selected="false"><svg class="ic"><use href="#i-calendar"/></svg>Kegiatan</button></div></div></div>
       </div>
         <div class="tabpanel" role="tabpanel" data-panel="tentang">
 <section class="sec" id="profil">
@@ -237,6 +244,14 @@
         <p class="small" id="ekoSumber"></p>
         <h3 class="mt">Kegiatan Ekspedisi Patriot</h3>
         <ol class="timeline" id="kegiatan"></ol>
+      </div>
+    </section>
+        </div>
+        <div class="tabpanel" role="tabpanel" data-panel="kegiatan" hidden>
+<section class="sec" id="kegiatan-kampung">
+      <div class="wrap">
+        <header class="sec__head"><span class="sec__icon"><svg class="ic"><use href="#i-calendar"/></svg></span><div><p class="eyebrow">Kegiatan kampung</p><h2>Kegiatan di Kampung Marga Mulya</h2><p class="lead">Dokumentasi kegiatan pemerintahan, kemasyarakatan, dan keagamaan di Kampung Marga Mulya. Ketuk foto untuk memperbesar.</p></div></header>
+        <div class="kegl" id="kegList"></div>
       </div>
     </section>
         </div>
@@ -506,8 +521,8 @@
   </dialog>
 
   <script src="assets/vendor/leaflet/leaflet.js?v=1.9.4"></script>
-  <script src="assets/js/data.js?v=202611031921"></script>
-  <script src="assets/js/app.js?v=202611031921"></script>
-  <script src="assets/js/router.js?v=202611031921"></script>
+  <script src="assets/js/data.js?v=202611032202"></script>
+  <script src="assets/js/app.js?v=202611032202"></script>
+  <script src="assets/js/router.js?v=202611032202"></script>
 </body>
 </html>

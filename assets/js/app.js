@@ -819,6 +819,60 @@
       openModal({ kat: "Kegiatan Ekspedisi Patriot " + k.tanggal, title: k.judul, html: (k.foto ? '<img class="modal__img" src="' + escUrl(k.foto) + '" alt="' + esc(k.judul) + '">' : "") + "<p>" + esc(k.ket) + "</p><p class='small'>Bagian dari kerja sama Tim Ekspedisi Patriot IPB University dengan Pemerintah Kampung Marga Mulya.</p>" });
     }) + ">" + (k.foto ? '<img class="tl__img" src="' + escUrl(k.foto) + '" alt="" loading="lazy">' : "") + "<time>" + esc(k.tanggal) + "</time><b>" + esc(k.judul) + '</b><span class="tl__d">' + esc(k.ket) + "</span></button></li>";
   }).join("");
+  /* =================== KEGIATAN KAMPUNG =================== */
+  // Beranda: satu kartu per kegiatan, fotonya berganti tiap 3 detik.
+  // Profil > Kegiatan: semua foto tiap kegiatan, ditampilkan utuh sesuai bentuk aslinya.
+  var KG = D.kegiatanKampung || [];
+  function bukaKegiatan(k, mulai) {
+    var urut = k.foto.slice(mulai || 0).concat(k.foto.slice(0, mulai || 0));
+    openModal({ kat: "Kegiatan kampung" + (k.waktu ? " · " + k.waktu : ""), title: k.judul,
+      html: "<p>" + esc(k.ket) + "</p>" + urut.map(function (f) {
+        return '<figure class="kegm"><img class="modal__img" src="' + escUrl(f.src) + '" alt="' + esc(f.ket || k.judul) + '" loading="lazy">' + (f.ket ? "<figcaption>" + esc(f.ket) + "</figcaption>" : "") + "</figure>";
+      }).join("") });
+  }
+  if ($("#kegBeranda") && KG.length) {
+    $("#kegBeranda").innerHTML = KG.map(function (k) {
+      var n = k.foto.length;
+      return '<button type="button" class="kcard"' + act(function () { bukaKegiatan(k, k._i || 0); }) + ' aria-label="' + esc(k.judul + ": lihat " + n + " foto") + '">' +
+        '<span class="kcard__stage">' + k.foto.map(function (f, i) {
+          return '<img class="kcard__img' + (i === 0 ? " is-on" : "") + '" src="' + escUrl(f.src) + '" alt="' + esc(f.ket || k.judul) + '"' + (i ? ' loading="lazy"' : "") + ">";
+        }).join("") + (n > 1 ? '<span class="kcard__dots" aria-hidden="true">' + k.foto.map(function (f, i) { return "<i" + (i === 0 ? ' class="is-on"' : "") + "></i>"; }).join("") + "</span>" : "") + "</span>" +
+        '<span class="kcard__cap">' + esc(k.foto[0] && k.foto[0].ket || "") + "</span>" +
+        '<span class="kcard__body">' + (k.waktu ? '<span class="kcard__when">' + ic("calendar") + esc(k.waktu) + "</span>" : "") +
+        "<b class=\"kcard__t\">" + esc(k.judul) + '</b><span class="kcard__d">' + esc(k.ket) + '</span><span class="kcard__go">' + ic("image") + "Lihat " + n + " foto</span></span></button>";
+    }).join("");
+    var kartuKeg = [].slice.call($("#kegBeranda").querySelectorAll(".kcard"));
+    function gantiFoto(ci) {
+      var k = KG[ci], el = kartuKeg[ci]; if (!el || k.foto.length < 2) return;
+      var imgs = el.querySelectorAll(".kcard__img"), dots = el.querySelectorAll(".kcard__dots i");
+      var lama = k._i || 0, baru = (lama + 1) % k.foto.length;
+      if (!imgs[baru].complete) { imgs[baru].loading = "eager"; return; } // tunggu foto berikutnya selesai dimuat
+      imgs[lama].classList.remove("is-on"); imgs[baru].classList.add("is-on");
+      if (dots.length) { dots[lama].classList.remove("is-on"); dots[baru].classList.add("is-on"); }
+      el.querySelector(".kcard__cap").textContent = k.foto[baru].ket || "";
+      k._i = baru;
+    }
+    var kegTimer = null;
+    function kegMulai() {
+      if (kegTimer) return;
+      // Foto kartu kedua berikutnya dimuat lebih awal agar pergantian mulus
+      kartuKeg.forEach(function (el) { var im = el.querySelectorAll(".kcard__img")[1]; if (im) im.loading = "eager"; });
+      kegTimer = setInterval(function () {
+        if (document.hidden || $("#v-beranda").hidden) return;
+        kartuKeg.forEach(function (el, ci) { setTimeout(function () { gantiFoto(ci); }, ci * 150); });
+      }, 3000);
+    }
+    if (document.readyState === "complete") kegMulai(); else window.addEventListener("load", kegMulai);
+  }
+  if ($("#kegList") && KG.length) {
+    $("#kegList").innerHTML = KG.map(function (k, ki) {
+      return '<article class="kegl__item" id="keg-' + esc(k.id || ki) + '"><header class="kegl__head"><h3>' + esc(k.judul) + "</h3>" + (k.waktu ? '<span class="kcard__when">' + ic("calendar") + esc(k.waktu) + "</span>" : "") + "</header>" +
+        "<p>" + esc(k.ket) + '</p><div class="kegl__grid">' + k.foto.map(function (f, fi) {
+          return '<figure><button type="button" class="reset"' + act(function () { bukaKegiatan(k, fi); }) + ' aria-label="Perbesar foto: ' + esc(f.ket || k.judul) + '"><img src="' + escUrl(f.src) + '" alt="' + esc(f.ket || k.judul) + '" loading="lazy"></button>' + (f.ket ? "<figcaption>" + esc(f.ket) + "</figcaption>" : "") + "</figure>";
+        }).join("") + "</div></article>";
+    }).join("");
+  }
+
   $("#gallery").innerHTML = D.galeri.map(function (g) {
     return '<button type="button"' + act(function () {
       openModal({ kat: "Galeri", title: g.caption, html: g.src ? '<img class="modal__img" src="' + escUrl(g.src) + '" alt="' + esc(g.caption) + '">' : "<p>Foto untuk kegiatan ini akan segera ditambahkan.</p>" });

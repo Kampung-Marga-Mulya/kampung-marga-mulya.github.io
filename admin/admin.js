@@ -44,6 +44,7 @@ if (window.top !== window.self) {
     { g: "Transparansi", id: "indeks", label: "Indeks Desa", file: "assets/js/data.js", keys: ["indeksDesa"], desc: "Nilai, status, enam dimensi, dan riwayat status." },
     { g: "Konten", id: "berita", label: "Berita pilihan", file: "assets/js/data.js", keys: ["berita"], desc: "Berita yang ditambahkan manual. Berita dari robot otomatis tidak perlu diisi di sini." },
     { g: "Konten", id: "beritaabaikan", label: "Sembunyikan berita robot", file: "data/berita-abaikan.json", keys: ["abaikan"], desc: "Tempel tautan berita temuan robot yang keliru agar tidak ditampilkan." },
+    { g: "Konten", id: "kegiatankampung", label: "Kegiatan kampung", file: "assets/js/data.js", keys: ["kegiatanKampung"], desc: "Kegiatan yang tampil di Beranda (foto berganti tiap 3 detik) dan di Profil > Kegiatan: judul, waktu, deskripsi singkat, dan foto beserta keterangannya." },
     { g: "Konten", id: "galeri", label: "Galeri foto", file: "assets/js/data.js", keys: ["galeri"], desc: "Unggah foto kegiatan dan tulis keterangannya." },
     { g: "Konten", id: "video", label: "Video profil", file: "assets/js/data.js", keys: ["video"], desc: "ID video YouTube (bagian setelah youtu.be/)." },
     { g: "Konten", id: "potensi", label: "Potensi & kegiatan", file: "assets/js/data.js", keys: ["potensi", "ekonomi", "kegiatan"], desc: "Potensi kampung, data lahan, ternak, dan usaha warga, serta linimasa kegiatan." },
@@ -54,7 +55,7 @@ if (window.top !== window.self) {
     { g: "Pengaturan", id: "meta", label: "Pengaturan website", file: "assets/js/data.js", keys: ["meta"], desc: "Label data contoh, sumber data, dan tanggal pembaruan." }
   ];
   var LABEL = {
-    nama: "Nama", jabatan: "Jabatan", foto: "Foto", tugas: "Tugas pokok", kontak: "Kontak", ket: "Keterangan", ketua: "Ketua / pimpinan",
+    nama: "Nama", waktu: "Waktu kegiatan", jabatan: "Jabatan", foto: "Foto", tugas: "Tugas pokok", kontak: "Kontak", ket: "Keterangan", ketua: "Ketua / pimpinan",
     lat: "Lintang (lat)", lng: "Bujur (lng)", url: "Tautan", akun: "Nama akun", judul: "Judul", ringkas: "Ringkasan", tanggal: "Tanggal (TTTT-BB-HH)",
     sumber: "Sumber", cover: "Gambar sampul", caption: "Keterangan foto", src: "Foto", label: "Label", jumlah: "Jumlah", rentang: "Rentang umur",
     k: "Kelompok umur", l: "Laki-laki", p: "Perempuan", total: "Total penduduk", laki: "Laki-laki", perempuan: "Perempuan", kk: "Kepala keluarga",

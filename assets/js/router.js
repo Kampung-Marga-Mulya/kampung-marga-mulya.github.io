@@ -9,7 +9,7 @@
   var R = {
     beranda: ["beranda"], berita: ["beranda", null, "berita"],
     profil: ["profil", "tentang"], tentang: ["profil", "tentang"], pemerintahan: ["profil", "pemerintahan"],
-    potensi: ["profil", "potensi"], media: ["profil", "media"], video: ["profil", "media"], galeri: ["profil", "media", "galeri"],
+    potensi: ["profil", "potensi"], kegiatan: ["profil", "kegiatan"], "kegiatan-kampung": ["profil", "kegiatan"], media: ["profil", "media"], video: ["profil", "media"], galeri: ["profil", "media", "galeri"],
     data: ["data", "penduduk"], penduduk: ["data", "penduduk"], fasilitas: ["data", "fasilitas"],
     transparansi: ["transparansi", "apbkam"], apbkam: ["transparansi", "apbkam"], anggaran: ["transparansi", "apbkam"],
     indeksdesa: ["transparansi", "indeksdesa"], indeks: ["transparansi", "indeksdesa"],

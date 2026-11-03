@@ -883,6 +883,57 @@ window.KAMPUNG = {
     ]
   },
 
+  // Kegiatan kampung: tampil di Beranda (foto berganti tiap 3 detik) dan di Profil > Kegiatan.
+  // Setiap kegiatan punya judul, waktu, deskripsi singkat (ket), dan daftar foto.
+  // Foto ditampilkan utuh sesuai bentuk aslinya. "ket" pada foto muncul sebagai keterangan foto.
+  kegiatanKampung: [
+    { id: "agustusan", judul: "Perayaan HUT Kemerdekaan RI (Agustusan)", waktu: "Agustus 2023–2026",
+      ket: "Setiap bulan Agustus warga Kampung Marga Mulya merayakan Hari Ulang Tahun Kemerdekaan Republik Indonesia dengan lomba, pawai kendaraan hias, penampilan barisan peserta, dan penyerahan piala bagi para pemenang.",
+      foto: [
+        { src: "assets/img/kegiatan-kampung/agustusan-1.jpg", ket: "Agustus 2023: warga bersama kuda dalam perayaan HUT RI" },
+        { src: "assets/img/kegiatan-kampung/agustusan-2.jpg", ket: "Agustus 2024: penyerahan piala lomba Dirgahayu Republik Indonesia" },
+        { src: "assets/img/kegiatan-kampung/agustusan-3.jpg", ket: "Agustus 2025: pawai kendaraan hias" },
+        { src: "assets/img/kegiatan-kampung/agustusan-4.jpg", ket: "Agustus 2026: penampilan barisan peserta" },
+        { src: "assets/img/kegiatan-kampung/agustusan-5.jpg", ket: "Agustus 2026: barisan peserta pelajar" }
+      ] },
+    { id: "hari-santri", judul: "Peringatan Hari Santri", waktu: "",
+      ket: "Peringatan Hari Santri Nasional yang diikuti para santri dan warga Kampung Marga Mulya, diisi kegiatan bersama dan penampilan pencak silat.",
+      foto: [
+        { src: "assets/img/kegiatan-kampung/hari-santri-1.jpg", ket: "Santri dan warga mengikuti peringatan Hari Santri" },
+        { src: "assets/img/kegiatan-kampung/hari-santri-2.jpg", ket: "Peserta peringatan Hari Santri" },
+        { src: "assets/img/kegiatan-kampung/hari-santri-3.jpg", ket: "Penampilan pencak silat" }
+      ] },
+    { id: "koperasi-merah-putih", judul: "Musyawarah Desa Khusus Koperasi Desa Merah Putih", waktu: "",
+      ket: "Musyawarah desa khusus untuk sosialisasi dan pembentukan Koperasi Desa Merah Putih di Kampung Marga Mulya bersama perangkat kampung dan warga, disertai peninjauan lapangan.",
+      foto: [
+        { src: "assets/img/kegiatan-kampung/musdesus-koperasi-merah-putih-1.jpg", ket: "Musyawarah desa khusus sosialisasi dan pembentukan Koperasi Desa Merah Putih" },
+        { src: "assets/img/kegiatan-kampung/musdesus-koperasi-merah-putih-2.jpg", ket: "Peninjauan lapangan" },
+        { src: "assets/img/kegiatan-kampung/musdesus-koperasi-merah-putih-3.jpg", ket: "Foto bersama peserta peninjauan lapangan" }
+      ] },
+    { id: "musyawarah-kampung-2025", judul: "Musyawarah Kampung 2025", waktu: "2025",
+      ket: "Musyawarah Rencana Pembangunan Kampung untuk membahas dan menyepakati Rencana Kerja Pemerintah Kampung (RKPK) bersama perangkat kampung dan warga.",
+      foto: [
+        { src: "assets/img/kegiatan-kampung/musyawarah-kampung-2025-1.jpg", ket: "Musyawarah Rencana Pembangunan Kampung tentang RKPK" },
+        { src: "assets/img/kegiatan-kampung/musyawarah-kampung-2025-2.jpg", ket: "Warga mengikuti musyawarah kampung" },
+        { src: "assets/img/kegiatan-kampung/musyawarah-kampung-2025-3.jpg", ket: "Peserta musyawarah kampung" }
+      ] },
+    { id: "pengabdian-masyarakat", judul: "Pengabdian Masyarakat", waktu: "",
+      ket: "Kegiatan pengabdian kepada masyarakat oleh perguruan tinggi, antara lain sosialisasi penggunaan Azotobacter sp. dan Trichoderma sp. untuk menunjang pertanian organik oleh Magister Ilmu Pertanian Fakultas Pertanian Universitas Musamus, serta Kuliah Kerja Profesional (KKP) Pengabdian pada Masyarakat.",
+      foto: [
+        { src: "assets/img/kegiatan-kampung/pengabdian-masyarakat-1.jpg", ket: "Sosialisasi Azotobacter sp. dan Trichoderma sp. untuk pertanian organik, Universitas Musamus" },
+        { src: "assets/img/kegiatan-kampung/pengabdian-masyarakat-2.jpg", ket: "Kunjungan ke rumah warga" },
+        { src: "assets/img/kegiatan-kampung/pengabdian-masyarakat-3.jpg", ket: "Kuliah Kerja Profesional (KKP) Pengabdian pada Masyarakat" }
+      ] },
+    { id: "rapat-bamuskam", judul: "Rapat Bamuskam", waktu: "",
+      ket: "Rapat Badan Musyawarah Kampung (Bamuskam) bersama pemerintah kampung di kantor kampung untuk membahas program dan kebijakan kampung.",
+      foto: [
+        { src: "assets/img/kegiatan-kampung/rapat-bamuskam-1.jpg", ket: "Rapat Bamuskam di kantor kampung" },
+        { src: "assets/img/kegiatan-kampung/rapat-bamuskam-2.jpg", ket: "Peserta rapat Bamuskam" },
+        { src: "assets/img/kegiatan-kampung/rapat-bamuskam-3.jpg", ket: "Pembahasan bersama perangkat kampung" },
+        { src: "assets/img/kegiatan-kampung/rapat-bamuskam-4.jpg", ket: "Suasana rapat Bamuskam" }
+      ] }
+  ],
+
   galeri: [
     { src: "assets/img/galeri-ekspedisi-patriot.jpg", caption: "Tim Ekspedisi Patriot bersama perangkat kampung dan distrik" },
     { src: "assets/img/kegiatan/pelatihan-peternakan.jpg", caption: "Pelatihan Manajemen Sistem Peternakan Skala Industri dan Pengembangan Pertanian Terintegrasi Berkelanjutan" },
