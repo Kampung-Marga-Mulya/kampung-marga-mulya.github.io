@@ -1,0 +1,6 @@
+# Marga Mulya On Site
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /scripts/
+Disallow: /docs/

@@ -1,50 +1,61 @@
 # Marga Mulya On Site
 
-Website profil Kampung Marga Mulya (https://kampung-marga-mulya.github.io), Distrik Semangga, Kabupaten Merauke, Papua Selatan. Dikembangkan atas kerja sama **Tim Ekspedisi Patriot IPB University** dengan **Pemerintah Kampung Marga Mulya** (2026).
+Website resmi Kampung Marga Mulya, Distrik Semangga, Kabupaten Merauke, Papua Selatan (kode wilayah 93.01.05.2008). Dikembangkan atas kerja sama **Tim Ekspedisi Patriot IPB University** dengan **Pemerintah Kampung Marga Mulya** (2026).
+
+Alamat saat ini: https://kampung-marga-mulya.github.io
+
+## Ringkasan teknis
+
+- **Jenis situs:** statis. Hanya berkas HTML, CSS, JavaScript, gambar, dan JSON. Tidak ada server aplikasi, PHP, maupun database.
+- **Teknologi:** HTML5, CSS3, JavaScript murni tanpa framework dan tanpa proses build. Peta memakai Leaflet 1.9.4 dengan peta dasar OpenStreetMap. Huruf Source Sans 3 dan Source Serif 4.
+- **Tanpa ketergantungan CDN:** Leaflet, JSON5, dan huruf disimpan di website sendiri (`assets/vendor`, `assets/fonts`).
+- **Data:** `assets/js/data.js` (profil, pemerintahan, penduduk, APBKam, potensi) dan berkas JSON di `data/`. Setiap perubahan tercatat di riwayat git.
+- **Otomasi:** GitHub Actions menjalankan robot berita setiap 3 jam (`scripts/update_berita.py`), menghitung jarak wisata dan fasilitas (`scripts/hitung_wisata.py`), dan memindai keamanan kode dengan CodeQL.
+- **Keamanan:** lihat [SECURITY.md](SECURITY.md).
 
 ## Isi folder
 
-| File / folder | Fungsi |
+| Berkas / folder | Fungsi |
 |---|---|
-| `index.html` | Kerangka halaman |
-| `assets/js/data.js` | **Semua isi website** — ubah file ini saja untuk memperbarui data |
-| `assets/js/app.js` | Logika tampilan (tidak perlu diubah) |
-| `assets/css/style.css` | Tampilan dan warna |
-| `assets/img/` | Foto pejabat, galeri, sampul video |
-| `assets/peta/` | Ortofoto hasil drone |
-| `assets/video/` | Video profil MP4 (bila tidak memakai YouTube) |
-| `PROMPT_CLAUDE_CODE.md` | Prompt siap pakai untuk Claude Code |
-| `PANDUAN_HOSTING.md` | Cara menerbitkan website dan memasang domain |
-
-## Melihat website di komputer
-
-Klik dua kali `index.html`. Atau, dari terminal di folder ini: `python3 -m http.server 8000` lalu buka http://localhost:8000.
+| `index.html` | Halaman utama (beranda, profil, data, transparansi, jelajah, layanan) |
+| `apbk.html` | Rincian lengkap APBKam 2026 (dari `data/apbk-2026.json`) |
+| `rpjmk.html` | RPJMK Kampung Marga Mulya versi lengkap |
+| `admin/` | Portal admin untuk mengubah isi tanpa menyentuh kode |
+| `assets/js/data.js` | Isi utama website |
+| `assets/js/app.js`, `router.js`, `apbk.js`, `rpjmk.js` | Logika tampilan |
+| `assets/css/` | Tampilan dan huruf |
+| `assets/img/`, `assets/video/`, `assets/dok/` | Foto, video, dan dokumen PDF |
+| `assets/vendor/` | Pustaka pihak ketiga yang disimpan sendiri (Leaflet, JSON5) |
+| `data/` | Data fasilitas, wisata, berita otomatis, APBKam, batas wilayah |
+| `scripts/` | Skrip Python untuk robot berita dan perhitungan jarak (`scripts/arsip` berisi skrip riset sekali pakai) |
+| `docs/` | Catatan pengembangan dan panduan hosting |
+| `404.html`, `robots.txt`, `manifest.webmanifest`, `.well-known/security.txt` | Berkas pendukung standar website |
 
 ## Memperbarui isi
 
-1. Buka `assets/js/data.js` dengan Notepad/VS Code.
-2. Ganti teks atau angka di antara tanda kutip. Data bertanda `// CONTOH` belum resmi.
-3. Bila semua data sudah resmi, ubah `dataContoh: true` menjadi `dataContoh: false`.
-4. Simpan, lalu unggah ulang ke hosting (lihat `PANDUAN_HOSTING.md`).
+Cara yang disarankan adalah **Portal Admin** di `/admin/`. Masuk memakai token GitHub milik akun admin (fine-grained token, hanya untuk repositori ini, izin *Contents: Read and write*, dengan tanggal kedaluwarsa). Setiap penyimpanan menjadi satu commit atas nama admin, lalu website terbit ulang otomatis dalam 1–2 menit.
 
-**Foto:** taruh file di `assets/img/`, lalu isi path-nya, misalnya `foto: "assets/img/kepala-kampung.jpg"` atau `src: "assets/img/panen.jpg"` di galeri.
+Perubahan langsung ke berkas juga bisa dilakukan lewat GitHub. Berkas `data.js` boleh berisi komentar; portal admin membacanya sebagai data (JSON5), bukan menjalankannya sebagai kode.
 
-**Peta drone:** ekspor ortofoto (dari Agisoft/WebODM/DroneDeploy) ke JPG/WEBP lebar ±2400 px, taruh di `assets/peta/`, isi `peta.ortofoto`. Atur posisi titik dengan `x` dan `y` dalam persen dari kiri dan atas gambar.
+## Melihat website di komputer
 
-**Anggaran, Indeks Desa, layanan, sosmed:** isi bagian `apbkam`, `indeksDesa`, `layanan`, dan `sosmed` di `data.js`. Untuk WhatsApp, tulis url seperti `https://wa.me/62812xxxxxxx`.
-
-**Google Maps & Street View:** isi `identitas.koordinat` dengan koordinat GPS kantor kampung, mis. `{ lat: -8.40, lng: 140.40 }`, agar peta dan Street View tepat di kantor kampung.
-
-**Video:** unggah ke YouTube, salin ID dari tautan (`https://youtu.be/ID_INI`) ke `video.youtubeId`. Atau taruh MP4 di `assets/video/` dan isi `video.fileLokal`.
+Dari terminal di folder ini jalankan `python3 -m http.server 8000`, lalu buka http://localhost:8000.
 
 ## Berita otomatis
 
-Robot di `.github/workflows/berita-otomatis.yml` menjalankan `scripts/update_berita.py` setiap 3 jam. Robot mencari berita baru tentang Kampung Marga Mulya di Bing News dan Google News, membuka setiap artikel untuk memastikan isinya memang membahas Marga Mulya di Merauke/Semangga, lalu menyimpannya ke `data/berita-otomatis.json` beserta gambar sampulnya. Website membaca file itu dan langsung menampilkan berita baru di slider, diberi label **Baru** selama 14 hari.
+Robot di `.github/workflows/berita-otomatis.yml` mencari berita tentang Kampung Marga Mulya dan berita terkait Semangga/Merauke (pertanian, harga pangan) setiap 3 jam, memeriksa isinya, lalu menyimpannya ke `data/berita-otomatis.json`. Berita yang keliru bisa disembunyikan dengan menambahkan tautannya ke `data/berita-abaikan.json`.
 
-- Jalankan manual: tab **Actions** → **Perbarui berita otomatis** → **Run workflow**.
-- Sembunyikan berita yang keliru: tambahkan tautannya ke `data/berita-abaikan.json`.
-- Berita pilihan tetap bisa ditambahkan langsung di bagian `berita` pada `data.js`.
+## Pindah ke domain pemerintah
 
-## Data terverifikasi
+Semua tautan di dalam website bersifat relatif, jadi website berjalan di domain apa pun. Saat domain baru aktif (misalnya subdomain `merauke.go.id` atau `desa.id`), yang perlu diganti hanya:
 
-Kode wilayah 93.01.05.2008, kode pos 99631, Distrik Semangga, jumlah penduduk 2.882 jiwa (proyeksi BPS pertengahan 2024), dan SD Inpres Semangga 3 di Kampung Marga Mulya. Data lain masih contoh dan wajib diganti dengan data resmi kampung.
+1. Berkas `CNAME` berisi nama domain baru (bila tetap memakai GitHub Pages), atau salin seluruh isi repositori ke server web.
+2. Alamat di `og:url` dan `og:image` pada `index.html`, serta `meta.alamatWeb` di `data.js`.
+3. Alamat `Contact` dan `Policy` di `.well-known/security.txt` bila pelaporan keamanan dipindahkan.
+
+## Lisensi pihak ketiga
+
+- Leaflet 1.9.4: BSD-2-Clause (`assets/vendor/leaflet/LICENSE`)
+- JSON5 2.2.3: MIT (`assets/vendor/json5/LICENSE.md`)
+- Source Sans 3 dan Source Serif 4: SIL Open Font License 1.1 (`assets/fonts/`)
+- Peta dasar © kontributor OpenStreetMap (ODbL)

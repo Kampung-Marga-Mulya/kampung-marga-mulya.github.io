@@ -6,9 +6,10 @@
   <title>RPJMK Kampung Marga Mulya 2019–2024</title>
   <meta name="description" content="Rencana Pembangunan Jangka Menengah Kampung (RPJMK) Marga Mulya Tahun 2019–2024 versi lengkap: Peraturan Kampung Nomor 1 Tahun 2019, dasar hukum, gambaran umum kampung, visi-misi, arah kebijakan, dan rencana kegiatan.">
   <meta name="theme-color" content="#FFFFFF">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; media-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <link rel="icon" href="assets/img/ikon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/css/fonts.css?v=1">
   <style>
     :root { --bg:#fff; --tint:#F5F8FE; --soft:#EEF4FD; --ink:#0A0A0A; --ink-2:#3B3F46; --line:#DCE6F6; --blue:#1452C2; --blue-deep:#0B3A8F; --blue-pale:#DCE8FB;
       --head:"Source Serif 4", Georgia, serif; --body:"Source Sans 3", "Segoe UI", Roboto, Arial, sans-serif; }
@@ -200,18 +201,6 @@
   </div>
   <footer class="foot">Marga Mulya On Site · Pemerintah Kampung Marga Mulya bersama Tim Ekspedisi Patriot IPB University</footer>
   <a class="totop" href="#" aria-label="Kembali ke atas">↑</a>
-  <script>
-    (function () {
-      var links = [].slice.call(document.querySelectorAll('.toc a'));
-      var secs = links.map(function (a) { return document.getElementById(a.getAttribute('href').slice(1)); });
-      function on() {
-        var y = window.scrollY + 100, cur = 0;
-        secs.forEach(function (s, i) { if (s && s.offsetTop <= y) cur = i; });
-        links.forEach(function (a, i) { a.classList.toggle('on', i === cur); });
-      }
-      window.addEventListener('scroll', on, { passive: true }); on();
-      if (window.matchMedia('(max-width: 900px)').matches) { var d = document.querySelector('.toc details'); if (d) d.open = false; }
-    })();
-  </script>
+  <script src="assets/js/rpjmk.js?v=1"></script>
 </body>
 </html>

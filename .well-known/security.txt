@@ -1,0 +1,5 @@
+# Laporan celah keamanan website Kampung Marga Mulya
+Contact: https://github.com/Kampung-Marga-Mulya/kampung-marga-mulya.github.io/security/advisories/new
+Expires: 2027-11-03T00:00:00.000Z
+Preferred-Languages: id, en
+Policy: https://github.com/Kampung-Marga-Mulya/kampung-marga-mulya.github.io/blob/main/SECURITY.md

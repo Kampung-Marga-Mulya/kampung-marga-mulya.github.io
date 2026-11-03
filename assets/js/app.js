@@ -15,6 +15,13 @@
       return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
     });
   };
+  // Alamat tautan/gambar: hanya http(s), mailto, tel, jangkar, dan berkas di website sendiri.
+  // Skema berbahaya (javascript:, data:, vbscript:) diganti "#" agar tidak bisa disisipi skrip.
+  var escUrl = function (u) {
+    var t = String(u == null ? "" : u).trim();
+    if (/^(?:[a-z][a-z0-9+.-]*):/i.test(t) && !/^(?:https?|mailto|tel):/i.test(t)) t = "#";
+    return esc(t);
+  };
   var num = function (n) { return Number(n).toLocaleString("id-ID"); };
   var pct = function (a, b, d) { return b ? (a / b * 100).toLocaleString("id-ID", { maximumFractionDigits: d == null ? 1 : d }) : "0"; };
   var rp = function (n) { return "Rp " + num(n); };
@@ -88,7 +95,7 @@
     return lap;
   };
   var mapBtn = function (href, label, icon, solid) {
-    return '<a class="btn ' + (solid ? "btn--solid" : "btn--line") + '" href="' + esc(href) + '" target="_blank" rel="noopener">' + ic(icon || "pin") + esc(label) + "</a>";
+    return '<a class="btn ' + (solid ? "btn--solid" : "btn--line") + '" href="' + escUrl(href) + '" target="_blank" rel="noopener">' + ic(icon || "pin") + esc(label) + "</a>";
   };
 
   /* ---------- Penanda versi draf ---------- */
@@ -164,9 +171,9 @@
   function kartu(n, dup) {
     var kat = n.kategori && n.kategori !== "Marga Mulya" ? n.kategori : "";
     var ph = '<span class="ncard__ph"' + (n.cover ? " hidden" : "") + ">" + ic("doc") + "<span>" + esc(n.sumber) + "</span><b>" + esc(kat ? kat : "Kampung Marga Mulya") + "</b></span>";
-    var img = n.cover ? '<img src="' + esc(n.cover) + '" alt="" loading="lazy" referrerpolicy="no-referrer">' : "";
+    var img = n.cover ? '<img src="' + escUrl(n.cover) + '" alt="" loading="lazy" referrerpolicy="no-referrer">' : "";
     var baru = umurHari(n.tanggal) <= BARU_HARI;
-    return '<a class="ncard' + (kat ? " ncard--terkait" : "") + '" href="' + esc(n.url) + '" target="_blank" rel="noopener"' + (dup ? ' aria-hidden="true" tabindex="-1" data-dup="1"' : "") + ">" +
+    return '<a class="ncard' + (kat ? " ncard--terkait" : "") + '" href="' + escUrl(n.url) + '" target="_blank" rel="noopener"' + (dup ? ' aria-hidden="true" tabindex="-1" data-dup="1"' : "") + ">" +
       '<span class="ncard__cover">' + img + ph + '<span class="ncard__tags"><span class="ncard__badge' + (baru ? " ncard__badge--new" : "") + '">' + (baru ? "Baru" : n.tanggal.slice(0, 4)) + "</span>" +
       '<span class="ncard__kat">' + esc(kat || "Marga Mulya") + "</span></span></span>" +
       '<span class="ncard__body"><span class="ncard__meta">' + esc(n.sumber) + " · " + tgl(n.tanggal) + '</span><span class="ncard__t">' + esc(n.judul) + "</span>" +
@@ -293,7 +300,7 @@
     var lini = (D.sejarahLini || []).length ? '<h4 class="mt-s">Lini masa kepemimpinan</h4><ol class="lini">' + D.sejarahLini.map(function (l) {
       return "<li><b>" + esc(l.tahun) + "</b><span><strong>" + esc(l.nama) + "</strong>" + (l.ket ? " · " + esc(l.ket) : "") + "</span></li>";
     }).join("") + "</ol>" : "";
-    var src = D.sejarahSumber ? '<p class="small">Sumber: ' + esc(D.sejarahSumber) + (D.rpjmk ? ' · <a href="' + esc(D.rpjmk.halaman) + '#bab-ii-1">baca teks aslinya</a>' : "") + "</p>" : "";
+    var src = D.sejarahSumber ? '<p class="small">Sumber: ' + esc(D.sejarahSumber) + (D.rpjmk ? ' · <a href="' + escUrl(D.rpjmk.halaman) + '#bab-ii-1">baca teks aslinya</a>' : "") + "</p>" : "";
     $("#sejarah").innerHTML = "<h3>Sejarah singkat</h3>" + awal.map(p).join("") +
       (sisa.length || lini ? '<div class="more-body" hidden>' + sisa.map(p).join("") + lini + src + "</div>" + bacaLagi("Baca selengkapnya", "Tutup sejarah") : src);
   })();
@@ -323,7 +330,7 @@
   if (D.rpjmk) {
     var R = D.rpjmk;
     $("#rpjmkCard").innerHTML = '<div class="rpjmk-card"><p class="small">Visi dan misi di atas tercantum dalam <b>' + esc(R.judul) + "</b>, ditetapkan dengan " + esc(R.perkam) + ".</p>" +
-      '<div class="rpjmk-cta"><a class="btn btn--solid" href="' + esc(R.halaman) + '">' + ic("doc") + 'Baca RPJMK lengkap</a><a class="btn btn--line" href="#perencanaan">Ringkasan &amp; dasar hukum</a></div></div>';
+      '<div class="rpjmk-cta"><a class="btn btn--solid" href="' + escUrl(R.halaman) + '">' + ic("doc") + 'Baca RPJMK lengkap</a><a class="btn btn--line" href="#perencanaan">Ringkasan &amp; dasar hukum</a></div></div>';
   }
   var arah = [["n", "Utara", D.batas.utara], ["w", "Barat", D.batas.barat], ["e", "Timur", D.batas.timur], ["s", "Selatan", D.batas.selatan]];
   $("#batas").innerHTML = arah.map(function (a) {
@@ -337,10 +344,10 @@
     $("#prestasi").innerHTML = D.prestasi.map(function (p) {
       return '<button type="button" class="pres tap"' + act(function () {
         openModal({ kat: "Prestasi " + p.tahun, title: p.judul, html:
-          (p.foto && p.foto.length ? '<div class="potgal">' + p.foto.map(function (f) { return '<figure><img src="' + esc(f) + '" alt="Piagam ' + esc(p.judul) + '" loading="lazy"><figcaption><span>Foto: dokumentasi Kantor Kampung Marga Mulya</span></figcaption></figure>'; }).join("") + "</div>" : "") +
+          (p.foto && p.foto.length ? '<div class="potgal">' + p.foto.map(function (f) { return '<figure><img src="' + escUrl(f) + '" alt="Piagam ' + esc(p.judul) + '" loading="lazy"><figcaption><span>Foto: dokumentasi Kantor Kampung Marga Mulya</span></figcaption></figure>'; }).join("") + "</div>" : "") +
           "<p>" + esc(p.ket) + "</p>" + (p.tentang ? "<p><b>Tentang penghargaan ini:</b> " + esc(p.tentang) + "</p>" : "") +
           "<p class='small'>Pemberi: " + esc(p.pemberi) + ". " + esc(p.dokumen) + ".</p>" });
-      }) + ">" + (p.foto && p.foto[0] ? '<img class="pres__img" src="' + esc(p.foto[0]) + '" alt="" loading="lazy">' : "") +
+      }) + ">" + (p.foto && p.foto[0] ? '<img class="pres__img" src="' + escUrl(p.foto[0]) + '" alt="" loading="lazy">' : "") +
         '<span class="pres__body"><span class="pres__th">' + p.tahun + '</span><b>' + esc(p.judul) + "</b><small>" + esc(p.pemberi) + "</small></span></button>";
     }).join("");
   }
@@ -348,11 +355,11 @@
   /* =================== PEMERINTAHAN =================== */
   var S = D.struktur;
   function pejabatModal(o) {
-    var foto = o.foto ? '<img class="modal__img" src="' + esc(o.foto) + '" alt="Foto ' + esc(o.nama) + '">' : "";
+    var foto = o.foto ? '<img class="modal__img" src="' + escUrl(o.foto) + '" alt="Foto ' + esc(o.nama) + '">' : "";
     openModal({ kat: "Pemerintah Kampung", title: o.jabatan, html: foto + "<p><b>" + esc(o.nama) + "</b>" + (o.pendidikan ? " · pendidikan terakhir " + esc(o.pendidikan) : "") + "</p><p>" + esc(o.tugas || "") + "</p>" + (o.kontak ? "<p>Kontak: " + esc(o.kontak) + "</p>" : "") });
   }
   var node = function (o, top) {
-    var ph = top ? '<span class="node__photo">' + (o.foto ? '<img src="' + esc(o.foto) + '" alt="">' : ic("users")) + "</span>" : "";
+    var ph = top ? '<span class="node__photo">' + (o.foto ? '<img src="' + escUrl(o.foto) + '" alt="">' : ic("users")) + "</span>" : "";
     return '<button type="button" class="node tap' + (top ? " node--top" : "") + '"' + act(function () { pejabatModal(o); }) + ">" + ph +
       '<span class="node__jab">' + esc(o.jabatan) + '</span><span class="node__nama">' + esc(o.nama) + "</span></button>";
   };
@@ -554,7 +561,7 @@
               return '<h4 class="mt-s">' + esc(s.nama) + ' <span class="small">· ' + rpS(s.anggaran) + '</span></h4><div class="tablewrap"><table class="tbl"><thead><tr><th>Kegiatan</th><th class="num">Anggaran</th></tr></thead><tbody>' +
                 s.kegiatan.map(function (k) { return "<tr><td>" + esc(k.nama) + '<br><span class="small">' + esc(k.sumber) + '</span></td><td class="num">' + rp(k.anggaran) + "</td></tr>"; }).join("") + "</tbody></table></div>";
             }).join("") : "<p>Bidang ini tidak dianggarkan pada APBKam " + A.tahun + ".</p>") +
-            "<div class='modal__actions'><a class='btn btn--solid' href='" + esc(A.halaman) + "#bidang-" + esc(b.kode) + "'>" + ic("doc") + "Lihat rincian belanja lengkap</a></div>" });
+            "<div class='modal__actions'><a class='btn btn--solid' href='" + escUrl(A.halaman) + "#bidang-" + esc(b.kode) + "'>" + ic("doc") + "Lihat rincian belanja lengkap</a></div>" });
       }) + '><span class="bid__top"><span>' + esc(b.kode) + ". " + esc(b.bidang) + "</span><span>" + rpS(b.anggaran) + '</span></span><span class="bid__track" style="display:block"><span class="bid__fill" style="display:block;width:' + Math.max(b.anggaran ? 1 : 0, b.anggaran / totBel * 100) + '%"></span></span><small>' +
         (b.anggaran ? p + "% dari total belanja · " + b.sub.length + " sub bidang · " + nK + " kegiatan" : "Tidak dianggarkan tahun ini") + "</small></button>";
     }).join("");
@@ -572,7 +579,7 @@
     $("#apbPembiayaan").innerHTML = '<div class="grid-2">' + pTab("Penerimaan pembiayaan", P.penerimaan || [], P.totalPenerimaan) + pTab("Pengeluaran pembiayaan", P.pengeluaran || [], P.totalPengeluaran) + "</div>" +
       '<p class="small mt-s">Pembiayaan netto ' + esc(tanda(P.netto)) + ". Dokumen mencatat selisih pembiayaan (surplus ditambah pembiayaan netto) sebesar " + esc(tanda(A.selisih)) + ".</p>";
 
-    $("#apbMore").innerHTML = '<div class="apb-more__t"><b>Ingin melihat anggaran lengkap?</b><span>Semua kegiatan beserta rincian volume, harga satuan, dan jumlahnya ada di halaman rincian APBKam.</span></div><a class="btn btn--solid" href="' + esc(A.halaman) + '">' + ic("doc") + "Baca selengkapnya</a>";
+    $("#apbMore").innerHTML = '<div class="apb-more__t"><b>Ingin melihat anggaran lengkap?</b><span>Semua kegiatan beserta rincian volume, harga satuan, dan jumlahnya ada di halaman rincian APBKam.</span></div><a class="btn btn--solid" href="' + escUrl(A.halaman) + '">' + ic("doc") + "Baca selengkapnya</a>";
     if (A.danaLembaga) bars("#apbLembaga", A.danaLembaga, "Dana lembaga kampung", rpS, true);
     if (A.danaLembagaSumber) $("#apbLembagaNote").textContent = "Di luar APBKam. Sumber: " + A.danaLembagaSumber + ".";
   })();
@@ -629,7 +636,7 @@
     $("#rpjmkBidang").innerHTML = R.bidang.map(function (b, i) {
       return '<details class="bid"' + (i === 0 ? " open" : "") + "><summary><b>" + (i + 1) + "</b>" + esc(b.nama) + "</summary><ul>" + b.kegiatan.map(li).join("") + "</ul></details>";
     }).join("") + '<p class="small mt-s">Daftar ini adalah rencana dan usulan dalam dokumen, bukan laporan realisasi.</p>';
-    $("#rpjmkCta").innerHTML = '<a class="btn btn--solid" href="' + esc(R.halaman) + '">' + ic("doc") + 'Baca RPJMK lengkap</a><a class="btn btn--line" href="' + esc(R.pdf) + '" download>Unduh PDF dokumen asli</a>';
+    $("#rpjmkCta").innerHTML = '<a class="btn btn--solid" href="' + escUrl(R.halaman) + '">' + ic("doc") + 'Baca RPJMK lengkap</a><a class="btn btn--line" href="' + escUrl(R.pdf) + '" download>Unduh PDF dokumen asli</a>';
   })();
 
   /* =================== PETA BATAS KAMPUNG =================== */
@@ -680,12 +687,12 @@
       }));
       // Kantor kampung
       var kantor = L.marker([B.kantor.lat, B.kantor.lng], { zIndexOffset: 1000, icon: L.divIcon({ className: "", html: '<span class="mk mk--home"><svg class="ic"><use href="#i-home"/></svg></span>', iconSize: [36, 36], iconAnchor: [18, 18] }) }).addTo(map);
-      kantor.on("click", function () { tampil("Pemerintahan", B.kantor.nama, "<p>" + esc(B.kantor.ket) + ".</p><p class='small'>" + dms(B.kantor.lat, "LU", "LS") + " · " + dms(B.kantor.lng, "BT", "BB") + "</p><p><a href='" + esc(gm.dir) + "' target='_blank' rel='noopener'>Petunjuk arah (OpenStreetMap) →</a></p>"); });
+      kantor.on("click", function () { tampil("Pemerintahan", B.kantor.nama, "<p>" + esc(B.kantor.ket) + ".</p><p class='small'>" + dms(B.kantor.lat, "LU", "LS") + " · " + dms(B.kantor.lng, "BT", "BB") + "</p><p><a href='" + escUrl(gm.dir) + "' target='_blank' rel='noopener'>Petunjuk arah (OpenStreetMap) →</a></p>"); });
       // Fasilitas umum (titik dari foto GPS)
       lap.fasilitas = L.layerGroup((F || []).filter(function (f) { return f.lat != null && f.dalamKampung; }).map(function (f) {
         var m = L.circleMarker([f.lat, f.lng], { radius: 6, color: "#FFFFFF", weight: 2, fillColor: "#0B3A8F", fillOpacity: 1 });
         m.on("click", function () {
-          tampil(f.kategori + " · " + (f.jenis || ""), f.nama, (f.foto ? '<img class="mapinfo__img" src="' + esc(f.foto) + '" alt="">' : "") + "<p>" + esc((f.keterangan || [])[0] || f.alamat) + "</p><p><a href='#fasilitas' data-fokus-fasil='" + esc(f.id) + "'>Lihat di daftar fasilitas →</a></p>");
+          tampil(f.kategori + " · " + (f.jenis || ""), f.nama, (f.foto ? '<img class="mapinfo__img" src="' + escUrl(f.foto) + '" alt="">' : "") + "<p>" + esc((f.keterangan || [])[0] || f.alamat) + "</p><p><a href='#fasilitas' data-fokus-fasil='" + esc(f.id) + "'>Lihat di daftar fasilitas →</a></p>");
         });
         return m.bindTooltip(f.nama, { direction: "top", offset: [0, -6] });
       }));
@@ -721,9 +728,9 @@
   /* =================== VIDEO =================== */
   var V = D.video, vb = $("#videoBox");
   $("#videoJudul").textContent = V.judul; $("#videoDesk").textContent = V.deskripsi;
-  var poster = V.poster ? '<img src="' + esc(V.poster) + '" alt="">' : (V.youtubeId ? '<img src="https://img.youtube.com/vi/' + esc(V.youtubeId) + '/hqdefault.jpg" alt="">' : "");
+  var poster = V.poster ? '<img src="' + escUrl(V.poster) + '" alt="">' : (V.youtubeId ? '<img src="https://img.youtube.com/vi/' + esc(V.youtubeId) + '/hqdefault.jpg" alt="">' : "");
   if (V.fileLokal) {
-    vb.innerHTML = '<video controls preload="metadata"' + (V.poster ? ' poster="' + esc(V.poster) + '"' : "") + '><source src="' + esc(V.fileLokal) + '" type="video/mp4">Peramban Anda tidak mendukung video.</video>';
+    vb.innerHTML = '<video controls preload="metadata"' + (V.poster ? ' poster="' + escUrl(V.poster) + '"' : "") + '><source src="' + escUrl(V.fileLokal) + '" type="video/mp4">Peramban Anda tidak mendukung video.</video>';
   } else if (V.youtubeId) {
     // Pemutar YouTube tertanam: video diputar langsung di halaman ini.
     vb.innerHTML = '<iframe src="https://www.youtube-nocookie.com/embed/' + encodeURIComponent(V.youtubeId) + '?rel=0&playsinline=1" title="' + esc(V.judul) + '" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen></iframe>';
@@ -753,7 +760,7 @@
     return a.concat(p.fotoLain || []);
   };
   var kreditHtml = function (f) {
-    return esc(f.kredit) + (f.lisensi ? " · " + esc(f.lisensi) : "") + (f.url ? ' · <a href="' + esc(f.url) + '" target="_blank" rel="noopener">sumber</a>' : "");
+    return esc(f.kredit) + (f.lisensi ? " · " + esc(f.lisensi) : "") + (f.url ? ' · <a href="' + escUrl(f.url) + '" target="_blank" rel="noopener">sumber</a>' : "");
   };
   if (D.potensiSD) (function () {
     var P = D.potensiSD, H = (D.rpjmk && D.rpjmk.halaman) || "rpjmk.html";
@@ -765,7 +772,7 @@
     $("#potensiSD").innerHTML = '<div class="sdintro"><h3>Potensi sumber daya</h3><p>' + esc(P.pengantar) + "</p></div>" +
       '<div class="sdgrid">' + P.daftar.map(function (d) {
         return '<article class="panel sd"><h4>' + esc(d.judul) + '</h4><div class="tiles tiles--3">' + d.angka.map(function (a) { return '<div class="tile"><b>' + esc(a[0]) + "</b><span>" + esc(a[1]) + "</span></div>"; }).join("") +
-          '</div><p class="small">' + esc(d.isi) + '</p><a class="linkmore" href="' + esc(H) + "#" + esc(d.bab) + '">Baca selengkapnya</a></article>';
+          '</div><p class="small">' + esc(d.isi) + '</p><a class="linkmore" href="' + escUrl(H) + "#" + esc(d.bab) + '">Baca selengkapnya</a></article>';
       }).join("") + "</div>" + kal +
       '<p class="small mt-s">Sumber: ' + esc(P.sumber) + '. Angka adalah kondisi saat dokumen disusun (2019); data terbaru ada di menu <a href="#penduduk">Data Kampung</a>.</p>';
   })();
@@ -773,12 +780,12 @@
     var fs = fotoPot(p), f0 = fs[0];
     return '<button type="button" class="pot tap"' + act(function () {
       openModal({ kat: "Potensi kampung", title: p.judul, html:
-        (fs.length ? '<div class="potgal">' + fs.map(function (f) { return '<figure><img src="' + esc(f.src) + '" alt="' + esc(f.ket) + '" loading="lazy"><figcaption><b>' + esc(f.ket) + "</b><span>Foto: " + kreditHtml(f) + "</span></figcaption></figure>"; }).join("") + "</div>" : "") +
+        (fs.length ? '<div class="potgal">' + fs.map(function (f) { return '<figure><img src="' + escUrl(f.src) + '" alt="' + esc(f.ket) + '" loading="lazy"><figcaption><b>' + esc(f.ket) + "</b><span>Foto: " + kreditHtml(f) + "</span></figcaption></figure>"; }).join("") + "</div>" : "") +
         "<p>" + esc(p.ket) + "</p><p>" + esc(p.detail) + "</p>" +
         (p.sorotan ? '<div class="sorot"><h4>' + esc(p.sorotan.judul) + "</h4><p>" + esc(p.sorotan.isi) + "</p>" +
-          (p.video ? '<figure class="potvid"><video controls playsinline preload="none" poster="' + esc(p.video.poster || "") + '" src="' + esc(p.video.src) + '"></video><figcaption><b>' + esc(p.video.ket) + "</b><span>Video: " + esc(p.video.kredit) + "</span></figcaption></figure>" : "") + "</div>" : "") +
-        (p.tautan ? "<div class='modal__actions'><a class='btn btn--solid' href='" + esc(p.tautan) + "'>" + ic("pin") + esc(p.tautanLabel || "Lihat selengkapnya") + "</a></div>" : "") });
-    }) + ">" + (f0 ? '<span class="pot__media"><img class="pot__img" src="' + esc(f0.src) + '" alt="" loading="lazy">' + (fs.length > 1 ? '<span class="pot__n">' + ic("image") + fs.length + " foto" + (p.video ? " " + ic("play") : "") + "</span>" : "") + '<span class="pot__cr">' + esc(f0.url ? f0.kredit.replace(" · Wikimedia Commons", "") + " · Wikimedia" : (/^Dokumen Fasilitas/.test(f0.kredit || "") ? "Dokumen kampung" : "Tim Ekspedisi Patriot")) + "</span></span>" : "") +
+          (p.video ? '<figure class="potvid"><video controls playsinline preload="none" poster="' + escUrl(p.video.poster || "") + '" src="' + escUrl(p.video.src) + '"></video><figcaption><b>' + esc(p.video.ket) + "</b><span>Video: " + esc(p.video.kredit) + "</span></figcaption></figure>" : "") + "</div>" : "") +
+        (p.tautan ? "<div class='modal__actions'><a class='btn btn--solid' href='" + escUrl(p.tautan) + "'>" + ic("pin") + esc(p.tautanLabel || "Lihat selengkapnya") + "</a></div>" : "") });
+    }) + ">" + (f0 ? '<span class="pot__media"><img class="pot__img" src="' + escUrl(f0.src) + '" alt="" loading="lazy">' + (fs.length > 1 ? '<span class="pot__n">' + ic("image") + fs.length + " foto" + (p.video ? " " + ic("play") : "") + "</span>" : "") + '<span class="pot__cr">' + esc(f0.url ? f0.kredit.replace(" · Wikimedia Commons", "") + " · Wikimedia" : (/^Dokumen Fasilitas/.test(f0.kredit || "") ? "Dokumen kampung" : "Tim Ekspedisi Patriot")) + "</span></span>" : "") +
       '<span class="pot__ic">' + ic(ikonPot[p.ikon] || "sprout") + '</span><b class="pot__t">' + esc(p.judul) + '</b><span class="pot__d">' + esc(p.ket) + "</span></button>";
   }).join("");
   if (D.potensi.some(function (p) { return (p.fotoLain || []).length; })) $("#potensiList").insertAdjacentHTML("afterend", '<p class="small">Sebagian foto potensi adalah foto ilustrasi berlisensi bebas dari Wikimedia Commons; nama pembuat, lisensi, dan tautan sumbernya tercantum saat kartu diketuk. Foto lainnya dokumentasi Tim Ekspedisi Patriot IPB University.</p>');
@@ -809,13 +816,13 @@
 
   $("#kegiatan").innerHTML = D.kegiatan.map(function (k) {
     return '<li><button type="button" class="reset tap"' + act(function () {
-      openModal({ kat: "Kegiatan Ekspedisi Patriot " + k.tanggal, title: k.judul, html: (k.foto ? '<img class="modal__img" src="' + esc(k.foto) + '" alt="' + esc(k.judul) + '">' : "") + "<p>" + esc(k.ket) + "</p><p class='small'>Bagian dari kerja sama Tim Ekspedisi Patriot IPB University dengan Pemerintah Kampung Marga Mulya.</p>" });
-    }) + ">" + (k.foto ? '<img class="tl__img" src="' + esc(k.foto) + '" alt="" loading="lazy">' : "") + "<time>" + esc(k.tanggal) + "</time><b>" + esc(k.judul) + '</b><span class="tl__d">' + esc(k.ket) + "</span></button></li>";
+      openModal({ kat: "Kegiatan Ekspedisi Patriot " + k.tanggal, title: k.judul, html: (k.foto ? '<img class="modal__img" src="' + escUrl(k.foto) + '" alt="' + esc(k.judul) + '">' : "") + "<p>" + esc(k.ket) + "</p><p class='small'>Bagian dari kerja sama Tim Ekspedisi Patriot IPB University dengan Pemerintah Kampung Marga Mulya.</p>" });
+    }) + ">" + (k.foto ? '<img class="tl__img" src="' + escUrl(k.foto) + '" alt="" loading="lazy">' : "") + "<time>" + esc(k.tanggal) + "</time><b>" + esc(k.judul) + '</b><span class="tl__d">' + esc(k.ket) + "</span></button></li>";
   }).join("");
   $("#gallery").innerHTML = D.galeri.map(function (g) {
     return '<button type="button"' + act(function () {
-      openModal({ kat: "Galeri", title: g.caption, html: g.src ? '<img class="modal__img" src="' + esc(g.src) + '" alt="' + esc(g.caption) + '">' : "<p>Foto untuk kegiatan ini akan segera ditambahkan.</p>" });
-    }) + ">" + (g.src ? '<img src="' + esc(g.src) + '" alt="' + esc(g.caption) + '" loading="lazy">' : '<span class="ph">' + ic("image") + "</span>") + '<span class="cap">' + esc(g.caption) + "</span></button>";
+      openModal({ kat: "Galeri", title: g.caption, html: g.src ? '<img class="modal__img" src="' + escUrl(g.src) + '" alt="' + esc(g.caption) + '">' : "<p>Foto untuk kegiatan ini akan segera ditambahkan.</p>" });
+    }) + ">" + (g.src ? '<img src="' + escUrl(g.src) + '" alt="' + esc(g.caption) + '" loading="lazy">' : '<span class="ph">' + ic("image") + "</span>") + '<span class="cap">' + esc(g.caption) + "</span></button>";
   }).join("");
 
   /* =================== SARANA PRASARANA (monografi) =================== */
@@ -843,10 +850,10 @@
   var ikonSos = { Facebook: "thumb", Instagram: "camera", YouTube: "video", TikTok: "note", WhatsApp: "chat" };
   // Akun media sosial yang sudah ada ditulis langsung di daftar kontak (nama akun + tautan).
   $("#kontakList").insertAdjacentHTML("beforeend", D.sosmed.filter(function (s) { return s.url; }).map(function (s) {
-    return '<li><a class="tap" href="' + esc(s.url) + '" target="_blank" rel="noopener"><span>' + ic(ikonSos[s.nama] || "globe") + "</span><span><small>" + esc(s.nama) + "</small><b>" + esc(s.akun) + '</b></span><span class="go">' + ic("external") + "</span></a></li>";
+    return '<li><a class="tap" href="' + escUrl(s.url) + '" target="_blank" rel="noopener"><span>' + ic(ikonSos[s.nama] || "globe") + "</span><span><small>" + esc(s.nama) + "</small><b>" + esc(s.akun) + '</b></span><span class="go">' + ic("external") + "</span></a></li>";
   }).join(""));
   var sos = D.sosmed.slice().sort(function (a, b) { return (b.url ? 1 : 0) - (a.url ? 1 : 0); }).map(function (s) {
-    if (s.url) return '<a class="is-linked" href="' + esc(s.url) + '" target="_blank" rel="noopener" aria-label="' + esc(s.nama + " " + s.akun) + '">' + ic(ikonSos[s.nama] || "globe") + '<span class="soc__n">' + esc(s.nama) + '</span><span class="soc__a">' + esc(s.akun) + "</span></a>";
+    if (s.url) return '<a class="is-linked" href="' + escUrl(s.url) + '" target="_blank" rel="noopener" aria-label="' + esc(s.nama + " " + s.akun) + '">' + ic(ikonSos[s.nama] || "globe") + '<span class="soc__n">' + esc(s.nama) + '</span><span class="soc__a">' + esc(s.akun) + "</span></a>";
     return '<button type="button" class="is-empty"' + act(function () {
       openModal({ kat: "Media sosial", title: s.nama + " kampung", html: "<p>Akun " + esc(s.nama) + " resmi Kampung Marga Mulya belum ditautkan. Setelah akun dibuat, tautannya akan tersedia di sini.</p><p class='small'>Untuk pengelola: isi kolom url " + esc(s.nama) + " di file data.js.</p>" });
     }) + ">" + ic(ikonSos[s.nama] || "globe") + esc(s.nama) + "</button>";
@@ -877,7 +884,7 @@
 
     function kartu(t) {
       var k = KAT[t.kategori] || { ic: "pin" };
-      var foto = t.foto ? '<img src="' + esc(t.foto) + '" alt="' + esc(t.nama) + '" loading="lazy" referrerpolicy="no-referrer">' : "";
+      var foto = t.foto ? '<img src="' + escUrl(t.foto) + '" alt="' + esc(t.nama) + '" loading="lazy" referrerpolicy="no-referrer">' : "";
       var ph = '<span class="ncard__ph"' + (t.foto ? " hidden" : "") + ">" + ic(k.ic) + "<span>" + esc(t.kategori) + "</span><b>" + esc(t.nama) + "</b></span>";
       var kredit = t.kreditFoto ? '<span class="wcard__credit">Foto: ' + esc(t.kreditFoto) + "</span>" : "";
       return '<article class="ncard wcard">' +
@@ -889,7 +896,7 @@
         '<span class="ncard__d">' + esc(t.deskripsi) + "</span>" +
         (t.jam ? '<span class="wcard__info">Buka ' + esc(t.jam) + "</span>" : "") +
         "</span></button>" +
-        '<span class="wcard__act"><a href="' + esc(gmCari(t)) + '" target="_blank" rel="noopener">' + ic("pin") + 'Google Maps</a><a href="' + esc(gmRute(t)) + '" target="_blank" rel="noopener">' + ic("nav") + "Rute</a></span></article>";
+        '<span class="wcard__act"><a href="' + escUrl(gmCari(t)) + '" target="_blank" rel="noopener">' + ic("pin") + 'Google Maps</a><a href="' + escUrl(gmRute(t)) + '" target="_blank" rel="noopener">' + ic("nav") + "Rute</a></span></article>";
     }
 
     function render() {
@@ -967,8 +974,8 @@
         var html = lebih
           ? '<div class="mpop"><small>' + g.isi.length + " tempat di titik ini</small>" + g.isi.map(function (x) {
               var t = x.t; return "<b>" + x.no + ". " + esc(t.nama) + "</b><span>" + esc(t.kategori) + (t.perkiraan ? " · lokasi perkiraan" : "") + "</span>";
-            }).join("") + "<span>" + fmtKm(t0.jarak_km) + " · " + fmtMnt(t0.waktu_menit) + ' dari Marga Mulya</span><span class="mpop__a"><a href="' + esc(gmCari(t0)) + '" target="_blank" rel="noopener">Google Maps</a><a href="' + esc(gmRute(t0)) + '" target="_blank" rel="noopener">Rute</a></span></div>'
-          : '<div class="mpop">' + (t0.foto ? '<img src="' + esc(t0.foto) + '" alt="" referrerpolicy="no-referrer" onerror="this.remove()">' : "") + "<small>" + esc(t0.kategori) + "</small><b>" + esc(t0.nama) + "</b><span>" + fmtKm(t0.jarak_km) + " · " + fmtMnt(t0.waktu_menit) + " dari Marga Mulya" + (t0.perkiraan ? "<br><i>Lokasi perkiraan</i>" : "") + '</span><span class="mpop__a"><a href="' + esc(gmCari(t0)) + '" target="_blank" rel="noopener">Google Maps</a><a href="' + esc(gmRute(t0)) + '" target="_blank" rel="noopener">Rute</a></span></div>';
+            }).join("") + "<span>" + fmtKm(t0.jarak_km) + " · " + fmtMnt(t0.waktu_menit) + ' dari Marga Mulya</span><span class="mpop__a"><a href="' + escUrl(gmCari(t0)) + '" target="_blank" rel="noopener">Google Maps</a><a href="' + escUrl(gmRute(t0)) + '" target="_blank" rel="noopener">Rute</a></span></div>'
+          : '<div class="mpop">' + (t0.foto ? '<img src="' + escUrl(t0.foto) + '" alt="" referrerpolicy="no-referrer" data-hapus-galat>' : "") + "<small>" + esc(t0.kategori) + "</small><b>" + esc(t0.nama) + "</b><span>" + fmtKm(t0.jarak_km) + " · " + fmtMnt(t0.waktu_menit) + " dari Marga Mulya" + (t0.perkiraan ? "<br><i>Lokasi perkiraan</i>" : "") + '</span><span class="mpop__a"><a href="' + escUrl(gmCari(t0)) + '" target="_blank" rel="noopener">Google Maps</a><a href="' + escUrl(gmRute(t0)) + '" target="_blank" rel="noopener">Rute</a></span></div>';
         m.bindPopup(html, { maxWidth: 260 });
         m.addTo(map); b.push([g.lat, g.lng]);
         grup.push({ m: m, ids: g.isi.map(function (x) { return x.t.id; }) });
@@ -1029,7 +1036,7 @@
     };
     function kartu(f) {
       var st = STATUS[f.status] || STATUS["perlu-data"];
-      var foto = f.foto ? '<img src="' + esc(f.foto) + '" alt="' + esc(f.nama) + '" loading="lazy">' : "";
+      var foto = f.foto ? '<img src="' + escUrl(f.foto) + '" alt="' + esc(f.nama) + '" loading="lazy">' : "";
       var ph = '<span class="ncard__ph"' + (f.foto ? " hidden" : "") + ">" + ic(icon(f)) + "<span>" + esc(f.jenis || f.kategori) + "</span><b>" + esc(f.nama) + "</b></span>";
       return '<article class="ncard wcard fcard">' +
         '<button type="button" class="wcard__top" data-fasil="' + esc(f.id) + '" aria-label="Lihat ' + esc(f.nama) + ' di peta">' +
@@ -1044,7 +1051,7 @@
         "</span></button>" +
         '<span class="wcard__act"><button type="button" class="linkbtn linkbtn--first" data-fasil="' + esc(f.id) + '">' + ic("pin") + "Lihat di peta</button>" +
         (f.foto ? '<button type="button" class="linkbtn" data-fgal="' + esc(f.id) + '">' + ic("image") + "Lihat foto" + (fotoF(f).length > 1 ? " (" + fotoF(f).length + ")" : "") + "</button>"
-          : (f.sumberUrl ? '<a href="' + esc(f.sumberUrl) + '" target="_blank" rel="noopener">' + ic("external") + "Sumber: " + esc(f.sumber) + "</a>" : '<a href="#kontak">' + ic("phone") + "Kirim data</a>")) +
+          : (f.sumberUrl ? '<a href="' + escUrl(f.sumberUrl) + '" target="_blank" rel="noopener">' + ic("external") + "Sumber: " + esc(f.sumber) + "</a>" : '<a href="#kontak">' + ic("phone") + "Kirim data</a>")) +
         "</span></article>";
     }
     function render() {
@@ -1064,7 +1071,7 @@
       var b = e.target.closest("[data-fgal]"); if (!b) return; e.preventDefault();
       var f = F.fasilitas.filter(function (x) { return x.id === b.getAttribute("data-fgal"); })[0]; if (!f) return;
       openModal({ kat: f.kategori + " · " + (f.jenis || ""), title: f.nama, html: '<div class="potgal">' + fotoF(f).map(function (g) {
-        return '<figure><img src="' + esc(g.src) + '" alt="' + esc(f.nama) + '" loading="lazy"><figcaption>' + (g.ket ? "<b>" + esc(g.ket) + "</b>" : "") + "<span>Foto: " + esc(g.sumber || "") + "</span></figcaption></figure>";
+        return '<figure><img src="' + escUrl(g.src) + '" alt="' + esc(f.nama) + '" loading="lazy"><figcaption>' + (g.ket ? "<b>" + esc(g.ket) + "</b>" : "") + "<span>Foto: " + esc(g.sumber || "") + "</span></figcaption></figure>";
       }).join("") + "</div><p>" + esc(f.alamat) + "</p>" });
     });
     var prev = $("#fasilPrev"), next = $("#fasilNext"), count = $("#fasilCount");
@@ -1087,7 +1094,7 @@
         map.flyTo([f.lat, f.lng], Math.max(map.getZoom(), 15), { duration: .8 });
         setTimeout(function () { markers[id].openPopup(); }, 850);
       } else {
-        openModal({ kat: f.kategori, title: f.nama, html: (f.foto ? '<img class="modal__img" src="' + esc(f.foto) + '" alt="' + esc(f.nama) + '">' : "") + "<p>" + esc(f.alamat) + "</p><ul>" + (f.keterangan || []).map(function (k) { return "<li>" + esc(k) + "</li>"; }).join("") + "</ul>" +
+        openModal({ kat: f.kategori, title: f.nama, html: (f.foto ? '<img class="modal__img" src="' + escUrl(f.foto) + '" alt="' + esc(f.nama) + '">' : "") + "<p>" + esc(f.alamat) + "</p><ul>" + (f.keterangan || []).map(function (k) { return "<li>" + esc(k) + "</li>"; }).join("") + "</ul>" +
           "<p class='small'>Titik lokasi fasilitas ini belum tersedia di peta batas kampung. Pemerintah kampung dapat mengirimkan foto bertitik GPS untuk melengkapinya.</p>" });
       }
     }
@@ -1113,8 +1120,8 @@
         (byKey[key] = byKey[key] || []).push(f);
       });
       var pop = function (f) {
-        return (f.foto ? '<img src="' + esc(f.foto) + '" alt="" onerror="this.remove()">' : "") + "<small>" + esc(f.jenis || f.kategori) + "</small><b>" + esc(f.nama) + "</b><span>" + esc(f.alamat) + (f.perkiraan ? "<br><i>Lokasi perkiraan</i>" : "") + (f.survei ? "<br>" + esc(survei(f)) : "") + "</span>" +
-          '<span class="mpop__a">' + (f.foto ? '<a href="#" data-fgal="' + esc(f.id) + '">Foto</a>' : "") + (!f.dalamKampung ? '<a href="' + esc(osm(f)) + '" target="_blank" rel="noopener">OpenStreetMap</a>' : "") + (f.sumberUrl ? '<a href="' + esc(f.sumberUrl) + '" target="_blank" rel="noopener">Sumber</a>' : "") + "</span>";
+        return (f.foto ? '<img src="' + escUrl(f.foto) + '" alt="" data-hapus-galat>' : "") + "<small>" + esc(f.jenis || f.kategori) + "</small><b>" + esc(f.nama) + "</b><span>" + esc(f.alamat) + (f.perkiraan ? "<br><i>Lokasi perkiraan</i>" : "") + (f.survei ? "<br>" + esc(survei(f)) : "") + "</span>" +
+          '<span class="mpop__a">' + (f.foto ? '<a href="#" data-fgal="' + esc(f.id) + '">Foto</a>' : "") + (!f.dalamKampung ? '<a href="' + escUrl(osm(f)) + '" target="_blank" rel="noopener">OpenStreetMap</a>' : "") + (f.sumberUrl ? '<a href="' + escUrl(f.sumberUrl) + '" target="_blank" rel="noopener">Sumber</a>' : "") + "</span>";
       };
       Object.keys(byKey).forEach(function (key) {
         var g = byKey[key], f0 = g[0], c = (KAT[f0.kategori] || {}).c || "#1452C2";
@@ -1205,4 +1212,10 @@
     if (document.readyState === "complete") jalan(); else window.addEventListener("load", jalan);
     document.addEventListener("visibilitychange", function () { if (document.hidden) henti(); else if (siap && !tenang) mulai(); });
   })();
+
+  /* ---- Gambar di popup peta yang gagal dimuat dihapus (pengganti onerror sebaris, sesuai CSP) ---- */
+  document.addEventListener("error", function (e) {
+    var t = e.target;
+    if (t && t.tagName === "IMG" && t.hasAttribute("data-hapus-galat")) t.remove();
+  }, true);
 })();

@@ -1,0 +1,7 @@
+# Memeriksa pembaruan versi komponen GitHub Actions setiap minggu.
+version: 2
+updates:
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
