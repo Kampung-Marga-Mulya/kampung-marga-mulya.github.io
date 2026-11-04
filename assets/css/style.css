@@ -1106,14 +1106,14 @@ html, body { transition: background-color .25s ease, color .25s ease; }
 .tali { position: relative; height: calc(var(--tinggi, 250px)); }
 .tali + .tali { margin-top: 6px; }
 .tali__garis { position: absolute; left: 0; right: 0; top: 0; width: 100%; height: 70px; overflow: visible; }
-.tali__garis path { fill: none; stroke: #9A7650; stroke-width: 2.4; vector-effect: non-scaling-stroke; }
+.tali__garis path { fill: none; stroke: #7F98BF; stroke-width: 2.4; vector-effect: non-scaling-stroke; }
 .tali__isi { position: absolute; inset: 0; display: flex; justify-content: space-around; }
 .jem { position: relative; flex: none; width: var(--w); margin-top: calc(var(--y) - 6px); padding: 0; border: 0; background: none; cursor: pointer; opacity: 0; transform: translateY(-40px); transition: opacity .6s ease var(--masuk), transform .9s cubic-bezier(.34, 1.56, .64, 1) var(--masuk); -webkit-tap-highlight-color: transparent; }
 .jemuran.is-in .jem { opacity: 1; transform: none; }
 .jem__ayun { display: block; transform-origin: 50% 0; animation: ayun var(--d) ease-in-out infinite alternate; }
 @keyframes ayun { from { transform: rotate(calc(var(--t) - 3.5deg)); } to { transform: rotate(calc(var(--t) + 3.5deg)); } }
 .jem:hover .jem__ayun, .jem:focus-visible .jem__ayun { animation-duration: 1.1s; }
-.jem__jepit { position: absolute; left: 50%; top: -6px; z-index: 2; width: 10px; height: 26px; margin-left: -5px; border-radius: 3px; background: linear-gradient(90deg, #B98B5A, #D6A970 50%, #B98B5A); box-shadow: 0 1px 2px rgba(0,0,0,.25); }
+.jem__jepit { position: absolute; left: 50%; top: -6px; z-index: 2; width: 10px; height: 26px; margin-left: -5px; border-radius: 3px; background: linear-gradient(90deg, #3A72D6, #9DBEFA 50%, #3A72D6); box-shadow: 0 1px 2px rgba(0,0,0,.25); }
 .jem__bingkai { position: relative; display: block; margin-top: 12px; padding: 6px; background: var(--card); box-shadow: 0 10px 22px rgba(11,58,143,.14), 0 2px 4px rgba(0,0,0,.08); transition: background-color .2s, box-shadow .2s; }
 .jem__bingkai img { display: block; width: 100%; height: 100%; object-fit: cover; }
 .jem:active .jem__bingkai, .jem:focus-visible .jem__bingkai { background: var(--blue-fill); box-shadow: 0 0 0 3px var(--blue-mid), 0 12px 24px rgba(11,58,143,.25); }
@@ -1267,11 +1267,11 @@ html, body { transition: background-color .25s ease, color .25s ease; }
 .sej-ilus .ilus--lebar { display: block; width: 100%; height: auto; }
 .sej-ilus figcaption { padding: 10px 14px 12px; font-size: .92rem; color: var(--ink-2); }
 .sej-ilus figcaption b { display: inline-block; margin-right: 6px; padding: 1px 8px; border-radius: 99px; background: var(--blue-fill); color: #fff; font-size: .8rem; }
-.id-citra { position: relative; display: grid; place-items: center; margin: 4px 0 16px; padding: 14px; border-radius: 14px; background: #0F1A12; text-decoration: none; overflow: hidden; }
+.id-citra { position: relative; display: grid; place-items: center; margin: 4px 0 16px; padding: 14px; border-radius: 14px; background: #0A1E44; text-decoration: none; overflow: hidden; }
 .id-citra img { display: block; width: 100%; max-width: 360px; height: auto; filter: drop-shadow(0 6px 14px rgba(0,0,0,.45)); transition: transform .5s ease; }
 .id-citra:hover img { transform: scale(1.03) rotate(-1deg); }
-.id-citra__cap { display: flex; align-items: flex-start; gap: 6px; width: 100%; margin-top: 10px; color: #E6EEDF; font-size: .86rem; line-height: 1.4; }
-.id-citra__cap .ic { flex: none; width: 16px; height: 16px; margin-top: 2px; color: #9CCB6B; }
+.id-citra__cap { display: flex; align-items: flex-start; gap: 6px; width: 100%; margin-top: 10px; color: #DCE8FB; font-size: .86rem; line-height: 1.4; }
+.id-citra__cap .ic { flex: none; width: 16px; height: 16px; margin-top: 2px; color: #9DBEFA; }
 .id-citra:active { box-shadow: 0 0 0 3px var(--blue); }
 .sej-duo { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-bottom: 16px; }
 .sej-duo .sej-foto { margin: 0; }
@@ -1319,10 +1319,10 @@ html, body { transition: background-color .25s ease, color .25s ease; }
 .vcard__kosong { position: absolute; inset: 0; display: grid; place-items: center; color: rgba(255,255,255,.7); background: linear-gradient(135deg, #0b3a8f, #1f6fd1); }
 .vcard__kosong .ic { width: 48px; height: 48px; }
 .vcard__plat { position: absolute; top: 10px; left: 10px; padding: 3px 9px; border-radius: 99px; font-size: .74rem; font-weight: 700; color: #fff; background: #333; }
-.vcard__plat--youtube { background: #cc0000; }
-.vcard__plat--tiktok { background: #111; box-shadow: inset 0 0 0 1px rgba(255,255,255,.25); }
-.vcard__plat--instagram { background: linear-gradient(45deg, #f09433, #dc2743 50%, #bc1888); }
-.vcard__plat--facebook { background: #1877f2; }
+.vcard__plat--youtube { background: #0B3A8F; }
+.vcard__plat--tiktok { background: #082A66; box-shadow: inset 0 0 0 1px rgba(255,255,255,.25); }
+.vcard__plat--instagram { background: linear-gradient(45deg, #0B3A8F, #4F86E8); }
+.vcard__plat--facebook { background: #1452C2; }
 .vcard__dur { position: absolute; right: 10px; bottom: 10px; padding: 2px 7px; border-radius: 6px; font-size: .76rem; font-weight: 700; color: #fff; background: rgba(0,0,0,.72); }
 .vcard__play { position: absolute; left: 50%; top: 50%; width: 56px; height: 56px; margin: -28px 0 0 -28px; display: grid; place-items: center; border-radius: 50%; color: #fff; background: rgba(23,92,211,.88); box-shadow: 0 6px 18px rgba(0,0,0,.35); transition: transform .2s; }
 .vcard__play .ic { width: 26px; height: 26px; }
@@ -1374,19 +1374,19 @@ html, body { transition: background-color .25s ease, color .25s ease; }
 .facts__src { margin: 10px 0 0; }
 
 /* =====================================================================
-   KOMBINASI TIGA WARNA
-   Biru = warna utama · hijau = grafik, ilustrasi, garis hiasan ·
-   kuning = penanda penting saja (tombol utama di foto, menu aktif, lencana tahun, Aspirasi).
-   Tulisan di atas kuning selalu gelap.
+   GRADASI BIRU
+   Seluruh warna aksen memakai gradasi biru (biru tua → biru → biru muda).
+   Nama token --yellow/--green dipertahankan agar aturan lama tetap jalan,
+   tetapi isinya kini biru muda dan biru sedang.
    ===================================================================== */
-:root { --yellow: #FFC928; --yellow-deep: #E0A800; --yellow-soft: #FFF3C4; --yellow-ink: #6B4A00; --green: #2E9E5B; --green-soft: #E3F4EA; }
-:root[data-theme="dark"] { --yellow: #FFD43B; --yellow-deep: #F2BF1A; --yellow-soft: rgba(255, 212, 59, .16); --yellow-ink: #FFD43B; --green: #4CC27E; --green-soft: rgba(76, 194, 126, .16); }
-@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --yellow: #FFD43B; --yellow-deep: #F2BF1A; --yellow-soft: rgba(255, 212, 59, .16); --yellow-ink: #FFD43B; --green: #4CC27E; --green-soft: rgba(76, 194, 126, .16); } }
-::selection { background: var(--yellow); color: #0A0A0A; }
+:root { --yellow: #7AAAF2; --yellow-deep: #3A72D6; --yellow-soft: #E3EDFD; --yellow-ink: #0B3A8F; --green: #3A72D6; --green-soft: #E3EDFD; }
+:root[data-theme="dark"] { --yellow: #9DBEFA; --yellow-deep: #7AAAF2; --yellow-soft: rgba(122, 170, 242, .16); --yellow-ink: #BFD4FB; --green: #5B8DE6; --green-soft: rgba(91, 141, 230, .16); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --yellow: #9DBEFA; --yellow-deep: #7AAAF2; --yellow-soft: rgba(122, 170, 242, .16); --yellow-ink: #BFD4FB; --green: #5B8DE6; --green-soft: rgba(91, 141, 230, .16); } }
+::selection { background: #BFD4FB; color: #0A0A0A; }
 
 /* Garis biru–kuning di bawah kepala halaman */
 .topbar { border-bottom-color: transparent; }
-.topbar::after { content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 3px; background: linear-gradient(90deg, var(--blue-fill) 0 64%, var(--green) 64% 88%, var(--yellow) 88% 100%); pointer-events: none; }
+.topbar::after { content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 3px; background: linear-gradient(90deg, var(--blue-deep), var(--blue-fill) 45%, var(--yellow)); pointer-events: none; }
 /* Menu aktif: pil biru dengan garis kuning */
 .menu a.is-active { box-shadow: inset 0 -3px 0 var(--yellow); }
 .vtabs__row button[aria-selected="true"] { box-shadow: inset 0 -3px 0 var(--yellow); }
@@ -1398,28 +1398,28 @@ html, body { transition: background-color .25s ease, color .25s ease; }
 /* Label kecil dan judul bagian */
 .eyebrow::before { content: ""; display: inline-block; width: 18px; height: 3px; margin-right: 8px; border-radius: 2px; background: var(--green); vertical-align: middle; transform: translateY(-1px); }
 .sec__icon { color: var(--yellow); }
-.sec__head h2::after { content: ""; display: block; width: 56px; height: 4px; margin-top: 10px; border-radius: 2px; background: linear-gradient(90deg, var(--blue-fill) 0 50%, var(--green) 50% 82%, var(--yellow) 82% 100%); }
+.sec__head h2::after { content: ""; display: block; width: 56px; height: 4px; margin-top: 10px; border-radius: 2px; background: linear-gradient(90deg, var(--blue-deep), var(--blue-fill) 50%, var(--yellow)); }
 /* Tombol utama di atas foto beranda */
-.hero__cta .btn--solid { background: var(--yellow); border-color: var(--yellow); color: #0A0A0A; }
-.hero__cta .btn--solid:hover { background: var(--yellow-deep); border-color: var(--yellow-deep); color: #0A0A0A; }
-.hero__cta .btn--solid .ic { color: #0A0A0A; }
+.hero__cta .btn--solid { background: linear-gradient(135deg, #FFFFFF, #CFE0FB); border-color: #CFE0FB; color: #0B3A8F; }
+.hero__cta .btn--solid:hover { background: linear-gradient(135deg, #E9F1FE, #A9C7F6); border-color: #A9C7F6; color: #0B3A8F; }
+.hero__cta .btn--solid .ic { color: #1452C2; }
 /* Lencana tahun / baru */
-.pres__th, .ncard__badge--new { background: var(--yellow); color: #0A0A0A; }
+.pres__th, .ncard__badge--new { background: linear-gradient(135deg, #1452C2, #4F86E8); color: #fff; }
 /* Kotak angka: garis atas selang-seling biru dan kuning, ilustrasi berlatar selang-seling */
 .fact, .stat { border-top: 3px solid var(--blue-fill); }
 .fact:nth-child(even), .stat:nth-child(even) { border-top-color: var(--green); }
 .fact:nth-child(even) .fact__ilus, .stat:nth-child(even) .stat__ilus, .usia-ilus__i:nth-child(even) .usia-ilus__f { background: var(--green-soft); }
 .bars > :nth-child(even) .bar__ilus { background: var(--green-soft); }
-.sw--p { background: #2E9E5B; }
+.sw--p { background: var(--blue-mid); }
 /* Label tahun data: titik kuning */
 .rilis .ic { color: var(--green); }
 /* Tautan: garis bawah kuning saat diarahkan */
 a:hover { text-decoration-color: var(--yellow-deep); }
 /* Kaki halaman */
-.aspirasi--pita { border-top: 4px solid var(--yellow); }
-.foot__brand i { color: var(--yellow); border-left-color: rgba(255, 212, 59, .5); }
-.foot a:hover { color: var(--yellow); }
-.foot .social a:hover { border-color: var(--yellow); }
+.aspirasi--pita { border-top: 0; box-shadow: inset 0 4px 0 #7AAAF2; }
+.foot__brand i { color: #BFD4FB; border-left-color: rgba(191, 212, 251, .5); }
+.foot a:hover { color: #BFD4FB; }
+.foot .social a:hover { border-color: #BFD4FB; }
 /* Gulir ke atas & fokus */
 :focus-visible { outline-color: var(--yellow-deep); }
 
@@ -1452,3 +1452,21 @@ a:hover { text-decoration-color: var(--yellow-deep); }
   .momen .motif--gunungan { display: none; }
   .momen .motif--cenderawasih { width: 150px; }
 }
+
+/* Peta kampung: peta memanjang setinggi kolom keterangan agar tidak ada ruang kosong */
+@media (min-width: 901px) {
+  #peta .mapwrap { align-items: stretch; }
+  #peta .mapstage { display: flex; flex-direction: column; min-height: 100%; }
+  #peta #panel-interaktif { flex: 1; display: flex; }
+  #peta #panel-interaktif .batasmap { flex: 1; height: auto; min-height: 520px; }
+}
+
+/* Pola latar Jawa–Papua: garis sangat tipis berulang di belakang kartu (bukan di atas isi) */
+.view { position: relative; isolation: isolate; }
+.view::before { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; background: var(--blue); opacity: .045;
+  -webkit-mask-image: url(../img/motif/pola.svg); mask-image: url(../img/motif/pola.svg); -webkit-mask-size: 120px 120px; mask-size: 120px 120px; -webkit-mask-repeat: repeat; mask-repeat: repeat; }
+:root[data-theme="dark"] .view::before { background: #9DBEFA; opacity: .05; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .view::before { background: #9DBEFA; opacity: .05; } }
+#v-beranda::before { display: none; }
+.explore::before { content: ""; position: absolute; inset: 0; z-index: -2; pointer-events: none; background: var(--blue); opacity: .04;
+  -webkit-mask-image: url(../img/motif/pola.svg); mask-image: url(../img/motif/pola.svg); -webkit-mask-size: 120px 120px; mask-size: 120px 120px; }

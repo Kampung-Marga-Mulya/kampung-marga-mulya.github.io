@@ -448,7 +448,7 @@
 
   /* =================== DIAGRAM LINGKARAN (donat) ===================
      Maks. 6 irisan; sisanya digabung "Lainnya". Warna: biru (identitas tema). */
-  var PAL_KAT = ["#0B3A8F", "#2E9E5B", "#1452C2", "#8FD1A8", "#5B8DE6", "#C9DBF8", "#1F7A45"];
+  var PAL_KAT = ["#082A66", "#1452C2", "#5B8DE6", "#9DBCF2", "#2F5FB8", "#C9DBF8", "#0B3A8F"];
   var PAL_URUT = ["#C9DBF8", "#9DBCF2", "#5B8DE6", "#1452C2", "#0B3A8F", "#082A66"];
   function ringkas(list, n) {
     // Kategori bernama "Lainnya" di data asli selalu masuk ke irisan gabungan
@@ -519,7 +519,7 @@
   $("#picto").innerHTML = '<div class="picto__row">' + new Array(nL + 1).join('<i class="picto__l">' + (ilus("laki") || ic("person")) + "</i>") + '</div><div class="picto__row">' + new Array(nP + 1).join('<i class="picto__p">' + (ilus("perempuan") || ic("person")) + "</i>") + "</div>" +
     '<div class="picto__lbl"><span><b>' + num(P.laki) + "</b> laki-laki</span><span><b>" + num(P.perempuan) + "</b> perempuan</span></div>";
 
-  donut("#dGender", [{ label: "Laki-laki", jumlah: P.laki }, { label: "Perempuan", jumlah: P.perempuan }], { kat: "Jenis kelamin", satuan: "jiwa", tengahLabel: "jiwa", ilus: true, warna: ["#0B3A8F", "#2E9E5B"] });
+  donut("#dGender", [{ label: "Laki-laki", jumlah: P.laki }, { label: "Perempuan", jumlah: P.perempuan }], { kat: "Jenis kelamin", satuan: "jiwa", tengahLabel: "jiwa", ilus: true, warna: ["#0B3A8F", "#7AAAF2"] });
   // Kelompok usia: diagram lingkaran berurutan (muda → tua)
   var totU = sum(P.kelompokUsia, "jumlah");
   donut("#kelUsia", P.kelompokUsia, { kat: "Kelompok usia", satuan: "jiwa", urut: true, tengahLabel: "jiwa" });
@@ -1033,7 +1033,7 @@
         openModal({ kat: "Peternakan", title: t.label, html: '<div class="mini-stat"><div><b>' + num(t.ekor) + "</b><span>Ekor</span></div><div><b>" + num(t.peternak) + "</b><span>Peternak</span></div><div><b>" + (t.ekor / t.peternak).toLocaleString("id-ID", { maximumFractionDigits: 1 }) + "</b><span>Ekor per peternak</span></div></div>" });
       }) + "><span>" + ic(IKT[t.label] || "ternak") + "</span><b>" + num(t.ekor) + "</b><small>" + esc(t.label) + " · " + num(t.peternak) + " peternak</small></button>";
     }).join("");
-    var totG = sum(E.penggunaanLahan, "ha"), toneG = ["#0B3A8F", "#2E9E5B", "#3A72D6", "#8FD1A8", "#A3BEF0"];
+    var totG = sum(E.penggunaanLahan, "ha"), toneG = ["#0B3A8F", "#1452C2", "#3A72D6", "#6E98E6", "#A3BEF0"];
     var haFmt = function (v) { return v.toLocaleString("id-ID", { maximumFractionDigits: 2 }); };
     donut("#ekoGuna", E.penggunaanLahan.map(function (g) { return { label: g.label, jumlah: g.ha }; }), { kat: "Penggunaan lahan", satuan: "ha", fmt: haFmt, tengah: [num(Math.round(totG)), "hektare"] });
     donut("#dLahan", E.lahan.map(function (g) { return { label: g.label + (g.cek ? " *" : ""), jumlah: g.ha }; }), { kat: "Luas tanam per komoditas", satuan: "ha", fmt: haFmt, tengah: [num(Math.round(sum(E.lahan, "ha"))), "hektare"] });
@@ -1067,7 +1067,7 @@
     }
     jem.innerHTML = baris(M.slice(0, 4), 0) + baris(M.slice(4, 8), 4);
     var sisa = M.slice(8).concat(M.slice(0, 4));
-    var PITA = ["#7AAAF2", "#F2C94C", "#6FCF97", "#F2A0B6", "#9B8AF2"];
+    var PITA = ["#7AAAF2", "#9DBEFA", "#5B8DE6", "#BFD4FB", "#3A72D6"];
     function kartuPol(f, i, dup) {
       var gaya = "--r:" + ((i % 2 ? 1 : -1) * (1.5 + i % 3)) + "deg;--pita:" + PITA[i % PITA.length] + ";--b:" + (2.6 + (i * .41) % 1.6).toFixed(2) + "s";
       return '<button type="button" class="pol" style="' + gaya + '"' + (dup ? ' aria-hidden="true" tabindex="-1"' : "") + act(function () { bukaFoto(f); }) + '><span class="pol__pita" aria-hidden="true"></span><img src="' + escUrl(f.src) + '" alt="' + esc(f.ket || "") + '" loading="lazy"><span class="pol__cap">' + esc(f.ket || "") + "</span></button>";

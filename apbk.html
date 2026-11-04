@@ -10,7 +10,7 @@
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <link rel="icon" href="assets/img/ikon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="assets/css/fonts.css?v=1">
-  <link rel="stylesheet" href="assets/css/aspirasi.css?v=2">
+  <link rel="stylesheet" href="assets/css/aspirasi.css?v=3">
   <style>
     :root { --bg:#fff; --tint:#F5F8FE; --soft:#EEF4FD; --ink:#0A0A0A; --ink-2:#3B3F46; --line:#DCE6F6; --blue:#1452C2; --blue-deep:#0B3A8F; --blue-pale:#DCE8FB;
       --head:"Source Serif 4", Georgia, serif; --body:"Source Sans 3", "Segoe UI", Roboto, Arial, sans-serif; }
@@ -91,10 +91,10 @@
       .tools { position: static; }
     }
     @media print { .bar, .tools, .totop, .nav, .hero .row { display: none; } details.keg { break-inside: avoid; } }
-    /* Kombinasi tiga warna: biru, hijau, kuning */
-    .bar { border-bottom: 3px solid transparent; border-image: linear-gradient(90deg, #1452C2 0 64%, #2E9E5B 64% 88%, #FFC928 88% 100%) 1; }
-    .eyebrow::before { content: ""; display: inline-block; width: 18px; height: 3px; margin-right: 8px; border-radius: 2px; background: #2E9E5B; vertical-align: middle; transform: translateY(-1px); }
-    ::selection { background: #FFC928; color: #0A0A0A; }
+    /* Gradasi biru */
+    .bar { border-bottom: 3px solid transparent; border-image: linear-gradient(90deg, #0B3A8F, #1452C2 45%, #7AAAF2) 1; }
+    .eyebrow::before { content: ""; display: inline-block; width: 18px; height: 3px; margin-right: 8px; border-radius: 2px; background: #7AAAF2; vertical-align: middle; transform: translateY(-1px); }
+    ::selection { background: #BFD4FB; color: #0A0A0A; }
   </style>
 </head>
 <body>
