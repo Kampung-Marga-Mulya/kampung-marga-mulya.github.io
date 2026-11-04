@@ -45,6 +45,7 @@ if (window.top !== window.self) {
     { g: "Konten", id: "berita", label: "Berita pilihan", file: "assets/js/data.js", keys: ["berita"], desc: "Berita yang ditambahkan manual. Berita dari robot otomatis tidak perlu diisi di sini." },
     { g: "Konten", id: "beritaabaikan", label: "Sembunyikan berita robot", file: "data/berita-abaikan.json", keys: ["abaikan"], desc: "Tempel tautan berita temuan robot yang keliru agar tidak ditampilkan." },
     { g: "Konten", id: "kegiatankampung", label: "Kegiatan kampung", file: "assets/js/data.js", keys: ["kegiatanKampung"], desc: "Kegiatan yang tampil di Beranda (foto berganti tiap 3 detik) dan di Profil > Kegiatan: judul, waktu, deskripsi singkat, dan foto beserta keterangannya." },
+    { g: "Konten", id: "momen", label: "Foto bergoyang di Beranda", file: "assets/js/data.js", keys: ["momen"], desc: "Foto yang tampil di tali jemuran dan deretan polaroid Beranda. Delapan foto pertama untuk tali jemuran, sisanya untuk polaroid." },
     { g: "Konten", id: "galeri", label: "Galeri foto", file: "assets/js/data.js", keys: ["galeri"], desc: "Unggah foto kegiatan dan tulis keterangannya." },
     { g: "Konten", id: "video", label: "Video profil", file: "assets/js/data.js", keys: ["video"], desc: "ID video YouTube (bagian setelah youtu.be/)." },
     { g: "Konten", id: "potensi", label: "Potensi & kegiatan", file: "assets/js/data.js", keys: ["potensi", "ekonomi", "kegiatan"], desc: "Potensi kampung, data lahan, ternak, dan usaha warga, serta linimasa kegiatan." },

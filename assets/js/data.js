@@ -934,6 +934,27 @@ window.KAMPUNG = {
       ] }
   ],
 
+  // Momen: foto yang bergoyang di Beranda (tali jemuran dan deretan polaroid).
+  // Ketuk foto di website untuk melihatnya utuh. Bisa diganti lewat Portal Admin.
+  momen: [
+    { src: "assets/img/kegiatan-kampung/hari-santri-3.jpg", ket: "Pencak silat di peringatan Hari Santri" },
+    { src: "assets/img/kegiatan-kampung/agustusan-3.jpg", ket: "Pawai kendaraan hias, Agustus 2025" },
+    { src: "assets/img/kegiatan/petik-tomat.jpg", ket: "Panen tomat di kebun warga" },
+    { src: "assets/img/potensi/bumkam-ayam-petelur-1.jpg", ket: "Kandang ayam petelur BUMKam" },
+    { src: "assets/img/kegiatan-kampung/agustusan-5.jpg", ket: "Barisan pelajar, Agustus 2026" },
+    { src: "assets/img/kegiatan/periksa-sapi-2.jpg", ket: "Memeriksa kesehatan sapi warga" },
+    { src: "assets/img/fasilitas/masjid-al-amin.jpg", ket: "Masjid Al Amin" },
+    { src: "assets/img/kegiatan-kampung/agustusan-2.jpg", ket: "Penyerahan piala HUT RI, Agustus 2024" },
+    { src: "assets/img/kegiatan/kebun-tomat.jpg", ket: "Kebun tomat warga" },
+    { src: "assets/img/kegiatan-kampung/musyawarah-kampung-2025-2.jpg", ket: "Musyawarah kampung 2025" },
+    { src: "assets/img/kegiatan/pelatihan-peternakan.jpg", ket: "Pelatihan peternakan bersama warga" },
+    { src: "assets/img/kegiatan-kampung/agustusan-1.jpg", ket: "Perayaan HUT RI, Agustus 2023" },
+    { src: "assets/img/fasilitas/2023/f035.jpg", ket: "Kolam pemancingan kampung" },
+    { src: "assets/img/kegiatan-kampung/hari-santri-1.jpg", ket: "Santri dan warga di Hari Santri" },
+    { src: "assets/img/fasilitas/sd-semangga-3.jpg", ket: "SD Inpres Semangga III" },
+    { src: "assets/img/fasilitas/2023/f054.jpg", ket: "Saluran air menuju kolam bendali" }
+  ],
+
   galeri: [
     { src: "assets/img/galeri-ekspedisi-patriot.jpg", caption: "Tim Ekspedisi Patriot bersama perangkat kampung dan distrik" },
     { src: "assets/img/kegiatan/pelatihan-peternakan.jpg", caption: "Pelatihan Manajemen Sistem Peternakan Skala Industri dan Pengembangan Pertanian Terintegrasi Berkelanjutan" },
