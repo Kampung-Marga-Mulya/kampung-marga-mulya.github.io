@@ -145,7 +145,7 @@ window.KAMPUNG = {
     pengantar: "Kajian sumber daya dalam RPJMK menempatkan Marga Mulya sebagai sentra produksi padi. Tanahnya paling cocok untuk persawahan, dan hampir semua keluarga menggantungkan penghasilan pada pertanian.",
     sumber: "RPJMK Kampung Marga Mulya 2019–2024, Bab II",
     daftar: [
-      { judul: "Sumber daya alam", isi: "Sawah, kini seluas 1.150 ha (RPJMK 2019 mencatat 1.116 ha), menjadi tumpuan utama, ditambah 183 ha lahan palawija dan 118 ha lahan yang sudah dibersihkan dan direncanakan menjadi sawah. Ada pula 282 ha permukiman, 46 ha rawa, dan 2 km sungai.", angka: [["1.150 ha", "sawah"], ["183 ha", "palawija"], ["118 ha", "siap dibuka"]], bab: "bab-ii-3" },
+      { judul: "Sumber daya alam", isi: "Sawah, kini seluas 1.758,19 ha (RPJMK 2019 mencatat 1.116 ha), menjadi tumpuan utama, ditambah 183 ha lahan palawija dan 118 ha lahan yang sudah dibersihkan dan direncanakan menjadi sawah. Ada pula 282 ha permukiman, 46 ha rawa, dan 2 km sungai.", angka: [["1.758,19 ha", "sawah"], ["183 ha", "palawija"], ["118 ha", "siap dibuka"]], bab: "bab-ii-3" },
       { judul: "Sumber daya manusia", isi: "586 keluarga hidup dari pertanian dan perkebunan; lainnya dari perdagangan, angkutan, industri pengolahan, dan jasa. Petani menanam padi dua kali setahun (rendengan dan gadu), dan 1 ha sawah menghasilkan sekitar 4 ton gabah.", angka: [["586 KK", "petani"], ["2 kali", "panen padi setahun"], ["±4 ton", "gabah per hektare"]], bab: "bab-ii-4" },
       { judul: "Sumber daya pembangunan", isi: "Kampung memiliki 38 km jalan kampung, 41 km jalan usaha tani, 24 jembatan, 49 km drainase, dan 5 bendali (kolam tadah air). Alat pertanian warga mencakup 42 hand tractor, 4 jonder, dan 3 mesin perontok padi, digerakkan oleh 18 kelompok tani.", angka: [["42", "hand tractor"], ["18", "kelompok tani"], ["41 km", "jalan usaha tani"]], bab: "bab-ii-5" },
       { judul: "Sumber daya sosial budaya", isi: "Gotong royong dan kegiatan keagamaan menjadi perekat warga: 18 kelompok yasinan (satu di tiap RT), pengajian Jumat Pahing se-kampung dengan 350–450 jamaah, 6 majelis taklim/grup rebana, 3 TPQ dengan 227 santri, sekolah minggu, dan kelompok kesenian kuda lumping.", angka: [["18", "kelompok yasinan"], ["3", "TPQ"], ["1", "grup kuda lumping"]], bab: "bab-ii-6" }
@@ -839,7 +839,7 @@ window.KAMPUNG = {
         { src: "assets/img/udara/saluran-lahan.jpg", ket: "Saluran air yang mengalirkan air ke lahan pertanian", kredit: "Dokumentasi pemetaan kampung, Juni 2022" },
         { src: "assets/img/udara/kebun-sayur.jpg", ket: "Kebun sayur warga dengan tiang rambatan", kredit: "Dokumentasi pemetaan kampung, Juni 2022" },
         { src: "assets/img/potensi/petani-cabai.jpg", ket: "Ilustrasi: petani memetik cabai (Sukoharjo, Jawa Tengah)", kredit: "ANTARA TV · Wikimedia Commons", lisensi: "CC BY 3.0", url: "https://commons.wikimedia.org/wiki/File:Petani_Sedang_Memetik_Cabai.jpg" }
-      ], ket: "Lahan pertanian 1.356 ha, terluas sawah padi 1.150 ha.", detail: "Padi adalah komoditas utama: sawah seluas 1.150 ha digarap 771 petani. Tanaman lain adalah cabai (118,25 ha, 127 petani), jagung (46,5 ha, 41 petani), dan sayuran (41,25 ha, 62 petani)." },
+      ], ket: "Lahan pertanian 1.964,19 ha, terluas sawah padi 1.758,19 ha.", detail: "Padi adalah komoditas utama: sawah seluas 1.758,19 ha digarap 771 petani. Tanaman lain adalah cabai (118,25 ha, 127 petani), jagung (46,5 ha, 41 petani), dan sayuran (41,25 ha, 62 petani)." },
     { judul: "Peternakan", ikon: "ternak", foto: "assets/img/kegiatan/periksa-sapi-2.jpg", fotoKet: "Pemeriksaan kesehatan sapi milik peternak", kredit: "Dokumentasi Tim Ekspedisi Patriot IPB University 2026",
       fotoLain: [
         { src: "assets/img/potensi/bumkam-ayam-petelur-1.jpg", ket: "Kandang ayam petelur BUMKam Bina Mulya Sejahtera", kredit: "Dokumentasi Tim Ekspedisi Patriot IPB University 2026" },
@@ -870,14 +870,14 @@ window.KAMPUNG = {
   ekonomi: {
     lahan: [
       { label: "Cabai", ha: 118.25, petani: 127 }, { label: "Jagung", ha: 46.5, petani: 41 },
-      { label: "Sayuran", ha: 41.25, petani: 62 }, { label: "Jeruk", ha: 10, petani: 9 }, { label: "Padi", ha: 1150, petani: 771 }
+      { label: "Sayuran", ha: 41.25, petani: 62 }, { label: "Jeruk", ha: 10, petani: 9 }, { label: "Padi", ha: 1758.19, petani: 771 }
     ],
     ternak: [
       { label: "Unggas", ekor: 45250, peternak: 257 }, { label: "Sapi", ekor: 411, peternak: 119 },
       { label: "Kambing", ekor: 298, peternak: 93 }, { label: "Kuda", ekor: 117, peternak: 51 }, { label: "Kerbau", ekor: 9, peternak: 3 }
     ],
     penggunaanLahan: [
-      { label: "Lahan pertanian", ha: 1356 }, { label: "Lahan perkebunan", ha: 10 }, { label: "Lahan peternakan", ha: 7 },
+      { label: "Lahan pertanian", ha: 1964.19 }, { label: "Lahan perkebunan", ha: 10 }, { label: "Lahan peternakan", ha: 7 },
       { label: "Hutan", ha: 61 }, { label: "Lahan lainnya", ha: 766 }
     ],
     usaha: [
