@@ -664,7 +664,7 @@
       tabs.querySelectorAll("button").forEach(function (x) { x.setAttribute("aria-selected", x.dataset.tab === t ? "true" : "false"); });
       ["interaktif", "resmi"].forEach(function (p) { $("#panel-" + p).hidden = p !== t; });
       if (t === "interaktif" && map) setTimeout(function () { map.invalidateSize(); }, 50);
-      if (t === "resmi" && B && !$("#petaImg").src) $("#petaImg").src = B.petaGambar;
+      if (t === "resmi" && B && !$("#petaImg").getAttribute("src")) pilihLembar((B.lembar || [])[0]);
     }
     tabs.addEventListener("click", function (e) { var b = e.target.closest("button[data-tab]"); if (b) showTab(b.dataset.tab); });
 
@@ -716,21 +716,58 @@
       el.addEventListener("click", function () { map.scrollWheelZoom.enable(); }, { once: true });
 
       // Saringan lapisan
-      var NAMA = { batas: "Garis batas", titik: "Titik kartometrik", fasilitas: "Fasilitas umum", tetangga: "Kampung tetangga", citra: "Tumpang peta resmi" };
-      $("#mapFilter").innerHTML = Object.keys(NAMA).map(function (k) { return '<button class="fbtn" type="button" aria-pressed="' + (aktifLap[k] ? "true" : "false") + '" data-lap="' + k + '">' + NAMA[k] + "</button>"; }).join("") +
-        '<label class="mapfilter__op" id="citraOp" hidden>Transparansi peta resmi <input type="range" min="15" max="100" value="75" aria-label="Transparansi peta resmi"></label>';
+      var NAMA = { batas: "Garis batas", titik: "Titik kartometrik", fasilitas: "Fasilitas umum", tetangga: "Kampung tetangga" };
+      $("#mapFilter").innerHTML = '<p class="mapfilter__judul">Lapisan</p>' + Object.keys(NAMA).map(function (k) { return '<button class="fbtn" type="button" aria-pressed="' + (aktifLap[k] ? "true" : "false") + '" data-lap="' + k + '">' + NAMA[k] + "</button>"; }).join("");
       $("#mapFilter").addEventListener("click", function (e) {
         var b = e.target.closest("[data-lap]"); if (!b) return; var k = b.dataset.lap; aktifLap[k] = !aktifLap[k];
         b.setAttribute("aria-pressed", aktifLap[k] ? "true" : "false");
         if (aktifLap[k]) lap[k].addTo(map); else lap[k].remove();
-        if (k === "citra") { $("#citraOp").hidden = !aktifLap[k]; if (aktifLap[k]) { lap.batas.eachLayer(function (l) { l.bringToFront(); }); } }
       });
-      $("#citraOp input").addEventListener("input", function (e) { lap.citra.setOpacity(e.target.value / 100); });
+
+      // Peta tematik 2022: ditumpangkan di atas citra satelit sesuai koordinat, satu per satu
+      var T = B.tematik || { lapisan: [] }, tema = {}, temaAktif = null, opasitas = .8;
+      var PILIH = T.lapisan.map(function (t) { return { id: t.id, nama: t.nama, ket: t.ket, legenda: t.legenda, buat: function () { return L.imageOverlay(t.src, T.bounds, { opacity: opasitas, interactive: false, className: "tematik" }); } }; });
+      PILIH.push({ id: "dpmk", nama: "Peta batas DPMK", ket: "Lembar Peta Batas Kampung dari DPMK Kabupaten Merauke.", buat: function () { lap.citra.setOpacity(opasitas); return lap.citra; } });
+      $("#mapTema").innerHTML = '<p class="mapfilter__judul">Tumpang peta tematik 2022</p><div class="mapfilter__opsi"><button class="fbtn" type="button" aria-pressed="true" data-tema="">Hanya satelit</button>' +
+        PILIH.map(function (t) { return '<button class="fbtn" type="button" aria-pressed="false" data-tema="' + esc(t.id) + '">' + esc(t.nama) + "</button>"; }).join("") + "</div>" +
+        '<label class="mapfilter__op" id="temaOp" hidden>Transparansi <input type="range" min="20" max="100" value="80" aria-label="Transparansi peta tematik"></label>' +
+        '<div class="maplegend" id="temaLegenda" hidden></div>';
+      function pilihTema(id) {
+        if (temaAktif && tema[temaAktif]) tema[temaAktif].remove();
+        temaAktif = id || null;
+        $("#mapTema").querySelectorAll("[data-tema]").forEach(function (b) { b.setAttribute("aria-pressed", (b.dataset.tema || null) === temaAktif ? "true" : "false"); });
+        var t = PILIH.filter(function (x) { return x.id === temaAktif; })[0];
+        $("#temaOp").hidden = !t; $("#temaLegenda").hidden = !t;
+        if (!t) return;
+        if (!tema[t.id]) tema[t.id] = t.buat();
+        tema[t.id].setOpacity(opasitas).addTo(map);
+        lap.batas.eachLayer(function (l) { l.bringToFront(); });
+        $("#temaLegenda").innerHTML = "<p><b>" + esc(t.nama) + "</b> " + esc(t.ket) + "</p>" + (t.legenda ? '<button type="button" class="reset maplegend__img" data-legenda="' + esc(t.id) + '" aria-label="Perbesar legenda ' + esc(t.nama) + '"><img src="' + escUrl(t.legenda) + '" alt="Legenda ' + esc(t.nama) + '" loading="lazy"></button>' : "") +
+          (T.sumber && t.id !== "dpmk" ? '<p class="small">Sumber: ' + esc(T.sumber) + ".</p>" : "");
+      }
+      $("#mapTema").addEventListener("click", function (e) {
+        var b = e.target.closest("[data-tema]"); if (b) { pilihTema(b.dataset.tema); return; }
+        var lg = e.target.closest("[data-legenda]");
+        if (lg) { var t = PILIH.filter(function (x) { return x.id === lg.dataset.legenda; })[0]; openModal({ kat: "Legenda peta", title: t.nama, html: '<img class="modal__img" src="' + escUrl(t.legenda) + '" alt="Legenda ' + esc(t.nama) + '">' }); }
+      });
+      $("#temaOp input").addEventListener("input", function (e) { opasitas = e.target.value / 100; if (temaAktif && tema[temaAktif]) tema[temaAktif].setOpacity(opasitas); });
     }
 
+    function pilihLembar(l) {
+      if (!l) { $("#petaImg").src = B.petaGambar; return; }
+      $("#petaImg").src = l.src; $("#petaImg").alt = l.nama + ", skala " + l.skala;
+      $("#petaUnduh").href = l.src; $("#petaUnduhT").textContent = "Unduh " + l.nama.replace(/^Peta /, "peta ") + " (JPG)";
+      $("#petaLembar").querySelectorAll("[data-lembar]").forEach(function (b) { b.setAttribute("aria-pressed", b.dataset.lembar === l.id ? "true" : "false"); });
+      $("#petaLembarSumber").textContent = "Skala " + l.skala + " (kertas A0). Sumber: " + l.sumber + ".";
+      setZoom(1);
+    }
     window.MM_BATAS().then(function (b) {
       B = b;
       $("#petaUnduh").href = B.petaGambar;
+      if (B.lembar && $("#petaLembar")) {
+        $("#petaLembar").innerHTML = B.lembar.map(function (l) { return '<button class="fbtn" type="button" aria-pressed="false" data-lembar="' + esc(l.id) + '">' + esc(l.nama.replace(/^Peta /, "")) + "</button>"; }).join("");
+        $("#petaLembar").addEventListener("click", function (e) { var x = e.target.closest("[data-lembar]"); if (!x) return; pilihLembar(B.lembar.filter(function (l) { return l.id === x.dataset.lembar; })[0]); });
+      }
       $("#batasRingkas").innerHTML = "Luas wilayah <b>" + esc(id.luas) + "</b>. Ketuk batas wilayah, titik kartometrik, kantor, atau fasilitas di peta untuk melihat keterangannya.";
       $("#petaMeta").innerHTML = [["Sumber", "Pemkab Merauke · DPMK"], ["Kode wilayah", B.kodeWilayah], ["Skala", B.skala], ["Citra", B.citraSumber], ["Koordinat", B.sistemKoordinat], ["Titik kartometrik", B.titik.length + " titik"]]
         .map(function (r) { return "<dt>" + esc(r[0]) + "</dt><dd>" + esc(r[1]) + "</dd>"; }).join("");

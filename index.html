@@ -29,7 +29,7 @@
   <link rel="stylesheet" href="assets/css/fonts.css?v=1">
   <link rel="stylesheet" href="assets/vendor/leaflet/leaflet.css?v=1.9.4">
   <script src="assets/js/tema.js?v=1"></script>
-  <link rel="stylesheet" href="assets/css/style.css?v=202611041614">
+  <link rel="stylesheet" href="assets/css/style.css?v=202611041632">
 </head>
 <body>
   <!-- Kumpulan ikon garis (dipakai dengan <svg><use href="#i-..."/></svg>) -->
@@ -408,15 +408,17 @@
         <div class="tabpanel" role="tabpanel" data-panel="petakampung">
 <section class="sec" id="peta">
       <div class="wrap">
-        <header class="sec__head"><span class="sec__icon"><svg class="ic"><use href="#i-pin"/></svg></span><div><p class="eyebrow">Peta kampung</p><h2>Peta Batas Kampung Marga Mulya</h2><p class="lead">Peta resmi batas wilayah dari Pemerintah Kabupaten Merauke (Dinas Pemberdayaan Masyarakat dan Kampung). Pilih peta interaktif untuk melihat batas wilayah, titik kartometrik, dan letak fasilitas umum di atas citra satelit peta tersebut.</p></div></header>
+        <header class="sec__head"><span class="sec__icon"><svg class="ic"><use href="#i-pin"/></svg></span><div><p class="eyebrow">Peta kampung</p><h2>Peta Batas Kampung Marga Mulya</h2><p class="lead">Peta interaktif di atas citra satelit asli: batas wilayah resmi dari Pemerintah Kabupaten Merauke (DPMK), titik kartometrik, fasilitas umum, serta peta tematik hasil survei lapangan 2022 (pemanfaatan lahan, irigasi, administrasi RW/RT, dan lainnya) yang ditumpangkan tepat sesuai koordinat. Lembar peta lengkapnya bisa dilihat dan diunduh di tab Lembar peta resmi.</p></div></header>
         <div class="tabs" role="tablist" aria-label="Jenis peta" id="mapTabs">
           <button role="tab" aria-selected="true" data-tab="interaktif"><svg class="ic"><use href="#i-layers"/></svg>Peta interaktif</button>
-          <button role="tab" aria-selected="false" data-tab="resmi"><svg class="ic"><use href="#i-doc"/></svg>Peta batas resmi</button>
+          <button role="tab" aria-selected="false" data-tab="resmi"><svg class="ic"><use href="#i-doc"/></svg>Lembar peta resmi</button>
         </div>
         <div class="mapwrap">
           <div class="mapstage">
-            <div class="map map--leaflet" id="panel-interaktif" role="tabpanel"><div id="batasMap" class="batasmap" role="region" aria-label="Peta interaktif batas Kampung Marga Mulya"><p class="wmap__load">Memuat peta…</p></div></div>
+            <div class="map map--leaflet" id="panel-interaktif" role="tabpanel"><div id="batasMap" class="batasmap" role="region" aria-label="Peta interaktif batas Kampung Marga Mulya di atas citra satelit"><p class="wmap__load">Memuat peta…</p></div></div>
             <div class="map map--img" id="panel-resmi" role="tabpanel" hidden>
+              <div class="mapfilter mapfilter--lembar" id="petaLembar" role="group" aria-label="Pilih lembar peta"></div>
+              <p class="small petalembar__src" id="petaLembarSumber"></p>
               <div class="imgzoom" id="petaZoom"><img id="petaImg" alt="Peta Batas Kampung Marga Mulya, Distrik Semangga, Kabupaten Merauke, skala 1:14.000" loading="lazy"></div>
               <div class="imgzoom__ctl"><button type="button" class="news__btn" id="zoomIn" aria-label="Perbesar">+</button><button type="button" class="news__btn" id="zoomOut" aria-label="Perkecil">−</button></div>
             </div>
@@ -428,8 +430,9 @@
               <p id="batasRingkas">Ketuk batas wilayah, titik kartometrik, atau fasilitas di peta untuk melihat keterangannya.</p>
             </div>
             <div class="mapfilter" id="mapFilter" role="group" aria-label="Lapisan peta"></div>
+            <div class="mapfilter mapfilter--tema" id="mapTema" role="group" aria-label="Peta tematik"></div>
             <div class="maplinks">
-              <a class="btn btn--solid" id="petaUnduh" download><svg class="ic"><use href="#i-doc"/></svg>Unduh peta batas (JPG)</a>
+              <a class="btn btn--solid" id="petaUnduh" download><svg class="ic"><use href="#i-doc"/></svg><span id="petaUnduhT">Unduh peta batas (JPG)</span></a>
               <a class="btn btn--line" href="#fasilitas"><svg class="ic"><use href="#i-school"/></svg>Daftar fasilitas umum</a>
             </div>
             <dl class="kv kv--sm" id="petaMeta"></dl>
@@ -533,8 +536,8 @@
   </dialog>
 
   <script src="assets/vendor/leaflet/leaflet.js?v=1.9.4"></script>
-  <script src="assets/js/data.js?v=202611041614"></script>
-  <script src="assets/js/app.js?v=202611041614"></script>
-  <script src="assets/js/router.js?v=202611041614"></script>
+  <script src="assets/js/data.js?v=202611041630"></script>
+  <script src="assets/js/app.js?v=202611041630"></script>
+  <script src="assets/js/router.js?v=202611041630"></script>
 </body>
 </html>

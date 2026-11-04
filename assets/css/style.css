@@ -1194,3 +1194,22 @@ html, body { transition: background-color .25s ease, color .25s ease; }
   .partners img { height: 28px; }
 }
 @media (max-width: 360px) { .brand__text i { display: none; } }
+
+/* Peta tematik dan lembar peta */
+.mapfilter__judul { width: 100%; margin: 6px 0 2px; font-size: .8rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-2); }
+.mapfilter__opsi { display: flex; flex-wrap: wrap; gap: 6px; }
+.mapfilter--tema { margin-top: 6px; }
+.mapfilter--tema .fbtn::before, .mapfilter--lembar .fbtn::before { display: none; }
+.mapfilter--tema .fbtn[aria-pressed="false"], .mapfilter--lembar .fbtn[aria-pressed="false"] { opacity: 1; }
+.mapfilter--tema .fbtn[aria-pressed="true"], .mapfilter--lembar .fbtn[aria-pressed="true"] { background: var(--blue-fill); border-color: var(--blue-fill); color: #fff; }
+.maplegend { width: 100%; margin-top: 6px; padding: 10px 12px; border: 1px solid var(--line); border-radius: 12px; background: var(--card); font-size: .9rem; }
+.maplegend p { margin: 0 0 8px; color: var(--ink-2); }
+.maplegend p b { color: var(--ink); }
+.maplegend__img { display: block; width: 100%; padding: 0; border: 0; background: #fff; border-radius: 8px; overflow: hidden; cursor: zoom-in; }
+.maplegend__img img { display: block; width: 100%; height: auto; }
+.mapfilter--lembar { padding: 10px; }
+.petalembar__src { margin: 0; padding: 0 12px 8px; }
+.leaflet-image-layer.tematik { image-rendering: auto; }
+#panel-resmi .imgzoom img { position: static; inset: auto; height: auto; object-fit: contain; }
+#panel-resmi .imgzoom { position: relative; }
+#panel-resmi .imgzoom__ctl { top: auto; bottom: 10px; }
