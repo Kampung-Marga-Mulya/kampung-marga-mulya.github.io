@@ -806,10 +806,14 @@ window.KAMPUNG = {
   // Pengajuan lewat website TIDAK disimpan di server: formulir hanya menyusun pesan WhatsApp
   // di perangkat warga, lalu dikirim langsung ke nomor layanan (layananWa).
   layananWa: { nomor: "6285624924834", tampil: "+62 856-2492-4834",
-    // Email pemberitahuan: hanya berisi jenis surat & waktu pengajuan, TANPA data pribadi.
-    // Dikirim lewat FormSubmit (formsubmit.co). Pengajuan pertama memicu email aktivasi ke alamat ini;
-    // klik "Activate Form" sekali, setelah itu setiap pengajuan baru langsung memberi notifikasi.
-    emailNotifikasi: "seldiozora3@gmail.com" },
+    // Pemberitahuan pengajuan baru ke petugas — hanya jenis surat & waktu, TANPA data pribadi.
+    notifikasi: {
+      // 1) Push ke HP lewat aplikasi ntfy (gratis, tanpa akun): pasang aplikasi "ntfy", lalu langganan topik ini.
+      ntfyTopik: "margamulya-layanan-c1f9f9884a",
+      // 2) Email lewat Google Apps Script (lihat docs/notifikasi-email/PANDUAN.md). Isi URL /exec setelah dipasang.
+      emailScript: "",
+      email: "seldiozora3@gmail.com"
+    } },
   layanan: [
     { id: "domisili", nama: "Surat Keterangan Domisili", waktu: "", syarat: ["KTP", "Kartu Keluarga (KK)"], isian: [] },
     { id: "usaha", nama: "Surat Keterangan Domisili Usaha", waktu: "", syarat: ["KTP", "Kartu Keluarga (KK)"],
