@@ -1684,35 +1684,29 @@
     if (document.readyState === "complete") jalan(); else window.addEventListener("load", jalan);
     document.addEventListener("visibilitychange", function () { if (document.hidden) henti(); else if (siap && !tenang && !pakaiVideo) mulai(); });
 
-    /* ---- Video profil sebagai latar foto utama: tanpa suara, berulang, tidak bisa diklik.
+    /* ---- Video profil sebagai latar foto utama: tanpa suara, berulang, mengisi bingkai tanpa pita hitam.
        Foto berganti tetap jalan sampai video benar-benar terputar; bila gagal, foto tetap dipakai. ---- */
     var HV = D.heroVideo || {}, hemat = navigator.connection && navigator.connection.saveData;
-    if (HV.youtubeId && !tenang && !hemat) (function () {
-      var id = encodeURIComponent(HV.youtubeId), asal = "https://www.youtube-nocookie.com";
+    if (HV.file && !tenang && !hemat) (function () {
+      var kecil = window.matchMedia && matchMedia("(max-width: 720px)").matches;
       var box = document.createElement("div"); box.className = "hero__video"; box.setAttribute("aria-hidden", "true");
-      var fr = document.createElement("iframe");
-      fr.src = asal + "/embed/" + id + "?autoplay=1&mute=1&loop=1&playlist=" + id + "&controls=0&disablekb=1&playsinline=1&rel=0&iv_load_policy=3&fs=0&modestbranding=1&enablejsapi=1&origin=" + encodeURIComponent(location.origin);
-      fr.title = "Video profil Kampung Marga Mulya (tanpa suara)"; fr.tabIndex = -1;
-      fr.setAttribute("allow", "autoplay; encrypted-media; picture-in-picture"); fr.setAttribute("referrerpolicy", "strict-origin-when-cross-origin");
-      box.appendChild(fr); fig.insertBefore(box, cap);
-      var main = false, batal = setTimeout(gagal, 15000);
-      function gagal() { if (main) return; window.removeEventListener("message", dengar); box.remove(); }
-      function dengar(e) {
-        if (e.origin !== asal || e.source !== fr.contentWindow) return;
-        var d; try { d = typeof e.data === "string" ? JSON.parse(e.data) : e.data; } catch (x) { return; }
-        if (!d) return;
-        if (d.event === "onError") { clearTimeout(batal); gagal(); return; }
-        var st = d.info && d.info.playerState;
-        if (st === 1 && !main) {
-          main = true; pakaiVideo = true; clearTimeout(batal); henti();
-          box.classList.add("is-on"); fig.classList.add("hero__photo--video");
-          if (cap && HV.ket) cap.textContent = HV.ket;
-        }
+      var v = document.createElement("video");
+      v.muted = true; v.defaultMuted = true; v.loop = true; v.autoplay = true; v.playsInline = true; v.preload = "auto";
+      v.setAttribute("muted", ""); v.setAttribute("playsinline", ""); v.setAttribute("webkit-playsinline", ""); v.setAttribute("disablepictureinpicture", ""); v.tabIndex = -1;
+      if (HV.poster) v.poster = HV.poster;
+      v.src = (kecil && HV.fileHp) ? HV.fileHp : HV.file;
+      box.appendChild(v); fig.insertBefore(box, cap);
+      var main = false;
+      function aktif() {
+        if (main) return; main = true; pakaiVideo = true; henti();
+        box.classList.add("is-on"); fig.classList.add("hero__photo--video");
+        if (cap && HV.ket) cap.textContent = HV.ket;
       }
-      window.addEventListener("message", dengar);
-      // Minta pemutar mengirim status (tanpa memuat skrip YouTube, sesuai CSP)
-      var sapa = function () { try { fr.contentWindow.postMessage(JSON.stringify({ event: "listening", id: "heroVideo", channel: "widget" }), asal); } catch (x) {} };
-      fr.addEventListener("load", function () { sapa(); setTimeout(sapa, 800); setTimeout(sapa, 2500); });
+      function gagal() { if (!main) box.remove(); }
+      v.addEventListener("playing", aktif);
+      v.addEventListener("error", gagal);
+      var coba = v.play(); if (coba && coba.catch) coba.catch(function () { /* autoplay ditolak: tetap pakai foto */ setTimeout(function () { if (!main) gagal(); }, 1500); });
+      document.addEventListener("visibilitychange", function () { if (!main) return; if (document.hidden) v.pause(); else v.play().catch(function () {}); });
     })();
   })();
 
