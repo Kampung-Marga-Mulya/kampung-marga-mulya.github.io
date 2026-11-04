@@ -88,6 +88,24 @@
     buku: function () { return svg(orang({ kulit: KULIT[3], gaya: "anak", baju: "#FFFFFF", aksesori: ["buku"], s: .9, x: 3, y: 6 }), "Ilustrasi pelajar"); },
     sarjana: function () { return svg(orang({ kulit: KULIT[1], gaya: "pendek", baju: "#22262E", aksesori: ["toga"] }), "Ilustrasi sarjana"); },
     santri: function () { return svg(orang({ kulit: KULIT[0], gaya: "pendek", baju: "#FFFFFF", aksesori: ["buku", "topi"], warnaTopi: "#22262E" }), "Ilustrasi santri"); },
+    // Pemandangan lebar: keluarga transmigran tiba di lokasi permukiman baru (1983)
+    transmigran: function () {
+      var sawah = "";
+      for (var i = 0; i < 9; i++) sawah += '<path d="M' + (i * 40 - 20) + ' 150 L' + (i * 40 + 20) + ' 96" stroke="#7FB04F" stroke-width="2" opacity=".7"/>';
+      var padi = "";
+      for (var j = 0; j < 22; j++) padi += '<path d="M' + (8 + j * 15) + " " + (120 + (j % 3) * 9) + 'q2-7 0-12m0 12q-4-5-6-9m6 9q4-5 6-9" fill="none" stroke="#4F7A3A" stroke-width="1.6" stroke-linecap="round"/>';
+      var isi = '<rect width="320" height="150" fill="#DCEBFB"/>' +
+        '<circle cx="262" cy="34" r="16" fill="' + KUNING + '"/>' +
+        '<path d="M0 74c40-10 80-12 120-6s90 8 200-4v32H0z" fill="#B9D88E"/>' +
+        '<path d="M0 96h320v54H0z" fill="#9CCB6B"/>' + sawah + padi +
+        '<g transform="translate(210 50)"><path d="M0 26 26 6l26 20" fill="none" stroke="' + BIRU_TUA + '" stroke-width="4" stroke-linejoin="round"/><path d="M5 24h42v26H5z" fill="#F4E6C8"/><path d="M21 34h10v16H21z" fill="' + COKLAT + '"/><rect x="9" y="30" width="7" height="7" fill="' + BIRU_MUDA + '"/><rect x="36" y="30" width="7" height="7" fill="' + BIRU_MUDA + '"/></g>' +
+        '<g transform="translate(140 60)"><path d="M0 26 22 9l22 17" fill="none" stroke="' + BIRU_TUA + '" stroke-width="3.4" stroke-linejoin="round"/><path d="M4 24h36v22H4z" fill="#F4E6C8"/><path d="M18 32h8v14h-8z" fill="' + COKLAT + '"/></g>' +
+        '<path d="M0 132c60-6 100-10 150-24" fill="none" stroke="#C9A36A" stroke-width="9" stroke-linecap="round" opacity=".9"/>' +
+        orang({ kulit: KULIT[0], gaya: "pendek", baju: BIRU, aksesori: ["kotak"], s: 1.05, x: 20, y: 66 }) +
+        orang({ kulit: KULIT[1], gaya: "panjang", baju: BIRU_MUDA, s: 1, x: 62, y: 70 }) +
+        orang({ kulit: KULIT[3], gaya: "anak", baju: KUNING, aksesori: ["ransel"], s: .7, x: 100, y: 90 });
+      return '<svg class="ilus ilus--lebar" viewBox="0 0 320 150" role="img" aria-label="Ilustrasi keluarga transmigran tiba di permukiman baru dengan hamparan sawah" focusable="false">' + isi + "</svg>";
+    },
     sejahtera: function () { return LIB.rumah().replace("Ilustrasi rumah keluarga", "Ilustrasi keluarga sejahtera"); }
   };
 

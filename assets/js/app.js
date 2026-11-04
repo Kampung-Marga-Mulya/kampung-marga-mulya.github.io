@@ -317,7 +317,12 @@
       return "<li><b>" + esc(l.tahun) + "</b><span><strong>" + esc(l.nama) + "</strong>" + (l.ket ? " · " + esc(l.ket) : "") + "</span></li>";
     }).join("") + "</ol>" : "";
     var src = D.sejarahSumber ? '<p class="small">Sumber: ' + esc(D.sejarahSumber) + (D.rpjmk ? ' · <a href="' + escUrl(D.rpjmk.halaman) + '#bab-ii-1">baca teks aslinya</a>' : "") + "</p>" : "";
-    $("#sejarah").innerHTML = "<h3>Sejarah singkat</h3>" + awal.map(p).join("") +
+    var fotoUdara = '<figure class="sej-foto"><button type="button" class="reset" data-perbesar="assets/img/udara/permukiman-sawah.jpg" data-ket="Permukiman dan hamparan sawah Kampung Marga Mulya dari udara (dokumentasi pemetaan kampung, Juni 2022)."><img src="assets/img/udara/permukiman-sawah.jpg" alt="Foto udara permukiman dan sawah Kampung Marga Mulya" loading="lazy"></button><figcaption>Dari permukiman transmigran &ldquo;Lokasi 40&rdquo;, kini permukiman dan hamparan sawah. Foto udara, Juni 2022.</figcaption></figure>';
+    var fotoLama = '<div class="sej-duo">' + [["assets/img/fasilitas/2023/f059.jpg", "Kantor kampung lama"], ["assets/img/fasilitas/2023/f007.jpg", "SD Inpres Semangga III"]].map(function (f) {
+      return '<figure class="sej-foto"><button type="button" class="reset" data-perbesar="' + f[0] + '" data-ket="' + f[1] + ' (dokumentasi fasilitas umum kampung, 2023)."><img src="' + f[0] + '" alt="' + f[1] + '" loading="lazy"></button><figcaption>' + f[1] + "</figcaption></figure>";
+    }).join("") + "</div>";
+    var ilusTiba = '<figure class="sej-ilus">' + ilus("transmigran") + '<figcaption><b>1983</b> Rombongan transmigran pertama dari Jawa Tengah dan Jawa Timur tiba di Desa Semangga 1 B.</figcaption></figure>';
+    $("#sejarah").innerHTML = "<h3>Sejarah singkat</h3>" + fotoUdara + awal.slice(0, 1).map(p).join("") + ilusTiba + awal.slice(1).map(p).join("") + fotoLama +
       (sisa.length || lini ? '<div class="more-body" hidden>' + sisa.map(p).join("") + lini + src + "</div>" + bacaLagi("Baca selengkapnya", "Tutup sejarah") : src);
   })();
   $("#identitas").innerHTML = [
@@ -331,7 +336,9 @@
     var orb = (id.orbitasi || []).map(function (o) { return [o.km + " km", "ke " + o.label]; });
     var tn = id.pertanahan ? [[num(id.pertanahan.sertifikat), "sertifikat tanah"], [id.pertanahan.tanahKasHa + " ha", "tanah kas kampung"], [id.pertanahan.waduk + " unit", "waduk / danau / situ"]] : [];
     $("#identitas").insertAdjacentHTML("afterend", '<h3 class="mt-s">Jarak tempuh</h3><div class="tiles tiles--3">' + orb.map(function (o) { return '<div class="tile"><b>' + esc(o[0]) + "</b><span>" + esc(o[1]) + "</span></div>"; }).join("") + "</div>" +
-      '<h3 class="mt-s">Pertanahan</h3><div class="tiles tiles--3">' + tn.map(function (o) { return '<div class="tile"><b>' + esc(o[0]) + "</b><span>" + esc(o[1]) + "</span></div>"; }).join("") + "</div>");
+      '<h3 class="mt-s">Pertanahan</h3><div class="tiles tiles--3">' + tn.map(function (o) { return '<div class="tile"><b>' + esc(o[0]) + "</b><span>" + esc(o[1]) + "</span></div>"; }).join("") + "</div>" +
+      '<h3 class="mt-s">Bentang wilayah</h3><div class="id-duo"><a class="id-citra" href="#petakampung" aria-label="Buka peta interaktif Kampung Marga Mulya"><img src="assets/img/peta/tematik/citra-csrt.webp" alt="Citra satelit wilayah Kampung Marga Mulya mengikuti batas kampung" loading="lazy"><span class="id-citra__cap">' + ic("pin") + "Citra wilayah kampung (survei 2022). Ketuk untuk membuka peta.</span></a>" +
+      '<figure class="id-foto"><button type="button" class="reset" data-perbesar="assets/img/fasilitas/kantor-kampung.jpg" data-ket="Kantor Kampung Marga Mulya."><img src="assets/img/fasilitas/kantor-kampung.jpg" alt="Kantor Kampung Marga Mulya" loading="lazy"></button><figcaption>Kantor Kampung Marga Mulya, pusat pelayanan pemerintahan kampung.</figcaption></figure></div>');
   }
   if (D.visi) $("#visi").textContent = D.visi;
   else $("#visi").innerHTML = '<span class="small">Visi resmi kampung akan dicantumkan setelah dokumen RPJMKam tersedia.</span>';
@@ -1374,6 +1381,12 @@
     var t = e.target;
     if (t && t.tagName === "IMG" && t.hasAttribute("data-hapus-galat")) t.remove();
   }, true);
+
+  /* ---- Foto yang bisa diperbesar (data-perbesar) ---- */
+  document.addEventListener("click", function (e) {
+    var b = e.target.closest && e.target.closest("[data-perbesar]"); if (!b) return;
+    openModal({ kat: "Foto", title: b.getAttribute("data-ket") || "", html: '<img class="modal__img" src="' + escUrl(b.getAttribute("data-perbesar")) + '" alt="' + esc(b.getAttribute("data-ket") || "") + '">' });
+  });
 
   /* ---- Mode gelap / terang ---- */
   (function () {

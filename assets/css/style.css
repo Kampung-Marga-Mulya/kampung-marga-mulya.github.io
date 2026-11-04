@@ -1256,3 +1256,32 @@ html, body { transition: background-color .25s ease, color .25s ease; }
   .stat b, .stat > span:not(.stat__ilus) { padding-right: 44px; }
 }
 .donut__n .bar__ilus { width: 28px; height: 28px; margin: -4px 6px -4px 0; }
+
+/* Profil: foto dan ilustrasi di sejarah serta identitas wilayah */
+.sej-foto, .sej-ilus, .id-foto { margin: 0 0 16px; }
+.sej-foto button, .id-foto button { display: block; width: 100%; padding: 0; border: 0; border-radius: 14px; overflow: hidden; background: var(--photo-bg); cursor: zoom-in; }
+.sej-foto img, .id-foto img { display: block; width: 100%; height: auto; transition: transform .5s ease; }
+.sej-foto button:hover img, .id-foto button:hover img { transform: scale(1.03); }
+.sej-foto figcaption, .id-foto figcaption { margin-top: 6px; font-size: .86rem; color: var(--ink-2); line-height: 1.45; }
+.sej-ilus { border-radius: 14px; overflow: hidden; border: 1px solid var(--line); background: var(--card); }
+.sej-ilus .ilus--lebar { display: block; width: 100%; height: auto; }
+.sej-ilus figcaption { padding: 10px 14px 12px; font-size: .92rem; color: var(--ink-2); }
+.sej-ilus figcaption b { display: inline-block; margin-right: 6px; padding: 1px 8px; border-radius: 99px; background: var(--blue-fill); color: #fff; font-size: .8rem; }
+.id-citra { position: relative; display: grid; place-items: center; margin: 4px 0 16px; padding: 14px; border-radius: 14px; background: #0F1A12; text-decoration: none; overflow: hidden; }
+.id-citra img { display: block; width: 100%; max-width: 360px; height: auto; filter: drop-shadow(0 6px 14px rgba(0,0,0,.45)); transition: transform .5s ease; }
+.id-citra:hover img { transform: scale(1.03) rotate(-1deg); }
+.id-citra__cap { display: flex; align-items: flex-start; gap: 6px; width: 100%; margin-top: 10px; color: #E6EEDF; font-size: .86rem; line-height: 1.4; }
+.id-citra__cap .ic { flex: none; width: 16px; height: 16px; margin-top: 2px; color: #9CCB6B; }
+.id-citra:active { box-shadow: 0 0 0 3px var(--blue); }
+.sej-duo { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-bottom: 16px; }
+.sej-duo .sej-foto { margin: 0; }
+.id-duo { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; align-items: start; }
+.id-duo .id-citra { margin: 0; padding: 10px; }
+.id-duo .id-citra img { max-width: 100%; }
+.id-duo .id-foto { margin: 0; }
+.id-citra__cap { font-size: .8rem; }
+/* Kolom identitas ikut menempel saat sejarah panjang digulir (laptop/tablet lebar) */
+@media (min-width: 900px) {
+  #profil .grid-2:first-of-type { align-items: start; }
+  #profil .grid-2:first-of-type > aside { position: sticky; top: 140px; }
+}
