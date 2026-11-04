@@ -807,18 +807,12 @@ window.KAMPUNG = {
   // di perangkat warga, lalu dikirim langsung ke nomor layanan (layananWa).
   layananWa: { nomor: "6285624924834", tampil: "+62 856-2492-4834" },
   layanan: [
-    { id: "pengantar-ktp-kk", nama: "Surat Pengantar KTP-el / KK", waktu: "", syarat: [],
-      isian: [{ id: "jenisPengantar", label: "Jenis pengantar", tipe: "pilih", pilihan: ["KTP-el baru", "KTP-el hilang / rusak", "KK baru", "Perubahan data KK"], wajib: true }] },
     { id: "domisili", nama: "Surat Keterangan Domisili", waktu: "", syarat: ["KTP", "Kartu Keluarga (KK)"], isian: [] },
     { id: "usaha", nama: "Surat Keterangan Domisili Usaha", waktu: "", syarat: ["KTP", "Kartu Keluarga (KK)"],
       isian: [{ id: "namaUsaha", label: "Nama usaha", wajib: true }, { id: "jenisUsaha", label: "Jenis usaha", contoh: "mis. warung sembako, bengkel, usaha tani", wajib: true }, { id: "alamatUsaha", label: "Alamat / lokasi usaha", wajib: true }] },
     { id: "sktm", nama: "Surat Keterangan Tidak Mampu (SKTM)", waktu: "", syarat: ["Kartu Keluarga (KK)", "Alamat tempat tinggal lengkap (RT/RW)"],
       isian: [{ id: "keperluanSktm", label: "SKTM digunakan untuk", tipe: "pilih", pilihan: ["Pendidikan / sekolah", "Berobat / kesehatan", "Bantuan sosial", "Lainnya"], wajib: true }] },
-    { id: "kelahiran", nama: "Surat Keterangan Kelahiran", waktu: "", syarat: ["Surat keterangan lahir dari rumah sakit / tempat bersalin"],
-      isian: [{ id: "namaBayi", label: "Nama bayi", wajib: true }, { id: "jkBayi", label: "Jenis kelamin bayi", tipe: "pilih", pilihan: ["Laki-laki", "Perempuan"], wajib: true },
-        { id: "tglLahir", label: "Tanggal lahir", tipe: "tanggal", wajib: true }, { id: "tempatLahir", label: "Tempat lahir (rumah sakit / tempat bersalin)", wajib: true },
-        { id: "namaAyah", label: "Nama ayah", wajib: true }, { id: "namaIbu", label: "Nama ibu", wajib: true }] },
-    { id: "kematian", nama: "Surat Keterangan Kematian", waktu: "", syarat: [],
+    { id: "kematian", nama: "Surat Keterangan Kematian", waktu: "", syarat: [], tanpaSyarat: true,
       isian: [{ id: "namaAlm", label: "Nama almarhum / almarhumah", wajib: true }, { id: "nikAlm", label: "NIK almarhum / almarhumah", tipe: "nik" },
         { id: "tglMeninggal", label: "Tanggal meninggal", tipe: "tanggal", wajib: true }, { id: "tempatMeninggal", label: "Tempat meninggal", wajib: true },
         { id: "sebab", label: "Sebab meninggal (bila diketahui)" }, { id: "hubungan", label: "Hubungan pelapor dengan almarhum", contoh: "mis. anak, suami, istri", wajib: true }] },
@@ -1017,6 +1011,6 @@ window.KAMPUNG = {
     alamat: "Kantor Kampung Marga Mulya, Distrik Semangga, Kabupaten Merauke, Papua Selatan 99631",
     telepon: "+62 856-2492-4834 (WhatsApp layanan surat)",
     email: "kampungmargamulya667@gmail.com",
-    jamLayanan: ""   // isi jam layanan resmi kantor kampung
+    jamLayanan: "09.00–14.00 WIT"   // jam buka kantor kampung (tampil di Beranda dan Kontak)
   }
 };

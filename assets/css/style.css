@@ -1490,3 +1490,10 @@ html::before { content: ""; position: fixed; inset: 0; z-index: -1; pointer-even
 .wa-pratinjau { white-space: pre-wrap; word-break: break-word; font: .9rem/1.5 var(--font-body); background: var(--tint); border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; margin: 0 0 10px; }
 :root[data-theme="dark"] .ajukan__galat { background: #182338; border-color: #263247; color: #BFD4FB; }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .ajukan__galat { background: #182338; border-color: #263247; color: #BFD4FB; } }
+
+/* Jam buka kantor kampung di Beranda */
+.hero__jam { display: inline-flex; align-items: center; gap: 8px; margin: -0.6rem 0 1.2rem; padding: 7px 14px; border-radius: 999px; font-size: .95rem; color: #fff;
+  background: rgba(11, 58, 143, .55); border: 1px solid rgba(191, 212, 251, .55); backdrop-filter: blur(4px); text-shadow: none; }
+.hero__jam .ic { width: 18px; height: 18px; color: #BFD4FB; }
+.hero__jam b { font-weight: 800; white-space: nowrap; }
+@media (max-width: 720px) { .hero__jam { margin: -0.3rem 0 1rem; font-size: .88rem; } }

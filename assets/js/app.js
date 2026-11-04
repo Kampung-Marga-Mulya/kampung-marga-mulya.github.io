@@ -969,6 +969,9 @@
     setInterval(function () { if (!document.hidden) muat(); }, 30 * 60 * 1000);
   })();
 
+  // Jam buka kantor kampung di Beranda
+  if (D.kontak && D.kontak.jamLayanan && !belumAda(D.kontak.jamLayanan)) $("#heroPlace").insertAdjacentHTML("afterend", '<p class="hero__jam">' + ic("clock") + "<span>Kantor kampung buka pukul <b>" + esc(D.kontak.jamLayanan) + "</b></span></p>");
+
   /* =================== LAYANAN SURAT + PENGAJUAN LEWAT WHATSAPP ===================
      Tidak ada data yang disimpan di website: formulir menyusun pesan di perangkat warga
      lalu membuka WhatsApp (wa.me) ke nomor layanan kampung. */
@@ -986,6 +989,7 @@
       return '<li><span class="alur__no">' + (i + 1) + '</span><span class="alur__ic">' + ic(x[0]) + "</span><b>" + esc(x[1]) + "</b><small>" + esc(x[2]) + "</small></li>";
     }).join("");
     var syaratHtml = function (l) {
+      if (l.tanpaSyarat) return '<p class="small"><b>Tanpa persyaratan dokumen.</b> Langsung ajukan lewat WhatsApp.</p>';
       return (l.syarat || []).length ? "<ul>" + l.syarat.map(function (x) { return "<li>" + esc(x) + "</li>"; }).join("") + "</ul>" : '<p class="small">Persyaratan belum dicantumkan; petugas akan menyampaikannya lewat WhatsApp.</p>';
     };
     $("#layananList").innerHTML = L.map(function (l) {
@@ -1008,7 +1012,7 @@
     function pilih(id) {
       var l = cari(id);
       fTambah.innerHTML = l && (l.isian || []).length ? '<p class="ajukan__sub fld--lebar">Data tambahan untuk ' + esc(l.nama) + "</p>" + l.isian.map(isianHtml).join("") : "";
-      fSyarat.innerHTML = l ? "<b>Persyaratan yang perlu dikirim di WhatsApp:</b>" + syaratHtml(l) : "";
+      fSyarat.innerHTML = l ? (l.tanpaSyarat ? syaratHtml(l) : "<b>Persyaratan yang perlu dikirim di WhatsApp:</b>" + syaratHtml(l)) : "";
     }
     fJenis.addEventListener("change", function () { pilih(fJenis.value); });
     $("#layananList").addEventListener("click", function (e) {
