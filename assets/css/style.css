@@ -1497,3 +1497,22 @@ html::before { content: ""; position: fixed; inset: 0; z-index: -1; pointer-even
 .hero__jam .ic { width: 18px; height: 18px; color: #BFD4FB; }
 .hero__jam b { font-weight: 800; white-space: nowrap; }
 @media (max-width: 720px) { .hero__jam { margin: -0.3rem 0 1rem; font-size: .88rem; } }
+
+/* Slide pengantar "Marga Mulya On Site" di atas Beranda (berganti tiap 5 detik) */
+.intro { padding-top: 16px; }
+.intro__box { position: relative; overflow: hidden; border-radius: 18px; padding: 16px 20px 12px; color: #fff;
+  background: linear-gradient(110deg, #082A66 0%, #0B3A8F 35%, #1452C2 75%, #3A72D6 100%); box-shadow: 0 8px 24px rgba(11, 58, 143, .22); isolation: isolate; }
+.intro__box::before { content: ""; position: absolute; inset: 0; z-index: -1; background: #fff; opacity: .08; pointer-events: none;
+  -webkit-mask-image: url(../img/motif/batik.svg); mask-image: url(../img/motif/batik.svg); -webkit-mask-size: 130px 130px; mask-size: 130px 130px; }
+.intro__track { position: relative; display: grid; min-height: 3.4em; }
+.intro__slide { grid-area: 1 / 1; display: grid; gap: 4px; align-content: center; color: #fff; text-decoration: none; opacity: 0; transform: translateX(28px); pointer-events: none; transition: opacity .55s ease, transform .55s ease; }
+.intro__slide.is-on { opacity: 1; transform: none; pointer-events: auto; }
+.intro__slide.is-out { opacity: 0; transform: translateX(-28px); }
+.intro__slide p { margin: 0; font-size: clamp(.98rem, 1.6vw, 1.12rem); line-height: 1.5; color: #fff; }
+a.intro__slide p::after { content: " →"; color: #BFD4FB; font-weight: 700; }
+.intro__tag { justify-self: start; padding: 2px 10px; border-radius: 99px; background: rgba(255, 255, 255, .16); border: 1px solid rgba(255, 255, 255, .28); font-size: .74rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: #DCE8FB; }
+.intro__dots { display: flex; gap: 6px; margin-top: 10px; }
+.intro__dots button { width: 8px; height: 8px; padding: 0; border: 0; border-radius: 99px; background: rgba(255, 255, 255, .4); cursor: pointer; transition: width .3s, background .3s; }
+.intro__dots button[aria-selected="true"] { width: 22px; background: #fff; }
+@media (max-width: 720px) { .intro { padding-top: 12px; } .intro__box { padding: 14px 16px 10px; border-radius: 16px; } .intro__track { min-height: 6.6em; } }
+@media (prefers-reduced-motion: reduce) { .intro__slide { transition: none; } }

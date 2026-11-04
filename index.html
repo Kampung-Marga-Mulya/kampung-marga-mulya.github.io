@@ -29,7 +29,7 @@
   <link rel="stylesheet" href="assets/css/fonts.css?v=1">
   <link rel="stylesheet" href="assets/vendor/leaflet/leaflet.css?v=1.9.4">
   <script src="assets/js/tema.js?v=1"></script>
-  <link rel="stylesheet" href="assets/css/style.css?v=1793801544">
+  <link rel="stylesheet" href="assets/css/style.css?v=1793802045">
   <link rel="stylesheet" href="assets/css/aspirasi.css?v=3">
 </head>
 <body>
@@ -118,7 +118,22 @@
   <main id="isi">
     <div class="view" data-view="beranda" id="v-beranda">
     <!-- BERANDA -->
-    <section class="hero" id="beranda">
+    <section class="intro" aria-label="Tentang Marga Mulya On Site" aria-roledescription="carousel">
+      <div class="wrap">
+        <div class="intro__box">
+          <div class="intro__track" id="introTrack" aria-live="polite">
+            <div class="intro__slide is-on" role="group" aria-roledescription="slide" aria-label="1 dari 6"><span class="intro__tag">Marga Mulya On Site</span><p>Marga Mulya On Site merupakan pusat informasi digital Kampung Marga Mulya yang menyajikan profil wilayah, data kampung, potensi ekonomi, transparansi pembangunan, serta layanan informasi bagi masyarakat.</p></div>
+            <a class="intro__slide" href="#tentang" role="group" aria-roledescription="slide" aria-label="2 dari 6"><span class="intro__tag">Profil wilayah</span><p>Sejarah, identitas wilayah, batas kampung, pemerintahan, dan prestasi Kampung Marga Mulya.</p></a>
+            <a class="intro__slide" href="#penduduk" role="group" aria-roledescription="slide" aria-label="3 dari 6"><span class="intro__tag">Data kampung</span><p>Kependudukan serta sarana dan prasarana kampung, lengkap dengan tahun rilis dokumen sumbernya.</p></a>
+            <a class="intro__slide" href="#potensi" role="group" aria-roledescription="slide" aria-label="4 dari 6"><span class="intro__tag">Potensi ekonomi</span><p>Pertanian padi dan hortikultura, peternakan, serta usaha warga Kampung Marga Mulya.</p></a>
+            <a class="intro__slide" href="#apbkam" role="group" aria-roledescription="slide" aria-label="5 dari 6"><span class="intro__tag">Transparansi pembangunan</span><p>APBKam, Indeks Desa, dan RPJMK yang bisa dibaca terbuka oleh seluruh warga.</p></a>
+            <a class="intro__slide" href="#layanan" role="group" aria-roledescription="slide" aria-label="6 dari 6"><span class="intro__tag">Layanan informasi</span><p>Persyaratan surat dan pengajuan langsung lewat WhatsApp, serta aspirasi dan pengaduan warga.</p></a>
+          </div>
+          <div class="intro__dots" id="introDots" role="tablist" aria-label="Pilih slide"></div>
+        </div>
+      </div>
+    </section>
+    <section class="hero" id="heroUtama">
       <div class="wrap hero__in">
         <div class="hero__text">
           <p class="eyebrow">Selamat datang di</p>
@@ -600,9 +615,9 @@
   </dialog>
 
   <script src="assets/vendor/leaflet/leaflet.js?v=1.9.4"></script>
-  <script src="assets/js/data.js?v=1793801544"></script>
-  <script src="assets/js/ilustrasi.js?v=1793801544"></script>
-  <script src="assets/js/app.js?v=1793801544"></script>
-  <script src="assets/js/router.js?v=1793801544"></script>
+  <script src="assets/js/data.js?v=1793802045"></script>
+  <script src="assets/js/ilustrasi.js?v=1793802045"></script>
+  <script src="assets/js/app.js?v=1793802045"></script>
+  <script src="assets/js/router.js?v=1793802045"></script>
 </body>
 </html>

@@ -969,6 +969,30 @@
     setInterval(function () { if (!document.hidden) muat(); }, 30 * 60 * 1000);
   })();
 
+  /* Slide pengantar di atas Beranda: berganti tiap 5 detik dan berputar terus */
+  (function () {
+    var tr = $("#introTrack"), dots = $("#introDots"); if (!tr) return;
+    var sl = [].slice.call(tr.querySelectorAll(".intro__slide")), i = 0, t = null, diam = false;
+    var kurang = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    dots.innerHTML = sl.map(function (_, k) { return '<button type="button" role="tab" aria-label="Slide ' + (k + 1) + '"' + (k ? "" : ' aria-selected="true"') + "></button>"; }).join("");
+    var db = [].slice.call(dots.children);
+    function ke(n) {
+      sl[i].classList.remove("is-on"); sl[i].classList.add("is-out"); var lama = sl[i];
+      setTimeout(function () { lama.classList.remove("is-out"); }, 600);
+      i = (n + sl.length) % sl.length; sl[i].classList.add("is-on");
+      db.forEach(function (d, k) { d.setAttribute("aria-selected", k === i ? "true" : "false"); });
+    }
+    function mulai() { clearInterval(t); if (!kurang) t = setInterval(function () { if (!diam && !document.hidden) ke(i + 1); }, 5000); }
+    dots.addEventListener("click", function (e) { var k = db.indexOf(e.target.closest("button")); if (k > -1) { ke(k); mulai(); } });
+    tr.addEventListener("mouseenter", function () { diam = true; }); tr.addEventListener("mouseleave", function () { diam = false; });
+    tr.addEventListener("focusin", function () { diam = true; }); tr.addEventListener("focusout", function () { diam = false; });
+    // Geser dengan jari
+    var x0 = null;
+    tr.addEventListener("touchstart", function (e) { x0 = e.touches[0].clientX; }, { passive: true });
+    tr.addEventListener("touchend", function (e) { if (x0 == null) return; var dx = e.changedTouches[0].clientX - x0; if (Math.abs(dx) > 40) { ke(i + (dx < 0 ? 1 : -1)); mulai(); } x0 = null; }, { passive: true });
+    mulai();
+  })();
+
   // Jam buka kantor kampung di Beranda
   if (D.kontak && D.kontak.jamLayanan && !belumAda(D.kontak.jamLayanan)) $("#heroPlace").insertAdjacentHTML("afterend", '<p class="hero__jam">' + ic("clock") + "<span>Kantor kampung buka pukul <b>" + esc(D.kontak.jamLayanan) + "</b></span></p>");
 
