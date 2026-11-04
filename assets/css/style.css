@@ -1423,36 +1423,6 @@ a:hover { text-decoration-color: var(--yellow-deep); }
 /* Gulir ke atas & fokus */
 :focus-visible { outline-color: var(--yellow-deep); }
 
-/* =====================================================================
-   SILUET MOTIF JAWA–PAPUA (sangat tipis, hanya di beberapa bagian)
-   Gunungan wayang & pita kawung/parang (Jawa) · cenderawasih, honai,
-   spiral Sentani & zig-zag Asmat (Papua). Dipakai sebagai mask berwarna biru.
-   ===================================================================== */
-.motif-host, #profil > .wrap { position: relative; isolation: isolate; }
-.motif { position: absolute; z-index: -1; pointer-events: none; background: var(--blue); opacity: .055;
-  -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat; -webkit-mask-size: contain; mask-size: contain; -webkit-mask-position: center; mask-position: center; }
-:root[data-theme="dark"] .motif { background: #9DBEFA; opacity: .07; }
-@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .motif { background: #9DBEFA; opacity: .07; } }
-.motif--gunungan { width: 150px; aspect-ratio: 2 / 3; -webkit-mask-image: url(../img/motif/gunungan.svg); mask-image: url(../img/motif/gunungan.svg); }
-.motif--cenderawasih { width: 260px; aspect-ratio: 300 / 220; -webkit-mask-image: url(../img/motif/cenderawasih.svg); mask-image: url(../img/motif/cenderawasih.svg); }
-.motif--honai { width: 170px; aspect-ratio: 200 / 160; -webkit-mask-image: url(../img/motif/honai.svg); mask-image: url(../img/motif/honai.svg); }
-.motif--pita { left: 0; right: 0; height: 18px; -webkit-mask-image: url(../img/motif/pita.svg); mask-image: url(../img/motif/pita.svg); -webkit-mask-repeat: repeat-x; mask-repeat: repeat-x; -webkit-mask-size: auto 100%; mask-size: auto 100%; -webkit-mask-position: left center; mask-position: left center; }
-.motif--kanan-atas { right: 16px; top: 14px; }
-.motif--kiri-atas { left: 16px; top: 14px; }
-.motif--kiri-bawah { left: 10px; bottom: 12px; }
-.motif--putih, :root[data-theme="dark"] .motif--putih { background: #fff; opacity: .1; }
-@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .motif--putih { background: #fff; opacity: .1; } }
-.foot .motif--pita { top: 10px; }
-.momen .motif--gunungan { width: 110px; }
-.momen .motif--cenderawasih { width: 220px; }
-@media (max-width: 720px) {
-  .motif--gunungan { width: 96px; }
-  .motif--cenderawasih { width: 170px; }
-  .motif--honai { width: 110px; }
-  .momen .motif--gunungan { display: none; }
-  .momen .motif--cenderawasih { width: 150px; }
-}
-
 /* Peta kampung: peta memanjang setinggi kolom keterangan agar tidak ada ruang kosong */
 @media (min-width: 901px) {
   #peta .mapwrap { align-items: stretch; }
@@ -1461,12 +1431,17 @@ a:hover { text-decoration-color: var(--yellow-deep); }
   #peta #panel-interaktif .batasmap { flex: 1; height: auto; min-height: 520px; }
 }
 
-/* Pola latar Jawa–Papua: garis sangat tipis berulang di belakang kartu (bukan di atas isi) */
-.view { position: relative; isolation: isolate; }
-.view::before { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; background: var(--blue); opacity: .045;
-  -webkit-mask-image: url(../img/motif/pola.svg); mask-image: url(../img/motif/pola.svg); -webkit-mask-size: 120px 120px; mask-size: 120px 120px; -webkit-mask-repeat: repeat; mask-repeat: repeat; }
-:root[data-theme="dark"] .view::before { background: #9DBEFA; opacity: .05; }
-@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .view::before { background: #9DBEFA; opacity: .05; } }
-#v-beranda::before { display: none; }
-.explore::before { content: ""; position: absolute; inset: 0; z-index: -2; pointer-events: none; background: var(--blue); opacity: .04;
-  -webkit-mask-image: url(../img/motif/pola.svg); mask-image: url(../img/motif/pola.svg); -webkit-mask-size: 120px 120px; mask-size: 120px 120px; }
+/* Batik Jawa–Papua sebagai latar penuh seluruh halaman (garis sangat tipis)
+   Ceplok kawung + kisi bergaris ganda bercecek (Jawa), kasuari dan walabi bergaya batik + spiral Sentani (Papua).
+   Kartu dan panel tetap polos agar isi mudah dibaca. */
+html::before { content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none; background: var(--blue); opacity: .05;
+  -webkit-mask-image: url(../img/motif/batik.svg); mask-image: url(../img/motif/batik.svg); -webkit-mask-size: 150px 150px; mask-size: 150px 150px; -webkit-mask-repeat: repeat; mask-repeat: repeat; }
+:root[data-theme="dark"]::before { background: #9DBEFA; opacity: .055; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"])::before { background: #9DBEFA; opacity: .055; } }
+/* Batik juga di dalam kartu utama setiap halaman, lebih tipis lagi (panel grafik dan foto tetap polos) */
+.view .sec > .wrap, .view .sec > .wrap.grid-2, .vtabs, .vhead { background-image: url(../img/motif/batik-terang.svg); background-size: 150px 150px; background-repeat: repeat; }
+:root[data-theme="dark"] .view .sec > .wrap, :root[data-theme="dark"] .vtabs, :root[data-theme="dark"] .vhead { background-image: url(../img/motif/batik-gelap.svg); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .view .sec > .wrap, :root:not([data-theme="light"]) .vtabs, :root:not([data-theme="light"]) .vhead { background-image: url(../img/motif/batik-gelap.svg); } }
+.foot, .aspirasi--pita { position: relative; isolation: isolate; }
+.foot::before, .aspirasi--pita::before { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; background: #fff; opacity: .07;
+  -webkit-mask-image: url(../img/motif/batik.svg); mask-image: url(../img/motif/batik.svg); -webkit-mask-size: 150px 150px; mask-size: 150px 150px; -webkit-mask-repeat: repeat; mask-repeat: repeat; }

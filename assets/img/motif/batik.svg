@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="none" stroke="#000" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+  <!-- Batik ceplok Jawa–Papua, ubin berulang tanpa sambungan.
+       Jawa: kisi belah ketupat bergaris ganda + cecek, medali kawung dengan cincin truntum.
+       Papua: kasuari dan walabi bergaya batik di dalam ruang belah ketupat, spiral Sentani kecil. -->
+  <defs>
+    <g id="kw">
+      <ellipse cx="0" cy="-9" rx="5" ry="8.5"/><ellipse cx="0" cy="9" rx="5" ry="8.5"/>
+      <ellipse cx="-9" cy="0" rx="8.5" ry="5"/><ellipse cx="9" cy="0" rx="8.5" ry="5"/>
+      <ellipse cx="0" cy="-9" rx="1.8" ry="4" stroke-width=".7"/><ellipse cx="0" cy="9" rx="1.8" ry="4" stroke-width=".7"/>
+      <ellipse cx="-9" cy="0" rx="4" ry="1.8" stroke-width=".7"/><ellipse cx="9" cy="0" rx="4" ry="1.8" stroke-width=".7"/>
+      <circle r="1.4" fill="#000" stroke="none"/>
+      <circle r="20" stroke-width=".7"/>
+      <circle cx="23.0" cy="0.0" r=".9" fill="#000" stroke="none"/><circle cx="21.2" cy="8.8" r=".9" fill="#000" stroke="none"/><circle cx="16.3" cy="16.3" r=".9" fill="#000" stroke="none"/><circle cx="8.8" cy="21.2" r=".9" fill="#000" stroke="none"/><circle cx="0.0" cy="23.0" r=".9" fill="#000" stroke="none"/><circle cx="-8.8" cy="21.2" r=".9" fill="#000" stroke="none"/><circle cx="-16.3" cy="16.3" r=".9" fill="#000" stroke="none"/><circle cx="-21.2" cy="8.8" r=".9" fill="#000" stroke="none"/><circle cx="-23.0" cy="0.0" r=".9" fill="#000" stroke="none"/><circle cx="-21.2" cy="-8.8" r=".9" fill="#000" stroke="none"/><circle cx="-16.3" cy="-16.3" r=".9" fill="#000" stroke="none"/><circle cx="-8.8" cy="-21.2" r=".9" fill="#000" stroke="none"/><circle cx="-0.0" cy="-23.0" r=".9" fill="#000" stroke="none"/><circle cx="8.8" cy="-21.2" r=".9" fill="#000" stroke="none"/><circle cx="16.3" cy="-16.3" r=".9" fill="#000" stroke="none"/><circle cx="21.2" cy="-8.8" r=".9" fill="#000" stroke="none"/>
+    </g>
+    <!-- kasuari: menghadap kanan, berpusat di (0,0) -->
+    <g id="ks">
+      <path d="M-26 10c0-14 12-20 24-18 9 1 14 7 13 15-1 9-12 13-23 12-8-1-14-4-14-9Z"/>
+      <path d="M-22 6c3-1 5 1 4 3M-16 2c3-1 5 1 4 3M-10 0c3-1 5 1 4 3M-4 0c3-1 5 1 4 3M-20 13c3-1 5 1 4 3M-14 10c3-1 5 1 4 3M-8 8c3-1 5 1 4 3M-2 8c3-1 5 1 4 3" stroke-width=".7"/>
+      <path d="M8 -6c4-7 6-14 7-20M12 -3c4-8 6-15 7-21"/>
+      <path d="M14 -27a4 4 0 1 1 6 1M14 -28c0-6 4-9 7-5 0 3-1 4-3 4"/>
+      <path d="M20 -26l5 1.5-5 1.5M15 -21c-1 3 0 5 2 5" stroke-width=".8"/>
+      <path d="M-8 22l-1 11m0 0l-4 3m4-3l1 4m-1-4l4 2M2 22l1 11m0 0l-4 3m4-3l1 4m-1-4l4 2" stroke-width=".9"/>
+    </g>
+    <!-- walabi: duduk menghadap kiri, berpusat di (0,0) -->
+    <g id="wb">
+      <path d="M10 26c4-14 2-30-8-36-7-4-13 0-13 7 0 10 6 21 11 29Z"/>
+      <path d="M-5 -6c2-1 4 1 3 3M0 0c2-1 4 1 3 3M-4 6c2-1 4 1 3 3M2 10c2-1 4 1 3 3M-1 16c2-1 4 1 3 3M5 2c2-1 4 1 3 3" stroke-width=".7"/>
+      <path d="M-9 -10c-4-4-9-7-12-5-3 1-1 6 3 7 4 1 7 1 9-2Z"/>
+      <path d="M-11 -14l1-9 3 9M-8 -13l3-8 1 9" stroke-width=".8"/>
+      <path d="M-7 3c-3 3-4 6-3 7M0 26c-3 3-10 4-16 4M10 25c12 2 20 9 26 18" stroke-width=".9"/>
+    </g>
+    <g id="sp"><path d="M0 0a1.5 1.5 0 1 1 1.5 1.5 3 3 0 1 1-3-3 4.5 4.5 0 1 1 4.5 4.5" stroke-width=".8"/></g>
+  </defs>
+  <path d="M22.2 25.8L74.2 77.8M25.8 22.2L77.8 74.2" stroke-width=".8"/><circle cx="29.2" cy="29.2" r=".7" fill="#000" stroke="none"/><circle cx="34.4" cy="34.4" r=".7" fill="#000" stroke="none"/><circle cx="39.6" cy="39.6" r=".7" fill="#000" stroke="none"/><circle cx="44.8" cy="44.8" r=".7" fill="#000" stroke="none"/><circle cx="50.0" cy="50.0" r=".7" fill="#000" stroke="none"/><circle cx="55.2" cy="55.2" r=".7" fill="#000" stroke="none"/><circle cx="60.4" cy="60.4" r=".7" fill="#000" stroke="none"/><circle cx="65.6" cy="65.6" r=".7" fill="#000" stroke="none"/><circle cx="70.8" cy="70.8" r=".7" fill="#000" stroke="none"/><path d="M122.2 125.8L174.2 177.8M125.8 122.2L177.8 174.2" stroke-width=".8"/><circle cx="129.2" cy="129.2" r=".7" fill="#000" stroke="none"/><circle cx="134.4" cy="134.4" r=".7" fill="#000" stroke="none"/><circle cx="139.6" cy="139.6" r=".7" fill="#000" stroke="none"/><circle cx="144.8" cy="144.8" r=".7" fill="#000" stroke="none"/><circle cx="150.0" cy="150.0" r=".7" fill="#000" stroke="none"/><circle cx="155.2" cy="155.2" r=".7" fill="#000" stroke="none"/><circle cx="160.4" cy="160.4" r=".7" fill="#000" stroke="none"/><circle cx="165.6" cy="165.6" r=".7" fill="#000" stroke="none"/><circle cx="170.8" cy="170.8" r=".7" fill="#000" stroke="none"/><path d="M174.2 22.2L122.2 74.2M177.8 25.8L125.8 77.8" stroke-width=".8"/><circle cx="170.8" cy="29.2" r=".7" fill="#000" stroke="none"/><circle cx="165.6" cy="34.4" r=".7" fill="#000" stroke="none"/><circle cx="160.4" cy="39.6" r=".7" fill="#000" stroke="none"/><circle cx="155.2" cy="44.8" r=".7" fill="#000" stroke="none"/><circle cx="150.0" cy="50.0" r=".7" fill="#000" stroke="none"/><circle cx="144.8" cy="55.2" r=".7" fill="#000" stroke="none"/><circle cx="139.6" cy="60.4" r=".7" fill="#000" stroke="none"/><circle cx="134.4" cy="65.6" r=".7" fill="#000" stroke="none"/><circle cx="129.2" cy="70.8" r=".7" fill="#000" stroke="none"/><path d="M74.2 122.2L22.2 174.2M77.8 125.8L25.8 177.8" stroke-width=".8"/><circle cx="70.8" cy="129.2" r=".7" fill="#000" stroke="none"/><circle cx="65.6" cy="134.4" r=".7" fill="#000" stroke="none"/><circle cx="60.4" cy="139.6" r=".7" fill="#000" stroke="none"/><circle cx="55.2" cy="144.8" r=".7" fill="#000" stroke="none"/><circle cx="50.0" cy="150.0" r=".7" fill="#000" stroke="none"/><circle cx="44.8" cy="155.2" r=".7" fill="#000" stroke="none"/><circle cx="39.6" cy="160.4" r=".7" fill="#000" stroke="none"/><circle cx="34.4" cy="165.6" r=".7" fill="#000" stroke="none"/><circle cx="29.2" cy="170.8" r=".7" fill="#000" stroke="none"/>
+  <use href="#kw" x="100" y="100"/><use href="#kw"/><use href="#kw" x="200"/><use href="#kw" y="200"/><use href="#kw" x="200" y="200"/>
+  <use href="#ks" x="100" y="0"/><use href="#ks" x="100" y="200"/>
+  <use href="#wb" x="0" y="100"/><use href="#wb" x="200" y="100"/>
+  <use href="#sp" x="62" y="40"/><use href="#sp" x="138" y="160"/><use href="#sp" x="40" y="140"/><use href="#sp" x="160" y="60"/>
+</svg>
