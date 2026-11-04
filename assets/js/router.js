@@ -16,7 +16,7 @@
     perencanaan: ["transparansi", "perencanaan"], rpjmk: ["transparansi", "perencanaan"], rpjmkam: ["transparansi", "perencanaan"],
     jelajah: ["jelajah", "petakampung"], petakampung: ["jelajah", "petakampung"], peta: ["jelajah", "petakampung"],
     wisatakuliner: ["jelajah", "wisatakuliner"], wisata: ["jelajah", "wisatakuliner"],
-    "layanan-warga": ["layanan-warga", "surat"], surat: ["layanan-warga", "surat"], layanan: ["layanan-warga", "surat"],
+    "layanan-warga": ["layanan-warga", "surat"], surat: ["layanan-warga", "surat"], ajukan: ["layanan-warga", "surat", "ajukan"], "ajukan-surat": ["layanan-warga", "surat", "ajukan"], layanan: ["layanan-warga", "surat"],
     kontakkampung: ["layanan-warga", "kontakkampung"], kontak: ["layanan-warga", "kontakkampung"]
   };
   var JUDUL = { beranda: "", profil: "Profil Kampung", data: "Data Kampung", transparansi: "Transparansi", jelajah: "Jelajah", "layanan-warga": "Layanan & Kontak" };

@@ -969,16 +969,108 @@
     setInterval(function () { if (!document.hidden) muat(); }, 30 * 60 * 1000);
   })();
 
-  /* =================== LAYANAN =================== */
-  $("#layananList").innerHTML = D.layanan.map(function (l) {
-    return '<button type="button" class="svc tap"' + act(function () {
-      openModal({ kat: "Layanan administrasi", title: l.nama,
-        html: ((l.syarat || []).length ? "<p><b>Persyaratan:</b></p><ul>" + l.syarat.map(function (s) { return "<li>" + esc(s) + "</li>"; }).join("") + "</ul>" : "<p>Persyaratan resmi untuk surat ini belum dicantumkan. Silakan tanyakan langsung ke Kantor Kampung Marga Mulya.</p>") +
-          (l.waktu ? "<p><b>Lama proses:</b> " + esc(l.waktu) + "</p>" : "") + (D.kontak.jamLayanan ? "<p><b>Jam layanan:</b> " + esc(D.kontak.jamLayanan) + "</p>" : "") +
-          "<div class='modal__actions'>" + mapBtn(gm.dir, "Petunjuk arah ke kantor (OpenStreetMap)", "nav", true) + "</div>" });
-    }) + "><span>" + ic("doc") + "</span><span><b>" + esc(l.nama) + "</b>" + (l.waktu ? "<small>" + ic("clock") + esc(l.waktu) + "</small>" : "") + '</span><span class="go">' + ic("arrow") + "</span></button>";
-  }).join("");
-  if (D.layananContoh) $("#layanan .lead").insertAdjacentHTML("beforeend", CHIP);
+  /* =================== LAYANAN SURAT + PENGAJUAN LEWAT WHATSAPP ===================
+     Tidak ada data yang disimpan di website: formulir menyusun pesan di perangkat warga
+     lalu membuka WhatsApp (wa.me) ke nomor layanan kampung. */
+  (function () {
+    var L = D.layanan || [], WA = D.layananWa || {}, jenisAwal = "";
+    $("#layWaTampil").textContent = WA.tampil || "";
+    var ALUR = [
+      ["doc", "Pilih jenis surat", "Baca persyaratan surat yang dibutuhkan pada daftar di bawah."],
+      ["person", "Isi formulir", "Nama, NIK, alamat, alasan pengajuan, dan data tambahan sesuai jenis surat."],
+      ["chat", "Kirim lewat WhatsApp", "Pesan pengajuan tersusun otomatis dan terkirim ke WhatsApp layanan kampung " + (WA.tampil || "") + "."],
+      ["image", "Kirim foto persyaratan", "Di chat yang sama, kirim foto dokumen persyaratan (KTP, KK, atau surat lain)."],
+      ["check", "Tunggu balasan petugas", "Petugas kampung memeriksa pengajuan dan membalas lewat WhatsApp."]
+    ];
+    $("#layAlur").innerHTML = ALUR.map(function (x, i) {
+      return '<li><span class="alur__no">' + (i + 1) + '</span><span class="alur__ic">' + ic(x[0]) + "</span><b>" + esc(x[1]) + "</b><small>" + esc(x[2]) + "</small></li>";
+    }).join("");
+    var syaratHtml = function (l) {
+      return (l.syarat || []).length ? "<ul>" + l.syarat.map(function (x) { return "<li>" + esc(x) + "</li>"; }).join("") + "</ul>" : '<p class="small">Persyaratan belum dicantumkan; petugas akan menyampaikannya lewat WhatsApp.</p>';
+    };
+    $("#layananList").innerHTML = L.map(function (l) {
+      return '<article class="svc svc--syarat"><div class="svc__top"><span>' + ic("doc") + "</span><b>" + esc(l.nama) + "</b></div>" +
+        '<div class="svc__syarat"><small>Persyaratan</small>' + syaratHtml(l) + "</div>" +
+        (l.waktu ? '<small class="svc__waktu">' + ic("clock") + esc(l.waktu) + "</small>" : "") +
+        '<button type="button" class="btn btn--solid svc__aju" data-aju="' + esc(l.id) + '">' + ic("chat") + "Ajukan surat ini</button></article>";
+    }).join("");
+
+    var form = $("#formAjukan"); if (!form) return;
+    var fJenis = $("#fJenis"), fTambah = $("#fTambahan"), fSyarat = $("#fSyarat"), galat = $("#fGalat");
+    fJenis.innerHTML = '<option value="">— Pilih jenis surat —</option>' + L.map(function (l) { return '<option value="' + esc(l.id) + '">' + esc(l.nama) + "</option>"; }).join("");
+    var cari = function (id) { return L.filter(function (l) { return l.id === id; })[0]; };
+    function isianHtml(f) {
+      var req = f.wajib ? " required" : "", lbl = "<span>" + esc(f.label) + (f.wajib ? " <i>*</i>" : "") + "</span>", id = "fx_" + esc(f.id);
+      if (f.tipe === "pilih") return '<label class="fld">' + lbl + '<select id="' + id + '"' + req + '><option value="">— Pilih —</option>' + f.pilihan.map(function (o) { return "<option>" + esc(o) + "</option>"; }).join("") + "</select></label>";
+      var t = f.tipe === "tanggal" ? ' type="date"' : f.tipe === "angka" ? ' type="number" min="1" inputmode="numeric"' : f.tipe === "nik" ? ' inputmode="numeric" maxlength="16"' : "";
+      return '<label class="fld">' + lbl + '<input id="' + id + '"' + t + req + (f.contoh ? ' placeholder="' + esc(f.contoh) + '"' : "") + "></label>";
+    }
+    function pilih(id) {
+      var l = cari(id);
+      fTambah.innerHTML = l && (l.isian || []).length ? '<p class="ajukan__sub fld--lebar">Data tambahan untuk ' + esc(l.nama) + "</p>" + l.isian.map(isianHtml).join("") : "";
+      fSyarat.innerHTML = l ? "<b>Persyaratan yang perlu dikirim di WhatsApp:</b>" + syaratHtml(l) : "";
+    }
+    fJenis.addEventListener("change", function () { pilih(fJenis.value); });
+    $("#layananList").addEventListener("click", function (e) {
+      var b = e.target.closest("[data-aju]"); if (!b) return;
+      fJenis.value = b.getAttribute("data-aju"); pilih(fJenis.value);
+      $("#ajukan").scrollIntoView({ behavior: "smooth", block: "start" });
+      setTimeout(function () { $("#fNama").focus({ preventScroll: true }); }, 500);
+    });
+
+    var nilai = function (id) { var el = document.getElementById(id); return el ? String(el.value || "").trim() : ""; };
+    var tglIndo = function (iso) { var p = iso.split("-"); return p.length === 3 ? +p[2] + " " + ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"][+p[1] - 1] + " " + p[0] : iso; };
+    function periksa() {
+      var l = cari(fJenis.value), salah = [];
+      if (!l) salah.push("Pilih jenis surat.");
+      if (!nilai("fNama")) salah.push("Isi nama lengkap.");
+      if (!/^\d{16}$/.test(nilai("fNik"))) salah.push("NIK harus 16 angka.");
+      if (!/^[+0-9][0-9 \-]{8,15}$/.test(nilai("fHp"))) salah.push("Isi nomor HP/WhatsApp yang benar.");
+      if (!nilai("fRt")) salah.push("Isi RT/RW.");
+      if (!nilai("fAlamat")) salah.push("Isi alamat lengkap.");
+      if (!nilai("fAlasan")) salah.push("Isi alasan/keperluan pengajuan.");
+      (l && l.isian || []).forEach(function (f) {
+        var v = nilai("fx_" + f.id);
+        if (f.wajib && !v) salah.push("Isi " + f.label.toLowerCase() + ".");
+        if (f.tipe === "nik" && v && !/^\d{16}$/.test(v)) salah.push(f.label + " harus 16 angka.");
+      });
+      if (!$("#fSetuju").checked) salah.push("Centang pernyataan bahwa data sudah benar.");
+      return { l: l, salah: salah };
+    }
+    function pesan(l) {
+      var now = new Date(), baris = [
+        "*PENGAJUAN SURAT – KAMPUNG MARGA MULYA*",
+        "Jenis surat: *" + l.nama + "*",
+        "Tanggal pengajuan: " + tglIndo(now.getFullYear() + "-" + (now.getMonth() + 1) + "-" + now.getDate()),
+        "",
+        "*Data pemohon*",
+        "Nama lengkap: " + nilai("fNama"),
+        "NIK: " + nilai("fNik"),
+        "No. HP/WA: " + nilai("fHp"),
+        "RT/RW: " + nilai("fRt"),
+        "Alamat: " + nilai("fAlamat")
+      ];
+      var tambah = (l.isian || []).map(function (f) { var v = nilai("fx_" + f.id); if (!v) return ""; return f.label + ": " + (f.tipe === "tanggal" ? tglIndo(v) : v); }).filter(Boolean);
+      if (tambah.length) baris = baris.concat(["", "*Data tambahan*"], tambah);
+      baris.push("", "*Alasan / keperluan*", nilai("fAlasan"));
+      if ((l.syarat || []).length) { baris.push("", "*Persyaratan (fotonya saya kirim di chat ini)*"); l.syarat.forEach(function (x) { baris.push("- " + x); }); }
+      baris.push("", "Saya menyatakan data di atas benar.", "_Dikirim lewat website Marga Mulya On Site_");
+      return baris.join("\n");
+    }
+    function tampilGalat(salah) { galat.hidden = !salah.length; galat.innerHTML = salah.length ? "<b>Lengkapi dulu:</b><ul>" + salah.map(function (x) { return "<li>" + esc(x) + "</li>"; }).join("") + "</ul>" : ""; if (salah.length) galat.scrollIntoView({ behavior: "smooth", block: "center" }); }
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      var h = periksa(); tampilGalat(h.salah); if (h.salah.length) return;
+      var url = "https://wa.me/" + encodeURIComponent(WA.nomor) + "?text=" + encodeURIComponent(pesan(h.l));
+      var a = document.createElement("a"); a.href = url; a.target = "_blank"; a.rel = "noopener"; document.body.appendChild(a); a.click(); a.remove();
+      toast("Membuka WhatsApp… tekan Kirim, lalu kirim foto persyaratan.");
+    });
+    $("#fPratinjau").addEventListener("click", function () {
+      var h = periksa(); tampilGalat(h.salah); if (h.salah.length) return;
+      openModal({ kat: "Pratinjau pesan WhatsApp", title: h.l.nama, html: '<pre class="wa-pratinjau">' + esc(pesan(h.l)) + '</pre><p class="small">Pesan ini akan dikirim ke WhatsApp layanan kampung ' + esc(WA.tampil || "") + ". Data tidak disimpan di website.</p>" });
+    });
+    $("#fNik").addEventListener("input", function () { this.value = this.value.replace(/\D/g, "").slice(0, 16); });
+  })();
 
   /* =================== POTENSI, KEGIATAN, GALERI =================== */
   var ikonPot = { padi: "sprout", daun: "daun", ternak: "ternak", toko: "toko", wisata: "tree" };

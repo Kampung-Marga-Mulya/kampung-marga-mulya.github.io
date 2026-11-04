@@ -944,6 +944,8 @@
    "alamat": "Kampung Marga Mulya, Distrik Semangga",
    "keterangan": [
     "Pustu Kampung Marga Mulya, Distrik Semangga",
+    "Buka Senin–Sabtu pukul 08.00–14.00",
+    "Pelayanan oleh bidan",
     "Satu dari 2 puskesmas pembantu menurut monografi 2026"
    ],
    "sumber": "Survei Tim Ekspedisi Patriot IPB, 26 Okt 2026",
@@ -975,7 +977,8 @@
      "ket": "",
      "sumber": "Dokumen Fasilitas Umum Kampung Marga Mulya, Desember 2023"
     }
-   ]
+   ],
+   "jam": "Senin–Sabtu, 08.00–14.00"
   },
   {
    "id": "posyandu-bina-putra",

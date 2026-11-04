@@ -64,11 +64,11 @@ window.KAMPUNG = {
 
   // Isi tautan akun resmi kampung. Yang kosong akan tampil "belum tersedia".
   sosmed: [
-    { nama: "Facebook", url: "https://www.facebook.com/share/1FFzSdy1pr/", akun: "Kampung Marga Mulya" },
+    { nama: "Facebook", url: "https://www.facebook.com/share/1FFzSdy1pr/", akun: "Grup Kampung Marga Mulya" },
     { nama: "Instagram", url: "https://www.instagram.com/kampung_margamulya/", akun: "@kampung_margamulya" },
     { nama: "YouTube", url: "", akun: "[nama kanal YouTube kampung]" },
     { nama: "TikTok", url: "https://www.tiktok.com/@kampung.marga.mul", akun: "@kampung.marga.mul" },
-    { nama: "WhatsApp", url: "", akun: "[nomor WhatsApp kantor kampung]" }   // format url: https://wa.me/62812xxxxxxx
+    { nama: "WhatsApp", url: "https://wa.me/6285624924834", akun: "+62 856-2492-4834 (layanan surat)" }   // format url: https://wa.me/62812xxxxxxx
   ],
 
   kerjaSama: {
@@ -802,15 +802,33 @@ window.KAMPUNG = {
 
   /* ---------- LAYANAN ADMINISTRASI ---------- */
   // Persyaratan & lama proses belum ada data resmi. Isi "syarat" dan "waktu" dari kantor kampung.
+  // Layanan surat. "syarat" = dokumen yang dikirim/dibawa; "isian" = data tambahan di formulir pengajuan.
+  // Pengajuan lewat website TIDAK disimpan di server: formulir hanya menyusun pesan WhatsApp
+  // di perangkat warga, lalu dikirim langsung ke nomor layanan (layananWa).
+  layananWa: { nomor: "6285624924834", tampil: "+62 856-2492-4834" },
   layanan: [
-    { nama: "Surat Pengantar KTP-el / KK", waktu: "", syarat: [] },
-    { nama: "Surat Keterangan Domisili", waktu: "", syarat: [] },
-    { nama: "Surat Keterangan Tidak Mampu", waktu: "", syarat: [] },
-    { nama: "Surat Keterangan Usaha", waktu: "", syarat: [] },
-    { nama: "Surat Keterangan Kelahiran", waktu: "", syarat: [] },
-    { nama: "Surat Keterangan Kematian", waktu: "", syarat: [] },
-    { nama: "Surat Keterangan Pindah", waktu: "", syarat: [] }
+    { id: "pengantar-ktp-kk", nama: "Surat Pengantar KTP-el / KK", waktu: "", syarat: [],
+      isian: [{ id: "jenisPengantar", label: "Jenis pengantar", tipe: "pilih", pilihan: ["KTP-el baru", "KTP-el hilang / rusak", "KK baru", "Perubahan data KK"], wajib: true }] },
+    { id: "domisili", nama: "Surat Keterangan Domisili", waktu: "", syarat: ["KTP", "Kartu Keluarga (KK)"], isian: [] },
+    { id: "usaha", nama: "Surat Keterangan Domisili Usaha", waktu: "", syarat: ["KTP", "Kartu Keluarga (KK)"],
+      isian: [{ id: "namaUsaha", label: "Nama usaha", wajib: true }, { id: "jenisUsaha", label: "Jenis usaha", contoh: "mis. warung sembako, bengkel, usaha tani", wajib: true }, { id: "alamatUsaha", label: "Alamat / lokasi usaha", wajib: true }] },
+    { id: "sktm", nama: "Surat Keterangan Tidak Mampu (SKTM)", waktu: "", syarat: ["Kartu Keluarga (KK)", "Alamat tempat tinggal lengkap (RT/RW)"],
+      isian: [{ id: "keperluanSktm", label: "SKTM digunakan untuk", tipe: "pilih", pilihan: ["Pendidikan / sekolah", "Berobat / kesehatan", "Bantuan sosial", "Lainnya"], wajib: true }] },
+    { id: "kelahiran", nama: "Surat Keterangan Kelahiran", waktu: "", syarat: ["Surat keterangan lahir dari rumah sakit / tempat bersalin"],
+      isian: [{ id: "namaBayi", label: "Nama bayi", wajib: true }, { id: "jkBayi", label: "Jenis kelamin bayi", tipe: "pilih", pilihan: ["Laki-laki", "Perempuan"], wajib: true },
+        { id: "tglLahir", label: "Tanggal lahir", tipe: "tanggal", wajib: true }, { id: "tempatLahir", label: "Tempat lahir (rumah sakit / tempat bersalin)", wajib: true },
+        { id: "namaAyah", label: "Nama ayah", wajib: true }, { id: "namaIbu", label: "Nama ibu", wajib: true }] },
+    { id: "kematian", nama: "Surat Keterangan Kematian", waktu: "", syarat: [],
+      isian: [{ id: "namaAlm", label: "Nama almarhum / almarhumah", wajib: true }, { id: "nikAlm", label: "NIK almarhum / almarhumah", tipe: "nik" },
+        { id: "tglMeninggal", label: "Tanggal meninggal", tipe: "tanggal", wajib: true }, { id: "tempatMeninggal", label: "Tempat meninggal", wajib: true },
+        { id: "sebab", label: "Sebab meninggal (bila diketahui)" }, { id: "hubungan", label: "Hubungan pelapor dengan almarhum", contoh: "mis. anak, suami, istri", wajib: true }] },
+    { id: "pindah", nama: "Surat Keterangan Pindah", waktu: "",
+      syarat: ["Pindah keluar: Kartu Keluarga (KK), daerah tujuan pindah, dan alamat lengkap tujuan", "Pindah datang ke Marga Mulya: KTP"],
+      isian: [{ id: "arahPindah", label: "Jenis kepindahan", tipe: "pilih", pilihan: ["Pindah keluar dari Marga Mulya", "Pindah datang ke Marga Mulya"], wajib: true },
+        { id: "daerahPindah", label: "Daerah tujuan / asal (kampung, distrik, kabupaten/kota, provinsi)", wajib: true },
+        { id: "alamatPindah", label: "Alamat lengkap tujuan / asal", wajib: true }, { id: "jumlahPindah", label: "Jumlah anggota keluarga yang pindah", tipe: "angka", wajib: true }] }
   ],
+
 
   // Rekap sarana dan prasarana dari monografi (tampil di tab Fasilitas Umum)
   sarana: [
@@ -997,8 +1015,8 @@ window.KAMPUNG = {
 
   kontak: {
     alamat: "Kantor Kampung Marga Mulya, Distrik Semangga, Kabupaten Merauke, Papua Selatan 99631",
-    telepon: "[nomor telepon / WhatsApp kantor kampung]",
-    email: "[email resmi kampung]",
+    telepon: "+62 856-2492-4834 (WhatsApp layanan surat)",
+    email: "kampungmargamulya667@gmail.com",
     jamLayanan: ""   // isi jam layanan resmi kantor kampung
   }
 };

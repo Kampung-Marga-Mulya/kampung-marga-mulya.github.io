@@ -29,7 +29,7 @@
   <link rel="stylesheet" href="assets/css/fonts.css?v=1">
   <link rel="stylesheet" href="assets/vendor/leaflet/leaflet.css?v=1.9.4">
   <script src="assets/js/tema.js?v=1"></script>
-  <link rel="stylesheet" href="assets/css/style.css?v=1793799228">
+  <link rel="stylesheet" href="assets/css/style.css?v=1793801232">
   <link rel="stylesheet" href="assets/css/aspirasi.css?v=3">
 </head>
 <body>
@@ -498,8 +498,38 @@
         <div class="tabpanel" role="tabpanel" data-panel="surat">
 <section class="sec" id="layanan">
       <div class="wrap">
-        <header class="sec__head"><span class="sec__icon"><svg class="ic"><use href="#i-doc"/></svg></span><div><p class="eyebrow">Layanan warga</p><h2>Layanan administrasi</h2><p class="lead">Jenis surat yang dilayani Kantor Kampung Marga Mulya. Persyaratan dan lama proses ditampilkan setelah ada keterangan resmi dari kantor kampung.</p></div></header>
-        <div class="services" id="layananList"></div>
+        <header class="sec__head"><span class="sec__icon"><svg class="ic"><use href="#i-doc"/></svg></span><div><p class="eyebrow">Layanan warga</p><h2>Layanan surat Kampung Marga Mulya</h2><p class="lead">Lihat persyaratan setiap surat, lalu ajukan langsung dari website. Formulir akan menyusun pesan pengajuan dan mengirimnya ke WhatsApp layanan kampung <b id="layWaTampil"></b>.</p></div></header>
+        <h3>Alur pengajuan</h3>
+        <ol class="alur" id="layAlur"></ol>
+        <h3 class="mt">Jenis surat dan persyaratan</h3>
+        <div class="services services--syarat" id="layananList"></div>
+      </div>
+    </section>
+<section class="sec" id="ajukan">
+      <div class="wrap">
+        <header class="sec__head"><span class="sec__icon"><svg class="ic"><use href="#i-chat"/></svg></span><div><p class="eyebrow">Ajukan surat</p><h2>Formulir pengajuan lewat WhatsApp</h2><p class="lead">Isi data di bawah, lalu tekan <b>Kirim lewat WhatsApp</b>. Pesan pengajuan otomatis tersusun dan terkirim ke WhatsApp layanan kampung.</p></div></header>
+        <p class="aman"><svg class="ic"><use href="#i-check"/></svg><span><b>Data Anda tidak disimpan di website ini.</b> Formulir hanya menyusun pesan di perangkat Anda, lalu membuka WhatsApp. Data hanya diterima oleh petugas layanan kampung di nomor resmi di atas.</span></p>
+        <form class="ajukan" id="formAjukan" novalidate>
+          <div class="ajukan__grid">
+            <label class="fld fld--lebar"><span>Jenis surat <i>*</i></span><select id="fJenis" required></select></label>
+            <label class="fld"><span>Nama lengkap (sesuai KTP) <i>*</i></span><input id="fNama" autocomplete="name" required></label>
+            <label class="fld"><span>NIK (16 angka) <i>*</i></span><input id="fNik" inputmode="numeric" maxlength="16" pattern="[0-9]{16}" required></label>
+            <label class="fld"><span>Nomor HP / WhatsApp <i>*</i></span><input id="fHp" type="tel" inputmode="tel" autocomplete="tel" required></label>
+            <label class="fld"><span>RT / RW <i>*</i></span><input id="fRt" placeholder="mis. RT 05 / RW 02" required></label>
+            <label class="fld fld--lebar"><span>Alamat lengkap <i>*</i></span><input id="fAlamat" autocomplete="street-address" placeholder="mis. Jalan ..., dekat ..., Kampung Marga Mulya" required></label>
+          </div>
+          <div class="ajukan__grid" id="fTambahan"></div>
+          <div class="ajukan__grid">
+            <label class="fld fld--lebar"><span>Alasan / keperluan pengajuan <i>*</i></span><textarea id="fAlasan" rows="3" placeholder="mis. untuk melamar pekerjaan, mendaftar sekolah, mengurus bantuan" required></textarea></label>
+          </div>
+          <div class="ajukan__syarat" id="fSyarat"></div>
+          <label class="cek"><input type="checkbox" id="fSetuju" required><span>Saya menyatakan data di atas benar dan akan mengirim foto dokumen persyaratan di chat WhatsApp yang sama.</span></label>
+          <p class="ajukan__galat" id="fGalat" role="alert" hidden></p>
+          <div class="ajukan__act">
+            <button type="submit" class="btn btn--wa"><svg class="ic"><use href="#i-chat"/></svg>Kirim lewat WhatsApp</button>
+            <button type="button" class="btn btn--line" id="fPratinjau"><svg class="ic"><use href="#i-doc"/></svg>Lihat pesan dulu</button>
+          </div>
+        </form>
       </div>
     </section>
         </div>
@@ -570,9 +600,9 @@
   </dialog>
 
   <script src="assets/vendor/leaflet/leaflet.js?v=1.9.4"></script>
-  <script src="assets/js/data.js?v=1793799228"></script>
-  <script src="assets/js/ilustrasi.js?v=1793799228"></script>
-  <script src="assets/js/app.js?v=1793799228"></script>
-  <script src="assets/js/router.js?v=1793799228"></script>
+  <script src="assets/js/data.js?v=1793801232"></script>
+  <script src="assets/js/ilustrasi.js?v=1793801232"></script>
+  <script src="assets/js/app.js?v=1793801232"></script>
+  <script src="assets/js/router.js?v=1793801232"></script>
 </body>
 </html>
