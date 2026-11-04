@@ -1218,3 +1218,41 @@ html, body { transition: background-color .25s ease, color .25s ease; }
 @media (max-width: 380px) { .tabbar a { font-size: .72rem; padding-inline: 0; } }
 @media (max-width: 960px) { .tabbar { grid-template-columns: repeat(3, minmax(0, 1fr)) minmax(0, 1.4fr) repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 380px) { .tabbar a span { letter-spacing: -.02em; } }
+/* Polaroid: tinggi foto seragam, lebar mengikuti bentuk foto (tidak dipotong) agar tidak ada ruang kosong */
+.polaroid__track { align-items: center; }
+.pol, .pol:nth-child(3n), .pol:nth-child(4n+1) { width: auto; margin-top: 0; }
+.pol img { width: auto; height: 170px; max-width: none; }
+.pol__cap { max-width: 0; min-width: 100%; box-sizing: border-box; }
+.polaroid { padding: 22px 0 24px; }
+.momen { padding-bottom: 0; }
+@media (max-width: 760px) { .pol img { height: 130px; } .polaroid { padding: 18px 0 18px; margin-top: 6px; } }
+
+/* =====================================================================
+   ILUSTRASI ORANG DAN BENDA
+   ===================================================================== */
+.ilus { display: block; width: 100%; height: 100%; }
+.fact, .stat { position: relative; overflow: hidden; }
+.fact__ilus, .stat__ilus { position: absolute; right: 10px; top: 50%; transform: translateY(-50%); width: 54px; height: 54px; padding: 3px; border-radius: 50%; background: var(--blue-pale); transition: transform .25s ease; }
+.stat__ilus { width: 60px; height: 60px; }
+.fact:hover .fact__ilus, .stat:hover .stat__ilus { transform: translateY(-50%) scale(1.08) rotate(-3deg); }
+.fact__t, .fact__v, .stat b, .stat > span:not(.stat__ilus) { position: relative; padding-right: 58px; }
+.stat b, .stat > span:not(.stat__ilus) { padding-right: 64px; }
+.picto__row i { width: 26px; height: 32px; }
+.picto__row i .ilus { width: 26px; height: 32px; }
+.picto__row i:nth-child(odd) .ilus { transform: translateY(-1px); }
+.usia-ilus { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin-top: 12px; }
+.usia-ilus__i { display: grid; justify-items: center; text-align: center; gap: 2px; padding: 10px 6px; border-radius: 12px; background: var(--soft); }
+.usia-ilus__f { width: 58px; height: 58px; padding: 3px; border-radius: 50%; background: var(--blue-pale); }
+.usia-ilus__i b { font-size: 1.15rem; }
+.usia-ilus__i span:last-child { font-size: .84rem; color: var(--ink-2); line-height: 1.3; }
+.bar__ilus { display: inline-block; vertical-align: middle; width: 30px; height: 30px; margin: -4px 8px -4px 0; padding: 1px; border-radius: 50%; background: var(--blue-pale); }
+.bar__ilus:empty { display: none; }
+@media (max-width: 420px) {
+  .fact__ilus { width: 40px; height: 40px; right: 8px; top: 12px; transform: none; }
+  .fact:hover .fact__ilus { transform: scale(1.06); }
+  .fact__t, .fact__v { padding-right: 40px; }
+  .stat__ilus { width: 44px; height: 44px; right: 8px; top: 10px; transform: none; }
+  .stat:hover .stat__ilus { transform: scale(1.06); }
+  .stat b, .stat > span:not(.stat__ilus) { padding-right: 44px; }
+}
+.donut__n .bar__ilus { width: 28px; height: 28px; margin: -4px 6px -4px 0; }
