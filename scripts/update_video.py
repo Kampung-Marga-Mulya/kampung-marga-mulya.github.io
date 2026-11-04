@@ -63,6 +63,11 @@ WAJIB_LOKASI = re.compile(r"merauke|semangga|papua\s+selatan", re.I)
 DESA_LAIN = re.compile(r"\b(lahat|tangerang|mauk|kikim|rambah|rokan hulu|kutai timur|sungai bahar|muaro jambi|bekasi|bandung|"
                        r"bogor|garut|tasik|cianjur|sumedang|karawang|lampung|jambi|bengkulu|palembang|riau|kalimantan)\b", re.I)
 
+# Kabar insiden/kriminal tentang perorangan tidak ditampilkan di profil kampung (lindungi identitas pribadi)
+INSIDEN = re.compile(r"kecelakaan|laka lantas|meninggal|tewas|mayat|jenazah|pembunuhan|dibunuh|pencurian|maling|ditangkap|diamankan polisi|"
+                     r"narkoba|sabu|bunuh diri|gantung diri|penganiayaan|pemerkosaan|asusila|cabul|kebakaran|terbakar|hilang di|tenggelam|"
+                     r"dijual tanah|jual tanah|dijual rumah", re.I)
+
 POLA = {
     "youtube": re.compile(r"(?:youtube\.com/(?:watch\?(?:[^\s\"'<>]*&)?v=|shorts/|embed/|live/)|youtu\.be/)([A-Za-z0-9_-]{11})"),
     "tiktok": re.compile(r"tiktok\.com/@([A-Za-z0-9_.]+)/video/(\d{15,22})"),
@@ -323,7 +328,7 @@ def cari_youtube(q, terbaru=False):
             teks = teks_runs(v.get("title")) + " " + " ".join(teks_runs(s.get("snippetText")) for s in v.get("detailedMetadataSnippets", []))
             if vid:
                 YT_INFO.setdefault(vid, {"judul": teks_runs(v.get("title")), "kanal": teks_runs(v.get("ownerText")),
-                                         "tanggal": tanggal_kira(teks_runs(v.get("publishedTimeText"))),
+                                         "tanggal": tanggal_kira(teks_runs(v.get("publishedTimeText"))), "tanggal_kira": True,
                                          "tayang": angka_tayang(teks_runs(v.get("viewCountText"))),
                                          "durasi": detik_durasi(teks_runs(v.get("lengthText"))), "rasio": "16:9"})
         elif k == "reelItemRenderer":
@@ -394,7 +399,7 @@ def detail_youtube_halaman(vid):
     return {
         "judul": vd.get("title"), "kanal": vd.get("author"), "keterangan": vd.get("shortDescription") or "",
         "tayang": int(vd.get("viewCount") or 0), "durasi": durasi,
-        "tanggal": (mf.get("publishDate") or mf.get("uploadDate") or "")[:10] or None,
+        "tanggal": (mf.get("publishDate") or mf.get("uploadDate") or "")[:10] or None, "tanggal_kira": False,
         "sampul": "https://i.ytimg.com/vi/%s/hqdefault.jpg" % vid,
         "rasio": "9:16" if pendek else "16:9",
     }
@@ -408,6 +413,25 @@ def detail_tiktok(url, vid):
         o = r.json() if r.ok else {}
     except ValueError:
         o = {}
+    if not (o.get("title") or o.get("thumbnail_url")):
+        try:
+            e = get("https://www.tiktok.com/embed/v2/" + vid)
+            t = e.text
+            def ambil(*kunci_json):
+                for k in kunci_json:
+                    m = re.search(r'"%s"\s*:\s*"((?:[^"\\]|\\.)*)"' % k, t)
+                    if m and m.group(1).strip():
+                        try:
+                            return json.loads('"' + m.group(1) + '"')
+                        except ValueError:
+                            return m.group(1)
+                return None
+            cap, cov, nama = ambil("desc", "text", "title"), ambil("originCover", "cover", "dynamicCover"), ambil("uniqueId", "nickname")
+            if cap or cov:
+                o = {"title": cap, "thumbnail_url": cov, "author_name": nama or o.get("author_name")}
+                log("  TikTok dari halaman embed:", vid, (cap or "")[:60])
+        except requests.RequestException as e:
+            log("  embed TikTok gagal:", e)
     if not (o.get("title") or o.get("thumbnail_url")):
         log("  oEmbed TikTok kosong:", r.status_code, str(o)[:120])
         h = get(url, headers=UA_PRATINJAU)
@@ -512,6 +536,8 @@ def lolos(teks):
         return False
     # Ada nama daerah lain dan tidak ada Merauke/Semangga sama sekali → desa lain
     if DESA_LAIN.search(teks) and not re.search(r"merauke|semangga", teks, re.I):
+        return False
+    if INSIDEN.search(teks):
         return False
     return True
 
@@ -697,6 +723,7 @@ def main():
              "kanal": bersih(d.get("kanal")) or None,
              "keterangan": bersih(d.get("keterangan"))[:400],
              "tanggal": d.get("tanggal") or (lama_v or {}).get("tanggal"),
+             "tanggal_kira": bool(d.get("tanggal_kira")) if d.get("tanggal") else (lama_v or {}).get("tanggal_kira"),
              "tayang": d.get("tayang"), "durasi": d.get("durasi"), "suka": d.get("suka"),
              "rasio": d.get("rasio") or "16:9",
              "ditemukan": (lama_v or {}).get("ditemukan") or sekarang.date().isoformat()}
