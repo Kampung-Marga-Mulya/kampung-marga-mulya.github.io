@@ -1,7 +1,67 @@
 {
- "diperiksa": "2026-11-04T17:32+09:00",
+ "diperiksa": "2026-11-04T17:38+09:00",
  "catatan": "Dibuat otomatis oleh scripts/update_video.py. Jangan disunting manual; gunakan video.pilihan di assets/js/data.js atau data/video-abaikan.json.",
  "video": [
+  {
+   "platform": "instagram",
+   "id": "DewpUEKEzxw",
+   "url": "https://www.instagram.com/p/DewpUEKEzxw/",
+   "judul": "Personil Pospol Semangga Tangani Kecelakaan Lalu Lintas Tunggal di Kampung Marga Mulya Merauke, Papua Selatan – Personel Pos Polisi (Pospol)",
+   "kanal": "polres_merauke_official",
+   "keterangan": "Personil Pospol Semangga Tangani Kecelakaan Lalu Lintas Tunggal di Kampung Marga Mulya Merauke, Papua Selatan – Personel Pos Polisi (Pospol) Semangga bergerak cepat menangani kecelakaan lalu lintas tunggal yang terjadi di Kampung Marga Mulya, Distrik Semangga, Kabupaten Merauke, Provinsi Papua Selatan, pada Selasa (20/10/2026) sekitar pukul 05.00 WIT. Korban dalam kejadian tersebut diketahui berna",
+   "tanggal": "2026-10-21",
+   "suka": 535,
+   "rasio": "4:5",
+   "ditemukan": "2026-11-04",
+   "rasio_sampul": 1.0,
+   "sampul": "assets/img/video/instagram-DewpUEKEzxw.jpg",
+   "skor": 12.155
+  },
+  {
+   "platform": "instagram",
+   "id": "DdRFcGASMKK",
+   "url": "https://www.instagram.com/reel/DdRFcGASMKK/",
+   "judul": "TNI AD WUJUDKAN AIR BERSIH, KODIM 1707/MERAUKE HADIR ATASI KESULITAN WARGA RT.09 MARGA MULYA Merauke, Papua Selatan - Ketersediaan air bersi",
+   "kanal": "kodim1707merauke",
+   "keterangan": "TNI AD WUJUDKAN AIR BERSIH, KODIM 1707/MERAUKE HADIR ATASI KESULITAN WARGA RT.09 MARGA MULYA Merauke, Papua Selatan - Ketersediaan air bersih menjadi kebutuhan mendasar bagi masyarakat, terlebih saat musim kemarau. Kondisi tersebut turut dirasakan warga RT.09, Kampung Marga Mulya, Distrik Semangga, Kabupaten Merauke, khususnya jamaah Mushola Al Barokah yang selama bertahun-tahun mengandalkan air d",
+   "tanggal": "2026-09-14",
+   "suka": 1156,
+   "rasio": "9:16",
+   "ditemukan": "2026-11-04",
+   "rasio_sampul": 1.778,
+   "sampul": "assets/img/video/instagram-DdRFcGASMKK.jpg",
+   "skor": 11.67
+  },
+  {
+   "platform": "instagram",
+   "id": "DaO5UM3RBsF",
+   "url": "https://www.instagram.com/reel/DaO5UM3RBsF/",
+   "judul": "Mancing mania Semangga 2 dan sekitarnya, merapat! @fm.fishing_ hadir buat kebutuhan mancing kalian 📍 Semangga 2, Kampung Marga Mulya (sebera",
+   "kanal": "aliftananda_",
+   "keterangan": "Mancing mania Semangga 2 dan sekitarnya, merapat! @fm.fishing_ hadir buat kebutuhan mancing kalian 📍 Semangga 2, Kampung Marga Mulya (seberang Koperasi Merah Putih) juga tersedia jasa titip Agnia",
+   "tanggal": "2026-06-30",
+   "suka": 169,
+   "rasio": "9:16",
+   "ditemukan": "2026-11-04",
+   "rasio_sampul": 0.562,
+   "sampul": "assets/img/video/instagram-DaO5UM3RBsF.jpg",
+   "skor": 9.693
+  },
+  {
+   "platform": "instagram",
+   "id": "DJTG2lNv9EP",
+   "url": "https://www.instagram.com/reel/DJTG2lNv9EP/",
+   "judul": "Seorang pria dari Kampung Marga Mulya, Distrik Semangga, Merauke, pulang dari hutan dengan babi di punggungnya dan kuda menyusul di belakang",
+   "kanal": "info_kejadian_merauke",
+   "keterangan": "Seorang pria dari Kampung Marga Mulya, Distrik Semangga, Merauke, pulang dari hutan dengan babi di punggungnya dan kuda menyusul di belakang. Bukan sekadar berburu, ini tentang harga diri, kejantanan, dan hubungan yang dalam dengan alam. Di sini, menjadi laki-laki artinya tahu jalan pulang sambil membawa bukti perjuangan. #PapuaSelatan #Merauke #AnakKampung #TradisiPapua #HutanAdalahGuru #MargaMul",
+   "tanggal": "2025-05-05",
+   "suka": 3513,
+   "rasio": "9:16",
+   "ditemukan": "2026-11-04",
+   "rasio_sampul": 0.562,
+   "sampul": "assets/img/video/instagram-DJTG2lNv9EP.jpg",
+   "skor": 9.562
+  },
   {
    "platform": "youtube",
    "id": "29_kk5DTN40",
@@ -79,18 +139,6 @@
    "rasio_sampul": 1.333,
    "sampul": "assets/img/video/youtube-NYrnk265P5U.jpg",
    "skor": 8.916
-  },
-  {
-   "platform": "instagram",
-   "id": "DJTG2lNv9EP",
-   "url": "https://www.instagram.com/reel/DJTG2lNv9EP/",
-   "judul": "3,513 likes, 45 comments - info_kejadian_merauke pada May 5, 2025: \"Seorang pria dari Kampung Marga Mulya, Distrik Semangga, Merauke, pulang",
-   "keterangan": "3,513 likes, 45 comments - info_kejadian_merauke pada May 5, 2025: \"Seorang pria dari Kampung Marga Mulya, Distrik Semangga, Merauke, pulang dari hutan dengan babi di punggungnya dan kuda menyusul di belakang. Bukan sekadar berburu, ini tentang harga diri, kejantanan, dan hubungan yang dalam dengan alam. Di sini, menjadi laki-laki artinya tahu jalan pulang sambil membawa bukti perjuangan. #PapuaSe",
-   "rasio": "9:16",
-   "ditemukan": "2026-11-04",
-   "rasio_sampul": 0.562,
-   "sampul": "assets/img/video/instagram-DJTG2lNv9EP.jpg",
-   "skor": 8.836
   },
   {
    "platform": "youtube",
@@ -302,6 +350,19 @@
   },
   {
    "platform": "youtube",
+   "id": "VIeLV2H-uEg",
+   "url": "https://www.youtube.com/watch?v=VIeLV2H-uEg",
+   "judul": "FULL PTDM 2021 PENGERING PADI UV DRYER DI KAMP. MARGA MULYA | MERAUKE | UNIVERSITAS MUSAMUS",
+   "kanal": "Putra Andika Musamus",
+   "tayang": 49,
+   "rasio": "16:9",
+   "ditemukan": "2026-11-04",
+   "rasio_sampul": 1.333,
+   "sampul": "assets/img/video/youtube-VIeLV2H-uEg.jpg",
+   "skor": 7.969
+  },
+  {
+   "platform": "youtube",
    "id": "B_BAq4rco-g",
    "url": "https://www.youtube.com/watch?v=B_BAq4rco-g",
    "judul": "Acara penutupan KKP Yaleka Maro Merauke angkatan XVII di Kampung Marga Mulya...",
@@ -371,7 +432,7 @@
    "url": "https://www.youtube.com/watch?v=ascjSfNf2UQ",
    "judul": "Hidup Rukun Warga Exs Transmigrasi Papua Selatan kampung Marga Mulya",
    "kanal": "STORY AMRY",
-   "tayang": 602,
+   "tayang": 603,
    "rasio": "16:9",
    "ditemukan": "2026-11-04",
    "rasio_sampul": 1.333,
@@ -405,6 +466,21 @@
    "skor": 7.664
   },
   {
+   "platform": "instagram",
+   "id": "DeG3ucdDwgp",
+   "url": "https://www.instagram.com/p/DeG3ucdDwgp/",
+   "judul": "Di tengah kondisi kekeringan yang berdampak pada ketersediaan air bersih, BWS Papua Merauke bersama BPBD Kabupaten Merauke terus hadir membe",
+   "kanal": "pu_sda_papuamerauke",
+   "keterangan": "Di tengah kondisi kekeringan yang berdampak pada ketersediaan air bersih, BWS Papua Merauke bersama BPBD Kabupaten Merauke terus hadir memberikan bantuan bagi masyarakat yang membutuhkan. Pada 1 Oktober 2026, penyaluran air bersih dilaksanakan di Kampung Marga Mulya, Distrik Semangga, dan Kampung Waninggap Miraf, Kabupaten Merauke. Sebanyak 35.000 liter air bersih disalurkan melalui 7 titik sasara",
+   "tanggal": "2026-10-05",
+   "suka": 69,
+   "rasio": "4:5",
+   "ditemukan": "2026-11-04",
+   "rasio_sampul": 1.0,
+   "sampul": "assets/img/video/instagram-DeG3ucdDwgp.jpg",
+   "skor": 7.229
+  },
+  {
    "platform": "youtube",
    "id": "OgHFxRHUVpM",
    "url": "https://www.youtube.com/watch?v=OgHFxRHUVpM",
@@ -416,18 +492,6 @@
    "rasio_sampul": 1.333,
    "sampul": "assets/img/video/youtube-OgHFxRHUVpM.jpg",
    "skor": 7.2
-  },
-  {
-   "platform": "youtube",
-   "id": "GstSi_HcxI4",
-   "url": "https://www.youtube.com/watch?v=GstSi_HcxI4",
-   "judul": "4 Unit Kubah Menuju Masjid Yayasan “Nurul Huda” Marga Mulya, Merauke #kubahindonesia#shorts",
-   "kanal": "GunturKubahID",
-   "rasio": "9:16",
-   "ditemukan": "2026-11-04",
-   "rasio_sampul": 1.333,
-   "sampul": "assets/img/video/youtube-GstSi_HcxI4.jpg",
-   "skor": 6.836
   },
   {
    "platform": "youtube",
@@ -443,14 +507,14 @@
   },
   {
    "platform": "youtube",
-   "id": "IpsNTyLEVlg",
-   "url": "https://www.youtube.com/watch?v=IpsNTyLEVlg",
-   "judul": "Kebakaran POM Mini dijalan poros Semangga Marga Mulya #merauke #papuaselatan #kebakaran #pommini",
-   "kanal": "JSPNews",
+   "id": "GstSi_HcxI4",
+   "url": "https://www.youtube.com/watch?v=GstSi_HcxI4",
+   "judul": "4 Unit Kubah Menuju Masjid Yayasan “Nurul Huda” Marga Mulya, Merauke #kubahindonesia#shorts",
+   "kanal": "GunturKubahID",
    "rasio": "9:16",
    "ditemukan": "2026-11-04",
    "rasio_sampul": 1.333,
-   "sampul": "assets/img/video/youtube-IpsNTyLEVlg.jpg",
+   "sampul": "assets/img/video/youtube-GstSi_HcxI4.jpg",
    "skor": 6.836
   },
   {
@@ -464,55 +528,6 @@
    "rasio_sampul": 1.333,
    "sampul": "assets/img/video/youtube-xH1UZn6oYB4.jpg",
    "skor": 6.836
-  },
-  {
-   "platform": "youtube",
-   "id": "T8GhVE0_MsU",
-   "url": "https://www.youtube.com/watch?v=T8GhVE0_MsU",
-   "judul": "upacara Bendera HUT RI KE 79,KAMPUNG MARGA MULYA MERAUKE PAPUA SELATAN",
-   "kanal": "Mas Blenk Makarena",
-   "rasio": "16:9",
-   "ditemukan": "2026-11-04",
-   "rasio_sampul": 1.333,
-   "sampul": "assets/img/video/youtube-T8GhVE0_MsU.jpg",
-   "skor": 6.836
-  },
-  {
-   "platform": "instagram",
-   "id": "DewpUEKEzxw",
-   "url": "https://www.instagram.com/p/DewpUEKEzxw/",
-   "judul": "535 likes, 2 comments - polres_merauke_official pada October 21, 2026: \"Personil Pospol Semangga Tangani Kecelakaan Lalu Lintas Tunggal di K",
-   "keterangan": "535 likes, 2 comments - polres_merauke_official pada October 21, 2026: \"Personil Pospol Semangga Tangani Kecelakaan Lalu Lintas Tunggal di Kampung Marga Mulya Merauke, Papua Selatan – Personel Pos Polisi (Pospol) Semangga bergerak cepat menangani kecelakaan lalu lintas tunggal yang terjadi di Kampung Marga Mulya, Distrik Semangga, Kabupaten Merauke, Provinsi Papua Selatan, pada Selasa (20/10/2026)",
-   "rasio": "4:5",
-   "ditemukan": "2026-11-04",
-   "rasio_sampul": 1.0,
-   "sampul": "assets/img/video/instagram-DewpUEKEzxw.jpg",
-   "skor": 5.836
-  },
-  {
-   "platform": "instagram",
-   "id": "DdRFcGASMKK",
-   "url": "https://www.instagram.com/reel/DdRFcGASMKK/",
-   "judul": "1,156 likes, 192 comments - kodim1707merauke pada September 14, 2026: \"TNI AD WUJUDKAN AIR BERSIH, KODIM 1707/MERAUKE HADIR ATASI KESULITAN",
-   "keterangan": "1,156 likes, 192 comments - kodim1707merauke pada September 14, 2026: \"TNI AD WUJUDKAN AIR BERSIH, KODIM 1707/MERAUKE HADIR ATASI KESULITAN WARGA RT.09 MARGA MULYA Merauke, Papua Selatan - Ketersediaan air bersih menjadi kebutuhan mendasar bagi masyarakat, terlebih saat musim kemarau. Kondisi tersebut turut dirasakan warga RT.09, Kampung Marga Mulya, Distrik Semangga, Kabupaten Merauke, khususnya ",
-   "rasio": "9:16",
-   "ditemukan": "2026-11-04",
-   "rasio_sampul": 1.778,
-   "sampul": "assets/img/video/instagram-DdRFcGASMKK.jpg",
-   "skor": 5.836
-  },
-  {
-   "platform": "youtube",
-   "id": "StctvpAXUoA",
-   "url": "https://www.youtube.com/watch?v=StctvpAXUoA",
-   "judul": "CERITA SEJARAH SEMANGGA 40 || EKS TRANSMIGRASI SEMANGGA 2 KABUPATEN MERAUKE PAPUA SELATAN",
-   "kanal": "Leksono Japa",
-   "tayang": 1055,
-   "rasio": "16:9",
-   "ditemukan": "2026-11-04",
-   "rasio_sampul": 1.333,
-   "sampul": "assets/img/video/youtube-StctvpAXUoA.jpg",
-   "skor": 5.352
   }
  ]
 }
