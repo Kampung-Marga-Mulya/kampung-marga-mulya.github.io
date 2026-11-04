@@ -1,5 +1,5 @@
 {
- "diperiksa": "2026-11-04T17:49+09:00",
+ "diperiksa": "2026-11-04T22:48+09:00",
  "catatan": "Dibuat otomatis oleh scripts/update_video.py. Jangan disunting manual; gunakan video.pilihan di assets/js/data.js atau data/video-abaikan.json.",
  "video": [
   {
@@ -10,7 +10,7 @@
    "kanal": "kodim1707merauke",
    "keterangan": "TNI AD WUJUDKAN AIR BERSIH, KODIM 1707/MERAUKE HADIR ATASI KESULITAN WARGA RT.09 MARGA MULYA Merauke, Papua Selatan - Ketersediaan air bersih menjadi kebutuhan mendasar bagi masyarakat, terlebih saat musim kemarau. Kondisi tersebut turut dirasakan warga RT.09, Kampung Marga Mulya, Distrik Semangga, Kabupaten Merauke, khususnya jamaah Mushola Al Barokah yang selama bertahun-tahun mengandalkan air d",
    "tanggal": "2026-09-14",
-   "suka": 1156,
+   "suka": 1157,
    "rasio": "9:16",
    "ditemukan": "2026-11-04",
    "rasio_sampul": 1.778,
@@ -48,6 +48,18 @@
    "skor": 9.562
   },
   {
+   "platform": "facebook",
+   "id": "1021361486911765",
+   "url": "https://www.facebook.com/reel/1021361486911765/",
+   "judul": "26 rb tayangan · 1,6 rb tanggapan | Persawahan Kampung Marga Mulya Distrik Semangga Merauke Papua Selatan🙏 🥰🌾🌾🌾🌾🌾🌴🌴🌴 #FypFacebookPro #SwasembadaPangan #KampungMargaMulya #Persawahan #Jangkauan | Aidin",
+   "keterangan": "Persawahan Kampung Marga Mulya Distrik Semangga Merauke Papua Selatan🙏 🥰🌾🌾🌾🌾🌾🌴🌴🌴 #FypFacebookPro #SwasembadaPangan #KampungMargaMulya #Persawahan #Jangkauan",
+   "rasio": "9:16",
+   "ditemukan": "2026-11-04",
+   "rasio_sampul": 0.563,
+   "sampul": "assets/img/video/facebook-1021361486911765.jpg",
+   "skor": 9.336
+  },
+  {
    "platform": "youtube",
    "id": "FeS3BFihQts",
    "url": "https://www.youtube.com/watch?v=FeS3BFihQts",
@@ -69,13 +81,13 @@
    "url": "https://www.youtube.com/watch?v=ascjSfNf2UQ",
    "judul": "Hidup Rukun Warga Exs Transmigrasi Papua Selatan kampung Marga Mulya",
    "kanal": "STORY AMRY",
-   "tayang": 603,
+   "tayang": 606,
    "durasi": 740,
    "rasio": "16:9",
    "ditemukan": "2026-11-04",
    "rasio_sampul": 1.333,
    "sampul": "assets/img/video/youtube-ascjSfNf2UQ.jpg",
-   "skor": 7.69
+   "skor": 7.692
   },
   {
    "platform": "instagram",
@@ -132,25 +144,13 @@
    "kanal": "Leksono Japa",
    "tanggal": "2025-11-04",
    "tanggal_kira": true,
-   "tayang": 2282,
+   "tayang": 2284,
    "durasi": 933,
    "rasio": "16:9",
    "ditemukan": "2026-11-04",
    "rasio_sampul": 1.333,
    "sampul": "assets/img/video/youtube-x0s84dskmJM.jpg",
-   "skor": 6.882
-  },
-  {
-   "platform": "youtube",
-   "id": "kfqEWqrPOLc",
-   "url": "https://www.youtube.com/watch?v=kfqEWqrPOLc",
-   "judul": "KREASI TARI JARANAN KRIDA BUDAYA MARGA MULYA MERAUKE",
-   "kanal": "MERAUKE MIX CHANNEL",
-   "rasio": "9:16",
-   "ditemukan": "2026-11-04",
-   "rasio_sampul": 1.333,
-   "sampul": "assets/img/video/youtube-kfqEWqrPOLc.jpg",
-   "skor": 6.836
+   "skor": 6.883
   },
   {
    "platform": "youtube",
@@ -162,6 +162,18 @@
    "ditemukan": "2026-11-04",
    "rasio_sampul": 1.333,
    "sampul": "assets/img/video/youtube-GstSi_HcxI4.jpg",
+   "skor": 6.836
+  },
+  {
+   "platform": "youtube",
+   "id": "kfqEWqrPOLc",
+   "url": "https://www.youtube.com/watch?v=kfqEWqrPOLc",
+   "judul": "KREASI TARI JARANAN KRIDA BUDAYA MARGA MULYA MERAUKE",
+   "kanal": "MERAUKE MIX CHANNEL",
+   "rasio": "9:16",
+   "ditemukan": "2026-11-04",
+   "rasio_sampul": 1.333,
+   "sampul": "assets/img/video/youtube-kfqEWqrPOLc.jpg",
    "skor": 6.836
   },
   {
@@ -238,6 +250,22 @@
   },
   {
    "platform": "youtube",
+   "id": "6k3LJ-dfkyI",
+   "url": "https://www.youtube.com/watch?v=6k3LJ-dfkyI",
+   "judul": "HABIS UNTUK SEWA ALAT‼️PETANI PADI KAMPUNG MARGAMULYA EKS TRANSMIGRASI SEMANGGA 2 KABUPATEN MERAUKE",
+   "kanal": "Leksono Japa",
+   "tanggal": "2025-11-04",
+   "tanggal_kira": true,
+   "tayang": 580,
+   "durasi": 1193,
+   "rasio": "16:9",
+   "ditemukan": "2026-11-04",
+   "rasio_sampul": 1.333,
+   "sampul": "assets/img/video/youtube-6k3LJ-dfkyI.jpg",
+   "skor": 6.486
+  },
+  {
+   "platform": "youtube",
    "id": "639sPUOhe_k",
    "url": "https://www.youtube.com/watch?v=639sPUOhe_k",
    "judul": "marga mulya,semangga dua,merauke,papua",
@@ -299,22 +327,6 @@
    "rasio_sampul": 1.333,
    "sampul": "assets/img/video/youtube-r2r-c-g8NoQ.jpg",
    "skor": 6.29
-  },
-  {
-   "platform": "youtube",
-   "id": "synXvxbiGtc",
-   "url": "https://www.youtube.com/watch?v=synXvxbiGtc",
-   "judul": "FULL PTDM 2021 PENGERING PADI UV DRYER DI KAMP. MARGA MULYA | MERAUKE | UNIVERSITAS MUSAMUS",
-   "kanal": "LPPM UNMUS",
-   "tanggal": "2022-11-05",
-   "tanggal_kira": true,
-   "tayang": 443,
-   "durasi": 181,
-   "rasio": "16:9",
-   "ditemukan": "2026-11-04",
-   "rasio_sampul": 1.333,
-   "sampul": "assets/img/video/youtube-synXvxbiGtc.jpg",
-   "skor": 6.265
   },
   {
    "platform": "youtube",
@@ -427,22 +439,6 @@
    "rasio_sampul": 1.333,
    "sampul": "assets/img/video/youtube-DlUvHbFk2vs.jpg",
    "skor": 6.141
-  },
-  {
-   "platform": "youtube",
-   "id": "HrxJHBLGFEU",
-   "url": "https://www.youtube.com/watch?v=HrxJHBLGFEU",
-   "judul": "KARNAVAL SEMANGGA 2 MARGA MULYA, Dalam Rangka HUT RI KE 79 Tahun, MERAUKE 15 AGUSTUS 2024...",
-   "kanal": "TUKANG PHOTO ART",
-   "tanggal": "2024-11-04",
-   "tanggal_kira": true,
-   "tayang": 279,
-   "durasi": 773,
-   "rasio": "16:9",
-   "ditemukan": "2026-11-04",
-   "rasio_sampul": 1.333,
-   "sampul": "assets/img/video/youtube-HrxJHBLGFEU.jpg",
-   "skor": 6.138
   },
   {
    "platform": "youtube",
@@ -580,7 +576,7 @@
    "kanal": "MERAUKE MIX CHANNEL",
    "tanggal": "2023-11-05",
    "tanggal_kira": true,
-   "tayang": 928,
+   "tayang": 929,
    "durasi": 223,
    "rasio": "16:9",
    "ditemukan": "2026-11-04",
