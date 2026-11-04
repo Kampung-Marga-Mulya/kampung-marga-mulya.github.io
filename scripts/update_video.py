@@ -291,6 +291,9 @@ def cari_youtube(q, terbaru=False):
     hasil = []
     if not data:
         return [(u, "") for u in kumpulkan_url(r.text)]
+    contoh = next((v for k, v in jelajah(data, {"videoRenderer"})), None)
+    if contoh and not YT_INFO:
+        log("  contoh videoRenderer:", sorted(contoh.keys()), "| terbit:", contoh.get("publishedTimeText"), "| durasi:", contoh.get("lengthText"))
     for k, v in jelajah(data, {"videoRenderer", "reelItemRenderer", "shortsLockupViewModel"}):
         vid, teks = None, ""
         if k == "videoRenderer":
@@ -378,12 +381,21 @@ def detail_youtube_halaman(vid):
 # ---------------- TikTok, Instagram, Facebook ----------------
 def detail_tiktok(url, vid):
     r = get("https://www.tiktok.com/oembed?" + urllib.parse.urlencode({"url": url}))
-    if r.status_code in (400, 404):
-        return {"hilang": True}
-    r.raise_for_status()
-    o = r.json()
-    if o.get("status_msg") or not o.get("title") and not o.get("thumbnail_url"):
-        return {"hilang": True}
+    o = {}
+    try:
+        o = r.json() if r.ok else {}
+    except ValueError:
+        o = {}
+    if not (o.get("title") or o.get("thumbnail_url")):
+        log("  oEmbed TikTok kosong:", r.status_code, str(o)[:120])
+        h = get(url, headers=UA_PRATINJAU)
+        if h.status_code == 404:
+            return {"hilang": True}
+        og = meta_og(h.text)
+        if not og.get("og:image") and not og.get("og:description"):
+            return {"hilang": r.status_code == 404}
+        o = {"title": og.get("og:description") or og.get("og:title"), "thumbnail_url": og.get("og:image"),
+             "author_name": (re.search(r"@([A-Za-z0-9_.]+)", url) or [None, None])[1]}
     try:
         tgl = dt.datetime.fromtimestamp(int(vid) >> 32, dt.timezone.utc).astimezone(WIT).date().isoformat()
     except (ValueError, OverflowError, OSError):
@@ -432,6 +444,17 @@ def detail_instagram(url, kode):
                 hasil["kanal"] = m.group(1) if m else None
         except requests.RequestException as e:
             log("  og IG gagal:", e)
+    # Pratinjau Instagram: '169 likes, 6 comments - akun pada June 30, 2026: "keterangan"'
+    m = re.match(r'^\s*([\d.,]+\s*[KkMmRrbJjt]*)\s*(?:likes?|suka)[^-]*-\s*([A-Za-z0-9_.]+)\s+(?:pada|on)\s+([A-Za-z]+ \d{1,2}, \d{4})\s*:\s*["“](.*?)["”]?\.?\s*$',
+                 hasil.get("keterangan") or "", re.S)
+    if m:
+        hasil["kanal"] = hasil.get("kanal") or m.group(2)
+        try:
+            hasil["tanggal"] = dt.datetime.strptime(m.group(3), "%B %d, %Y").date().isoformat()
+        except ValueError:
+            pass
+        hasil["keterangan"] = m.group(4).strip()
+        hasil["suka"] = angka_tayang(m.group(1))
     kap = hasil.get("keterangan") or ""
     hasil["judul"] = kap.split("\n")[0][:140] if kap else "Video Instagram"
     return hasil
@@ -487,7 +510,7 @@ def skor(v, sekarang):
         except ValueError:
             pass
     segar = 3 * math.exp(-umur / 120)
-    populer = math.log10((v.get("tayang") or 0) + 1) / 1.5
+    populer = math.log10((v.get("tayang") or (v.get("suka") or 0) * 10) + 1) / 1.5
     return round(rel + segar + populer + (10 if v.get("pilihan") else 0), 3)
 
 
@@ -636,7 +659,7 @@ def main():
              "kanal": bersih(d.get("kanal")) or None,
              "keterangan": bersih(d.get("keterangan"))[:400],
              "tanggal": d.get("tanggal") or (lama_v or {}).get("tanggal"),
-             "tayang": d.get("tayang"), "durasi": d.get("durasi"),
+             "tayang": d.get("tayang"), "durasi": d.get("durasi"), "suka": d.get("suka"),
              "rasio": d.get("rasio") or "16:9",
              "ditemukan": (lama_v or {}).get("ditemukan") or sekarang.date().isoformat()}
         if c.get("pilihan"):
