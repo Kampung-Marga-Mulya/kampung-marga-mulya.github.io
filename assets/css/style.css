@@ -1213,3 +1213,8 @@ html, body { transition: background-color .25s ease, color .25s ease; }
 #panel-resmi .imgzoom img { position: static; inset: auto; height: auto; object-fit: contain; }
 #panel-resmi .imgzoom { position: relative; }
 #panel-resmi .imgzoom__ctl { top: auto; bottom: 10px; }
+/* Bilah menu bawah HP: label panjang (Transparansi) tetap utuh */
+@media (max-width: 960px) { .tabbar a span { overflow: visible; text-overflow: clip; letter-spacing: -.01em; } }
+@media (max-width: 380px) { .tabbar a { font-size: .72rem; padding-inline: 0; } }
+@media (max-width: 960px) { .tabbar { grid-template-columns: repeat(3, minmax(0, 1fr)) minmax(0, 1.4fr) repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 380px) { .tabbar a span { letter-spacing: -.02em; } }
