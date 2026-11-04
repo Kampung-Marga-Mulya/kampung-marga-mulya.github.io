@@ -1343,3 +1343,25 @@ html, body { transition: background-color .25s ease, color .25s ease; }
 .vplayer__info { margin: 12px 0 4px; font-size: .9rem; color: var(--muted); }
 .vplayer__ket { white-space: pre-line; font-size: .95rem; }
 .vplayer__act { margin: 12px 0 6px; }
+
+/* Peta Leaflet tidak boleh menimpa kepala halaman / menu bawah saat digulir */
+.leaflet-container { position: relative; z-index: 0; isolation: isolate; }
+
+/* Kartu wisata & fasilitas: ruang foto setinggi seragam (foto utuh, tidak dipotong) agar tidak ada jarak kosong */
+#wisataTrack, #fasilTrack { align-items: stretch; }
+#wisataTrack .ncard__cover, #fasilTrack .ncard__cover { aspect-ratio: 4 / 3; background: var(--photo-bg, #0b1a2e); }
+#wisataTrack .ncard__cover > img, #fasilTrack .ncard__cover > img { width: 100%; height: 100%; object-fit: contain; }
+#wisataTrack .wcard, #fasilTrack .wcard { height: 100%; }
+#wisataTrack .wcard__act, #fasilTrack .wcard__act { margin-top: auto; }
+
+/* Kalender musim di layar kecil: nama kegiatan di atas, 12 bulan di bawahnya (tanpa geser, tidak bertumpuk) */
+@media (max-width: 640px) {
+  .kalwrap { overflow: visible; }
+  .kal, .kal thead, .kal tbody { display: block; min-width: 0; width: 100%; }
+  .kal tr { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 3px; }
+  .kal thead th:first-child { display: none; }
+  .kal thead th { padding: 0 0 2px; font-size: .66rem; font-weight: 600; text-align: center; overflow: hidden; }
+  .kal tbody th, .panel .kal tbody th { grid-column: 1 / -1; position: static; background: none; padding: 10px 0 3px; white-space: normal; font-size: .88rem; }
+  .kal td { display: block; height: 18px; border-radius: 4px; }
+  .kal tbody tr:first-child th { padding-top: 4px; }
+}
