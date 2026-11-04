@@ -1,1 +1,366 @@
-{"diperiksa": null, "video": []}
+{
+ "diperiksa": "2026-11-04T17:27+09:00",
+ "catatan": "Dibuat otomatis oleh scripts/update_video.py. Jangan disunting manual; gunakan video.pilihan di assets/js/data.js atau data/video-abaikan.json.",
+ "video": [
+  {
+   "platform": "youtube",
+   "id": "kfqEWqrPOLc",
+   "url": "https://www.youtube.com/watch?v=kfqEWqrPOLc",
+   "judul": "Video Youtube",
+   "rasio": "16:9",
+   "ditemukan": "2026-11-04",
+   "skor": 2.336
+  },
+  {
+   "platform": "youtube",
+   "id": "GstSi_HcxI4",
+   "url": "https://www.youtube.com/watch?v=GstSi_HcxI4",
+   "judul": "Video Youtube",
+   "rasio": "16:9",
+   "ditemukan": "2026-11-04",
+   "skor": 2.336
+  },
+  {
+   "platform": "youtube",
+   "id": "xH1UZn6oYB4",
+   "url": "https://www.youtube.com/watch?v=xH1UZn6oYB4",
+   "judul": "Video Youtube",
+   "rasio": "16:9",
+   "ditemukan": "2026-11-04",
+   "skor": 2.336
+  },
+  {
+   "platform": "youtube",
+   "id": "IpsNTyLEVlg",
+   "url": "https://www.youtube.com/watch?v=IpsNTyLEVlg",
+   "judul": "Video Youtube",
+   "rasio": "16:9",
+   "ditemukan": "2026-11-04",
+   "skor": 2.336
+  },
+  {
+   "platform": "youtube",
+   "id": "ascjSfNf2UQ",
+   "url": "https://www.youtube.com/watch?v=ascjSfNf2UQ",
+   "judul": "Video Youtube",
+   "rasio": "16:9",
+   "ditemukan": "2026-11-04",
+   "skor": 2.336
+  },
+  {
+   "platform": "youtube",
+   "id": "NYrnk265P5U",
+   "url": "https://www.youtube.com/watch?v=NYrnk265P5U",
+   "judul": "Video Youtube",
+   "rasio": "16:9",
+   "ditemukan": "2026-11-04",
+   "skor": 2.336
+  },
+  {
+   "platform": "youtube",
+   "id": "r2r-c-g8NoQ",
+   "url": "https://www.youtube.com/watch?v=r2r-c-g8NoQ",
+   "judul": "Video Youtube",
+   "rasio": "16:9",
+   "ditemukan": "2026-11-04",
+   "skor": 2.336
+  },
+  {
+   "platform": "youtube",
+   "id": "X9q_K35VCcY",
+   "url": "https://www.youtube.com/watch?v=X9q_K35VCcY",
+   "judul": "Video Youtube",
+   "rasio": "16:9",
+   "ditemukan": "2026-11-04",
+   "skor": 2.336
+  },
+  {
+   "platform": "youtube",
+   "id": "639sPUOhe_k",
+   "url": "https://www.youtube.com/watch?v=639sPUOhe_k",
+   "judul": "Video Youtube",
+   "rasio": "16:9",
+   "ditemukan": "2026-11-04",
+   "skor": 2.336
+  },
+  {
+   "platform": "youtube",
+   "id": "aIdTsQ0WN6k",
+   "url": "https://www.youtube.com/watch?v=aIdTsQ0WN6k",
+   "judul": "Video Youtube",
+   "rasio": "16:9",
+   "ditemukan": "2026-11-04",
+   "skor": 2.336
+  },
+  {
+   "platform": "youtube",
+   "id": "x0s84dskmJM",
+   "url": "https://www.youtube.com/watch?v=x0s84dskmJM",
+   "judul": "Video Youtube",
+   "rasio": "16:9",
+   "ditemukan": "2026-11-04",
+   "skor": 2.336
+  },
+  {
+   "platform": "youtube",
+   "id": "FeS3BFihQts",
+   "url": "https://www.youtube.com/watch?v=FeS3BFihQts",
+   "judul": "Video Youtube",
+   "rasio": "16:9",
+   "ditemukan": "2026-11-04",
+   "skor": 2.336
+  },
+  {
+   "platform": "youtube",
+   "id": "1trurlDEXiM",
+   "url": "https://www.youtube.com/watch?v=1trurlDEXiM",
+   "judul": "Video Youtube",
+   "rasio": "16:9",
+   "ditemukan": "2026-11-04",
+   "skor": 2.336
+  },
+  {
+   "platform": "youtube",
+   "id": "nEOndAKX5gY",
+   "url": "https://www.youtube.com/watch?v=nEOndAKX5gY",
+   "judul": "Video Youtube",
+   "rasio": "16:9",
+   "ditemukan": "2026-11-04",
+   "skor": 2.336
+  },
+  {
+   "platform": "youtube",
+   "id": "SyyhKW3Mygg",
+   "url": "https://www.youtube.com/watch?v=SyyhKW3Mygg",
+   "judul": "Video Youtube",
+   "rasio": "16:9",
+   "ditemukan": "2026-11-04",
+   "skor": 2.336
+  },
+  {
+   "platform": "youtube",
+   "id": "bDjz-3gVRMI",
+   "url": "https://www.youtube.com/watch?v=bDjz-3gVRMI",
+   "judul": "Video Youtube",
+   "rasio": "16:9",
+   "ditemukan": "2026-11-04",
+   "skor": 2.336
+  },
+  {
+   "platform": "youtube",
+   "id": "DlUvHbFk2vs",
+   "url": "https://www.youtube.com/watch?v=DlUvHbFk2vs",
+   "judul": "Video Youtube",
+   "rasio": "16:9",
+   "ditemukan": "2026-11-04",
+   "skor": 2.336
+  },
+  {
+   "platform": "youtube",
+   "id": "StctvpAXUoA",
+   "url": "https://www.youtube.com/watch?v=StctvpAXUoA",
+   "judul": "Video Youtube",
+   "rasio": "16:9",
+   "ditemukan": "2026-11-04",
+   "skor": 2.336
+  },
+  {
+   "platform": "youtube",
+   "id": "B_BAq4rco-g",
+   "url": "https://www.youtube.com/watch?v=B_BAq4rco-g",
+   "judul": "Video Youtube",
+   "rasio": "16:9",
+   "ditemukan": "2026-11-04",
+   "skor": 2.336
+  },
+  {
+   "platform": "youtube",
+   "id": "T3Nx9SI6AFU",
+   "url": "https://www.youtube.com/watch?v=T3Nx9SI6AFU",
+   "judul": "Video Youtube",
+   "rasio": "16:9",
+   "ditemukan": "2026-11-04",
+   "skor": 2.336
+  },
+  {
+   "platform": "youtube",
+   "id": "aBW2UvI8KZo",
+   "url": "https://www.youtube.com/watch?v=aBW2UvI8KZo",
+   "judul": "Video Youtube",
+   "rasio": "16:9",
+   "ditemukan": "2026-11-04",
+   "skor": 2.336
+  },
+  {
+   "platform": "youtube",
+   "id": "Ms7Q4Kj4SpY",
+   "url": "https://www.youtube.com/watch?v=Ms7Q4Kj4SpY",
+   "judul": "Video Youtube",
+   "rasio": "16:9",
+   "ditemukan": "2026-11-04",
+   "skor": 2.336
+  },
+  {
+   "platform": "youtube",
+   "id": "OgHFxRHUVpM",
+   "url": "https://www.youtube.com/watch?v=OgHFxRHUVpM",
+   "judul": "Video Youtube",
+   "rasio": "16:9",
+   "ditemukan": "2026-11-04",
+   "skor": 2.336
+  },
+  {
+   "platform": "youtube",
+   "id": "SHFdYQuMhsw",
+   "url": "https://www.youtube.com/watch?v=SHFdYQuMhsw",
+   "judul": "Video Youtube",
+   "rasio": "16:9",
+   "ditemukan": "2026-11-04",
+   "skor": 2.336
+  },
+  {
+   "platform": "youtube",
+   "id": "j6LGQ3EpiwM",
+   "url": "https://www.youtube.com/watch?v=j6LGQ3EpiwM",
+   "judul": "Video Youtube",
+   "rasio": "16:9",
+   "ditemukan": "2026-11-04",
+   "skor": 2.336
+  },
+  {
+   "platform": "youtube",
+   "id": "g-zeq2Pwx9o",
+   "url": "https://www.youtube.com/watch?v=g-zeq2Pwx9o",
+   "judul": "Video Youtube",
+   "rasio": "16:9",
+   "ditemukan": "2026-11-04",
+   "skor": 2.336
+  },
+  {
+   "platform": "youtube",
+   "id": "T8GhVE0_MsU",
+   "url": "https://www.youtube.com/watch?v=T8GhVE0_MsU",
+   "judul": "Video Youtube",
+   "rasio": "16:9",
+   "ditemukan": "2026-11-04",
+   "skor": 2.336
+  },
+  {
+   "platform": "youtube",
+   "id": "Rr33aaAKEFA",
+   "url": "https://www.youtube.com/watch?v=Rr33aaAKEFA",
+   "judul": "Video Youtube",
+   "rasio": "16:9",
+   "ditemukan": "2026-11-04",
+   "skor": 2.336
+  },
+  {
+   "platform": "youtube",
+   "id": "m7Zz3j95XTY",
+   "url": "https://www.youtube.com/watch?v=m7Zz3j95XTY",
+   "judul": "Video Youtube",
+   "rasio": "16:9",
+   "ditemukan": "2026-11-04",
+   "skor": 2.336
+  },
+  {
+   "platform": "youtube",
+   "id": "XJ42WnKHTtI",
+   "url": "https://www.youtube.com/watch?v=XJ42WnKHTtI",
+   "judul": "Video Youtube",
+   "rasio": "16:9",
+   "ditemukan": "2026-11-04",
+   "skor": 2.336
+  },
+  {
+   "platform": "youtube",
+   "id": "-Ip-Lhww0r4",
+   "url": "https://www.youtube.com/watch?v=-Ip-Lhww0r4",
+   "judul": "Video Youtube",
+   "rasio": "16:9",
+   "ditemukan": "2026-11-04",
+   "skor": 2.336
+  },
+  {
+   "platform": "youtube",
+   "id": "-b_Jw1WIc0M",
+   "url": "https://www.youtube.com/watch?v=-b_Jw1WIc0M",
+   "judul": "Video Youtube",
+   "rasio": "16:9",
+   "ditemukan": "2026-11-04",
+   "skor": 2.336
+  },
+  {
+   "platform": "youtube",
+   "id": "GbfuDKgeuM4",
+   "url": "https://www.youtube.com/watch?v=GbfuDKgeuM4",
+   "judul": "Video Youtube",
+   "rasio": "16:9",
+   "ditemukan": "2026-11-04",
+   "skor": 2.336
+  },
+  {
+   "platform": "youtube",
+   "id": "JKmv0kwI6PA",
+   "url": "https://www.youtube.com/watch?v=JKmv0kwI6PA",
+   "judul": "Video Youtube",
+   "rasio": "16:9",
+   "ditemukan": "2026-11-04",
+   "skor": 2.336
+  },
+  {
+   "platform": "youtube",
+   "id": "29_kk5DTN40",
+   "url": "https://www.youtube.com/watch?v=29_kk5DTN40",
+   "judul": "Video Youtube",
+   "rasio": "16:9",
+   "ditemukan": "2026-11-04",
+   "skor": 2.336
+  },
+  {
+   "platform": "youtube",
+   "id": "xwMXuWhAQ14",
+   "url": "https://www.youtube.com/watch?v=xwMXuWhAQ14",
+   "judul": "Video Youtube",
+   "rasio": "16:9",
+   "ditemukan": "2026-11-04",
+   "skor": 2.336
+  },
+  {
+   "platform": "youtube",
+   "id": "r-VyRP2D5ms",
+   "url": "https://www.youtube.com/watch?v=r-VyRP2D5ms",
+   "judul": "Video Youtube",
+   "rasio": "16:9",
+   "ditemukan": "2026-11-04",
+   "skor": 2.336
+  },
+  {
+   "platform": "youtube",
+   "id": "ZzWVl1Jv88A",
+   "url": "https://www.youtube.com/watch?v=ZzWVl1Jv88A",
+   "judul": "Video Youtube",
+   "rasio": "16:9",
+   "ditemukan": "2026-11-04",
+   "skor": 2.336
+  },
+  {
+   "platform": "youtube",
+   "id": "n1zfItE2rFY",
+   "url": "https://www.youtube.com/watch?v=n1zfItE2rFY",
+   "judul": "Video Youtube",
+   "rasio": "16:9",
+   "ditemukan": "2026-11-04",
+   "skor": 2.336
+  },
+  {
+   "platform": "youtube",
+   "id": "nxlXuJQr6uo",
+   "url": "https://www.youtube.com/watch?v=nxlXuJQr6uo",
+   "judul": "Video Youtube",
+   "rasio": "16:9",
+   "ditemukan": "2026-11-04",
+   "skor": 2.336
+  }
+ ]
+}
