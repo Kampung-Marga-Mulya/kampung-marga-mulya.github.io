@@ -1516,3 +1516,8 @@ a.intro__slide p::after { content: " →"; color: #BFD4FB; font-weight: 700; }
 .intro__dots button[aria-selected="true"] { width: 22px; background: #fff; }
 @media (max-width: 720px) { .intro { padding-top: 12px; } .intro__box { padding: 14px 16px 10px; border-radius: 16px; } .intro__track { min-height: 6.6em; } }
 @media (prefers-reduced-motion: reduce) { .intro__slide { transition: none; } }
+/* Lampu berkedip pada jam buka kantor */
+.lampu { position: relative; width: 11px; height: 11px; border-radius: 50%; flex: none; background: #BFD4FB; box-shadow: 0 0 0 0 rgba(191, 212, 251, .8); animation: lampu-kedip 1.2s ease-in-out infinite; }
+.lampu::after { content: ""; position: absolute; inset: -5px; border-radius: 50%; border: 2px solid rgba(191, 212, 251, .7); animation: lampu-pancar 1.2s ease-out infinite; }
+@keyframes lampu-kedip { 0%, 100% { background: #FFFFFF; box-shadow: 0 0 10px 3px rgba(191, 212, 251, .95); } 50% { background: #3A72D6; box-shadow: 0 0 0 0 rgba(191, 212, 251, 0); } }
+@keyframes lampu-pancar { 0% { transform: scale(.6); opacity: .9; } 100% { transform: scale(1.6); opacity: 0; } }

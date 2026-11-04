@@ -994,7 +994,7 @@
   })();
 
   // Jam buka kantor kampung di Beranda
-  if (D.kontak && D.kontak.jamLayanan && !belumAda(D.kontak.jamLayanan)) $("#heroPlace").insertAdjacentHTML("afterend", '<p class="hero__jam">' + ic("clock") + "<span>Kantor kampung buka pukul <b>" + esc(D.kontak.jamLayanan) + "</b></span></p>");
+  if (D.kontak && D.kontak.jamLayanan && !belumAda(D.kontak.jamLayanan)) $("#heroPlace").insertAdjacentHTML("afterend", '<p class="hero__jam"><span class="lampu" aria-hidden="true"></span>' + ic("clock") + "<span>Kantor kampung buka pukul <b>" + esc(D.kontak.jamLayanan) + "</b></span></p>");
 
   /* =================== LAYANAN SURAT + PENGAJUAN LEWAT WHATSAPP ===================
      Tidak ada data yang disimpan di website: formulir menyusun pesan di perangkat warga
