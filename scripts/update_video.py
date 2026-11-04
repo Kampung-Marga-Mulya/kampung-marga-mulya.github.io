@@ -21,7 +21,8 @@ Marga Mulya) + kesegaran (video baru naik) + popularitas (jumlah tayangan bila a
 
 Video yang keliru bisa disembunyikan dengan menambahkan tautannya ke
 data/video-abaikan.json. Video yang wajib tampil (misalnya video resmi kampung)
-ditambahkan ke data/video-pilihan.json; video pilihan tidak perlu lolos saringan.
+ditambahkan ke video.pilihan di assets/js/data.js (bisa lewat Portal Admin);
+video pilihan tidak perlu lolos saringan.
 """
 import datetime as dt
 import html
@@ -40,7 +41,7 @@ import requests
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(ROOT, "data", "video-otomatis.json")
 ABAIKAN = os.path.join(ROOT, "data", "video-abaikan.json")
-PILIHAN = os.path.join(ROOT, "data", "video-pilihan.json")
+DATAJS = os.path.join(ROOT, "assets", "js", "data.js")
 THUMB_DIR = os.path.join(ROOT, "assets", "img", "video")
 THUMB_URL = "assets/img/video/"
 WIT = dt.timezone(dt.timedelta(hours=9))
@@ -209,6 +210,41 @@ def teks_runs(o):
     return "".join(r.get("text", "") for r in o.get("runs", []))
 
 
+YT_INFO = {}          # data ringkas dari halaman pencarian (cadangan bila halaman video dibatasi)
+YT_DIBATASI = [False]
+SATUAN = {"detik": 0, "second": 0, "menit": 0, "minute": 0, "jam": 0, "hour": 0, "hari": 1, "day": 1,
+          "minggu": 7, "week": 7, "bulan": 30, "month": 30, "tahun": 365, "year": 365}
+
+
+def tanggal_kira(teks):
+    """'3 bulan yang lalu' / '3 months ago' → tanggal perkiraan (ISO)."""
+    m = re.search(r"(\d+)\s+(detik|menit|jam|hari|minggu|bulan|tahun|second|minute|hour|day|week|month|year)", teks or "", re.I)
+    if not m:
+        return None
+    hari = int(m.group(1)) * SATUAN[m.group(2).lower()]
+    return (dt.datetime.now(WIT).date() - dt.timedelta(days=hari)).isoformat()
+
+
+def angka_tayang(teks):
+    t = (teks or "").lower().replace(".", "").replace(",", "")
+    m = re.search(r"(\d+)\s*(rb|jt|k|m)?", t)
+    if not m:
+        return None
+    n = int(m.group(1))
+    return n * {"rb": 1000, "k": 1000, "jt": 1000000, "m": 1000000}.get(m.group(2) or "", 1)
+
+
+def detik_durasi(teks):
+    try:
+        p = [int(x) for x in (teks or "").split(":")]
+    except ValueError:
+        return None
+    d = 0
+    for x in p:
+        d = d * 60 + x
+    return d or None
+
+
 def cari_youtube(q, terbaru=False):
     p = {"search_query": q, "hl": "id", "gl": "ID"}
     if terbaru:
@@ -224,21 +260,52 @@ def cari_youtube(q, terbaru=False):
         if k == "videoRenderer":
             vid = v.get("videoId")
             teks = teks_runs(v.get("title")) + " " + " ".join(teks_runs(s.get("snippetText")) for s in v.get("detailedMetadataSnippets", []))
+            if vid:
+                YT_INFO.setdefault(vid, {"judul": teks_runs(v.get("title")), "kanal": teks_runs(v.get("ownerText")),
+                                         "tanggal": tanggal_kira(teks_runs(v.get("publishedTimeText"))),
+                                         "tayang": angka_tayang(teks_runs(v.get("viewCountText"))),
+                                         "durasi": detik_durasi(teks_runs(v.get("lengthText"))), "rasio": "16:9"})
         elif k == "reelItemRenderer":
             vid = v.get("videoId")
             teks = teks_runs(v.get("headline"))
+            if vid:
+                YT_INFO.setdefault(vid, {"judul": teks, "rasio": "9:16"})
         else:
             try:
                 vid = v["onTap"]["innertubeCommand"]["reelWatchEndpoint"]["videoId"]
             except (KeyError, TypeError):
                 vid = None
             teks = teks_runs((v.get("overlayMetadata") or {}).get("primaryText"))
+            if vid:
+                YT_INFO.setdefault(vid, {"judul": teks, "rasio": "9:16"})
         if vid:
             hasil.append(("https://www.youtube.com/watch?v=" + vid, bersih(teks)))
     return hasil
 
 
 def detail_youtube(vid):
+    """Halaman video (keterangan lengkap, tanggal pasti). Bila YouTube membatasi, pakai oEmbed + data pencarian."""
+    if not YT_DIBATASI[0]:
+        try:
+            return detail_youtube_halaman(vid)
+        except requests.HTTPError as e:
+            if e.response is not None and e.response.status_code == 429:
+                YT_DIBATASI[0] = True
+                log("  YouTube membatasi halaman video; beralih ke oEmbed")
+            else:
+                raise
+    o = get("https://www.youtube.com/oembed?" + urllib.parse.urlencode({"url": "https://www.youtube.com/watch?v=" + vid, "format": "json"}))
+    if o.status_code in (400, 401, 403, 404):
+        return {"hilang": True}
+    o.raise_for_status()
+    o = o.json()
+    info = dict(YT_INFO.get(vid, {}))
+    info.update({"judul": o.get("title") or info.get("judul"), "kanal": o.get("author_name") or info.get("kanal"),
+                 "keterangan": "", "sampul": "https://i.ytimg.com/vi/%s/hqdefault.jpg" % vid})
+    return info
+
+
+def detail_youtube_halaman(vid):
     r = get("https://www.youtube.com/watch?" + urllib.parse.urlencode({"v": vid, "hl": "id"}), cookies=COOKIE_YT)
     if r.status_code == 404:
         return {"hilang": True}
@@ -413,11 +480,25 @@ def norm_abaikan(daftar):
     return out
 
 
+def video_pilihan():
+    """Tautan video di bagian video.pilihan pada assets/js/data.js."""
+    try:
+        with open(DATAJS, encoding="utf-8") as f:
+            s = f.read()
+    except OSError:
+        return []
+    m = re.search(r"\n  video:\s*\{(.*?)\n  \}", s, re.S)
+    if not m:
+        return []
+    isi = re.sub(r"//[^\n]*", "", m.group(1))     # abaikan contoh di komentar
+    return kumpulkan_url(isi)
+
+
 def main():
     sekarang = dt.datetime.now(WIT)
     lama = load_json(OUT, {})
     abaikan = norm_abaikan(load_json(ABAIKAN, []))
-    pilihan = load_json(PILIHAN, [])
+    pilihan = video_pilihan()
     simpanan = {kunci(v): v for v in lama.get("video", [])}
 
     # 1) Kumpulkan kandidat: {kunci: {platform, id, url, cuplikan}}
@@ -438,9 +519,8 @@ def main():
         if wajib_pilih:
             c["pilihan"] = True
 
-    for p in pilihan:
-        u = p.get("url") if isinstance(p, dict) else p
-        tambah(u, (p.get("judul") if isinstance(p, dict) else "") or "", "pilihan", True)
+    for u in pilihan:
+        tambah(u, "", "pilihan", True)
 
     for q in KUERI_YT:
         for terbaru in (False, True):
@@ -458,7 +538,9 @@ def main():
                 if nama == "bing-video" and plat == "youtube":
                     continue
                 try:
-                    for u, t in fn(qq):
+                    hs = fn(qq)
+                    log(" ", nama, qq, "→", len(hs), "hasil,", sum(1 for u, _ in hs if kenali(u)), "video")
+                    for u, t in hs:
                         tambah(u, t, nama)
                 except Exception as e:  # noqa: BLE001
                     log(nama, "gagal:", qq, e)
@@ -474,7 +556,7 @@ def main():
     for kk, v in simpanan.items():
         if kk not in kandidat and kk not in abaikan:
             kandidat[kk] = {"platform": v["platform"], "id": v["id"], "url": v["url"], "cuplikan": "", "sumber": {"simpanan"},
-                            "pilihan": v.get("pilihan", False)}
+                            "pilihan": False}
 
     log("Kandidat:", len(kandidat), {p: sum(1 for c in kandidat.values() if c["platform"] == p) for p in POLA})
 
@@ -484,10 +566,13 @@ def main():
         plat, vid = c["platform"], c["id"]
         lama_v = simpanan.get(kk)
         # Kandidat dari pencarian yang cuplikannya sama sekali tidak menyebut Marga Mulya: lewati agar hemat
-        if not c.get("pilihan") and not lama_v and c["cuplikan"] and not WAJIB_NAMA.search(c["cuplikan"]) and plat != "youtube":
+        if not c.get("pilihan") and not lama_v and c["cuplikan"] and not WAJIB_NAMA.search(c["cuplikan"]):
+            continue
+        if plat == "youtube" and not c.get("pilihan") and not lama_v and not c["cuplikan"]:
             continue
         try:
             d = detail_youtube(vid) if plat == "youtube" else DETAIL[plat](c["url"], vid)
+            time.sleep(1.5 if plat == "youtube" and not YT_DIBATASI[0] else 0.3)
         except Exception as e:  # noqa: BLE001
             log("  detail gagal:", kk, e)
             d = None
@@ -500,6 +585,7 @@ def main():
             continue
         teks = " ".join([d.get("judul") or "", d.get("keterangan") or "", c["cuplikan"]])
         if not c.get("pilihan") and not lolos(teks):
+            log("  tidak lolos:", kk, "|", teks[:120].replace("\n", " "))
             continue
         url = d.get("url_akhir") or c["url"]
         v = {"platform": plat, "id": vid, "url": url,
@@ -533,7 +619,7 @@ def main():
                 os.remove(os.path.join(THUMB_DIR, f))
 
     keluaran = {"diperiksa": sekarang.isoformat(timespec="minutes"),
-                "catatan": "Dibuat otomatis oleh scripts/update_video.py. Jangan disunting manual; gunakan data/video-pilihan.json atau data/video-abaikan.json.",
+                "catatan": "Dibuat otomatis oleh scripts/update_video.py. Jangan disunting manual; gunakan video.pilihan di assets/js/data.js atau data/video-abaikan.json.",
                 "video": hasil}
     berubah = [ {k: x for k, x in v.items() if k != "skor"} for v in hasil] != [{k: x for k, x in v.items() if k != "skor"} for v in lama.get("video", [])]
     if berubah or not lama:
