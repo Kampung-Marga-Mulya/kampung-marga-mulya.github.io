@@ -1,0 +1,18 @@
+name: Uji email notifikasi (sementara)
+on: workflow_dispatch
+permissions:
+  contents: read
+jobs:
+  uji:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Kirim notifikasi uji ke FormSubmit
+        run: |
+          curl -sS -i -X POST "https://formsubmit.co/ajax/seldiozora3@gmail.com" \
+            -H "Accept: application/json" \
+            -H "Origin: https://kampung-marga-mulya.github.io" \
+            -H "Referer: https://kampung-marga-mulya.github.io/" \
+            --data-urlencode "_subject=Uji notifikasi layanan surat" \
+            --data-urlencode "_template=box" \
+            --data-urlencode "_captcha=false" \
+            --data-urlencode "Pemberitahuan=Uji pengiriman email notifikasi dari website Marga Mulya On Site (tanpa data pribadi)." | head -40
