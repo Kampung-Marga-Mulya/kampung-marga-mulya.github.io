@@ -1085,11 +1085,27 @@
       baris.push("", "Saya menyatakan data di atas benar.", "_Dikirim lewat website Marga Mulya On Site_");
       return baris.join("\n");
     }
+    // Email pemberitahuan ke petugas: hanya jenis surat dan waktu, tanpa nama/NIK/alamat (data lengkap hanya lewat WhatsApp)
+    function notifEmail(l) {
+      if (!WA.emailNotifikasi || !window.fetch) return;
+      var d = new Date(), jam = ("0" + d.getHours()).slice(-2) + "." + ("0" + d.getMinutes()).slice(-2);
+      var isi = new URLSearchParams();
+      isi.append("_subject", "Pengajuan surat baru: " + l.nama);
+      isi.append("_template", "box");
+      isi.append("_captcha", "false");
+      isi.append("Pemberitahuan", "Ada pengajuan surat baru dari website Marga Mulya On Site.");
+      isi.append("Jenis surat", l.nama);
+      isi.append("Waktu pengajuan", tglIndo(d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate()) + ", pukul " + jam + " (waktu perangkat pemohon)");
+      isi.append("Tindak lanjut", "Buka WhatsApp " + (WA.tampil || "") + " untuk melihat data lengkap pemohon dan dokumen persyaratannya.");
+      isi.append("Catatan", "Email ini sengaja tidak memuat data pribadi pemohon.");
+      try { fetch("https://formsubmit.co/ajax/" + String(WA.emailNotifikasi).replace(/[^A-Za-z0-9@._+-]/g, ""), { method: "POST", body: isi, keepalive: true, headers: { Accept: "application/json" } }).catch(function () {}); } catch (e) { /* notifikasi email bersifat tambahan */ }
+    }
     function tampilGalat(salah) { galat.hidden = !salah.length; galat.innerHTML = salah.length ? "<b>Lengkapi dulu:</b><ul>" + salah.map(function (x) { return "<li>" + esc(x) + "</li>"; }).join("") + "</ul>" : ""; if (salah.length) galat.scrollIntoView({ behavior: "smooth", block: "center" }); }
     form.addEventListener("submit", function (e) {
       e.preventDefault();
       var h = periksa(); tampilGalat(h.salah); if (h.salah.length) return;
       var url = "https://wa.me/" + encodeURIComponent(WA.nomor) + "?text=" + encodeURIComponent(pesan(h.l));
+      notifEmail(h.l);
       var a = document.createElement("a"); a.href = url; a.target = "_blank"; a.rel = "noopener"; document.body.appendChild(a); a.click(); a.remove();
       toast("Membuka WhatsApp… tekan Kirim, lalu kirim foto persyaratan.");
     });

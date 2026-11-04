@@ -805,7 +805,11 @@ window.KAMPUNG = {
   // Layanan surat. "syarat" = dokumen yang dikirim/dibawa; "isian" = data tambahan di formulir pengajuan.
   // Pengajuan lewat website TIDAK disimpan di server: formulir hanya menyusun pesan WhatsApp
   // di perangkat warga, lalu dikirim langsung ke nomor layanan (layananWa).
-  layananWa: { nomor: "6285624924834", tampil: "+62 856-2492-4834" },
+  layananWa: { nomor: "6285624924834", tampil: "+62 856-2492-4834",
+    // Email pemberitahuan: hanya berisi jenis surat & waktu pengajuan, TANPA data pribadi.
+    // Dikirim lewat FormSubmit (formsubmit.co). Pengajuan pertama memicu email aktivasi ke alamat ini;
+    // klik "Activate Form" sekali, setelah itu setiap pengajuan baru langsung memberi notifikasi.
+    emailNotifikasi: "seldiozora3@gmail.com" },
   layanan: [
     { id: "domisili", nama: "Surat Keterangan Domisili", waktu: "", syarat: ["KTP", "Kartu Keluarga (KK)"], isian: [] },
     { id: "usaha", nama: "Surat Keterangan Domisili Usaha", waktu: "", syarat: ["KTP", "Kartu Keluarga (KK)"],
