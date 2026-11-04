@@ -13,6 +13,20 @@
   // Ilustrasi orang/benda (assets/js/ilustrasi.js); kosong bila berkas belum dimuat
   var ilus = function (k) { return window.MM_ILUS ? window.MM_ILUS(k) : ""; };
   var ilusLabel = function (l) { return window.MM_ILUS_LABEL ? window.MM_ILUS_LABEL(l) : ""; };
+  // Label tahun data & tanggal rilis dokumen sumber (D.meta.dokumen)
+  var DOK = (window.KAMPUNG.meta && window.KAMPUNG.meta.dokumen) || {};
+  function rilis(k, panjang) {
+    if (Array.isArray(k)) return k.map(function (x) { return rilis(x, panjang); }).join(" ");
+    var d = DOK[k]; if (!d) return "";
+    var t = "Data " + d.tahun + " · " + (panjang ? d.nama + ", dirilis " + d.rilis : d.singkat + ", " + d.rilisPendek);
+    return '<span class="rilis" title="' + esc("Sumber: " + d.nama + " (dirilis " + d.rilis + ")") + '"><svg class="ic" aria-hidden="true"><use href="#i-calendar"/></svg>' + esc(t) + "</span>";
+  }
+  function pasangRilis(sel, k) {
+    [].forEach.call(document.querySelectorAll(sel), function (el) {
+      var p = el.closest(".panel, .sd") || el; if (p.querySelector(":scope > .rilis")) return;
+      var h = p.querySelector("h3, h4"); if (h) h.insertAdjacentHTML("afterend", rilis(k)); else p.insertAdjacentHTML("afterbegin", rilis(k));
+    });
+  }
   var esc = function (s) {
     return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) {
       return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
@@ -487,7 +501,7 @@
   }
 
   /* =================== KEPENDUDUKAN =================== */
-  $("#dataSumber").textContent = "Sumber: " + D.meta.sumberData + ". Ketuk angka atau grafik untuk rincian.";
+  $("#dataSumber").innerHTML = rilis("monografi", true) + "<br>Ketuk angka atau grafik untuk rincian.";
   var stats = [
     [num(P.total), "Total penduduk", "", "Jumlah seluruh penduduk Kampung Marga Mulya menurut monografi kampung."],
     [num(P.laki), "Laki-laki · " + pct(P.laki, P.total) + "%", "", "Penduduk laki-laki. Rasio jenis kelamin " + Math.round(P.laki / P.perempuan * 100) + " laki-laki per 100 perempuan."],
@@ -563,7 +577,7 @@
     var tanda = function (n) { return (n < 0 ? "−" : "") + rpS(Math.abs(n)); };
     var sumberDok = "Sumber: " + A.dokumen + ", ditandatangani " + A.penandatangan + " pada " + A.tanggal + ".";
     $("#apbTitle").textContent = "APBKam Tahun Anggaran " + A.tahun;
-    $("#apbLead").textContent = "Anggaran Pendapatan dan Belanja Kampung Marga Mulya tahun " + A.tahun + " menurut " + A.dokumen + " (" + A.tanggal + "). Ketuk setiap angka atau bidang untuk melihat rinciannya.";
+    $("#apbLead").innerHTML = rilis("apbkam", true) + "<br>" + esc("Anggaran Pendapatan dan Belanja Kampung Marga Mulya tahun " + A.tahun + " menurut " + A.dokumen + " (" + A.tanggal + "). Ketuk setiap angka atau bidang untuk melihat rinciannya.");
     var cards = [
       ["Pendapatan", rpS(totPend), A.pendapatan.filter(function (k) { return k.jumlah; }).length + " kelompok pendapatan", "Total pendapatan kampung tahun " + A.tahun + ": " + rp(totPend) + ", terdiri atas " + A.pendapatan.filter(function (k) { return k.jumlah; }).map(function (k) { return k.kelompok.toLowerCase() + " " + rp(k.jumlah); }).join(" dan ") + ".", ""],
       ["Belanja", rpS(totBel), A.belanja.filter(function (b) { return b.anggaran; }).length + " bidang · " + A.belanja.reduce(function (n, b) { return n + b.sub.reduce(function (m, s) { return m + s.kegiatan.length; }, 0); }, 0) + " kegiatan", "Total belanja yang dianggarkan: " + rp(totBel) + ".", "blue"],
@@ -630,7 +644,7 @@
     "Tertinggal": "Kampung masih memiliki keterbatasan pada sejumlah layanan dasar dan akses.",
     "Sangat Tertinggal": "Kampung menghadapi keterbatasan besar pada layanan dasar, ekonomi, dan akses."
   };
-  $("#idmLead").innerHTML = esc(I.catatan) + (I.contoh ? CHIP : "");
+  $("#idmLead").innerHTML = rilis("monografi", true) + "<br>" + esc(I.catatan) + (I.contoh ? CHIP : "");
   var adaNilai = I.nilai != null;
   var URUT = ["Sangat Tertinggal", "Tertinggal", "Berkembang", "Maju", "Mandiri"], posS = URUT.indexOf(I.status);
   var C = 2 * Math.PI * 70, frac = adaNilai ? Math.max(0, Math.min(1, I.nilai / I.skala)) : (posS + 1) / URUT.length;
@@ -663,7 +677,7 @@
   /* =================== RPJMK (Transparansi) =================== */
   if (D.rpjmk) (function () {
     var R = D.rpjmk, n = R.dasarHukumRingkas || R.dasarHukum.length;
-    $("#rpjmkLead").textContent = "Rencana Pembangunan Jangka Menengah Kampung adalah dokumen perencanaan enam tahun yang memuat visi-misi kepala kampung, arah kebijakan, dan rencana kegiatan. RPJMK menjadi pedoman penyusunan RKPK dan APBKam setiap tahun.";
+    $("#rpjmkLead").innerHTML = rilis("rpjmk", true) + "<br>" + esc("Rencana Pembangunan Jangka Menengah Kampung adalah dokumen perencanaan enam tahun yang memuat visi-misi kepala kampung, arah kebijakan, dan rencana kegiatan. RPJMK menjadi pedoman penyusunan RKPK dan APBKam setiap tahun.");
     $("#rpjmkMeta").innerHTML = [["Dokumen", R.judul], ["Ditetapkan dengan", R.perkam], ["Periode", R.periode], ["Ditetapkan", R.ditetapkan], ["Landasan utama", R.landasan]]
       .map(function (r) { return "<dt>" + esc(r[0]) + "</dt><dd>" + esc(r[1]) + "</dd>"; }).join("");
     var li = function (t) { return "<li>" + esc(t) + "</li>"; };
@@ -983,12 +997,13 @@
       BLN.map(function (b) { return '<th scope="col">' + b + "</th>"; }).join("") + "</tr></thead><tbody>" +
       P.kalender.map(function (r) { return '<tr><th scope="row">' + esc(r[0]) + "</th>" + r[1].map(function (v, i) { return '<td class="k' + v + '" title="' + esc(r[0]) + " · " + BLN[i] + (v ? (v === 3 ? " (puncak)" : "") : " (tidak ada)") + '"></td>'; }).join("") + "</tr>"; }).join("") +
       '</tbody></table></div><p class="small kal__legend"><span class="k1"></span>sedikit <span class="k2"></span>sedang <span class="k3"></span>puncak · Tabel II.6 RPJMK</p></div>' : "";
+    kal = kal.replace("<h3>Kalender musim kampung</h3>", "<h3>Kalender musim kampung</h3>" + rilis("rpjmk"));
     $("#potensiSD").innerHTML = '<div class="sdintro"><h3>Potensi sumber daya</h3><p>' + esc(P.pengantar) + "</p></div>" +
       '<div class="sdgrid">' + P.daftar.map(function (d) {
-        return '<article class="panel sd"><h4>' + esc(d.judul) + '</h4><div class="tiles tiles--3">' + d.angka.map(function (a) { return '<div class="tile"><b>' + esc(a[0]) + "</b><span>" + esc(a[1]) + "</span></div>"; }).join("") +
+        return '<article class="panel sd"><h4>' + esc(d.judul) + "</h4>" + rilis(d.rilis || "rpjmk") + '<div class="tiles tiles--3">' + d.angka.map(function (a) { return '<div class="tile"><b>' + esc(a[0]) + "</b><span>" + esc(a[1]) + "</span></div>"; }).join("") +
           '</div><p class="small">' + esc(d.isi) + '</p><a class="linkmore" href="' + escUrl(H) + "#" + esc(d.bab) + '">Baca selengkapnya</a></article>';
       }).join("") + "</div>" + kal +
-      '<p class="small mt-s">Sumber: ' + esc(P.sumber) + '. Angka adalah kondisi saat dokumen disusun (2019); data terbaru ada di menu <a href="#penduduk">Data Kampung</a>.</p>';
+      '<p class="small mt-s">Sumber: ' + esc(P.sumber) + '. Angka adalah kondisi saat dokumen disusun (2019), kecuali luas sawah yang memakai Monografi Kampung 30 September 2026; data terbaru ada di menu <a href="#penduduk">Data Kampung</a>.</p>';
   })();
   $("#potensiList").innerHTML = D.potensi.map(function (p) {
     var fs = fotoPot(p), f0 = fs[0];
@@ -1025,7 +1040,7 @@
     if (E.lahan.some(function (g) { return g.cek; })) $("#dLahan").insertAdjacentHTML("beforeend", '<p class="small">* Luas tanam padi di monografi sedang dicek ulang.</p>');
     $("#ekoGuna").insertAdjacentHTML("beforeend", '<p class="small">Rincian ini mencakup ' + num(Math.round(totG)) + " ha dari luas wilayah " + id.luas + ". " + (function () { var pd = E.lahan.filter(function (g) { return g.label === "Padi"; })[0]; return pd ? "Lahan pertanian sudah termasuk sawah padi " + pd.ha.toLocaleString("id-ID") + " ha; " : ""; })() + "permukiman dan pekarangan belum dirinci di monografi.</p>");
     $("#ekoUsaha").innerHTML = E.usaha.map(function (u) { return '<div class="tile"><b>' + num(u.jumlah) + "</b><span>" + esc(u.label) + "</span></div>"; }).join("");
-    $("#ekoSumber").textContent = "Sumber: " + D.meta.sumberData + ". Ketuk grafik untuk rincian.";
+    $("#ekoSumber").innerHTML = rilis("monografi", true) + " Ketuk grafik untuk rincian.";
   }
 
   $("#kegiatan").innerHTML = D.kegiatan.map(function (k) {
@@ -1133,7 +1148,7 @@
   if (D.sarana && $("#sarana")) {
     $("#sarana").innerHTML = D.sarana.map(function (g) {
       return '<div class="sarana__g"><h3>' + ic(g.ikon) + esc(g.kelompok) + "</h3><dl>" + g.isi.map(function (r) { return "<dt>" + esc(r.nama) + "</dt><dd>" + esc(r.nilai) + "</dd>"; }).join("") + "</dl></div>";
-    }).join("") + '<p class="small sarana__src">Rekap sarana dan prasarana dari ' + esc(D.meta.sumberData) + ".</p>";
+    }).join("") + '<p class="small sarana__src">' + rilis("monografi", true) + " Rekap sarana dan prasarana dari " + esc(D.meta.sumberData) + ".</p>";
   }
 
   /* =================== KONTAK & SOSMED =================== */
@@ -1475,7 +1490,7 @@
       $("#fasilStatus").innerHTML = [["terverifikasi", "Ada foto/sumber dan titik lokasi"], ["sebagian", "Ada sumber, data belum lengkap"], ["perlu-data", "Menunggu data dari kampung"]].map(function (s_) {
         return '<li><span class="fbadge ' + STATUS[s_[0]][1] + '">' + STATUS[s_[0]][0] + "</span><b>" + hit(s_[0]) + "</b><small>" + s_[1] + "</small></li>";
       }).join("");
-      $("#fasilNote").innerHTML = "Foto dan titik lokasi berasal dari Dokumen Fasilitas Umum Kampung Marga Mulya (foto GPS Desember 2023) dan survei Tim Ekspedisi Patriot IPB University 26 Oktober 2026; titik di peta adalah koordinat foto (posisi juru foto) dan cap waktu pada foto yang dipajang sudah dipotong. Data sekolah juga bersumber dari Data Referensi Kemendikdasmen. Jumlah resmi seluruh sarana menurut monografi kampung ada di rekap di atas. Musala yang belum diketahui namanya diberi nomor urut angka Romawi.";
+      $("#fasilNote").innerHTML = rilis(["fasilitasUmum", "survei"]) + "<br>Foto dan titik lokasi berasal dari Dokumen Fasilitas Umum Kampung Marga Mulya (foto GPS Desember 2023) dan survei Tim Ekspedisi Patriot IPB University 26 Oktober 2026; titik di peta adalah koordinat foto (posisi juru foto) dan cap waktu pada foto yang dipajang sudah dipotong. Data sekolah juga bersumber dari Data Referensi Kemendikdasmen. Jumlah resmi seluruh sarana menurut monografi kampung ada di rekap di atas. Musala yang belum diketahui namanya diberi nomor urut angka Romawi.";
       petakan(); render();
     }).catch(function () { track.innerHTML = '<p class="small">Data fasilitas belum dapat dimuat.</p>'; });
   })();
@@ -1570,4 +1585,9 @@
       el.appendChild(t); setTimeout(function () { t.remove(); }, 650);
     }, { passive: true });
   })();
+
+  /* Tahun data & tanggal rilis dokumen sumber di setiap kelompok data */
+  pasangRilis("#dGender, #kelUsia, #dSejahtera, #usiaSekolah, #dPekerjaan, #dPendidikan, #dSuku, #dAgama", "monografi");
+  pasangRilis("#dLahan, #ekoTernak, #ekoGuna, #ekoUsaha", "monografi");
+  var fk = $("#facts"); if (fk && !fk.nextElementSibling) fk.insertAdjacentHTML("afterend", '<p class="small facts__src">' + rilis("monografi", true) + "</p>");
 })();

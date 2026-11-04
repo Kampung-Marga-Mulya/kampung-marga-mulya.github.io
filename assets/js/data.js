@@ -19,7 +19,16 @@ window.KAMPUNG = {
     dataContoh: false,                      // label contoh kini per bagian (contoh: true)
     tahunData: "2026",
     sumberData: "Monografi Tingkat Kampung Marga Mulya per 30 September 2026",
-    diperbarui: "Oktober 2026"
+    diperbarui: "Oktober 2026",
+    // Dokumen sumber data beserta tahun data dan tanggal dirilis/ditandatangani.
+    // Tampil sebagai label "Data 2026 · Monografi Kampung, 30 Sep 2026" di setiap kelompok data.
+    dokumen: {
+      monografi: { nama: "Monografi Tingkat Kampung Marga Mulya", singkat: "Monografi Kampung", tahun: 2026, rilis: "30 September 2026", rilisPendek: "30 Sep 2026" },
+      rpjmk: { nama: "RPJMK Kampung Marga Mulya 2019–2024 (Peraturan Kampung Nomor 1 Tahun 2019)", singkat: "RPJMK 2019–2024", tahun: 2019, rilis: "1 Mei 2019", rilisPendek: "1 Mei 2019" },
+      apbkam: { nama: "Penjabaran APBKam Kampung Marga Mulya Tahun Anggaran 2026", singkat: "Penjabaran APBKam", tahun: 2026, rilis: "4 Mei 2026", rilisPendek: "4 Mei 2026" },
+      fasilitasUmum: { nama: "Dokumen Fasilitas Umum Kampung Marga Mulya", singkat: "Dokumen Fasilitas Umum", tahun: 2023, rilis: "Desember 2023", rilisPendek: "Des 2023" },
+      survei: { nama: "Survei lapangan Tim Ekspedisi Patriot IPB University", singkat: "Survei Tim Ekspedisi Patriot", tahun: 2026, rilis: "26 Oktober 2026", rilisPendek: "26 Okt 2026" }
+    }
   },
 
   identitas: {
@@ -145,7 +154,7 @@ window.KAMPUNG = {
     pengantar: "Kajian sumber daya dalam RPJMK menempatkan Marga Mulya sebagai sentra produksi padi. Tanahnya paling cocok untuk persawahan, dan hampir semua keluarga menggantungkan penghasilan pada pertanian.",
     sumber: "RPJMK Kampung Marga Mulya 2019–2024, Bab II",
     daftar: [
-      { judul: "Sumber daya alam", isi: "Sawah, kini seluas 1.758,19 ha (RPJMK 2019 mencatat 1.116 ha), menjadi tumpuan utama, ditambah 183 ha lahan palawija dan 118 ha lahan yang sudah dibersihkan dan direncanakan menjadi sawah. Ada pula 282 ha permukiman, 46 ha rawa, dan 2 km sungai.", angka: [["1.758,19 ha", "sawah"], ["183 ha", "palawija"], ["118 ha", "siap dibuka"]], bab: "bab-ii-3" },
+      { judul: "Sumber daya alam", rilis: ["rpjmk", "monografi"], isi: "Sawah, kini seluas 1.758,19 ha (RPJMK 2019 mencatat 1.116 ha), menjadi tumpuan utama, ditambah 183 ha lahan palawija dan 118 ha lahan yang sudah dibersihkan dan direncanakan menjadi sawah. Ada pula 282 ha permukiman, 46 ha rawa, dan 2 km sungai.", angka: [["1.758,19 ha", "sawah"], ["183 ha", "palawija"], ["118 ha", "siap dibuka"]], bab: "bab-ii-3" },
       { judul: "Sumber daya manusia", isi: "586 keluarga hidup dari pertanian dan perkebunan; lainnya dari perdagangan, angkutan, industri pengolahan, dan jasa. Petani menanam padi dua kali setahun (rendengan dan gadu), dan 1 ha sawah menghasilkan sekitar 4 ton gabah.", angka: [["586 KK", "petani"], ["2 kali", "panen padi setahun"], ["±4 ton", "gabah per hektare"]], bab: "bab-ii-4" },
       { judul: "Sumber daya pembangunan", isi: "Kampung memiliki 38 km jalan kampung, 41 km jalan usaha tani, 24 jembatan, 49 km drainase, dan 5 bendali (kolam tadah air). Alat pertanian warga mencakup 42 hand tractor, 4 jonder, dan 3 mesin perontok padi, digerakkan oleh 18 kelompok tani.", angka: [["42", "hand tractor"], ["18", "kelompok tani"], ["41 km", "jalan usaha tani"]], bab: "bab-ii-5" },
       { judul: "Sumber daya sosial budaya", isi: "Gotong royong dan kegiatan keagamaan menjadi perekat warga: 18 kelompok yasinan (satu di tiap RT), pengajian Jumat Pahing se-kampung dengan 350–450 jamaah, 6 majelis taklim/grup rebana, 3 TPQ dengan 227 santri, sekolah minggu, dan kelompok kesenian kuda lumping.", angka: [["18", "kelompok yasinan"], ["3", "TPQ"], ["1", "grup kuda lumping"]], bab: "bab-ii-6" }

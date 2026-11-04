@@ -1365,3 +1365,10 @@ html, body { transition: background-color .25s ease, color .25s ease; }
   .kal td { display: block; height: 18px; border-radius: 4px; }
   .kal tbody tr:first-child th { padding-top: 4px; }
 }
+
+/* Label tahun data & tanggal rilis dokumen sumber */
+.rilis { display: inline-flex; align-items: center; gap: 6px; max-width: 100%; margin: 2px 0 8px; padding: 4px 10px; border-radius: 99px; font-size: .78rem; font-weight: 600; line-height: 1.35; color: var(--blue); background: var(--soft); border: 1px solid var(--line); vertical-align: middle; }
+.rilis .ic { width: 14px; height: 14px; flex: none; }
+.lead .rilis, .small .rilis { margin-bottom: 6px; }
+.sd .rilis + .rilis { margin-left: 4px; }
+.facts__src { margin: 10px 0 0; }
