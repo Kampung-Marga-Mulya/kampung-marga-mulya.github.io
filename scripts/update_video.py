@@ -180,6 +180,25 @@ def yahoo(q):
     return out
 
 
+TT_HALAMAN = re.compile(r"tiktok\.com/(?:discover|tag)/[A-Za-z0-9%_.-]+")
+
+
+def halaman_tiktok(url):
+    """Halaman 'discover'/'tag' TikTok memuat daftar video beserta keterangannya."""
+    r = get(url if url.startswith("http") else "https://www." + url)
+    if not r.ok:
+        return []
+    out = []
+    data = json_setelah(r.text, '"__DEFAULT_SCOPE__"') or {}
+    for k, v in jelajah(data, {"itemList", "items"}):
+        if isinstance(v, list):
+            for it in v:
+                if isinstance(it, dict) and it.get("id") and (it.get("author") or {}).get("uniqueId"):
+                    out.append(("https://www.tiktok.com/@%s/video/%s" % (it["author"]["uniqueId"], it["id"]), bersih(it.get("desc"))))
+    out += [(u, "") for u in kumpulkan_url(r.text)]
+    return out
+
+
 def bing_video(q):
     r = get("https://www.bing.com/videos/search?" + urllib.parse.urlencode({"q": q, "setlang": "id"}))
     r.raise_for_status()
@@ -246,15 +265,16 @@ def teks_runs(o):
     return "".join(r.get("text", "") for r in o.get("runs", []))
 
 
+HALAMAN_TT = set()
 YT_INFO = {}          # data ringkas dari halaman pencarian (cadangan bila halaman video dibatasi)
 YT_DIBATASI = [False]
-SATUAN = {"detik": 0, "second": 0, "menit": 0, "minute": 0, "jam": 0, "hour": 0, "hari": 1, "day": 1,
+SATUAN = {"thn": 365, "bln": 30, "mgg": 7, "hr": 1, "mnt": 0, "dtk": 0, "detik": 0, "second": 0, "menit": 0, "minute": 0, "jam": 0, "hour": 0, "hari": 1, "day": 1,
           "minggu": 7, "week": 7, "bulan": 30, "month": 30, "tahun": 365, "year": 365}
 
 
 def tanggal_kira(teks):
     """'3 bulan yang lalu' / '3 months ago' → tanggal perkiraan (ISO)."""
-    m = re.search(r"(\d+)\s+(detik|menit|jam|hari|minggu|bulan|tahun|second|minute|hour|day|week|month|year)", teks or "", re.I)
+    m = re.search(r"(\d+)\s*(detik|menit|jam|hari|minggu|bulan|tahun|thn|bln|mgg|hr|mnt|dtk|second|minute|hour|day|week|month|year)", teks or "", re.I)
     if not m:
         return None
     hari = int(m.group(1)) * SATUAN[m.group(2).lower()]
@@ -262,17 +282,19 @@ def tanggal_kira(teks):
 
 
 def angka_tayang(teks):
-    t = (teks or "").lower().replace(".", "").replace(",", "")
-    m = re.search(r"(\d+)\s*(rb|jt|k|m)?", t)
+    t = (teks or "").lower()
+    m = re.search(r"(\d+(?:[.,]\d+)*)\s*(rb|jt|k|m)?\b", t)
     if not m:
         return None
-    n = int(m.group(1))
-    return n * {"rb": 1000, "k": 1000, "jt": 1000000, "m": 1000000}.get(m.group(2) or "", 1)
+    num, suf = m.group(1), m.group(2)
+    if suf:
+        return int(float(num.replace(".", "").replace(",", ".") if "," in num else num) * {"rb": 1000, "k": 1000, "jt": 1000000, "m": 1000000}[suf])
+    return int(re.sub(r"[.,]", "", num))
 
 
 def detik_durasi(teks):
     try:
-        p = [int(x) for x in (teks or "").split(":")]
+        p = [int(x) for x in re.split(r"[:.]", (teks or "").strip())]
     except ValueError:
         return None
     d = 0
@@ -569,6 +591,9 @@ def main():
     kandidat = {}
 
     def tambah(url, cuplikan, sumber, wajib_pilih=False):
+        m = TT_HALAMAN.search(urllib.parse.unquote(url or ""))
+        if m:
+            HALAMAN_TT.add(m.group(0))
         k = kenali(url)
         if not k:
             return
@@ -615,6 +640,19 @@ def main():
                 tambah(u, t, "bing-video")
         except Exception as e:  # noqa: BLE001
             log("bing-video gagal:", q, e)
+
+    # Halaman discover/tag TikTok yang ditemukan mesin pencari, ditambah beberapa yang umum
+    tt = {"tiktok.com/discover/marga-mulya-merauke", "tiktok.com/discover/kampung-marga-mulya-merauke",
+          "tiktok.com/discover/marga-mulya-semangga", "tiktok.com/tag/margamulya"}
+    tt |= set(HALAMAN_TT)
+    for u in sorted(tt)[:12]:
+        try:
+            hs = halaman_tiktok(u)
+            log("  tiktok-halaman", u, "→", len(hs))
+            for uu, t in hs:
+                tambah(uu, t, "tiktok-halaman")
+        except Exception as e:  # noqa: BLE001
+            log("tiktok-halaman gagal:", u, e)
 
     # Video lama tetap diperiksa ulang (agar yang dihapus pemiliknya ikut hilang)
     for kk, v in simpanan.items():
