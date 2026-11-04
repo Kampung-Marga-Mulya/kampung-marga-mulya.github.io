@@ -1434,14 +1434,14 @@ a:hover { text-decoration-color: var(--yellow-deep); }
 /* Batik Jawa–Papua sebagai latar penuh seluruh halaman (garis sangat tipis)
    Ceplok kawung + kisi bergaris ganda bercecek (Jawa), kasuari dan walabi bergaya batik + spiral Sentani (Papua).
    Kartu dan panel tetap polos agar isi mudah dibaca. */
-html::before { content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none; background: var(--blue); opacity: .05;
-  -webkit-mask-image: url(../img/motif/batik.svg); mask-image: url(../img/motif/batik.svg); -webkit-mask-size: 150px 150px; mask-size: 150px 150px; -webkit-mask-repeat: repeat; mask-repeat: repeat; }
-:root[data-theme="dark"]::before { background: #9DBEFA; opacity: .055; }
-@media (prefers-color-scheme: dark) { :root:not([data-theme="light"])::before { background: #9DBEFA; opacity: .055; } }
+html::before { content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none; background: var(--blue); opacity: .1;
+  -webkit-mask-image: url(../img/motif/batik.svg); mask-image: url(../img/motif/batik.svg); -webkit-mask-size: 130px 130px; mask-size: 130px 130px; -webkit-mask-repeat: repeat; mask-repeat: repeat; }
+:root[data-theme="dark"]::before { background: #9DBEFA; opacity: .17; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"])::before { background: #9DBEFA; opacity: .17; } }
 /* Batik juga di dalam kartu utama setiap halaman, lebih tipis lagi (panel grafik dan foto tetap polos) */
-.view .sec > .wrap, .view .sec > .wrap.grid-2, .vtabs, .vhead { background-image: url(../img/motif/batik-terang.svg); background-size: 150px 150px; background-repeat: repeat; }
+.view .sec > .wrap, .view .sec > .wrap.grid-2, .vtabs, .vhead { background-image: url(../img/motif/batik-terang.svg); background-size: 130px 130px; background-repeat: repeat; }
 :root[data-theme="dark"] .view .sec > .wrap, :root[data-theme="dark"] .vtabs, :root[data-theme="dark"] .vhead { background-image: url(../img/motif/batik-gelap.svg); }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .view .sec > .wrap, :root:not([data-theme="light"]) .vtabs, :root:not([data-theme="light"]) .vhead { background-image: url(../img/motif/batik-gelap.svg); } }
 .foot, .aspirasi--pita { position: relative; isolation: isolate; }
-.foot::before, .aspirasi--pita::before { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; background: #fff; opacity: .07;
-  -webkit-mask-image: url(../img/motif/batik.svg); mask-image: url(../img/motif/batik.svg); -webkit-mask-size: 150px 150px; mask-size: 150px 150px; -webkit-mask-repeat: repeat; mask-repeat: repeat; }
+.foot::before, .aspirasi--pita::before { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; background: #fff; opacity: .11;
+  -webkit-mask-image: url(../img/motif/batik.svg); mask-image: url(../img/motif/batik.svg); -webkit-mask-size: 130px 130px; mask-size: 130px 130px; -webkit-mask-repeat: repeat; mask-repeat: repeat; }
