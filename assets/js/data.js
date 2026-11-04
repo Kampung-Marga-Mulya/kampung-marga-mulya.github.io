@@ -823,12 +823,14 @@ window.KAMPUNG = {
   },
 
 
+  // Video tentang kampung. Daftar utama dikumpulkan otomatis setiap 6 jam oleh robot
+  // (scripts/update_video.py → data/video-otomatis.json) dari YouTube, TikTok, Instagram, dan Facebook.
+  // "pilihan": tautan video yang wajib selalu tampil paling depan, misalnya video resmi kampung.
+  // Contoh: { url: "https://www.youtube.com/watch?v=XXXXXXXXXXX", judul: "Video Profil Kampung Marga Mulya" }
   video: {
-    judul: "Video Profil Kampung Marga Mulya",
-    deskripsi: "Video profil hasil kerja sama Tim Ekspedisi Patriot IPB University dan warga Kampung Marga Mulya. Putar langsung di halaman ini.",
-    youtubeId: "4WKrKH5IqJc",   // dari https://youtu.be/4WKrKH5IqJc
-    fileLokal: "",          // atau "assets/video/profil.mp4"
-    poster: ""
+    judul: "Marga Mulya dalam Video",
+    deskripsi: "Video dari YouTube, TikTok, Instagram, dan Facebook yang membahas Kampung Marga Mulya, Distrik Semangga, Merauke. Daftar ini dikumpulkan dan diurutkan otomatis: video yang paling jelas membahas Marga Mulya dan yang terbaru tampil lebih dulu. Ketuk video untuk memutarnya.",
+    pilihan: []
   },
 
   potensi: [

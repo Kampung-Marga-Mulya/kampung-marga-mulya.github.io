@@ -802,21 +802,158 @@
     showTab("interaktif");
   })();
 
-  /* =================== VIDEO =================== */
-  var V = D.video, vb = $("#videoBox");
-  $("#videoJudul").textContent = V.judul; $("#videoDesk").textContent = V.deskripsi;
-  var poster = V.poster ? '<img src="' + escUrl(V.poster) + '" alt="">' : (V.youtubeId ? '<img src="https://img.youtube.com/vi/' + esc(V.youtubeId) + '/hqdefault.jpg" alt="">' : "");
-  if (V.fileLokal) {
-    vb.innerHTML = '<video controls preload="metadata"' + (V.poster ? ' poster="' + escUrl(V.poster) + '"' : "") + '><source src="' + escUrl(V.fileLokal) + '" type="video/mp4">Peramban Anda tidak mendukung video.</video>';
-  } else if (V.youtubeId) {
-    // Pemutar YouTube tertanam: video diputar langsung di halaman ini.
-    vb.innerHTML = '<iframe src="https://www.youtube-nocookie.com/embed/' + encodeURIComponent(V.youtubeId) + '?rel=0&playsinline=1" title="' + esc(V.judul) + '" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen></iframe>';
-    vb.insertAdjacentHTML("afterend", '<p class="video__alt"><a href="https://youtu.be/' + encodeURIComponent(V.youtubeId) + '" target="_blank" rel="noopener">' + ic("video") + "Tonton juga di YouTube</a></p>");
-  } else {
-    vb.innerHTML = '<button class="video__poster" type="button"' + act(function () {
-      openModal({ kat: "Video profil", title: "Video sedang disiapkan", html: "<p>Video profil Kampung Marga Mulya sedang diproduksi oleh Tim Ekspedisi Patriot IPB University bersama warga. Setelah diunggah ke YouTube, video akan diputar langsung di sini.</p>" });
-    }) + '><div><span class="video__play">' + ic("play") + "</span><b>Video profil sedang disiapkan</b><small>Ketuk untuk info</small></div></button>";
-  }
+  /* =================== VIDEO (bergulir seperti berita) ===================
+     Daftar video dari data/video-otomatis.json (robot scripts/update_video.py, tiap 6 jam)
+     ditambah video pilihan di D.video.pilihan. Ketuk kartu untuk memutar di jendela. */
+  (function () {
+    var V = D.video || {}, track = $("#vidTrack"); if (!track) return;
+    $("#videoJudul").textContent = V.judul || "Marga Mulya dalam Video";
+    $("#videoDesk").textContent = V.deskripsi || "";
+    var PLAT = { youtube: "YouTube", tiktok: "TikTok", instagram: "Instagram", facebook: "Facebook" };
+    var BLN = ["Jan", "Feb", "Mar", "Apr", "Mei", "Jun", "Jul", "Agu", "Sep", "Okt", "Nov", "Des"];
+    var tglV = function (iso) { var p = String(iso || "").slice(0, 10).split("-"); return p.length === 3 ? +p[2] + " " + BLN[+p[1] - 1] + " " + p[0] : ""; };
+    // Tanggal dari halaman pencarian YouTube hanya perkiraan ("2 thn lalu"): tampilkan relatif, bukan tanggal pasti
+    var kapan = function (v) {
+      if (!v.tanggal) return "";
+      if (!v.tanggal_kira) return tglV(v.tanggal);
+      var h = Math.round((Date.now() - new Date(v.tanggal + "T00:00:00+09:00")) / 864e5);
+      return h < 7 ? "minggu ini" : h < 30 ? "± " + Math.round(h / 7) + " minggu lalu" : h < 365 ? "± " + Math.round(h / 30) + " bulan lalu" : "± " + Math.round(h / 365) + " tahun lalu";
+    };
+    var durasi = function (d) { if (!d) return ""; var m = Math.floor(d / 60), s = d % 60; return m >= 60 ? Math.floor(m / 60) + ":" + ("0" + (m % 60)).slice(-2) + ":" + ("0" + s).slice(-2) : m + ":" + ("0" + s).slice(-2); };
+    var angka = function (n) { return n >= 1e6 ? (n / 1e6).toFixed(1).replace(".", ",") + " jt" : n >= 1e3 ? (n / 1e3).toFixed(1).replace(".", ",") + " rb" : String(n); };
+    // Kenali tautan video pilihan
+    function kenali(u) {
+      var m;
+      if ((m = /(?:youtube\.com\/(?:watch\?(?:.*&)?v=|shorts\/|embed\/|live\/)|youtu\.be\/)([A-Za-z0-9_-]{11})/.exec(u))) return { platform: "youtube", id: m[1], url: "https://www.youtube.com/watch?v=" + m[1], sampul: "https://i.ytimg.com/vi/" + m[1] + "/hqdefault.jpg", rasio: /shorts\//.test(u) ? "9:16" : "16:9" };
+      if ((m = /tiktok\.com\/@[^/]+\/video\/(\d+)/.exec(u))) return { platform: "tiktok", id: m[1], url: u, rasio: "9:16" };
+      if ((m = /instagram\.com\/(?:[^/]+\/)?(p|reels?|tv)\/([A-Za-z0-9_-]+)/.exec(u))) return { platform: "instagram", id: m[2], url: "https://www.instagram.com/" + (m[1].indexOf("reel") === 0 ? "reel" : m[1]) + "/" + m[2] + "/", rasio: "9:16" };
+      if (/facebook\.com\/|fb\.watch\//.test(u)) return { platform: "facebook", id: u.replace(/\W+/g, "").slice(-24), url: u, rasio: /\/reel\//.test(u) ? "9:16" : "16:9" };
+      return null;
+    }
+    function embed(v) {
+      if (v.platform === "youtube") return "https://www.youtube-nocookie.com/embed/" + encodeURIComponent(v.id) + "?rel=0&playsinline=1&autoplay=1";
+      if (v.platform === "tiktok") return "https://www.tiktok.com/player/v1/" + encodeURIComponent(v.id) + "?autoplay=1&rel=0&description=1";
+      if (v.platform === "instagram") return v.url.replace(/\/?$/, "/") + "embed/";
+      if (v.platform === "facebook") return "https://www.facebook.com/plugins/video.php?href=" + encodeURIComponent(v.url) + "&show_text=false&autoplay=true";
+      return "";
+    }
+    var semua = [], filter = "semua", daftar = [];
+    function gabung(auto) {
+      var pilihan = (V.pilihan || []).map(function (p) { var u = typeof p === "string" ? p : p.url, k = kenali(u || ""); if (!k) return null; k.judul = (p && p.judul) || "Video " + PLAT[k.platform]; k.pilihan = true; return k; }).filter(Boolean);
+      var ada = {}; semua = [];
+      pilihan.concat(auto || []).forEach(function (v) { var k = v.platform + "-" + v.id; if (ada[k]) return; ada[k] = 1; semua.push(v); });
+      // Pilihan selalu di depan; sisanya sesuai skor robot (relevansi + kesegaran + popularitas)
+      semua.sort(function (a, b) { return (b.pilihan ? 1 : 0) - (a.pilihan ? 1 : 0) || (b.skor || 0) - (a.skor || 0); });
+    }
+    function kartu(v, i, dup) {
+      var vert = v.rasio === "9:16" || v.rasio === "4:5" || (v.rasio_sampul && v.rasio_sampul < 1);
+      var foto = v.sampul ? '<img class="vcard__bg" src="' + escUrl(v.sampul) + '" alt="" aria-hidden="true" loading="lazy"><img class="vcard__img" src="' + escUrl(v.sampul) + '" alt="" loading="lazy">' : '<span class="vcard__kosong">' + ic("video") + "</span>";
+      var meta = [v.kanal, kapan(v), v.tayang ? angka(v.tayang) + " x ditonton" : (v.suka ? angka(v.suka) + " suka" : "")].filter(Boolean).join(" · ");
+      return '<button type="button" class="vcard' + (vert ? " vcard--v" : "") + '" data-vi="' + i + '"' + (dup ? ' tabindex="-1" aria-hidden="true"' : "") + ">" +
+        '<span class="vcard__ph">' + foto + '<span class="vcard__plat vcard__plat--' + v.platform + '">' + PLAT[v.platform] + "</span>" +
+        (v.durasi ? '<span class="vcard__dur">' + durasi(v.durasi) + "</span>" : "") + '<span class="vcard__play">' + ic("play") + "</span></span>" +
+        '<span class="vcard__body"><span class="vcard__meta">' + esc(meta || PLAT[v.platform]) + '</span><span class="vcard__t">' + esc(v.judul) + "</span></span></button>";
+    }
+    var fBox = $("#vidFilter");
+    function chips() {
+      var n = { semua: semua.length }; semua.forEach(function (v) { n[v.platform] = (n[v.platform] || 0) + 1; });
+      fBox.innerHTML = ["semua", "youtube", "tiktok", "instagram", "facebook"].map(function (k) {
+        return '<button type="button" class="chipbtn' + (k !== "semua" ? " chipbtn--" + k : "") + '" data-f="' + k + '" aria-pressed="' + (filter === k) + '"' + (k !== "semua" && !n[k] ? " disabled" : "") + ">" + (k === "semua" ? "Semua" : PLAT[k]) + ' <span class="chipbtn__n">' + (n[k] || 0) + "</span></button>";
+      }).join("");
+    }
+    var cari = encodeURIComponent('"marga mulya" merauke');
+    $("#vidCari").innerHTML = "Cari langsung: " + [
+      ["YouTube", "https://www.youtube.com/results?search_query=" + cari],
+      ["TikTok", "https://www.tiktok.com/search/video?q=" + encodeURIComponent("marga mulya merauke")],
+      ["Instagram", "https://www.instagram.com/explore/search/keyword/?q=" + encodeURIComponent("marga mulya merauke")],
+      ["Facebook", "https://www.facebook.com/search/videos/?q=" + encodeURIComponent("marga mulya merauke")]
+    ].map(function (x) { return '<a href="' + x[1] + '" target="_blank" rel="noopener">' + x[0] + "</a>"; }).join(" · ");
+    function render() {
+      daftar = semua.filter(function (v) { return filter === "semua" || v.platform === filter; });
+      chips();
+      if (!daftar.length) { track.innerHTML = '<p class="vid__kosong">' + ic("video") + "Robot sedang mengumpulkan video tentang Marga Mulya. Daftar akan muncul di sini setelah pencarian berikutnya selesai.</p>"; lebarSet = 0; updNav(); return; }
+      track.innerHTML = daftar.map(function (v, i) { return kartu(v, i); }).join("") + (daftar.length > 2 ? daftar.map(function (v, i) { return kartu(v, i, true); }).join("") : "");
+      ukur(); posisi = 0; terapkan(); updNav();
+    }
+    function putar(v) {
+      var vert = v.rasio === "9:16" || v.rasio === "4:5" || v.platform === "tiktok" || v.platform === "instagram";
+      var info = [v.kanal, kapan(v), v.tayang ? angka(v.tayang) + " kali ditonton" : (v.suka ? angka(v.suka) + " suka" : ""), v.durasi ? durasi(v.durasi) : ""].filter(Boolean).join(" · ");
+      openModal({ kat: PLAT[v.platform] + (v.kanal ? " · " + v.kanal : ""), title: v.judul,
+        html: '<div class="vplayer' + (vert ? " vplayer--v" : "") + (v.platform === "instagram" ? " vplayer--ig" : "") + '"><iframe src="' + escUrl(embed(v)) + '" title="' + esc(v.judul) + '" referrerpolicy="strict-origin-when-cross-origin" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe></div>' +
+          (info ? '<p class="vplayer__info">' + esc(info) + "</p>" : "") +
+          (v.keterangan ? '<p class="vplayer__ket">' + esc(v.keterangan.length > 280 ? v.keterangan.slice(0, 280) + "…" : v.keterangan) + "</p>" : "") +
+          '<p class="vplayer__act"><a class="btn btn--solid" href="' + escUrl(v.url) + '" target="_blank" rel="noopener">' + ic("external") + "Buka di " + PLAT[v.platform] + '</a></p><p class="small">Jika video tidak dapat diputar di sini (dibatasi pemiliknya), buka langsung di ' + PLAT[v.platform] + ".</p>" });
+    }
+    // Hentikan video saat jendela ditutup
+    modal.addEventListener("close", function () { var p = $("#modalBody .vplayer"); if (p) $("#modalBody").innerHTML = ""; });
+    track.addEventListener("click", function (e) { var b = e.target.closest("[data-vi]"); if (b) putar(daftar[+b.getAttribute("data-vi")]); });
+    track.addEventListener("error", function (e) { if (e.target.tagName === "IMG") { var ph = e.target.parentNode; ph.querySelectorAll("img").forEach(function (x) { x.remove(); }); if (!ph.querySelector(".vcard__kosong")) ph.insertAdjacentHTML("afterbegin", '<span class="vcard__kosong">' + ic("video") + "</span>"); } }, true);
+    fBox.addEventListener("click", function (e) {
+      var b = e.target.closest("[data-f]"); if (!b || b.disabled) return;
+      filter = b.getAttribute("data-f"); render();
+    });
+
+    // Gulir berjalan terus dan berputar (seperti slider berita)
+    var prev = $("#vidPrev"), next = $("#vidNext"), count = $("#vidCount");
+    var lebarSet = 0, posisi = 0, jeda = 0, diatas = false, tween = null, tujuan = null, terakhir = -1, waktu = 0;
+    var KEC = 30, diam = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    function step() { var c = track.querySelector(".vcard"); return c ? c.getBoundingClientRect().width + 16 : 260; }
+    function ukur() { var c = track.querySelectorAll(".vcard"), n = daftar.length; lebarSet = (n > 2 && c.length > n) ? c[n].offsetLeft - c[0].offsetLeft : 0; if (lebarSet && lebarSet <= track.clientWidth) lebarSet = 0; }
+    var bungkus = function (p) { return lebarSet ? ((p % lebarSet) + lebarSet) % lebarSet : Math.max(0, Math.min(p, track.scrollWidth - track.clientWidth)); };
+    function terapkan() { var v = bungkus(posisi); if (Math.abs(track.scrollLeft - v) >= 0.5) { terakhir = v; track.scrollLeft = v; } }
+    function updNav() {
+      var n = daftar.length; if (!n) { count.textContent = ""; return; }
+      var first = (Math.round(bungkus(posisi) / step()) % n) + 1, vis = Math.max(1, Math.round(track.clientWidth / step())), last = Math.min(n, first + vis - 1);
+      count.textContent = (vis > 1 && last > first ? first + "–" + last : first) + " dari " + n;
+    }
+    var tunda = function (ms) { jeda = Math.max(jeda, performance.now() + ms); };
+    function geserKe(d) {
+      var dari = posisi, dasar = tween && tujuan != null ? tujuan : posisi, ke = Math.round((dasar + d * step()) / step()) * step(), t0 = performance.now();
+      tujuan = ke; tween = function (t) { var k = Math.min(1, (t - t0) / 450), e = k < .5 ? 2 * k * k : 1 - Math.pow(-2 * k + 2, 2) / 2; posisi = dari + (ke - dari) * e; if (k >= 1) { tween = null; tujuan = null; } };
+      tunda(5000);
+    }
+    function loop(t) {
+      var dt = waktu ? Math.min(0.1, (t - waktu) / 1000) : 0; waktu = t;
+      var tampak = !document.hidden && track.offsetParent !== null && !(modal.open);
+      if (tween) { tween(t); terapkan(); updNav(); }
+      else if (tampak && lebarSet && !diam && !diatas && t > jeda) { posisi += KEC * dt; terapkan(); }
+      window.requestAnimationFrame(loop);
+    }
+    prev.addEventListener("click", function () { geserKe(-1); });
+    next.addEventListener("click", function () { geserKe(1); });
+    track.addEventListener("mouseenter", function () { diatas = true; });
+    track.addEventListener("mouseleave", function () { diatas = false; tunda(1200); });
+    ["pointerdown", "touchstart", "wheel", "focusin"].forEach(function (ev) { track.addEventListener(ev, function () { tween = null; tunda(4000); }, { passive: true }); });
+    track.addEventListener("scroll", function () {
+      if (Math.abs(track.scrollLeft - terakhir) < 1) return;
+      terakhir = -1;
+      if (lebarSet) {
+        if (track.scrollLeft >= lebarSet) { terakhir = track.scrollLeft - lebarSet; track.scrollLeft = terakhir; }
+        else if (track.scrollLeft <= 0) { terakhir = lebarSet; track.scrollLeft = lebarSet; }
+      }
+      posisi = track.scrollLeft; tunda(4000); window.requestAnimationFrame(updNav);
+    }, { passive: true });
+    track.addEventListener("keydown", function (e) { if (e.key === "ArrowRight") { e.preventDefault(); geserKe(1); } if (e.key === "ArrowLeft") { e.preventDefault(); geserKe(-1); } });
+    window.addEventListener("resize", function () { ukur(); terapkan(); updNav(); });
+    setInterval(updNav, 1000);
+
+    gabung([]); render(); window.requestAnimationFrame(loop);
+    var info = $("#vidInfo");
+    function muat() {
+      if (!window.fetch) return;
+      fetch("data/video-otomatis.json?t=" + Date.now(), { cache: "no-store" })
+        .then(function (r) { return r.ok ? r.json() : null; })
+        .then(function (j) {
+          if (!j) return;
+          var sebelum = semua.length; gabung(j.video || []); render();
+          if (j.diperiksa && info) info.textContent = "Diperbarui otomatis dari YouTube, TikTok, Instagram, dan Facebook · dicek " + tglV(j.diperiksa);
+          if (sebelum && semua.length > sebelum) toast((semua.length - sebelum) + " video baru ditambahkan");
+        }).catch(function () {});
+    }
+    muat();
+    // Halaman yang dibiarkan terbuka ikut menampilkan video baru tanpa dimuat ulang
+    setInterval(function () { if (!document.hidden) muat(); }, 30 * 60 * 1000);
+  })();
 
   /* =================== LAYANAN =================== */
   $("#layananList").innerHTML = D.layanan.map(function (l) {

@@ -1304,3 +1304,42 @@ html, body { transition: background-color .25s ease, color .25s ease; }
 @media (max-width: 420px) { .lokasi-kantor__act { grid-template-columns: 1fr; } }
 .wcard__act--maps { border-top: 1px solid var(--line); }
 @media (min-width: 900px) { .batas-peta img { height: 300px; object-fit: contain; } }
+
+/* Video bergulir (YouTube, TikTok, Instagram, Facebook) */
+.vid__head { margin-bottom: 4px; }
+.vid__track { display: grid; grid-auto-flow: column; grid-auto-columns: 250px; gap: 16px; overflow-x: auto; padding: 4px 2px 14px; scrollbar-width: none; overscroll-behavior-x: contain; }
+.vid__track::-webkit-scrollbar { display: none; }
+@media (max-width: 600px) { .vid__track { grid-auto-columns: 72%; gap: 12px; } }
+.vcard { display: flex; flex-direction: column; min-width: 0; padding: 0; text-align: left; font: inherit; color: var(--ink); background: var(--card); border: 1px solid var(--line); border-radius: var(--r); overflow: hidden; cursor: pointer; transition: border-color .15s, box-shadow .15s, transform .15s; }
+.vcard:hover { border-color: var(--blue-mid); box-shadow: var(--shadow); transform: translateY(-2px); }
+.vcard:active { border-color: var(--blue); }
+.vcard__ph { position: relative; display: block; height: 300px; overflow: hidden; background: #0b1a2e; }
+.vcard__bg { position: absolute; inset: -12px; width: calc(100% + 24px); height: calc(100% + 24px); object-fit: cover; filter: blur(14px) brightness(.6); }
+.vcard__img { position: relative; display: block; width: 100%; height: 100%; object-fit: contain; }
+.vcard__kosong { position: absolute; inset: 0; display: grid; place-items: center; color: rgba(255,255,255,.7); background: linear-gradient(135deg, #0b3a8f, #1f6fd1); }
+.vcard__kosong .ic { width: 48px; height: 48px; }
+.vcard__plat { position: absolute; top: 10px; left: 10px; padding: 3px 9px; border-radius: 99px; font-size: .74rem; font-weight: 700; color: #fff; background: #333; }
+.vcard__plat--youtube { background: #cc0000; }
+.vcard__plat--tiktok { background: #111; box-shadow: inset 0 0 0 1px rgba(255,255,255,.25); }
+.vcard__plat--instagram { background: linear-gradient(45deg, #f09433, #dc2743 50%, #bc1888); }
+.vcard__plat--facebook { background: #1877f2; }
+.vcard__dur { position: absolute; right: 10px; bottom: 10px; padding: 2px 7px; border-radius: 6px; font-size: .76rem; font-weight: 700; color: #fff; background: rgba(0,0,0,.72); }
+.vcard__play { position: absolute; left: 50%; top: 50%; width: 56px; height: 56px; margin: -28px 0 0 -28px; display: grid; place-items: center; border-radius: 50%; color: #fff; background: rgba(23,92,211,.88); box-shadow: 0 6px 18px rgba(0,0,0,.35); transition: transform .2s; }
+.vcard__play .ic { width: 26px; height: 26px; }
+.vcard:hover .vcard__play { transform: scale(1.1); }
+.vcard__body { display: flex; flex-direction: column; gap: 4px; padding: 12px 14px 14px; }
+.vcard__meta { font-size: .8rem; color: var(--muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.vcard__t { font-weight: 700; line-height: 1.35; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+@media (max-width: 600px) { .vcard__ph { height: 280px; } }
+.vid__kosong { grid-column: 1 / -1; display: flex; gap: 10px; align-items: center; margin: 0; padding: 22px; border: 1px dashed var(--line); border-radius: var(--r); color: var(--muted); background: var(--card); }
+.vid__kosong .ic { width: 28px; height: 28px; color: var(--blue); flex: none; }
+.vid__cari { margin-top: 6px; color: var(--muted); }
+.chipbtn__n { font-size: .8em; opacity: .7; }
+.chipbtn:disabled { opacity: .45; cursor: default; }
+.vplayer { position: relative; aspect-ratio: 16 / 9; border-radius: 12px; overflow: hidden; background: #000; }
+.vplayer--v { aspect-ratio: auto; width: min(100%, 340px); height: min(66vh, 600px); margin: 0 auto; }
+.vplayer--ig { width: min(100%, 400px); height: min(70vh, 680px); background: #fff; }
+.vplayer iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.vplayer__info { margin: 12px 0 4px; font-size: .9rem; color: var(--muted); }
+.vplayer__ket { white-space: pre-line; font-size: .95rem; }
+.vplayer__act { margin: 12px 0 6px; }

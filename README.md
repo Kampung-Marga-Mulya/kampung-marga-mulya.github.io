@@ -10,7 +10,7 @@ Alamat saat ini: https://kampung-marga-mulya.github.io
 - **Teknologi:** HTML5, CSS3, JavaScript murni tanpa framework dan tanpa proses build. Peta memakai Leaflet 1.9.4 dengan peta dasar OpenStreetMap. Huruf Source Sans 3 dan Source Serif 4.
 - **Tanpa ketergantungan CDN:** Leaflet, JSON5, dan huruf disimpan di website sendiri (`assets/vendor`, `assets/fonts`).
 - **Data:** `assets/js/data.js` (profil, pemerintahan, penduduk, APBKam, potensi) dan berkas JSON di `data/`. Setiap perubahan tercatat di riwayat git.
-- **Otomasi:** GitHub Actions menjalankan robot berita setiap 3 jam (`scripts/update_berita.py`), menghitung jarak wisata dan fasilitas (`scripts/hitung_wisata.py`), dan memindai keamanan kode dengan CodeQL.
+- **Otomasi:** GitHub Actions menjalankan robot berita setiap 3 jam (`scripts/update_berita.py`), mengumpulkan video setiap 6 jam (`scripts/update_video.py`), menghitung jarak wisata dan fasilitas (`scripts/hitung_wisata.py`), dan memindai keamanan kode dengan CodeQL.
 - **Keamanan:** lihat [SECURITY.md](SECURITY.md).
 
 ## Isi folder
@@ -44,6 +44,13 @@ Dari terminal di folder ini jalankan `python3 -m http.server 8000`, lalu buka ht
 ## Berita otomatis
 
 Robot di `.github/workflows/berita-otomatis.yml` mencari berita tentang Kampung Marga Mulya dan berita terkait Semangga/Merauke (pertanian, harga pangan) setiap 3 jam, memeriksa isinya, lalu menyimpannya ke `data/berita-otomatis.json`. Berita yang keliru bisa disembunyikan dengan menambahkan tautannya ke `data/berita-abaikan.json`.
+
+## Video otomatis
+
+Robot di `.github/workflows/video-otomatis.yml` mencari video tentang Kampung Marga Mulya di YouTube, TikTok, Instagram, dan Facebook setiap 6 jam (`scripts/update_video.py`). Video hanya disimpan bila judul atau keterangannya menyebut Marga Mulya beserta Merauke/Semangga; kabar insiden atau kriminal perorangan tidak ditampilkan. Urutan tampil memakai skor relevansi, kesegaran, dan popularitas. Hasilnya di `data/video-otomatis.json`, sampulnya di `assets/img/video/`.
+
+- Video yang wajib selalu tampil di depan (misalnya video resmi kampung): tambahkan tautannya di `video.pilihan` pada `assets/js/data.js` atau lewat Portal Admin.
+- Video yang keliru: tambahkan tautannya ke `data/video-abaikan.json`.
 
 ## Pindah ke domain pemerintah
 

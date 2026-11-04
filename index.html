@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Marga Mulya On Site</title>
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https:; font-src 'self'; connect-src 'self'; media-src 'self'; frame-src https://www.youtube-nocookie.com; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https:; font-src 'self'; connect-src 'self'; media-src 'self'; frame-src https://www.youtube-nocookie.com https://www.tiktok.com https://www.instagram.com https://www.facebook.com; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta name="description" content="Website resmi Kampung Marga Mulya, Distrik Semangga, Kabupaten Merauke, Papua Selatan: profil, pemerintahan, data penduduk, transparansi APBKam, Indeks Desa, peta batas kampung, dan layanan warga.">
   <meta name="author" content="Pemerintah Kampung Marga Mulya">
@@ -29,7 +29,7 @@
   <link rel="stylesheet" href="assets/css/fonts.css?v=1">
   <link rel="stylesheet" href="assets/vendor/leaflet/leaflet.css?v=1.9.4">
   <script src="assets/js/tema.js?v=1"></script>
-  <link rel="stylesheet" href="assets/css/style.css?v=1793780186">
+  <link rel="stylesheet" href="assets/css/style.css?v=1793782465">
 </head>
 <body>
   <!-- Kumpulan ikon garis (dipakai dengan <svg><use href="#i-..."/></svg>) -->
@@ -270,8 +270,18 @@
         <div class="tabpanel" role="tabpanel" data-panel="media" hidden>
 <section class="sec" id="video">
       <div class="wrap">
-        <header class="sec__head"><span class="sec__icon"><svg class="ic"><use href="#i-video"/></svg></span><div><p class="eyebrow">Video profil</p><h2 id="videoJudul">Video profil kampung</h2><p class="lead" id="videoDesk"></p></div></header>
-        <div class="video" id="videoBox"></div>
+        <header class="sec__head"><span class="sec__icon"><svg class="ic"><use href="#i-video"/></svg></span><div><p class="eyebrow">Video tentang kampung</p><h2 id="videoJudul">Marga Mulya dalam Video</h2><p class="lead" id="videoDesk"></p></div></header>
+        <div class="news__head vid__head">
+          <p class="news__info" id="vidInfo">Diperbarui otomatis dari YouTube, TikTok, Instagram, dan Facebook</p>
+          <div class="news__nav">
+            <span class="news__count" id="vidCount" aria-live="polite"></span>
+            <button type="button" class="news__btn" id="vidPrev" aria-label="Video sebelumnya"><svg class="ic" style="transform:scaleX(-1)"><use href="#i-arrow"/></svg></button>
+            <button type="button" class="news__btn" id="vidNext" aria-label="Video berikutnya"><svg class="ic"><use href="#i-arrow"/></svg></button>
+          </div>
+        </div>
+        <div class="chips news__filter" id="vidFilter" role="group" aria-label="Saring video menurut platform"></div>
+        <div class="vid__track" id="vidTrack" tabindex="0" aria-label="Daftar video yang bergulir otomatis; geser atau gunakan tombol panah, ketuk untuk memutar"></div>
+        <p class="vid__cari small" id="vidCari"></p>
       </div>
     </section>
 <section class="sec" id="galeri">
@@ -544,9 +554,9 @@
   </dialog>
 
   <script src="assets/vendor/leaflet/leaflet.js?v=1.9.4"></script>
-  <script src="assets/js/data.js?v=1793780186"></script>
-  <script src="assets/js/ilustrasi.js?v=1793780186"></script>
-  <script src="assets/js/app.js?v=1793780186"></script>
-  <script src="assets/js/router.js?v=1793780186"></script>
+  <script src="assets/js/data.js?v=1793782465"></script>
+  <script src="assets/js/ilustrasi.js?v=1793782465"></script>
+  <script src="assets/js/app.js?v=1793782465"></script>
+  <script src="assets/js/router.js?v=1793782465"></script>
 </body>
 </html>
