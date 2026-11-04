@@ -834,7 +834,10 @@ window.KAMPUNG = {
   potensi: [
     { judul: "Tanaman pangan & hortikultura", ikon: "padi", foto: "assets/img/kegiatan/kebun-tomat.jpg", fotoKet: "Petani merawat tanaman tomat", kredit: "Dokumentasi Tim Ekspedisi Patriot IPB University 2026",
       fotoLain: [
-        { src: "assets/img/potensi/sawah-merauke.jpg", ket: "Panen perdana cetak sawah di Merauke (2012/2013)", kredit: "Pemerintah Kabupaten Merauke · Wikimedia Commons", lisensi: "Domain publik", url: "https://commons.wikimedia.org/wiki/File:Sawah_Merauke_2012.jpg" },
+        { src: "assets/img/udara/permukiman-sawah.jpg", ket: "Foto udara permukiman dan hamparan sawah", kredit: "Dokumentasi pemetaan kampung, Juni 2022" },
+        { src: "assets/img/udara/sawah-tergenang.jpg", ket: "Foto udara petak sawah tergenang air", kredit: "Dokumentasi pemetaan kampung, Juni 2022" },
+        { src: "assets/img/udara/saluran-lahan.jpg", ket: "Saluran air yang mengalirkan air ke lahan pertanian", kredit: "Dokumentasi pemetaan kampung, Juni 2022" },
+        { src: "assets/img/udara/kebun-sayur.jpg", ket: "Kebun sayur warga dengan tiang rambatan", kredit: "Dokumentasi pemetaan kampung, Juni 2022" },
         { src: "assets/img/potensi/petani-cabai.jpg", ket: "Ilustrasi: petani memetik cabai (Sukoharjo, Jawa Tengah)", kredit: "ANTARA TV · Wikimedia Commons", lisensi: "CC BY 3.0", url: "https://commons.wikimedia.org/wiki/File:Petani_Sedang_Memetik_Cabai.jpg" }
       ], ket: "Lahan pertanian 1.356 ha, terluas sawah padi 1.150 ha.", detail: "Padi adalah komoditas utama: sawah seluas 1.150 ha digarap 771 petani. Tanaman lain adalah cabai (118,25 ha, 127 petani), jagung (46,5 ha, 41 petani), dan sayuran (41,25 ha, 62 petani)." },
     { judul: "Peternakan", ikon: "ternak", foto: "assets/img/kegiatan/periksa-sapi-2.jpg", fotoKet: "Pemeriksaan kesehatan sapi milik peternak", kredit: "Dokumentasi Tim Ekspedisi Patriot IPB University 2026",
@@ -950,9 +953,14 @@ window.KAMPUNG = {
     { src: "assets/img/kegiatan/pelatihan-peternakan.jpg", ket: "Pelatihan peternakan bersama warga" },
     { src: "assets/img/kegiatan-kampung/agustusan-1.jpg", ket: "Perayaan HUT RI, Agustus 2023" },
     { src: "assets/img/fasilitas/2023/f035.jpg", ket: "Kolam pemancingan kampung" },
+    { src: "assets/img/udara/sawah-tergenang.jpg", ket: "Sawah dari udara" },
+    { src: "assets/img/udara/saluran-teratai.jpg", ket: "Saluran air bertabur teratai" },
     { src: "assets/img/kegiatan-kampung/hari-santri-1.jpg", ket: "Santri dan warga di Hari Santri" },
     { src: "assets/img/fasilitas/sd-semangga-3.jpg", ket: "SD Inpres Semangga III" },
-    { src: "assets/img/fasilitas/2023/f054.jpg", ket: "Saluran air menuju kolam bendali" }
+    { src: "assets/img/fasilitas/2023/f054.jpg", ket: "Saluran air menuju kolam bendali" },
+    { src: "assets/img/udara/jembatan-kayu.jpg", ket: "Jembatan kayu di atas saluran" },
+    { src: "assets/img/udara/lahan-pepohonan.jpg", ket: "Lahan dan pepohonan" },
+    { src: "assets/img/udara/hamparan-lahan.jpg", ket: "Hamparan lahan dari udara" }
   ],
 
   galeri: [

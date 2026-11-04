@@ -967,7 +967,11 @@ html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 .prestasi { align-items: start; }
 
 /* ---------- Foto beranda bergantian ---------- */
-.hero__bg { display: none; }
+/* Latar foto yang dibaurkan: mengisi sisa bingkai bila bentuk foto berbeda (foto tetap utuh, tidak dipotong) */
+.hero__bg { position: absolute; inset: 0; z-index: -2; overflow: hidden; background: #0A0A0A; }
+.hero__bg img { position: absolute; inset: -40px; width: calc(100% + 80px); height: calc(100% + 80px); max-width: none; object-fit: cover; filter: blur(24px) saturate(1.1) brightness(.8); opacity: 0; transition: opacity 700ms ease; }
+.hero__bg img.is-on { opacity: 1; }
+#v-beranda .hero__photo { background: transparent; }
 .hero__photo .hero__slide { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; opacity: 0; transition: opacity 700ms ease; }
 .hero__photo .hero__slide.is-on { opacity: 1; }
 .hero__photo figcaption { z-index: 2; }

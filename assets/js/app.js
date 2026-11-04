@@ -1283,13 +1283,20 @@
     var fig = $("#heroFoto"), bg = $("#heroBg"), cap = $("#heroCap");
     if (!fig || !bg) return;
     var KREDIT = "Foto: Dokumen Fasilitas Umum Kampung Marga Mulya, Desember 2023.";
+    var UDARA = "Foto udara, dokumentasi pemetaan kampung Juni 2022.";
     var foto = [
-      { src: "assets/img/hero-ekspedisi-patriot.jpg", ket: "Tim Ekspedisi Patriot IPB University bersama perangkat kampung dan Distrik Semangga." },
+      { src: "assets/img/udara/permukiman-sawah.jpg", ket: "Permukiman dan hamparan sawah dari udara. " + UDARA, w: 1800, h: 1012 },
+      { src: "assets/img/hero-ekspedisi-patriot.jpg", ket: "Tim Ekspedisi Patriot IPB University bersama perangkat kampung dan Distrik Semangga.", w: 1800, h: 900 },
+      { src: "assets/img/udara/sawah-tergenang.jpg", ket: "Petak-petak sawah tergenang air. " + UDARA, w: 1800, h: 1012 },
       { src: "assets/img/fasilitas/2023/f059.jpg", ket: "Kantor Kampung Marga Mulya (kantor lama). " + KREDIT },
+      { src: "assets/img/udara/saluran-lahan.jpg", ket: "Saluran air membelah lahan pertanian. " + UDARA, w: 1800, h: 1012 },
       { src: "assets/img/fasilitas/2023/f007.jpg", ket: "SD Inpres Semangga III. " + KREDIT },
+      { src: "assets/img/udara/hamparan-lahan.jpg", ket: "Hamparan lahan hingga ke cakrawala. " + UDARA, w: 1800, h: 1012 },
       { src: "assets/img/fasilitas/2023/f090.jpg", ket: "Masjid Al Amin. " + KREDIT },
+      { src: "assets/img/udara/saluran-lahan-2.jpg", ket: "Jaringan saluran di tepi lahan. " + UDARA, w: 1800, h: 1012 },
       { src: "assets/img/fasilitas/2023/f024.jpg", ket: "Puskesmas Pembantu Kampung Marga Mulya. " + KREDIT },
       { src: "assets/img/fasilitas/2023/f043.jpg", ket: "Gedung pengering padi (dryer). " + KREDIT },
+      { src: "assets/img/udara/saluran-hutan.jpg", ket: "Saluran air di antara hutan dan lahan. " + UDARA, w: 1800, h: 1012 },
       { src: "assets/img/fasilitas/2023/f068.jpg", ket: "Depot Air Minum BUMKam (Air Galon Mulya). " + KREDIT },
       { src: "assets/img/fasilitas/2023/f035.jpg", ket: "Kolam pemancingan kampung. " + KREDIT }
     ];
@@ -1298,7 +1305,7 @@
     function bangun() {
       if (siap) return; siap = true;
       foto.slice(1).forEach(function (f) {
-        var a = new Image(); a.className = "hero__slide"; a.src = f.src; a.alt = f.ket.split(". ")[0]; a.width = 960; a.height = 479; a.decoding = "async";
+        var a = new Image(); a.className = "hero__slide"; a.src = f.src; a.alt = f.ket.split(". ")[0]; a.width = f.w || 960; a.height = f.h || 479; a.decoding = "async";
         fig.insertBefore(a, cap); slides.push(a);
         var b = new Image(); b.src = f.src; b.alt = ""; b.decoding = "async"; bg.appendChild(b); bgs.push(b);
       });
