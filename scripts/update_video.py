@@ -59,7 +59,7 @@ SITUS = {"tiktok": "tiktok.com", "instagram": "instagram.com", "facebook": "face
 
 # Saringan isi: wajib menyebut Marga Mulya dan lokasinya; tolak desa bernama sama di provinsi lain
 WAJIB_NAMA = re.compile(r"marga\s*-?\s*mulya", re.I)
-WAJIB_LOKASI = re.compile(r"merauke|semangga|papua", re.I)
+WAJIB_LOKASI = re.compile(r"merauke|semangga|papua\s+selatan", re.I)
 DESA_LAIN = re.compile(r"\b(lahat|tangerang|mauk|kikim|rambah|rokan hulu|kutai timur|sungai bahar|muaro jambi|bekasi|bandung|"
                        r"bogor|garut|tasik|cianjur|sumedang|karawang|lampung|jambi|bengkulu|palembang|riau|kalimantan)\b", re.I)
 
@@ -141,6 +141,42 @@ def bing_web(q):
             out.append((it.findtext("link") or "", bersih(it.findtext("title")) + " " + bersih(it.findtext("description"))))
     except ET.ParseError:
         out = [(u, "") for u in kumpulkan_url(r.text)]
+    return out
+
+
+def _b64url(t):
+    import base64
+    t = t + "=" * (-len(t) % 4)
+    try:
+        return base64.urlsafe_b64decode(t).decode("utf-8", "ignore")
+    except ValueError:
+        return ""
+
+
+def bing_html(q):
+    r = get("https://www.bing.com/search?" + urllib.parse.urlencode({"q": q, "setlang": "id", "count": 50}))
+    r.raise_for_status()
+    t = html.unescape(r.text)
+    urls = [_b64url(m) for m in re.findall(r"[?&]u=a1([A-Za-z0-9_-]+)", t)]
+    out = []
+    for blok in re.findall(r'<li class="b_algo".*?</li>', t, re.S):
+        teks = bersih(re.sub("<[^>]+>", " ", blok))
+        for u in [_b64url(m) for m in re.findall(r"[?&]u=a1([A-Za-z0-9_-]+)", blok)] + re.findall(r'href="(https?://[^"]+)"', blok):
+            out.append((u, teks[:400]))
+    out += [(u, "") for u in urls] + [(u, "") for u in kumpulkan_url(t)]
+    return out
+
+
+def yahoo(q):
+    r = get("https://search.yahoo.com/search?" + urllib.parse.urlencode({"p": q, "n": 40}))
+    r.raise_for_status()
+    t = r.text
+    out = []
+    for blok in re.findall(r'<div class="(?:dd |)algo.*?</li>', t, re.S):
+        teks = bersih(re.sub("<[^>]+>", " ", blok))
+        for m in re.findall(r"RU=([^/]+)/", blok):
+            out.append((urllib.parse.unquote(m), teks[:400]))
+    out += [(u, "") for u in kumpulkan_url(t)]
     return out
 
 
@@ -287,7 +323,12 @@ def detail_youtube(vid):
     """Halaman video (keterangan lengkap, tanggal pasti). Bila YouTube membatasi, pakai oEmbed + data pencarian."""
     if not YT_DIBATASI[0]:
         try:
-            return detail_youtube_halaman(vid)
+            d = detail_youtube_halaman(vid)
+            if d.get("hilang") or d.get("judul"):
+                base = dict(YT_INFO.get(vid, {}))
+                base.update({k: v for k, v in d.items() if v not in (None, "", 0)})
+                return base
+            log("  halaman video tanpa data (diminta masuk); pakai oEmbed:", vid)
         except requests.HTTPError as e:
             if e.response is not None and e.response.status_code == 429:
                 YT_DIBATASI[0] = True
@@ -534,7 +575,7 @@ def main():
     for q in KUERI_WEB:
         for plat, dom in SITUS.items():
             qq = q + " site:" + dom
-            for nama, fn in (("bing", bing_web), ("bing-video", bing_video), ("ddg", ddg)):
+            for nama, fn in (("bing", bing_web), ("bing-html", bing_html), ("yahoo", yahoo), ("bing-video", bing_video), ("ddg", ddg)):
                 if nama == "bing-video" and plat == "youtube":
                     continue
                 try:
@@ -562,11 +603,13 @@ def main():
 
     # 2) Ambil detail dan saring
     hasil = []
+    lewat = {}
     for kk, c in kandidat.items():
         plat, vid = c["platform"], c["id"]
         lama_v = simpanan.get(kk)
         # Kandidat dari pencarian yang cuplikannya sama sekali tidak menyebut Marga Mulya: lewati agar hemat
         if not c.get("pilihan") and not lama_v and c["cuplikan"] and not WAJIB_NAMA.search(c["cuplikan"]):
+            lewat[plat] = lewat.get(plat, 0) + 1
             continue
         if plat == "youtube" and not c.get("pilihan") and not lama_v and not c["cuplikan"]:
             continue
@@ -606,6 +649,7 @@ def main():
         log("  OK", kk, "|", v["judul"][:70])
         time.sleep(0.5)
 
+    log("Dilewati (cuplikan tidak menyebut Marga Mulya):", lewat)
     for v in hasil:
         v["skor"] = skor(v, sekarang)
     hasil.sort(key=lambda v: -v["skor"])
