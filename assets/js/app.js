@@ -1676,12 +1676,44 @@
       slides[i].classList.add("is-on"); bgs[i].classList.add("is-on");
       if (cap) cap.textContent = foto[i].ket;
     }
-    function mulai() { if (!timer) timer = setInterval(function () { ke(i + 1); }, 2000); }
+    function mulai() { if (!timer && !pakaiVideo) timer = setInterval(function () { ke(i + 1); }, 2000); }
     function henti() { clearInterval(timer); timer = null; }
     var tenang = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
     function jalan() { bangun(); if (!tenang) mulai(); }
+    var pakaiVideo = false;
     if (document.readyState === "complete") jalan(); else window.addEventListener("load", jalan);
-    document.addEventListener("visibilitychange", function () { if (document.hidden) henti(); else if (siap && !tenang) mulai(); });
+    document.addEventListener("visibilitychange", function () { if (document.hidden) henti(); else if (siap && !tenang && !pakaiVideo) mulai(); });
+
+    /* ---- Video profil sebagai latar foto utama: tanpa suara, berulang, tidak bisa diklik.
+       Foto berganti tetap jalan sampai video benar-benar terputar; bila gagal, foto tetap dipakai. ---- */
+    var HV = D.heroVideo || {}, hemat = navigator.connection && navigator.connection.saveData;
+    if (HV.youtubeId && !tenang && !hemat) (function () {
+      var id = encodeURIComponent(HV.youtubeId), asal = "https://www.youtube-nocookie.com";
+      var box = document.createElement("div"); box.className = "hero__video"; box.setAttribute("aria-hidden", "true");
+      var fr = document.createElement("iframe");
+      fr.src = asal + "/embed/" + id + "?autoplay=1&mute=1&loop=1&playlist=" + id + "&controls=0&disablekb=1&playsinline=1&rel=0&iv_load_policy=3&fs=0&modestbranding=1&enablejsapi=1&origin=" + encodeURIComponent(location.origin);
+      fr.title = "Video profil Kampung Marga Mulya (tanpa suara)"; fr.tabIndex = -1;
+      fr.setAttribute("allow", "autoplay; encrypted-media; picture-in-picture"); fr.setAttribute("referrerpolicy", "strict-origin-when-cross-origin");
+      box.appendChild(fr); fig.insertBefore(box, cap);
+      var main = false, batal = setTimeout(gagal, 15000);
+      function gagal() { if (main) return; window.removeEventListener("message", dengar); box.remove(); }
+      function dengar(e) {
+        if (e.origin !== asal || e.source !== fr.contentWindow) return;
+        var d; try { d = typeof e.data === "string" ? JSON.parse(e.data) : e.data; } catch (x) { return; }
+        if (!d) return;
+        if (d.event === "onError") { clearTimeout(batal); gagal(); return; }
+        var st = d.info && d.info.playerState;
+        if (st === 1 && !main) {
+          main = true; pakaiVideo = true; clearTimeout(batal); henti();
+          box.classList.add("is-on"); fig.classList.add("hero__photo--video");
+          if (cap && HV.ket) cap.textContent = HV.ket;
+        }
+      }
+      window.addEventListener("message", dengar);
+      // Minta pemutar mengirim status (tanpa memuat skrip YouTube, sesuai CSP)
+      var sapa = function () { try { fr.contentWindow.postMessage(JSON.stringify({ event: "listening", id: "heroVideo", channel: "widget" }), asal); } catch (x) {} };
+      fr.addEventListener("load", function () { sapa(); setTimeout(sapa, 800); setTimeout(sapa, 2500); });
+    })();
   })();
 
   /* ---- Gambar di popup peta yang gagal dimuat dihapus (pengganti onerror sebaris, sesuai CSP) ---- */

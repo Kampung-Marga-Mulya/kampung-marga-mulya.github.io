@@ -1521,3 +1521,15 @@ a.intro__slide p::after { content: " →"; color: #BFD4FB; font-weight: 700; }
 .lampu::after { content: ""; position: absolute; inset: -5px; border-radius: 50%; border: 2px solid rgba(191, 212, 251, .7); animation: lampu-pancar 1.2s ease-out infinite; }
 @keyframes lampu-kedip { 0%, 100% { background: #FFFFFF; box-shadow: 0 0 10px 3px rgba(191, 212, 251, .95); } 50% { background: #3A72D6; box-shadow: 0 0 0 0 rgba(191, 212, 251, 0); } }
 @keyframes lampu-pancar { 0% { transform: scale(.6); opacity: .9; } 100% { transform: scale(1.6); opacity: 0; } }
+
+/* Video profil sebagai latar foto utama Beranda (tanpa suara, berulang) */
+.hero__video { position: absolute; inset: 0; overflow: hidden; opacity: 0; transition: opacity .8s ease; pointer-events: none; background: #0A0A0A; }
+.hero__video.is-on { opacity: 1; }
+.hero__video iframe { position: absolute; left: 50%; top: 50%; width: 100%; height: auto; aspect-ratio: 16 / 9; border: 0; transform: translate(-50%, -50%) scale(1.14); pointer-events: none; }
+.hero__photo--video .hero__slide { opacity: 0 !important; }
+
+/* Video profil sebagai latar foto utama Beranda (tanpa suara, berulang) */
+.hero__video { position: absolute; inset: 0; overflow: hidden; opacity: 0; transition: opacity .8s ease; pointer-events: none; background: #0A0A0A; }
+.hero__video.is-on { opacity: 1; }
+.hero__video iframe { position: absolute; left: 50%; top: 50%; width: 100%; height: auto; aspect-ratio: 16 / 9; border: 0; transform: translate(-50%, -50%) scale(1.14); pointer-events: none; }
+.hero__photo--video .hero__slide { opacity: 0 !important; }

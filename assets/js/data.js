@@ -856,6 +856,10 @@ window.KAMPUNG = {
   // (scripts/update_video.py → data/video-otomatis.json) dari YouTube, TikTok, Instagram, dan Facebook.
   // "pilihan": tautan video yang wajib selalu tampil paling depan, misalnya video resmi kampung.
   // Contoh: { url: "https://www.youtube.com/watch?v=XXXXXXXXXXX", judul: "Video Profil Kampung Marga Mulya" }
+  // Video latar foto utama Beranda: diputar otomatis tanpa suara dan berulang (embed YouTube).
+  // Bila video gagal diputar, foto yang berganti-ganti tetap tampil sebagai cadangan.
+  heroVideo: { youtubeId: "1trurlDEXiM", ket: "Video: Marga Mulya, Desa Cantik, Desa Cinta Statistik · BPS Kabupaten Merauke (YouTube)" },
+
   video: {
     judul: "Marga Mulya dalam Video",
     deskripsi: "Video dari YouTube, TikTok, Instagram, dan Facebook yang membahas Kampung Marga Mulya, Distrik Semangga, Merauke. Daftar ini dikumpulkan dan diurutkan otomatis: video yang paling jelas membahas Marga Mulya dan yang terbaru tampil lebih dulu. Ketuk video untuk memutarnya.",
