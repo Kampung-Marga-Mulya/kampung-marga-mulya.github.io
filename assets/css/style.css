@@ -1374,18 +1374,19 @@ html, body { transition: background-color .25s ease, color .25s ease; }
 .facts__src { margin: 10px 0 0; }
 
 /* =====================================================================
-   PERPADUAN BIRU & KUNING
-   Biru tetap warna utama; kuning sebagai aksen (garis, penanda aktif, lencana,
-   ilustrasi selang-seling, tombol utama di foto). Tulisan di atas kuning selalu gelap.
+   KOMBINASI TIGA WARNA
+   Biru = warna utama · hijau = grafik, ilustrasi, garis hiasan ·
+   kuning = penanda penting saja (tombol utama di foto, menu aktif, lencana tahun, Aspirasi).
+   Tulisan di atas kuning selalu gelap.
    ===================================================================== */
-:root { --yellow: #FFC928; --yellow-deep: #E0A800; --yellow-soft: #FFF3C4; --yellow-ink: #6B4A00; }
-:root[data-theme="dark"] { --yellow: #FFD43B; --yellow-deep: #F2BF1A; --yellow-soft: rgba(255, 212, 59, .16); --yellow-ink: #FFD43B; }
-@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --yellow: #FFD43B; --yellow-deep: #F2BF1A; --yellow-soft: rgba(255, 212, 59, .16); --yellow-ink: #FFD43B; } }
+:root { --yellow: #FFC928; --yellow-deep: #E0A800; --yellow-soft: #FFF3C4; --yellow-ink: #6B4A00; --green: #2E9E5B; --green-soft: #E3F4EA; }
+:root[data-theme="dark"] { --yellow: #FFD43B; --yellow-deep: #F2BF1A; --yellow-soft: rgba(255, 212, 59, .16); --yellow-ink: #FFD43B; --green: #4CC27E; --green-soft: rgba(76, 194, 126, .16); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --yellow: #FFD43B; --yellow-deep: #F2BF1A; --yellow-soft: rgba(255, 212, 59, .16); --yellow-ink: #FFD43B; --green: #4CC27E; --green-soft: rgba(76, 194, 126, .16); } }
 ::selection { background: var(--yellow); color: #0A0A0A; }
 
 /* Garis biru–kuning di bawah kepala halaman */
 .topbar { border-bottom-color: transparent; }
-.topbar::after { content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 3px; background: linear-gradient(90deg, var(--blue-fill) 0%, var(--blue-fill) 62%, var(--yellow) 62%, var(--yellow) 100%); pointer-events: none; }
+.topbar::after { content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 3px; background: linear-gradient(90deg, var(--blue-fill) 0 64%, var(--green) 64% 88%, var(--yellow) 88% 100%); pointer-events: none; }
 /* Menu aktif: pil biru dengan garis kuning */
 .menu a.is-active { box-shadow: inset 0 -3px 0 var(--yellow); }
 .vtabs__row button[aria-selected="true"] { box-shadow: inset 0 -3px 0 var(--yellow); }
@@ -1395,9 +1396,9 @@ html, body { transition: background-color .25s ease, color .25s ease; }
   .tabbar a.is-active::before { content: ""; position: absolute; top: 0; left: 28%; right: 28%; height: 3px; border-radius: 0 0 3px 3px; background: var(--yellow); }
 }
 /* Label kecil dan judul bagian */
-.eyebrow::before { content: ""; display: inline-block; width: 18px; height: 3px; margin-right: 8px; border-radius: 2px; background: var(--yellow); vertical-align: middle; transform: translateY(-1px); }
+.eyebrow::before { content: ""; display: inline-block; width: 18px; height: 3px; margin-right: 8px; border-radius: 2px; background: var(--green); vertical-align: middle; transform: translateY(-1px); }
 .sec__icon { color: var(--yellow); }
-.sec__head h2::after { content: ""; display: block; width: 56px; height: 4px; margin-top: 10px; border-radius: 2px; background: linear-gradient(90deg, var(--yellow) 0 60%, var(--blue-fill) 60% 100%); }
+.sec__head h2::after { content: ""; display: block; width: 56px; height: 4px; margin-top: 10px; border-radius: 2px; background: linear-gradient(90deg, var(--blue-fill) 0 50%, var(--green) 50% 82%, var(--yellow) 82% 100%); }
 /* Tombol utama di atas foto beranda */
 .hero__cta .btn--solid { background: var(--yellow); border-color: var(--yellow); color: #0A0A0A; }
 .hero__cta .btn--solid:hover { background: var(--yellow-deep); border-color: var(--yellow-deep); color: #0A0A0A; }
@@ -1406,12 +1407,12 @@ html, body { transition: background-color .25s ease, color .25s ease; }
 .pres__th, .ncard__badge--new { background: var(--yellow); color: #0A0A0A; }
 /* Kotak angka: garis atas selang-seling biru dan kuning, ilustrasi berlatar selang-seling */
 .fact, .stat { border-top: 3px solid var(--blue-fill); }
-.fact:nth-child(even), .stat:nth-child(even) { border-top-color: var(--yellow); }
-.fact:nth-child(even) .fact__ilus, .stat:nth-child(even) .stat__ilus, .usia-ilus__i:nth-child(even) .usia-ilus__f { background: var(--yellow-soft); }
-.bars > :nth-child(even) .bar__ilus { background: var(--yellow-soft); }
-.sw--p { background: #F5B700; }
+.fact:nth-child(even), .stat:nth-child(even) { border-top-color: var(--green); }
+.fact:nth-child(even) .fact__ilus, .stat:nth-child(even) .stat__ilus, .usia-ilus__i:nth-child(even) .usia-ilus__f { background: var(--green-soft); }
+.bars > :nth-child(even) .bar__ilus { background: var(--green-soft); }
+.sw--p { background: #2E9E5B; }
 /* Label tahun data: titik kuning */
-.rilis .ic { color: var(--yellow-deep); }
+.rilis .ic { color: var(--green); }
 /* Tautan: garis bawah kuning saat diarahkan */
 a:hover { text-decoration-color: var(--yellow-deep); }
 /* Kaki halaman */
@@ -1421,3 +1422,33 @@ a:hover { text-decoration-color: var(--yellow-deep); }
 .foot .social a:hover { border-color: var(--yellow); }
 /* Gulir ke atas & fokus */
 :focus-visible { outline-color: var(--yellow-deep); }
+
+/* =====================================================================
+   SILUET MOTIF JAWA–PAPUA (sangat tipis, hanya di beberapa bagian)
+   Gunungan wayang & pita kawung/parang (Jawa) · cenderawasih, honai,
+   spiral Sentani & zig-zag Asmat (Papua). Dipakai sebagai mask berwarna biru.
+   ===================================================================== */
+.motif-host, #profil > .wrap { position: relative; isolation: isolate; }
+.motif { position: absolute; z-index: -1; pointer-events: none; background: var(--blue); opacity: .055;
+  -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat; -webkit-mask-size: contain; mask-size: contain; -webkit-mask-position: center; mask-position: center; }
+:root[data-theme="dark"] .motif { background: #9DBEFA; opacity: .07; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .motif { background: #9DBEFA; opacity: .07; } }
+.motif--gunungan { width: 150px; aspect-ratio: 2 / 3; -webkit-mask-image: url(../img/motif/gunungan.svg); mask-image: url(../img/motif/gunungan.svg); }
+.motif--cenderawasih { width: 260px; aspect-ratio: 300 / 220; -webkit-mask-image: url(../img/motif/cenderawasih.svg); mask-image: url(../img/motif/cenderawasih.svg); }
+.motif--honai { width: 170px; aspect-ratio: 200 / 160; -webkit-mask-image: url(../img/motif/honai.svg); mask-image: url(../img/motif/honai.svg); }
+.motif--pita { left: 0; right: 0; height: 18px; -webkit-mask-image: url(../img/motif/pita.svg); mask-image: url(../img/motif/pita.svg); -webkit-mask-repeat: repeat-x; mask-repeat: repeat-x; -webkit-mask-size: auto 100%; mask-size: auto 100%; -webkit-mask-position: left center; mask-position: left center; }
+.motif--kanan-atas { right: 16px; top: 14px; }
+.motif--kiri-atas { left: 16px; top: 14px; }
+.motif--kiri-bawah { left: 10px; bottom: 12px; }
+.motif--putih, :root[data-theme="dark"] .motif--putih { background: #fff; opacity: .1; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .motif--putih { background: #fff; opacity: .1; } }
+.foot .motif--pita { top: 10px; }
+.momen .motif--gunungan { width: 110px; }
+.momen .motif--cenderawasih { width: 220px; }
+@media (max-width: 720px) {
+  .motif--gunungan { width: 96px; }
+  .motif--cenderawasih { width: 170px; }
+  .motif--honai { width: 110px; }
+  .momen .motif--gunungan { display: none; }
+  .momen .motif--cenderawasih { width: 150px; }
+}

@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 220" fill="none" stroke="#000" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+  <!-- Burung cenderawasih (Papua) bertengger dengan bulu hias menjuntai -->
+  <path d="M146 122c46-6 96-6 146-12M252 112c8-10 18-14 30-14"/>
+  <path d="M170 100c-10-20 5-36 26-34 18 2 26 16 18 30-8 12-30 16-44 4Z"/>
+  <path d="M212 76c2-12 18-16 26-8 6 8 0 18-12 18"/>
+  <circle cx="230" cy="72" r="1.8" fill="#000"/>
+  <path d="M238 70l16 3-15 5"/>
+  <path d="M180 90c10-6 22-6 30 0" stroke-width="1.4"/>
+  <path d="M192 108l-2 13M203 106l2 13"/>
+  <g stroke-width="1.4">
+    <path d="M172 98C140 96 100 104 60 122c-6 3-10 1-8-4"/>
+    <path d="M172 100C136 104 96 120 54 146c-6 4-10 1-7-4"/>
+    <path d="M172 102C140 114 104 138 72 170c-5 5-9 3-6-2"/>
+    <path d="M173 104C146 124 120 154 104 196c-2 6-7 6-6 0"/>
+    <path d="M174 104C156 132 142 166 140 206"/>
+    <path d="M172 99C150 94 122 92 92 98"/>
+  </g>
+  <path d="M176 104c-8 46 20 66 0 96-6 10-16 6-12-2" stroke-width="1.4"/>
+  <path d="M180 104c6 42 34 56 26 88-2 10 8 12 10 4" stroke-width="1.4"/>
+</svg>
