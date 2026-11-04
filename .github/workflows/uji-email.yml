@@ -6,13 +6,8 @@ jobs:
   uji:
     runs-on: ubuntu-latest
     steps:
-      - name: Kirim notifikasi uji ke FormSubmit
+      - name: Uji ntfy.sh (push + teruskan ke email)
         run: |
-          curl -sS -i -X POST "https://formsubmit.co/ajax/seldiozora3@gmail.com" \
-            -H "Accept: application/json" \
-            -H "Origin: https://kampung-marga-mulya.github.io" \
-            -H "Referer: https://kampung-marga-mulya.github.io/" \
-            --data-urlencode "_subject=Uji notifikasi layanan surat" \
-            --data-urlencode "_template=box" \
-            --data-urlencode "_captcha=false" \
-            --data-urlencode "Pemberitahuan=Uji pengiriman email notifikasi dari website Marga Mulya On Site (tanpa data pribadi)." | head -40
+          curl -sS -i -X OPTIONS "https://ntfy.sh/margamulya-layanan-c1f9f9884a" -H "Origin: https://kampung-marga-mulya.github.io" -H "Access-Control-Request-Method: POST" | grep -i "^HTTP\|access-control" 
+          echo ----
+          curl -sS -i "https://ntfy.sh/margamulya-layanan-c1f9f9884a?title=Uji%20notifikasi%20layanan%20surat&email=seldiozora3@gmail.com&tags=envelope"             -H "Origin: https://kampung-marga-mulya.github.io" -H "Content-Type: text/plain"             --data "Uji pemberitahuan dari website Marga Mulya On Site. Tanpa data pribadi." | grep -iv "^date\|^alt-svc\|^strict"
