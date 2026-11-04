@@ -1285,3 +1285,22 @@ html, body { transition: background-color .25s ease, color .25s ease; }
   #profil .grid-2:first-of-type { align-items: start; }
   #profil .grid-2:first-of-type > aside { position: sticky; top: 140px; }
 }
+
+/* Batas wilayah: peta administrasi dan lokasi kantor (agar kolom tidak kosong) */
+.batas-peta { position: relative; display: block; margin-top: 18px; border: 1px solid var(--line); border-radius: 14px; overflow: hidden; background: var(--photo-bg); text-decoration: none; color: var(--ink); }
+.batas-peta img { display: block; width: 100%; height: auto; transition: transform .5s ease; }
+.batas-peta:hover img { transform: scale(1.03); }
+.batas-peta__lbl { position: absolute; left: 50%; transform: translateX(-50%); padding: 3px 10px; border-radius: 999px; background: rgba(255,255,255,.88); color: #0b2a4a; font-size: .78rem; font-weight: 700; white-space: nowrap; box-shadow: 0 1px 4px rgba(0,0,0,.15); }
+.batas-peta__lbl--n { top: 8px; }
+.batas-peta__lbl--s { bottom: 46px; }
+.batas-peta__cap { display: flex; gap: 6px; align-items: center; padding: 10px 12px; font-size: .88rem; color: var(--muted); background: var(--card); border-top: 1px solid var(--line); }
+.batas-peta__cap .ic { width: 16px; height: 16px; color: var(--blue); flex: none; }
+.lokasi-kantor { display: grid; grid-template-columns: 64px 1fr; gap: 6px 14px; align-items: center; margin-top: 14px; padding: 14px; border: 1px solid var(--line); border-radius: 14px; background: var(--card); }
+.lokasi-kantor__ilus svg { display: block; width: 64px; height: 64px; }
+.lokasi-kantor b { display: block; }
+.lokasi-kantor span { font-size: .9rem; color: var(--muted); }
+.lokasi-kantor__act { grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 6px; }
+.lokasi-kantor__act .btn { justify-content: center; text-align: center; }
+@media (max-width: 420px) { .lokasi-kantor__act { grid-template-columns: 1fr; } }
+.wcard__act--maps { border-top: 1px solid var(--line); }
+@media (min-width: 900px) { .batas-peta img { height: 300px; object-fit: contain; } }

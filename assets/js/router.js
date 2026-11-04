@@ -10,7 +10,7 @@
     beranda: ["beranda"], berita: ["beranda", null, "berita"],
     profil: ["profil", "tentang"], tentang: ["profil", "tentang"], pemerintahan: ["profil", "pemerintahan"],
     potensi: ["profil", "potensi"], kegiatan: ["profil", "kegiatan"], "kegiatan-kampung": ["profil", "kegiatan"], media: ["profil", "media"], video: ["profil", "media"], galeri: ["profil", "media", "galeri"],
-    data: ["data", "penduduk"], penduduk: ["data", "penduduk"], fasilitas: ["data", "fasilitas"],
+    data: ["data", "penduduk"], penduduk: ["data", "penduduk"], sarana: ["data", "sarana"], "sarana-prasarana": ["data", "sarana"], fasilitas: ["jelajah", "fasilitas"], "fasilitas-umum": ["jelajah", "fasilitas"],
     transparansi: ["transparansi", "apbkam"], apbkam: ["transparansi", "apbkam"], anggaran: ["transparansi", "apbkam"],
     indeksdesa: ["transparansi", "indeksdesa"], indeks: ["transparansi", "indeksdesa"],
     perencanaan: ["transparansi", "perencanaan"], rpjmk: ["transparansi", "perencanaan"], rpjmkam: ["transparansi", "perencanaan"],

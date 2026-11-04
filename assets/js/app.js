@@ -76,6 +76,11 @@
      Petunjuk arah memakai OpenStreetMap. */
   var hasKoord = !!(id.koordinat && id.koordinat.lat);
   var KANTOR = hasKoord ? id.koordinat : { lat: -8.405899, lng: 140.467687 };
+  // Google Maps: buka titik, dan rute dari lokasi pengunjung saat ini ke tujuan
+  var gmaps = {
+    titik: function (lat, lng, q) { return "https://www.google.com/maps/search/?api=1&query=" + (lat != null ? lat + "," + lng : encodeURIComponent(q)); },
+    rute: function (lat, lng, q) { return "https://www.google.com/maps/dir/?api=1&destination=" + (lat != null ? lat + "," + lng : encodeURIComponent(q)) + "&travelmode=driving"; }
+  };
   var gm = {
     open: "#petakampung",
     dir: "https://www.openstreetmap.org/directions?engine=fossgis_osrm_car&route=%3B" + KANTOR.lat + "%2C" + KANTOR.lng + "#map=16/" + KANTOR.lat + "/" + KANTOR.lng,
@@ -361,6 +366,12 @@
       openModal({ kat: "Batas wilayah", title: "Sebelah " + a[1].toLowerCase(), html: "<p>Kampung Marga Mulya di sebelah " + a[1].toLowerCase() + " berbatasan dengan <b>" + esc(a[2]) + "</b>.</p><div class='modal__actions'>" + "<a class='btn btn--solid' href='#petakampung'>" + ic("pin") + "Lihat di peta batas kampung</a>" + "</div>" });
     }) + "><b>" + a[1] + "</b>" + esc(a[2]) + "</button>";
   }).join("") + '<div class="mid">Marga<br>Mulya</div>';
+  $("#batas").insertAdjacentHTML("afterend",
+    '<a class="batas-peta" href="#petakampung" aria-label="Buka peta interaktif batas kampung"><img src="assets/img/peta/tematik/administrasi.webp" alt="Peta administrasi Kampung Marga Mulya dengan wilayah RW dan RT" loading="lazy">' +
+    '<span class="batas-peta__lbl batas-peta__lbl--n">' + esc(D.batas.utara.split(" (")[0]) + '</span><span class="batas-peta__lbl batas-peta__lbl--s">' + esc(D.batas.selatan.split(" dan")[0]) + "</span>" +
+    '<span class="batas-peta__cap">' + ic("pin") + "Peta administrasi kampung (survei 2022). Ketuk untuk membuka peta interaktif.</span></a>" +
+    '<div class="lokasi-kantor"><span class="lokasi-kantor__ilus" aria-hidden="true">' + ilus("rumah") + '</span><div><b>Kantor Kampung Marga Mulya</b><span>' + esc(((D.kontak && D.kontak.alamat) || ("Distrik " + id.distrik + ", Kabupaten " + id.kabupaten)).replace(/^Kantor Kampung [^,]*,\s*/, "")) + "</span></div>" +
+    '<div class="lokasi-kantor__act"><a class="btn btn--solid" href="' + escUrl(gmaps.rute(KANTOR.lat, KANTOR.lng)) + '" target="_blank" rel="noopener">' + ic("nav") + 'Rute ke kantor</a><a class="btn btn--line" href="' + escUrl(gmaps.titik(KANTOR.lat, KANTOR.lng)) + '" target="_blank" rel="noopener">' + ic("pin") + "Buka di Google Maps</a></div></div>");
 
   /* =================== PRESTASI =================== */
   if (D.prestasi && $("#prestasi")) {
@@ -1179,6 +1190,9 @@
     var icon = function (f) { return JENIS_IC[f.jenis] || (KAT[f.kategori] || {}).ic || "pin"; };
     // Fasilitas di luar kampung: tautan OpenStreetMap; di dalam kampung: peta batas kampung di halaman ini
     var osm = function (f) { return f.lat != null ? gm.osm(f.lat, f.lng) : "https://www.openstreetmap.org/search?query=" + encodeURIComponent(f.nama + ", " + f.alamat + ", Merauke"); };
+    var qF = function (f) { return f.nama + ", " + f.alamat + ", Merauke"; };
+    var gmF = function (f) { return gmaps.titik(f.perkiraan ? null : f.lat, f.lng, qF(f)); };
+    var ruteF = function (f) { return gmaps.rute(f.perkiraan ? null : f.lat, f.lng, qF(f)); };
     var lokasi = function (f) {
       if (f.dalamKampung) return "Di Kampung Marga Mulya";
       return f.jarak_km != null ? "± " + f.jarak_km.toLocaleString("id-ID") + " km · ± " + f.waktu_menit + " menit dari kampung" : "Sekitar Distrik Semangga";
@@ -1208,7 +1222,9 @@
         '<span class="wcard__act"><button type="button" class="linkbtn linkbtn--first" data-fasil="' + esc(f.id) + '">' + ic("pin") + "Lihat di peta</button>" +
         (f.foto ? '<button type="button" class="linkbtn" data-fgal="' + esc(f.id) + '">' + ic("image") + "Lihat foto" + (fotoF(f).length > 1 ? " (" + fotoF(f).length + ")" : "") + "</button>"
           : (f.sumberUrl ? '<a href="' + escUrl(f.sumberUrl) + '" target="_blank" rel="noopener">' + ic("external") + "Sumber: " + esc(f.sumber) + "</a>" : '<a href="#kontak">' + ic("phone") + "Kirim data</a>")) +
-        "</span></article>";
+        "</span>" +
+        '<span class="wcard__act wcard__act--maps"><a class="linkbtn--first" href="' + escUrl(gmF(f)) + '" target="_blank" rel="noopener">' + ic("pin") + 'Google Maps</a><a href="' + escUrl(ruteF(f)) + '" target="_blank" rel="noopener">' + ic("nav") + "Rute ke sini</a></span>" +
+        "</article>";
     }
     function render() {
       var list = daftar();
@@ -1277,7 +1293,7 @@
       });
       var pop = function (f) {
         return (f.foto ? '<img src="' + escUrl(f.foto) + '" alt="" data-hapus-galat>' : "") + "<small>" + esc(f.jenis || f.kategori) + "</small><b>" + esc(f.nama) + "</b><span>" + esc(f.alamat) + (f.perkiraan ? "<br><i>Lokasi perkiraan</i>" : "") + (f.survei ? "<br>" + esc(survei(f)) : "") + "</span>" +
-          '<span class="mpop__a">' + (f.foto ? '<a href="#" data-fgal="' + esc(f.id) + '">Foto</a>' : "") + (!f.dalamKampung ? '<a href="' + escUrl(osm(f)) + '" target="_blank" rel="noopener">OpenStreetMap</a>' : "") + (f.sumberUrl ? '<a href="' + escUrl(f.sumberUrl) + '" target="_blank" rel="noopener">Sumber</a>' : "") + "</span>";
+          '<span class="mpop__a">' + (f.foto ? '<a href="#" data-fgal="' + esc(f.id) + '">Foto</a>' : "") + '<a href="' + escUrl(gmF(f)) + '" target="_blank" rel="noopener">Google Maps</a><a href="' + escUrl(ruteF(f)) + '" target="_blank" rel="noopener">Rute</a>' + (f.sumberUrl ? '<a href="' + escUrl(f.sumberUrl) + '" target="_blank" rel="noopener">Sumber</a>' : "") + "</span>";
       };
       Object.keys(byKey).forEach(function (key) {
         var g = byKey[key], f0 = g[0], c = (KAT[f0.kategori] || {}).c || "#1452C2";

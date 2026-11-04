@@ -29,7 +29,7 @@
   <link rel="stylesheet" href="assets/css/fonts.css?v=1">
   <link rel="stylesheet" href="assets/vendor/leaflet/leaflet.css?v=1.9.4">
   <script src="assets/js/tema.js?v=1"></script>
-  <link rel="stylesheet" href="assets/css/style.css?v=202611041706">
+  <link rel="stylesheet" href="assets/css/style.css?v=1793780186">
 </head>
 <body>
   <!-- Kumpulan ikon garis (dipakai dengan <svg><use href="#i-..."/></svg>) -->
@@ -286,9 +286,9 @@
     <div class="view" data-view="data" id="v-data" hidden>
       <div class="vhead">
         <div class="wrap">
-          <div class="vhead__t"><span class="vhead__ic"><svg class="ic"><use href="#i-chart"/></svg></span><div><h1>Data Kampung</h1><p>Kependudukan, sarana prasarana, dan fasilitas umum Kampung Marga Mulya menurut monografi kampung.</p></div></div>
+          <div class="vhead__t"><span class="vhead__ic"><svg class="ic"><use href="#i-chart"/></svg></span><div><h1>Data Kampung</h1><p>Kependudukan dan sarana prasarana Kampung Marga Mulya menurut monografi kampung.</p></div></div>
         </div>
-        <div class="vtabs"><div class="wrap"><div class="vtabs__row" role="tablist" aria-label="Data Kampung"><button type="button" role="tab" data-tab="penduduk" aria-selected="true"><svg class="ic"><use href="#i-chart"/></svg>Penduduk</button><button type="button" role="tab" data-tab="fasilitas" aria-selected="false"><svg class="ic"><use href="#i-school"/></svg>Fasilitas Umum</button></div></div></div>
+        <div class="vtabs"><div class="wrap"><div class="vtabs__row" role="tablist" aria-label="Data Kampung"><button type="button" role="tab" data-tab="penduduk" aria-selected="true"><svg class="ic"><use href="#i-chart"/></svg>Penduduk</button><button type="button" role="tab" data-tab="sarana" aria-selected="false"><svg class="ic"><use href="#i-school"/></svg>Sarana Prasarana</button></div></div></div>
       </div>
         <div class="tabpanel" role="tabpanel" data-panel="penduduk">
 <section class="sec" id="data">
@@ -316,30 +316,12 @@
       </div>
     </section>
         </div>
-        <div class="tabpanel" role="tabpanel" data-panel="fasilitas" hidden>
-<section class="sec" id="fasilitas">
+        <div class="tabpanel" role="tabpanel" data-panel="sarana" hidden>
+<section class="sec" id="sarana-prasarana">
       <div class="wrap">
-        <header class="sec__head"><span class="sec__icon"><svg class="ic"><use href="#i-home"/></svg></span><div><p class="eyebrow">Fasilitas umum</p><h2>Sekolah, rumah ibadah, kesehatan, dan layanan warga</h2><p class="lead">Fasilitas di Kampung Marga Mulya dan fasilitas terdekat di Distrik Semangga. Ketuk kartu untuk melihat lokasinya di peta.</p></div></header>
+        <header class="sec__head"><span class="sec__icon"><svg class="ic"><use href="#i-home"/></svg></span><div><p class="eyebrow">Sarana prasarana</p><h2>Sekolah, rumah ibadah, kesehatan, dan layanan warga</h2><p class="lead">Fasilitas di Kampung Marga Mulya dan fasilitas terdekat di Distrik Semangga. Ketuk kartu untuk melihat lokasinya di peta.</p></div></header>
         <div class="sarana" id="sarana"></div>
-        <h3 class="mt">Lokasi fasilitas di peta</h3>
-        <div class="fsum" id="fasilSum"></div>
-        <div class="chips mt-s" id="fasilFilter" role="group" aria-label="Saring kategori fasilitas"></div>
-        <div class="slider">
-          <div class="slider__nav">
-            <span class="news__count" id="fasilCount" aria-live="polite"></span>
-            <button type="button" class="news__btn" id="fasilPrev" aria-label="Fasilitas sebelumnya"><svg class="ic" style="transform:scaleX(-1)"><use href="#i-arrow"/></svg></button>
-            <button type="button" class="news__btn" id="fasilNext" aria-label="Fasilitas berikutnya"><svg class="ic"><use href="#i-arrow"/></svg></button>
-          </div>
-          <div class="news__track" id="fasilTrack" tabindex="0" aria-label="Daftar fasilitas, geser ke kiri atau kanan"></div>
-        </div>
-        <div class="wmap wmap--fasil mt">
-          <div class="wmap__map" id="fasilMap" role="region" aria-label="Peta fasilitas umum"><p class="wmap__load">Memuat peta…</p></div>
-          <div class="wmap__list">
-            <h3>Status data fasilitas</h3>
-            <ul class="fstat" id="fasilStatus"></ul>
-            <p class="small" id="fasilNote"></p>
-          </div>
-        </div>
+        <a class="btn btn--solid mt-s" href="#fasilitas"><svg class="ic"><use href="#i-pin"/></svg>Lihat foto, lokasi, dan rute fasilitas di Jelajah</a>
       </div>
     </section>
         </div>
@@ -401,9 +383,9 @@
     <div class="view" data-view="jelajah" id="v-jelajah" hidden>
       <div class="vhead">
         <div class="wrap">
-          <div class="vhead__t"><span class="vhead__ic"><svg class="ic"><use href="#i-pin"/></svg></span><div><h1>Jelajah</h1><p>Peta kampung serta wisata dan kuliner dari Semangga sampai Kota Merauke.</p></div></div>
+          <div class="vhead__t"><span class="vhead__ic"><svg class="ic"><use href="#i-pin"/></svg></span><div><h1>Jelajah</h1><p>Peta kampung, fasilitas umum, serta wisata dan kuliner dari Semangga sampai Kota Merauke, lengkap dengan rute Google Maps.</p></div></div>
         </div>
-        <div class="vtabs"><div class="wrap"><div class="vtabs__row" role="tablist" aria-label="Jelajah"><button type="button" role="tab" data-tab="petakampung" aria-selected="true"><svg class="ic"><use href="#i-pin"/></svg>Peta Kampung</button><button type="button" role="tab" data-tab="wisatakuliner" aria-selected="false"><svg class="ic"><use href="#i-route"/></svg>Wisata & Kuliner</button></div></div></div>
+        <div class="vtabs"><div class="wrap"><div class="vtabs__row" role="tablist" aria-label="Jelajah"><button type="button" role="tab" data-tab="petakampung" aria-selected="true"><svg class="ic"><use href="#i-pin"/></svg>Peta Kampung</button><button type="button" role="tab" data-tab="fasilitas" aria-selected="false"><svg class="ic"><use href="#i-school"/></svg>Fasilitas Umum</button><button type="button" role="tab" data-tab="wisatakuliner" aria-selected="false"><svg class="ic"><use href="#i-route"/></svg>Wisata & Kuliner</button></div></div></div>
       </div>
         <div class="tabpanel" role="tabpanel" data-panel="petakampung">
 <section class="sec" id="peta">
@@ -439,6 +421,32 @@
           </aside>
         </div>
         <details class="more mt-s"><summary>Daftar 18 titik kartometrik batas kampung</summary><div class="tablewrap"><table class="tbl" id="tkTabel"></table></div></details>
+      </div>
+    </section>
+        </div>
+        <div class="tabpanel" role="tabpanel" data-panel="fasilitas" hidden>
+<section class="sec" id="fasilitas">
+      <div class="wrap">
+        <header class="sec__head"><span class="sec__icon"><svg class="ic"><use href="#i-home"/></svg></span><div><p class="eyebrow">Fasilitas umum</p><h2>Sekolah, rumah ibadah, kesehatan, dan layanan warga</h2><p class="lead">Sekolah, rumah ibadah, kesehatan, kantor, dan layanan warga di Kampung Marga Mulya dan sekitarnya, lengkap dengan foto dan titik lokasinya. Ketuk <b>Rute</b> untuk langsung dipandu Google Maps dari tempat Anda berada.</p></div></header>
+        <h3 class="mt">Daftar dan lokasi fasilitas</h3>
+        <div class="fsum" id="fasilSum"></div>
+        <div class="chips mt-s" id="fasilFilter" role="group" aria-label="Saring kategori fasilitas"></div>
+        <div class="slider">
+          <div class="slider__nav">
+            <span class="news__count" id="fasilCount" aria-live="polite"></span>
+            <button type="button" class="news__btn" id="fasilPrev" aria-label="Fasilitas sebelumnya"><svg class="ic" style="transform:scaleX(-1)"><use href="#i-arrow"/></svg></button>
+            <button type="button" class="news__btn" id="fasilNext" aria-label="Fasilitas berikutnya"><svg class="ic"><use href="#i-arrow"/></svg></button>
+          </div>
+          <div class="news__track" id="fasilTrack" tabindex="0" aria-label="Daftar fasilitas, geser ke kiri atau kanan"></div>
+        </div>
+        <div class="wmap wmap--fasil mt">
+          <div class="wmap__map" id="fasilMap" role="region" aria-label="Peta fasilitas umum"><p class="wmap__load">Memuat peta…</p></div>
+          <div class="wmap__list">
+            <h3>Status data fasilitas</h3>
+            <ul class="fstat" id="fasilStatus"></ul>
+            <p class="small" id="fasilNote"></p>
+          </div>
+        </div>
       </div>
     </section>
         </div>
@@ -536,9 +544,9 @@
   </dialog>
 
   <script src="assets/vendor/leaflet/leaflet.js?v=1.9.4"></script>
-  <script src="assets/js/data.js?v=202611041706"></script>
-  <script src="assets/js/ilustrasi.js?v=202611041706"></script>
-  <script src="assets/js/app.js?v=202611041706"></script>
-  <script src="assets/js/router.js?v=202611041706"></script>
+  <script src="assets/js/data.js?v=1793780186"></script>
+  <script src="assets/js/ilustrasi.js?v=1793780186"></script>
+  <script src="assets/js/app.js?v=1793780186"></script>
+  <script src="assets/js/router.js?v=1793780186"></script>
 </body>
 </html>

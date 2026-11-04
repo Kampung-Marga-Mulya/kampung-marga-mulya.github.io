@@ -167,7 +167,7 @@ window.KAMPUNG = {
     utara: "Distrik Tanah Miring (Kampung Sumber Harapan dan Kampung Yasa Mulya)",
     selatan: "Kampung Semangga Jaya dan Kampung Kuper",
     timur: "Kampung Kamangi dan Kali Maro",
-    barat: "Kampung Waninggap Kay"
+    barat: "Kampung Waninggap Kai"
   },
 
   struktur: {
