@@ -1638,34 +1638,32 @@
     function mulai() { if (!timer && !pakaiVideo) timer = setInterval(function () { ke(i + 1); }, 2000); }
     function henti() { clearInterval(timer); timer = null; }
     var tenang = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
-    function jalan() { bangun(); if (!tenang) mulai(); }
-    var pakaiVideo = false;
+    var vEl = $("#heroVideo"), vBox = vEl && vEl.parentNode, pakaiVideo = !!vEl;
+    function jalan() { if (pakaiVideo) return; bangun(); if (!tenang) mulai(); }
     if (document.readyState === "complete") jalan(); else window.addEventListener("load", jalan);
     document.addEventListener("visibilitychange", function () { if (document.hidden) henti(); else if (siap && !tenang && !pakaiVideo) mulai(); });
 
-    /* ---- Video profil sebagai latar foto utama: tanpa suara, berulang, mengisi bingkai tanpa pita hitam.
-       Foto berganti tetap jalan sampai video benar-benar terputar; bila gagal, foto tetap dipakai. ---- */
-    var HV = D.heroVideo || {}, hemat = navigator.connection && navigator.connection.saveData;
-    if (HV.file && !tenang && !hemat) (function () {
-      var kecil = window.matchMedia && matchMedia("(max-width: 720px)").matches;
-      var box = document.createElement("div"); box.className = "hero__video"; box.setAttribute("aria-hidden", "true");
-      var v = document.createElement("video");
-      v.muted = true; v.defaultMuted = true; v.loop = true; v.autoplay = true; v.playsInline = true; v.preload = "auto";
-      v.setAttribute("muted", ""); v.setAttribute("playsinline", ""); v.setAttribute("webkit-playsinline", ""); v.setAttribute("disablepictureinpicture", ""); v.tabIndex = -1;
-      if (HV.poster) v.poster = HV.poster;
-      v.src = (kecil && HV.fileHp) ? HV.fileHp : HV.file;
-      box.appendChild(v); fig.insertBefore(box, cap);
-      var main = false;
-      function aktif() {
-        if (main) return; main = true; pakaiVideo = true; henti();
-        box.classList.add("is-on"); fig.classList.add("hero__photo--video");
-        if (cap && HV.ket) cap.textContent = HV.ket;
+    /* ---- Video profil langsung tampil sejak awal (ada di HTML, dengan gambar pembuka = bingkai pertama video).
+       Tanpa suara dan berulang. Foto berganti hanya dipakai bila video gagal dimuat. ---- */
+    if (vEl) (function () {
+      var HV = D.heroVideo || {};
+      if (cap && HV.ket) cap.textContent = HV.ket;
+      vEl.muted = true; vEl.defaultMuted = true;
+      function gagal() {
+        if (!pakaiVideo) return; pakaiVideo = false;
+        if (vBox) vBox.remove(); fig.classList.remove("hero__photo--video");
+        if (cap) cap.textContent = foto[0].ket;
+        if (document.readyState === "complete") jalan(); else window.addEventListener("load", jalan);
       }
-      function gagal() { if (!main) box.remove(); }
-      v.addEventListener("playing", aktif);
-      v.addEventListener("error", gagal);
-      var coba = v.play(); if (coba && coba.catch) coba.catch(function () { /* autoplay ditolak: tetap pakai foto */ setTimeout(function () { if (!main) gagal(); }, 1500); });
-      document.addEventListener("visibilitychange", function () { if (!main) return; if (document.hidden) v.pause(); else v.play().catch(function () {}); });
+      var srcs = vEl.querySelectorAll("source"); if (srcs.length) srcs[srcs.length - 1].addEventListener("error", gagal);
+      vEl.addEventListener("error", gagal);
+      // Kegagalan bisa terjadi sebelum skrip ini berjalan: periksa status sumber video sekarang dan saat halaman selesai dimuat
+      var cek = function () { if (vEl.error || (vEl.networkState === 3 && vEl.readyState === 0)) gagal(); };
+      cek(); window.addEventListener("load", function () { setTimeout(cek, 300); });
+      var hemat = navigator.connection && navigator.connection.saveData;
+      if (tenang || hemat) { vEl.pause(); vEl.removeAttribute("autoplay"); return; }   // tampilkan bingkai pembuka saja
+      var coba = vEl.play(); if (coba && coba.catch) coba.catch(function () { /* autoplay ditolak: bingkai pembuka video tetap tampil */ });
+      document.addEventListener("visibilitychange", function () { if (!pakaiVideo) return; if (document.hidden) vEl.pause(); else if (!tenang) vEl.play().catch(function () {}); });
     })();
   })();
 
