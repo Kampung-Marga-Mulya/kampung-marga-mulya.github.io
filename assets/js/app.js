@@ -929,8 +929,8 @@
     setInterval(function () { if (!document.hidden) muat(); }, 30 * 60 * 1000);
   })();
 
-  // Status kampung di kotak tulisan paling atas Beranda (dari identitas.kategori)
-  if ($("#introStatus") && D.identitas && D.identitas.kategori) $("#introStatus span").innerHTML = "Status kampung: <b>" + esc(D.identitas.kategori) + "</b>" + (D.identitas.statusTahun ? " · " + esc(D.identitas.statusTahun) : "");
+  // Status kampung di kotak Kerja sama pada foto utama Beranda (dari identitas.kategori)
+  if ($("#heroStatus") && D.identitas && D.identitas.kategori) $("#heroStatus > span").innerHTML = "Status kampung <b>" + esc(D.identitas.kategori) + "</b>" + (D.identitas.statusTahun ? " · " + esc(D.identitas.statusTahun) : "");
 
   /* Slide pengantar di atas Beranda: berganti tiap 5 detik dan berputar terus */
   (function () {
