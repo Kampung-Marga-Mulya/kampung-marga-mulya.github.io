@@ -1265,7 +1265,7 @@
     return '<li><button type="button" class="tap"' + act(k[3]) + "><span>" + ic(k[0]) + "</span><span><small>" + esc(k[1]) + "</small><b>" + esc(k[2]) + "</b></span></button></li>";
   }).join("");
 
-  var ikonSos = { Facebook: "thumb", Instagram: "camera", YouTube: "video", TikTok: "note", WhatsApp: "chat" };
+  var ikonSos = { Facebook: "thumb", Instagram: "camera", YouTube: "video", TikTok: "note", WhatsApp: "chat", "Grup WhatsApp": "users" };
   // Akun media sosial yang sudah ada ditulis langsung di daftar kontak (nama akun + tautan).
   $("#kontakList").insertAdjacentHTML("beforeend", D.sosmed.filter(function (s) { return s.url; }).map(function (s) {
     return '<li><a class="tap" href="' + escUrl(s.url) + '" target="_blank" rel="noopener"><span>' + ic(ikonSos[s.nama] || "globe") + "</span><span><small>" + esc(s.nama) + "</small><b>" + esc(s.akun) + '</b></span><span class="go">' + ic("external") + "</span></a></li>";
