@@ -1,5 +1,5 @@
 {
- "diperiksa": "2026-11-05T04:38+09:00",
+ "diperiksa": "2026-11-05T10:49+09:00",
  "catatan": "Dibuat otomatis oleh scripts/update_video.py. Jangan disunting manual; gunakan video.pilihan di assets/js/data.js atau data/video-abaikan.json.",
  "video": [
   {
@@ -81,13 +81,13 @@
    "url": "https://www.youtube.com/watch?v=ascjSfNf2UQ",
    "judul": "Hidup Rukun Warga Exs Transmigrasi Papua Selatan kampung Marga Mulya",
    "kanal": "STORY AMRY",
-   "tayang": 606,
+   "tayang": 607,
    "durasi": 740,
    "rasio": "16:9",
    "ditemukan": "2026-11-04",
    "rasio_sampul": 1.333,
    "sampul": "assets/img/video/youtube-ascjSfNf2UQ.jpg",
-   "skor": 7.672
+   "skor": 7.673
   },
   {
    "platform": "instagram",
@@ -362,22 +362,6 @@
   },
   {
    "platform": "youtube",
-   "id": "j6LGQ3EpiwM",
-   "url": "https://www.youtube.com/watch?v=j6LGQ3EpiwM",
-   "judul": "KARNAVAL SEMANGGA 2 MARGA MULYA, MERAUKE 15 AGUSTUS 2024",
-   "kanal": "zefan studio",
-   "tanggal": "2024-11-05",
-   "tanggal_kira": true,
-   "tayang": 310,
-   "durasi": 434,
-   "rasio": "16:9",
-   "ditemukan": "2026-11-04",
-   "rasio_sampul": 1.333,
-   "sampul": "assets/img/video/youtube-j6LGQ3EpiwM.jpg",
-   "skor": 6.169
-  },
-  {
-   "platform": "youtube",
    "id": "xwMXuWhAQ14",
    "url": "https://www.youtube.com/watch?v=xwMXuWhAQ14",
    "judul": "KEMAJUAN PTDM 2021 PENGERING PADI UV DRYER DI KAMP MARGAMULYA, MERAUKE | UNIVERSITAS MUSAMUS",
@@ -423,22 +407,6 @@
    "rasio_sampul": 1.333,
    "sampul": "assets/img/video/youtube-DlUvHbFk2vs.jpg",
    "skor": 6.141
-  },
-  {
-   "platform": "youtube",
-   "id": "HrxJHBLGFEU",
-   "url": "https://www.youtube.com/watch?v=HrxJHBLGFEU",
-   "judul": "KARNAVAL SEMANGGA 2 MARGA MULYA, Dalam Rangka HUT RI KE 79 Tahun, MERAUKE 15 AGUSTUS 2024...",
-   "kanal": "TUKANG PHOTO ART",
-   "tanggal": "2024-11-05",
-   "tanggal_kira": true,
-   "tayang": 279,
-   "durasi": 773,
-   "rasio": "16:9",
-   "ditemukan": "2026-11-05",
-   "rasio_sampul": 1.333,
-   "sampul": "assets/img/video/youtube-HrxJHBLGFEU.jpg",
-   "skor": 6.138
   },
   {
    "platform": "youtube",
@@ -615,6 +583,34 @@
    "rasio_sampul": 1.333,
    "sampul": "assets/img/video/youtube-1trurlDEXiM.jpg",
    "skor": 5.329
+  },
+  {
+   "platform": "youtube",
+   "id": "j6LGQ3EpiwM",
+   "url": "https://www.youtube.com/watch?v=j6LGQ3EpiwM",
+   "judul": "KARNAVAL SEMANGGA 2 MARGA MULYA, MERAUKE 15 AGUSTUS 2024",
+   "kanal": "zefan studio",
+   "tanggal": "2024-11-05",
+   "tanggal_kira": true,
+   "rasio": "16:9",
+   "ditemukan": "2026-11-04",
+   "rasio_sampul": 1.333,
+   "sampul": "assets/img/video/youtube-j6LGQ3EpiwM.jpg",
+   "skor": 4.507
+  },
+  {
+   "platform": "youtube",
+   "id": "HrxJHBLGFEU",
+   "url": "https://www.youtube.com/watch?v=HrxJHBLGFEU",
+   "judul": "KARNAVAL SEMANGGA 2 MARGA MULYA, Dalam Rangka HUT RI KE 79 Tahun, MERAUKE 15 AGUSTUS 2024...",
+   "kanal": "TUKANG PHOTO ART",
+   "tanggal": "2024-11-05",
+   "tanggal_kira": true,
+   "rasio": "16:9",
+   "ditemukan": "2026-11-05",
+   "rasio_sampul": 1.333,
+   "sampul": "assets/img/video/youtube-HrxJHBLGFEU.jpg",
+   "skor": 4.507
   }
  ]
 }
