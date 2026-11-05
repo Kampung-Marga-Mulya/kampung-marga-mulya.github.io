@@ -167,7 +167,6 @@
     ["#penduduk", "chart", "Data penduduk", "Usia, kesejahteraan, pekerjaan, pendidikan, suku"],
     ["#fasilitas", "school", "Sarana & fasilitas", "Sarana prasarana kampung dan peta fasilitas"],
     ["#apbkam", "wallet", "Transparansi anggaran", "APBKam 2026 per bidang dan sumber dana"],
-    ["#indeksdesa", "gauge", "Indeks Desa", "Status perkembangan kampung"],
     ["#petakampung", "pin", "Peta batas kampung", "Peta resmi batas wilayah dan letak fasilitas"],
     ["#wisatakuliner", "route", "Wisata & kuliner", "Tempat rekreasi dan makan 1–2 jam dari kampung"],
     ["#surat", "doc", "Layanan surat", "Persyaratan dan lama proses surat"],
@@ -635,45 +634,6 @@
     if (A.danaLembagaSumber) $("#apbLembagaNote").textContent = "Di luar APBKam. Sumber: " + A.danaLembagaSumber + ".";
   })();
 
-  /* =================== INDEKS DESA =================== */
-  var I = D.indeksDesa;
-  var statusInfo = {
-    "Mandiri": "Kampung mampu menyelenggarakan pembangunan secara mandiri dengan layanan dasar, ekonomi, dan tata kelola yang kuat.",
-    "Maju": "Kampung memiliki layanan dan potensi ekonomi yang baik dan terus dikembangkan menuju kemandirian.",
-    "Berkembang": "Kampung memiliki potensi yang mulai dikelola, tetapi beberapa dimensi masih perlu diperkuat.",
-    "Tertinggal": "Kampung masih memiliki keterbatasan pada sejumlah layanan dasar dan akses.",
-    "Sangat Tertinggal": "Kampung menghadapi keterbatasan besar pada layanan dasar, ekonomi, dan akses."
-  };
-  $("#idmLead").innerHTML = rilis("monografi", true) + "<br>" + esc(I.catatan) + (I.contoh ? CHIP : "");
-  var adaNilai = I.nilai != null;
-  var URUT = ["Sangat Tertinggal", "Tertinggal", "Berkembang", "Maju", "Mandiri"], posS = URUT.indexOf(I.status);
-  var C = 2 * Math.PI * 70, frac = adaNilai ? Math.max(0, Math.min(1, I.nilai / I.skala)) : (posS + 1) / URUT.length;
-  $("#idmScore").innerHTML = '<svg class="ring" viewBox="0 0 170 170"><circle cx="85" cy="85" r="70" stroke="rgba(255,255,255,.22)"/>' +
-    '<circle cx="85" cy="85" r="70" stroke="#FFFFFF" stroke-linecap="round" stroke-dasharray="' + (C * frac).toFixed(1) + " " + C.toFixed(1) + '" transform="rotate(-90 85 85)"/>' +
-    (adaNilai
-      ? '<text x="85" y="86" text-anchor="middle" font-size="38" font-weight="700">' + I.nilai.toLocaleString("id-ID") + '</text><text x="85" y="112" text-anchor="middle" font-size="13" opacity=".85">dari ' + I.skala + "</text>"
-      : '<text x="85" y="88" text-anchor="middle" font-size="40" font-weight="700">' + (posS + 1) + '</text><text x="85" y="112" text-anchor="middle" font-size="13" opacity=".85">dari 5 tingkat</text>') + "</svg>" +
-    '<span class="idm__status">' + esc(I.status) + "</span><small>" + (adaNilai ? "Indeks Desa " + I.tahun : esc(I.sumberStatus || "")) + " · ketuk untuk penjelasan</small>";
-  $("#idmScore").setAttribute("data-act", act(function () {
-    openModal({ kat: "Indeks Desa " + I.tahun, title: "Status: " + I.status,
-      html: "<p>" + esc(statusInfo[I.status] || "") + "</p>" + (adaNilai ? "<p>Nilai Indeks Desa Kampung Marga Mulya tahun " + I.tahun + " adalah <b>" + I.nilai.toLocaleString("id-ID") + "</b> dari " + I.skala + ".</p>" : "<p>Status ini berasal dari " + esc(I.sumberStatus || "data kampung") + (I.klasifikasi ? ", dengan klasifikasi desa <b>" + esc(I.klasifikasi.toLowerCase()) + "</b>" : "") + ". Nilai indeks resmi akan ditampilkan setelah tersedia.</p>") + "<p>" + esc(I.catatan) + "</p><p>Urutan status dari terendah: Sangat Tertinggal, Tertinggal, Berkembang, Maju, Mandiri.</p>" });
-  }).replace(/^ data-act="|"$/g, ""));
-  var weakest = I.dimensi.some(function (d) { return d.nilai == null; }) ? null : I.dimensi.slice().sort(function (a, b) { return a.nilai - b.nilai; })[0];
-  $("#idmDims").innerHTML = I.dimensi.map(function (d) {
-    if (d.nilai == null) return '<button type="button" class="dim tap"' + act(function () {
-      openModal({ kat: "Dimensi Indeks Desa", title: d.nama, html: "<p>" + esc(d.ket) + "</p><p class='small'>Nilai dimensi ini untuk Marga Mulya belum tersedia.</p>" });
-    }) + '><span class="dim__top"><span>' + esc(d.nama) + '</span><small>nilai belum tersedia</small></span><span class="dim__track dim__track--kosong" style="display:block"></span><small>' + esc(d.ket) + "</small></button>";
-    return '<button type="button" class="dim tap"' + act(function () {
-      openModal({ kat: "Dimensi Indeks Desa", title: d.nama, html: '<div class="mini-stat"><div><b>' + d.nilai + "</b><span>Nilai</span></div><div><b>" + I.skala + "</b><span>Skala</span></div><div><b>" + (d === weakest ? "Prioritas" : "—") + "</b><span>Catatan</span></div></div><p>" + esc(d.ket) + "</p>" +
-        (d === weakest ? "<p>Dimensi ini bernilai paling rendah sehingga menjadi prioritas perbaikan kampung.</p>" : "") });
-    }) + '><span class="dim__top"><span>' + esc(d.nama) + "</span><b>" + d.nilai + '</b></span><span class="dim__track" style="display:block"><span class="dim__fill" style="display:block;width:' + (d.nilai / I.skala * 100) + '%"></span></span></button>';
-  }).join("");
-  $("#idmRiwayat").innerHTML = I.riwayat.map(function (r) {
-    return '<li><button type="button" class="reset tap" style="text-align:center"' + act(function () {
-      openModal({ kat: "Riwayat Indeks Desa", title: r.tahun + ": " + r.status, html: "<p>" + esc(statusInfo[r.status] || "") + "</p>" });
-    }) + "><b>" + r.tahun + "</b><span>" + esc(r.status) + "</span></button></li>";
-  }).join("");
-
   /* =================== RPJMK (Transparansi) =================== */
   if (D.rpjmk) (function () {
     var R = D.rpjmk, n = R.dasarHukumRingkas || R.dasarHukum.length;
@@ -968,6 +928,9 @@
     // Halaman yang dibiarkan terbuka ikut menampilkan video baru tanpa dimuat ulang
     setInterval(function () { if (!document.hidden) muat(); }, 30 * 60 * 1000);
   })();
+
+  // Status kampung di kotak tulisan paling atas Beranda (dari identitas.kategori)
+  if ($("#introStatus") && D.identitas && D.identitas.kategori) $("#introStatus span").innerHTML = "Status kampung: <b>" + esc(D.identitas.kategori) + "</b>" + (D.identitas.statusTahun ? " · " + esc(D.identitas.statusTahun) : "");
 
   /* Slide pengantar di atas Beranda: berganti tiap 5 detik dan berputar terus */
   (function () {

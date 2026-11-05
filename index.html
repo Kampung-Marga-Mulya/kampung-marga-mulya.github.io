@@ -29,7 +29,7 @@
   <link rel="stylesheet" href="assets/css/fonts.css?v=1">
   <link rel="stylesheet" href="assets/vendor/leaflet/leaflet.css?v=1.9.4">
   <script src="assets/js/tema.js?v=1"></script>
-  <link rel="stylesheet" href="assets/css/style.css?v=1793851218">
+  <link rel="stylesheet" href="assets/css/style.css?v=1793851644">
   <link rel="stylesheet" href="assets/css/aspirasi.css?v=3">
 </head>
 <body>
@@ -121,12 +121,13 @@
     <section class="intro" aria-label="Tentang Marga Mulya On Site" aria-roledescription="carousel">
       <div class="wrap">
         <div class="intro__box">
+          <p class="intro__status" id="introStatus"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span>Status kampung: <b>Mandiri</b> · 2026</span></p>
           <div class="intro__track" id="introTrack" aria-live="polite">
             <div class="intro__slide is-on" role="group" aria-roledescription="slide" aria-label="1 dari 6"><span class="intro__tag">Marga Mulya On Site</span><p>Marga Mulya On Site merupakan pusat informasi digital Kampung Marga Mulya yang menyajikan profil wilayah, data kampung, potensi ekonomi, transparansi pembangunan, serta layanan informasi bagi masyarakat.</p></div>
             <a class="intro__slide" href="#tentang" role="group" aria-roledescription="slide" aria-label="2 dari 6"><span class="intro__tag">Profil wilayah</span><p>Sejarah, identitas wilayah, batas kampung, pemerintahan, dan prestasi Kampung Marga Mulya.</p></a>
             <a class="intro__slide" href="#penduduk" role="group" aria-roledescription="slide" aria-label="3 dari 6"><span class="intro__tag">Data kampung</span><p>Kependudukan serta sarana dan prasarana kampung, lengkap dengan tahun rilis dokumen sumbernya.</p></a>
             <a class="intro__slide" href="#potensi" role="group" aria-roledescription="slide" aria-label="4 dari 6"><span class="intro__tag">Potensi ekonomi</span><p>Pertanian padi dan hortikultura, peternakan, serta usaha warga Kampung Marga Mulya.</p></a>
-            <a class="intro__slide" href="#apbkam" role="group" aria-roledescription="slide" aria-label="5 dari 6"><span class="intro__tag">Transparansi pembangunan</span><p>APBKam, Indeks Desa, dan RPJMK yang bisa dibaca terbuka oleh seluruh warga.</p></a>
+            <a class="intro__slide" href="#apbkam" role="group" aria-roledescription="slide" aria-label="5 dari 6"><span class="intro__tag">Transparansi pembangunan</span><p>APBKam dan RPJMK yang bisa dibaca terbuka oleh seluruh warga.</p></a>
             <a class="intro__slide" href="#layanan" role="group" aria-roledescription="slide" aria-label="6 dari 6"><span class="intro__tag">Layanan informasi</span><p>Persyaratan surat dan pengajuan langsung lewat WhatsApp, serta aspirasi dan pengaduan warga.</p></a>
           </div>
           <div class="intro__dots" id="introDots" role="tablist" aria-label="Pilih slide"></div>
@@ -356,9 +357,9 @@
     <div class="view" data-view="transparansi" id="v-transparansi" hidden>
       <div class="vhead">
         <div class="wrap">
-          <div class="vhead__t"><span class="vhead__ic"><svg class="ic"><use href="#i-wallet"/></svg></span><div><h1>Transparansi</h1><p>Anggaran kampung, status perkembangan desa, dan rencana pembangunan (RPJMK).</p></div></div>
+          <div class="vhead__t"><span class="vhead__ic"><svg class="ic"><use href="#i-wallet"/></svg></span><div><h1>Transparansi</h1><p>Anggaran kampung dan rencana pembangunan (RPJMK).</p></div></div>
         </div>
-        <div class="vtabs"><div class="wrap"><div class="vtabs__row" role="tablist" aria-label="Transparansi"><button type="button" role="tab" data-tab="apbkam" aria-selected="true"><svg class="ic"><use href="#i-wallet"/></svg>APBKam</button><button type="button" role="tab" data-tab="indeksdesa" aria-selected="false"><svg class="ic"><use href="#i-gauge"/></svg>Indeks Desa</button><button type="button" role="tab" data-tab="perencanaan" aria-selected="false"><svg class="ic"><use href="#i-doc"/></svg>RPJMK</button></div></div></div>
+        <div class="vtabs"><div class="wrap"><div class="vtabs__row" role="tablist" aria-label="Transparansi"><button type="button" role="tab" data-tab="apbkam" aria-selected="true"><svg class="ic"><use href="#i-wallet"/></svg>APBKam</button><button type="button" role="tab" data-tab="perencanaan" aria-selected="false"><svg class="ic"><use href="#i-doc"/></svg>RPJMK</button></div></div></div>
       </div>
         <div class="tabpanel" role="tabpanel" data-panel="apbkam">
 <section class="sec" id="anggaran">
@@ -376,19 +377,6 @@
         <div class="panel mt-s"><h3>Pembiayaan</h3><div id="apbPembiayaan"></div></div>
         <div class="apb-more mt-s" id="apbMore"></div>
         <div class="panel mt"><h3>Dana yang dikelola lembaga kampung</h3><p class="small" id="apbLembagaNote"></p><div class="bars" id="apbLembaga"></div></div>
-      </div>
-    </section>
-        </div>
-        <div class="tabpanel" role="tabpanel" data-panel="indeksdesa" hidden>
-<section class="sec" id="indeks">
-      <div class="wrap">
-        <header class="sec__head"><span class="sec__icon"><svg class="ic"><use href="#i-gauge"/></svg></span><div><p class="eyebrow">Indeks Desa (dulu IDM)</p><h2>Status perkembangan kampung</h2><p class="lead" id="idmLead"></p></div></header>
-        <div class="idm">
-          <button class="idm__score" id="idmScore" type="button"></button>
-          <div class="idm__dims" id="idmDims"></div>
-        </div>
-        <h3 class="mt">Riwayat status</h3>
-        <ol class="steps" id="idmRiwayat"></ol>
       </div>
     </section>
         </div>
@@ -615,9 +603,9 @@
   </dialog>
 
   <script src="assets/vendor/leaflet/leaflet.js?v=1.9.4"></script>
-  <script src="assets/js/data.js?v=1793851218"></script>
-  <script src="assets/js/ilustrasi.js?v=1793851218"></script>
-  <script src="assets/js/app.js?v=1793851218"></script>
-  <script src="assets/js/router.js?v=1793851218"></script>
+  <script src="assets/js/data.js?v=1793851644"></script>
+  <script src="assets/js/ilustrasi.js?v=1793851644"></script>
+  <script src="assets/js/app.js?v=1793851644"></script>
+  <script src="assets/js/router.js?v=1793851644"></script>
 </body>
 </html>

@@ -12,7 +12,7 @@
     potensi: ["profil", "potensi"], kegiatan: ["profil", "kegiatan"], "kegiatan-kampung": ["profil", "kegiatan"], media: ["profil", "media"], video: ["profil", "media"], galeri: ["profil", "media", "galeri"],
     data: ["data", "penduduk"], penduduk: ["data", "penduduk"], sarana: ["data", "sarana"], "sarana-prasarana": ["data", "sarana"], fasilitas: ["jelajah", "fasilitas"], "fasilitas-umum": ["jelajah", "fasilitas"],
     transparansi: ["transparansi", "apbkam"], apbkam: ["transparansi", "apbkam"], anggaran: ["transparansi", "apbkam"],
-    indeksdesa: ["transparansi", "indeksdesa"], indeks: ["transparansi", "indeksdesa"],
+    indeksdesa: ["beranda"], indeks: ["beranda"],
     perencanaan: ["transparansi", "perencanaan"], rpjmk: ["transparansi", "perencanaan"], rpjmkam: ["transparansi", "perencanaan"],
     jelajah: ["jelajah", "petakampung"], petakampung: ["jelajah", "petakampung"], peta: ["jelajah", "petakampung"],
     wisatakuliner: ["jelajah", "wisatakuliner"], wisata: ["jelajah", "wisatakuliner"],

@@ -1538,3 +1538,9 @@ a.intro__slide p::after { content: " →"; color: #BFD4FB; font-weight: 700; }
 .pot-foto button:hover img { transform: scale(1.03); }
 .pot-foto figcaption { font-size: .86rem; line-height: 1.35; color: var(--ink-2); }
 @media (max-width: 600px) { .pot-foto { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+/* Status kampung (Mandiri) di kotak tulisan paling atas Beranda */
+.intro__status { display: inline-flex; align-items: center; gap: 8px; margin: 0 0 10px; padding: 5px 14px 5px 6px; border-radius: 999px; background: #fff; color: #0B3A8F; font-size: .95rem; box-shadow: 0 4px 14px rgba(4, 20, 60, .25); }
+.intro__status .ic { width: 22px; height: 22px; padding: 4px; border-radius: 50%; background: linear-gradient(135deg, #0B3A8F, #3A72D6); color: #fff; flex: none; }
+.intro__status b { font-weight: 800; letter-spacing: .02em; }
+@media (min-width: 900px) { .intro__box { padding-right: 260px; } .intro__status { position: absolute; top: 16px; right: 18px; margin: 0; } }

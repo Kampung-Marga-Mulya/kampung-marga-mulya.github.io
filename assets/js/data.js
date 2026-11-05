@@ -44,7 +44,8 @@ window.KAMPUNG = {
     luas: "4.176,90 ha (± 41,8 km²)",
     tipologi: "Desa",
     klasifikasi: "Swasembada",
-    kategori: "Berkembang",
+    kategori: "Mandiri",                    // status kampung tahun 2026 (tampil di atas Beranda)
+    statusTahun: 2026,
     komoditasUnggulan: "Pertanian dan peternakan",
     zonaWaktu: "WIT (UTC+9)",
     jumlahRW: 7,
@@ -778,27 +779,6 @@ window.KAMPUNG = {
     danaLembagaSumber: "Monografi Kampung Marga Mulya, 30 September 2026"
   },
 
-  /* ---------- INDEKS DESA (pengganti IDM) ---------- */
-  indeksDesa: {
-    tahun: 2026,
-    nilai: null,                // isi nilai resmi Indeks Desa Kemendes bila sudah ada, mis. 61.2
-    skala: 100,
-    status: "Berkembang",
-    sumberStatus: "Monografi kampung (kategori desa), 30 September 2026",
-    klasifikasi: "Swasembada",
-    catatan: "Sejak 2025 Indeks Desa Membangun (IDM) diperbarui menjadi Indeks Desa, yang menilai enam dimensi pembangunan kampung. Menurut monografi, Marga Mulya berkategori berkembang dengan klasifikasi swasembada; nilai indeks resmi per dimensi belum dicantumkan.",
-    dimensi: [
-      { nama: "Layanan Dasar", nilai: null, ket: "Akses pendidikan, kesehatan, air bersih, sanitasi, dan listrik." },
-      { nama: "Sosial", nilai: null, ket: "Kerukunan, gotong royong, keamanan, dan modal sosial warga." },
-      { nama: "Ekonomi", nilai: null, ket: "Keragaman usaha, akses pasar, lembaga ekonomi, dan BUMKam." },
-      { nama: "Lingkungan", nilai: null, ket: "Pengelolaan sampah, risiko bencana, dan kualitas lingkungan." },
-      { nama: "Aksesibilitas", nilai: null, ket: "Kondisi jalan, transportasi, dan jarak ke pusat layanan." },
-      { nama: "Tata Kelola Pemerintahan", nilai: null, ket: "Perencanaan, keuangan, pelayanan, dan keterbukaan informasi kampung." }
-    ],
-    riwayat: [
-      { tahun: 2026, status: "Berkembang" }
-    ]
-  },
 
   /* ---------- LAYANAN ADMINISTRASI ---------- */
   // Persyaratan & lama proses belum ada data resmi. Isi "syarat" dan "waktu" dari kantor kampung.
