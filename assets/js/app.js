@@ -143,11 +143,7 @@
 
   /* =================== BERANDA =================== */
   $("#heroPlace").textContent = "Distrik " + id.distrik + " · Kabupaten " + id.kabupaten + " · " + id.provinsi;
-  $("#collabBtn").setAttribute("data-act", act(function () {
-    openModal({ kat: "Kerja sama " + D.kerjaSama.tahun, title: "Tentang Marga Mulya On Site",
-      html: "<p>" + esc(D.kerjaSama.ringkas) + "</p><p><b>Pihak yang bekerja sama:</b></p><ul>" + D.kerjaSama.pihak.map(function (p) { return "<li>" + esc(p) + "</li>"; }).join("") +
-        "</ul><p class='small'>Ketua Tim Ekspedisi Patriot IPB University: " + esc(D.kerjaSama.ketuaTim) + "</p>" });
-  }).replace(/^ data-act="|"$/g, ""));
+
 
   var facts = [
     { il: "keluarga", ic: "users", t: "Penduduk", v: num(P.total), s: "jiwa", info: "Jumlah penduduk Kampung Marga Mulya menurut monografi kampung per 30 September 2026: " + num(P.laki) + " laki-laki dan " + num(P.perempuan) + " perempuan." },
@@ -929,8 +925,8 @@
     setInterval(function () { if (!document.hidden) muat(); }, 30 * 60 * 1000);
   })();
 
-  // Status kampung di kotak Kerja sama pada foto utama Beranda (dari identitas.kategori)
-  if ($("#heroStatus") && D.identitas && D.identitas.kategori) $("#heroStatus > span").innerHTML = "Status kampung <b>" + esc(D.identitas.kategori) + "</b>" + (D.identitas.statusTahun ? " · " + esc(D.identitas.statusTahun) : "");
+  // Status kampung di foto utama Beranda (dari identitas.kategori)
+  if ($("#heroStatus") && D.identitas && D.identitas.kategori) $("#heroStatus .collab__nilai").innerHTML = '<svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><b>' + esc(D.identitas.kategori) + "</b>" + (D.identitas.statusTahun ? "<small>" + esc(D.identitas.statusTahun) + "</small>" : "");
 
   /* Slide pengantar di atas Beranda: berganti tiap 5 detik dan berputar terus */
   (function () {
