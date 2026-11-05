@@ -836,9 +836,9 @@ window.KAMPUNG = {
   // (scripts/update_video.py → data/video-otomatis.json) dari YouTube, TikTok, Instagram, dan Facebook.
   // "pilihan": tautan video yang wajib selalu tampil paling depan, misalnya video resmi kampung.
   // Contoh: { url: "https://www.youtube.com/watch?v=XXXXXXXXXXX", judul: "Video Profil Kampung Marga Mulya" }
-  // Video latar foto utama Beranda: diputar otomatis tanpa suara dan berulang (berkas sendiri, pita hitam sudah dipotong).
+  // Video latar foto utama Beranda: diputar otomatis tanpa suara dan berulang (berkas sendiri, tanpa suara).
   // Bila video gagal diputar, foto yang berganti-ganti tetap tampil sebagai cadangan.
-  heroVideo: { file: "assets/video/profil-marga-mulya.mp4", fileHp: "assets/video/profil-marga-mulya-hp.mp4", poster: "assets/video/profil-marga-mulya-poster.jpg", ket: "Video profil Kampung Marga Mulya." },
+  heroVideo: { file: "assets/video/profil-lapangan.mp4", fileHp: "assets/video/profil-lapangan-hp.mp4", poster: "assets/video/profil-lapangan-poster.jpg", ket: "Video profil Kampung Marga Mulya." },
 
   video: {
     judul: "Marga Mulya dalam Video",
