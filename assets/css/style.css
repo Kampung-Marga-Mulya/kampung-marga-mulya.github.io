@@ -1529,3 +1529,12 @@ a.intro__slide p::after { content: " →"; color: #BFD4FB; font-weight: 700; }
 .hero__photo--video .hero__slide { opacity: 0 !important; }
 /* Di HP bingkai mengikuti bentuk video (2,4:1) agar tampil utuh tanpa terpotong */
 @media (max-width: 900px) { .hero__photo.hero__photo--video { padding-top: 41.667%; } }
+
+/* Dokumentasi potensi: kisi foto seragam, foto tampil utuh (tidak dipotong) */
+.pot-foto { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 12px; }
+.pot-foto figure { margin: 0; display: grid; gap: 6px; align-content: start; min-width: 0; }
+.pot-foto button { position: relative; display: block; width: 100%; aspect-ratio: 4 / 3; padding: 0; border: 0; border-radius: 12px; overflow: hidden; background: var(--photo-bg); cursor: zoom-in; }
+.pot-foto img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; transition: transform .4s ease; }
+.pot-foto button:hover img { transform: scale(1.03); }
+.pot-foto figcaption { font-size: .86rem; line-height: 1.35; color: var(--ink-2); }
+@media (max-width: 600px) { .pot-foto { grid-template-columns: repeat(2, minmax(0, 1fr)); } }

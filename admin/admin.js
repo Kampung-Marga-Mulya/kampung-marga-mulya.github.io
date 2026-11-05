@@ -48,7 +48,7 @@ if (window.top !== window.self) {
     { g: "Konten", id: "momen", label: "Foto bergoyang di Beranda", file: "assets/js/data.js", keys: ["momen"], desc: "Foto yang tampil di tali jemuran dan deretan polaroid Beranda. Delapan foto pertama untuk tali jemuran, sisanya untuk polaroid." },
     { g: "Konten", id: "galeri", label: "Galeri foto", file: "assets/js/data.js", keys: ["galeri"], desc: "Unggah foto kegiatan dan tulis keterangannya." },
     { g: "Konten", id: "video", label: "Video", file: "assets/js/data.js", keys: ["video"], desc: "Video pilihan yang selalu tampil paling depan (tautan YouTube, TikTok, Instagram, atau Facebook). Video lain dikumpulkan otomatis setiap 6 jam." },
-    { g: "Konten", id: "potensi", label: "Potensi & kegiatan", file: "assets/js/data.js", keys: ["potensi", "ekonomi", "kegiatan"], desc: "Potensi kampung, data lahan, ternak, dan usaha warga, serta linimasa kegiatan." },
+    { g: "Konten", id: "potensi", label: "Potensi & kegiatan", file: "assets/js/data.js", keys: ["potensi", "ekonomi", "dokumentasiPotensi"], desc: "Potensi kampung, data lahan, ternak, dan usaha warga, serta foto dokumentasi potensi." },
     { g: "Jelajah", id: "peta", label: "Peta kampung", file: "assets/js/data.js", keys: ["peta"], desc: "Keterangan Peta Batas Kampung. Garis batas dan titik kartometrik tersimpan di data/batas-kampung.json." },
     { g: "Jelajah", id: "wisata", label: "Wisata & kuliner", file: "data/wisata.json", keys: ["tempat"], desc: "Daftar tempat wisata dan kuliner. Jarak dan waktu dihitung ulang otomatis setelah disimpan." },
     { g: "Layanan", id: "layanan", label: "Layanan surat", file: "assets/js/data.js", keys: ["layananContoh", "layanan"], desc: "Jenis surat, persyaratan, dan lama proses." },

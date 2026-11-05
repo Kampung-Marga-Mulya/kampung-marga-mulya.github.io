@@ -1007,16 +1007,13 @@ window.KAMPUNG = {
     { src: "assets/img/kegiatan/kebun-tomat.jpg", caption: "Petani merawat tanaman tomat di kebun hortikultura" }
   ],
 
-  kegiatan: [
-    { tanggal: "Okt 2026", judul: "Lokakarya data desa presisi", ket: "Lokakarya data desa presisi bagi perangkat dan kader kampung di Balai Kampung Marga Mulya (IPB University, 19 Oktober 2026)." },
-    { tanggal: "Okt 2026", judul: "Amoniasi jerami untuk pakan ternak", ket: "Peternak di Distrik Semangga, termasuk Marga Mulya, belajar mengolah jerami padi menjadi pakan sapi (MataPapua, 9 Oktober 2026)." },
-    { tanggal: "2026", judul: "Pelatihan Manajemen Sistem Peternakan Skala Industri dan Pengembangan Pertanian Terintegrasi Berkelanjutan", foto: "assets/img/kegiatan/pelatihan-peternakan.jpg",
-      ket: "Pelatihan oleh Tim Ekspedisi Patriot IPB University. Foto bersama peserta pelatihan." },
-    { tanggal: "2026", judul: "Pemeriksaan kesehatan ternak sapi", foto: "assets/img/kegiatan/periksa-sapi-1.jpg",
-      ket: "Tim Ekspedisi Patriot memeriksa sapi milik peternak di kandang." },
-    { tanggal: "2026", judul: "Kunjungan ke kebun tomat warga", foto: "assets/img/kegiatan/petik-tomat.jpg",
-      ket: "Tim Ekspedisi Patriot ikut memetik tomat bersama petani." },
-    { tanggal: "2026", judul: "Video profil kampung", ket: "Video profil Kampung Marga Mulya; dapat ditonton di menu Profil → Video & Galeri." }
+  // Foto dokumentasi di bawah Potensi (Profil → Potensi)
+  dokumentasiPotensi: [
+    { src: "assets/img/kegiatan/periksa-sapi-1.jpg", ket: "Peternakan sapi warga" },
+    { src: "assets/img/kegiatan/periksa-sapi-2.jpg", ket: "Kandang ternak sapi di permukiman" },
+    { src: "assets/img/kegiatan/kebun-tomat.jpg", ket: "Kebun tomat hortikultura warga" },
+    { src: "assets/img/kegiatan/petik-tomat.jpg", ket: "Panen tomat di kebun warga" },
+    { src: "assets/img/kegiatan/pelatihan-peternakan.jpg", ket: "Pelatihan peternakan dan pertanian terpadu di balai kampung" }
   ],
 
   kontak: {

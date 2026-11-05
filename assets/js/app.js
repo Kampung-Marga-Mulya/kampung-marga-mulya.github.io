@@ -1183,10 +1183,10 @@
     $("#ekoSumber").innerHTML = rilis("monografi", true) + " Ketuk grafik untuk rincian.";
   }
 
-  $("#kegiatan").innerHTML = D.kegiatan.map(function (k) {
-    return '<li><button type="button" class="reset tap"' + act(function () {
-      openModal({ kat: "Kegiatan Ekspedisi Patriot " + k.tanggal, title: k.judul, html: (k.foto ? '<img class="modal__img" src="' + escUrl(k.foto) + '" alt="' + esc(k.judul) + '">' : "") + "<p>" + esc(k.ket) + "</p><p class='small'>Bagian dari kerja sama Tim Ekspedisi Patriot IPB University dengan Pemerintah Kampung Marga Mulya.</p>" });
-    }) + ">" + (k.foto ? '<img class="tl__img" src="' + escUrl(k.foto) + '" alt="" loading="lazy">' : "") + "<time>" + esc(k.tanggal) + "</time><b>" + esc(k.judul) + '</b><span class="tl__d">' + esc(k.ket) + "</span></button></li>";
+  // Dokumentasi potensi (foto saja, utuh tanpa dipotong; ketuk untuk memperbesar)
+  var PF = D.dokumentasiPotensi || [];
+  if ($("#potFoto")) $("#potFoto").innerHTML = PF.map(function (f) {
+    return '<figure><button type="button" class="reset" data-perbesar="' + escUrl(f.src) + '" data-ket="' + esc(f.ket) + '"><img src="' + escUrl(f.src) + '" alt="' + esc(f.ket) + '" loading="lazy"></button><figcaption>' + esc(f.ket) + "</figcaption></figure>";
   }).join("");
   /* =================== MOMEN: TALI JEMURAN & POLAROID BERGOYANG =================== */
   (function () {
