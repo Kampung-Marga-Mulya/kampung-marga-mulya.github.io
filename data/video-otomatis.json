@@ -1,5 +1,5 @@
 {
- "diperiksa": "2026-11-06T22:48+09:00",
+ "diperiksa": "2026-11-07T04:34+09:00",
  "catatan": "Dibuat otomatis oleh scripts/update_video.py. Jangan disunting manual; gunakan video.pilihan di assets/js/data.js atau data/video-abaikan.json.",
  "video": [
   {
@@ -15,7 +15,7 @@
    "ditemukan": "2026-11-06",
    "rasio_sampul": 1.778,
    "sampul": "assets/img/video/instagram-DdRFcGASMKK.jpg",
-   "skor": 11.638
+   "skor": 11.622
   },
   {
    "platform": "instagram",
@@ -30,7 +30,7 @@
    "ditemukan": "2026-11-05",
    "rasio_sampul": 1.778,
    "sampul": "assets/img/video/instagram-DcsXgowSuJA.jpg",
-   "skor": 10.473
+   "skor": 10.459
   },
   {
    "platform": "instagram",
@@ -45,7 +45,7 @@
    "ditemukan": "2026-11-06",
    "rasio_sampul": 0.562,
    "sampul": "assets/img/video/instagram-DaO5UM3RBsF.jpg",
-   "skor": 9.676
+   "skor": 9.667
   },
   {
    "platform": "instagram",
@@ -72,7 +72,7 @@
    "ditemukan": "2026-11-04",
    "rasio_sampul": 0.563,
    "sampul": "assets/img/video/facebook-1021361486911765.jpg",
-   "skor": 9.298
+   "skor": 9.279
   },
   {
    "platform": "youtube",
@@ -80,7 +80,7 @@
    "url": "https://www.youtube.com/watch?v=FeS3BFihQts",
    "judul": "TNI AD WUJUDKAN AIR BERSIH DI RT 09 MARGA MULYA - MERAUKE",
    "kanal": "Kodim 1707 Merauke",
-   "tanggal": "2026-10-07",
+   "tanggal": "2026-10-08",
    "tanggal_kira": true,
    "tayang": 61,
    "durasi": 192,
@@ -102,21 +102,21 @@
    "ditemukan": "2026-11-06",
    "rasio_sampul": 0.562,
    "sampul": "assets/img/video/instagram-DdEgtLmCcJ8.jpg",
-   "skor": 7.85
+   "skor": 7.835
   },
   {
    "platform": "youtube",
    "id": "ascjSfNf2UQ",
    "url": "https://www.youtube.com/watch?v=ascjSfNf2UQ",
-   "judul": "Hidup Rukun Warga Exs Transmigrasi Papua Selatan kampung Marga Mulya",
+   "judul": "Begini kekompakan❗️Warga Exs Transmigrasi di kampung Marga Mulya Papua Selatan",
    "kanal": "STORY AMRY",
-   "tayang": 612,
+   "tayang": 614,
    "durasi": 740,
    "rasio": "16:9",
    "ditemukan": "2026-11-04",
    "rasio_sampul": 1.333,
    "sampul": "assets/img/video/youtube-ascjSfNf2UQ.jpg",
-   "skor": 7.656
+   "skor": 7.638
   },
   {
    "platform": "instagram",
@@ -131,7 +131,7 @@
    "ditemukan": "2026-11-06",
    "rasio_sampul": 1.0,
    "sampul": "assets/img/video/instagram-DeG3ucdDwgp.jpg",
-   "skor": 7.191
+   "skor": 7.172
   },
   {
    "platform": "youtube",
@@ -139,7 +139,7 @@
    "url": "https://www.youtube.com/watch?v=29_kk5DTN40",
    "judul": "TERNYATA RAJIN BERTANI JUGA BETERNAK‼️ WARGA LOKAL KAMPUNG MARGA MULYA EKS TRANSMIGRASI SEMANGGA 2",
    "kanal": "Leksono Japa",
-   "tanggal": "2025-11-06",
+   "tanggal": "2025-11-07",
    "tanggal_kira": true,
    "tayang": 2984,
    "durasi": 1102,
@@ -155,7 +155,7 @@
    "url": "https://www.youtube.com/watch?v=g-zeq2Pwx9o",
    "judul": "TERNYATA MASIH MENUMPANG‼️WARGA KAMPUNG MARGA MULYA EKS TRANSMIGRASI SEMANGGA 2 MERAUKE",
    "kanal": "Leksono Japa",
-   "tanggal": "2025-11-06",
+   "tanggal": "2025-11-07",
    "tanggal_kira": true,
    "tayang": 2592,
    "durasi": 912,
@@ -171,7 +171,7 @@
    "url": "https://www.youtube.com/watch?v=x0s84dskmJM",
    "judul": "UPDATE TERBARU 2025‼️KAMPUNG MARGA MULYA EKS TRANSMIGRASI 1980an SEMANGGA 2 KABUPATEN MERAUKE",
    "kanal": "Leksono Japa",
-   "tanggal": "2025-11-06",
+   "tanggal": "2025-11-07",
    "tanggal_kira": true,
    "tayang": 2284,
    "durasi": 933,
@@ -191,7 +191,7 @@
    "ditemukan": "2026-11-04",
    "rasio_sampul": 1.333,
    "sampul": "assets/img/video/youtube-GstSi_HcxI4.jpg",
-   "skor": 6.798
+   "skor": 6.779
   },
   {
    "platform": "youtube",
@@ -203,7 +203,7 @@
    "ditemukan": "2026-11-04",
    "rasio_sampul": 1.333,
    "sampul": "assets/img/video/youtube-kfqEWqrPOLc.jpg",
-   "skor": 6.798
+   "skor": 6.779
   },
   {
    "platform": "youtube",
@@ -215,7 +215,7 @@
    "ditemukan": "2026-11-04",
    "rasio_sampul": 1.333,
    "sampul": "assets/img/video/youtube-xH1UZn6oYB4.jpg",
-   "skor": 6.798
+   "skor": 6.779
   },
   {
    "platform": "youtube",
@@ -223,7 +223,7 @@
    "url": "https://www.youtube.com/watch?v=r-VyRP2D5ms",
    "judul": "Hari SUMPAH PEMUDA,Perlombaan mancing didesa Margamulya, Merauke PAPUA Team Nekat Strike",
    "kanal": "Sadikin Tilong Fishing",
-   "tanggal": "2021-11-07",
+   "tanggal": "2021-11-08",
    "tanggal_kira": true,
    "tayang": 2281,
    "durasi": 663,
@@ -239,7 +239,7 @@
    "url": "https://www.youtube.com/watch?v=SyyhKW3Mygg",
    "judul": "Kepala Kampung Marga Mulya ZUBAIDAH ALFAKIR Khotbah IDUL FITRI 1442 H #idulfitrimargamulya#merauke",
    "kanal": "ASUMSI KAMPUNG",
-   "tanggal": "2021-11-07",
+   "tanggal": "2021-11-08",
    "tanggal_kira": true,
    "tayang": 335,
    "durasi": 1365,
@@ -255,7 +255,7 @@
    "url": "https://www.youtube.com/watch?v=NYrnk265P5U",
    "judul": "SUASANA DI TAHUN 2024,KAMPUNG MARGA MULYA || EKS TRANSMIGRASI SEMANGGA 2 KABUPATEN MERAUKE",
    "kanal": "Leksono Japa",
-   "tanggal": "2024-11-06",
+   "tanggal": "2024-11-07",
    "tanggal_kira": true,
    "tayang": 1320,
    "durasi": 566,
@@ -271,7 +271,7 @@
    "url": "https://www.youtube.com/watch?v=639sPUOhe_k",
    "judul": "marga mulya,semangga dua,merauke,papua",
    "kanal": "EL Marhume",
-   "tanggal": "2021-11-07",
+   "tanggal": "2021-11-08",
    "tanggal_kira": true,
    "tayang": 642,
    "durasi": 388,
@@ -287,7 +287,7 @@
    "url": "https://www.youtube.com/watch?v=bDjz-3gVRMI",
    "judul": "PENINJAUAN KDKMP OLEH ITJEN TNI DAN PT APN DI KAMPUNG MARGA MULYA MERAUKE",
    "kanal": "Kodim 1707 Merauke",
-   "tanggal": "2026-05-10",
+   "tanggal": "2026-05-11",
    "tanggal_kira": true,
    "tayang": 51,
    "durasi": 110,
@@ -303,7 +303,7 @@
    "url": "https://www.youtube.com/watch?v=aIdTsQ0WN6k",
    "judul": "Penyulingan Serai Wangi Marga Mulya, Merauke - Papua",
    "kanal": "Juru Foto Keliling",
-   "tanggal": "2022-11-07",
+   "tanggal": "2022-11-08",
    "tanggal_kira": true,
    "tayang": 503,
    "durasi": 347,
@@ -319,7 +319,7 @@
    "url": "https://www.youtube.com/watch?v=r2r-c-g8NoQ",
    "judul": "Warga Kampung Marga Mulya Sudah Sangat Muak Dengan Bau Busuk Dari Kandang Ayam di Semangga 2",
    "kanal": "INFO KEJADIAN MERAUKE",
-   "tanggal": "2021-11-07",
+   "tanggal": "2021-11-08",
    "tanggal_kira": true,
    "tayang": 484,
    "durasi": 182,
@@ -335,7 +335,7 @@
    "url": "https://www.youtube.com/watch?v=-b_Jw1WIc0M",
    "judul": "Pengembangan potensi wisata kuliner di kampung Marga Mulya Distrik Semangga Merauke Papua",
    "kanal": "KASRI KASIR",
-   "tanggal": "2022-11-07",
+   "tanggal": "2022-11-08",
    "tanggal_kira": true,
    "tayang": 434,
    "durasi": 341,
@@ -351,7 +351,7 @@
    "url": "https://www.youtube.com/watch?v=SHFdYQuMhsw",
    "judul": "Karnaval HUT RI ke 79 Merauke || Semangga 2 kampung marga mulya",
    "kanal": "Andi Lala Official",
-   "tanggal": "2024-11-06",
+   "tanggal": "2024-11-07",
    "tanggal_kira": true,
    "tayang": 320,
    "durasi": 873,
@@ -367,7 +367,7 @@
    "url": "https://www.youtube.com/watch?v=aBW2UvI8KZo",
    "judul": "Masjid AL Amin marga mulya semangga dua merauke papua",
    "kanal": "EL Marhume",
-   "tanggal": "2021-11-07",
+   "tanggal": "2021-11-08",
    "tanggal_kira": true,
    "tayang": 325,
    "durasi": 196,
@@ -379,11 +379,27 @@
   },
   {
    "platform": "youtube",
+   "id": "j6LGQ3EpiwM",
+   "url": "https://www.youtube.com/watch?v=j6LGQ3EpiwM",
+   "judul": "KARNAVAL SEMANGGA 2 MARGA MULYA, MERAUKE 15 AGUSTUS 2024",
+   "kanal": "zefan studio",
+   "tanggal": "2024-11-07",
+   "tanggal_kira": true,
+   "tayang": 310,
+   "durasi": 434,
+   "rasio": "16:9",
+   "ditemukan": "2026-11-07",
+   "rasio_sampul": 1.333,
+   "sampul": "assets/img/video/youtube-j6LGQ3EpiwM.jpg",
+   "skor": 6.169
+  },
+  {
+   "platform": "youtube",
    "id": "xwMXuWhAQ14",
    "url": "https://www.youtube.com/watch?v=xwMXuWhAQ14",
    "judul": "KEMAJUAN PTDM 2021 PENGERING PADI UV DRYER DI KAMP MARGAMULYA, MERAUKE | UNIVERSITAS MUSAMUS",
    "kanal": "LPPM UNMUS",
-   "tanggal": "2021-11-07",
+   "tanggal": "2021-11-08",
    "tanggal_kira": true,
    "tayang": 295,
    "durasi": 177,
@@ -399,7 +415,7 @@
    "url": "https://www.youtube.com/watch?v=X9q_K35VCcY",
    "judul": "Marga mulya semangga dua merauke",
    "kanal": "EL Marhume",
-   "tanggal": "2021-11-07",
+   "tanggal": "2021-11-08",
    "tanggal_kira": true,
    "tayang": 288,
    "durasi": 48,
@@ -415,7 +431,7 @@
    "url": "https://www.youtube.com/watch?v=DlUvHbFk2vs",
    "judul": "HENGAR VLOG #3 - WARGA MARGA MULYA - MERAUKE",
    "kanal": "Hendrikus Ngarbingan",
-   "tanggal": "2020-11-07",
+   "tanggal": "2020-11-08",
    "tanggal_kira": true,
    "tayang": 288,
    "durasi": 720,
@@ -427,19 +443,19 @@
   },
   {
    "platform": "youtube",
-   "id": "HrxJHBLGFEU",
-   "url": "https://www.youtube.com/watch?v=HrxJHBLGFEU",
-   "judul": "KARNAVAL SEMANGGA 2 MARGA MULYA, Dalam Rangka HUT RI KE 79 Tahun, MERAUKE 15 AGUSTUS 2024...",
-   "kanal": "TUKANG PHOTO ART",
-   "tanggal": "2024-11-06",
+   "id": "LUCH4yWc_cw",
+   "url": "https://www.youtube.com/watch?v=LUCH4yWc_cw",
+   "judul": "TPQ Al Ittihad marga mulya merauke papua",
+   "kanal": "BUNDA RAHMA",
+   "tanggal": "2021-11-08",
    "tanggal_kira": true,
-   "tayang": 279,
-   "durasi": 773,
+   "tayang": 256,
+   "durasi": 151,
    "rasio": "16:9",
-   "ditemukan": "2026-11-06",
+   "ditemukan": "2026-11-07",
    "rasio_sampul": 1.333,
-   "sampul": "assets/img/video/youtube-HrxJHBLGFEU.jpg",
-   "skor": 6.138
+   "sampul": "assets/img/video/youtube-LUCH4yWc_cw.jpg",
+   "skor": 6.107
   },
   {
    "platform": "youtube",
@@ -447,7 +463,7 @@
    "url": "https://www.youtube.com/watch?v=m7Zz3j95XTY",
    "judul": "pacuan kuda memperingati hari kemerdekaan HUT ke 78,Kampung MARGA MULYA SEMANGGA DUA.",
    "kanal": "Mas Blenk Makarena",
-   "tanggal": "2023-11-07",
+   "tanggal": "2023-11-08",
    "tanggal_kira": true,
    "tayang": 169,
    "durasi": 353,
@@ -463,7 +479,7 @@
    "url": "https://www.youtube.com/watch?v=XJ42WnKHTtI",
    "judul": "Pembaruan saluran air marga mulya semangga dua",
    "kanal": "EL Marhume",
-   "tanggal": "2021-11-07",
+   "tanggal": "2021-11-08",
    "tanggal_kira": true,
    "tayang": 93,
    "durasi": 123,
@@ -479,7 +495,7 @@
    "url": "https://www.youtube.com/watch?v=B_BAq4rco-g",
    "judul": "Acara penutupan KKP Yaleka Maro Merauke angkatan XVII di Kampung Marga Mulya...",
    "kanal": "Unarapal Chanel",
-   "tanggal": "2025-11-06",
+   "tanggal": "2025-11-07",
    "tanggal_kira": true,
    "tayang": 46,
    "durasi": 203,
@@ -495,7 +511,7 @@
    "url": "https://www.youtube.com/watch?v=Rr33aaAKEFA",
    "judul": "Acara Rama Tama Warga Kampung Marga Mulya Semangga Dua Provinsi Papua Selatan",
    "kanal": "Sobat HT",
-   "tanggal": "2023-11-07",
+   "tanggal": "2023-11-08",
    "tanggal_kira": true,
    "tayang": 74,
    "durasi": 314,
@@ -511,7 +527,7 @@
    "url": "https://www.youtube.com/watch?v=Ms7Q4Kj4SpY",
    "judul": "Pernikahan ✨Risdah ♥️ Alfian✨ Di Kampung Marga Mulya Merauke",
    "kanal": "MW ANTARSUKHA",
-   "tanggal": "2025-11-06",
+   "tanggal": "2025-11-07",
    "tanggal_kira": true,
    "tayang": 44,
    "durasi": 432,
@@ -527,7 +543,7 @@
    "url": "https://www.youtube.com/watch?v=ZzWVl1Jv88A",
    "judul": "HIRUP LIMBAH KOTORAN AYAM, WARGA KAMPUNG MARGAMULYA PROTES",
    "kanal": "KOMPASTV MERAUKE",
-   "tanggal": "2020-11-07",
+   "tanggal": "2020-11-08",
    "tanggal_kira": true,
    "tayang": 1631,
    "durasi": 231,
@@ -543,7 +559,7 @@
    "url": "https://www.youtube.com/watch?v=T3Nx9SI6AFU",
    "judul": "Pemberdayaan Berbasis Masyarakat | Universitas Musamus | Kmp. Marga Mulya-Kab. Merauke-Papua Selatan",
    "kanal": "Teknik Pertanian Unmus",
-   "tanggal": "2024-11-06",
+   "tanggal": "2024-11-07",
    "tanggal_kira": true,
    "tayang": 39,
    "durasi": 288,
@@ -559,7 +575,7 @@
    "url": "https://www.youtube.com/watch?v=JKmv0kwI6PA",
    "judul": "Kegiatan KKP di Kampung Marga Mulya Kab Merauke...",
    "kanal": "Unarapal Chanel",
-   "tanggal": "2025-12-11",
+   "tanggal": "2025-12-12",
    "tanggal_kira": true,
    "tayang": 17,
    "durasi": 60,
@@ -575,7 +591,7 @@
    "url": "https://www.youtube.com/watch?v=nEOndAKX5gY",
    "judul": "KRIDA BUDAYA MARGA MULYA// NDADI BERJAMAAH!!! PENONTON FULL!!!!",
    "kanal": "MERAUKE MIX CHANNEL",
-   "tanggal": "2023-11-07",
+   "tanggal": "2023-11-08",
    "tanggal_kira": true,
    "tayang": 929,
    "durasi": 223,
@@ -591,7 +607,7 @@
    "url": "https://www.youtube.com/watch?v=-Ip-Lhww0r4",
    "judul": "Lomba memancing di kampung MARGA MULYA SEMANGGA DUA",
    "kanal": "S upry yono",
-   "tanggal": "2023-11-07",
+   "tanggal": "2023-11-08",
    "tanggal_kira": true,
    "tayang": 23,
    "durasi": 140,
@@ -600,22 +616,6 @@
    "rasio_sampul": 1.333,
    "sampul": "assets/img/video/youtube--Ip-Lhww0r4.jpg",
    "skor": 5.42
-  },
-  {
-   "platform": "youtube",
-   "id": "1trurlDEXiM",
-   "url": "https://www.youtube.com/watch?v=1trurlDEXiM",
-   "judul": "Marga Mulya, Desa Cantik, Desa Cinta Statistik",
-   "kanal": "BPS Merauke",
-   "tanggal": "2022-11-07",
-   "tanggal_kira": true,
-   "tayang": 553,
-   "durasi": 76,
-   "rasio": "16:9",
-   "ditemukan": "2026-11-04",
-   "rasio_sampul": 1.333,
-   "sampul": "assets/img/video/youtube-1trurlDEXiM.jpg",
-   "skor": 5.329
   }
  ]
 }
