@@ -1,7 +1,22 @@
 {
- "diperiksa": "2026-11-06T10:49+09:00",
+ "diperiksa": "2026-11-06T16:51+09:00",
  "catatan": "Dibuat otomatis oleh scripts/update_video.py. Jangan disunting manual; gunakan video.pilihan di assets/js/data.js atau data/video-abaikan.json.",
  "video": [
+  {
+   "platform": "instagram",
+   "id": "DdRFcGASMKK",
+   "url": "https://www.instagram.com/reel/DdRFcGASMKK/",
+   "judul": "TNI AD WUJUDKAN AIR BERSIH, KODIM 1707/MERAUKE HADIR ATASI KESULITAN WARGA RT.09 MARGA MULYA Merauke, Papua Selatan - Ketersediaan air bersi",
+   "kanal": "kodim1707merauke",
+   "keterangan": "TNI AD WUJUDKAN AIR BERSIH, KODIM 1707/MERAUKE HADIR ATASI KESULITAN WARGA RT.09 MARGA MULYA Merauke, Papua Selatan - Ketersediaan air bersih menjadi kebutuhan mendasar bagi masyarakat, terlebih saat musim kemarau. Kondisi tersebut turut dirasakan warga RT.09, Kampung Marga Mulya, Distrik Semangga, Kabupaten Merauke, khususnya jamaah Mushola Al Barokah yang selama bertahun-tahun mengandalkan air d",
+   "tanggal": "2026-09-14",
+   "suka": 1157,
+   "rasio": "9:16",
+   "ditemukan": "2026-11-06",
+   "rasio_sampul": 1.778,
+   "sampul": "assets/img/video/instagram-DdRFcGASMKK.jpg",
+   "skor": 11.638
+  },
   {
    "platform": "instagram",
    "id": "DcsXgowSuJA",
@@ -16,6 +31,36 @@
    "rasio_sampul": 1.778,
    "sampul": "assets/img/video/instagram-DcsXgowSuJA.jpg",
    "skor": 10.473
+  },
+  {
+   "platform": "instagram",
+   "id": "DaO5UM3RBsF",
+   "url": "https://www.instagram.com/reel/DaO5UM3RBsF/",
+   "judul": "Mancing mania Semangga 2 dan sekitarnya, merapat! @fm.fishing_ hadir buat kebutuhan mancing kalian 📍 Semangga 2, Kampung Marga Mulya (sebera",
+   "kanal": "aliftananda_",
+   "keterangan": "Mancing mania Semangga 2 dan sekitarnya, merapat! @fm.fishing_ hadir buat kebutuhan mancing kalian 📍 Semangga 2, Kampung Marga Mulya (seberang Koperasi Merah Putih) juga tersedia jasa titip Agnia",
+   "tanggal": "2026-06-30",
+   "suka": 169,
+   "rasio": "9:16",
+   "ditemukan": "2026-11-06",
+   "rasio_sampul": 0.562,
+   "sampul": "assets/img/video/instagram-DaO5UM3RBsF.jpg",
+   "skor": 9.676
+  },
+  {
+   "platform": "instagram",
+   "id": "DJTG2lNv9EP",
+   "url": "https://www.instagram.com/reel/DJTG2lNv9EP/",
+   "judul": "Seorang pria dari Kampung Marga Mulya, Distrik Semangga, Merauke, pulang dari hutan dengan babi di punggungnya dan kuda menyusul di belakang",
+   "kanal": "info_kejadian_merauke",
+   "keterangan": "Seorang pria dari Kampung Marga Mulya, Distrik Semangga, Merauke, pulang dari hutan dengan babi di punggungnya dan kuda menyusul di belakang. Bukan sekadar berburu, ini tentang harga diri, kejantanan, dan hubungan yang dalam dengan alam. Di sini, menjadi laki-laki artinya tahu jalan pulang sambil membawa bukti perjuangan. #PapuaSelatan #Merauke #AnakKampung #TradisiPapua #HutanAdalahGuru #MargaMul",
+   "tanggal": "2025-05-05",
+   "suka": 3513,
+   "rasio": "9:16",
+   "ditemukan": "2026-11-06",
+   "rasio_sampul": 0.562,
+   "sampul": "assets/img/video/instagram-DJTG2lNv9EP.jpg",
+   "skor": 9.561
   },
   {
    "platform": "facebook",
@@ -58,6 +103,21 @@
    "rasio_sampul": 1.333,
    "sampul": "assets/img/video/youtube-ascjSfNf2UQ.jpg",
    "skor": 7.656
+  },
+  {
+   "platform": "instagram",
+   "id": "DeG3ucdDwgp",
+   "url": "https://www.instagram.com/p/DeG3ucdDwgp/",
+   "judul": "Di tengah kondisi kekeringan yang berdampak pada ketersediaan air bersih, BWS Papua Merauke bersama BPBD Kabupaten Merauke terus hadir membe",
+   "kanal": "pu_sda_papuamerauke",
+   "keterangan": "Di tengah kondisi kekeringan yang berdampak pada ketersediaan air bersih, BWS Papua Merauke bersama BPBD Kabupaten Merauke terus hadir memberikan bantuan bagi masyarakat yang membutuhkan. Pada 1 Oktober 2026, penyaluran air bersih dilaksanakan di Kampung Marga Mulya, Distrik Semangga, dan Kampung Waninggap Miraf, Kabupaten Merauke. Sebanyak 35.000 liter air bersih disalurkan melalui 7 titik sasara",
+   "tanggal": "2026-10-05",
+   "suka": 69,
+   "rasio": "4:5",
+   "ditemukan": "2026-11-06",
+   "rasio_sampul": 1.0,
+   "sampul": "assets/img/video/instagram-DeG3ucdDwgp.jpg",
+   "skor": 7.191
   },
   {
    "platform": "youtube",
@@ -109,18 +169,6 @@
   },
   {
    "platform": "youtube",
-   "id": "GstSi_HcxI4",
-   "url": "https://www.youtube.com/watch?v=GstSi_HcxI4",
-   "judul": "4 Unit Kubah Menuju Masjid Yayasan “Nurul Huda” Marga Mulya, Merauke #kubahindonesia#shorts",
-   "kanal": "GunturKubahID",
-   "rasio": "9:16",
-   "ditemukan": "2026-11-04",
-   "rasio_sampul": 1.333,
-   "sampul": "assets/img/video/youtube-GstSi_HcxI4.jpg",
-   "skor": 6.798
-  },
-  {
-   "platform": "youtube",
    "id": "kfqEWqrPOLc",
    "url": "https://www.youtube.com/watch?v=kfqEWqrPOLc",
    "judul": "KREASI TARI JARANAN KRIDA BUDAYA MARGA MULYA MERAUKE",
@@ -129,6 +177,18 @@
    "ditemukan": "2026-11-04",
    "rasio_sampul": 1.333,
    "sampul": "assets/img/video/youtube-kfqEWqrPOLc.jpg",
+   "skor": 6.798
+  },
+  {
+   "platform": "youtube",
+   "id": "GstSi_HcxI4",
+   "url": "https://www.youtube.com/watch?v=GstSi_HcxI4",
+   "judul": "4 Unit Kubah Menuju Masjid Yayasan “Nurul Huda” Marga Mulya, Merauke #kubahindonesia#shorts",
+   "kanal": "GunturKubahID",
+   "rasio": "9:16",
+   "ditemukan": "2026-11-04",
+   "rasio_sampul": 1.333,
+   "sampul": "assets/img/video/youtube-GstSi_HcxI4.jpg",
    "skor": 6.798
   },
   {
@@ -369,38 +429,6 @@
   },
   {
    "platform": "youtube",
-   "id": "HrxJHBLGFEU",
-   "url": "https://www.youtube.com/watch?v=HrxJHBLGFEU",
-   "judul": "KARNAVAL SEMANGGA 2 MARGA MULYA, Dalam Rangka HUT RI KE 79 Tahun, MERAUKE 15 AGUSTUS 2024...",
-   "kanal": "TUKANG PHOTO ART",
-   "tanggal": "2024-11-06",
-   "tanggal_kira": true,
-   "tayang": 279,
-   "durasi": 773,
-   "rasio": "16:9",
-   "ditemukan": "2026-11-05",
-   "rasio_sampul": 1.333,
-   "sampul": "assets/img/video/youtube-HrxJHBLGFEU.jpg",
-   "skor": 6.138
-  },
-  {
-   "platform": "youtube",
-   "id": "LUCH4yWc_cw",
-   "url": "https://www.youtube.com/watch?v=LUCH4yWc_cw",
-   "judul": "TPQ Al Ittihad marga mulya merauke papua",
-   "kanal": "BUNDA RAHMA",
-   "tanggal": "2021-11-07",
-   "tanggal_kira": true,
-   "tayang": 256,
-   "durasi": 151,
-   "rasio": "16:9",
-   "ditemukan": "2026-11-05",
-   "rasio_sampul": 1.333,
-   "sampul": "assets/img/video/youtube-LUCH4yWc_cw.jpg",
-   "skor": 6.107
-  },
-  {
-   "platform": "youtube",
    "id": "m7Zz3j95XTY",
    "url": "https://www.youtube.com/watch?v=m7Zz3j95XTY",
    "judul": "pacuan kuda memperingati hari kemerdekaan HUT ke 78,Kampung MARGA MULYA SEMANGGA DUA.",
@@ -577,22 +605,6 @@
   },
   {
    "platform": "youtube",
-   "id": "BK1zBsuFJBQ",
-   "url": "https://www.youtube.com/watch?v=BK1zBsuFJBQ",
-   "judul": "KEMAJUAN PTDM 2021 | PENGERING PADI UV DRYER DI KAMP. MARGA MULYA, MERAUKE | UNIVERSITAS MUSAMUS",
-   "kanal": "Putra Andika Musamus",
-   "tanggal": "2021-11-07",
-   "tanggal_kira": true,
-   "tayang": 17,
-   "durasi": 177,
-   "rasio": "16:9",
-   "ditemukan": "2026-11-06",
-   "rasio_sampul": 1.333,
-   "sampul": "assets/img/video/youtube-BK1zBsuFJBQ.jpg",
-   "skor": 5.337
-  },
-  {
-   "platform": "youtube",
    "id": "1trurlDEXiM",
    "url": "https://www.youtube.com/watch?v=1trurlDEXiM",
    "judul": "Marga Mulya, Desa Cantik, Desa Cinta Statistik",
@@ -606,20 +618,6 @@
    "rasio_sampul": 1.333,
    "sampul": "assets/img/video/youtube-1trurlDEXiM.jpg",
    "skor": 5.329
-  },
-  {
-   "platform": "youtube",
-   "id": "6k3LJ-dfkyI",
-   "url": "https://www.youtube.com/watch?v=6k3LJ-dfkyI",
-   "judul": "HABIS UNTUK SEWA ALAT‼️PETANI PADI KAMPUNG MARGAMULYA EKS TRANSMIGRASI SEMANGGA 2 KABUPATEN MERAUKE",
-   "kanal": "Leksono Japa",
-   "tanggal": "2025-11-05",
-   "tanggal_kira": true,
-   "rasio": "16:9",
-   "ditemukan": "2026-11-05",
-   "rasio_sampul": 1.333,
-   "sampul": "assets/img/video/youtube-6k3LJ-dfkyI.jpg",
-   "skor": 4.642
   }
  ]
 }
