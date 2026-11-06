@@ -1,5 +1,5 @@
 {
- "diperiksa": "2026-11-06T04:32+09:00",
+ "diperiksa": "2026-11-06T10:49+09:00",
  "catatan": "Dibuat otomatis oleh scripts/update_video.py. Jangan disunting manual; gunakan video.pilihan di assets/js/data.js atau data/video-abaikan.json.",
  "video": [
   {
@@ -10,12 +10,12 @@
    "kanal": "yonif803kyk",
    "keterangan": "Karya Bakti Skala Besar TNI AD Hadirkan Sumber Air Bersih Di SDI Semangga 3,Marga Mulya, Merauke, Papua Selatan @stafoperasitniad @puspentni @tni_angkatan_darat @kodamxxivmandalatrikora @brigif83bugodi",
    "tanggal": "2026-08-30",
-   "suka": 256,
+   "suka": 255,
    "rasio": "9:16",
    "ditemukan": "2026-11-05",
    "rasio_sampul": 1.778,
    "sampul": "assets/img/video/instagram-DcsXgowSuJA.jpg",
-   "skor": 10.475
+   "skor": 10.473
   },
   {
    "platform": "facebook",
@@ -369,6 +369,38 @@
   },
   {
    "platform": "youtube",
+   "id": "HrxJHBLGFEU",
+   "url": "https://www.youtube.com/watch?v=HrxJHBLGFEU",
+   "judul": "KARNAVAL SEMANGGA 2 MARGA MULYA, Dalam Rangka HUT RI KE 79 Tahun, MERAUKE 15 AGUSTUS 2024...",
+   "kanal": "TUKANG PHOTO ART",
+   "tanggal": "2024-11-06",
+   "tanggal_kira": true,
+   "tayang": 279,
+   "durasi": 773,
+   "rasio": "16:9",
+   "ditemukan": "2026-11-05",
+   "rasio_sampul": 1.333,
+   "sampul": "assets/img/video/youtube-HrxJHBLGFEU.jpg",
+   "skor": 6.138
+  },
+  {
+   "platform": "youtube",
+   "id": "LUCH4yWc_cw",
+   "url": "https://www.youtube.com/watch?v=LUCH4yWc_cw",
+   "judul": "TPQ Al Ittihad marga mulya merauke papua",
+   "kanal": "BUNDA RAHMA",
+   "tanggal": "2021-11-07",
+   "tanggal_kira": true,
+   "tayang": 256,
+   "durasi": 151,
+   "rasio": "16:9",
+   "ditemukan": "2026-11-05",
+   "rasio_sampul": 1.333,
+   "sampul": "assets/img/video/youtube-LUCH4yWc_cw.jpg",
+   "skor": 6.107
+  },
+  {
+   "platform": "youtube",
    "id": "m7Zz3j95XTY",
    "url": "https://www.youtube.com/watch?v=m7Zz3j95XTY",
    "judul": "pacuan kuda memperingati hari kemerdekaan HUT ke 78,Kampung MARGA MULYA SEMANGGA DUA.",
@@ -465,6 +497,22 @@
   },
   {
    "platform": "youtube",
+   "id": "VIeLV2H-uEg",
+   "url": "https://www.youtube.com/watch?v=VIeLV2H-uEg",
+   "judul": "FULL PTDM 2021 PENGERING PADI UV DRYER DI KAMP. MARGA MULYA | MERAUKE | UNIVERSITAS MUSAMUS",
+   "kanal": "Putra Andika Musamus",
+   "tanggal": "2022-11-07",
+   "tanggal_kira": true,
+   "tayang": 49,
+   "durasi": 181,
+   "rasio": "16:9",
+   "ditemukan": "2026-11-04",
+   "rasio_sampul": 1.333,
+   "sampul": "assets/img/video/youtube-VIeLV2H-uEg.jpg",
+   "skor": 5.633
+  },
+  {
+   "platform": "youtube",
    "id": "T3Nx9SI6AFU",
    "url": "https://www.youtube.com/watch?v=T3Nx9SI6AFU",
    "judul": "Pemberdayaan Berbasis Masyarakat | Universitas Musamus | Kmp. Marga Mulya-Kab. Merauke-Papua Selatan",
@@ -529,6 +577,22 @@
   },
   {
    "platform": "youtube",
+   "id": "BK1zBsuFJBQ",
+   "url": "https://www.youtube.com/watch?v=BK1zBsuFJBQ",
+   "judul": "KEMAJUAN PTDM 2021 | PENGERING PADI UV DRYER DI KAMP. MARGA MULYA, MERAUKE | UNIVERSITAS MUSAMUS",
+   "kanal": "Putra Andika Musamus",
+   "tanggal": "2021-11-07",
+   "tanggal_kira": true,
+   "tayang": 17,
+   "durasi": 177,
+   "rasio": "16:9",
+   "ditemukan": "2026-11-06",
+   "rasio_sampul": 1.333,
+   "sampul": "assets/img/video/youtube-BK1zBsuFJBQ.jpg",
+   "skor": 5.337
+  },
+  {
+   "platform": "youtube",
    "id": "1trurlDEXiM",
    "url": "https://www.youtube.com/watch?v=1trurlDEXiM",
    "judul": "Marga Mulya, Desa Cantik, Desa Cinta Statistik",
@@ -545,22 +609,6 @@
   },
   {
    "platform": "youtube",
-   "id": "OgHFxRHUVpM",
-   "url": "https://www.youtube.com/watch?v=OgHFxRHUVpM",
-   "judul": "Marga Mulya Turnament Fishing",
-   "kanal": "Bolang Mancing Merauke",
-   "tanggal": "2022-11-07",
-   "tanggal_kira": true,
-   "tayang": 110,
-   "durasi": 614,
-   "rasio": "16:9",
-   "ditemukan": "2026-11-05",
-   "rasio_sampul": 1.333,
-   "sampul": "assets/img/video/youtube-OgHFxRHUVpM.jpg",
-   "skor": 4.864
-  },
-  {
-   "platform": "youtube",
    "id": "6k3LJ-dfkyI",
    "url": "https://www.youtube.com/watch?v=6k3LJ-dfkyI",
    "judul": "HABIS UNTUK SEWA ALAT‼️PETANI PADI KAMPUNG MARGAMULYA EKS TRANSMIGRASI SEMANGGA 2 KABUPATEN MERAUKE",
@@ -572,48 +620,6 @@
    "rasio_sampul": 1.333,
    "sampul": "assets/img/video/youtube-6k3LJ-dfkyI.jpg",
    "skor": 4.642
-  },
-  {
-   "platform": "youtube",
-   "id": "HrxJHBLGFEU",
-   "url": "https://www.youtube.com/watch?v=HrxJHBLGFEU",
-   "judul": "KARNAVAL SEMANGGA 2 MARGA MULYA, Dalam Rangka HUT RI KE 79 Tahun, MERAUKE 15 AGUSTUS 2024...",
-   "kanal": "TUKANG PHOTO ART",
-   "tanggal": "2024-11-05",
-   "tanggal_kira": true,
-   "rasio": "16:9",
-   "ditemukan": "2026-11-05",
-   "rasio_sampul": 1.333,
-   "sampul": "assets/img/video/youtube-HrxJHBLGFEU.jpg",
-   "skor": 4.507
-  },
-  {
-   "platform": "youtube",
-   "id": "LUCH4yWc_cw",
-   "url": "https://www.youtube.com/watch?v=LUCH4yWc_cw",
-   "judul": "TPQ Al Ittihad marga mulya merauke papua",
-   "kanal": "BUNDA RAHMA",
-   "tanggal": "2021-11-06",
-   "tanggal_kira": true,
-   "rasio": "16:9",
-   "ditemukan": "2026-11-05",
-   "rasio_sampul": 1.333,
-   "sampul": "assets/img/video/youtube-LUCH4yWc_cw.jpg",
-   "skor": 4.5
-  },
-  {
-   "platform": "youtube",
-   "id": "VIeLV2H-uEg",
-   "url": "https://www.youtube.com/watch?v=VIeLV2H-uEg",
-   "judul": "FULL PTDM 2021 PENGERING PADI UV DRYER DI KAMP. MARGA MULYA | MERAUKE | UNIVERSITAS MUSAMUS",
-   "kanal": "Putra Andika Musamus",
-   "tanggal": "2022-11-06",
-   "tanggal_kira": true,
-   "rasio": "16:9",
-   "ditemukan": "2026-11-04",
-   "rasio_sampul": 1.333,
-   "sampul": "assets/img/video/youtube-VIeLV2H-uEg.jpg",
-   "skor": 4.5
   }
  ]
 }
