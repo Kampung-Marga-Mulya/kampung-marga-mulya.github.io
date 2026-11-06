@@ -1,5 +1,5 @@
 {
- "diperiksa": "2026-11-06T16:51+09:00",
+ "diperiksa": "2026-11-06T22:48+09:00",
  "catatan": "Dibuat otomatis oleh scripts/update_video.py. Jangan disunting manual; gunakan video.pilihan di assets/js/data.js atau data/video-abaikan.json.",
  "video": [
   {
@@ -91,6 +91,20 @@
    "skor": 8.031
   },
   {
+   "platform": "instagram",
+   "id": "DdEgtLmCcJ8",
+   "url": "https://www.instagram.com/reel/DdEgtLmCcJ8/",
+   "judul": "Empat kubah, satu tujuan: menuju Masjid Yayasan “Nurul Huda” Marga Mulya. Sebanyak 4 unit kubah dipersiapkan untuk Masjid Yayasan “Nurul Hud",
+   "kanal": "gunturkubah",
+   "keterangan": "Empat kubah, satu tujuan: menuju Masjid Yayasan “Nurul Huda” Marga Mulya. Sebanyak 4 unit kubah dipersiapkan untuk Masjid Yayasan “Nurul Huda” Marga Mulya, Kampung Marga Mulya, Distrik Semangga, Kabupaten Merauke, Papua Selatan. Masing-masing berukuran diameter 1,1 meter × tinggi 80 cm, menggunakan material Galvalume. Semoga proses pengirimannya berjalan lancar dan menjadi bagian dari pembangunan ",
+   "tanggal": "2026-09-09",
+   "rasio": "9:16",
+   "ditemukan": "2026-11-06",
+   "rasio_sampul": 0.562,
+   "sampul": "assets/img/video/instagram-DdEgtLmCcJ8.jpg",
+   "skor": 7.85
+  },
+  {
    "platform": "youtube",
    "id": "ascjSfNf2UQ",
    "url": "https://www.youtube.com/watch?v=ascjSfNf2UQ",
@@ -169,18 +183,6 @@
   },
   {
    "platform": "youtube",
-   "id": "kfqEWqrPOLc",
-   "url": "https://www.youtube.com/watch?v=kfqEWqrPOLc",
-   "judul": "KREASI TARI JARANAN KRIDA BUDAYA MARGA MULYA MERAUKE",
-   "kanal": "MERAUKE MIX CHANNEL",
-   "rasio": "9:16",
-   "ditemukan": "2026-11-04",
-   "rasio_sampul": 1.333,
-   "sampul": "assets/img/video/youtube-kfqEWqrPOLc.jpg",
-   "skor": 6.798
-  },
-  {
-   "platform": "youtube",
    "id": "GstSi_HcxI4",
    "url": "https://www.youtube.com/watch?v=GstSi_HcxI4",
    "judul": "4 Unit Kubah Menuju Masjid Yayasan “Nurul Huda” Marga Mulya, Merauke #kubahindonesia#shorts",
@@ -189,6 +191,18 @@
    "ditemukan": "2026-11-04",
    "rasio_sampul": 1.333,
    "sampul": "assets/img/video/youtube-GstSi_HcxI4.jpg",
+   "skor": 6.798
+  },
+  {
+   "platform": "youtube",
+   "id": "kfqEWqrPOLc",
+   "url": "https://www.youtube.com/watch?v=kfqEWqrPOLc",
+   "judul": "KREASI TARI JARANAN KRIDA BUDAYA MARGA MULYA MERAUKE",
+   "kanal": "MERAUKE MIX CHANNEL",
+   "rasio": "9:16",
+   "ditemukan": "2026-11-04",
+   "rasio_sampul": 1.333,
+   "sampul": "assets/img/video/youtube-kfqEWqrPOLc.jpg",
    "skor": 6.798
   },
   {
@@ -291,13 +305,13 @@
    "kanal": "Juru Foto Keliling",
    "tanggal": "2022-11-07",
    "tanggal_kira": true,
-   "tayang": 500,
+   "tayang": 503,
    "durasi": 347,
    "rasio": "16:9",
    "ditemukan": "2026-11-04",
    "rasio_sampul": 1.333,
    "sampul": "assets/img/video/youtube-aIdTsQ0WN6k.jpg",
-   "skor": 6.3
+   "skor": 6.302
   },
   {
    "platform": "youtube",
@@ -365,22 +379,6 @@
   },
   {
    "platform": "youtube",
-   "id": "j6LGQ3EpiwM",
-   "url": "https://www.youtube.com/watch?v=j6LGQ3EpiwM",
-   "judul": "KARNAVAL SEMANGGA 2 MARGA MULYA, MERAUKE 15 AGUSTUS 2024",
-   "kanal": "zefan studio",
-   "tanggal": "2024-11-06",
-   "tanggal_kira": true,
-   "tayang": 310,
-   "durasi": 434,
-   "rasio": "16:9",
-   "ditemukan": "2026-11-04",
-   "rasio_sampul": 1.333,
-   "sampul": "assets/img/video/youtube-j6LGQ3EpiwM.jpg",
-   "skor": 6.169
-  },
-  {
-   "platform": "youtube",
    "id": "xwMXuWhAQ14",
    "url": "https://www.youtube.com/watch?v=xwMXuWhAQ14",
    "judul": "KEMAJUAN PTDM 2021 PENGERING PADI UV DRYER DI KAMP MARGAMULYA, MERAUKE | UNIVERSITAS MUSAMUS",
@@ -426,6 +424,22 @@
    "rasio_sampul": 1.333,
    "sampul": "assets/img/video/youtube-DlUvHbFk2vs.jpg",
    "skor": 6.141
+  },
+  {
+   "platform": "youtube",
+   "id": "HrxJHBLGFEU",
+   "url": "https://www.youtube.com/watch?v=HrxJHBLGFEU",
+   "judul": "KARNAVAL SEMANGGA 2 MARGA MULYA, Dalam Rangka HUT RI KE 79 Tahun, MERAUKE 15 AGUSTUS 2024...",
+   "kanal": "TUKANG PHOTO ART",
+   "tanggal": "2024-11-06",
+   "tanggal_kira": true,
+   "tayang": 279,
+   "durasi": 773,
+   "rasio": "16:9",
+   "ditemukan": "2026-11-06",
+   "rasio_sampul": 1.333,
+   "sampul": "assets/img/video/youtube-HrxJHBLGFEU.jpg",
+   "skor": 6.138
   },
   {
    "platform": "youtube",
@@ -522,22 +536,6 @@
    "rasio_sampul": 1.333,
    "sampul": "assets/img/video/youtube-ZzWVl1Jv88A.jpg",
    "skor": 5.642
-  },
-  {
-   "platform": "youtube",
-   "id": "VIeLV2H-uEg",
-   "url": "https://www.youtube.com/watch?v=VIeLV2H-uEg",
-   "judul": "FULL PTDM 2021 PENGERING PADI UV DRYER DI KAMP. MARGA MULYA | MERAUKE | UNIVERSITAS MUSAMUS",
-   "kanal": "Putra Andika Musamus",
-   "tanggal": "2022-11-07",
-   "tanggal_kira": true,
-   "tayang": 49,
-   "durasi": 181,
-   "rasio": "16:9",
-   "ditemukan": "2026-11-04",
-   "rasio_sampul": 1.333,
-   "sampul": "assets/img/video/youtube-VIeLV2H-uEg.jpg",
-   "skor": 5.633
   },
   {
    "platform": "youtube",
