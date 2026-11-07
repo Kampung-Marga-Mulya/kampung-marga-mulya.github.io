@@ -1,5 +1,5 @@
 {
- "diperiksa": "2026-11-07T04:34+09:00",
+ "diperiksa": "2026-11-07T10:40+09:00",
  "catatan": "Dibuat otomatis oleh scripts/update_video.py. Jangan disunting manual; gunakan video.pilihan di assets/js/data.js atau data/video-abaikan.json.",
  "video": [
   {
@@ -16,6 +16,21 @@
    "rasio_sampul": 1.778,
    "sampul": "assets/img/video/instagram-DdRFcGASMKK.jpg",
    "skor": 11.622
+  },
+  {
+   "platform": "instagram",
+   "id": "DdRC_44Ep9F",
+   "url": "https://www.instagram.com/p/DdRC_44Ep9F/",
+   "judul": "TNI AD WUJUDKAN AIR BERSIH, KODIM 1707/MERAUKE HADIR ATASI KESULITAN WARGA RT.09 MARGA MULYA Merauke, Papua Selatan - Ketersediaan air bersi",
+   "kanal": "kodim1707merauke",
+   "keterangan": "TNI AD WUJUDKAN AIR BERSIH, KODIM 1707/MERAUKE HADIR ATASI KESULITAN WARGA RT.09 MARGA MULYA Merauke, Papua Selatan - Ketersediaan air bersih menjadi kebutuhan mendasar bagi masyarakat, terlebih saat musim kemarau. Kondisi tersebut turut dirasakan warga RT.09, Kampung Marga Mulya, Distrik Semangga, Kabupaten Merauke, khususnya jamaah Mushola Al Barokah yang selama bertahun-tahun mengandalkan air d",
+   "tanggal": "2026-09-14",
+   "suka": 38,
+   "rasio": "4:5",
+   "ditemukan": "2026-11-07",
+   "rasio_sampul": 1.0,
+   "sampul": "assets/img/video/instagram-DdRC_44Ep9F.jpg",
+   "skor": 10.634
   },
   {
    "platform": "instagram",
@@ -379,22 +394,6 @@
   },
   {
    "platform": "youtube",
-   "id": "j6LGQ3EpiwM",
-   "url": "https://www.youtube.com/watch?v=j6LGQ3EpiwM",
-   "judul": "KARNAVAL SEMANGGA 2 MARGA MULYA, MERAUKE 15 AGUSTUS 2024",
-   "kanal": "zefan studio",
-   "tanggal": "2024-11-07",
-   "tanggal_kira": true,
-   "tayang": 310,
-   "durasi": 434,
-   "rasio": "16:9",
-   "ditemukan": "2026-11-07",
-   "rasio_sampul": 1.333,
-   "sampul": "assets/img/video/youtube-j6LGQ3EpiwM.jpg",
-   "skor": 6.169
-  },
-  {
-   "platform": "youtube",
    "id": "xwMXuWhAQ14",
    "url": "https://www.youtube.com/watch?v=xwMXuWhAQ14",
    "judul": "KEMAJUAN PTDM 2021 PENGERING PADI UV DRYER DI KAMP MARGAMULYA, MERAUKE | UNIVERSITAS MUSAMUS",
@@ -440,22 +439,6 @@
    "rasio_sampul": 1.333,
    "sampul": "assets/img/video/youtube-DlUvHbFk2vs.jpg",
    "skor": 6.141
-  },
-  {
-   "platform": "youtube",
-   "id": "LUCH4yWc_cw",
-   "url": "https://www.youtube.com/watch?v=LUCH4yWc_cw",
-   "judul": "TPQ Al Ittihad marga mulya merauke papua",
-   "kanal": "BUNDA RAHMA",
-   "tanggal": "2021-11-08",
-   "tanggal_kira": true,
-   "tayang": 256,
-   "durasi": 151,
-   "rasio": "16:9",
-   "ditemukan": "2026-11-07",
-   "rasio_sampul": 1.333,
-   "sampul": "assets/img/video/youtube-LUCH4yWc_cw.jpg",
-   "skor": 6.107
   },
   {
    "platform": "youtube",
@@ -616,6 +599,22 @@
    "rasio_sampul": 1.333,
    "sampul": "assets/img/video/youtube--Ip-Lhww0r4.jpg",
    "skor": 5.42
+  },
+  {
+   "platform": "youtube",
+   "id": "1trurlDEXiM",
+   "url": "https://www.youtube.com/watch?v=1trurlDEXiM",
+   "judul": "Marga Mulya, Desa Cantik, Desa Cinta Statistik",
+   "kanal": "BPS Merauke",
+   "tanggal": "2022-11-08",
+   "tanggal_kira": true,
+   "tayang": 553,
+   "durasi": 76,
+   "rasio": "16:9",
+   "ditemukan": "2026-11-07",
+   "rasio_sampul": 1.333,
+   "sampul": "assets/img/video/youtube-1trurlDEXiM.jpg",
+   "skor": 5.329
   }
  ]
 }
