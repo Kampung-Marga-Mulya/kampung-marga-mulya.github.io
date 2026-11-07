@@ -1,5 +1,5 @@
 {
- "diperiksa": "2026-11-07T10:40+09:00",
+ "diperiksa": "2026-11-07T16:40+09:00",
  "catatan": "Dibuat otomatis oleh scripts/update_video.py. Jangan disunting manual; gunakan video.pilihan di assets/js/data.js atau data/video-abaikan.json.",
  "video": [
   {
@@ -125,7 +125,7 @@
    "url": "https://www.youtube.com/watch?v=ascjSfNf2UQ",
    "judul": "Begini kekompakan❗️Warga Exs Transmigrasi di kampung Marga Mulya Papua Selatan",
    "kanal": "STORY AMRY",
-   "tayang": 614,
+   "tayang": 615,
    "durasi": 740,
    "rasio": "16:9",
    "ditemukan": "2026-11-04",
@@ -394,6 +394,22 @@
   },
   {
    "platform": "youtube",
+   "id": "j6LGQ3EpiwM",
+   "url": "https://www.youtube.com/watch?v=j6LGQ3EpiwM",
+   "judul": "KARNAVAL SEMANGGA 2 MARGA MULYA, MERAUKE 15 AGUSTUS 2024",
+   "kanal": "zefan studio",
+   "tanggal": "2024-11-07",
+   "tanggal_kira": true,
+   "tayang": 310,
+   "durasi": 434,
+   "rasio": "16:9",
+   "ditemukan": "2026-11-07",
+   "rasio_sampul": 1.333,
+   "sampul": "assets/img/video/youtube-j6LGQ3EpiwM.jpg",
+   "skor": 6.169
+  },
+  {
+   "platform": "youtube",
    "id": "xwMXuWhAQ14",
    "url": "https://www.youtube.com/watch?v=xwMXuWhAQ14",
    "judul": "KEMAJUAN PTDM 2021 PENGERING PADI UV DRYER DI KAMP MARGAMULYA, MERAUKE | UNIVERSITAS MUSAMUS",
@@ -426,19 +442,19 @@
   },
   {
    "platform": "youtube",
-   "id": "DlUvHbFk2vs",
-   "url": "https://www.youtube.com/watch?v=DlUvHbFk2vs",
-   "judul": "HENGAR VLOG #3 - WARGA MARGA MULYA - MERAUKE",
-   "kanal": "Hendrikus Ngarbingan",
-   "tanggal": "2020-11-08",
+   "id": "HrxJHBLGFEU",
+   "url": "https://www.youtube.com/watch?v=HrxJHBLGFEU",
+   "judul": "KARNAVAL SEMANGGA 2 MARGA MULYA, Dalam Rangka HUT RI KE 79 Tahun, MERAUKE 15 AGUSTUS 2024...",
+   "kanal": "TUKANG PHOTO ART",
+   "tanggal": "2024-11-07",
    "tanggal_kira": true,
-   "tayang": 288,
-   "durasi": 720,
+   "tayang": 279,
+   "durasi": 773,
    "rasio": "16:9",
-   "ditemukan": "2026-11-04",
+   "ditemukan": "2026-11-07",
    "rasio_sampul": 1.333,
-   "sampul": "assets/img/video/youtube-DlUvHbFk2vs.jpg",
-   "skor": 6.141
+   "sampul": "assets/img/video/youtube-HrxJHBLGFEU.jpg",
+   "skor": 6.138
   },
   {
    "platform": "youtube",
@@ -538,6 +554,22 @@
   },
   {
    "platform": "youtube",
+   "id": "VIeLV2H-uEg",
+   "url": "https://www.youtube.com/watch?v=VIeLV2H-uEg",
+   "judul": "FULL PTDM 2021 PENGERING PADI UV DRYER DI KAMP. MARGA MULYA | MERAUKE | UNIVERSITAS MUSAMUS",
+   "kanal": "Putra Andika Musamus",
+   "tanggal": "2022-11-08",
+   "tanggal_kira": true,
+   "tayang": 49,
+   "durasi": 181,
+   "rasio": "16:9",
+   "ditemukan": "2026-11-07",
+   "rasio_sampul": 1.333,
+   "sampul": "assets/img/video/youtube-VIeLV2H-uEg.jpg",
+   "skor": 5.633
+  },
+  {
+   "platform": "youtube",
    "id": "T3Nx9SI6AFU",
    "url": "https://www.youtube.com/watch?v=T3Nx9SI6AFU",
    "judul": "Pemberdayaan Berbasis Masyarakat | Universitas Musamus | Kmp. Marga Mulya-Kab. Merauke-Papua Selatan",
@@ -583,38 +615,6 @@
    "rasio_sampul": 1.333,
    "sampul": "assets/img/video/youtube-nEOndAKX5gY.jpg",
    "skor": 5.479
-  },
-  {
-   "platform": "youtube",
-   "id": "-Ip-Lhww0r4",
-   "url": "https://www.youtube.com/watch?v=-Ip-Lhww0r4",
-   "judul": "Lomba memancing di kampung MARGA MULYA SEMANGGA DUA",
-   "kanal": "S upry yono",
-   "tanggal": "2023-11-08",
-   "tanggal_kira": true,
-   "tayang": 23,
-   "durasi": 140,
-   "rasio": "16:9",
-   "ditemukan": "2026-11-04",
-   "rasio_sampul": 1.333,
-   "sampul": "assets/img/video/youtube--Ip-Lhww0r4.jpg",
-   "skor": 5.42
-  },
-  {
-   "platform": "youtube",
-   "id": "1trurlDEXiM",
-   "url": "https://www.youtube.com/watch?v=1trurlDEXiM",
-   "judul": "Marga Mulya, Desa Cantik, Desa Cinta Statistik",
-   "kanal": "BPS Merauke",
-   "tanggal": "2022-11-08",
-   "tanggal_kira": true,
-   "tayang": 553,
-   "durasi": 76,
-   "rasio": "16:9",
-   "ditemukan": "2026-11-07",
-   "rasio_sampul": 1.333,
-   "sampul": "assets/img/video/youtube-1trurlDEXiM.jpg",
-   "skor": 5.329
   }
  ]
 }
