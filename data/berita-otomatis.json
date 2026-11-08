@@ -1,5 +1,5 @@
 {
-  "diperiksa": "2026-11-08",
+  "diperiksa": "2026-11-09",
   "berita": [
     {
       "tanggal": "2026-10-29",
@@ -356,17 +356,6 @@
       "otomatis": true,
       "kategori": "Pertanian Merauke",
       "ditemukan": "2026-10-30"
-    },
-    {
-      "tanggal": "2026-10-09",
-      "sumber": "Detik News",
-      "judul": "TEP UGM Dorong Produk UMKM Kawasan Transmigrasi Muting Merauke Naik Kelas",
-      "ringkas": "Warga Kawasan Transmigrasi Muting, Merauke, belajar memanfaatkan AI untuk promosi produk pangan. Pelatihan ini meningkatkan daya saing dan pemasaran mereka.",
-      "url": "https://news.detik.com/berita/d-8699497/tep-ugm-dorong-produk-umkm-kawasan-transmigrasi-muting-merauke-naik-kelas",
-      "cover": "https://awsimages.detik.net.id/api/wm/2026/10/09/tep-ugm-dorong-produk-umkm-kawasan-transmigrasi-muting-merauke-naik-kelas-1791528870213_169.jpeg?wid=54&w=1200&v=1&t=jpeg",
-      "otomatis": true,
-      "kategori": "Transmigrasi",
-      "ditemukan": "2026-10-29"
     }
   ]
 }
