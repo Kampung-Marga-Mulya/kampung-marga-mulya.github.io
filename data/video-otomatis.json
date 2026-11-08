@@ -1,5 +1,5 @@
 {
- "diperiksa": "2026-11-08T10:44+09:00",
+ "diperiksa": "2026-11-08T16:41+09:00",
  "catatan": "Dibuat otomatis oleh scripts/update_video.py. Jangan disunting manual; gunakan video.pilihan di assets/js/data.js atau data/video-abaikan.json.",
  "video": [
   {
@@ -25,12 +25,12 @@
    "kanal": "kodamxxivmandalatrikora",
    "keterangan": "Koperasi Desa Merah Putih Kampung Marga Mulya, Distrik Semangga Kab.Merauke, Prov Papua Selatan Bersatu Berkarya, Tumbuh Sejahtera",
    "tanggal": "2026-11-05",
-   "suka": 37,
+   "suka": 38,
    "rasio": "9:16",
    "ditemukan": "2026-11-08",
    "rasio_sampul": 1.778,
    "sampul": "assets/img/video/instagram-DfY7fmOB9Dn.jpg",
-   "skor": 11.139
+   "skor": 11.147
   },
   {
    "platform": "instagram",
@@ -225,18 +225,6 @@
   },
   {
    "platform": "youtube",
-   "id": "GstSi_HcxI4",
-   "url": "https://www.youtube.com/watch?v=GstSi_HcxI4",
-   "judul": "4 Unit Kubah Menuju Masjid Yayasan “Nurul Huda” Marga Mulya, Merauke #kubahindonesia#shorts",
-   "kanal": "GunturKubahID",
-   "rasio": "9:16",
-   "ditemukan": "2026-11-04",
-   "rasio_sampul": 1.333,
-   "sampul": "assets/img/video/youtube-GstSi_HcxI4.jpg",
-   "skor": 6.76
-  },
-  {
-   "platform": "youtube",
    "id": "kfqEWqrPOLc",
    "url": "https://www.youtube.com/watch?v=kfqEWqrPOLc",
    "judul": "KREASI TARI JARANAN KRIDA BUDAYA MARGA MULYA MERAUKE",
@@ -245,6 +233,18 @@
    "ditemukan": "2026-11-04",
    "rasio_sampul": 1.333,
    "sampul": "assets/img/video/youtube-kfqEWqrPOLc.jpg",
+   "skor": 6.76
+  },
+  {
+   "platform": "youtube",
+   "id": "GstSi_HcxI4",
+   "url": "https://www.youtube.com/watch?v=GstSi_HcxI4",
+   "judul": "4 Unit Kubah Menuju Masjid Yayasan “Nurul Huda” Marga Mulya, Merauke #kubahindonesia#shorts",
+   "kanal": "GunturKubahID",
+   "rasio": "9:16",
+   "ditemukan": "2026-11-04",
+   "rasio_sampul": 1.333,
+   "sampul": "assets/img/video/youtube-GstSi_HcxI4.jpg",
    "skor": 6.76
   },
   {
@@ -469,6 +469,22 @@
   },
   {
    "platform": "youtube",
+   "id": "DlUvHbFk2vs",
+   "url": "https://www.youtube.com/watch?v=DlUvHbFk2vs",
+   "judul": "HENGAR VLOG #3 - WARGA MARGA MULYA - MERAUKE",
+   "kanal": "Hendrikus Ngarbingan",
+   "tanggal": "2020-11-09",
+   "tanggal_kira": true,
+   "tayang": 288,
+   "durasi": 720,
+   "rasio": "16:9",
+   "ditemukan": "2026-11-08",
+   "rasio_sampul": 1.333,
+   "sampul": "assets/img/video/youtube-DlUvHbFk2vs.jpg",
+   "skor": 6.141
+  },
+  {
+   "platform": "youtube",
    "id": "HrxJHBLGFEU",
    "url": "https://www.youtube.com/watch?v=HrxJHBLGFEU",
    "judul": "KARNAVAL SEMANGGA 2 MARGA MULYA, Dalam Rangka HUT RI KE 79 Tahun, MERAUKE 15 AGUSTUS 2024...",
@@ -498,22 +514,6 @@
    "rasio_sampul": 1.333,
    "sampul": "assets/img/video/youtube-m7Zz3j95XTY.jpg",
    "skor": 5.987
-  },
-  {
-   "platform": "youtube",
-   "id": "XRGqKjXkVmo",
-   "url": "https://www.youtube.com/watch?v=XRGqKjXkVmo",
-   "judul": "Prakerin SMK Pertanian Kuler Di kamp. Marga Mulya - Merauke.",
-   "kanal": "Petani Milenial Merauke",
-   "tanggal": "2020-11-09",
-   "tanggal_kira": true,
-   "tayang": 110,
-   "durasi": 203,
-   "rasio": "16:9",
-   "ditemukan": "2026-11-08",
-   "rasio_sampul": 1.333,
-   "sampul": "assets/img/video/youtube-XRGqKjXkVmo.jpg",
-   "skor": 5.864
   },
   {
    "platform": "youtube",
@@ -597,19 +597,19 @@
   },
   {
    "platform": "youtube",
-   "id": "VIeLV2H-uEg",
-   "url": "https://www.youtube.com/watch?v=VIeLV2H-uEg",
-   "judul": "FULL PTDM 2021 PENGERING PADI UV DRYER DI KAMP. MARGA MULYA | MERAUKE | UNIVERSITAS MUSAMUS",
-   "kanal": "Putra Andika Musamus",
-   "tanggal": "2022-11-09",
+   "id": "T3Nx9SI6AFU",
+   "url": "https://www.youtube.com/watch?v=T3Nx9SI6AFU",
+   "judul": "Pemberdayaan Berbasis Masyarakat | Universitas Musamus | Kmp. Marga Mulya-Kab. Merauke-Papua Selatan",
+   "kanal": "Teknik Pertanian Unmus",
+   "tanggal": "2024-11-08",
    "tanggal_kira": true,
-   "tayang": 49,
-   "durasi": 181,
+   "tayang": 39,
+   "durasi": 288,
    "rasio": "16:9",
    "ditemukan": "2026-11-08",
    "rasio_sampul": 1.333,
-   "sampul": "assets/img/video/youtube-VIeLV2H-uEg.jpg",
-   "skor": 5.633
+   "sampul": "assets/img/video/youtube-T3Nx9SI6AFU.jpg",
+   "skor": 5.575
   }
  ]
 }
