@@ -1,5 +1,5 @@
 {
- "diperiksa": "2026-11-09T16:58+09:00",
+ "diperiksa": "2026-11-09T22:52+09:00",
  "catatan": "Dibuat otomatis oleh scripts/update_video.py. Jangan disunting manual; gunakan video.pilihan di assets/js/data.js atau data/video-abaikan.json.",
  "video": [
   {
@@ -25,12 +25,12 @@
    "kanal": "kodamxxivmandalatrikora",
    "keterangan": "Koperasi Desa Merah Putih Kampung Marga Mulya, Distrik Semangga Kab.Merauke, Prov Papua Selatan Bersatu Berkarya, Tumbuh Sejahtera",
    "tanggal": "2026-11-05",
-   "suka": 44,
+   "suka": 45,
    "rasio": "9:16",
    "ditemukan": "2026-11-08",
    "rasio_sampul": 1.778,
    "sampul": "assets/img/video/instagram-DfY7fmOB9Dn.jpg",
-   "skor": 11.165
+   "skor": 11.171
   },
   {
    "platform": "instagram",
@@ -337,6 +337,22 @@
   },
   {
    "platform": "youtube",
+   "id": "6k3LJ-dfkyI",
+   "url": "https://www.youtube.com/watch?v=6k3LJ-dfkyI",
+   "judul": "HABIS UNTUK SEWA ALAT‼️PETANI PADI KAMPUNG MARGAMULYA EKS TRANSMIGRASI SEMANGGA 2 KABUPATEN MERAUKE",
+   "kanal": "Leksono Japa",
+   "tanggal": "2025-11-09",
+   "tanggal_kira": true,
+   "tayang": 580,
+   "durasi": 1193,
+   "rasio": "16:9",
+   "ditemukan": "2026-11-09",
+   "rasio_sampul": 1.333,
+   "sampul": "assets/img/video/youtube-6k3LJ-dfkyI.jpg",
+   "skor": 6.486
+  },
+  {
+   "platform": "youtube",
    "id": "639sPUOhe_k",
    "url": "https://www.youtube.com/watch?v=639sPUOhe_k",
    "judul": "marga mulya,semangga dua,merauke,papua",
@@ -590,22 +606,6 @@
    "rasio_sampul": 1.333,
    "sampul": "assets/img/video/youtube-Ms7Q4Kj4SpY.jpg",
    "skor": 5.745
-  },
-  {
-   "platform": "youtube",
-   "id": "ZzWVl1Jv88A",
-   "url": "https://www.youtube.com/watch?v=ZzWVl1Jv88A",
-   "judul": "HIRUP LIMBAH KOTORAN AYAM, WARGA KAMPUNG MARGAMULYA PROTES",
-   "kanal": "KOMPASTV MERAUKE",
-   "tanggal": "2020-11-10",
-   "tanggal_kira": true,
-   "tayang": 1631,
-   "durasi": 231,
-   "rasio": "16:9",
-   "ditemukan": "2026-11-09",
-   "rasio_sampul": 1.333,
-   "sampul": "assets/img/video/youtube-ZzWVl1Jv88A.jpg",
-   "skor": 5.642
   }
  ]
 }
