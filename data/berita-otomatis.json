@@ -1,6 +1,28 @@
 {
-  "diperiksa": "2026-11-09",
+  "diperiksa": "2026-11-10",
   "berita": [
+    {
+      "tanggal": "2026-11-09",
+      "sumber": "Kompas TV",
+      "judul": "Karhutla Papua, Titik Api Terbanyak di Merauke, Capai 95 Persen dari Seluruh Wilayah",
+      "ringkas": "Dapat dikatakan 95 persen titik api di seluruh Papua saat ini berada di Kabupaten Merauke.",
+      "url": "https://www.kompas.tv/regional/700590/karhutla-papua-titik-api-terbanyak-di-merauke-capai-95-persen-dari-seluruh-wilayah",
+      "cover": "https://media-origin.kompas.tv/library/image/content_article/article_img/20261109110855.webp",
+      "otomatis": true,
+      "kategori": "Marga Mulya",
+      "ditemukan": "2026-11-10"
+    },
+    {
+      "tanggal": "2026-11-09",
+      "sumber": "ANTARA",
+      "judul": "BNPB verifikasi indikasi perusahaan bakar lahan hutan di Papua Selatan",
+      "ringkas": "Badan Nasional Penanggulangan Bencana (BNPB) menyoroti pentingnya verifikasi lapangan terhadap dugaan pembukaan sejumlah lahan dalam areal perusahaan pemegang ...",
+      "url": "https://www.antaranews.com/berita/5842451/bnpb-verifikasi-indikasi-perusahaan-bakar-lahan-hutan-di-papua-selatan",
+      "cover": "https://img.antaranews.com/cache/1200x800/2026/11/09/1003051553.jpg",
+      "otomatis": true,
+      "kategori": "Marga Mulya",
+      "ditemukan": "2026-11-10"
+    },
     {
       "tanggal": "2026-10-29",
       "sumber": "Kompasiana",
