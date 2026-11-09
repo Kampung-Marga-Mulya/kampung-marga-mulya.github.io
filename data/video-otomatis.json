@@ -1,5 +1,5 @@
 {
- "diperiksa": "2026-11-09T10:50+09:00",
+ "diperiksa": "2026-11-09T16:58+09:00",
  "catatan": "Dibuat otomatis oleh scripts/update_video.py. Jangan disunting manual; gunakan video.pilihan di assets/js/data.js atau data/video-abaikan.json.",
  "video": [
   {
@@ -168,7 +168,7 @@
    "url": "https://www.youtube.com/watch?v=ascjSfNf2UQ",
    "judul": "Begini kekompakan❗️Warga Exs Transmigrasi di kampung Marga Mulya Papua Selatan",
    "kanal": "STORY AMRY",
-   "tayang": 623,
+   "tayang": 624,
    "durasi": 740,
    "rasio": "16:9",
    "ditemukan": "2026-11-04",
@@ -227,7 +227,7 @@
    "kanal": "Leksono Japa",
    "tanggal": "2025-11-09",
    "tanggal_kira": true,
-   "tayang": 2592,
+   "tayang": 2593,
    "durasi": 912,
    "rasio": "16:9",
    "ditemukan": "2026-11-04",
@@ -513,22 +513,6 @@
   },
   {
    "platform": "youtube",
-   "id": "HrxJHBLGFEU",
-   "url": "https://www.youtube.com/watch?v=HrxJHBLGFEU",
-   "judul": "KARNAVAL SEMANGGA 2 MARGA MULYA, Dalam Rangka HUT RI KE 79 Tahun, MERAUKE 15 AGUSTUS 2024...",
-   "kanal": "TUKANG PHOTO ART",
-   "tanggal": "2024-11-09",
-   "tanggal_kira": true,
-   "tayang": 279,
-   "durasi": 773,
-   "rasio": "16:9",
-   "ditemukan": "2026-11-09",
-   "rasio_sampul": 1.333,
-   "sampul": "assets/img/video/youtube-HrxJHBLGFEU.jpg",
-   "skor": 6.138
-  },
-  {
-   "platform": "youtube",
    "id": "m7Zz3j95XTY",
    "url": "https://www.youtube.com/watch?v=m7Zz3j95XTY",
    "judul": "pacuan kuda memperingati hari kemerdekaan HUT ke 78,Kampung MARGA MULYA SEMANGGA DUA.",
@@ -606,6 +590,22 @@
    "rasio_sampul": 1.333,
    "sampul": "assets/img/video/youtube-Ms7Q4Kj4SpY.jpg",
    "skor": 5.745
+  },
+  {
+   "platform": "youtube",
+   "id": "ZzWVl1Jv88A",
+   "url": "https://www.youtube.com/watch?v=ZzWVl1Jv88A",
+   "judul": "HIRUP LIMBAH KOTORAN AYAM, WARGA KAMPUNG MARGAMULYA PROTES",
+   "kanal": "KOMPASTV MERAUKE",
+   "tanggal": "2020-11-10",
+   "tanggal_kira": true,
+   "tayang": 1631,
+   "durasi": 231,
+   "rasio": "16:9",
+   "ditemukan": "2026-11-09",
+   "rasio_sampul": 1.333,
+   "sampul": "assets/img/video/youtube-ZzWVl1Jv88A.jpg",
+   "skor": 5.642
   }
  ]
 }
