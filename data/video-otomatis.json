@@ -1,5 +1,5 @@
 {
- "diperiksa": "2026-11-09T04:22+09:00",
+ "diperiksa": "2026-11-09T10:50+09:00",
  "catatan": "Dibuat otomatis oleh scripts/update_video.py. Jangan disunting manual; gunakan video.pilihan di assets/js/data.js atau data/video-abaikan.json.",
  "video": [
   {
@@ -25,12 +25,12 @@
    "kanal": "kodamxxivmandalatrikora",
    "keterangan": "Koperasi Desa Merah Putih Kampung Marga Mulya, Distrik Semangga Kab.Merauke, Prov Papua Selatan Bersatu Berkarya, Tumbuh Sejahtera",
    "tanggal": "2026-11-05",
-   "suka": 41,
+   "suka": 44,
    "rasio": "9:16",
    "ditemukan": "2026-11-08",
    "rasio_sampul": 1.778,
    "sampul": "assets/img/video/instagram-DfY7fmOB9Dn.jpg",
-   "skor": 11.144
+   "skor": 11.165
   },
   {
    "platform": "instagram",
@@ -100,7 +100,7 @@
    "kanal": "info_kejadian_merauke",
    "keterangan": "Seorang pria dari Kampung Marga Mulya, Distrik Semangga, Merauke, pulang dari hutan dengan babi di punggungnya dan kuda menyusul di belakang. Bukan sekadar berburu, ini tentang harga diri, kejantanan, dan hubungan yang dalam dengan alam. Di sini, menjadi laki-laki artinya tahu jalan pulang sambil membawa bukti perjuangan. #PapuaSelatan #Merauke #AnakKampung #TradisiPapua #HutanAdalahGuru #MargaMul",
    "tanggal": "2025-05-05",
-   "suka": 3513,
+   "suka": 3512,
    "rasio": "9:16",
    "ditemukan": "2026-11-06",
    "rasio_sampul": 0.562,
@@ -168,13 +168,13 @@
    "url": "https://www.youtube.com/watch?v=ascjSfNf2UQ",
    "judul": "Begini kekompakan❗️Warga Exs Transmigrasi di kampung Marga Mulya Papua Selatan",
    "kanal": "STORY AMRY",
-   "tayang": 621,
+   "tayang": 623,
    "durasi": 740,
    "rasio": "16:9",
    "ditemukan": "2026-11-04",
    "rasio_sampul": 1.333,
    "sampul": "assets/img/video/youtube-ascjSfNf2UQ.jpg",
-   "skor": 7.604
+   "skor": 7.605
   },
   {
    "platform": "tiktok",
@@ -243,7 +243,7 @@
    "kanal": "Leksono Japa",
    "tanggal": "2025-11-09",
    "tanggal_kira": true,
-   "tayang": 2284,
+   "tayang": 2285,
    "durasi": 933,
    "rasio": "16:9",
    "ditemukan": "2026-11-04",
@@ -327,29 +327,13 @@
    "kanal": "Leksono Japa",
    "tanggal": "2024-11-09",
    "tanggal_kira": true,
-   "tayang": 1321,
+   "tayang": 1322,
    "durasi": 566,
    "rasio": "16:9",
    "ditemukan": "2026-11-04",
    "rasio_sampul": 1.333,
    "sampul": "assets/img/video/youtube-NYrnk265P5U.jpg",
    "skor": 6.588
-  },
-  {
-   "platform": "youtube",
-   "id": "6k3LJ-dfkyI",
-   "url": "https://www.youtube.com/watch?v=6k3LJ-dfkyI",
-   "judul": "HABIS UNTUK SEWA ALAT‼️PETANI PADI KAMPUNG MARGAMULYA EKS TRANSMIGRASI SEMANGGA 2 KABUPATEN MERAUKE",
-   "kanal": "Leksono Japa",
-   "tanggal": "2025-11-09",
-   "tanggal_kira": true,
-   "tayang": 580,
-   "durasi": 1193,
-   "rasio": "16:9",
-   "ditemukan": "2026-11-08",
-   "rasio_sampul": 1.333,
-   "sampul": "assets/img/video/youtube-6k3LJ-dfkyI.jpg",
-   "skor": 6.486
   },
   {
    "platform": "youtube",
@@ -606,6 +590,22 @@
    "rasio_sampul": 1.333,
    "sampul": "assets/img/video/youtube-Rr33aaAKEFA.jpg",
    "skor": 5.75
+  },
+  {
+   "platform": "youtube",
+   "id": "Ms7Q4Kj4SpY",
+   "url": "https://www.youtube.com/watch?v=Ms7Q4Kj4SpY",
+   "judul": "Pernikahan ✨Risdah ♥️ Alfian✨ Di Kampung Marga Mulya Merauke",
+   "kanal": "MW ANTARSUKHA",
+   "tanggal": "2025-11-09",
+   "tanggal_kira": true,
+   "tayang": 44,
+   "durasi": 432,
+   "rasio": "16:9",
+   "ditemukan": "2026-11-09",
+   "rasio_sampul": 1.333,
+   "sampul": "assets/img/video/youtube-Ms7Q4Kj4SpY.jpg",
+   "skor": 5.745
   }
  ]
 }
