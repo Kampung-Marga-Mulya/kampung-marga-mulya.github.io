@@ -1,5 +1,5 @@
 {
- "diperiksa": "2026-11-10T10:43+09:00",
+ "diperiksa": "2026-11-10T16:50+09:00",
  "catatan": "Dibuat otomatis oleh scripts/update_video.py. Jangan disunting manual; gunakan video.pilihan di assets/js/data.js atau data/video-abaikan.json.",
  "video": [
   {
@@ -31,6 +31,21 @@
    "rasio_sampul": 1.778,
    "sampul": "assets/img/video/instagram-DfY7fmOB9Dn.jpg",
    "skor": 11.147
+  },
+  {
+   "platform": "instagram",
+   "id": "DcshGFOMPD-",
+   "url": "https://www.instagram.com/reel/DcshGFOMPD-/",
+   "judul": "Karya Bakti Skala Besar TNI AD Hadirkan Sumber Air Bersih di SD Inpres Semangga 3, Marga Mulya Merauke, Papua Selatan — Karya Bakti Skala Be",
+   "kanal": "yonif802wmj",
+   "keterangan": "Karya Bakti Skala Besar TNI AD Hadirkan Sumber Air Bersih di SD Inpres Semangga 3, Marga Mulya Merauke, Papua Selatan — Karya Bakti Skala Besar TNI AD menghadirkan sumber air bersih di SD Inpres Semangga 3, Kampung Marga Mulya, Merauke, Papua Selatan. Pembangunan fasilitas air bersih ini menjadi wujud nyata kepedulian TNI AD dalam mendukung kebutuhan dasar masyarakat, khususnya bagi para siswa dan",
+   "tanggal": "2026-08-31",
+   "suka": 160,
+   "rasio": "9:16",
+   "ditemukan": "2026-11-10",
+   "rasio_sampul": 0.562,
+   "sampul": "assets/img/video/instagram-DcshGFOMPD-.jpg",
+   "skor": 10.796
   },
   {
    "platform": "instagram",
@@ -168,13 +183,13 @@
    "url": "https://www.youtube.com/watch?v=ascjSfNf2UQ",
    "judul": "Begini kekompakan❗️Warga Exs Transmigrasi di kampung Marga Mulya Papua Selatan",
    "kanal": "STORY AMRY",
-   "tayang": 627,
+   "tayang": 629,
    "durasi": 740,
    "rasio": "16:9",
    "ditemukan": "2026-11-04",
    "rasio_sampul": 1.333,
    "sampul": "assets/img/video/youtube-ascjSfNf2UQ.jpg",
-   "skor": 7.588
+   "skor": 7.589
   },
   {
    "platform": "tiktok",
@@ -269,18 +284,6 @@
   },
   {
    "platform": "youtube",
-   "id": "GstSi_HcxI4",
-   "url": "https://www.youtube.com/watch?v=GstSi_HcxI4",
-   "judul": "4 Unit Kubah Menuju Masjid Yayasan “Nurul Huda” Marga Mulya, Merauke #kubahindonesia#shorts",
-   "kanal": "GunturKubahID",
-   "rasio": "9:16",
-   "ditemukan": "2026-11-04",
-   "rasio_sampul": 1.333,
-   "sampul": "assets/img/video/youtube-GstSi_HcxI4.jpg",
-   "skor": 6.722
-  },
-  {
-   "platform": "youtube",
    "id": "kfqEWqrPOLc",
    "url": "https://www.youtube.com/watch?v=kfqEWqrPOLc",
    "judul": "KREASI TARI JARANAN KRIDA BUDAYA MARGA MULYA MERAUKE",
@@ -289,6 +292,18 @@
    "ditemukan": "2026-11-04",
    "rasio_sampul": 1.333,
    "sampul": "assets/img/video/youtube-kfqEWqrPOLc.jpg",
+   "skor": 6.722
+  },
+  {
+   "platform": "youtube",
+   "id": "GstSi_HcxI4",
+   "url": "https://www.youtube.com/watch?v=GstSi_HcxI4",
+   "judul": "4 Unit Kubah Menuju Masjid Yayasan “Nurul Huda” Marga Mulya, Merauke #kubahindonesia#shorts",
+   "kanal": "GunturKubahID",
+   "rasio": "9:16",
+   "ditemukan": "2026-11-04",
+   "rasio_sampul": 1.333,
+   "sampul": "assets/img/video/youtube-GstSi_HcxI4.jpg",
    "skor": 6.722
   },
   {
@@ -334,22 +349,6 @@
    "rasio_sampul": 1.333,
    "sampul": "assets/img/video/youtube-NYrnk265P5U.jpg",
    "skor": 6.588
-  },
-  {
-   "platform": "youtube",
-   "id": "6k3LJ-dfkyI",
-   "url": "https://www.youtube.com/watch?v=6k3LJ-dfkyI",
-   "judul": "HABIS UNTUK SEWA ALAT‼️PETANI PADI KAMPUNG MARGAMULYA EKS TRANSMIGRASI SEMANGGA 2 KABUPATEN MERAUKE",
-   "kanal": "Leksono Japa",
-   "tanggal": "2025-11-10",
-   "tanggal_kira": true,
-   "tayang": 580,
-   "durasi": 1193,
-   "rasio": "16:9",
-   "ditemukan": "2026-11-10",
-   "rasio_sampul": 1.333,
-   "sampul": "assets/img/video/youtube-6k3LJ-dfkyI.jpg",
-   "skor": 6.486
   },
   {
    "platform": "youtube",
@@ -414,6 +413,22 @@
    "rasio_sampul": 1.333,
    "sampul": "assets/img/video/youtube-r2r-c-g8NoQ.jpg",
    "skor": 6.29
+  },
+  {
+   "platform": "youtube",
+   "id": "synXvxbiGtc",
+   "url": "https://www.youtube.com/watch?v=synXvxbiGtc",
+   "judul": "FULL PTDM 2021 PENGERING PADI UV DRYER DI KAMP. MARGA MULYA | MERAUKE | UNIVERSITAS MUSAMUS",
+   "kanal": "LPPM UNMUS",
+   "tanggal": "2022-11-11",
+   "tanggal_kira": true,
+   "tayang": 444,
+   "durasi": 181,
+   "rasio": "16:9",
+   "ditemukan": "2026-11-10",
+   "rasio_sampul": 1.333,
+   "sampul": "assets/img/video/youtube-synXvxbiGtc.jpg",
+   "skor": 6.266
   },
   {
    "platform": "youtube",
@@ -509,22 +524,6 @@
    "ditemukan": "2026-11-04",
    "rasio_sampul": 1.333,
    "sampul": "assets/img/video/youtube-X9q_K35VCcY.jpg",
-   "skor": 6.141
-  },
-  {
-   "platform": "youtube",
-   "id": "DlUvHbFk2vs",
-   "url": "https://www.youtube.com/watch?v=DlUvHbFk2vs",
-   "judul": "HENGAR VLOG #3 - WARGA MARGA MULYA - MERAUKE",
-   "kanal": "Hendrikus Ngarbingan",
-   "tanggal": "2020-11-11",
-   "tanggal_kira": true,
-   "tayang": 288,
-   "durasi": 720,
-   "rasio": "16:9",
-   "ditemukan": "2026-11-08",
-   "rasio_sampul": 1.333,
-   "sampul": "assets/img/video/youtube-DlUvHbFk2vs.jpg",
    "skor": 6.141
   },
   {
