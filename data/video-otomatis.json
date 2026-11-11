@@ -1,5 +1,5 @@
 {
- "diperiksa": "2026-11-11T16:53+09:00",
+ "diperiksa": "2026-11-11T22:51+09:00",
  "catatan": "Dibuat otomatis oleh scripts/update_video.py. Jangan disunting manual; gunakan video.pilihan di assets/js/data.js atau data/video-abaikan.json.",
  "video": [
   {
@@ -149,6 +149,22 @@
   },
   {
    "platform": "youtube",
+   "id": "ascjSfNf2UQ",
+   "url": "https://www.youtube.com/watch?v=ascjSfNf2UQ",
+   "judul": "Begini kekompakan❗️Warga Exs Transmigrasi di kampung Marga Mulya Papua Selatan",
+   "kanal": "STORY AMRY",
+   "tanggal": "2026-10-28",
+   "tanggal_kira": true,
+   "tayang": 633,
+   "durasi": 740,
+   "rasio": "16:9",
+   "ditemukan": "2026-11-04",
+   "rasio_sampul": 1.333,
+   "sampul": "assets/img/video/youtube-ascjSfNf2UQ.jpg",
+   "skor": 8.038
+  },
+  {
+   "platform": "youtube",
    "id": "FeS3BFihQts",
    "url": "https://www.youtube.com/watch?v=FeS3BFihQts",
    "judul": "TNI AD WUJUDKAN AIR BERSIH DI RT 09 MARGA MULYA - MERAUKE",
@@ -176,20 +192,6 @@
    "rasio_sampul": 0.562,
    "sampul": "assets/img/video/instagram-DdEgtLmCcJ8.jpg",
    "skor": 7.775
-  },
-  {
-   "platform": "youtube",
-   "id": "ascjSfNf2UQ",
-   "url": "https://www.youtube.com/watch?v=ascjSfNf2UQ",
-   "judul": "Begini kekompakan❗️Warga Exs Transmigrasi di kampung Marga Mulya Papua Selatan",
-   "kanal": "STORY AMRY",
-   "tayang": 632,
-   "durasi": 740,
-   "rasio": "16:9",
-   "ditemukan": "2026-11-04",
-   "rasio_sampul": 1.333,
-   "sampul": "assets/img/video/youtube-ascjSfNf2UQ.jpg",
-   "skor": 7.572
   },
   {
    "platform": "instagram",
@@ -564,19 +566,19 @@
   },
   {
    "platform": "youtube",
-   "id": "WotwvzxlpB0",
-   "url": "https://www.youtube.com/watch?v=WotwvzxlpB0",
-   "judul": "Wow!!! Orang Papua \"Wambon\" Sangat jago dalam mbajak sawah menggunakan traktor - Marga Mulya Merauke",
-   "kanal": "DOA-DOA HARIAN KATOLIK",
-   "tanggal": "2021-11-12",
+   "id": "XRGqKjXkVmo",
+   "url": "https://www.youtube.com/watch?v=XRGqKjXkVmo",
+   "judul": "Prakerin SMK Pertanian Kuler Di kamp. Marga Mulya - Merauke.",
+   "kanal": "Petani Milenial Merauke",
+   "tanggal": "2020-11-12",
    "tanggal_kira": true,
-   "tayang": 95,
-   "durasi": 48,
+   "tayang": 110,
+   "durasi": 203,
    "rasio": "16:9",
    "ditemukan": "2026-11-11",
    "rasio_sampul": 1.333,
-   "sampul": "assets/img/video/youtube-WotwvzxlpB0.jpg",
-   "skor": 5.822
+   "sampul": "assets/img/video/youtube-XRGqKjXkVmo.jpg",
+   "skor": 5.864
   },
   {
    "platform": "youtube",
