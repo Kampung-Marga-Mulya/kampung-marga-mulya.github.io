@@ -1,5 +1,5 @@
 {
- "diperiksa": "2026-11-12T16:55+09:00",
+ "diperiksa": "2026-11-12T22:52+09:00",
  "catatan": "Dibuat otomatis oleh scripts/update_video.py. Jangan disunting manual; gunakan video.pilihan di assets/js/data.js atau data/video-abaikan.json.",
  "video": [
   {
@@ -25,12 +25,12 @@
    "kanal": "kodamxxivmandalatrikora",
    "keterangan": "Koperasi Desa Merah Putih Kampung Marga Mulya, Distrik Semangga Kab.Merauke, Prov Papua Selatan Bersatu Berkarya, Tumbuh Sejahtera",
    "tanggal": "2026-11-05",
-   "suka": 45,
+   "suka": 46,
    "rasio": "9:16",
    "ditemukan": "2026-11-08",
    "rasio_sampul": 1.778,
    "sampul": "assets/img/video/instagram-DfY7fmOB9Dn.jpg",
-   "skor": 11.099
+   "skor": 11.106
   },
   {
    "platform": "instagram",
@@ -100,12 +100,12 @@
    "kanal": "aliftananda_",
    "keterangan": "Mancing mania Semangga 2 dan sekitarnya, merapat! @fm.fishing_ hadir buat kebutuhan mancing kalian 📍 Semangga 2, Kampung Marga Mulya (seberang Koperasi Merah Putih) juga tersedia jasa titip Agnia",
    "tanggal": "2026-06-30",
-   "suka": 169,
+   "suka": 168,
    "rasio": "9:16",
    "ditemukan": "2026-11-06",
    "rasio_sampul": 0.562,
    "sampul": "assets/img/video/instagram-DaO5UM3RBsF.jpg",
-   "skor": 9.626
+   "skor": 9.624
   },
   {
    "platform": "instagram",
@@ -155,7 +155,7 @@
    "kanal": "STORY AMRY",
    "tanggal": "2026-10-29",
    "tanggal_kira": true,
-   "tayang": 637,
+   "tayang": 638,
    "durasi": 740,
    "rasio": "16:9",
    "ditemukan": "2026-11-04",
@@ -514,19 +514,19 @@
   },
   {
    "platform": "youtube",
-   "id": "HrxJHBLGFEU",
-   "url": "https://www.youtube.com/watch?v=HrxJHBLGFEU",
-   "judul": "KARNAVAL SEMANGGA 2 MARGA MULYA, Dalam Rangka HUT RI KE 79 Tahun, MERAUKE 15 AGUSTUS 2024...",
-   "kanal": "TUKANG PHOTO ART",
-   "tanggal": "2024-11-12",
+   "id": "DlUvHbFk2vs",
+   "url": "https://www.youtube.com/watch?v=DlUvHbFk2vs",
+   "judul": "HENGAR VLOG #3 - WARGA MARGA MULYA - MERAUKE",
+   "kanal": "Hendrikus Ngarbingan",
+   "tanggal": "2020-11-13",
    "tanggal_kira": true,
-   "tayang": 279,
-   "durasi": 773,
+   "tayang": 288,
+   "durasi": 720,
    "rasio": "16:9",
    "ditemukan": "2026-11-12",
    "rasio_sampul": 1.333,
-   "sampul": "assets/img/video/youtube-HrxJHBLGFEU.jpg",
-   "skor": 6.138
+   "sampul": "assets/img/video/youtube-DlUvHbFk2vs.jpg",
+   "skor": 6.141
   },
   {
    "platform": "youtube",
@@ -543,22 +543,6 @@
    "rasio_sampul": 1.333,
    "sampul": "assets/img/video/youtube-m7Zz3j95XTY.jpg",
    "skor": 5.987
-  },
-  {
-   "platform": "youtube",
-   "id": "XRGqKjXkVmo",
-   "url": "https://www.youtube.com/watch?v=XRGqKjXkVmo",
-   "judul": "Prakerin SMK Pertanian Kuler Di kamp. Marga Mulya - Merauke.",
-   "kanal": "Petani Milenial Merauke",
-   "tanggal": "2020-11-13",
-   "tanggal_kira": true,
-   "tayang": 110,
-   "durasi": 203,
-   "rasio": "16:9",
-   "ditemukan": "2026-11-11",
-   "rasio_sampul": 1.333,
-   "sampul": "assets/img/video/youtube-XRGqKjXkVmo.jpg",
-   "skor": 5.864
   },
   {
    "platform": "youtube",
@@ -607,6 +591,22 @@
    "rasio_sampul": 1.333,
    "sampul": "assets/img/video/youtube-Rr33aaAKEFA.jpg",
    "skor": 5.75
+  },
+  {
+   "platform": "youtube",
+   "id": "Ms7Q4Kj4SpY",
+   "url": "https://www.youtube.com/watch?v=Ms7Q4Kj4SpY",
+   "judul": "Pernikahan ✨Risdah ♥️ Alfian✨ Di Kampung Marga Mulya Merauke",
+   "kanal": "MW ANTARSUKHA",
+   "tanggal": "2025-11-12",
+   "tanggal_kira": true,
+   "tayang": 44,
+   "durasi": 432,
+   "rasio": "16:9",
+   "ditemukan": "2026-11-12",
+   "rasio_sampul": 1.333,
+   "sampul": "assets/img/video/youtube-Ms7Q4Kj4SpY.jpg",
+   "skor": 5.745
   }
  ]
 }
