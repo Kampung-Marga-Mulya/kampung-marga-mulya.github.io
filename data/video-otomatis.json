@@ -1,5 +1,5 @@
 {
- "diperiksa": "2026-11-12T04:39+09:00",
+ "diperiksa": "2026-11-12T10:54+09:00",
  "catatan": "Dibuat otomatis oleh scripts/update_video.py. Jangan disunting manual; gunakan video.pilihan di assets/js/data.js atau data/video-abaikan.json.",
  "video": [
   {
@@ -155,13 +155,13 @@
    "kanal": "STORY AMRY",
    "tanggal": "2026-10-29",
    "tanggal_kira": true,
-   "tayang": 633,
+   "tayang": 636,
    "durasi": 740,
    "rasio": "16:9",
    "ditemukan": "2026-11-04",
    "rasio_sampul": 1.333,
    "sampul": "assets/img/video/youtube-ascjSfNf2UQ.jpg",
-   "skor": 8.038
+   "skor": 8.039
   },
   {
    "platform": "youtube",
@@ -255,6 +255,30 @@
    "rasio_sampul": 1.333,
    "sampul": "assets/img/video/youtube-x0s84dskmJM.jpg",
    "skor": 6.883
+  },
+  {
+   "platform": "youtube",
+   "id": "j6LGQ3EpiwM",
+   "url": "https://www.youtube.com/watch?v=j6LGQ3EpiwM",
+   "judul": "KARNAVAL SEMANGGA 2 MARGA MULYA, MERAUKE 15 AGUSTUS 2024",
+   "kanal": "zefan studio",
+   "rasio": "16:9",
+   "ditemukan": "2026-11-12",
+   "rasio_sampul": 1.333,
+   "sampul": "assets/img/video/youtube-j6LGQ3EpiwM.jpg",
+   "skor": 6.836
+  },
+  {
+   "platform": "youtube",
+   "id": "6k3LJ-dfkyI",
+   "url": "https://www.youtube.com/watch?v=6k3LJ-dfkyI",
+   "judul": "HABIS UNTUK SEWA ALAT‼️PETANI PADI KAMPUNG MARGAMULYA EKS TRANSMIGRASI SEMANGGA 2 KABUPATEN MERAUKE",
+   "kanal": "Leksono Japa",
+   "rasio": "16:9",
+   "ditemukan": "2026-11-12",
+   "rasio_sampul": 1.333,
+   "sampul": "assets/img/video/youtube-6k3LJ-dfkyI.jpg",
+   "skor": 6.836
   },
   {
    "platform": "youtube",
@@ -502,22 +526,6 @@
   },
   {
    "platform": "youtube",
-   "id": "LUCH4yWc_cw",
-   "url": "https://www.youtube.com/watch?v=LUCH4yWc_cw",
-   "judul": "TPQ Al Ittihad marga mulya merauke papua",
-   "kanal": "BUNDA RAHMA",
-   "tanggal": "2021-11-13",
-   "tanggal_kira": true,
-   "tayang": 256,
-   "durasi": 151,
-   "rasio": "16:9",
-   "ditemukan": "2026-11-11",
-   "rasio_sampul": 1.333,
-   "sampul": "assets/img/video/youtube-LUCH4yWc_cw.jpg",
-   "skor": 6.107
-  },
-  {
-   "platform": "youtube",
    "id": "m7Zz3j95XTY",
    "url": "https://www.youtube.com/watch?v=m7Zz3j95XTY",
    "judul": "pacuan kuda memperingati hari kemerdekaan HUT ke 78,Kampung MARGA MULYA SEMANGGA DUA.",
@@ -595,22 +603,6 @@
    "rasio_sampul": 1.333,
    "sampul": "assets/img/video/youtube-Rr33aaAKEFA.jpg",
    "skor": 5.75
-  },
-  {
-   "platform": "youtube",
-   "id": "Ms7Q4Kj4SpY",
-   "url": "https://www.youtube.com/watch?v=Ms7Q4Kj4SpY",
-   "judul": "Pernikahan ✨Risdah ♥️ Alfian✨ Di Kampung Marga Mulya Merauke",
-   "kanal": "MW ANTARSUKHA",
-   "tanggal": "2025-11-12",
-   "tanggal_kira": true,
-   "tayang": 44,
-   "durasi": 432,
-   "rasio": "16:9",
-   "ditemukan": "2026-11-12",
-   "rasio_sampul": 1.333,
-   "sampul": "assets/img/video/youtube-Ms7Q4Kj4SpY.jpg",
-   "skor": 5.745
   }
  ]
 }
