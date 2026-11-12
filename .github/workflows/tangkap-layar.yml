@@ -1,7 +1,7 @@
 name: Tangkap layar website (sementara)
 on: workflow_dispatch
 permissions:
-  contents: read
+  contents: write
 jobs:
   tangkap:
     runs-on: ubuntu-latest
@@ -22,8 +22,10 @@ jobs:
           CHANNEL: chrome
           NODE_PATH: /tmp/pw/node_modules
         run: node .github/ss/tangkap.js
-      - uses: actions/upload-artifact@v4
-        with:
-          name: tangkapan-layar
-          path: ss
-          retention-days: 3
+      - name: Simpan ke cabang sementara
+        run: |
+          cd ss
+          git init -q -b tangkapan-layar-tmp
+          git config user.name "github-actions[bot]"; git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A && git commit -q -m "Tangkapan layar sementara"
+          git push -q -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" tangkapan-layar-tmp
