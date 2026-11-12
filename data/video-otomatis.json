@@ -1,5 +1,5 @@
 {
- "diperiksa": "2026-11-12T10:54+09:00",
+ "diperiksa": "2026-11-12T16:55+09:00",
  "catatan": "Dibuat otomatis oleh scripts/update_video.py. Jangan disunting manual; gunakan video.pilihan di assets/js/data.js atau data/video-abaikan.json.",
  "video": [
   {
@@ -155,13 +155,13 @@
    "kanal": "STORY AMRY",
    "tanggal": "2026-10-29",
    "tanggal_kira": true,
-   "tayang": 636,
+   "tayang": 637,
    "durasi": 740,
    "rasio": "16:9",
    "ditemukan": "2026-11-04",
    "rasio_sampul": 1.333,
    "sampul": "assets/img/video/youtube-ascjSfNf2UQ.jpg",
-   "skor": 8.039
+   "skor": 8.04
   },
   {
    "platform": "youtube",
@@ -255,18 +255,6 @@
    "rasio_sampul": 1.333,
    "sampul": "assets/img/video/youtube-x0s84dskmJM.jpg",
    "skor": 6.883
-  },
-  {
-   "platform": "youtube",
-   "id": "j6LGQ3EpiwM",
-   "url": "https://www.youtube.com/watch?v=j6LGQ3EpiwM",
-   "judul": "KARNAVAL SEMANGGA 2 MARGA MULYA, MERAUKE 15 AGUSTUS 2024",
-   "kanal": "zefan studio",
-   "rasio": "16:9",
-   "ditemukan": "2026-11-12",
-   "rasio_sampul": 1.333,
-   "sampul": "assets/img/video/youtube-j6LGQ3EpiwM.jpg",
-   "skor": 6.836
   },
   {
    "platform": "youtube",
@@ -478,6 +466,22 @@
   },
   {
    "platform": "youtube",
+   "id": "j6LGQ3EpiwM",
+   "url": "https://www.youtube.com/watch?v=j6LGQ3EpiwM",
+   "judul": "KARNAVAL SEMANGGA 2 MARGA MULYA, MERAUKE 15 AGUSTUS 2024",
+   "kanal": "zefan studio",
+   "tanggal": "2024-11-12",
+   "tanggal_kira": true,
+   "tayang": 310,
+   "durasi": 434,
+   "rasio": "16:9",
+   "ditemukan": "2026-11-12",
+   "rasio_sampul": 1.333,
+   "sampul": "assets/img/video/youtube-j6LGQ3EpiwM.jpg",
+   "skor": 6.169
+  },
+  {
+   "platform": "youtube",
    "id": "xwMXuWhAQ14",
    "url": "https://www.youtube.com/watch?v=xwMXuWhAQ14",
    "judul": "KEMAJUAN PTDM 2021 PENGERING PADI UV DRYER DI KAMP MARGAMULYA, MERAUKE | UNIVERSITAS MUSAMUS",
@@ -510,19 +514,19 @@
   },
   {
    "platform": "youtube",
-   "id": "DlUvHbFk2vs",
-   "url": "https://www.youtube.com/watch?v=DlUvHbFk2vs",
-   "judul": "HENGAR VLOG #3 - WARGA MARGA MULYA - MERAUKE",
-   "kanal": "Hendrikus Ngarbingan",
-   "tanggal": "2020-11-13",
+   "id": "HrxJHBLGFEU",
+   "url": "https://www.youtube.com/watch?v=HrxJHBLGFEU",
+   "judul": "KARNAVAL SEMANGGA 2 MARGA MULYA, Dalam Rangka HUT RI KE 79 Tahun, MERAUKE 15 AGUSTUS 2024...",
+   "kanal": "TUKANG PHOTO ART",
+   "tanggal": "2024-11-12",
    "tanggal_kira": true,
-   "tayang": 288,
-   "durasi": 720,
+   "tayang": 279,
+   "durasi": 773,
    "rasio": "16:9",
-   "ditemukan": "2026-11-10",
+   "ditemukan": "2026-11-12",
    "rasio_sampul": 1.333,
-   "sampul": "assets/img/video/youtube-DlUvHbFk2vs.jpg",
-   "skor": 6.141
+   "sampul": "assets/img/video/youtube-HrxJHBLGFEU.jpg",
+   "skor": 6.138
   },
   {
    "platform": "youtube",
