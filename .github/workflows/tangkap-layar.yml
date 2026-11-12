@@ -1,0 +1,29 @@
+name: Tangkap layar website (sementara)
+on: workflow_dispatch
+permissions:
+  contents: read
+jobs:
+  tangkap:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Pasang Playwright
+        run: |
+          mkdir -p /tmp/pw && cd /tmp/pw && npm init -y >/dev/null && npm i playwright@1.48.2 >/dev/null
+          npx playwright install --with-deps chromium >/dev/null
+      - name: Ambil tangkapan layar situs live
+        env:
+          BASE: https://kampung-marga-mulya.github.io/
+          OUT: ${{ github.workspace }}/ss
+          CHANNEL: chrome
+          NODE_PATH: /tmp/pw/node_modules
+        run: node .github/ss/tangkap.js
+      - uses: actions/upload-artifact@v4
+        with:
+          name: tangkapan-layar
+          path: ss
+          retention-days: 3
