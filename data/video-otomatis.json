@@ -1,5 +1,5 @@
 {
- "diperiksa": "2026-11-13T10:49+09:00",
+ "diperiksa": "2026-11-13T16:54+09:00",
  "catatan": "Dibuat otomatis oleh scripts/update_video.py. Jangan disunting manual; gunakan video.pilihan di assets/js/data.js atau data/video-abaikan.json.",
  "video": [
   {
@@ -258,18 +258,6 @@
   },
   {
    "platform": "youtube",
-   "id": "j6LGQ3EpiwM",
-   "url": "https://www.youtube.com/watch?v=j6LGQ3EpiwM",
-   "judul": "KARNAVAL SEMANGGA 2 MARGA MULYA, MERAUKE 15 AGUSTUS 2024",
-   "kanal": "zefan studio",
-   "rasio": "16:9",
-   "ditemukan": "2026-11-13",
-   "rasio_sampul": 1.333,
-   "sampul": "assets/img/video/youtube-j6LGQ3EpiwM.jpg",
-   "skor": 6.836
-  },
-  {
-   "platform": "youtube",
    "id": "6k3LJ-dfkyI",
    "url": "https://www.youtube.com/watch?v=6k3LJ-dfkyI",
    "judul": "HABIS UNTUK SEWA ALAT‼️PETANI PADI KAMPUNG MARGAMULYA EKS TRANSMIGRASI SEMANGGA 2 KABUPATEN MERAUKE",
@@ -478,6 +466,22 @@
   },
   {
    "platform": "youtube",
+   "id": "j6LGQ3EpiwM",
+   "url": "https://www.youtube.com/watch?v=j6LGQ3EpiwM",
+   "judul": "KARNAVAL SEMANGGA 2 MARGA MULYA, MERAUKE 15 AGUSTUS 2024",
+   "kanal": "zefan studio",
+   "tanggal": "2024-11-13",
+   "tanggal_kira": true,
+   "tayang": 310,
+   "durasi": 434,
+   "rasio": "16:9",
+   "ditemukan": "2026-11-13",
+   "rasio_sampul": 1.333,
+   "sampul": "assets/img/video/youtube-j6LGQ3EpiwM.jpg",
+   "skor": 6.169
+  },
+  {
+   "platform": "youtube",
    "id": "xwMXuWhAQ14",
    "url": "https://www.youtube.com/watch?v=xwMXuWhAQ14",
    "judul": "KEMAJUAN PTDM 2021 PENGERING PADI UV DRYER DI KAMP MARGAMULYA, MERAUKE | UNIVERSITAS MUSAMUS",
@@ -526,14 +530,29 @@
   },
   {
    "platform": "youtube",
+   "id": "HrxJHBLGFEU",
+   "url": "https://www.youtube.com/watch?v=HrxJHBLGFEU",
+   "judul": "KARNAVAL SEMANGGA 2 MARGA MULYA, Dalam Rangka HUT RI KE 79 Tahun, MERAUKE 15 AGUSTUS 2024...",
+   "kanal": "TUKANG PHOTO ART",
+   "tanggal": "2024-11-13",
+   "tanggal_kira": true,
+   "tayang": 279,
+   "durasi": 773,
+   "rasio": "16:9",
+   "ditemukan": "2026-11-13",
+   "rasio_sampul": 1.333,
+   "sampul": "assets/img/video/youtube-HrxJHBLGFEU.jpg",
+   "skor": 6.138
+  },
+  {
+   "platform": "youtube",
    "id": "LUCH4yWc_cw",
    "url": "https://www.youtube.com/watch?v=LUCH4yWc_cw",
    "judul": "TPQ Al Ittihad marga mulya merauke papua",
    "kanal": "BUNDA RAHMA",
-   "tanggal": "2021-11-14",
-   "tanggal_kira": true,
+   "tanggal": "2021-05-27",
    "tayang": 256,
-   "durasi": 151,
+   "durasi": 150,
    "rasio": "16:9",
    "ditemukan": "2026-11-13",
    "rasio_sampul": 1.333,
@@ -558,6 +577,22 @@
   },
   {
    "platform": "youtube",
+   "id": "XRGqKjXkVmo",
+   "url": "https://www.youtube.com/watch?v=XRGqKjXkVmo",
+   "judul": "Prakerin SMK Pertanian Kuler Di kamp. Marga Mulya - Merauke.",
+   "kanal": "Petani Milenial Merauke",
+   "tanggal": "2020-11-14",
+   "tanggal_kira": true,
+   "tayang": 110,
+   "durasi": 203,
+   "rasio": "16:9",
+   "ditemukan": "2026-11-13",
+   "rasio_sampul": 1.333,
+   "sampul": "assets/img/video/youtube-XRGqKjXkVmo.jpg",
+   "skor": 5.864
+  },
+  {
+   "platform": "youtube",
    "id": "XJ42WnKHTtI",
    "url": "https://www.youtube.com/watch?v=XJ42WnKHTtI",
    "judul": "Pembaruan saluran air marga mulya semangga dua",
@@ -571,38 +606,6 @@
    "rasio_sampul": 1.333,
    "sampul": "assets/img/video/youtube-XJ42WnKHTtI.jpg",
    "skor": 5.815
-  },
-  {
-   "platform": "youtube",
-   "id": "B_BAq4rco-g",
-   "url": "https://www.youtube.com/watch?v=B_BAq4rco-g",
-   "judul": "Acara penutupan KKP Yaleka Maro Merauke angkatan XVII di Kampung Marga Mulya...",
-   "kanal": "Unarapal Chanel",
-   "tanggal": "2025-11-13",
-   "tanggal_kira": true,
-   "tayang": 46,
-   "durasi": 203,
-   "rasio": "16:9",
-   "ditemukan": "2026-11-04",
-   "rasio_sampul": 1.333,
-   "sampul": "assets/img/video/youtube-B_BAq4rco-g.jpg",
-   "skor": 5.758
-  },
-  {
-   "platform": "youtube",
-   "id": "Rr33aaAKEFA",
-   "url": "https://www.youtube.com/watch?v=Rr33aaAKEFA",
-   "judul": "Acara Rama Tama Warga Kampung Marga Mulya Semangga Dua Provinsi Papua Selatan",
-   "kanal": "Sobat HT",
-   "tanggal": "2023-11-14",
-   "tanggal_kira": true,
-   "tayang": 74,
-   "durasi": 314,
-   "rasio": "16:9",
-   "ditemukan": "2026-11-12",
-   "rasio_sampul": 1.333,
-   "sampul": "assets/img/video/youtube-Rr33aaAKEFA.jpg",
-   "skor": 5.75
   }
  ]
 }
