@@ -1,5 +1,5 @@
 {
- "diperiksa": "2026-11-13T16:54+09:00",
+ "diperiksa": "2026-11-13T22:50+09:00",
  "catatan": "Dibuat otomatis oleh scripts/update_video.py. Jangan disunting manual; gunakan video.pilihan di assets/js/data.js atau data/video-abaikan.json.",
  "video": [
   {
@@ -155,7 +155,7 @@
    "kanal": "STORY AMRY",
    "tanggal": "2026-10-30",
    "tanggal_kira": true,
-   "tayang": 640,
+   "tayang": 641,
    "durasi": 740,
    "rasio": "16:9",
    "ditemukan": "2026-11-04",
@@ -258,18 +258,6 @@
   },
   {
    "platform": "youtube",
-   "id": "6k3LJ-dfkyI",
-   "url": "https://www.youtube.com/watch?v=6k3LJ-dfkyI",
-   "judul": "HABIS UNTUK SEWA ALAT‼️PETANI PADI KAMPUNG MARGAMULYA EKS TRANSMIGRASI SEMANGGA 2 KABUPATEN MERAUKE",
-   "kanal": "Leksono Japa",
-   "rasio": "16:9",
-   "ditemukan": "2026-11-12",
-   "rasio_sampul": 1.333,
-   "sampul": "assets/img/video/youtube-6k3LJ-dfkyI.jpg",
-   "skor": 6.817
-  },
-  {
-   "platform": "youtube",
    "id": "r-VyRP2D5ms",
    "url": "https://www.youtube.com/watch?v=r-VyRP2D5ms",
    "judul": "Hari SUMPAH PEMUDA,Perlombaan mancing didesa Margamulya, Merauke PAPUA Team Nekat Strike",
@@ -351,6 +339,22 @@
    "rasio_sampul": 1.333,
    "sampul": "assets/img/video/youtube-NYrnk265P5U.jpg",
    "skor": 6.588
+  },
+  {
+   "platform": "youtube",
+   "id": "6k3LJ-dfkyI",
+   "url": "https://www.youtube.com/watch?v=6k3LJ-dfkyI",
+   "judul": "HABIS UNTUK SEWA ALAT‼️PETANI PADI KAMPUNG MARGAMULYA EKS TRANSMIGRASI SEMANGGA 2 KABUPATEN MERAUKE",
+   "kanal": "Leksono Japa",
+   "tanggal": "2025-11-13",
+   "tanggal_kira": true,
+   "tayang": 580,
+   "durasi": 1193,
+   "rasio": "16:9",
+   "ditemukan": "2026-11-12",
+   "rasio_sampul": 1.333,
+   "sampul": "assets/img/video/youtube-6k3LJ-dfkyI.jpg",
+   "skor": 6.486
   },
   {
    "platform": "youtube",
@@ -456,13 +460,13 @@
    "kanal": "EL Marhume",
    "tanggal": "2021-11-14",
    "tanggal_kira": true,
-   "tayang": 325,
+   "tayang": 326,
    "durasi": 196,
    "rasio": "16:9",
    "ditemukan": "2026-11-04",
    "rasio_sampul": 1.333,
    "sampul": "assets/img/video/youtube-aBW2UvI8KZo.jpg",
-   "skor": 6.175
+   "skor": 6.176
   },
   {
    "platform": "youtube",
@@ -550,9 +554,10 @@
    "url": "https://www.youtube.com/watch?v=LUCH4yWc_cw",
    "judul": "TPQ Al Ittihad marga mulya merauke papua",
    "kanal": "BUNDA RAHMA",
-   "tanggal": "2021-05-27",
+   "tanggal": "2021-11-14",
+   "tanggal_kira": true,
    "tayang": 256,
-   "durasi": 150,
+   "durasi": 151,
    "rasio": "16:9",
    "ditemukan": "2026-11-13",
    "rasio_sampul": 1.333,
