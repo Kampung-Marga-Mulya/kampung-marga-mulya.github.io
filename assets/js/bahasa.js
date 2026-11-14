@@ -25,7 +25,15 @@
     b.type = "button"; b.id = "bahasaBtn"; b.className = "bahasa";
     b.setAttribute("aria-label", lang === "en" ? "Ganti ke Bahasa Indonesia" : "Switch to English");
     b.title = lang === "en" ? "Bahasa Indonesia" : "English";
-    b.innerHTML = '<span class="bahasa__opsi' + (lang === "id" ? " is-on" : "") + '">ID</span><span class="bahasa__opsi' + (lang === "en" ? " is-on" : "") + '">EN</span>';
+    var BENDERA = {
+      id: '<svg viewBox="0 0 30 30" aria-hidden="true"><rect width="30" height="15" fill="#CE1126"/><rect y="15" width="30" height="15" fill="#fff"/></svg>',
+      en: '<svg viewBox="0 0 60 30" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><clipPath id="bhsT"><path d="M30,15h30v15zv15h-30zh-30v-15zv-15h30z"/></clipPath>' +
+        '<rect width="60" height="30" fill="#012169"/><path d="M0,0L60,30M60,0L0,30" stroke="#fff" stroke-width="6"/>' +
+        '<path d="M0,0L60,30M60,0L0,30" clip-path="url(#bhsT)" stroke="#C8102E" stroke-width="4"/>' +
+        '<path d="M30,0v30M0,15h60" stroke="#fff" stroke-width="10"/><path d="M30,0v30M0,15h60" stroke="#C8102E" stroke-width="6"/></svg>'
+    };
+    function opsi(k, nama) { return '<span class="bahasa__opsi bahasa__opsi--' + k + (lang === k ? " is-on" : "") + '" title="' + nama + '">' + BENDERA[k] + '</span>'; }
+    b.innerHTML = opsi("id", "Bahasa Indonesia") + opsi("en", "English");
     b.setAttribute("data-i18n-skip", "");
     b.addEventListener("click", function () {
       try { localStorage.setItem(KUNCI, lang === "en" ? "id" : "en"); } catch (e) {}
