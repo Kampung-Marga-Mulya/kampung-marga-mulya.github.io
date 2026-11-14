@@ -44,6 +44,9 @@
 .bahasa { position: relative; display: inline-flex; align-items: center; gap: 4px; flex: none; height: 44px; padding: 4px; border-radius: 999px; border: 1px solid var(--line, #DCE6F6); background: var(--card, #fff); cursor: pointer; -webkit-tap-highlight-color: transparent; touch-action: manipulation; transition: border-color .15s, transform .15s, box-shadow .15s; }
 .bahasa:hover { border-color: var(--blue-mid, #7AAAF2); box-shadow: 0 2px 10px rgba(20, 82, 194, .12); }
 .bahasa:active { transform: scale(.95); }
+.bahasa { z-index: 2; user-select: none; -webkit-user-select: none; }
+.bahasa svg, .bahasa__opsi { pointer-events: none; }
+.bahasa.is-ganti { opacity: .6; cursor: progress; }
 .bahasa:focus-visible { outline: 2px solid var(--blue, #1452C2); outline-offset: 2px; }
 /* area sentuh diperluas di luar bentuk tombol */
 .bahasa::after { content: ""; position: absolute; inset: -6px; border-radius: 999px; }

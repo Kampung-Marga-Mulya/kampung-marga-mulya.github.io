@@ -9,12 +9,14 @@
   "use strict";
   var KUNCI = "mm_bahasa", root = document.documentElement;
   var akar = (document.currentScript && document.currentScript.src || "").replace(/assets\/js\/bahasa\.js.*$/, "");
-  var lang = "id";
-  try {
-    var q = new URLSearchParams(location.search).get("lang");
-    if (q === "en" || q === "id") localStorage.setItem(KUNCI, q);
-    lang = localStorage.getItem(KUNCI) === "en" ? "en" : "id";
-  } catch (e) { /* penyimpanan tidak tersedia: pakai bahasa Indonesia */ }
+  var lang = "id", simpanOk = false, q = null;
+  try { q = new URLSearchParams(location.search).get("lang"); } catch (e) {}
+  function simpan(v) {
+    try { localStorage.setItem(KUNCI, v); simpanOk = localStorage.getItem(KUNCI) === v; } catch (e) { simpanOk = false; }
+    return simpanOk;
+  }
+  if (q === "en" || q === "id") { lang = q; simpan(q); }
+  else { try { lang = localStorage.getItem(KUNCI) === "en" ? "en" : "id"; simpanOk = true; } catch (e) { lang = "id"; } }
   root.setAttribute("data-bahasa", lang);
   window.MM_BAHASA = lang;
 
@@ -35,9 +37,16 @@
     function opsi(k, nama) { return '<span class="bahasa__opsi bahasa__opsi--' + k + (lang === k ? " is-on" : "") + '" title="' + nama + '">' + BENDERA[k] + '</span>'; }
     b.innerHTML = opsi("id", "Bahasa Indonesia") + opsi("en", "English");
     b.setAttribute("data-i18n-skip", "");
-    b.addEventListener("click", function () {
-      try { localStorage.setItem(KUNCI, lang === "en" ? "id" : "en"); } catch (e) {}
-      var u = new URL(location.href); u.searchParams.delete("lang"); location.replace(u.toString());
+    b.addEventListener("click", function (ev) {
+      ev.preventDefault(); ev.stopPropagation();
+      if (b.disabled) return;
+      b.disabled = true; b.classList.add("is-ganti");
+      var tujuan = lang === "en" ? "id" : "en";
+      var u = new URL(location.href);
+      // Bila penyimpanan perangkat bisa dipakai, alamat dibiarkan bersih; bila tidak (cookie/penyimpanan diblokir), bahasa dibawa lewat ?lang=
+      if (simpan(tujuan)) u.searchParams.delete("lang"); else u.searchParams.set("lang", tujuan);
+      var baru = u.toString();
+      if (baru === location.href) location.reload(); else location.href = baru;
     });
     var tema = document.getElementById("temaBtn"), row = document.querySelector(".bar__in .row"), bar = document.querySelector(".bar__in");
     if (tema && tema.parentNode) tema.parentNode.insertBefore(b, tema);
@@ -45,6 +54,18 @@
     else if (bar && bar.lastElementChild) { b.classList.add("bahasa--lepas"); bar.insertBefore(b, bar.lastElementChild); }
     else { b.classList.add("bahasa--apung"); document.body.appendChild(b); }
   }
+
+  // Penyimpanan diblokir: bawa pilihan bahasa ke halaman lain di situs ini lewat alamat
+  document.addEventListener("click", function (ev) {
+    if (simpanOk || q !== lang) return;
+    var a = ev.target && ev.target.closest && ev.target.closest("a[href]");
+    if (!a || a.target === "_blank" || a.hasAttribute("download")) return;
+    try {
+      var u = new URL(a.getAttribute("href"), location.href);
+      if (u.origin !== location.origin || (u.pathname === location.pathname && u.hash)) return;
+      u.searchParams.set("lang", lang); a.setAttribute("href", u.pathname + u.search + u.hash);
+    } catch (e) {}
+  }, true);
 
   if (lang !== "en") {
     if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", pasangTombol); else pasangTombol();
