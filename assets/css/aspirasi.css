@@ -39,3 +39,26 @@
   .aspirasi__act a { flex: 1; padding: 9px 10px; font-size: .86rem; }
 }
 @media (prefers-reduced-motion: reduce) { .aspirasi__ikon::after { animation: none; } }
+
+/* ---------- Pilihan bahasa ID / EN ---------- */
+.bahasa { display: inline-flex; align-items: center; gap: 2px; flex: none; height: 40px; padding: 3px; border-radius: 999px; border: 1px solid var(--line, #DCE6F6); background: var(--card, #fff); color: var(--ink, #0A0A0A); font: 700 12px/1 inherit; font-family: inherit; letter-spacing: .04em; cursor: pointer; transition: border-color .15s, transform .15s; }
+.bahasa:hover { border-color: var(--blue-mid, #7AAAF2); }
+.bahasa:active { transform: scale(.95); }
+.bahasa:focus-visible { outline: 2px solid var(--blue, #1452C2); outline-offset: 2px; }
+.bahasa__opsi { display: grid; place-items: center; min-width: 30px; height: 100%; padding: 0 6px; border-radius: 999px; color: var(--muted, #4A5A73); transition: background-color .15s, color .15s; }
+.bahasa__opsi.is-on { background: linear-gradient(135deg, #2F6FE0, #0B3A8F); color: #fff; }
+.bahasa--lepas { margin-left: auto; height: 36px; }
+.bahasa--apung { position: fixed; top: 14px; right: 14px; z-index: 50; height: 36px; }
+.row .bahasa { height: auto; align-self: stretch; }
+@media (max-width: 960px) { .topbar__in .bahasa { order: 2; height: 36px; } }
+/* Di ponsel: satu tombol bulat berisi bahasa tujuan (ID ↔ EN) agar nama situs tidak terpotong */
+@media (max-width: 430px) {
+  .topbar__in { gap: 6px; }
+  .topbar__in .bahasa, .bar__in .bahasa { width: 32px; height: 32px; padding: 0; justify-content: center; align-self: center; }
+  .bar__in .bahasa { width: 36px; height: 36px; }
+  .topbar__in .bahasa__opsi, .bar__in .bahasa__opsi { min-width: 0; padding: 0; font-size: 11px; color: var(--blue, #1452C2); }
+  .topbar__in .bahasa__opsi.is-on, .bar__in .bahasa__opsi.is-on { display: none; }
+  .partners img { height: 26px; }
+}
+html.i18n-tunggu body { opacity: 0; }
+html body { transition: opacity .15s; }
