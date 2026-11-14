@@ -1,5 +1,5 @@
 {
-  "diperiksa": "2026-11-14",
+  "diperiksa": "2026-11-15",
   "berita": [
     {
       "tanggal": "2026-11-10",
@@ -400,17 +400,6 @@
       "otomatis": true,
       "kategori": "Pertanian Merauke",
       "ditemukan": "2026-10-30"
-    },
-    {
-      "tanggal": "2026-10-15",
-      "sumber": "jurnas.com",
-      "judul": "Mentrans Sambut Baik Usulan Tiongkok Kolaborasi Pusat Riset Padi di Merauke",
-      "ringkas": "Saya setuju dengan semua usulan tersebut, tinggal kita konkretkan. Saya sangat setuju membuka litbang bersama",
-      "url": "https://www.jurnas.com/artikel/1667143/mentrans-sambut-baik-usulan-tiongkok-kolaborasi-pusat-riset-padi-di-merauke/",
-      "cover": "https://mxms.jurnas.com/uploads/1/2026/2026-10-15/ad32d5a068e9b1413a4042000f408ba2_1.jpg",
-      "otomatis": true,
-      "kategori": "Pertanian Merauke",
-      "ditemukan": "2026-10-29"
     }
   ]
 }
