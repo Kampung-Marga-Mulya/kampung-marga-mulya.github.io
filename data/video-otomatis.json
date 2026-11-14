@@ -1,5 +1,5 @@
 {
- "diperiksa": "2026-11-14T10:45+09:00",
+ "diperiksa": "2026-11-14T16:42+09:00",
  "catatan": "Dibuat otomatis oleh scripts/update_video.py. Jangan disunting manual; gunakan video.pilihan di assets/js/data.js atau data/video-abaikan.json.",
  "video": [
   {
@@ -258,14 +258,14 @@
   },
   {
    "platform": "youtube",
-   "id": "j6LGQ3EpiwM",
-   "url": "https://www.youtube.com/watch?v=j6LGQ3EpiwM",
-   "judul": "KARNAVAL SEMANGGA 2 MARGA MULYA, MERAUKE 15 AGUSTUS 2024",
-   "kanal": "zefan studio",
+   "id": "6k3LJ-dfkyI",
+   "url": "https://www.youtube.com/watch?v=6k3LJ-dfkyI",
+   "judul": "HABIS UNTUK SEWA ALAT‼️PETANI PADI KAMPUNG MARGAMULYA EKS TRANSMIGRASI SEMANGGA 2 KABUPATEN MERAUKE",
+   "kanal": "Leksono Japa",
    "rasio": "16:9",
    "ditemukan": "2026-11-14",
    "rasio_sampul": 1.333,
-   "sampul": "assets/img/video/youtube-j6LGQ3EpiwM.jpg",
+   "sampul": "assets/img/video/youtube-6k3LJ-dfkyI.jpg",
    "skor": 6.836
   },
   {
@@ -466,6 +466,22 @@
   },
   {
    "platform": "youtube",
+   "id": "j6LGQ3EpiwM",
+   "url": "https://www.youtube.com/watch?v=j6LGQ3EpiwM",
+   "judul": "KARNAVAL SEMANGGA 2 MARGA MULYA, MERAUKE 15 AGUSTUS 2024",
+   "kanal": "zefan studio",
+   "tanggal": "2024-11-14",
+   "tanggal_kira": true,
+   "tayang": 310,
+   "durasi": 434,
+   "rasio": "16:9",
+   "ditemukan": "2026-11-14",
+   "rasio_sampul": 1.333,
+   "sampul": "assets/img/video/youtube-j6LGQ3EpiwM.jpg",
+   "skor": 6.169
+  },
+  {
+   "platform": "youtube",
    "id": "xwMXuWhAQ14",
    "url": "https://www.youtube.com/watch?v=xwMXuWhAQ14",
    "judul": "KEMAJUAN PTDM 2021 PENGERING PADI UV DRYER DI KAMP MARGAMULYA, MERAUKE | UNIVERSITAS MUSAMUS",
@@ -495,6 +511,22 @@
    "rasio_sampul": 1.333,
    "sampul": "assets/img/video/youtube-X9q_K35VCcY.jpg",
    "skor": 6.143
+  },
+  {
+   "platform": "youtube",
+   "id": "DlUvHbFk2vs",
+   "url": "https://www.youtube.com/watch?v=DlUvHbFk2vs",
+   "judul": "HENGAR VLOG #3 - WARGA MARGA MULYA - MERAUKE",
+   "kanal": "Hendrikus Ngarbingan",
+   "tanggal": "2020-11-15",
+   "tanggal_kira": true,
+   "tayang": 289,
+   "durasi": 720,
+   "rasio": "16:9",
+   "ditemukan": "2026-11-14",
+   "rasio_sampul": 1.333,
+   "sampul": "assets/img/video/youtube-DlUvHbFk2vs.jpg",
+   "skor": 6.142
   },
   {
    "platform": "youtube",
@@ -575,38 +607,6 @@
    "rasio_sampul": 1.333,
    "sampul": "assets/img/video/youtube-Rr33aaAKEFA.jpg",
    "skor": 5.75
-  },
-  {
-   "platform": "youtube",
-   "id": "Ms7Q4Kj4SpY",
-   "url": "https://www.youtube.com/watch?v=Ms7Q4Kj4SpY",
-   "judul": "Pernikahan ✨Risdah ♥️ Alfian✨ Di Kampung Marga Mulya Merauke",
-   "kanal": "MW ANTARSUKHA",
-   "tanggal": "2025-11-14",
-   "tanggal_kira": true,
-   "tayang": 44,
-   "durasi": 432,
-   "rasio": "16:9",
-   "ditemukan": "2026-11-14",
-   "rasio_sampul": 1.333,
-   "sampul": "assets/img/video/youtube-Ms7Q4Kj4SpY.jpg",
-   "skor": 5.745
-  },
-  {
-   "platform": "youtube",
-   "id": "ZzWVl1Jv88A",
-   "url": "https://www.youtube.com/watch?v=ZzWVl1Jv88A",
-   "judul": "HIRUP LIMBAH KOTORAN AYAM, WARGA KAMPUNG MARGAMULYA PROTES",
-   "kanal": "KOMPASTV MERAUKE",
-   "tanggal": "2020-11-15",
-   "tanggal_kira": true,
-   "tayang": 1631,
-   "durasi": 231,
-   "rasio": "16:9",
-   "ditemukan": "2026-11-14",
-   "rasio_sampul": 1.333,
-   "sampul": "assets/img/video/youtube-ZzWVl1Jv88A.jpg",
-   "skor": 5.642
   }
  ]
 }
