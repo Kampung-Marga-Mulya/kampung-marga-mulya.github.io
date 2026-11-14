@@ -1,5 +1,5 @@
 {
- "diperiksa": "2026-11-14T16:42+09:00",
+ "diperiksa": "2026-11-14T22:32+09:00",
  "catatan": "Dibuat otomatis oleh scripts/update_video.py. Jangan disunting manual; gunakan video.pilihan di assets/js/data.js atau data/video-abaikan.json.",
  "video": [
   {
@@ -155,13 +155,13 @@
    "kanal": "STORY AMRY",
    "tanggal": "2026-10-31",
    "tanggal_kira": true,
-   "tayang": 642,
+   "tayang": 644,
    "durasi": 740,
    "rasio": "16:9",
    "ditemukan": "2026-11-04",
    "rasio_sampul": 1.333,
    "sampul": "assets/img/video/youtube-ascjSfNf2UQ.jpg",
-   "skor": 8.042
+   "skor": 8.043
   },
   {
    "platform": "youtube",
@@ -466,22 +466,6 @@
   },
   {
    "platform": "youtube",
-   "id": "j6LGQ3EpiwM",
-   "url": "https://www.youtube.com/watch?v=j6LGQ3EpiwM",
-   "judul": "KARNAVAL SEMANGGA 2 MARGA MULYA, MERAUKE 15 AGUSTUS 2024",
-   "kanal": "zefan studio",
-   "tanggal": "2024-11-14",
-   "tanggal_kira": true,
-   "tayang": 310,
-   "durasi": 434,
-   "rasio": "16:9",
-   "ditemukan": "2026-11-14",
-   "rasio_sampul": 1.333,
-   "sampul": "assets/img/video/youtube-j6LGQ3EpiwM.jpg",
-   "skor": 6.169
-  },
-  {
-   "platform": "youtube",
    "id": "xwMXuWhAQ14",
    "url": "https://www.youtube.com/watch?v=xwMXuWhAQ14",
    "judul": "KEMAJUAN PTDM 2021 PENGERING PADI UV DRYER DI KAMP MARGAMULYA, MERAUKE | UNIVERSITAS MUSAMUS",
@@ -607,6 +591,22 @@
    "rasio_sampul": 1.333,
    "sampul": "assets/img/video/youtube-Rr33aaAKEFA.jpg",
    "skor": 5.75
+  },
+  {
+   "platform": "youtube",
+   "id": "Ms7Q4Kj4SpY",
+   "url": "https://www.youtube.com/watch?v=Ms7Q4Kj4SpY",
+   "judul": "Pernikahan ✨Risdah ♥️ Alfian✨ Di Kampung Marga Mulya Merauke",
+   "kanal": "MW ANTARSUKHA",
+   "tanggal": "2025-11-14",
+   "tanggal_kira": true,
+   "tayang": 44,
+   "durasi": 432,
+   "rasio": "16:9",
+   "ditemukan": "2026-11-14",
+   "rasio_sampul": 1.333,
+   "sampul": "assets/img/video/youtube-Ms7Q4Kj4SpY.jpg",
+   "skor": 5.745
   }
  ]
 }
