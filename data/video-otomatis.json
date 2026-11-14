@@ -1,5 +1,5 @@
 {
- "diperiksa": "2026-11-14T04:35+09:00",
+ "diperiksa": "2026-11-14T10:45+09:00",
  "catatan": "Dibuat otomatis oleh scripts/update_video.py. Jangan disunting manual; gunakan video.pilihan di assets/js/data.js atau data/video-abaikan.json.",
  "video": [
   {
@@ -25,12 +25,12 @@
    "kanal": "kodamxxivmandalatrikora",
    "keterangan": "Koperasi Desa Merah Putih Kampung Marga Mulya, Distrik Semangga Kab.Merauke, Prov Papua Selatan Bersatu Berkarya, Tumbuh Sejahtera",
    "tanggal": "2026-11-05",
-   "suka": 47,
+   "suka": 48,
    "rasio": "9:16",
    "ditemukan": "2026-11-08",
    "rasio_sampul": 1.778,
    "sampul": "assets/img/video/instagram-DfY7fmOB9Dn.jpg",
-   "skor": 11.065
+   "skor": 11.071
   },
   {
    "platform": "instagram",
@@ -155,13 +155,13 @@
    "kanal": "STORY AMRY",
    "tanggal": "2026-10-31",
    "tanggal_kira": true,
-   "tayang": 641,
+   "tayang": 642,
    "durasi": 740,
    "rasio": "16:9",
    "ditemukan": "2026-11-04",
    "rasio_sampul": 1.333,
    "sampul": "assets/img/video/youtube-ascjSfNf2UQ.jpg",
-   "skor": 8.041
+   "skor": 8.042
   },
   {
    "platform": "youtube",
@@ -255,6 +255,18 @@
    "rasio_sampul": 1.333,
    "sampul": "assets/img/video/youtube-x0s84dskmJM.jpg",
    "skor": 6.883
+  },
+  {
+   "platform": "youtube",
+   "id": "j6LGQ3EpiwM",
+   "url": "https://www.youtube.com/watch?v=j6LGQ3EpiwM",
+   "judul": "KARNAVAL SEMANGGA 2 MARGA MULYA, MERAUKE 15 AGUSTUS 2024",
+   "kanal": "zefan studio",
+   "rasio": "16:9",
+   "ditemukan": "2026-11-14",
+   "rasio_sampul": 1.333,
+   "sampul": "assets/img/video/youtube-j6LGQ3EpiwM.jpg",
+   "skor": 6.836
   },
   {
    "platform": "youtube",
@@ -518,6 +530,22 @@
   },
   {
    "platform": "youtube",
+   "id": "XJ42WnKHTtI",
+   "url": "https://www.youtube.com/watch?v=XJ42WnKHTtI",
+   "judul": "Pembaruan saluran air marga mulya semangga dua",
+   "kanal": "EL Marhume",
+   "tanggal": "2021-11-15",
+   "tanggal_kira": true,
+   "tayang": 93,
+   "durasi": 123,
+   "rasio": "16:9",
+   "ditemukan": "2026-11-14",
+   "rasio_sampul": 1.333,
+   "sampul": "assets/img/video/youtube-XJ42WnKHTtI.jpg",
+   "skor": 5.815
+  },
+  {
+   "platform": "youtube",
    "id": "B_BAq4rco-g",
    "url": "https://www.youtube.com/watch?v=B_BAq4rco-g",
    "judul": "Acara penutupan KKP Yaleka Maro Merauke angkatan XVII di Kampung Marga Mulya...",
@@ -579,38 +607,6 @@
    "rasio_sampul": 1.333,
    "sampul": "assets/img/video/youtube-ZzWVl1Jv88A.jpg",
    "skor": 5.642
-  },
-  {
-   "platform": "youtube",
-   "id": "VIeLV2H-uEg",
-   "url": "https://www.youtube.com/watch?v=VIeLV2H-uEg",
-   "judul": "FULL PTDM 2021 PENGERING PADI UV DRYER DI KAMP. MARGA MULYA | MERAUKE | UNIVERSITAS MUSAMUS",
-   "kanal": "Putra Andika Musamus",
-   "tanggal": "2022-11-15",
-   "tanggal_kira": true,
-   "tayang": 49,
-   "durasi": 181,
-   "rasio": "16:9",
-   "ditemukan": "2026-11-14",
-   "rasio_sampul": 1.333,
-   "sampul": "assets/img/video/youtube-VIeLV2H-uEg.jpg",
-   "skor": 5.633
-  },
-  {
-   "platform": "youtube",
-   "id": "T3Nx9SI6AFU",
-   "url": "https://www.youtube.com/watch?v=T3Nx9SI6AFU",
-   "judul": "Pemberdayaan Berbasis Masyarakat | Universitas Musamus | Kmp. Marga Mulya-Kab. Merauke-Papua Selatan",
-   "kanal": "Teknik Pertanian Unmus",
-   "tanggal": "2024-11-14",
-   "tanggal_kira": true,
-   "tayang": 39,
-   "durasi": 288,
-   "rasio": "16:9",
-   "ditemukan": "2026-11-14",
-   "rasio_sampul": 1.333,
-   "sampul": "assets/img/video/youtube-T3Nx9SI6AFU.jpg",
-   "skor": 5.575
   }
  ]
 }
