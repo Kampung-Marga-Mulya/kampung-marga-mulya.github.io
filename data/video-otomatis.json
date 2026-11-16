@@ -1,5 +1,5 @@
 {
- "diperiksa": "2026-11-16T04:25+09:00",
+ "diperiksa": "2026-11-16T11:03+09:00",
  "catatan": "Dibuat otomatis oleh scripts/update_video.py. Jangan disunting manual; gunakan video.pilihan di assets/js/data.js atau data/video-abaikan.json.",
  "video": [
   {
@@ -25,12 +25,12 @@
    "kanal": "kodamxxivmandalatrikora",
    "keterangan": "Koperasi Desa Merah Putih Kampung Marga Mulya, Distrik Semangga Kab.Merauke, Prov Papua Selatan Bersatu Berkarya, Tumbuh Sejahtera",
    "tanggal": "2026-11-05",
-   "suka": 48,
+   "suka": 49,
    "rasio": "9:16",
    "ditemukan": "2026-11-08",
    "rasio_sampul": 1.778,
    "sampul": "assets/img/video/instagram-DfY7fmOB9Dn.jpg",
-   "skor": 11.025
+   "skor": 11.031
   },
   {
    "platform": "instagram",
@@ -514,19 +514,35 @@
   },
   {
    "platform": "youtube",
-   "id": "DlUvHbFk2vs",
-   "url": "https://www.youtube.com/watch?v=DlUvHbFk2vs",
-   "judul": "HENGAR VLOG #3 - WARGA MARGA MULYA - MERAUKE",
-   "kanal": "Hendrikus Ngarbingan",
-   "tanggal": "2020-11-17",
+   "id": "HrxJHBLGFEU",
+   "url": "https://www.youtube.com/watch?v=HrxJHBLGFEU",
+   "judul": "KARNAVAL SEMANGGA 2 MARGA MULYA, Dalam Rangka HUT RI KE 79 Tahun, MERAUKE 15 AGUSTUS 2024...",
+   "kanal": "TUKANG PHOTO ART",
+   "tanggal": "2024-11-16",
    "tanggal_kira": true,
-   "tayang": 289,
-   "durasi": 720,
+   "tayang": 279,
+   "durasi": 773,
    "rasio": "16:9",
-   "ditemukan": "2026-11-15",
+   "ditemukan": "2026-11-16",
    "rasio_sampul": 1.333,
-   "sampul": "assets/img/video/youtube-DlUvHbFk2vs.jpg",
-   "skor": 6.142
+   "sampul": "assets/img/video/youtube-HrxJHBLGFEU.jpg",
+   "skor": 6.138
+  },
+  {
+   "platform": "youtube",
+   "id": "LUCH4yWc_cw",
+   "url": "https://www.youtube.com/watch?v=LUCH4yWc_cw",
+   "judul": "TPQ Al Ittihad marga mulya merauke papua",
+   "kanal": "BUNDA RAHMA",
+   "tanggal": "2021-11-17",
+   "tanggal_kira": true,
+   "tayang": 256,
+   "durasi": 151,
+   "rasio": "16:9",
+   "ditemukan": "2026-11-16",
+   "rasio_sampul": 1.333,
+   "sampul": "assets/img/video/youtube-LUCH4yWc_cw.jpg",
+   "skor": 6.107
   },
   {
    "platform": "youtube",
@@ -546,19 +562,19 @@
   },
   {
    "platform": "youtube",
-   "id": "XRGqKjXkVmo",
-   "url": "https://www.youtube.com/watch?v=XRGqKjXkVmo",
-   "judul": "Prakerin SMK Pertanian Kuler Di kamp. Marga Mulya - Merauke.",
-   "kanal": "Petani Milenial Merauke",
-   "tanggal": "2020-11-17",
+   "id": "WotwvzxlpB0",
+   "url": "https://www.youtube.com/watch?v=WotwvzxlpB0",
+   "judul": "Wow!!! Orang Papua \"Wambon\" Sangat jago dalam mbajak sawah menggunakan traktor - Marga Mulya Merauke",
+   "kanal": "DOA-DOA HARIAN KATOLIK",
+   "tanggal": "2021-11-17",
    "tanggal_kira": true,
-   "tayang": 110,
-   "durasi": 203,
+   "tayang": 95,
+   "durasi": 48,
    "rasio": "16:9",
-   "ditemukan": "2026-11-15",
+   "ditemukan": "2026-11-16",
    "rasio_sampul": 1.333,
-   "sampul": "assets/img/video/youtube-XRGqKjXkVmo.jpg",
-   "skor": 5.864
+   "sampul": "assets/img/video/youtube-WotwvzxlpB0.jpg",
+   "skor": 5.822
   },
   {
    "platform": "youtube",
@@ -578,35 +594,19 @@
   },
   {
    "platform": "youtube",
-   "id": "B_BAq4rco-g",
-   "url": "https://www.youtube.com/watch?v=B_BAq4rco-g",
-   "judul": "Acara penutupan KKP Yaleka Maro Merauke angkatan XVII di Kampung Marga Mulya...",
-   "kanal": "Unarapal Chanel",
-   "tanggal": "2025-11-16",
+   "id": "T8GhVE0_MsU",
+   "url": "https://www.youtube.com/watch?v=T8GhVE0_MsU",
+   "judul": "upacara Bendera HUT RI KE 79,KAMPUNG MARGA MULYA MERAUKE PAPUA SELATAN",
+   "kanal": "Mas Blenk Makarena",
+   "tanggal": "2024-11-16",
    "tanggal_kira": true,
-   "tayang": 46,
-   "durasi": 203,
+   "tayang": 77,
+   "durasi": 247,
    "rasio": "16:9",
-   "ditemukan": "2026-11-14",
+   "ditemukan": "2026-11-16",
    "rasio_sampul": 1.333,
-   "sampul": "assets/img/video/youtube-B_BAq4rco-g.jpg",
-   "skor": 5.758
-  },
-  {
-   "platform": "youtube",
-   "id": "Rr33aaAKEFA",
-   "url": "https://www.youtube.com/watch?v=Rr33aaAKEFA",
-   "judul": "Acara Rama Tama Warga Kampung Marga Mulya Semangga Dua Provinsi Papua Selatan",
-   "kanal": "Sobat HT",
-   "tanggal": "2023-11-17",
-   "tanggal_kira": true,
-   "tayang": 74,
-   "durasi": 314,
-   "rasio": "16:9",
-   "ditemukan": "2026-11-15",
-   "rasio_sampul": 1.333,
-   "sampul": "assets/img/video/youtube-Rr33aaAKEFA.jpg",
-   "skor": 5.75
+   "sampul": "assets/img/video/youtube-T8GhVE0_MsU.jpg",
+   "skor": 5.768
   }
  ]
 }
