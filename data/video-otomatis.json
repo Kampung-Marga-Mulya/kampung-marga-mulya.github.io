@@ -1,5 +1,5 @@
 {
- "diperiksa": "2026-11-16T11:03+09:00",
+ "diperiksa": "2026-11-16T18:23+09:00",
  "catatan": "Dibuat otomatis oleh scripts/update_video.py. Jangan disunting manual; gunakan video.pilihan di assets/js/data.js atau data/video-abaikan.json.",
  "video": [
   {
@@ -482,22 +482,6 @@
   },
   {
    "platform": "youtube",
-   "id": "xwMXuWhAQ14",
-   "url": "https://www.youtube.com/watch?v=xwMXuWhAQ14",
-   "judul": "KEMAJUAN PTDM 2021 PENGERING PADI UV DRYER DI KAMP MARGAMULYA, MERAUKE | UNIVERSITAS MUSAMUS",
-   "kanal": "LPPM UNMUS",
-   "tanggal": "2021-11-17",
-   "tanggal_kira": true,
-   "tayang": 295,
-   "durasi": 177,
-   "rasio": "16:9",
-   "ditemukan": "2026-11-04",
-   "rasio_sampul": 1.333,
-   "sampul": "assets/img/video/youtube-xwMXuWhAQ14.jpg",
-   "skor": 6.148
-  },
-  {
-   "platform": "youtube",
    "id": "X9q_K35VCcY",
    "url": "https://www.youtube.com/watch?v=X9q_K35VCcY",
    "judul": "Marga mulya semangga dua merauke",
@@ -511,6 +495,22 @@
    "rasio_sampul": 1.333,
    "sampul": "assets/img/video/youtube-X9q_K35VCcY.jpg",
    "skor": 6.143
+  },
+  {
+   "platform": "youtube",
+   "id": "DlUvHbFk2vs",
+   "url": "https://www.youtube.com/watch?v=DlUvHbFk2vs",
+   "judul": "HENGAR VLOG #3 - WARGA MARGA MULYA - MERAUKE",
+   "kanal": "Hendrikus Ngarbingan",
+   "tanggal": "2020-11-17",
+   "tanggal_kira": true,
+   "tayang": 289,
+   "durasi": 720,
+   "rasio": "16:9",
+   "ditemukan": "2026-11-16",
+   "rasio_sampul": 1.333,
+   "sampul": "assets/img/video/youtube-DlUvHbFk2vs.jpg",
+   "skor": 6.142
   },
   {
    "platform": "youtube",
@@ -530,22 +530,6 @@
   },
   {
    "platform": "youtube",
-   "id": "LUCH4yWc_cw",
-   "url": "https://www.youtube.com/watch?v=LUCH4yWc_cw",
-   "judul": "TPQ Al Ittihad marga mulya merauke papua",
-   "kanal": "BUNDA RAHMA",
-   "tanggal": "2021-11-17",
-   "tanggal_kira": true,
-   "tayang": 256,
-   "durasi": 151,
-   "rasio": "16:9",
-   "ditemukan": "2026-11-16",
-   "rasio_sampul": 1.333,
-   "sampul": "assets/img/video/youtube-LUCH4yWc_cw.jpg",
-   "skor": 6.107
-  },
-  {
-   "platform": "youtube",
    "id": "m7Zz3j95XTY",
    "url": "https://www.youtube.com/watch?v=m7Zz3j95XTY",
    "judul": "pacuan kuda memperingati hari kemerdekaan HUT ke 78,Kampung MARGA MULYA SEMANGGA DUA.",
@@ -559,22 +543,6 @@
    "rasio_sampul": 1.333,
    "sampul": "assets/img/video/youtube-m7Zz3j95XTY.jpg",
    "skor": 5.987
-  },
-  {
-   "platform": "youtube",
-   "id": "WotwvzxlpB0",
-   "url": "https://www.youtube.com/watch?v=WotwvzxlpB0",
-   "judul": "Wow!!! Orang Papua \"Wambon\" Sangat jago dalam mbajak sawah menggunakan traktor - Marga Mulya Merauke",
-   "kanal": "DOA-DOA HARIAN KATOLIK",
-   "tanggal": "2021-11-17",
-   "tanggal_kira": true,
-   "tayang": 95,
-   "durasi": 48,
-   "rasio": "16:9",
-   "ditemukan": "2026-11-16",
-   "rasio_sampul": 1.333,
-   "sampul": "assets/img/video/youtube-WotwvzxlpB0.jpg",
-   "skor": 5.822
   },
   {
    "platform": "youtube",
@@ -594,19 +562,51 @@
   },
   {
    "platform": "youtube",
-   "id": "T8GhVE0_MsU",
-   "url": "https://www.youtube.com/watch?v=T8GhVE0_MsU",
-   "judul": "upacara Bendera HUT RI KE 79,KAMPUNG MARGA MULYA MERAUKE PAPUA SELATAN",
-   "kanal": "Mas Blenk Makarena",
-   "tanggal": "2024-11-16",
+   "id": "B_BAq4rco-g",
+   "url": "https://www.youtube.com/watch?v=B_BAq4rco-g",
+   "judul": "Acara penutupan KKP Yaleka Maro Merauke angkatan XVII di Kampung Marga Mulya...",
+   "kanal": "Unarapal Chanel",
+   "tanggal": "2025-11-16",
    "tanggal_kira": true,
-   "tayang": 77,
-   "durasi": 247,
+   "tayang": 46,
+   "durasi": 203,
    "rasio": "16:9",
    "ditemukan": "2026-11-16",
    "rasio_sampul": 1.333,
-   "sampul": "assets/img/video/youtube-T8GhVE0_MsU.jpg",
-   "skor": 5.768
+   "sampul": "assets/img/video/youtube-B_BAq4rco-g.jpg",
+   "skor": 5.758
+  },
+  {
+   "platform": "youtube",
+   "id": "Rr33aaAKEFA",
+   "url": "https://www.youtube.com/watch?v=Rr33aaAKEFA",
+   "judul": "Acara Rama Tama Warga Kampung Marga Mulya Semangga Dua Provinsi Papua Selatan",
+   "kanal": "Sobat HT",
+   "tanggal": "2023-11-17",
+   "tanggal_kira": true,
+   "tayang": 74,
+   "durasi": 314,
+   "rasio": "16:9",
+   "ditemukan": "2026-11-16",
+   "rasio_sampul": 1.333,
+   "sampul": "assets/img/video/youtube-Rr33aaAKEFA.jpg",
+   "skor": 5.75
+  },
+  {
+   "platform": "youtube",
+   "id": "Ms7Q4Kj4SpY",
+   "url": "https://www.youtube.com/watch?v=Ms7Q4Kj4SpY",
+   "judul": "Pernikahan ✨Risdah ♥️ Alfian✨ Di Kampung Marga Mulya Merauke",
+   "kanal": "MW ANTARSUKHA",
+   "tanggal": "2025-11-16",
+   "tanggal_kira": true,
+   "tayang": 44,
+   "durasi": 432,
+   "rasio": "16:9",
+   "ditemukan": "2026-11-16",
+   "rasio_sampul": 1.333,
+   "sampul": "assets/img/video/youtube-Ms7Q4Kj4SpY.jpg",
+   "skor": 5.745
   }
  ]
 }
