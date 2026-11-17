@@ -1,5 +1,5 @@
 {
- "diperiksa": "2026-11-17T04:37+09:00",
+ "diperiksa": "2026-11-17T10:55+09:00",
  "catatan": "Dibuat otomatis oleh scripts/update_video.py. Jangan disunting manual; gunakan video.pilihan di assets/js/data.js atau data/video-abaikan.json.",
  "video": [
   {
@@ -514,6 +514,38 @@
   },
   {
    "platform": "youtube",
+   "id": "DlUvHbFk2vs",
+   "url": "https://www.youtube.com/watch?v=DlUvHbFk2vs",
+   "judul": "HENGAR VLOG #3 - WARGA MARGA MULYA - MERAUKE",
+   "kanal": "Hendrikus Ngarbingan",
+   "tanggal": "2020-11-18",
+   "tanggal_kira": true,
+   "tayang": 289,
+   "durasi": 720,
+   "rasio": "16:9",
+   "ditemukan": "2026-11-17",
+   "rasio_sampul": 1.333,
+   "sampul": "assets/img/video/youtube-DlUvHbFk2vs.jpg",
+   "skor": 6.142
+  },
+  {
+   "platform": "youtube",
+   "id": "HrxJHBLGFEU",
+   "url": "https://www.youtube.com/watch?v=HrxJHBLGFEU",
+   "judul": "KARNAVAL SEMANGGA 2 MARGA MULYA, Dalam Rangka HUT RI KE 79 Tahun, MERAUKE 15 AGUSTUS 2024...",
+   "kanal": "TUKANG PHOTO ART",
+   "tanggal": "2024-11-17",
+   "tanggal_kira": true,
+   "tayang": 279,
+   "durasi": 773,
+   "rasio": "16:9",
+   "ditemukan": "2026-11-17",
+   "rasio_sampul": 1.333,
+   "sampul": "assets/img/video/youtube-HrxJHBLGFEU.jpg",
+   "skor": 6.138
+  },
+  {
+   "platform": "youtube",
    "id": "LUCH4yWc_cw",
    "url": "https://www.youtube.com/watch?v=LUCH4yWc_cw",
    "judul": "TPQ Al Ittihad marga mulya merauke papua",
@@ -575,38 +607,6 @@
    "rasio_sampul": 1.333,
    "sampul": "assets/img/video/youtube-XJ42WnKHTtI.jpg",
    "skor": 5.815
-  },
-  {
-   "platform": "youtube",
-   "id": "B_BAq4rco-g",
-   "url": "https://www.youtube.com/watch?v=B_BAq4rco-g",
-   "judul": "Acara penutupan KKP Yaleka Maro Merauke angkatan XVII di Kampung Marga Mulya...",
-   "kanal": "Unarapal Chanel",
-   "tanggal": "2025-11-17",
-   "tanggal_kira": true,
-   "tayang": 46,
-   "durasi": 203,
-   "rasio": "16:9",
-   "ditemukan": "2026-11-16",
-   "rasio_sampul": 1.333,
-   "sampul": "assets/img/video/youtube-B_BAq4rco-g.jpg",
-   "skor": 5.758
-  },
-  {
-   "platform": "youtube",
-   "id": "Rr33aaAKEFA",
-   "url": "https://www.youtube.com/watch?v=Rr33aaAKEFA",
-   "judul": "Acara Rama Tama Warga Kampung Marga Mulya Semangga Dua Provinsi Papua Selatan",
-   "kanal": "Sobat HT",
-   "tanggal": "2023-11-18",
-   "tanggal_kira": true,
-   "tayang": 74,
-   "durasi": 314,
-   "rasio": "16:9",
-   "ditemukan": "2026-11-16",
-   "rasio_sampul": 1.333,
-   "sampul": "assets/img/video/youtube-Rr33aaAKEFA.jpg",
-   "skor": 5.75
   }
  ]
 }
