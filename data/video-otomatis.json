@@ -1,5 +1,5 @@
 {
- "diperiksa": "2026-11-17T10:55+09:00",
+ "diperiksa": "2026-11-17T16:56+09:00",
  "catatan": "Dibuat otomatis oleh scripts/update_video.py. Jangan disunting manual; gunakan video.pilihan di assets/js/data.js atau data/video-abaikan.json.",
  "video": [
   {
@@ -100,12 +100,12 @@
    "kanal": "aliftananda_",
    "keterangan": "Mancing mania Semangga 2 dan sekitarnya, merapat! @fm.fishing_ hadir buat kebutuhan mancing kalian 📍 Semangga 2, Kampung Marga Mulya (seberang Koperasi Merah Putih) juga tersedia jasa titip Agnia",
    "tanggal": "2026-06-30",
-   "suka": 169,
+   "suka": 170,
    "rasio": "9:16",
    "ditemukan": "2026-11-06",
    "rasio_sampul": 0.562,
    "sampul": "assets/img/video/instagram-DaO5UM3RBsF.jpg",
-   "skor": 9.586
+   "skor": 9.588
   },
   {
    "platform": "instagram",
@@ -167,13 +167,30 @@
    "kanal": "STORY AMRY",
    "tanggal": "2026-11-03",
    "tanggal_kira": true,
-   "tayang": 647,
+   "tayang": 649,
    "durasi": 740,
    "rasio": "16:9",
    "ditemukan": "2026-11-04",
    "rasio_sampul": 1.333,
    "sampul": "assets/img/video/youtube-ascjSfNf2UQ.jpg",
-   "skor": 8.044
+   "skor": 8.045
+  },
+  {
+   "platform": "youtube",
+   "id": "XJ42WnKHTtI",
+   "url": "https://www.youtube.com/watch?v=XJ42WnKHTtI",
+   "judul": "Pembaruan saluran air marga mulya semangga dua",
+   "kanal": "EL Marhume",
+   "keterangan": "kampung marga mulya semangga dua merauke papua,melakukan pembaruan saluran air di wilayah nya untuk mencegah terjadinya meluapnya air di saat musim penghujan,menggunakan alat berat berbayar",
+   "tanggal": "2021-04-06",
+   "tanggal_kira": true,
+   "tayang": 93,
+   "durasi": 122,
+   "rasio": "16:9",
+   "ditemukan": "2026-11-14",
+   "rasio_sampul": 1.333,
+   "sampul": "assets/img/video/youtube-XJ42WnKHTtI.jpg",
+   "skor": 7.815
   },
   {
    "platform": "instagram",
@@ -260,7 +277,7 @@
    "kanal": "Leksono Japa",
    "tanggal": "2025-11-17",
    "tanggal_kira": true,
-   "tayang": 2287,
+   "tayang": 2288,
    "durasi": 933,
    "rasio": "16:9",
    "ditemukan": "2026-11-04",
@@ -302,18 +319,6 @@
   },
   {
    "platform": "youtube",
-   "id": "GstSi_HcxI4",
-   "url": "https://www.youtube.com/watch?v=GstSi_HcxI4",
-   "judul": "4 Unit Kubah Menuju Masjid Yayasan “Nurul Huda” Marga Mulya, Merauke #kubahindonesia#shorts",
-   "kanal": "GunturKubahID",
-   "rasio": "9:16",
-   "ditemukan": "2026-11-04",
-   "rasio_sampul": 1.333,
-   "sampul": "assets/img/video/youtube-GstSi_HcxI4.jpg",
-   "skor": 6.597
-  },
-  {
-   "platform": "youtube",
    "id": "kfqEWqrPOLc",
    "url": "https://www.youtube.com/watch?v=kfqEWqrPOLc",
    "judul": "KREASI TARI JARANAN KRIDA BUDAYA MARGA MULYA MERAUKE",
@@ -322,6 +327,18 @@
    "ditemukan": "2026-11-04",
    "rasio_sampul": 1.333,
    "sampul": "assets/img/video/youtube-kfqEWqrPOLc.jpg",
+   "skor": 6.597
+  },
+  {
+   "platform": "youtube",
+   "id": "GstSi_HcxI4",
+   "url": "https://www.youtube.com/watch?v=GstSi_HcxI4",
+   "judul": "4 Unit Kubah Menuju Masjid Yayasan “Nurul Huda” Marga Mulya, Merauke #kubahindonesia#shorts",
+   "kanal": "GunturKubahID",
+   "rasio": "9:16",
+   "ditemukan": "2026-11-04",
+   "rasio_sampul": 1.333,
+   "sampul": "assets/img/video/youtube-GstSi_HcxI4.jpg",
    "skor": 6.597
   },
   {
@@ -344,7 +361,7 @@
    "kanal": "Leksono Japa",
    "tanggal": "2024-11-17",
    "tanggal_kira": true,
-   "tayang": 1327,
+   "tayang": 1329,
    "durasi": 566,
    "rasio": "16:9",
    "ditemukan": "2026-11-04",
@@ -424,7 +441,7 @@
    "kanal": "KASRI KASIR",
    "tanggal": "2022-11-18",
    "tanggal_kira": true,
-   "tayang": 435,
+   "tayang": 436,
    "durasi": 341,
    "rasio": "16:9",
    "ditemukan": "2026-11-04",
@@ -440,13 +457,13 @@
    "kanal": "Andi Lala Official",
    "tanggal": "2024-11-17",
    "tanggal_kira": true,
-   "tayang": 321,
+   "tayang": 322,
    "durasi": 873,
    "rasio": "16:9",
    "ditemukan": "2026-11-04",
    "rasio_sampul": 1.333,
    "sampul": "assets/img/video/youtube-SHFdYQuMhsw.jpg",
-   "skor": 6.179
+   "skor": 6.18
   },
   {
    "platform": "youtube",
@@ -591,22 +608,6 @@
    "rasio_sampul": 1.333,
    "sampul": "assets/img/video/youtube-XRGqKjXkVmo.jpg",
    "skor": 5.864
-  },
-  {
-   "platform": "youtube",
-   "id": "XJ42WnKHTtI",
-   "url": "https://www.youtube.com/watch?v=XJ42WnKHTtI",
-   "judul": "Pembaruan saluran air marga mulya semangga dua",
-   "kanal": "EL Marhume",
-   "tanggal": "2021-11-18",
-   "tanggal_kira": true,
-   "tayang": 93,
-   "durasi": 123,
-   "rasio": "16:9",
-   "ditemukan": "2026-11-14",
-   "rasio_sampul": 1.333,
-   "sampul": "assets/img/video/youtube-XJ42WnKHTtI.jpg",
-   "skor": 5.815
   }
  ]
 }
