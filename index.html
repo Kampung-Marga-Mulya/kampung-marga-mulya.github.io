@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Marga Mulya On Site</title>
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https:; font-src 'self'; connect-src 'self' https://api.open-meteo.com https://air-quality-api.open-meteo.com https://ntfy.sh https://script.google.com https://script.googleusercontent.com; media-src 'self'; frame-src https://www.youtube-nocookie.com https://www.tiktok.com https://www.instagram.com https://www.facebook.com; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https:; font-src 'self'; connect-src 'self' https://ntfy.sh https://script.google.com https://script.googleusercontent.com; media-src 'self'; frame-src https://www.youtube-nocookie.com https://www.tiktok.com https://www.instagram.com https://www.facebook.com; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta name="description" content="Website resmi Kampung Marga Mulya, Distrik Semangga, Kabupaten Merauke, Papua Selatan: profil, pemerintahan, data penduduk, transparansi APBKam, Indeks Desa, peta batas kampung, dan layanan warga.">
   <meta name="author" content="Pemerintah Kampung Marga Mulya">
@@ -29,8 +29,8 @@
   <link rel="stylesheet" href="assets/css/fonts.css?v=1">
   <link rel="stylesheet" href="assets/vendor/leaflet/leaflet.css?v=1.9.4">
   <script src="assets/js/tema.js?v=1"></script>
-  <script src="assets/js/bahasa.js?v=1794997317"></script>
-  <link rel="stylesheet" href="assets/css/style.css?v=1794997317">
+  <script src="assets/js/bahasa.js?v=1795006487"></script>
+  <link rel="stylesheet" href="assets/css/style.css?v=1795006487">
   <link rel="stylesheet" href="assets/css/aspirasi.css?v=6">
 </head>
 <body>
@@ -79,6 +79,7 @@
 <symbol id="i-rain" viewBox="0 0 24 24"><path d="M7 14h10a4 4 0 0 0 .5-7.97A6 6 0 0 0 6.1 5.6 4.2 4.2 0 0 0 7 14z"/><path d="M8.5 17l-1 3M12.5 17l-1 3M16.5 17l-1 3"/></symbol>
 <symbol id="i-storm" viewBox="0 0 24 24"><path d="M7 14h10a4 4 0 0 0 .5-7.97A6 6 0 0 0 6.1 5.6 4.2 4.2 0 0 0 7 14z"/><path d="M12.5 14l-2.5 4h3.5l-2.5 4"/></symbol>
 <symbol id="i-fog" viewBox="0 0 24 24"><path d="M7 12h10a4 4 0 0 0 .5-7.97A6 6 0 0 0 6.1 3.6 4.2 4.2 0 0 0 7 12z"/><path d="M4 16h16M6 20h12"/></symbol>
+<symbol id="i-moon" viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></symbol>
 <symbol id="i-wind" viewBox="0 0 24 24"><path d="M3 8h10a3 3 0 1 0-3-3M3 12h15a3 3 0 1 1-3 3M3 16h7"/></symbol>
 <symbol id="i-drop" viewBox="0 0 24 24"><path d="M12 3s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11z"/></symbol>
       <symbol id="i-ball" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7l4 3-1.5 4.5h-5L8 10z"/></symbol>
@@ -428,9 +429,9 @@
     <div class="view" data-view="jelajah" id="v-jelajah" hidden>
       <div class="vhead">
         <div class="wrap">
-          <div class="vhead__t"><span class="vhead__ic"><svg class="ic"><use href="#i-pin"/></svg></span><div><h1>Jelajah</h1><p>Peta kampung, fasilitas umum, serta wisata dan kuliner dari Semangga sampai Kota Merauke, lengkap dengan rute Google Maps.</p></div></div>
+          <div class="vhead__t"><span class="vhead__ic"><svg class="ic"><use href="#i-pin"/></svg></span><div><h1>Jelajah</h1><p>Peta kampung, fasilitas umum, wisata dan kuliner dari Semangga sampai Kota Merauke, serta cuaca dan kondisi pertanian terkini.</p></div></div>
         </div>
-        <div class="vtabs"><div class="wrap"><div class="vtabs__row" role="tablist" aria-label="Jelajah"><button type="button" role="tab" data-tab="petakampung" aria-selected="true"><svg class="ic"><use href="#i-pin"/></svg>Peta Kampung</button><button type="button" role="tab" data-tab="fasilitas" aria-selected="false"><svg class="ic"><use href="#i-school"/></svg>Fasilitas Umum</button><button type="button" role="tab" data-tab="wisatakuliner" aria-selected="false"><svg class="ic"><use href="#i-route"/></svg>Wisata & Kuliner</button></div></div></div>
+        <div class="vtabs"><div class="wrap"><div class="vtabs__row" role="tablist" aria-label="Jelajah"><button type="button" role="tab" data-tab="petakampung" aria-selected="true"><svg class="ic"><use href="#i-pin"/></svg>Peta Kampung</button><button type="button" role="tab" data-tab="fasilitas" aria-selected="false"><svg class="ic"><use href="#i-school"/></svg>Fasilitas Umum</button><button type="button" role="tab" data-tab="wisatakuliner" aria-selected="false"><svg class="ic"><use href="#i-route"/></svg>Wisata & Kuliner</button><button type="button" role="tab" data-tab="pertanian" aria-selected="false"><svg class="ic"><use href="#i-cloudsun"/></svg>Cuaca & Pertanian</button></div></div></div>
       </div>
         <div class="tabpanel" role="tabpanel" data-panel="petakampung">
 <section class="sec" id="peta">
@@ -517,6 +518,14 @@
           </div>
         </div>
         <p class="small mt-s" id="wisataNote"></p>
+      </div>
+    </section>
+        </div>
+        <div class="tabpanel" role="tabpanel" data-panel="pertanian" hidden>
+<section class="sec" id="pertanian">
+      <div class="wrap">
+        <header class="sec__head"><span class="sec__icon"><svg class="ic"><use href="#i-cloudsun"/></svg></span><div><p class="eyebrow">Cuaca &amp; pertanian</p><h2>Cuaca dan kondisi lahan terkini</h2><p class="lead" id="tanLead">Memuat data stasiun cuaca…</p></div></header>
+        <div id="tanApp"></div>
       </div>
     </section>
         </div>
@@ -634,9 +643,9 @@
   </dialog>
 
   <script src="assets/vendor/leaflet/leaflet.js?v=1.9.4"></script>
-  <script src="assets/js/data.js?v=1794997317"></script>
-  <script src="assets/js/ilustrasi.js?v=1794997317"></script>
-  <script src="assets/js/app.js?v=1794997317"></script>
-  <script src="assets/js/router.js?v=1794997317"></script>
+  <script src="assets/js/data.js?v=1795006487"></script>
+  <script src="assets/js/ilustrasi.js?v=1795006487"></script>
+  <script src="assets/js/app.js?v=1795006487"></script>
+  <script src="assets/js/router.js?v=1795006487"></script>
 </body>
 </html>

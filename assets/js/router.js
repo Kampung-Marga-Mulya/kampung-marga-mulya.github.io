@@ -16,6 +16,7 @@
     rkpk: ["transparansi", "rkpk"], rkpkam: ["transparansi", "rkpk"], "rencana-kerja": ["transparansi", "rkpk"],
     perencanaan: ["transparansi", "perencanaan"], rpjmk: ["transparansi", "perencanaan"], rpjmkam: ["transparansi", "perencanaan"],
     jelajah: ["jelajah", "petakampung"], petakampung: ["jelajah", "petakampung"], peta: ["jelajah", "petakampung"],
+    pertanian: ["jelajah", "pertanian"], cuaca: ["jelajah", "pertanian"], "cuaca-pertanian": ["jelajah", "pertanian"],
     wisatakuliner: ["jelajah", "wisatakuliner"], wisata: ["jelajah", "wisatakuliner"],
     "layanan-warga": ["layanan-warga", "surat"], surat: ["layanan-warga", "surat"], ajukan: ["layanan-warga", "surat", "ajukan"], "ajukan-surat": ["layanan-warga", "surat", "ajukan"], layanan: ["layanan-warga", "surat"],
     kontakkampung: ["layanan-warga", "kontakkampung"], kontak: ["layanan-warga", "kontakkampung"]

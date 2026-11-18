@@ -986,35 +986,85 @@
   // Status kampung di foto utama Beranda (dari identitas.kategori)
   if ($("#heroStatus") && D.identitas && D.identitas.kategori) $("#heroStatus .collab__nilai").innerHTML = '<svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><b>' + esc(D.identitas.kategori) + "</b>" + (D.identitas.statusTahun ? "<small>" + esc(D.identitas.statusTahun) + "</small>" : "");
 
-  /* Status kampung + cuaca + kualitas udara Semangga di Beranda.
-     Data langsung dari Open-Meteo (model cuaca) dan CAMS (kualitas udara); berganti otomatis tanpa berhenti. */
+  /* Cuaca & pertanian dari stasiun cuaca otomatis PAT-1 Desa Waninggap Kai (Sinau Bumi & IPB University).
+     Data diperbarui otomatis (GitHub Actions → data/cuaca.json). Ringkasan tampil bergantian di Beranda,
+     rincian interaktif ada di Jelajah → Cuaca & Pertanian. */
   (function () {
-    var box = $("#heroStatus"), track = $("#hstatTrack"), dots = $("#hstatDots"), C = D.cuaca;
-    if (!box || !track || !C) return;
-    var EN = window.MM_BAHASA === "en", TZ = "Asia/Jayapura", KUNCI = "mm_cuaca_v1";
+    var EN = window.MM_BAHASA === "en", TZ = "Asia/Jayapura";
     var T = function (id, en) { return EN ? en : id; };
-    var KODE = { 0: ["Cerah", "Clear", "sun"], 1: ["Cerah berawan", "Mostly clear", "cloudsun"], 2: ["Berawan sebagian", "Partly cloudy", "cloudsun"], 3: ["Mendung", "Overcast", "cloud"],
-      45: ["Berkabut", "Fog", "fog"], 48: ["Berkabut", "Fog", "fog"], 51: ["Gerimis ringan", "Light drizzle", "rain"], 53: ["Gerimis", "Drizzle", "rain"], 55: ["Gerimis lebat", "Heavy drizzle", "rain"],
-      56: ["Gerimis", "Drizzle", "rain"], 57: ["Gerimis", "Drizzle", "rain"], 61: ["Hujan ringan", "Light rain", "rain"], 63: ["Hujan sedang", "Moderate rain", "rain"], 65: ["Hujan lebat", "Heavy rain", "rain"],
-      66: ["Hujan", "Rain", "rain"], 67: ["Hujan lebat", "Heavy rain", "rain"], 80: ["Hujan lokal ringan", "Light showers", "rain"], 81: ["Hujan lokal", "Showers", "rain"], 82: ["Hujan lokal lebat", "Heavy showers", "rain"],
-      95: ["Badai petir", "Thunderstorm", "storm"], 96: ["Badai petir", "Thunderstorm", "storm"], 99: ["Badai petir", "Thunderstorm", "storm"] };
-    var kode = function (k) { var x = KODE[k] || KODE[Math.floor(k / 10) * 10] || ["Berawan", "Cloudy", "cloud"]; return { teks: EN ? x[1] : x[0], ikon: x[2] }; };
-    var AQI = [[50, "Baik", "Good", "Udara bersih, aman untuk beraktivitas di luar.", "Clean air, safe for outdoor activities."],
-      [100, "Sedang", "Moderate", "Masih dapat diterima; orang yang sangat sensitif sebaiknya membatasi aktivitas berat di luar.", "Acceptable; unusually sensitive people should limit heavy outdoor exertion."],
-      [150, "Tidak sehat bagi kelompok sensitif", "Unhealthy for sensitive groups", "Anak, lansia, dan penderita gangguan pernapasan sebaiknya mengurangi aktivitas di luar.", "Children, older adults, and people with breathing problems should reduce outdoor activity."],
-      [200, "Tidak sehat", "Unhealthy", "Kurangi aktivitas di luar dan gunakan masker.", "Reduce outdoor activity and wear a mask."],
-      [300, "Sangat tidak sehat", "Very unhealthy", "Hindari aktivitas di luar.", "Avoid outdoor activity."],
-      [1e9, "Berbahaya", "Hazardous", "Tetap di dalam ruangan.", "Stay indoors."]];
-    var aqiKat = function (v) { for (var i = 0; i < AQI.length; i++) if (v <= AQI[i][0]) return { nama: EN ? AQI[i][2] : AQI[i][1], saran: EN ? AQI[i][4] : AQI[i][3], lv: i }; };
-    var bul = function (n) { return Math.round(n); };
-    var desi = function (n) { return (Math.round(n * 10) / 10).toLocaleString(EN ? "en-GB" : "id-ID"); };
-    var hari = function (tgl, panjang) { return new Date(tgl + "T12:00:00+09:00").toLocaleDateString(EN ? "en-GB" : "id-ID", panjang ? { weekday: "short", day: "numeric", month: "short", timeZone: TZ } : { weekday: "short", timeZone: TZ }); };
-    var jam = function (iso) { return new Date(iso + ":00+09:00").toLocaleTimeString(EN ? "en-GB" : "id-ID", { hour: "2-digit", minute: "2-digit", timeZone: TZ }) + " WIT"; };
+    var NF = EN ? "en-GB" : "id-ID";
+    var f1 = function (n, d) { return n == null || isNaN(n) ? "–" : Number(n).toLocaleString(NF, { maximumFractionDigits: d == null ? 1 : d, minimumFractionDigits: 0 }); };
     var ICON = function (n) { return '<svg class="ic" aria-hidden="true"><use href="#i-' + n + '"/></svg>'; };
+    var tglObj = function (s) { return new Date(s + "T12:00:00+09:00"); };
+    var hariPendek = function (s) { return tglObj(s).toLocaleDateString(NF, { weekday: "short", timeZone: TZ }); };
+    var tglPendek = function (s) { return tglObj(s).toLocaleDateString(NF, { weekday: "short", day: "numeric", month: "short", timeZone: TZ }); };
+    var hariIniStr = function () { return new Date().toLocaleDateString("en-CA", { timeZone: TZ }); };
+    var ARAH = [["utara", "north"], ["timur laut", "north-east"], ["timur", "east"], ["tenggara", "south-east"], ["selatan", "south"], ["barat daya", "south-west"], ["barat", "west"], ["barat laut", "north-west"]];
+    var arah = function (d) { if (d == null) return ""; var a = ARAH[Math.round(((+d % 360) + 360) % 360 / 45) % 8]; return EN ? a[1] : a[0]; };
+    function kondisi(k) {
+      var r = +k.rain_rate || 0, jam = +new Date().toLocaleString("en-GB", { hour: "2-digit", hour12: false, timeZone: TZ });
+      if (r >= 10) return { teks: T("Hujan lebat", "Heavy rain"), ikon: "storm" };
+      if (r >= 5) return { teks: T("Hujan sedang", "Moderate rain"), ikon: "rain" };
+      if (r > 0) return { teks: T("Hujan ringan", "Light rain"), ikon: "rain" };
+      if (jam < 6 || jam >= 18) return { teks: T("Tidak hujan · malam", "No rain · night"), ikon: "moon" };
+      if ((+k.solar || 0) >= 600) return { teks: T("Cerah", "Sunny"), ikon: "sun" };
+      if ((+k.solar || 0) >= 120) return { teks: T("Cerah berawan", "Partly sunny"), ikon: "cloudsun" };
+      return { teks: T("Berawan", "Cloudy"), ikon: "cloud" };
+    }
+    // Kode ikon prakiraan (The Weather Company / Wunderground) → teks & ikon situs
+    function ikonRamal(c) {
+      c = +c;
+      if ([0, 1, 2, 3, 4, 37, 38, 47].indexOf(c) >= 0) return { teks: T("Hujan petir", "Thunderstorms"), ikon: "storm" };
+      if (c === 40) return { teks: T("Hujan lebat", "Heavy rain"), ikon: "rain" };
+      if (c === 9) return { teks: T("Gerimis", "Drizzle"), ikon: "rain" };
+      if ([11, 12, 39, 45].indexOf(c) >= 0) return { teks: T("Hujan lokal", "Showers"), ikon: "rain" };
+      if ([5, 6, 7, 8, 10, 18, 35].indexOf(c) >= 0) return { teks: T("Hujan", "Rain"), ikon: "rain" };
+      if (c >= 19 && c <= 22) return { teks: T("Berkabut", "Hazy"), ikon: "fog" };
+      if (c === 23 || c === 24) return { teks: T("Berangin", "Windy"), ikon: "wind" };
+      if (c === 26) return { teks: T("Berawan", "Cloudy"), ikon: "cloud" };
+      if (c === 27 || c === 28) return { teks: T("Sebagian besar berawan", "Mostly cloudy"), ikon: "cloud" };
+      if (c === 29 || c === 30) return { teks: T("Berawan sebagian", "Partly cloudy"), ikon: "cloudsun" };
+      if (c === 31 || c === 33) return { teks: T("Cerah", "Clear"), ikon: "moon" };
+      if (c === 32 || c === 34 || c === 36) return { teks: T("Cerah", "Sunny"), ikon: "sun" };
+      return { teks: T("Berawan", "Cloudy"), ikon: "cloud" };
+    }
+    function ramalHari(n, mulaiBesok) {
+      var R = C && C.ramalan && C.ramalan.hari; if (!R) return [];
+      var hi = hariIniStr();
+      return R.filter(function (x) { return mulaiBesok ? x.tanggal > hi : x.tanggal >= hi; }).slice(0, n);
+    }
+    var STATUS_AIR = {
+      Aman: [T("Aman", "Safe"), T("Air tanah cukup untuk tanaman.", "Soil water is sufficient for crops.")],
+      Waspada: [T("Waspada", "Watch"), T("Air tanah mulai berkurang; pantau kebutuhan air tanaman.", "Soil water is starting to drop; monitor crop water needs.")],
+      Siaga: [T("Siaga", "Alert"), T("Tanah mulai kering; risiko kekeringan meningkat.", "Soil is drying out; drought risk is rising.")],
+      Awas: [T("Awas", "Warning"), T("Tanah sangat kering; tanaman berisiko layu bila tidak ada hujan atau pengairan.", "Soil is very dry; crops risk wilting without rain or irrigation.")]
+    };
+    var HAMA_EN = { wereng: "Brown planthopper", penggerek: "Stem borer", bgr: "Grain rot (BGR)", blas: "Blast", faw: "Fall armyworm", of: "Corn borer", ha: "Corn earworm", dm: "Downy mildew", nlb: "Northern leaf blight", cr: "Common rust" };
+    var KAT_EN = { "Sangat Rendah": "Very low", Rendah: "Low", Sedang: "Moderate", Tinggi: "High", "Sangat Tinggi": "Very high", Ekstrim: "Extreme" };
+    var katTeks = function (k) { return EN ? (KAT_EN[k] || k) : k; };
+    var katLv = function (k) { return { "Sangat Rendah": 0, Rendah: 1, Sedang: 2, Tinggi: 3, "Sangat Tinggi": 4, Ekstrim: 4, Aman: 0, Waspada: 2, Siaga: 3, Awas: 4 }[k] || 0; };
 
-    // Pergantian slide: otomatis terus, tidak berhenti saat disentuh atau disorot.
-    var slides = function () { return [].slice.call(track.querySelectorAll(".hstat__slide")); };
-    var idx = 0, timer = null;
+    var C = null;
+    function jarakKm() {
+      var K = D.cuaca || {}, S = (C && C.stasiun) || {};
+      if (K.lat == null || S.lat == null) return null;
+      var r = Math.PI / 180, dLa = (S.lat - K.lat) * r, dLo = (S.lon - K.lng) * r;
+      var a = Math.sin(dLa / 2) * Math.sin(dLa / 2) + Math.cos(K.lat * r) * Math.cos(S.lat * r) * Math.sin(dLo / 2) * Math.sin(dLo / 2);
+      return 6371 * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    }
+    // Ambil prakiraan hujan mulai besok
+    function prakiraan(n) {
+      var A = C && C.air && C.air.prakiraan; if (!A) return [];
+      var hi = hariIniStr(), out = [];
+      A.tanggal.forEach(function (t, i) { if (t > hi && out.length < n) out.push({ t: t, hujan: A.hujan[i], smi: A.smi[i], et0: A.et0[i] }); });
+      return out;
+    }
+    function hujanKata(mm) { return mm >= 20 ? T("lebat", "heavy") : mm >= 5 ? T("sedang", "moderate") : mm >= 0.5 ? T("ringan", "light") : T("tidak hujan", "dry"); }
+
+    /* ---------- Beranda: slide bergantian ---------- */
+    var box = $("#heroStatus"), track = $("#hstatTrack"), dots = $("#hstatDots");
+    var idx = 0, timer = null, JEDA = 3000;
+    var slides = function () { return track ? [].slice.call(track.querySelectorAll(".hstat__slide")) : []; };
     function tampil(n) {
       var s = slides(); if (!s.length) return;
       idx = (n + s.length) % s.length;
@@ -1026,113 +1076,248 @@
       dots.innerHTML = s.map(function (el, k) { return '<button type="button" role="tab" aria-label="' + (k + 1) + " / " + s.length + '"></button>'; }).join("");
       tampil(idx);
     }
-    dots.addEventListener("click", function (e) { var b = e.target.closest("button"); if (b) { tampil([].indexOf.call(dots.children, b)); jalan(); } });
-    // Bergerak sendiri tiap 3 detik selama tidak disentuh. Saat disentuh/digeser berhenti,
-    // lalu lanjut lagi 3 detik setelah dilepas. Bisa digeser dengan jari atau mouse.
-    var JEDA = 3000;
+    // Bergerak sendiri tiap 3 detik selama tidak disentuh; berhenti saat ditahan/digeser, lanjut 3 detik setelah dilepas.
     function jalan() { clearInterval(timer); timer = setInterval(function () { if (slides().length > 1) tampil(idx + 1); }, JEDA); }
-    function henti() { clearInterval(timer); timer = null; }
-    var x0 = null, geser = false;
-    track.style.touchAction = "pan-y";
-    track.addEventListener("pointerdown", function (e) { if (e.button > 0) return; x0 = e.clientX; geser = false; henti(); });
-    track.addEventListener("pointermove", function (e) { if (x0 != null && Math.abs(e.clientX - x0) > 10) geser = true; });
-    var lepas = function (e) {
-      if (x0 == null) return; var dx = e.clientX - x0; x0 = null;
-      if (Math.abs(dx) > 40) tampil(idx + (dx < 0 ? 1 : -1));
+    if (box && track && dots) {
+      dots.addEventListener("click", function (e) { var b = e.target.closest("button"); if (b) { tampil([].indexOf.call(dots.children, b)); jalan(); } });
+      var x0 = null, geser = false;
+      track.style.touchAction = "pan-y";
+      track.addEventListener("pointerdown", function (e) { if (e.button > 0) return; x0 = e.clientX; geser = false; clearInterval(timer); });
+      track.addEventListener("pointermove", function (e) { if (x0 != null && Math.abs(e.clientX - x0) > 10) geser = true; });
+      document.addEventListener("pointerup", function (e) { if (x0 == null) return; var dx = e.clientX - x0; x0 = null; if (Math.abs(dx) > 40) tampil(idx + (dx < 0 ? 1 : -1)); jalan(); });
+      document.addEventListener("pointercancel", function () { if (x0 != null) { x0 = null; jalan(); } });
+      track.addEventListener("click", function (e) { if (geser) { e.preventDefault(); e.stopImmediatePropagation(); geser = false; } }, true);
+      track.addEventListener("dragstart", function (e) { e.preventDefault(); });
       jalan();
-    };
-    document.addEventListener("pointerup", lepas); document.addEventListener("pointercancel", function () { if (x0 != null) { x0 = null; jalan(); } });
-    track.addEventListener("click", function (e) { if (geser) { e.preventDefault(); e.stopImmediatePropagation(); geser = false; } }, true);
-    track.addEventListener("dragstart", function (e) { e.preventDefault(); });
-
-    var DATA = { f: null, a: null, t: 0 };
-    function bukaDetail() {
-      var f = DATA.f, a = DATA.a, h = "";
-      if (f && f.current) {
-        var c = f.current, k = kode(c.weather_code);
-        h += '<div class="cuaca-kini">' + ICON(k.ikon) + "<div><b>" + bul(c.temperature_2m) + "°C</b><span>" + esc(k.teks) + "</span></div></div>" +
-          '<dl class="kv kv--sm">' +
-          "<dt>" + T("Terasa seperti", "Feels like") + "</dt><dd>" + bul(c.apparent_temperature) + "°C</dd>" +
-          "<dt>" + T("Kelembapan", "Humidity") + "</dt><dd>" + bul(c.relative_humidity_2m) + "%</dd>" +
-          "<dt>" + T("Angin", "Wind") + "</dt><dd>" + bul(c.wind_speed_10m) + " km/" + T("jam", "h") + "</dd>" +
-          "<dt>" + T("Curah hujan", "Precipitation") + "</dt><dd>" + desi(c.precipitation) + " mm</dd>" +
-          "<dt>" + T("Diperbarui", "Updated") + "</dt><dd>" + esc(jam(c.time)) + "</dd></dl>";
-      }
-      if (f && f.daily && f.daily.time) {
-        var d = f.daily;
-        h += "<h3 class=\"mt-s\">" + T("Ramalan cuaca 7 hari", "7-day forecast") + '</h3><div class="cuaca-tabel"><table><thead><tr><th>' + T("Hari", "Day") + "</th><th>" + T("Kondisi", "Conditions") + "</th><th>" + T("Suhu", "Temp.") + "</th><th>" + T("Peluang hujan", "Rain chance") + "</th></tr></thead><tbody>" +
-          d.time.map(function (t, i) { var k = kode(d.weather_code[i]); return "<tr><td>" + esc(i === 0 ? T("Hari ini", "Today") : hari(t, true)) + "</td><td>" + ICON(k.ikon) + esc(k.teks) + "</td><td>" + bul(d.temperature_2m_min[i]) + "–" + bul(d.temperature_2m_max[i]) + "°C</td><td>" + (d.precipitation_probability_max[i] == null ? "–" : bul(d.precipitation_probability_max[i]) + "%") + (d.precipitation_sum[i] ? " · " + desi(d.precipitation_sum[i]) + " mm" : "") + "</td></tr>"; }).join("") +
-          "</tbody></table></div>";
-      }
-      if (a) {
-        var hr = harianUdara(a);
-        h += "<h3 class=\"mt-s\">" + T("Kualitas udara per hari", "Daily air quality") + "</h3>" +
-          (a.current && a.current.us_aqi != null ? '<p class="small">' + T("Saat ini", "Now") + ": AQI " + bul(a.current.us_aqi) + " (" + esc(aqiKat(a.current.us_aqi).nama) + ") · PM2.5 " + desi(a.current.pm2_5) + " µg/m³ · PM10 " + desi(a.current.pm10) + " µg/m³</p>" : "") +
-          '<div class="cuaca-tabel"><table><thead><tr><th>' + T("Hari", "Day") + "</th><th>AQI " + T("tertinggi", "max") + "</th><th>" + T("Kategori", "Category") + "</th><th>PM2.5 " + T("rata-rata", "avg") + "</th></tr></thead><tbody>" +
-          hr.map(function (x, i) { var k = aqiKat(x.maks); return "<tr><td>" + esc(i === 0 && x.tgl === hariIni() ? T("Hari ini", "Today") : hari(x.tgl, true)) + "</td><td><b>" + bul(x.maks) + '</b></td><td><span class="aqi aqi--' + k.lv + '">' + esc(k.nama) + "</span></td><td>" + desi(x.pm25) + " µg/m³</td></tr>"; }).join("") +
-          "</tbody></table></div>" +
-          (hr.length ? '<p class="small">' + esc(aqiKat(hr[0].maks).saran) + "</p>" : "") +
-          '<p class="small">' + T("Kategori mengikuti Indeks Kualitas Udara AS (US AQI): 0–50 baik, 51–100 sedang, 101–150 tidak sehat bagi kelompok sensitif, 151–200 tidak sehat, di atas 200 sangat tidak sehat.", "Categories follow the US Air Quality Index: 0–50 good, 51–100 moderate, 101–150 unhealthy for sensitive groups, 151–200 unhealthy, above 200 very unhealthy.") + "</p>";
-      }
-      h += '<p class="small mt-s">' + T("Perkiraan model untuk titik koordinat Kampung Marga Mulya, Distrik Semangga, bukan hasil alat ukur di kampung. Sumber: ", "Model estimates for the coordinates of Kampung Marga Mulya, Semangga District, not readings from an instrument in the village. Source: ") +
-        '<a href="https://open-meteo.com/" target="_blank" rel="noopener">Open-Meteo.com</a> (CC BY 4.0); ' + T("kualitas udara dari", "air quality from") + ' CAMS (Copernicus Atmosphere Monitoring Service). ' +
-        T("Untuk peringatan dini cuaca resmi, lihat", "For official weather warnings, see") + ' <a href="https://www.bmkg.go.id/" target="_blank" rel="noopener">BMKG</a>.</p>';
-      openModal({ kat: T("Cuaca Semangga", "Semangga weather"), title: T("Cuaca dan kualitas udara", "Weather and air quality"), html: '<div data-i18n-skip>' + h + "</div>" });
-    }
-    function hariIni() { return new Date().toLocaleDateString("en-CA", { timeZone: TZ }); }
-    function harianUdara(a) {
-      var H = a.hourly || {}, peta = {}, urut = [];
-      (H.time || []).forEach(function (t, i) {
-        var tg = t.slice(0, 10), v = H.us_aqi ? H.us_aqi[i] : null, p = H.pm2_5 ? H.pm2_5[i] : null; if (v == null) return;
-        if (!peta[tg]) { peta[tg] = { tgl: tg, maks: 0, pmJ: 0, pmN: 0 }; urut.push(tg); }
-        var x = peta[tg]; x.maks = Math.max(x.maks, v); if (p != null) { x.pmJ += p; x.pmN++; }
-      });
-      var hi = hariIni();
-      return urut.filter(function (tg) { return tg >= hi; }).map(function (tg) { var x = peta[tg]; return { tgl: tg, maks: x.maks, pm25: x.pmN ? x.pmJ / x.pmN : 0 }; });
     }
     function slideTombol(jenis, label, isi, sub) {
       return '<button type="button" class="collab collab--status hstat__slide hstat__slide--tap" data-slide="' + jenis + '" data-i18n-skip><span class="collab__label">' + label + '</span><span class="collab__nilai">' + isi + "</span>" + (sub ? '<span class="hstat__sub">' + sub + "</span>" : "") + "</button>";
     }
-    function render() {
+    function renderBeranda() {
+      if (!track) return;
       [].forEach.call(track.querySelectorAll(".hstat__slide--tap"), function (el) { el.remove(); });
-      var f = DATA.f, a = DATA.a, html = "";
-      if (f && f.current && f.daily) {
-        var c = f.current, d = f.daily, k = kode(c.weather_code), lokasi = esc(C.lokasi);
-        html += slideTombol("cuaca", T("Cuaca ", "Weather · ") + lokasi + T(" · sekarang", " · now"), ICON(k.ikon) + "<b>" + bul(c.temperature_2m) + "°C</b><small>" + esc(k.teks) + "</small>",
-          T("Hari ini ", "Today ") + bul(d.temperature_2m_min[0]) + "–" + bul(d.temperature_2m_max[0]) + "°C" + (d.precipitation_probability_max[0] != null ? " · " + T("peluang hujan ", "rain chance ") + bul(d.precipitation_probability_max[0]) + "%" : ""));
-        html += slideTombol("ramalan", T("Ramalan cuaca 3 hari", "3-day forecast"), '<span class="hstat__ramal">' + [1, 2, 3].filter(function (i) { return d.time[i]; }).map(function (i) {
-          var kk = kode(d.weather_code[i]); return '<span title="' + esc(kk.teks) + '"><em>' + esc(hari(d.time[i])) + "</em>" + ICON(kk.ikon) + "<strong>" + bul(d.temperature_2m_max[i]) + "°<i>/" + bul(d.temperature_2m_min[i]) + "°</i></strong></span>";
-        }).join("") + "</span>", "");
+      var k = C.kini, h = C.hariIni, html = "";
+      var segar = h && h.tanggal === hariIniStr();
+      if (k && k.temp != null) {
+        var kd = kondisi(k);
+        html += slideTombol("cuaca", T("Cuaca sekitar kampung · sekarang", "Local weather · now"), ICON(kd.ikon) + "<b>" + f1(k.temp) + "°C</b><small>" + esc(kd.teks) + "</small>",
+          segar ? T("Hari ini ", "Today ") + f1(h.suhuMin) + "–" + f1(h.suhuMaks) + "°C · " + T("hujan ", "rain ") + f1(h.hujan) + " mm" : T("Stasiun Waninggap Kai", "Waninggap Kai station"));
+        html += slideTombol("udara", T("Kondisi udara · sekarang", "Air conditions · now"), ICON("drop") + "<b>" + f1(k.humidity, 0) + "%</b><small>" + T("kelembapan", "humidity") + "</small>",
+          T("Angin ", "Wind ") + f1(k.wind_speed) + " m/s" + (k.wind_dir != null ? T(" dari ", " from ") + arah(k.wind_dir) : "") + " · " + T("tekanan ", "pressure ") + f1(k.pressure) + " hPa");
       }
-      if (a) {
-        var hr = harianUdara(a), v = hr.length ? hr[0].maks : (a.current ? a.current.us_aqi : null);
-        if (v != null) {
-          var kt = aqiKat(v);
-          html += slideTombol("udara", T("Kualitas udara · hari ini", "Air quality · today"), ICON("wind") + "<b>AQI " + bul(v) + '</b><small class="aqi aqi--' + kt.lv + '">' + esc(kt.nama) + "</small>",
-            a.current && a.current.pm2_5 != null ? "PM2.5 " + desi(a.current.pm2_5) + " µg/m³ · PM10 " + desi(a.current.pm10) + " µg/m³" : "");
-        }
+      var rh = ramalHari(3, true), pk = rh.length ? [] : prakiraan(3);
+      if (rh.length) html += slideTombol("ramalan", T("Prakiraan cuaca 3 hari", "3-day forecast"), '<span class="hstat__ramal">' + rh.map(function (x) {
+        var ik = ikonRamal(x.ikon);
+        return '<span title="' + esc(ik.teks) + '"><em>' + esc(hariPendek(x.tanggal)) + "</em>" + ICON(ik.ikon) + "<strong>" + f1(x.maks, 0) + "°<i>/" + f1(x.min, 0) + "°</i></strong>" +
+          (x.peluangHujan != null ? "<u>" + T("hujan ", "rain ") + f1(x.peluangHujan, 0) + "%</u>" : "") + "</span>";
+      }).join("") + "</span>", "");
+      if (pk.length) html += slideTombol("hujan", T("Prakiraan hujan 3 hari", "3-day rain outlook"), '<span class="hstat__ramal">' + pk.map(function (x) {
+        return '<span title="' + esc(hujanKata(x.hujan)) + '"><em>' + esc(hariPendek(x.t)) + "</em>" + ICON(x.hujan >= 0.5 ? "rain" : "cloudsun") + "<strong>" + f1(x.hujan) + "<i> mm</i></strong></span>";
+      }).join("") + "</span>", "");
+      if (C.air && C.air.status) {
+        var sa = STATUS_AIR[C.air.status] || [C.air.status, ""];
+        html += slideTombol("lahan", T("Air tanah untuk tanaman", "Soil water for crops"), ICON("drop") + "<b>" + esc(sa[0]) + "</b><small>SMI " + f1(C.air.smi, 2) + "</small>", esc(sa[1]));
       }
       if (html) track.insertAdjacentHTML("beforeend", html);
-      [].forEach.call(track.querySelectorAll(".hstat__slide--tap"), function (el) { el.addEventListener("click", bukaDetail); });
+      [].forEach.call(track.querySelectorAll(".hstat__slide--tap"), function (el) { el.addEventListener("click", function () { location.hash = "#pertanian"; }); });
       bangunDots(); jalan();
     }
-    function simpan() { try { localStorage.setItem(KUNCI, JSON.stringify(DATA)); } catch (e) {} }
-    function ambil() {
-      var q = "latitude=" + C.lat + "&longitude=" + C.lng + "&timezone=" + encodeURIComponent(TZ);
-      var uf = "https://api.open-meteo.com/v1/forecast?" + q + "&current=temperature_2m,relative_humidity_2m,apparent_temperature,precipitation,weather_code,wind_speed_10m&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max,precipitation_sum&forecast_days=7";
-      var ua = "https://air-quality-api.open-meteo.com/v1/air-quality?" + q + "&current=us_aqi,pm2_5,pm10&hourly=us_aqi,pm2_5&forecast_days=5";
-      var j = function (u) { return fetch(u, { cache: "no-store" }).then(function (r) { return r.ok ? r.json() : null; }).catch(function () { return null; }); };
-      Promise.all([j(uf), j(ua)]).then(function (h) {
-        if (h[0] && h[0].current) DATA.f = h[0];
-        if (h[1] && (h[1].current || h[1].hourly)) DATA.a = h[1];
-        if (h[0] || h[1]) { DATA.t = Date.now(); simpan(); }
-        render();
-      });
+
+    /* ---------- Jelajah → Cuaca & Pertanian ---------- */
+    var app = $("#tanApp");
+    function grafikBatang(nilai, opsi) {
+      // nilai: [{v, label, beda}] ; batang bisa diketuk
+      var W = Math.max(280, Math.round(opsi.W || 640)), H = 170, pb = 22, pt = 10, n = nilai.length, maks = Math.max.apply(null, nilai.map(function (x) { return x.v || 0; }).concat([opsi.min || 1]));
+      var bw = W / n, h = H - pb - pt;
+      var garis = opsi.garis ? nilai.map(function (x, i) { return (i ? "L" : "M") + (i * bw + bw / 2).toFixed(1) + " " + (pt + h - (x.g == null ? 0 : x.g) * h).toFixed(1); }).join(" ") : "";
+      return '<svg viewBox="0 0 ' + W + " " + H + '" class="tgrafik" role="img" aria-label="' + esc(opsi.aria) + '">' +
+        '<line x1="0" x2="' + W + '" y1="' + (pt + h) + '" y2="' + (pt + h) + '" class="tgrafik__dasar"/>' +
+        nilai.map(function (x, i) {
+          var tinggi = Math.max(x.v ? 2 : 0, (x.v || 0) / maks * h);
+          return '<g class="tgrafik__b' + (x.beda ? " is-beda" : "") + '" data-i="' + i + '" tabindex="0"><rect class="tgrafik__hit" x="' + (i * bw).toFixed(1) + '" y="0" width="' + bw.toFixed(1) + '" height="' + H + '"/>' +
+            '<rect class="tgrafik__bar" x="' + (i * bw + bw * 0.18).toFixed(1) + '" y="' + (pt + h - tinggi).toFixed(1) + '" width="' + (bw * 0.64).toFixed(1) + '" height="' + tinggi.toFixed(1) + '" rx="2"/>' +
+            (x.label ? '<text x="' + (i * bw + bw / 2).toFixed(1) + '" y="' + (H - 6) + '" text-anchor="middle">' + esc(x.label) + "</text>" : "") + "</g>";
+        }).join("") + (garis ? '<path d="' + garis + '" class="tgrafik__garis"/>' : "") + "</svg>";
     }
-    try { var lama = JSON.parse(localStorage.getItem(KUNCI) || "null"); if (lama && lama.t) DATA = lama; } catch (e) {}
-    if (DATA.f || DATA.a) render(); else jalan();
-    if (!DATA.t || Date.now() - DATA.t > 30 * 60 * 1000) ambil();
-    setInterval(ambil, 30 * 60 * 1000);
+    function grafikGaris(nilai, opsi) {
+      var W = Math.max(280, Math.round(opsi.W || 640)), H = 170, pb = 22, pt = 14, n = nilai.length, vs = nilai.map(function (x) { return x.v; }).filter(function (v) { return v != null; });
+      var lo = Math.min.apply(null, vs), hi = Math.max.apply(null, vs); if (hi - lo < 2) { hi += 1; lo -= 1; }
+      var bw = W / n, h = H - pb - pt, y = function (v) { return pt + h - (v - lo) / (hi - lo) * h; };
+      var d = nilai.map(function (x, i) { return x.v == null ? "" : (i && nilai[i - 1].v != null ? "L" : "M") + (i * bw + bw / 2).toFixed(1) + " " + y(x.v).toFixed(1); }).join(" ");
+      return '<svg viewBox="0 0 ' + W + " " + H + '" class="tgrafik" role="img" aria-label="' + esc(opsi.aria) + '">' +
+        '<path d="' + d + ' L' + ((n - 1) * bw + bw / 2).toFixed(1) + " " + (pt + h) + " L" + (bw / 2).toFixed(1) + " " + (pt + h) + ' Z" class="tgrafik__area"/>' +
+        '<path d="' + d + '" class="tgrafik__garis"/>' +
+        nilai.map(function (x, i) {
+          return '<g class="tgrafik__b" data-i="' + i + '" tabindex="0"><rect class="tgrafik__hit" x="' + (i * bw).toFixed(1) + '" y="0" width="' + bw.toFixed(1) + '" height="' + H + '"/>' +
+            (x.v == null ? "" : '<circle class="tgrafik__titik" cx="' + (i * bw + bw / 2).toFixed(1) + '" cy="' + y(x.v).toFixed(1) + '" r="3.5"/>') +
+            (x.label ? '<text x="' + (i * bw + bw / 2).toFixed(1) + '" y="' + (H - 6) + '" text-anchor="middle">' + esc(x.label) + "</text>" : "") + "</g>";
+        }).join("") + "</svg>";
+    }
+    // Hubungkan ketukan pada grafik dengan teks pembacaan di bawahnya
+    function pasangBaca(wadah, teksFn) {
+      var baca = wadah.querySelector(".tbaca"), svg = wadah.querySelector("svg");
+      if (!svg || !baca) return;
+      var pilih = function (g) { if (!g) return; [].forEach.call(svg.querySelectorAll(".tgrafik__b.is-on"), function (x) { x.classList.remove("is-on"); }); g.classList.add("is-on"); baca.innerHTML = teksFn(+g.getAttribute("data-i")); };
+      svg.addEventListener("click", function (e) { pilih(e.target.closest(".tgrafik__b")); });
+      svg.addEventListener("mouseover", function (e) { pilih(e.target.closest(".tgrafik__b")); });
+      svg.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); pilih(e.target.closest(".tgrafik__b")); } });
+      var semua = svg.querySelectorAll(".tgrafik__b"); pilih(semua[semua.length - 1]);
+    }
+    function chips(nama, daftar, aktif) {
+      return '<div class="tchips" role="tablist" data-chips="' + nama + '">' + daftar.map(function (d) { return '<button type="button" role="tab" data-k="' + d[0] + '" aria-selected="' + (d[0] === aktif ? "true" : "false") + '">' + d[1] + "</button>"; }).join("") + "</div>";
+    }
+    function onChips(el, fn) { el.addEventListener("click", function (e) { var b = e.target.closest("button[data-k]"); if (!b) return; [].forEach.call(el.querySelectorAll("button"), function (x) { x.setAttribute("aria-selected", x === b ? "true" : "false"); }); fn(b.getAttribute("data-k")); }); }
+
+    var PENJELASAN = {
+      suhu: [T("Suhu udara", "Air temperature"), T("Suhu udara di dekat permukaan tanah. Suhu siang yang sangat tinggi menambah penguapan, sehingga tanaman lebih cepat kekurangan air.", "Air temperature near the ground. Very hot days increase evaporation, so crops run short of water sooner.")],
+      lembap: [T("Kelembapan udara", "Humidity"), T("Banyaknya uap air di udara. Kelembapan tinggi dalam waktu lama membuat penyakit jamur pada tanaman lebih mudah berkembang.", "How much water vapour is in the air. Long periods of high humidity make fungal crop diseases spread more easily.")],
+      angin: [T("Angin", "Wind"), T("Kecepatan dan arah datangnya angin. Angin kencang memengaruhi penyemprotan pestisida dan pupuk daun; sebaiknya menyemprot saat angin tenang.", "Wind speed and the direction it blows from. Strong wind affects pesticide and foliar spraying; spray when it is calm.")],
+      hujan: [T("Hujan hari ini", "Rain today"), T("Jumlah hujan yang tercatat sejak pukul 00.00 WIT hari ini. 1 mm hujan sama dengan 1 liter air per meter persegi lahan.", "Rain recorded since 00:00 WIT today. 1 mm of rain equals 1 litre of water per square metre of land.")],
+      sinar: [T("Lama penyinaran", "Sunshine duration"), T("Berapa jam matahari bersinar cukup terik (radiasi ≥ 120 W/m²) hari ini. Tanaman membutuhkan cahaya matahari untuk fotosintesis.", "Hours of strong sunshine (radiation ≥ 120 W/m²) today. Crops need sunlight for photosynthesis.")],
+      et0: [T("Penguapan (evapotranspirasi)", "Evapotranspiration"), T("Perkiraan air yang hilang dari tanah dan tanaman ke udara dalam sehari, dalam mm. Bila penguapan lebih besar daripada hujan, tanah makin kering.", "Estimated water lost from soil and crops to the air in a day, in mm. When evaporation exceeds rain, the soil gets drier.")],
+      tekanan: [T("Tekanan udara", "Air pressure"), T("Tekanan udara dalam hPa. Penurunan tekanan yang cepat sering menandai cuaca yang berubah, misalnya akan turun hujan.", "Air pressure in hPa. A quick drop in pressure often signals changing weather, such as coming rain.")]
+    };
+    function renderPertanian() {
+      if (!app) return;
+      var k = C.kini || {}, h = C.hariIni || {}, S = C.stasiun || {}, jr = jarakKm(), segar = h.tanggal === hariIniStr();
+      $("#tanLead").innerHTML = esc(T("Data dari stasiun cuaca otomatis ", "Data from the automatic weather station ")) + "<b>" + esc(S.nama || "PAT-1 Waninggap Kai") + "</b>" +
+        esc((jr ? T(", sekitar ", ", about ") + f1(jr, 0) + T(" km dari kampung", " km from the village") : "") + T(". Ketuk kartu, grafik, atau nama hama untuk melihat penjelasannya.", ". Tap a card, chart, or pest name to see what it means."));
+      var kd = kondisi(k);
+      var kartu = [
+        ["suhu", "sun", f1(k.temp) + "°C", T("Suhu", "Temperature"), segar ? f1(h.suhuMin) + "–" + f1(h.suhuMaks) + "°C " + T("hari ini", "today") : kd.teks],
+        ["lembap", "drop", f1(k.humidity, 0) + "%", T("Kelembapan", "Humidity"), T("titik embun ", "dew point ") + f1(k.dew_point) + "°C"],
+        ["angin", "wind", f1(k.wind_speed) + " m/s", T("Angin", "Wind"), k.wind_dir != null ? T("dari ", "from ") + arah(k.wind_dir) : ""],
+        ["hujan", "rain", f1(segar ? h.hujan : null) + " mm", T("Hujan hari ini", "Rain today"), T("sekarang ", "now ") + f1(k.rain_rate) + " mm/" + T("jam", "h")],
+        ["sinar", "sun", f1(k.sunshine) + T(" jam", " h"), T("Penyinaran", "Sunshine"), T("radiasi ", "radiation ") + f1(k.solar, 0) + " W/m²"],
+        ["et0", "cloudsun", f1(k.eto) + " mm", T("Penguapan", "Evaporation"), T("per hari", "per day")],
+        ["tekanan", "layers", f1(k.pressure) + " hPa", T("Tekanan udara", "Air pressure"), ""]
+      ];
+      var waktu = k.waktu ? esc(k.waktu) : "";
+      var html = '<div class="tinfo"><span class="tinfo__dot' + (k.aktif === false ? " is-off" : "") + '"></span><span>' + (k.aktif === false ? T("Stasiun sedang tidak mengirim data", "Station is not sending data") : T("Stasiun aktif", "Station online")) + (waktu ? " · " + T("data ", "data ") + waktu : "") + "</span></div>" +
+        '<div class="tkartu">' + kartu.map(function (x) { return '<button type="button" class="tkartu__i" data-jelas="' + x[0] + '">' + ICON(x[1]) + "<b>" + x[2] + "</b><span>" + esc(x[3]) + "</span>" + (x[4] ? "<small>" + esc(x[4]) + "</small>" : "") + "</button>"; }).join("") + "</div>";
+
+      // Prakiraan 10 hari
+      var R10 = ramalHari(10, false);
+      if (R10.length) html += '<div class="panel tpanel" id="tanRamal"><div class="tpanel__h"><h3>' + T("Prakiraan cuaca ", "Forecast for the next ") + R10.length + T(" hari", " days") + '</h3></div><div class="tramal" role="tablist">' +
+        R10.map(function (x, i) { var ik = ikonRamal(x.ikon); return '<button type="button" role="tab" data-i="' + i + '" aria-selected="' + (i === 0 ? "true" : "false") + '"><em>' + esc(x.tanggal === hariIniStr() ? T("Hari ini", "Today") : hariPendek(x.tanggal)) + "</em>" + ICON(ik.ikon) + "<b>" + (x.maks == null ? "–" : f1(x.maks, 0) + "°") + "<i>" + f1(x.min, 0) + "°</i></b><small>" + (x.peluangHujan == null ? "–" : f1(x.peluangHujan, 0) + "%") + "</small></button>"; }).join("") +
+        '</div><p class="tbaca tbaca--ramal" aria-live="polite"></p><p class="small">' + T("Prakiraan dari AWS komunitas & Wunderground melalui dasbor stasiun PAT-1. Persen = peluang hujan.", "Forecast from the community AWS & Wunderground via the PAT-1 station dashboard. Percent = chance of rain.") + "</p></div>";
+
+      // Grafik hari ini per jam
+      if (h.perJam && h.perJam.length) html += '<div class="panel tpanel" id="tanJam"><div class="tpanel__h"><h3>' + T("Hari ini, jam demi jam", "Today, hour by hour") + "</h3>" +
+        chips("jam", [["suhu", T("Suhu", "Temp.")], ["lembap", T("Kelembapan", "Humidity")], ["hujan", T("Hujan", "Rain")], ["radiasi", T("Matahari", "Sun")]], "suhu") +
+        '</div><div class="tgrafik__wadah"></div><p class="tbaca" aria-live="polite"></p></div>';
+
+      // Air & lahan
+      if (C.air && C.air.hist) {
+        var sa = STATUS_AIR[C.air.status] || [C.air.status || "–", ""];
+        html += '<div class="panel tpanel" id="tanAir"><div class="tpanel__h"><h3>' + T("Air & lahan", "Water & soil") + "</h3>" + chips("air", [["lalu", T("30 hari terakhir", "Last 30 days")], ["depan", T("16 hari ke depan", "Next 16 days")]], "depan") + "</div>" +
+          '<div class="tsmi"><div class="tsmi__t"><span class="tstat tstat--' + katLv(C.air.status) + '">' + esc(sa[0]) + "</span><p>" + esc(sa[1]) + "</p></div>" +
+          '<div class="tsmi__bar" role="img" aria-label="SMI ' + f1(C.air.smi, 2) + '"><span style="left:' + Math.max(0, Math.min(100, (C.air.smi || 0) * 100)).toFixed(0) + '%"></span></div>' +
+          '<div class="tsmi__sk"><span>' + T("0 · sangat kering", "0 · very dry") + "</span><span>" + T("1 · cukup basah", "1 · moist enough") + "</span></div>" +
+          '<button type="button" class="tlink" data-jelas="smi">' + T("Apa itu SMI?", "What is SMI?") + "</button></div>" +
+          '<div class="tgrafik__wadah"></div><p class="tbaca" aria-live="polite"></p><p class="small">' + T("Batang = curah hujan harian (mm). Garis = indeks kelembapan tanah (SMI). Prakiraan 16 hari dari model Sinau Bumi.", "Bars = daily rainfall (mm). Line = soil moisture index (SMI). The 16-day outlook comes from the Sinau Bumi model.") + "</p></div>";
+      }
+
+      // Hama & penyakit
+      var tn = C.hpt && C.hpt.tanaman ? Object.keys(C.hpt.tanaman) : [];
+      if (tn.length) html += '<div class="panel tpanel" id="tanHama"><div class="tpanel__h"><h3>' + T("Risiko hama & penyakit", "Pest & disease risk") + "</h3>" +
+        chips("hama", tn.map(function (c) { return [c, EN ? ({ padi: "Rice", jagung: "Maize" }[c] || c) : C.hpt.tanaman[c].nama]; }), tn[0]) + '</div><div class="thama"></div>' +
+        '<p class="small">' + T("Perkiraan risiko dari data cuaca dan masa inkubasi (skala 0–10), per ", "Risk estimated from weather data and incubation periods (0–10 scale), as of ") + esc(C.hpt.tanggal || "") + T(". Bukan acuan tunggal; tetap lakukan pengamatan di lahan.", ". Not a sole reference; keep checking your fields.") + "</p></div>";
+
+      // Bahaya kebakaran
+      if (C.fwi && C.fwi.nilai != null) html += '<div class="panel tpanel" id="tanApi"><div class="tpanel__h"><h3>' + T("Bahaya kebakaran lahan", "Land fire danger") + '</h3></div><div class="tapi"><div class="tapi__n"><b>' + f1(C.fwi.nilai, 0) + '</b><span class="tstat tstat--' + katLv(C.fwi.status) + '">' + esc(katTeks(C.fwi.status)) + "</span></div><p>" +
+        esc(T("Fire Weather Index (FWI) mengukur seberapa mudah api menyala dan menyebar berdasarkan cuaca harian. Semakin tinggi angkanya, semakin berbahaya membakar lahan atau sampah.", "The Fire Weather Index (FWI) measures how easily fire starts and spreads given the daily weather. The higher the number, the more dangerous it is to burn land or rubbish.")) +
+        '</p><button type="button" class="tlink" data-jelas="fwi">' + T("Lihat rincian indeks", "See index details") + "</button></div></div>";
+
+      html += '<p class="small mt-s">' + T("Sumber: ", "Source: ") + '<a href="' + escUrl((C.sumber && C.sumber.url) || "https://map.sinaubumi.org/") + '" target="_blank" rel="noopener">Sinau Bumi &amp; IPB University</a> · ' +
+        '<a href="' + escUrl(S.dasbor || "https://pat.cwssibu.org/dashboard/aws-pat1") + '" target="_blank" rel="noopener">' + T("dasbor stasiun PAT-1", "PAT-1 station dashboard") + "</a> (Ekspedisi Patriot). " +
+        T("Diperbarui otomatis setiap 3 jam", "Updated automatically every 3 hours") + (C.diperbarui ? " · " + T("terakhir ", "last ") + esc(C.diperbarui.slice(0, 16).replace("T", " ")) + " WIT" : "") + ".</p>";
+      app.innerHTML = '<div data-i18n-skip>' + html + "</div>";
+
+      // Penjelasan kartu
+      app.addEventListener("click", function (e) {
+        var b = e.target.closest("[data-jelas]"); if (!b) return;
+        var key = b.getAttribute("data-jelas");
+        if (key === "smi") return openModal({ kat: T("Air & lahan", "Water & soil"), title: T("Indeks kelembapan tanah (SMI)", "Soil moisture index (SMI)"), html: "<div data-i18n-skip><p>" + esc(T("SMI menunjukkan ketersediaan air tanah untuk tanaman, dihitung dari neraca air harian (curah hujan dikurangi penguapan). Nilai 0 berarti tanah sangat kering dan tanaman mulai layu permanen; nilai 1 berarti tanah cukup basah (kapasitas lapang). Semakin kecil nilainya, semakin tinggi risiko kekeringan dan turunnya hasil panen.", "SMI shows how much soil water is available to crops, calculated from the daily water balance (rainfall minus evaporation). 0 means very dry soil where crops start to wilt permanently; 1 means the soil is moist enough (field capacity). The lower the value, the higher the risk of drought and lower yields.")) + "</p><p>" + esc(T("Status saat ini: ", "Current status: ")) + "<b>" + esc((STATUS_AIR[C.air.status] || [C.air.status])[0]) + "</b> (SMI " + f1(C.air.smi, 2) + ").</p></div>" });
+        if (key === "fwi") {
+          var dt = C.fwi.detail || {};
+          var baris = [["FFMC", T("kekeringan serasah & rumput halus", "dryness of fine litter & grass"), dt.ffmc], ["DMC", T("kekeringan lapisan humus", "dryness of the duff layer"), dt.dmc], ["DC", T("kekeringan tanah dalam (jangka panjang)", "deep soil dryness (long term)"), dt.dc], ["ISI", T("kecepatan api menyebar", "how fast fire spreads"), dt.isi], ["BUI", T("bahan bakar yang tersedia", "fuel available to burn"), dt.bui]];
+          return openModal({ kat: T("Bahaya kebakaran", "Fire danger"), title: "Fire Weather Index " + f1(C.fwi.nilai, 0) + " · " + katTeks(C.fwi.status), html: '<div data-i18n-skip><dl class="kv kv--sm">' + baris.map(function (r) { return "<dt>" + r[0] + "</dt><dd>" + f1(r[2], 0) + " · " + esc(r[1]) + "</dd>"; }).join("") + "</dl><p class=\"small\">" + esc(T("Data per ", "Data as of ") + (C.fwi.tanggal || "") + T(". Hasil hitungan prakiraan dari cuaca harian; tetap periksa kondisi di lapangan.", ". A predictive calculation from daily weather; always check conditions on the ground.")) + "</p></div>" });
+        }
+        var p = PENJELASAN[key]; if (p) openModal({ kat: T("Cuaca & pertanian", "Weather & farming"), title: p[0], html: "<div data-i18n-skip><p>" + esc(p[1]) + "</p></div>" });
+      });
+
+      // Prakiraan: ketuk hari untuk rincian
+      var rEl = $("#tanRamal");
+      if (rEl) {
+        var bacaR = rEl.querySelector(".tbaca");
+        var pilihR = function (i) {
+          var x = R10[i], ik = ikonRamal(x.ikon);
+          [].forEach.call(rEl.querySelectorAll(".tramal button"), function (b) { b.setAttribute("aria-selected", +b.getAttribute("data-i") === i ? "true" : "false"); });
+          bacaR.innerHTML = "<b>" + esc(tglPendek(x.tanggal)) + "</b> · " + esc(ik.teks) + " · " + T("suhu ", "temp. ") + (x.maks == null ? "" : f1(x.maks, 0) + "° / ") + f1(x.min, 0) + "°C · " +
+            T("peluang hujan ", "chance of rain ") + f1(x.peluangHujan, 0) + "%" + (x.hujan ? " (" + f1(x.hujan) + " mm)" : "") +
+            (x.lembap != null ? " · " + T("kelembapan ", "humidity ") + f1(x.lembap, 0) + "%" : "") + (x.angin != null ? " · " + T("angin ", "wind ") + f1(x.angin) + " m/s" : "") +
+            (x.terbit ? " · " + T("matahari ", "sun ") + esc(x.terbit) + "–" + esc(x.terbenam) + " WIT" : "");
+        };
+        rEl.querySelector(".tramal").addEventListener("click", function (e) { var b = e.target.closest("button[data-i]"); if (b) pilihR(+b.getAttribute("data-i")); });
+        pilihR(0);
+      }
+
+      // Grafik digambar ulang saat lebar berubah (mis. tab baru dibuka atau layar diputar)
+      var gambarUlang = [], lebarLama = 0;
+      if (window.ResizeObserver) new ResizeObserver(function () {
+        var w = app.clientWidth; if (!w || Math.abs(w - lebarLama) < 8) return; lebarLama = w;
+        gambarUlang.forEach(function (f) { f(); });
+      }).observe(app);
+
+      // Grafik per jam
+      var jamEl = $("#tanJam");
+      if (jamEl) {
+        var PJ = h.perJam, wadah = jamEl.querySelector(".tgrafik__wadah");
+        var gambarJam = function (m) {
+          var lbl = function (x) { return x.jam % 3 === 0 ? String(x.jam).padStart(2, "0") : ""; };
+          var unit = { suhu: "°C", lembap: "%", hujan: " mm", radiasi: " W/m²" }[m];
+          var nilai = PJ.map(function (x) { return { v: m === "suhu" ? x.suhu : m === "lembap" ? x.lembap : m === "hujan" ? x.hujan : x.radiasi, label: lbl(x) }; });
+          wadah.innerHTML = m === "suhu" || m === "lembap" ? grafikGaris(nilai, { aria: T("Grafik per jam", "Hourly chart"), W: wadah.clientWidth }) : grafikBatang(nilai, { aria: T("Grafik per jam", "Hourly chart"), min: m === "hujan" ? 1 : 100, W: wadah.clientWidth });
+          pasangBaca(jamEl, function (i) { var x = PJ[i]; return "<b>" + T("Pukul ", "At ") + String(x.jam).padStart(2, "0") + ".00</b> · " + f1(nilai[i].v, m === "radiasi" || m === "lembap" ? 0 : 1) + unit; });
+        };
+        var jamK = "suhu"; gambarJam(jamK); onChips(jamEl.querySelector(".tchips"), function (k) { jamK = k; gambarJam(k); });
+        gambarUlang.push(function () { gambarJam(jamK); });
+      }
+      // Grafik air & lahan
+      var airEl = $("#tanAir");
+      if (airEl) {
+        var wA = airEl.querySelector(".tgrafik__wadah");
+        var gambarAir = function (m) {
+          var A = m === "lalu" ? C.air.hist : C.air.prakiraan, hi = hariIniStr();
+          var idxs = A.tanggal.map(function (t, i) { return i; }).filter(function (i) { return m === "lalu" ? true : A.tanggal[i] >= hi; });
+          var nilai = idxs.map(function (i, n) { return { v: A.hujan[i], g: A.smi[i], label: n % (m === "lalu" ? 5 : 3) === 0 ? tglObj(A.tanggal[i]).getDate() + "/" + (tglObj(A.tanggal[i]).getMonth() + 1) : "", beda: m !== "lalu" }; });
+          wA.innerHTML = grafikBatang(nilai, { aria: T("Grafik hujan dan kelembapan tanah", "Rain and soil moisture chart"), min: 5, garis: true, W: wA.clientWidth });
+          pasangBaca(airEl, function (n) { var i = idxs[n]; return "<b>" + esc(tglPendek(A.tanggal[i])) + "</b> · " + T("hujan ", "rain ") + f1(A.hujan[i]) + " mm (" + hujanKata(A.hujan[i]) + ") · " + T("penguapan ", "evaporation ") + f1(A.et0[i]) + " mm · SMI " + f1(A.smi[i], 2); });
+        };
+        var airK = "depan"; gambarAir(airK); onChips(airEl.querySelector(".tchips"), function (k) { airK = k; gambarAir(k); });
+        gambarUlang.push(function () { gambarAir(airK); });
+      }
+      // Hama
+      var hamaEl = $("#tanHama");
+      if (hamaEl) {
+        var wH = hamaEl.querySelector(".thama");
+        var gambarHama = function (c) {
+          var tt = C.hpt.tanaman[c];
+          wH.innerHTML = '<p class="thama__ring">' + T("Risiko tertinggi: ", "Highest risk: ") + '<span class="tstat tstat--' + katLv(tt.kategori) + '">' + esc(katTeks(tt.kategori)) + "</span></p>" + tt.hama.map(function (x, i) {
+            var nama = EN ? (HAMA_EN[x.kode] || x.nama) : x.nama;
+            return '<details class="thama__i"' + (i === 0 ? " open" : "") + '><summary><span class="thama__n">' + esc(nama) + (x.latin ? " <i>" + esc(x.latin) + "</i>" : "") + '</span><span class="thama__bar"><span style="width:' + Math.min(100, (x.nilai || 0) * 10).toFixed(0) + '%" class="lv' + katLv(x.kategori) + '"></span></span><span class="thama__k">' + f1(x.nilai) + " · " + esc(katTeks(x.kategori)) + "</span></summary>" +
+              (x.saran ? '<p>' + (EN ? "<small>(Recommendation in Indonesian)</small> " : "") + esc(x.saran) + "</p>" : "") + "</details>";
+          }).join("");
+        };
+        gambarHama(tn[0]); onChips(hamaEl.querySelector(".tchips"), gambarHama);
+      }
+    }
+
+    fetch("data/cuaca.json?v=" + Math.floor(Date.now() / 36e5), { cache: "no-cache" })
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (j) { if (!j) return; C = j; renderBeranda(); renderPertanian(); })
+      .catch(function () {});
   })();
 
   /* Slide pengantar di atas Beranda: berganti tiap 5 detik dan berputar terus */

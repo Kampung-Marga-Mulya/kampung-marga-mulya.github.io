@@ -1391,7 +1391,7 @@ window.KAMPUNG = {
     { src: "assets/img/kegiatan/pelatihan-peternakan.jpg", ket: "Pelatihan peternakan dan pertanian terpadu di balai kampung" }
   ],
 
-  // Cuaca & kualitas udara di Beranda (data langsung dari Open-Meteo, tanpa kunci API).
+  // Titik kampung untuk menghitung jarak ke stasiun cuaca PAT-1 Waninggap Kai (data: data/cuaca.json).
   cuaca: { lokasi: "Semangga", lat: -8.405899, lng: 140.467687 },
 
   kontak: {

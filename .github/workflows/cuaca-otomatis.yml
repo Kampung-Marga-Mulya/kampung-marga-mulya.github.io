@@ -1,0 +1,54 @@
+name: Perbarui cuaca & pertanian
+
+# Mengambil data stasiun cuaca otomatis PAT-1 Desa Waninggap Kai (Sinau Bumi & IPB University)
+# setiap 3 jam, lalu menyimpannya ke data/cuaca.json untuk Beranda dan Jelajah → Cuaca & Pertanian.
+# Bisa juga dijalankan manual: tab Actions → "Perbarui cuaca & pertanian" → Run workflow.
+on:
+  schedule:
+    - cron: "23 */3 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+
+concurrency:
+  group: cuaca-otomatis
+  cancel-in-progress: false
+
+jobs:
+  perbarui:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Pasang pustaka
+        run: pip install --quiet requests
+
+      - name: Ambil data Sinau Bumi
+        run: python scripts/update_cuaca.py data/cuaca.json
+
+      - name: Simpan jika ada perubahan
+        id: simpan
+        run: |
+          git add data/cuaca.json
+          if git diff --cached --quiet; then
+            echo "Tidak ada perubahan."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Perbarui data cuaca & pertanian"
+          git pull --rebase origin main
+          git push
+          echo "berubah=1" >> "$GITHUB_OUTPUT"
+
+      - name: Terbitkan ulang website
+        if: steps.simpan.outputs.berubah == '1'
+        env: { GH_TOKEN: "${{ github.token }}" }
+        run: gh api -X POST "repos/${{ github.repository }}/pages/builds" || true

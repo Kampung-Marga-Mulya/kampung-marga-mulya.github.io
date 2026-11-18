@@ -1618,3 +1618,75 @@ details.bid > summary > span small { display: block; font-weight: 500; color: va
 .cuaca-tabel td .ic { width: 18px; height: 18px; margin-right: 6px; vertical-align: -4px; color: var(--blue); }
 .aqi { display: inline-block; padding: 2px 8px; border-radius: 99px; font-size: .8rem; font-weight: 700; background: var(--tint); border: 1px solid var(--line); color: var(--blue); }
 .aqi--2, .aqi--3, .aqi--4, .aqi--5 { background: var(--blue-fill); border-color: var(--blue); color: #fff; }
+.hstat__ramal u { grid-column: 1 / -1; text-decoration: none; font-size: .72rem; color: #DCE8FB; }
+
+/* ---------- Jelajah → Cuaca & Pertanian ---------- */
+#tanApp > div { display: grid; gap: 14px; }
+.tinfo { display: inline-flex; align-items: center; gap: 8px; font-size: .9rem; color: var(--ink-2); }
+.tinfo__dot { width: 10px; height: 10px; border-radius: 50%; background: var(--blue); box-shadow: 0 0 0 4px var(--tint); animation: tdenyut 1.6s ease-in-out infinite; }
+@keyframes tdenyut { 0%, 100% { box-shadow: 0 0 0 4px var(--tint); } 50% { box-shadow: 0 0 0 7px var(--tint); } }
+.tinfo__dot.is-off { background: var(--ink-2); animation: none; }
+.tkartu { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; }
+.tkartu__i { display: grid; grid-template-columns: auto 1fr; grid-template-rows: auto auto auto; column-gap: 10px; align-items: center; text-align: left; padding: 12px; border-radius: 14px; border: 1px solid var(--line); background: var(--card); color: var(--ink); font: inherit; cursor: pointer; transition: border-color .15s, transform .15s, box-shadow .15s; }
+.tkartu__i:hover { border-color: var(--blue); box-shadow: 0 4px 14px rgba(20, 82, 194, .1); }
+.tkartu__i:active { transform: scale(.98); }
+.tkartu__i .ic { grid-row: 1 / span 3; width: 36px; height: 36px; padding: 8px; border-radius: 50%; background: var(--tint); color: var(--blue); }
+.tkartu__i b { font-family: var(--font-head); font-size: 1.35rem; line-height: 1.1; color: var(--blue); }
+.tkartu__i span { font-size: .85rem; font-weight: 700; }
+.tkartu__i small { font-size: .78rem; color: var(--ink-2); }
+.tpanel { display: grid; gap: 10px; }
+.tpanel__h { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; }
+.tpanel__h h3 { margin: 0; }
+.tchips { display: inline-flex; flex-wrap: wrap; gap: 4px; padding: 3px; border-radius: 999px; background: var(--tint); border: 1px solid var(--line); }
+.tchips button { border: 0; background: transparent; color: var(--ink-2); font: inherit; font-size: .85rem; font-weight: 600; padding: 7px 12px; border-radius: 999px; cursor: pointer; min-height: 36px; }
+.tchips button[aria-selected="true"] { background: var(--blue-fill); color: #fff; }
+.tgrafik__wadah { width: 100%; }
+.tgrafik { width: 100%; height: auto; display: block; overflow: visible; }
+.tgrafik text { font-size: 11px; fill: var(--ink-2); font-family: inherit; }
+.tgrafik__dasar { stroke: var(--line); stroke-width: 1; }
+.tgrafik__hit { fill: transparent; cursor: pointer; }
+.tgrafik__bar { fill: var(--blue); opacity: .75; transition: opacity .15s; }
+.tgrafik__b.is-beda .tgrafik__bar { fill: var(--blue-mid, #7AAAF2); opacity: .9; }
+.tgrafik__b.is-on .tgrafik__bar { opacity: 1; fill: var(--blue); }
+.tgrafik__b.is-on .tgrafik__hit { fill: var(--tint); }
+.tgrafik__garis { fill: none; stroke: var(--blue); stroke-width: 2.5; stroke-linejoin: round; vector-effect: non-scaling-stroke; pointer-events: none; }
+.tgrafik__area { fill: var(--tint); stroke: none; pointer-events: none; }
+.tgrafik__titik { fill: var(--card); stroke: var(--blue); stroke-width: 2; vector-effect: non-scaling-stroke; opacity: 0; }
+.tgrafik__b.is-on .tgrafik__titik { opacity: 1; }
+.tgrafik__b:focus { outline: none; }
+.tgrafik__b:focus-visible .tgrafik__hit { fill: var(--tint); }
+.tbaca { margin: 0; min-height: 1.5em; padding: 8px 12px; border-radius: 10px; background: var(--tint); font-size: .92rem; }
+.tramal { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(84px, 1fr); gap: 8px; overflow-x: auto; padding-bottom: 4px; scroll-snap-type: x proximity; }
+.tramal button { display: grid; justify-items: center; gap: 4px; padding: 10px 6px; border-radius: 14px; border: 1px solid var(--line); background: var(--card); color: var(--ink); font: inherit; cursor: pointer; scroll-snap-align: start; }
+.tramal button[aria-selected="true"] { border-color: var(--blue); background: var(--tint); box-shadow: inset 0 0 0 1px var(--blue); }
+.tramal em { font-style: normal; font-size: .78rem; font-weight: 700; color: var(--ink-2); text-transform: capitalize; }
+.tramal .ic { width: 28px; height: 28px; color: var(--blue); }
+.tramal b { font-size: 1rem; }
+.tramal b i { font-style: normal; font-weight: 500; color: var(--ink-2); font-size: .85rem; margin-left: 4px; }
+.tramal small { font-size: .75rem; color: var(--blue); font-weight: 700; }
+.tsmi { display: grid; gap: 8px; }
+.tsmi__t { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.tsmi__t p { margin: 0; flex: 1 1 220px; }
+.tsmi__bar { position: relative; height: 12px; border-radius: 99px; background: linear-gradient(90deg, #0B3A8F, #2F6FE0 45%, #BFD5F7); }
+.tsmi__bar span { position: absolute; top: 50%; width: 20px; height: 20px; border-radius: 50%; background: var(--card); border: 3px solid var(--blue); transform: translate(-50%, -50%); }
+.tsmi__sk { display: flex; justify-content: space-between; font-size: .75rem; color: var(--ink-2); }
+.tlink { justify-self: start; border: 0; background: none; padding: 4px 0; color: var(--blue); font: inherit; font-weight: 700; text-decoration: underline; cursor: pointer; }
+.tstat { display: inline-block; padding: 3px 10px; border-radius: 99px; font-size: .82rem; font-weight: 700; border: 1px solid var(--blue); color: var(--blue); background: var(--tint); }
+.tstat--3, .tstat--4 { background: var(--blue-fill); color: #fff; }
+.thama { display: grid; gap: 6px; }
+.thama__ring { margin: 0 0 4px; }
+.thama__i { border: 1px solid var(--line); border-radius: 12px; background: var(--card); }
+.thama__i summary { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(80px, 1fr) auto; align-items: center; gap: 10px; padding: 10px 12px; cursor: pointer; list-style: none; }
+.thama__i summary::-webkit-details-marker { display: none; }
+.thama__n { font-weight: 700; font-size: .92rem; }
+.thama__n i { display: block; font-weight: 400; font-size: .78rem; color: var(--ink-2); }
+.thama__bar { height: 8px; border-radius: 99px; background: var(--tint); overflow: hidden; }
+.thama__bar span { display: block; height: 100%; border-radius: 99px; background: var(--blue); }
+.thama__bar .lv0, .thama__bar .lv1 { opacity: .45; } .thama__bar .lv2 { opacity: .7; }
+.thama__k { font-size: .8rem; font-weight: 700; color: var(--blue); white-space: nowrap; }
+.thama__i p { margin: 0; padding: 0 12px 12px; font-size: .9rem; color: var(--ink-2); }
+.tapi { display: grid; gap: 8px; }
+.tapi__n { display: flex; align-items: center; gap: 12px; }
+.tapi__n b { font-family: var(--font-head); font-size: 2.2rem; color: var(--blue); line-height: 1; }
+.tapi p { margin: 0; }
+@media (max-width: 520px) { .tkartu { grid-template-columns: repeat(2, minmax(0, 1fr)); } .thama__i summary { grid-template-columns: 1fr auto; } .thama__bar { grid-column: 1 / -1; grid-row: 2; } }
