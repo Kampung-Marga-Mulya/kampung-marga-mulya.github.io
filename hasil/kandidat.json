@@ -1,0 +1,3 @@
+[
+ "<script>\n  window.APP = { endpoint: 'index.php?action=data', initial: {\"time_wib\":\"18 November 2026 19:35 WIB\",\"stations\":[{\"slug\":\"aas-1-brmp-sumatera-utara\",\"name\":\"AAS-1 (BRMP Sumatera Utara)\",\"lat\":3.545245,\"lon\":99.0696933,\"elevation\":5,\"link\":\"https:\\/\\/aas.sinaubumi.org\\/\",\"link_dashboard\":\"h"
+]

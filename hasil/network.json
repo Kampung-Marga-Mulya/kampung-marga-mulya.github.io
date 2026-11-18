@@ -1,0 +1,1165 @@
+[
+ {
+  "url": "https://map.sinaubumi.org/",
+  "method": "GET",
+  "status": 200,
+  "ct": "text/html; charset=UTF-8",
+  "post": null
+ },
+ {
+  "url": "https://cdn.tailwindcss.com/",
+  "method": "GET",
+  "status": 302,
+  "ct": "",
+  "post": null
+ },
+ {
+  "url": "https://cdn.tailwindcss.com/3.4.17",
+  "method": "GET",
+  "status": 200,
+  "ct": "text/javascript",
+  "post": null
+ },
+ {
+  "url": "https://unpkg.com/leaflet@1.9.4/dist/leaflet.css",
+  "method": "GET",
+  "status": 200,
+  "ct": "text/css; charset=utf-8",
+  "post": null
+ },
+ {
+  "url": "https://unpkg.com/leaflet@1.9.4/dist/leaflet.js",
+  "method": "GET",
+  "status": 200,
+  "ct": "text/javascript; charset=utf-8",
+  "post": null
+ },
+ {
+  "url": "https://map.sinaubumi.org/assets/js/app.js?v=1794749787",
+  "method": "GET",
+  "status": 200,
+  "ct": "application/x-javascript",
+  "post": null
+ },
+ {
+  "url": "https://cdn.jsdelivr.net/npm/leaflet.locatecontrol/dist/L.Control.Locate.min.js",
+  "method": "GET",
+  "status": 200,
+  "ct": "application/javascript; charset=utf-8",
+  "post": null
+ },
+ {
+  "url": "https://cdn.jsdelivr.net/npm/leaflet.locatecontrol/dist/L.Control.Locate.min.css",
+  "method": "GET",
+  "status": 200,
+  "ct": "text/css; charset=utf-8",
+  "post": null
+ },
+ {
+  "url": "https://rsms.me/inter/inter.css",
+  "method": "GET",
+  "status": 200,
+  "ct": "text/css; charset=utf-8",
+  "post": null
+ },
+ {
+  "url": "https://map.sinaubumi.org/assets/js/leaflet-windbarb.js?v=1794218817",
+  "method": "GET",
+  "status": 200,
+  "ct": "application/x-javascript",
+  "post": null
+ },
+ {
+  "url": "https://map.sinaubumi.org/assets/css/app.css?v=1794218817",
+  "method": "GET",
+  "status": 200,
+  "ct": "text/css",
+  "post": null
+ },
+ {
+  "url": "https://rsms.me/inter/font-files/Inter-SemiBold.woff2?v=4.1",
+  "method": "GET",
+  "status": 200,
+  "ct": "font/woff2",
+  "post": null
+ },
+ {
+  "url": "https://rsms.me/inter/font-files/Inter-Medium.woff2?v=4.1",
+  "method": "GET",
+  "status": 200,
+  "ct": "font/woff2",
+  "post": null
+ },
+ {
+  "url": "https://rsms.me/inter/font-files/Inter-Regular.woff2?v=4.1",
+  "method": "GET",
+  "status": 200,
+  "ct": "font/woff2",
+  "post": null
+ },
+ {
+  "url": "https://rsms.me/inter/font-files/Inter-Bold.woff2?v=4.1",
+  "method": "GET",
+  "status": 200,
+  "ct": "font/woff2",
+  "post": null
+ },
+ {
+  "url": "https://sinaubumi.org/assets/Legend_AWS_c.webp?v=2",
+  "method": "GET",
+  "status": 200,
+  "ct": "image/webp",
+  "post": null
+ },
+ {
+  "url": "https://sinaubumi.org/assets/Logo_AWS_c.webp?v=2",
+  "method": "GET",
+  "status": 200,
+  "ct": "image/webp",
+  "post": null
+ },
+ {
+  "url": "https://basemaps.cartocdn.com/rastertiles/voyager/5/26/15.png?key=cb1_29cj_1_6fe470c5392f7473d8c31813",
+  "method": "GET",
+  "status": 200,
+  "ct": "image/png",
+  "post": null
+ },
+ {
+  "url": "https://basemaps.cartocdn.com/rastertiles/voyager/5/24/16.png?key=cb1_29cj_1_6fe470c5392f7473d8c31813",
+  "method": "GET",
+  "status": 200,
+  "ct": "image/png",
+  "post": null
+ },
+ {
+  "url": "https://basemaps.cartocdn.com/rastertiles/voyager/5/24/17.png?key=cb1_29cj_1_6fe470c5392f7473d8c31813",
+  "method": "GET",
+  "status": 200,
+  "ct": "image/png",
+  "post": null
+ },
+ {
+  "url": "https://basemaps.cartocdn.com/rastertiles/voyager/5/24/15.png?key=cb1_29cj_1_6fe470c5392f7473d8c31813",
+  "method": "GET",
+  "status": 200,
+  "ct": "image/png",
+  "post": null
+ },
+ {
+  "url": "https://basemaps.cartocdn.com/rastertiles/voyager/5/28/14.png?key=cb1_29cj_1_6fe470c5392f7473d8c31813",
+  "method": "GET",
+  "status": 200,
+  "ct": "image/png",
+  "post": null
+ },
+ {
+  "url": "https://basemaps.cartocdn.com/rastertiles/voyager/5/25/14.png?key=cb1_29cj_1_6fe470c5392f7473d8c31813",
+  "method": "GET",
+  "status": 200,
+  "ct": "image/png",
+  "post": null
+ },
+ {
+  "url": "https://basemaps.cartocdn.com/rastertiles/voyager/5/25/17.png?key=cb1_29cj_1_6fe470c5392f7473d8c31813",
+  "method": "GET",
+  "status": 200,
+  "ct": "image/png",
+  "post": null
+ },
+ {
+  "url": "https://basemaps.cartocdn.com/rastertiles/voyager/5/28/15.png?key=cb1_29cj_1_6fe470c5392f7473d8c31813",
+  "method": "GET",
+  "status": 200,
+  "ct": "image/png",
+  "post": null
+ },
+ {
+  "url": "https://basemaps.cartocdn.com/rastertiles/voyager/5/26/16.png?key=cb1_29cj_1_6fe470c5392f7473d8c31813",
+  "method": "GET",
+  "status": 200,
+  "ct": "image/png",
+  "post": null
+ },
+ {
+  "url": "https://basemaps.cartocdn.com/rastertiles/voyager/5/27/16.png?key=cb1_29cj_1_6fe470c5392f7473d8c31813",
+  "method": "GET",
+  "status": 200,
+  "ct": "image/png",
+  "post": null
+ },
+ {
+  "url": "https://basemaps.cartocdn.com/rastertiles/voyager/5/27/14.png?key=cb1_29cj_1_6fe470c5392f7473d8c31813",
+  "method": "GET",
+  "status": 200,
+  "ct": "image/png",
+  "post": null
+ },
+ {
+  "url": "https://basemaps.cartocdn.com/rastertiles/voyager/5/26/14.png?key=cb1_29cj_1_6fe470c5392f7473d8c31813",
+  "method": "GET",
+  "status": 200,
+  "ct": "image/png",
+  "post": null
+ },
+ {
+  "url": "https://basemaps.cartocdn.com/rastertiles/voyager/5/27/17.png?key=cb1_29cj_1_6fe470c5392f7473d8c31813",
+  "method": "GET",
+  "status": 200,
+  "ct": "image/png",
+  "post": null
+ },
+ {
+  "url": "https://basemaps.cartocdn.com/rastertiles/voyager/5/25/16.png?key=cb1_29cj_1_6fe470c5392f7473d8c31813",
+  "method": "GET",
+  "status": 200,
+  "ct": "image/png",
+  "post": null
+ },
+ {
+  "url": "https://basemaps.cartocdn.com/rastertiles/voyager/5/27/15.png?key=cb1_29cj_1_6fe470c5392f7473d8c31813",
+  "method": "GET",
+  "status": 200,
+  "ct": "image/png",
+  "post": null
+ },
+ {
+  "url": "https://basemaps.cartocdn.com/rastertiles/voyager/5/26/17.png?key=cb1_29cj_1_6fe470c5392f7473d8c31813",
+  "method": "GET",
+  "status": 200,
+  "ct": "image/png",
+  "post": null
+ },
+ {
+  "url": "https://basemaps.cartocdn.com/rastertiles/voyager/5/24/14.png?key=cb1_29cj_1_6fe470c5392f7473d8c31813",
+  "method": "GET",
+  "status": 200,
+  "ct": "image/png",
+  "post": null
+ },
+ {
+  "url": "https://basemaps.cartocdn.com/rastertiles/voyager/5/28/16.png?key=cb1_29cj_1_6fe470c5392f7473d8c31813",
+  "method": "GET",
+  "status": 200,
+  "ct": "image/png",
+  "post": null
+ },
+ {
+  "url": "https://basemaps.cartocdn.com/rastertiles/voyager/5/25/15.png?key=cb1_29cj_1_6fe470c5392f7473d8c31813",
+  "method": "GET",
+  "status": 200,
+  "ct": "image/png",
+  "post": null
+ },
+ {
+  "url": "https://basemaps.cartocdn.com/rastertiles/voyager/5/28/17.png?key=cb1_29cj_1_6fe470c5392f7473d8c31813",
+  "method": "GET",
+  "status": 200,
+  "ct": "image/png",
+  "post": null
+ },
+ {
+  "url": "https://map.sinaubumi.org/index.php?action=data",
+  "method": "GET",
+  "status": 200,
+  "ct": "application/json; charset=utf-8",
+  "post": null,
+  "ukuran": 98436
+ },
+ {
+  "url": "https://sinaubumi.org/",
+  "method": "GET",
+  "status": 200,
+  "ct": "text/html; charset=UTF-8",
+  "post": null
+ },
+ {
+  "url": "https://sinaubumi.org/wp-content/plugins/header-footer-elementor/assets/css/header-footer-elementor.css?ver=2.9.7",
+  "method": "GET",
+  "status": 200,
+  "ct": "text/css",
+  "post": null
+ },
+ {
+  "url": "https://sinaubumi.org/wp-content/plugins/the-post-grid/assets/vendor/font-awesome/css/font-awesome.min.css?ver=7.9.11",
+  "method": "GET",
+  "status": 200,
+  "ct": "text/css",
+  "post": null
+ },
+ {
+  "url": "https://sinaubumi.org/wp-content/plugins/elementor/assets/css/widget-heading.min.css?ver=4.4.1",
+  "method": "GET",
+  "status": 200,
+  "ct": "text/css",
+  "post": null
+ },
+ {
+  "url": "https://sinaubumi.org/wp-content/plugins/elementor/assets/css/conditionals/e-swiper.min.css?ver=4.4.1",
+  "method": "GET",
+  "status": 200,
+  "ct": "text/css",
+  "post": null
+ },
+ {
+  "url": "https://sinaubumi.org/wp-content/plugins/header-footer-elementor/inc/widgets-css/frontend.css?ver=2.9.7",
+  "method": "GET",
+  "status": 200,
+  "ct": "text/css",
+  "post": null
+ },
+ {
+  "url": "https://sinaubumi.org/wp-content/uploads/elementor/css/post-9.css?ver=1794925293",
+  "method": "GET",
+  "status": 200,
+  "ct": "text/css",
+  "post": null
+ },
+ {
+  "url": "https://sinaubumi.org/wp-content/plugins/elementor/assets/css/widget-icon-list.min.css?ver=3.24.3",
+  "method": "GET",
+  "status": 200,
+  "ct": "text/css",
+  "post": null
+ },
+ {
+  "url": "https://sinaubumi.org/wp-content/plugins/elementor-pro/assets/css/widget-nav-menu.min.css?ver=3.26.0",
+  "method": "GET",
+  "status": 200,
+  "ct": "text/css",
+  "post": null
+ },
+ {
+  "url": "https://sinaubumi.org/wp-content/uploads/elementor/css/post-8.css?ver=1794925293",
+  "method": "GET",
+  "status": 200,
+  "ct": "text/css",
+  "post": null
+ },
+ {
+  "url": "https://sinaubumi.org/wp-content/plugins/elementor/assets/css/frontend.min.css?ver=4.4.1",
+  "method": "GET",
+  "status": 200,
+  "ct": "text/css",
+  "post": null
+ },
+ {
+  "url": "https://sinaubumi.org/wp-content/plugins/elementor/assets/css/widget-image-carousel.min.css?ver=4.4.1",
+  "method": "GET",
+  "status": 200,
+  "ct": "text/css",
+  "post": null
+ },
+ {
+  "url": "https://sinaubumi.org/wp-content/uploads/elementor/css/post-31.css?ver=1794925293",
+  "method": "GET",
+  "status": 200,
+  "ct": "text/css",
+  "post": null
+ },
+ {
+  "url": "https://sinaubumi.org/wp-content/plugins/the-post-grid/assets/css/thepostgrid.min.css?ver=7.9.11",
+  "method": "GET",
+  "status": 200,
+  "ct": "text/css",
+  "post": null
+ },
+ {
+  "url": "https://sinaubumi.org/wp-content/themes/hello-elementor/assets/css/reset.css?ver=3.5.2",
+  "method": "GET",
+  "status": 200,
+  "ct": "text/css",
+  "post": null
+ },
+ {
+  "url": "https://sinaubumi.org/wp-includes/js/jquery/jquery.min.js?ver=3.7.1",
+  "method": "GET",
+  "status": 200,
+  "ct": "application/x-javascript",
+  "post": null
+ },
+ {
+  "url": "https://sinaubumi.org/wp-content/themes/hello-elementor/assets/css/header-footer.css?ver=3.5.2",
+  "method": "GET",
+  "status": 200,
+  "ct": "text/css",
+  "post": null
+ },
+ {
+  "url": "https://sinaubumi.org/wp-content/plugins/elementor/assets/lib/font-awesome/css/brands.css?ver=5.15.3",
+  "method": "GET",
+  "status": 200,
+  "ct": "text/css",
+  "post": null
+ },
+ {
+  "url": "https://sinaubumi.org/wp-content/themes/hello-elementor/assets/css/theme.css?ver=3.5.2",
+  "method": "GET",
+  "status": 200,
+  "ct": "text/css",
+  "post": null
+ },
+ {
+  "url": "https://sinaubumi.org/wp-content/plugins/elementor/assets/lib/font-awesome/css/solid.css?ver=5.15.3",
+  "method": "GET",
+  "status": 200,
+  "ct": "text/css",
+  "post": null
+ },
+ {
+  "url": "https://sinaubumi.org/wp-content/plugins/elementor/assets/lib/eicons/css/elementor-icons.min.css?ver=5.34.0",
+  "method": "GET",
+  "status": 200,
+  "ct": "text/css",
+  "post": null
+ },
+ {
+  "url": "https://sinaubumi.org/wp-content/plugins/elementor/assets/css/widget-social-icons.min.css?ver=3.24.0",
+  "method": "GET",
+  "status": 200,
+  "ct": "text/css",
+  "post": null
+ },
+ {
+  "url": "https://sinaubumi.org/wp-content/uploads/elementor/css/post-20.css?ver=1794925293",
+  "method": "GET",
+  "status": 200,
+  "ct": "text/css",
+  "post": null
+ },
+ {
+  "url": "https://sinaubumi.org/wp-content/plugins/elementor-pro/assets/css/widget-blockquote.min.css?ver=3.25.0",
+  "method": "GET",
+  "status": 200,
+  "ct": "text/css",
+  "post": null
+ },
+ {
+  "url": "https://sinaubumi.org/wp-content/plugins/elementor-pro/assets/css/frontend.min.css?ver=3.23.3",
+  "method": "GET",
+  "status": 200,
+  "ct": "text/css",
+  "post": null
+ },
+ {
+  "url": "https://sinaubumi.org/wp-content/plugins/elementor/assets/lib/font-awesome/css/fontawesome.css?ver=5.15.3",
+  "method": "GET",
+  "status": 200,
+  "ct": "text/css",
+  "post": null
+ },
+ {
+  "url": "https://sinaubumi.org/wp-content/plugins/elementor-pro/assets/css/widget-mega-menu.min.css?ver=3.26.2",
+  "method": "GET",
+  "status": 200,
+  "ct": "text/css",
+  "post": null
+ },
+ {
+  "url": "https://sinaubumi.org/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.4.1",
+  "method": "GET",
+  "status": 200,
+  "ct": "application/x-javascript",
+  "post": null
+ },
+ {
+  "url": "https://sinaubumi.org/wp-content/plugins/elementor/assets/lib/swiper/v8/css/swiper.min.css?ver=8.4.5",
+  "method": "GET",
+  "status": 200,
+  "ct": "text/css",
+  "post": null
+ },
+ {
+  "url": "https://sinaubumi.org/wp-content/uploads/elementor/google-fonts/css/montserrat.css?ver=1744971440",
+  "method": "GET",
+  "status": 200,
+  "ct": "text/css",
+  "post": null
+ },
+ {
+  "url": "https://sinaubumi.org/wp-content/uploads/2024/08/logosinau-removebg-preview-300x259.png",
+  "method": "GET",
+  "status": 200,
+  "ct": "image/webp",
+  "post": null
+ },
+ {
+  "url": "https://code.jquery.com/jquery-3.6.0.min.js",
+  "method": "GET",
+  "status": 200,
+  "ct": "application/javascript; charset=utf-8",
+  "post": null
+ },
+ {
+  "url": "https://sinaubumi.org/wp-content/uploads/2024/08/AWS-7-scaled.jpg",
+  "method": "GET",
+  "status": 200,
+  "ct": "image/webp",
+  "post": null
+ },
+ {
+  "url": "https://sinaubumi.org/wp-includes/js/dist/hooks.min.js?ver=f0f188028580e8dc1255",
+  "method": "GET",
+  "status": 200,
+  "ct": "application/x-javascript",
+  "post": null
+ },
+ {
+  "url": "https://sinaubumi.org/wp-content/plugins/elementor/assets/js/frontend-modules.min.js?ver=4.4.1",
+  "method": "GET",
+  "status": 200,
+  "ct": "application/x-javascript",
+  "post": null
+ },
+ {
+  "url": "https://sinaubumi.org/wp-content/plugins/elementor/assets/css/widget-social-icons.min.css?ver=4.4.1",
+  "method": "GET",
+  "status": 200,
+  "ct": "text/css",
+  "post": null
+ },
+ {
+  "url": "https://sinaubumi.org/wp-content/plugins/elementor/assets/css/widget-image.min.css?ver=4.4.1",
+  "method": "GET",
+  "status": 200,
+  "ct": "text/css",
+  "post": null
+ },
+ {
+  "url": "https://sinaubumi.org/wp-content/plugins/elementor/assets/css/conditionals/apple-webkit.min.css?ver=4.4.1",
+  "method": "GET",
+  "status": 200,
+  "ct": "text/css",
+  "post": null
+ },
+ {
+  "url": "https://sinaubumi.org/wp-content/themes/hello-elementor/assets/js/hello-frontend.js?ver=3.5.2",
+  "method": "GET",
+  "status": 200,
+  "ct": "application/x-javascript",
+  "post": null
+ },
+ {
+  "url": "https://sinaubumi.org/wp-includes/js/jquery/ui/core.min.js?ver=1.14.2",
+  "method": "GET",
+  "status": 200,
+  "ct": "application/x-javascript",
+  "post": null
+ },
+ {
+  "url": "https://sinaubumi.org/wp-content/plugins/elementor-pro/assets/js/elements-handlers.min.js?ver=3.23.3",
+  "method": "GET",
+  "status": 200,
+  "ct": "application/x-javascript",
+  "post": null
+ },
+ {
+  "url": "https://sinaubumi.org/wp-content/plugins/elementor-pro/assets/js/frontend.min.js?ver=3.23.3",
+  "method": "GET",
+  "status": 200,
+  "ct": "application/x-javascript",
+  "post": null
+ },
+ {
+  "url": "https://sinaubumi.org/wp-includes/js/dist/i18n.min.js?ver=1dfe7db3940c23ea9216",
+  "method": "GET",
+  "status": 200,
+  "ct": "application/x-javascript",
+  "post": null
+ },
+ {
+  "url": "https://sinaubumi.org/wp-includes/js/imagesloaded.min.js?ver=5.0.0",
+  "method": "GET",
+  "status": 200,
+  "ct": "application/x-javascript",
+  "post": null
+ },
+ {
+  "url": "https://sinaubumi.org/wp-content/plugins/elementor/assets/js/webpack.runtime.min.js?ver=4.4.1",
+  "method": "GET",
+  "status": 200,
+  "ct": "application/x-javascript",
+  "post": null
+ },
+ {
+  "url": "https://sinaubumi.org/wp-content/plugins/header-footer-elementor/inc/js/frontend.js?ver=2.9.7",
+  "method": "GET",
+  "status": 200,
+  "ct": "application/x-javascript",
+  "post": null
+ },
+ {
+  "url": "https://sinaubumi.org/wp-content/plugins/elementor/assets/lib/swiper/v8/swiper.min.js?ver=8.4.5",
+  "method": "GET",
+  "status": 200,
+  "ct": "application/x-javascript",
+  "post": null
+ },
+ {
+  "url": "https://sinaubumi.org/wp-content/uploads/2024/08/sunset-263914_1920.jpg",
+  "method": "GET",
+  "status": 200,
+  "ct": "image/webp",
+  "post": null
+ },
+ {
+  "url": "https://sinaubumi.org/wp-content/uploads/elementor/google-fonts/fonts/montserrat-jtusjig1_i6t8kchkm459wlhyw.woff2",
+  "method": "GET",
+  "status": 200,
+  "ct": "font/woff2",
+  "post": null
+ },
+ {
+  "url": "https://sinaubumi.org/wp-content/uploads/2024/08/9-2.png",
+  "method": "GET",
+  "status": 200,
+  "ct": "image/webp",
+  "post": null
+ },
+ {
+  "url": "https://sinaubumi.org/wp-content/uploads/2024/08/23.png",
+  "method": "GET",
+  "status": 200,
+  "ct": "image/webp",
+  "post": null
+ },
+ {
+  "url": "https://sinaubumi.org/wp-content/plugins/elementor/assets/js/frontend.min.js?ver=4.4.1",
+  "method": "GET",
+  "status": 200,
+  "ct": "application/x-javascript",
+  "post": null
+ },
+ {
+  "url": "https://sinaubumi.org/wp-content/plugins/elementor-pro/assets/js/webpack-pro.runtime.min.js?ver=3.23.3",
+  "method": "GET",
+  "status": 200,
+  "ct": "application/x-javascript",
+  "post": null
+ },
+ {
+  "url": "blob:https://sinaubumi.org/5cbf3b4e-ad02-4868-963b-8761d7c76ac3",
+  "method": "GET",
+  "status": 200,
+  "ct": "text/javascript",
+  "post": null
+ },
+ {
+  "url": "https://sinaubumi.org/wp-content/uploads/2024/08/6-3.png",
+  "method": "GET",
+  "status": 200,
+  "ct": "image/webp",
+  "post": null
+ },
+ {
+  "url": "https://sinaubumi.org/wp-content/uploads/2024/08/Co2-flux-dan-carbon-stock-pada-mangrove-2-scaled.jpg",
+  "method": "GET",
+  "status": 200,
+  "ct": "image/webp",
+  "post": null
+ },
+ {
+  "url": "https://sinaubumi.org/wp-content/uploads/2024/08/24.png",
+  "method": "GET",
+  "status": 200,
+  "ct": "image/webp",
+  "post": null
+ },
+ {
+  "url": "https://sinaubumi.org/wp-content/plugins/elementor/assets/js/chunks/background-slideshow.min.js?ver=4.4.1",
+  "method": "GET",
+  "status": 200,
+  "ct": "application/x-javascript",
+  "post": null
+ },
+ {
+  "url": "https://sinaubumi.org/wp-content/plugins/elementor/assets/js/chunks/background-video.min.js?ver=4.4.1",
+  "method": "GET",
+  "status": 200,
+  "ct": "application/x-javascript",
+  "post": null
+ },
+ {
+  "url": "https://sinaubumi.org/wp-content/plugins/elementor/assets/js/chunks/text-editor.min.js?ver=4.4.1",
+  "method": "GET",
+  "status": 200,
+  "ct": "application/x-javascript",
+  "post": null
+ },
+ {
+  "url": "https://sinaubumi.org/wp-content/plugins/elementor-pro/assets/js/carousel.9b02b45d7826c1c48f33.bundle.min.js",
+  "method": "GET",
+  "status": 200,
+  "ct": "application/x-javascript",
+  "post": null
+ },
+ {
+  "url": "https://sinaubumi.org/wp-content/plugins/elementor/assets/js/chunks/image-carousel.min.js?ver=4.4.1",
+  "method": "GET",
+  "status": 200,
+  "ct": "application/x-javascript",
+  "post": null
+ },
+ {
+  "url": "https://sinaubumi.org/wp-content/uploads/2024/08/8-2.png",
+  "method": "GET",
+  "status": 200,
+  "ct": "image/webp",
+  "post": null
+ },
+ {
+  "url": "https://sinaubumi.org/wp-content/uploads/2024/08/2-150x150.png",
+  "method": "GET",
+  "status": 200,
+  "ct": "image/webp",
+  "post": null
+ },
+ {
+  "url": "https://sinaubumi.org/wp-content/uploads/2024/08/3-150x150.png",
+  "method": "GET",
+  "status": 200,
+  "ct": "image/webp",
+  "post": null
+ },
+ {
+  "url": "https://sinaubumi.org/wp-content/uploads/2024/08/2-1-150x150.png",
+  "method": "GET",
+  "status": 200,
+  "ct": "image/webp",
+  "post": null
+ },
+ {
+  "url": "https://sinaubumi.org/wp-content/uploads/2024/08/6-1-150x150.png",
+  "method": "GET",
+  "status": 200,
+  "ct": "image/webp",
+  "post": null
+ },
+ {
+  "url": "https://sinaubumi.org/wp-content/uploads/2024/08/7-150x150.png",
+  "method": "GET",
+  "status": 200,
+  "ct": "image/webp",
+  "post": null
+ },
+ {
+  "url": "https://sinaubumi.org/wp-content/uploads/2024/08/6-150x150.png",
+  "method": "GET",
+  "status": 200,
+  "ct": "image/webp",
+  "post": null
+ },
+ {
+  "url": "https://sinaubumi.org/wp-content/uploads/2024/08/4-1-150x150.png",
+  "method": "GET",
+  "status": 200,
+  "ct": "image/webp",
+  "post": null
+ },
+ {
+  "url": "https://sinaubumi.org/wp-content/uploads/2024/08/10-150x150.png",
+  "method": "GET",
+  "status": 200,
+  "ct": "image/webp",
+  "post": null
+ },
+ {
+  "url": "https://sinaubumi.org/wp-content/uploads/2024/08/20-150x150.png",
+  "method": "GET",
+  "status": 200,
+  "ct": "image/webp",
+  "post": null
+ },
+ {
+  "url": "https://sinaubumi.org/wp-content/uploads/2024/08/12-150x150.png",
+  "method": "GET",
+  "status": 200,
+  "ct": "image/webp",
+  "post": null
+ },
+ {
+  "url": "https://sinaubumi.org/wp-content/uploads/2024/08/21-150x150.png",
+  "method": "GET",
+  "status": 200,
+  "ct": "image/webp",
+  "post": null
+ },
+ {
+  "url": "https://sinaubumi.org/wp-content/uploads/2024/08/5-150x150.png",
+  "method": "GET",
+  "status": 200,
+  "ct": "image/webp",
+  "post": null
+ },
+ {
+  "url": "https://sinaubumi.org/wp-content/uploads/2024/08/3-1-150x150.png",
+  "method": "GET",
+  "status": 200,
+  "ct": "image/webp",
+  "post": null
+ },
+ {
+  "url": "https://sinaubumi.org/wp-content/uploads/2024/08/9-150x150.png",
+  "method": "GET",
+  "status": 200,
+  "ct": "image/webp",
+  "post": null
+ },
+ {
+  "url": "https://sinaubumi.org/wp-content/uploads/2024/08/8-150x150.png",
+  "method": "GET",
+  "status": 200,
+  "ct": "image/webp",
+  "post": null
+ },
+ {
+  "url": "https://sinaubumi.org/wp-content/uploads/2024/08/18-150x150.png",
+  "method": "GET",
+  "status": 200,
+  "ct": "image/webp",
+  "post": null
+ },
+ {
+  "url": "https://sinaubumi.org/wp-content/uploads/2025/04/FR-150x150.png",
+  "method": "GET",
+  "status": 200,
+  "ct": "image/webp",
+  "post": null
+ },
+ {
+  "url": "https://sinaubumi.org/wp-content/uploads/2025/04/Damai-Grup-150x150.png",
+  "method": "GET",
+  "status": 200,
+  "ct": "image/webp",
+  "post": null
+ },
+ {
+  "url": "https://sinaubumi.org/wp-content/uploads/2024/08/4-150x150.png",
+  "method": "GET",
+  "status": 200,
+  "ct": "image/webp",
+  "post": null
+ },
+ {
+  "url": "https://sinaubumi.org/wp-content/uploads/2024/08/5-1-150x150.png",
+  "method": "GET",
+  "status": 200,
+  "ct": "image/webp",
+  "post": null
+ },
+ {
+  "url": "https://sinaubumi.org/wp-content/uploads/2024/08/11-150x150.png",
+  "method": "GET",
+  "status": 200,
+  "ct": "image/webp",
+  "post": null
+ },
+ {
+  "url": "https://sinaubumi.org/wp-content/uploads/2024/08/1-1-150x150.png",
+  "method": "GET",
+  "status": 200,
+  "ct": "image/webp",
+  "post": null
+ },
+ {
+  "url": "https://sinaubumi.org/wp-content/uploads/2024/08/1-150x150.png",
+  "method": "GET",
+  "status": 200,
+  "ct": "image/webp",
+  "post": null
+ },
+ {
+  "url": "https://sinaubumi.org/wp-content/uploads/2024/08/19-150x150.png",
+  "method": "GET",
+  "status": 200,
+  "ct": "image/webp",
+  "post": null
+ },
+ {
+  "url": "https://sinaubumi.org/wp-content/uploads/2024/08/13-150x150.png",
+  "method": "GET",
+  "status": 200,
+  "ct": "image/webp",
+  "post": null
+ },
+ {
+  "url": "https://sinaubumi.org/wp-content/uploads/2024/08/14-150x150.png",
+  "method": "GET",
+  "status": 200,
+  "ct": "image/webp",
+  "post": null
+ },
+ {
+  "url": "https://sinaubumi.org/wp-content/uploads/2024/08/15-150x150.png",
+  "method": "GET",
+  "status": 200,
+  "ct": "image/webp",
+  "post": null
+ },
+ {
+  "url": "https://sinaubumi.org/wp-content/uploads/2024/08/16-150x150.png",
+  "method": "GET",
+  "status": 200,
+  "ct": "image/webp",
+  "post": null
+ },
+ {
+  "url": "https://sinaubumi.org/wp-content/uploads/2024/08/17-150x150.png",
+  "method": "GET",
+  "status": 200,
+  "ct": "image/webp",
+  "post": null
+ },
+ {
+  "url": "https://map.sinaubumi.org/",
+  "method": "GET",
+  "status": 200,
+  "ct": "text/html; charset=UTF-8",
+  "post": null
+ },
+ {
+  "url": "https://cdn.tailwindcss.com/",
+  "method": "GET",
+  "status": 200,
+  "ct": "text/javascript",
+  "post": null
+ },
+ {
+  "url": "https://unpkg.com/leaflet@1.9.4/dist/leaflet.css",
+  "method": "GET",
+  "status": 200,
+  "ct": "text/css; charset=utf-8",
+  "post": null
+ },
+ {
+  "url": "https://unpkg.com/leaflet@1.9.4/dist/leaflet.js",
+  "method": "GET",
+  "status": 200,
+  "ct": "text/javascript; charset=utf-8",
+  "post": null
+ },
+ {
+  "url": "https://cdn.jsdelivr.net/npm/leaflet.locatecontrol/dist/L.Control.Locate.min.css",
+  "method": "GET",
+  "status": 200,
+  "ct": "text/css; charset=utf-8",
+  "post": null
+ },
+ {
+  "url": "https://cdn.jsdelivr.net/npm/leaflet.locatecontrol/dist/L.Control.Locate.min.js",
+  "method": "GET",
+  "status": 200,
+  "ct": "application/javascript; charset=utf-8",
+  "post": null
+ },
+ {
+  "url": "https://rsms.me/inter/inter.css",
+  "method": "GET",
+  "status": 200,
+  "ct": "text/css; charset=utf-8",
+  "post": null
+ },
+ {
+  "url": "https://map.sinaubumi.org/assets/css/app.css?v=1794218817",
+  "method": "GET",
+  "status": 200,
+  "ct": "text/css",
+  "post": null
+ },
+ {
+  "url": "https://sinaubumi.org/assets/Logo_AWS_c.webp?v=2",
+  "method": "GET",
+  "status": 200,
+  "ct": "image/webp",
+  "post": null
+ },
+ {
+  "url": "https://sinaubumi.org/assets/Legend_AWS_c.webp?v=2",
+  "method": "GET",
+  "status": 200,
+  "ct": "image/webp",
+  "post": null
+ },
+ {
+  "url": "https://rsms.me/inter/font-files/Inter-Regular.woff2?v=4.1",
+  "method": "GET",
+  "status": 200,
+  "ct": "font/woff2",
+  "post": null
+ },
+ {
+  "url": "https://rsms.me/inter/font-files/Inter-Medium.woff2?v=4.1",
+  "method": "GET",
+  "status": 200,
+  "ct": "font/woff2",
+  "post": null
+ },
+ {
+  "url": "https://rsms.me/inter/font-files/Inter-SemiBold.woff2?v=4.1",
+  "method": "GET",
+  "status": 200,
+  "ct": "font/woff2",
+  "post": null
+ },
+ {
+  "url": "https://rsms.me/inter/font-files/Inter-Bold.woff2?v=4.1",
+  "method": "GET",
+  "status": 200,
+  "ct": "font/woff2",
+  "post": null
+ },
+ {
+  "url": "https://map.sinaubumi.org/assets/js/leaflet-windbarb.js?v=1794218817",
+  "method": "GET",
+  "status": 200,
+  "ct": "application/x-javascript",
+  "post": null
+ },
+ {
+  "url": "https://map.sinaubumi.org/assets/js/app.js?v=1794749787",
+  "method": "GET",
+  "status": 200,
+  "ct": "application/x-javascript",
+  "post": null
+ },
+ {
+  "url": "https://basemaps.cartocdn.com/rastertiles/voyager/5/26/15.png?key=cb1_29cj_1_6fe470c5392f7473d8c31813",
+  "method": "GET",
+  "status": 200,
+  "ct": "image/png",
+  "post": null
+ },
+ {
+  "url": "https://basemaps.cartocdn.com/rastertiles/voyager/5/26/16.png?key=cb1_29cj_1_6fe470c5392f7473d8c31813",
+  "method": "GET",
+  "status": 200,
+  "ct": "image/png",
+  "post": null
+ },
+ {
+  "url": "https://basemaps.cartocdn.com/rastertiles/voyager/5/25/15.png?key=cb1_29cj_1_6fe470c5392f7473d8c31813",
+  "method": "GET",
+  "status": 200,
+  "ct": "image/png",
+  "post": null
+ },
+ {
+  "url": "https://basemaps.cartocdn.com/rastertiles/voyager/5/27/15.png?key=cb1_29cj_1_6fe470c5392f7473d8c31813",
+  "method": "GET",
+  "status": 200,
+  "ct": "image/png",
+  "post": null
+ },
+ {
+  "url": "https://basemaps.cartocdn.com/rastertiles/voyager/5/25/16.png?key=cb1_29cj_1_6fe470c5392f7473d8c31813",
+  "method": "GET",
+  "status": 200,
+  "ct": "image/png",
+  "post": null
+ },
+ {
+  "url": "https://basemaps.cartocdn.com/rastertiles/voyager/5/27/16.png?key=cb1_29cj_1_6fe470c5392f7473d8c31813",
+  "method": "GET",
+  "status": 200,
+  "ct": "image/png",
+  "post": null
+ },
+ {
+  "url": "https://basemaps.cartocdn.com/rastertiles/voyager/5/26/14.png?key=cb1_29cj_1_6fe470c5392f7473d8c31813",
+  "method": "GET",
+  "status": 200,
+  "ct": "image/png",
+  "post": null
+ },
+ {
+  "url": "https://basemaps.cartocdn.com/rastertiles/voyager/5/26/17.png?key=cb1_29cj_1_6fe470c5392f7473d8c31813",
+  "method": "GET",
+  "status": 200,
+  "ct": "image/png",
+  "post": null
+ },
+ {
+  "url": "https://basemaps.cartocdn.com/rastertiles/voyager/5/25/14.png?key=cb1_29cj_1_6fe470c5392f7473d8c31813",
+  "method": "GET",
+  "status": 200,
+  "ct": "image/png",
+  "post": null
+ },
+ {
+  "url": "https://basemaps.cartocdn.com/rastertiles/voyager/5/27/14.png?key=cb1_29cj_1_6fe470c5392f7473d8c31813",
+  "method": "GET",
+  "status": 200,
+  "ct": "image/png",
+  "post": null
+ },
+ {
+  "url": "https://basemaps.cartocdn.com/rastertiles/voyager/5/25/17.png?key=cb1_29cj_1_6fe470c5392f7473d8c31813",
+  "method": "GET",
+  "status": 200,
+  "ct": "image/png",
+  "post": null
+ },
+ {
+  "url": "https://basemaps.cartocdn.com/rastertiles/voyager/5/27/17.png?key=cb1_29cj_1_6fe470c5392f7473d8c31813",
+  "method": "GET",
+  "status": 200,
+  "ct": "image/png",
+  "post": null
+ },
+ {
+  "url": "https://basemaps.cartocdn.com/rastertiles/voyager/5/24/15.png?key=cb1_29cj_1_6fe470c5392f7473d8c31813",
+  "method": "GET",
+  "status": 200,
+  "ct": "image/png",
+  "post": null
+ },
+ {
+  "url": "https://basemaps.cartocdn.com/rastertiles/voyager/5/28/15.png?key=cb1_29cj_1_6fe470c5392f7473d8c31813",
+  "method": "GET",
+  "status": 200,
+  "ct": "image/png",
+  "post": null
+ },
+ {
+  "url": "https://basemaps.cartocdn.com/rastertiles/voyager/5/24/16.png?key=cb1_29cj_1_6fe470c5392f7473d8c31813",
+  "method": "GET",
+  "status": 200,
+  "ct": "image/png",
+  "post": null
+ },
+ {
+  "url": "https://basemaps.cartocdn.com/rastertiles/voyager/5/28/16.png?key=cb1_29cj_1_6fe470c5392f7473d8c31813",
+  "method": "GET",
+  "status": 200,
+  "ct": "image/png",
+  "post": null
+ },
+ {
+  "url": "https://basemaps.cartocdn.com/rastertiles/voyager/5/24/14.png?key=cb1_29cj_1_6fe470c5392f7473d8c31813",
+  "method": "GET",
+  "status": 200,
+  "ct": "image/png",
+  "post": null
+ },
+ {
+  "url": "https://basemaps.cartocdn.com/rastertiles/voyager/5/28/14.png?key=cb1_29cj_1_6fe470c5392f7473d8c31813",
+  "method": "GET",
+  "status": 200,
+  "ct": "image/png",
+  "post": null
+ },
+ {
+  "url": "https://basemaps.cartocdn.com/rastertiles/voyager/5/24/17.png?key=cb1_29cj_1_6fe470c5392f7473d8c31813",
+  "method": "GET",
+  "status": 200,
+  "ct": "image/png",
+  "post": null
+ },
+ {
+  "url": "https://basemaps.cartocdn.com/rastertiles/voyager/5/28/17.png?key=cb1_29cj_1_6fe470c5392f7473d8c31813",
+  "method": "GET",
+  "status": 200,
+  "ct": "image/png",
+  "post": null
+ }
+]
