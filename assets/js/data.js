@@ -66,9 +66,7 @@ window.KAMPUNG = {
 
   // Isi tautan akun resmi kampung. Yang kosong akan tampil "belum tersedia".
   sosmed: [
-    { nama: "Facebook", url: "https://www.facebook.com/share/1FFzSdy1pr/", akun: "Grup Kampung Marga Mulya" },
-    { nama: "Instagram", url: "https://www.instagram.com/kampung_margamulya/", akun: "@kampung_margamulya" },
-    { nama: "YouTube", url: "", akun: "[nama kanal YouTube kampung]" },
+    { nama: "Instagram", url: "https://www.instagram.com/kampungmargamulya/", akun: "@kampungmargamulya" },
     { nama: "TikTok", url: "https://www.tiktok.com/@kampung.marga.mul", akun: "@kampung.marga.mul" },
     { nama: "WhatsApp", url: "https://wa.me/6285624924834", akun: "+62 856-2492-4834 (layanan surat)" },   // format url: https://wa.me/62812xxxxxxx
     { nama: "Grup WhatsApp", url: "https://chat.whatsapp.com/1320lutltGe4ayknHjmpjs", akun: "Grup Kampung Marga Mulya" }
