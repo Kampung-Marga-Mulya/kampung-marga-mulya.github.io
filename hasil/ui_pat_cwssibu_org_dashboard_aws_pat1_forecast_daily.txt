@@ -1,7 +1,0 @@
-A  https://pat.cwssibu.org/dashboard/aws-pat1 Ekspedisi Patriot: AWS PAT-1 (Desa Waninggap Kai, Merauke)
-A  https://pat.cwssibu.org/dashboard/aws-pat1 Dashboard
-A  https://pat.cwssibu.org/dashboard/aws-pat1/forecast/hourly Prakiraan Per Jam
-A  https://pat.cwssibu.org/dashboard Daftar Stasiun
-A  https://www.wunderground.com/ Wunderground
-A  https://sinaubumi.org/ Sinau Bumi
-A  https://www.ipb.ac.id/ IPB University

@@ -1,5 +1,0 @@
-A  https://pat.cwssibu.org/dashboard Dashboard
-A  https://pat.cwssibu.org/data Data
-INPUT _token  
-SELECT year  2026 OPTS:2026=2026
-SELECT station  AWS PAT-1 - Desa Waninggap Kai, MeraukeAWS PAT-2 - Desa Hara OPTS:AWS PAT-1 - Desa Waninggap Kai, Merauke=AWS PAT-1 - Desa Waninggap Kai, Merauke|AWS PAT-2 - Desa Harapan Makmur, Merauke=AWS PAT-2 - Desa Harapan Makmur, Merauke|AWS PAT-3 - Desa Sermayam Indah, Merauke=AWS PAT-3 - Desa Sermayam Indah, Merauke|AWS PAT-4 - Desa Kumbe, Merauke=AWS PAT-4 - Desa Kumbe, Merauke|AWS PAT-5 - Desa Invimahad, Merauke=AWS PAT-5 - Desa Invimahad, Merauke|AWS PAT-6 - Universitas Musamus, Merauke=AWS PAT-6 - Universitas Musamus, Merauke

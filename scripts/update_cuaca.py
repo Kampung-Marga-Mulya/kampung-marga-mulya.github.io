@@ -7,9 +7,10 @@ dari Kampung Marga Mulya (± 6 km). Data diambil dari:
   - kat.sinaubumi.org   : neraca air / kelembapan tanah (SMI), hujan 60 hari & prakiraan 16 hari
   - hpt.sinaubumi.org   : risiko hama & penyakit tanaman (padi, jagung)
   - fwi.sinaubumi.org   : indeks bahaya kebakaran (Fire Weather Index)
+  - pat.cwssibu.org/dashboard/aws-pat1/forecast/daily : prakiraan 10 hari (AWS komunitas & Wunderground)
 Hasil ditulis ke data/cuaca.json. Bila satu sumber gagal, data lama bagian itu dipertahankan.
 """
-import json, os, re, sys, datetime as dt
+import html as htmllib, json, os, re, sys, datetime as dt
 import requests
 
 SLUG = "pat-1-desa-waninggap-kai-merauke"
@@ -128,6 +129,26 @@ def bagian_fwi():
     return {"tanggal": m.get("created_at_display"), "status": m.get("status"), "nilai": m.get("fwi_val"), "detail": m.get("detail")}
 
 
+def bagian_ramalan():
+    r = s.get(DASH + "/forecast/daily", timeout=60)
+    m = re.search(r'data-page="([^"]+)"', r.text)
+    fc = json.loads(htmllib.unescape(m.group(1)))["props"]["forecast"]
+    hari = []
+    for x in fc.get("data") or []:
+        d, n = x.get("day") or {}, x.get("night") or {}
+        pilih = d if d.get("iconCode") is not None else n
+        hujan = [v for v in (d.get("precipChance"), n.get("precipChance")) if v is not None]
+        jumlah = [v for v in (d.get("precipAmount"), n.get("precipAmount")) if v is not None]
+        hari.append({"tanggal": (x.get("date") or "")[:10], "maks": x.get("tempMax"), "min": x.get("tempMin"),
+                     "peluangHujan": max(hujan) if hujan else None, "hujan": round(sum(jumlah), 1) if jumlah else None,
+                     "ikon": pilih.get("iconCode"), "kondisi": pilih.get("condition"), "lembap": pilih.get("humidity"),
+                     "angin": pilih.get("windSpeed"), "arahAngin": pilih.get("windDirection"), "awan": pilih.get("cloudCover"), "uv": d.get("uvIndex"),
+                     "terbit": (x.get("sunriseTime") or "")[11:16], "terbenam": (x.get("sunsetTime") or "")[11:16]})
+    if not hari:
+        raise ValueError("prakiraan kosong")
+    return {"diambil": fc.get("cached_at"), "sumber": "AWS komunitas & Wunderground", "hari": hari}
+
+
 def main():
     lama = {}
     if os.path.exists(OUT):
@@ -141,7 +162,7 @@ def main():
         out["kini"], out["stasiun"] = bagian_terkini()
     except Exception as e:
         galat.append("kini: %s" % e)
-    for kunci, fn in [("hariIni", bagian_harian), ("air", bagian_kat), ("hpt", bagian_hpt), ("fwi", bagian_fwi)]:
+    for kunci, fn in [("hariIni", bagian_harian), ("air", bagian_kat), ("hpt", bagian_hpt), ("fwi", bagian_fwi), ("ramalan", bagian_ramalan)]:
         try:
             out[kunci] = fn()
         except Exception as e:
@@ -151,7 +172,7 @@ def main():
     os.makedirs(os.path.dirname(OUT) or ".", exist_ok=True)
     json.dump(out, open(OUT, "w", encoding="utf-8"), ensure_ascii=False, separators=(",", ":"))
     print("selesai; galat:", galat or "tidak ada")
-    if len(galat) >= 5:
+    if len(galat) >= 6:
         sys.exit(1)
 
 
