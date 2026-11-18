@@ -1,5 +1,5 @@
 {
- "diperiksa": "2026-11-18T16:54+09:00",
+ "diperiksa": "2026-11-18T22:53+09:00",
  "catatan": "Dibuat otomatis oleh scripts/update_video.py. Jangan disunting manual; gunakan video.pilihan di assets/js/data.js atau data/video-abaikan.json.",
  "video": [
   {
@@ -165,7 +165,7 @@
    "url": "https://www.youtube.com/watch?v=ascjSfNf2UQ",
    "judul": "Begini kekompakan❗️Warga Exs Transmigrasi di kampung Marga Mulya Papua Selatan",
    "kanal": "STORY AMRY",
-   "tanggal": "2026-11-04",
+   "tanggal": "2026-10-28",
    "tanggal_kira": true,
    "tayang": 650,
    "durasi": 740,
@@ -173,7 +173,7 @@
    "ditemukan": "2026-11-04",
    "rasio_sampul": 1.333,
    "sampul": "assets/img/video/youtube-ascjSfNf2UQ.jpg",
-   "skor": 8.045
+   "skor": 7.894
   },
   {
    "platform": "instagram",
@@ -260,13 +260,13 @@
    "kanal": "Leksono Japa",
    "tanggal": "2025-11-18",
    "tanggal_kira": true,
-   "tayang": 2290,
+   "tayang": 2292,
    "durasi": 933,
    "rasio": "16:9",
    "ditemukan": "2026-11-04",
    "rasio_sampul": 1.333,
    "sampul": "assets/img/video/youtube-x0s84dskmJM.jpg",
-   "skor": 6.883
+   "skor": 6.884
   },
   {
    "platform": "youtube",
@@ -351,6 +351,22 @@
    "rasio_sampul": 1.333,
    "sampul": "assets/img/video/youtube-xH1UZn6oYB4.jpg",
    "skor": 6.579
+  },
+  {
+   "platform": "youtube",
+   "id": "6k3LJ-dfkyI",
+   "url": "https://www.youtube.com/watch?v=6k3LJ-dfkyI",
+   "judul": "HABIS UNTUK SEWA ALAT‼️PETANI PADI KAMPUNG MARGAMULYA EKS TRANSMIGRASI SEMANGGA 2 KABUPATEN MERAUKE",
+   "kanal": "Leksono Japa",
+   "tanggal": "2025-11-18",
+   "tanggal_kira": true,
+   "tayang": 580,
+   "durasi": 1193,
+   "rasio": "16:9",
+   "ditemukan": "2026-11-18",
+   "rasio_sampul": 1.333,
+   "sampul": "assets/img/video/youtube-6k3LJ-dfkyI.jpg",
+   "skor": 6.486
   },
   {
    "platform": "youtube",
@@ -530,38 +546,6 @@
   },
   {
    "platform": "youtube",
-   "id": "HrxJHBLGFEU",
-   "url": "https://www.youtube.com/watch?v=HrxJHBLGFEU",
-   "judul": "KARNAVAL SEMANGGA 2 MARGA MULYA, Dalam Rangka HUT RI KE 79 Tahun, MERAUKE 15 AGUSTUS 2024...",
-   "kanal": "TUKANG PHOTO ART",
-   "tanggal": "2024-11-18",
-   "tanggal_kira": true,
-   "tayang": 279,
-   "durasi": 773,
-   "rasio": "16:9",
-   "ditemukan": "2026-11-17",
-   "rasio_sampul": 1.333,
-   "sampul": "assets/img/video/youtube-HrxJHBLGFEU.jpg",
-   "skor": 6.138
-  },
-  {
-   "platform": "youtube",
-   "id": "LUCH4yWc_cw",
-   "url": "https://www.youtube.com/watch?v=LUCH4yWc_cw",
-   "judul": "TPQ Al Ittihad marga mulya merauke papua",
-   "kanal": "BUNDA RAHMA",
-   "tanggal": "2021-11-19",
-   "tanggal_kira": true,
-   "tayang": 256,
-   "durasi": 151,
-   "rasio": "16:9",
-   "ditemukan": "2026-11-18",
-   "rasio_sampul": 1.333,
-   "sampul": "assets/img/video/youtube-LUCH4yWc_cw.jpg",
-   "skor": 6.107
-  },
-  {
-   "platform": "youtube",
    "id": "m7Zz3j95XTY",
    "url": "https://www.youtube.com/watch?v=m7Zz3j95XTY",
    "judul": "pacuan kuda memperingati hari kemerdekaan HUT ke 78,Kampung MARGA MULYA SEMANGGA DUA.",
@@ -578,35 +562,51 @@
   },
   {
    "platform": "youtube",
-   "id": "XRGqKjXkVmo",
-   "url": "https://www.youtube.com/watch?v=XRGqKjXkVmo",
-   "judul": "Prakerin SMK Pertanian Kuler Di kamp. Marga Mulya - Merauke.",
-   "kanal": "Petani Milenial Merauke",
-   "tanggal": "2020-11-19",
+   "id": "XJ42WnKHTtI",
+   "url": "https://www.youtube.com/watch?v=XJ42WnKHTtI",
+   "judul": "Pembaruan saluran air marga mulya semangga dua",
+   "kanal": "EL Marhume",
+   "tanggal": "2021-11-19",
    "tanggal_kira": true,
-   "tayang": 110,
+   "tayang": 93,
+   "durasi": 123,
+   "rasio": "16:9",
+   "ditemukan": "2026-11-18",
+   "rasio_sampul": 1.333,
+   "sampul": "assets/img/video/youtube-XJ42WnKHTtI.jpg",
+   "skor": 5.815
+  },
+  {
+   "platform": "youtube",
+   "id": "B_BAq4rco-g",
+   "url": "https://www.youtube.com/watch?v=B_BAq4rco-g",
+   "judul": "Acara penutupan KKP Yaleka Maro Merauke angkatan XVII di Kampung Marga Mulya...",
+   "kanal": "Unarapal Chanel",
+   "tanggal": "2025-11-18",
+   "tanggal_kira": true,
+   "tayang": 48,
    "durasi": 203,
    "rasio": "16:9",
    "ditemukan": "2026-11-18",
    "rasio_sampul": 1.333,
-   "sampul": "assets/img/video/youtube-XRGqKjXkVmo.jpg",
-   "skor": 5.864
+   "sampul": "assets/img/video/youtube-B_BAq4rco-g.jpg",
+   "skor": 5.77
   },
   {
    "platform": "youtube",
-   "id": "WotwvzxlpB0",
-   "url": "https://www.youtube.com/watch?v=WotwvzxlpB0",
-   "judul": "Wow!!! Orang Papua \"Wambon\" Sangat jago dalam mbajak sawah menggunakan traktor - Marga Mulya Merauke",
-   "kanal": "DOA-DOA HARIAN KATOLIK",
-   "tanggal": "2021-11-19",
+   "id": "Rr33aaAKEFA",
+   "url": "https://www.youtube.com/watch?v=Rr33aaAKEFA",
+   "judul": "Acara Rama Tama Warga Kampung Marga Mulya Semangga Dua Provinsi Papua Selatan",
+   "kanal": "Sobat HT",
+   "tanggal": "2023-11-19",
    "tanggal_kira": true,
-   "tayang": 95,
-   "durasi": 48,
+   "tayang": 74,
+   "durasi": 314,
    "rasio": "16:9",
    "ditemukan": "2026-11-18",
    "rasio_sampul": 1.333,
-   "sampul": "assets/img/video/youtube-WotwvzxlpB0.jpg",
-   "skor": 5.822
+   "sampul": "assets/img/video/youtube-Rr33aaAKEFA.jpg",
+   "skor": 5.75
   }
  ]
 }
