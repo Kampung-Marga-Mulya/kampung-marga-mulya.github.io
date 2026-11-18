@@ -1,0 +1,159 @@
+Ekspedisi Patriot: AWS PAT-1 (Desa Waninggap Kai, Merauke)
+Lat, Lon: -8.3563, 140.3928 | Alt: 4 MDPL
+DashboardPrakiraan 10 HariDaftar Stasiun
+Data diambil pada: 18 Nov 2026 12:40 (UTC+0)
+Prakiraan Cuaca Per Jam (48 Jam ke depan)
+
+Sumber: AWS Komunitas dan Wunderground
+
+Hari Ini
+Kam, 19 Nov
+Jum, 20 Nov
+Waktu	Kondisi ⓘ	Peluang Hujan (%) ⓘ	Curah Hujan (mm) ⓘ	Suhu (°C)	Kelembapan (%)	Titik Embun (°C)	Tutupan Awan (%)	Angin (m/s)	Arah Angin ⓘ
+
+22:00
+	
+	14% (Sangat Rendah)	Tidak Hujan (0)	28	82	25	81	2.78	TTG
+
+23:00
+	
+	9% (Sangat Rendah)	Tidak Hujan (0)	28	83	24	88	2.78	TTG
+13
+16
+19
+22
+01
+04
+07
+10
+13
+16
+19
+22
+01
+04
+07
+10
+Peluang Hujan (%)
+100
+80
+60
+40
+20
+0
+13
+16
+19
+22
+01
+04
+07
+10
+13
+16
+19
+22
+01
+04
+07
+10
+Curah Hujan (mm)
+5
+4
+3
+2
+1
+0
+13
+16
+19
+22
+01
+04
+07
+10
+13
+16
+19
+22
+01
+04
+07
+10
+Tutupan Awan (%)
+100
+80
+60
+40
+20
+0
+13
+16
+19
+22
+01
+04
+07
+10
+13
+16
+19
+22
+01
+04
+07
+10
+Suhu Udara (°C)
+34
+32
+30
+28
+26
+13
+16
+19
+22
+01
+04
+07
+10
+13
+16
+19
+22
+01
+04
+07
+10
+Kelembapan (%)
+100
+80
+60
+40
+20
+0
+13
+16
+19
+22
+01
+04
+07
+10
+13
+16
+19
+22
+01
+04
+07
+10
+Kecepatan Angin (m/s)
+5
+4
+3
+2
+1
+0
+© 2026 Sinau Bumi & IPB University
+Versi 1.4.8

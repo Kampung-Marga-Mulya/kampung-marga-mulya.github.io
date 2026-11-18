@@ -1,0 +1,192 @@
+Ekspedisi Patriot: AWS PAT-1 (Desa Waninggap Kai, Merauke)
+Lat, Lon: -8.3563, 140.3928 | Alt: 4 MDPL
+DashboardPrakiraan Per JamDaftar Stasiun
+Data diambil pada: 18 Nov 2026 12:40 (UTC+0)
+Prakiraan Cuaca 10 Hari
+
+Sumber: AWS Komunitas dan Wunderground
+
+HARI INI
+18
+Nov
+-°C
+/
+26°C
+Peluang Hujan:
+Sangat Rendah (9%)
+KAM
+19
+Nov
+34°C
+/
+26°C
+Peluang Hujan:
+Rendah (35%)
+JUM
+20
+Nov
+34°C
+/
+25°C
+Peluang Hujan:
+Rendah (24%)
+SAB
+21
+Nov
+35°C
+/
+25°C
+Peluang Hujan:
+Sangat Rendah (7%)
+MIN
+22
+Nov
+35°C
+/
+25°C
+Peluang Hujan:
+Rendah (23%)
+SEN
+23
+Nov
+35°C
+/
+25°C
+Peluang Hujan:
+Rendah (38%)
+SEL
+24
+Nov
+35°C
+/
+25°C
+Peluang Hujan:
+Rendah (22%)
+RAB
+25
+Nov
+35°C
+/
+25°C
+Peluang Hujan:
+Sangat Rendah (7%)
+KAM
+26
+Nov
+35°C
+/
+25°C
+Peluang Hujan:
+Sangat Rendah (7%)
+JUM
+27
+Nov
+35°C
+/
+25°C
+Peluang Hujan:
+Sangat Rendah (7%)
+18 Nov
+19 Nov
+20 Nov
+21 Nov
+22 Nov
+23 Nov
+24 Nov
+25 Nov
+26 Nov
+27 Nov
+Peluang Hujan (%)
+100
+80
+60
+40
+20
+0
+18 Nov
+19 Nov
+20 Nov
+21 Nov
+22 Nov
+23 Nov
+24 Nov
+25 Nov
+26 Nov
+27 Nov
+Curah Hujan (mm)
+5
+4
+3
+2
+1
+0
+18 Nov
+19 Nov
+20 Nov
+21 Nov
+22 Nov
+23 Nov
+24 Nov
+25 Nov
+26 Nov
+27 Nov
+Tutupan Awan (%)
+100
+80
+60
+40
+20
+0
+18 Nov
+19 Nov
+20 Nov
+21 Nov
+22 Nov
+23 Nov
+24 Nov
+25 Nov
+26 Nov
+27 Nov
+Suhu Udara (°C)
+37
+36
+35
+34
+33
+32
+18 Nov
+19 Nov
+20 Nov
+21 Nov
+22 Nov
+23 Nov
+24 Nov
+25 Nov
+26 Nov
+27 Nov
+Kelembapan (%)
+100
+80
+60
+40
+20
+0
+18 Nov
+19 Nov
+20 Nov
+21 Nov
+22 Nov
+23 Nov
+24 Nov
+25 Nov
+26 Nov
+27 Nov
+Kecepatan Angin (m/s)
+10
+8
+6
+4
+2
+0
+© 2026 Sinau Bumi & IPB University
+Versi 1.4.8

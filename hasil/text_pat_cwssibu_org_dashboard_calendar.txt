@@ -1,0 +1,35 @@
+Dashboard
+Data
+Kalender Curah Hujan
+
+Ekspedisi Patriot 2026 (Misi Besar, Kerja Nyata... Dampak untuk Indonesia)
+
+Tahun
+2026
+Stasiun
+AWS PAT-1 - Desa Waninggap Kai, Merauke
+AWS PAT-2 - Desa Harapan Makmur, Merauke
+AWS PAT-3 - Desa Sermayam Indah, Merauke
+AWS PAT-4 - Desa Kumbe, Merauke
+AWS PAT-5 - Desa Invimahad, Merauke
+AWS PAT-6 - Universitas Musamus, Merauke
+Bulan / Tanggal	01	02	03	04	05	06	07	08	09	10	11	12	13	14	15	16	17	18	19	20	21	22	23	24	25	26	27	28	29	30	31
+Januari	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-
+Februari	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-
+Maret	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-
+April	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-
+Mei	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-
+Juni	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-
+Juli	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-
+Agustus	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-
+September	-	-	-	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.2	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	-
+Oktober	0.0	0.0	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0
+November	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	-	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	-	-	-	-	-	-	-	-	-	-	-	-	-
+Desember	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-
+Tidak ada data
+< 0.5 mm (Berawan/Tidak Hujan)
+0.5 - 20 mm (Hujan Ringan)
+21 - 50 mm (Hujan Sedang)
+51 - 100 mm (Hujan Lebat)
+101 - 150 mm (Hujan Sangat Lebat)
+> 150 mm (Hujan Ekstrim)

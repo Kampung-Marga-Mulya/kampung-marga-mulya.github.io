@@ -1,0 +1,7 @@
+A  https://pat.cwssibu.org/dashboard/aws-pat1 Dashboard
+A  https://pat.cwssibu.org/data Data
+INPUT _token  
+SELECT temporal_level  Pilih Interval Per 5 MenitPer JamHarianBulananTahunan OPTS:Select Interval=Pilih Interval|5 Minutes=Per 5 Menit|Hourly=Per Jam|Daily=Harian|Monthly=Bulanan|Yearly=Tahunan
+INPUT start_date  
+INPUT end_date  
+BUTTON   Lihat Data
