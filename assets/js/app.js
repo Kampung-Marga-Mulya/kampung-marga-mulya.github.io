@@ -1027,10 +1027,23 @@
       tampil(idx);
     }
     dots.addEventListener("click", function (e) { var b = e.target.closest("button"); if (b) { tampil([].indexOf.call(dots.children, b)); jalan(); } });
-    function jalan() { clearInterval(timer); timer = setInterval(function () { if (slides().length > 1) tampil(idx + 1); }, 5000); }
-    var x0 = null;
-    track.addEventListener("touchstart", function (e) { x0 = e.touches[0].clientX; }, { passive: true });
-    track.addEventListener("touchend", function (e) { if (x0 == null) return; var dx = e.changedTouches[0].clientX - x0; if (Math.abs(dx) > 40) { tampil(idx + (dx < 0 ? 1 : -1)); jalan(); } x0 = null; }, { passive: true });
+    // Bergerak sendiri tiap 3 detik selama tidak disentuh. Saat disentuh/digeser berhenti,
+    // lalu lanjut lagi 3 detik setelah dilepas. Bisa digeser dengan jari atau mouse.
+    var JEDA = 3000;
+    function jalan() { clearInterval(timer); timer = setInterval(function () { if (slides().length > 1) tampil(idx + 1); }, JEDA); }
+    function henti() { clearInterval(timer); timer = null; }
+    var x0 = null, geser = false;
+    track.style.touchAction = "pan-y";
+    track.addEventListener("pointerdown", function (e) { if (e.button > 0) return; x0 = e.clientX; geser = false; henti(); });
+    track.addEventListener("pointermove", function (e) { if (x0 != null && Math.abs(e.clientX - x0) > 10) geser = true; });
+    var lepas = function (e) {
+      if (x0 == null) return; var dx = e.clientX - x0; x0 = null;
+      if (Math.abs(dx) > 40) tampil(idx + (dx < 0 ? 1 : -1));
+      jalan();
+    };
+    document.addEventListener("pointerup", lepas); document.addEventListener("pointercancel", function () { if (x0 != null) { x0 = null; jalan(); } });
+    track.addEventListener("click", function (e) { if (geser) { e.preventDefault(); e.stopImmediatePropagation(); geser = false; } }, true);
+    track.addEventListener("dragstart", function (e) { e.preventDefault(); });
 
     var DATA = { f: null, a: null, t: 0 };
     function bukaDetail() {
@@ -1147,7 +1160,10 @@
   })();
 
   // Jam buka kantor kampung di Beranda
-  if (D.kontak && D.kontak.jamLayanan && !belumAda(D.kontak.jamLayanan)) $("#heroPlace").insertAdjacentHTML("afterend", '<p class="hero__jam"><span class="lampu" aria-hidden="true"></span>' + ic("clock") + "<span>Kantor kampung buka pukul <b>" + esc(D.kontak.jamLayanan) + "</b></span></p>");
+  if (D.kontak && D.kontak.jamLayanan && !belumAda(D.kontak.jamLayanan)) $("#heroPlace").insertAdjacentHTML("afterend", '<p class="hero__jam" data-i18n-skip><span class="lampu" aria-hidden="true"></span>' + ic("clock") + "<span>" +
+    (window.MM_BAHASA === "en"
+      ? "Village office open " + (D.kontak.hariLayanan ? "<b>Monday–Friday</b>, " : "") + "<b>" + esc(D.kontak.jamLayanan) + "</b>"
+      : "Kantor kampung buka " + (D.kontak.hariLayanan ? "<b>" + esc(D.kontak.hariLayanan) + "</b>, pukul " : "pukul ") + "<b>" + esc(D.kontak.jamLayanan) + "</b>") + "</span></p>");
 
   /* =================== LAYANAN SURAT + PENGAJUAN LEWAT WHATSAPP ===================
      Tidak ada data yang disimpan di website: formulir menyusun pesan di perangkat warga
@@ -1450,7 +1466,7 @@
     ["pin", "Alamat", K.alamat, function () { openModal({ kat: "Kontak", title: "Alamat kantor", html: "<p>" + esc(K.alamat) + "</p><div class='modal__actions'>" + "<a class='btn btn--solid' href='#petakampung'>" + ic("pin") + "Lihat di peta kampung</a>" + mapBtn(gm.dir, "Petunjuk arah", "nav") + "</div>" }); }],
     ["phone", "Telepon / WhatsApp", K.telepon, function () { copy(K.telepon); }],
     ["mail", "Email", K.email, function () { copy(K.email); }],
-    ["clock", "Jam layanan", K.jamLayanan, function () { openModal({ kat: "Kontak", title: "Jam layanan", html: "<p>" + esc(K.jamLayanan) + "</p>" }); }]
+    ["clock", "Jam layanan", (K.hariLayanan ? K.hariLayanan + ", " : "") + K.jamLayanan, function () { openModal({ kat: "Kontak", title: "Jam layanan", html: "<p>" + esc((K.hariLayanan ? K.hariLayanan + ", " : "") + K.jamLayanan) + "</p>" }); }]
   ].map(function (k) {
     if (!belumAda(k[2])) return k;
     return [k[0], k[1], "Belum tersedia", function () { openModal({ kat: "Kontak", title: k[1], html: "<p>" + esc(k[1]) + " resmi Kantor Kampung Marga Mulya belum dicantumkan.</p>" }); }];

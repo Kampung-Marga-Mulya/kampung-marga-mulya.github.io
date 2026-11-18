@@ -1398,6 +1398,7 @@ window.KAMPUNG = {
     alamat: "Kantor Kampung Marga Mulya, Distrik Semangga, Kabupaten Merauke, Papua Selatan 99631",
     telepon: "+62 813-4324-4398 (WhatsApp layanan surat · Ramdan Sidik Suseno)",
     email: "kampungmargamulya667@gmail.com",
+    hariLayanan: "Senin–Jumat",
     jamLayanan: "09.00–14.00 WIT"   // jam buka kantor kampung (tampil di Beranda dan Kontak)
   }
 };
