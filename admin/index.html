@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Portal Admin · Marga Mulya On Site</title>
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https://avatars.githubusercontent.com https://raw.githubusercontent.com https:; font-src 'self'; connect-src 'self' https://api.github.com; media-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <link rel="icon" href="../assets/img/ikon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../assets/css/fonts.css?v=1">
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #F5F8FE; --card: #FFFFFF; --soft: #EEF4FD; --line: #DCE6F6;
+      --ink: #0A0A0A; --ink-2: #3B3F46; --blue: #1452C2; --blue-deep: #0B3A8F; --blue-mid: #7AAAF2;
+      --font-head: "Source Serif 4", Georgia, serif;
+      --font-body: "Source Sans 3", "Segoe UI", Roboto, Arial, sans-serif;
+      --r: 14px;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--bg); color: var(--ink); font: 16px/1.5 var(--font-body); }
+    [hidden] { display: none !important; }
+    a { color: var(--blue); }
+    button, input, textarea, select { font: inherit; color: inherit; }
+    .ic { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; flex: none; }
+    :focus-visible { outline: 3px solid var(--blue-mid); outline-offset: 2px; }
+    .wrap { max-width: 1180px; margin-inline: auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+
+    /* Header */
+    .top { position: sticky; top: 0; z-index: 20; background: #fff; border-bottom: 1px solid var(--line); }
+    .top__in { display: flex; align-items: center; gap: 12px; min-height: 60px; }
+    .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--ink); margin-right: auto; min-width: 0; }
+    .brand__mark { display: grid; place-items: center; width: 36px; height: 36px; border-radius: 10px; background: var(--blue); flex: none; }
+    .brand__mark svg { width: 24px; height: 24px; fill: none; stroke: #fff; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .brand b { font-family: var(--font-head); font-weight: 600; font-size: 1.1rem; white-space: nowrap; }
+    .brand small { display: block; font-size: .72rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--blue); }
+    .who { display: flex; align-items: center; gap: 8px; font-size: .9rem; color: var(--ink-2); }
+    .who img { width: 30px; height: 30px; border-radius: 50%; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; border-radius: 10px; padding: 10px 16px; font-weight: 700; cursor: pointer; border: 1.5px solid var(--blue); text-decoration: none; line-height: 1.2; }
+    .btn--solid { background: var(--blue); color: #fff; }
+    .btn--solid:hover { background: var(--blue-deep); }
+    .btn--line { background: #fff; color: var(--blue); }
+    .btn--line:hover { background: var(--soft); }
+    .btn--sm { padding: 6px 10px; font-size: .88rem; border-radius: 8px; }
+    .btn--ghost { border-color: var(--line); background: #fff; color: var(--ink); }
+    .btn:disabled { opacity: .5; cursor: default; }
+
+    /* Login */
+    .login .small { font-size: .88rem; color: var(--ink-2); margin: 2px 0 14px; }
+    .login { display: grid; place-items: center; min-height: calc(100vh - 61px); padding-block: 32px; }
+    .login__card { width: min(520px, 100%); background: #fff; border: 1px solid var(--line); border-radius: 20px; padding: 28px; }
+    .login h1 { font-family: var(--font-head); font-weight: 600; font-size: 1.7rem; margin: 0 0 6px; }
+    .login p { color: var(--ink-2); margin: 0 0 14px; }
+    .field { display: grid; gap: 6px; margin-bottom: 14px; }
+    .field label { font-weight: 700; font-size: .92rem; }
+    .field input[type=password], .field input[type=text] { width: 100%; border: 1px solid var(--line); border-radius: 10px; padding: 11px 12px; background: #fff; }
+    .check { display: flex; gap: 8px; align-items: center; font-size: .92rem; color: var(--ink-2); margin-bottom: 16px; }
+    .err { background: #fff; border: 1px solid var(--ink); border-left-width: 4px; border-radius: 10px; padding: 10px 12px; font-size: .92rem; margin-bottom: 14px; }
+    .help { margin-top: 18px; border-top: 1px solid var(--line); padding-top: 14px; font-size: .92rem; }
+    .help summary { cursor: pointer; font-weight: 700; color: var(--blue); }
+    .help ol { padding-left: 1.2em; margin: 10px 0 0; display: grid; gap: 6px; color: var(--ink-2); }
+
+    /* Editor */
+    .app { display: grid; grid-template-columns: 250px minmax(0, 1fr); gap: 20px; padding-block: 20px 110px; }
+    @media (max-width: 860px) { .app { grid-template-columns: minmax(0, 1fr); } }
+    .side { position: sticky; top: 80px; align-self: start; background: #fff; border: 1px solid var(--line); border-radius: var(--r); padding: 10px; max-height: calc(100vh - 100px); overflow: auto; }
+    @media (max-width: 860px) { .side { position: static; max-height: none; } .side nav { display: none; } }
+    .side h2 { font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-2); margin: 12px 8px 4px; }
+    .side h2:first-child { margin-top: 4px; }
+    .side button { display: flex; align-items: center; gap: 8px; width: 100%; text-align: left; border: 0; background: none; border-radius: 8px; padding: 8px 10px; cursor: pointer; font-weight: 600; font-size: .94rem; }
+    .side button:hover { background: var(--soft); }
+    .side button[aria-current="true"] { background: var(--blue); color: #fff; }
+    .side select { display: none; width: 100%; border: 1px solid var(--line); border-radius: 10px; padding: 10px; background: #fff; font-weight: 600; }
+    @media (max-width: 860px) { .side select { display: block; } }
+    .main { min-width: 0; }
+    .panelhead { background: #fff; border: 1px solid var(--line); border-radius: var(--r); padding: 18px 20px; margin-bottom: 14px; }
+    .panelhead h1 { font-family: var(--font-head); font-weight: 600; font-size: 1.5rem; margin: 0; }
+    .panelhead p { margin: 4px 0 0; color: var(--ink-2); font-size: .94rem; }
+    .form { display: grid; gap: 14px; }
+    .box { background: #fff; border: 1px solid var(--line); border-radius: var(--r); padding: 16px 18px; min-width: 0; }
+    .box > .lbl { font-weight: 700; margin-bottom: 10px; display: block; }
+    .row { display: grid; gap: 6px; margin-bottom: 12px; min-width: 0; }
+    .row:last-child { margin-bottom: 0; }
+    .row > label { font-weight: 600; font-size: .9rem; color: var(--ink-2); }
+    .row input[type=text], .row input[type=number], .row textarea { width: 100%; border: 1px solid var(--line); border-radius: 9px; padding: 9px 11px; background: #fff; min-width: 0; }
+    .row textarea { min-height: 84px; resize: vertical; }
+    .row input:focus, .row textarea:focus { border-color: var(--blue); outline: none; box-shadow: 0 0 0 3px var(--soft); }
+    .grid2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 14px; }
+    @media (max-width: 600px) { .grid2 { grid-template-columns: minmax(0, 1fr); } }
+    .obj { border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px 4px; background: var(--bg); margin-bottom: 12px; min-width: 0; }
+    .obj > .lbl { font-weight: 700; font-size: .92rem; margin-bottom: 8px; display: block; }
+    .list { display: grid; gap: 8px; }
+    .item { border: 1px solid var(--line); border-radius: 12px; background: #fff; min-width: 0; }
+    .item__head { display: flex; align-items: center; gap: 6px; padding: 8px 10px; cursor: pointer; }
+    .item__head b { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: .95rem; }
+    .item__head .no { display: grid; place-items: center; width: 24px; height: 24px; border-radius: 50%; background: var(--soft); color: var(--blue); font-size: .78rem; font-weight: 700; flex: none; }
+    .item__body { padding: 4px 12px 12px; border-top: 1px solid var(--line); }
+    .item:not(.is-open) .item__body { display: none; }
+    .iconbtn { display: grid; place-items: center; width: 32px; height: 32px; border-radius: 8px; border: 1px solid var(--line); background: #fff; cursor: pointer; flex: none; }
+    .iconbtn:hover { border-color: var(--blue-mid); color: var(--blue); }
+    .strrow { display: flex; gap: 6px; align-items: flex-start; }
+    .strrow > :first-child { flex: 1; min-width: 0; }
+    .add { margin-top: 8px; }
+    .img { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+    .img img { width: 84px; height: 60px; object-fit: cover; border-radius: 8px; border: 1px solid var(--line); background: var(--soft); }
+    .img input[type=text] { flex: 1; min-width: 180px; }
+    .img label.btn { cursor: pointer; }
+    .img input[type=file] { display: none; }
+    .switch { display: flex; gap: 10px; align-items: center; font-weight: 600; }
+    .switch input { width: 20px; height: 20px; accent-color: var(--blue); }
+
+    /* Bilah simpan */
+    .savebar { position: fixed; left: 0; right: 0; bottom: 0; z-index: 30; background: #fff; border-top: 1px solid var(--line); padding: 12px max(16px, env(safe-area-inset-right, 0px)) calc(12px + env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px)); }
+    .savebar__in { max-width: 1180px; margin-inline: auto; display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+    .savebar__msg { flex: 1; min-width: 200px; font-size: .94rem; color: var(--ink-2); }
+    .savebar__msg b { color: var(--ink); }
+    .dot { display: inline-block; width: 9px; height: 9px; border-radius: 50%; background: var(--blue); margin-right: 6px; vertical-align: 1px; }
+    @media (max-width: 600px) { .who span { display: none; } .brand b { font-size: .98rem; } .savebar__msg { min-width: 100%; } }
+    .toast { position: fixed; left: 50%; bottom: 90px; transform: translateX(-50%); background: var(--ink); color: #fff; padding: 10px 16px; border-radius: 10px; z-index: 50; max-width: calc(100vw - 32px); font-size: .94rem; }
+  </style>
+</head>
+<body>
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <symbol id="i-up" viewBox="0 0 24 24"><path d="M12 19V5M6 11l6-6 6 6"/></symbol>
+      <symbol id="i-down" viewBox="0 0 24 24"><path d="M12 5v14M6 13l6 6 6-6"/></symbol>
+      <symbol id="i-trash" viewBox="0 0 24 24"><path d="M4 7h16M10 11v6M14 11v6M6 7l1 13h10l1-13M9 7V4h6v3"/></symbol>
+      <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+      <symbol id="i-chev" viewBox="0 0 24 24"><path d="m9 6 6 6-6 6"/></symbol>
+      <symbol id="i-upload" viewBox="0 0 24 24"><path d="M12 16V4M7 9l5-5 5 5M4 20h16"/></symbol>
+      <symbol id="i-save" viewBox="0 0 24 24"><path d="M5 3h11l3 3v15H5z"/><path d="M8 3v5h7V3M8 21v-7h8v7"/></symbol>
+      <symbol id="i-out" viewBox="0 0 24 24"><path d="M15 4h4v16h-4M10 8l-4 4 4 4M6 12h11"/></symbol>
+      <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></symbol>
+    </defs>
+  </svg>
+
+  <header class="top">
+    <div class="wrap top__in">
+      <a class="brand" href="../" title="Buka website">
+        <span class="brand__mark" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M4 22c4-1.5 8-1.5 12 0s8 1.5 12 0"/><path d="M4 26.5c4-1.5 8-1.5 12 0s8 1.5 12 0"/><path d="M9 17V10l7-5 7 5v7"/><path d="M14 17v-4h4v4"/></svg></span>
+        <span><b>Marga Mulya On Site</b><small>Portal Admin</small></span>
+      </a>
+      <div class="who" id="who" hidden></div>
+    </div>
+  </header>
+
+  <!-- MASUK -->
+  <section class="login wrap" id="login">
+    <div class="login__card">
+      <h1>Masuk admin</h1>
+      <p>Portal ini untuk mengubah isi website Kampung Marga Mulya. Masuk dengan <b>token GitHub</b> milik akun admin yang sudah diberi akses ke organisasi Kampung-Marga-Mulya.</p>
+      <div class="err" id="loginErr" hidden></div>
+      <form id="loginForm">
+        <div class="field">
+          <label for="token">Token GitHub</label>
+          <input type="password" id="token" autocomplete="off" spellcheck="false" placeholder="github_pat_…" required>
+        </div>
+        <p class="small">Token hanya disimpan selama tab ini terbuka dan sesi berakhir otomatis setelah 30 menit tanpa aktivitas.</p>
+        <button class="btn btn--solid" type="submit" id="loginBtn" style="width:100%">Masuk</button>
+      </form>
+      <details class="help">
+        <summary>Cara membuat token admin</summary>
+        <ol>
+          <li>Pastikan akun GitHub Anda sudah diundang ke organisasi <b>Kampung-Marga-Mulya</b> dengan akses tulis (write).</li>
+          <li>Buka <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">github.com → Settings → Fine-grained tokens → Generate new token</a>.</li>
+          <li>Isi nama token, misalnya <i>Admin Website Marga Mulya</i>, dan pilih masa berlaku.</li>
+          <li><b>Resource owner:</b> pilih <i>Kampung-Marga-Mulya</i>. <b>Repository access:</b> <i>Only select repositories</i> → <i>kampung-marga-mulya.github.io</i>.</li>
+          <li><b>Permissions → Repository permissions → Contents:</b> <i>Read and write</i>. Lalu klik <i>Generate token</i>.</li>
+          <li>Salin token (diawali <code>github_pat_</code>) dan tempel di kolom di atas. Jangan bagikan token kepada siapa pun.</li>
+        </ol>
+      </details>
+    </div>
+  </section>
+
+  <!-- EDITOR -->
+  <div class="wrap app" id="app" hidden>
+    <aside class="side">
+      <select id="navSelect" aria-label="Pilih bagian yang diedit"></select>
+      <nav id="nav" aria-label="Bagian yang bisa diedit"></nav>
+    </aside>
+    <main class="main">
+      <div class="panelhead"><h1 id="secTitle"></h1><p id="secDesc"></p></div>
+      <div class="form" id="form"></div>
+    </main>
+  </div>
+
+  <div class="savebar" id="savebar" hidden>
+    <div class="savebar__in">
+      <span class="savebar__msg" id="saveMsg">Belum ada perubahan.</span>
+      <a class="btn btn--ghost btn--sm" href="../" target="_blank" rel="noopener"><svg class="ic"><use href="#i-eye"/></svg>Lihat website</a>
+      <button class="btn btn--line btn--sm" type="button" id="resetBtn" disabled>Batalkan</button>
+      <button class="btn btn--solid" type="button" id="saveBtn" disabled><svg class="ic"><use href="#i-save"/></svg>Simpan &amp; terbitkan</button>
+    </div>
+  </div>
+
+<script src="../assets/vendor/json5/json5.min.js?v=2.2.3"></script>
+<script src="admin.js?v=202611041605"></script>
+</body>
+</html>

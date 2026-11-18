@@ -1,0 +1,1926 @@
+/* =====================================================================
+   MARGA MULYA ON SITE — logika tampilan
+   Membaca window.KAMPUNG (assets/js/data.js) lalu mengisi setiap bagian.
+   Tidak perlu diubah untuk memperbarui isi website.
+   ===================================================================== */
+(function () {
+  "use strict";
+  var D = window.KAMPUNG;
+  if (!D) { console.error("data.js tidak ditemukan"); return; }
+
+  /* ---------- Alat bantu ---------- */
+  var $ = function (s) { return document.querySelector(s); };
+  // Ilustrasi orang/benda (assets/js/ilustrasi.js); kosong bila berkas belum dimuat
+  var ilus = function (k) { return window.MM_ILUS ? window.MM_ILUS(k) : ""; };
+  var ilusLabel = function (l) { return window.MM_ILUS_LABEL ? window.MM_ILUS_LABEL(l) : ""; };
+  // Label tahun data & tanggal rilis dokumen sumber (D.meta.dokumen)
+  var DOK = (window.KAMPUNG.meta && window.KAMPUNG.meta.dokumen) || {};
+  function rilis(k, panjang) {
+    if (Array.isArray(k)) return k.map(function (x) { return rilis(x, panjang); }).join(" ");
+    var d = DOK[k]; if (!d) return "";
+    var t = "Data " + d.tahun + " · " + (panjang ? d.nama + ", dirilis " + d.rilis : d.singkat + ", " + d.rilisPendek);
+    return '<span class="rilis" title="' + esc("Sumber: " + d.nama + " (dirilis " + d.rilis + ")") + '"><svg class="ic" aria-hidden="true"><use href="#i-calendar"/></svg>' + esc(t) + "</span>";
+  }
+  function pasangRilis(sel, k) {
+    [].forEach.call(document.querySelectorAll(sel), function (el) {
+      var p = el.closest(".panel, .sd") || el; if (p.querySelector(":scope > .rilis")) return;
+      var h = p.querySelector("h3, h4"); if (h) h.insertAdjacentHTML("afterend", rilis(k)); else p.insertAdjacentHTML("afterbegin", rilis(k));
+    });
+  }
+  var esc = function (s) {
+    return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) {
+      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
+    });
+  };
+  // Alamat tautan/gambar: hanya http(s), mailto, tel, jangkar, dan berkas di website sendiri.
+  // Skema berbahaya (javascript:, data:, vbscript:) diganti "#" agar tidak bisa disisipi skrip.
+  var escUrl = function (u) {
+    var t = String(u == null ? "" : u).trim();
+    if (/^(?:[a-z][a-z0-9+.-]*):/i.test(t) && !/^(?:https?|mailto|tel):/i.test(t)) t = "#";
+    return esc(t);
+  };
+  var num = function (n) { return Number(n).toLocaleString("id-ID"); };
+  var pct = function (a, b, d) { return b ? (a / b * 100).toLocaleString("id-ID", { maximumFractionDigits: d == null ? 1 : d }) : "0"; };
+  var rp = function (n) { return "Rp " + num(n); };
+  var rpS = function (n) {
+    if (n >= 1e9) return "Rp " + (n / 1e9).toLocaleString("id-ID", { maximumFractionDigits: 2 }) + " M";
+    if (n >= 1e6) return "Rp " + (n / 1e6).toLocaleString("id-ID", { maximumFractionDigits: 1 }) + " jt";
+    return rp(n);
+  };
+  var ic = function (name, cls) { return '<svg class="ic' + (cls ? " " + cls : "") + '"><use href="#i-' + name + '"/></svg>'; };
+  var sum = function (arr, key) { return arr.reduce(function (a, x) { return a + (key ? x[key] : x); }, 0); };
+  var CHIP = ' <span class="chip chip--contoh">contoh</span>';
+  var CONTOH = D.meta.dataContoh ? CHIP : "";
+  var belumAda = function (v) { return v == null || v === "" || /^\[/.test(String(v)); };
+  var id = D.identitas, P = D.penduduk;
+
+  /* ---------- Aksi klik: setiap elemen diberi data-act berisi nomor fungsi ---------- */
+  var acts = [];
+  var act = function (fn) { acts.push(fn); return ' data-act="' + (acts.length - 1) + '"'; };
+  document.addEventListener("click", function (e) {
+    var el = e.target.closest("[data-act]");
+    if (el) { e.preventDefault(); acts[+el.getAttribute("data-act")](el); }
+  });
+
+  /* ---------- Jendela informasi ---------- */
+  var modal = $("#modal");
+  function openModal(o) {
+    $("#modalKat").textContent = o.kat || "";
+    $("#modalTitle").textContent = o.title || "";
+    $("#modalBody").innerHTML = o.html || "";
+    if (typeof modal.showModal === "function") { if (!modal.open) modal.showModal(); }
+    else modal.setAttribute("open", "");
+  }
+  function closeModal() { if (modal.close) modal.close(); else modal.removeAttribute("open"); }
+  $("#modalClose").addEventListener("click", closeModal);
+  modal.addEventListener("click", function (e) { if (e.target === modal || (e.target.closest && e.target.closest('a[href^="#"]'))) closeModal(); });
+
+  var toastT;
+  function toast(msg) {
+    var t = $(".toast"); if (!t) { t = document.createElement("div"); t.className = "toast"; t.setAttribute("role", "status"); document.body.appendChild(t); }
+    t.textContent = msg; t.hidden = false; clearTimeout(toastT); toastT = setTimeout(function () { t.hidden = true; }, 2200);
+  }
+  function copy(text) {
+    var done = function () { toast("Disalin: " + text); };
+    try { navigator.clipboard.writeText(text).then(done, function () { toast(text); }); } catch (e) { toast(text); }
+  }
+
+  /* ---------- Titik kantor & tautan peta (tanpa Google Maps) ----------
+     Peta kampung memakai Peta Batas Kampung resmi (data/batas-kampung.json).
+     Petunjuk arah memakai OpenStreetMap. */
+  var hasKoord = !!(id.koordinat && id.koordinat.lat);
+  var KANTOR = hasKoord ? id.koordinat : { lat: -8.405899, lng: 140.467687 };
+  // Google Maps: buka titik, dan rute dari lokasi pengunjung saat ini ke tujuan
+  var gmaps = {
+    titik: function (lat, lng, q) { return "https://www.google.com/maps/search/?api=1&query=" + (lat != null ? lat + "," + lng : encodeURIComponent(q)); },
+    rute: function (lat, lng, q) { return "https://www.google.com/maps/dir/?api=1&destination=" + (lat != null ? lat + "," + lng : encodeURIComponent(q)) + "&travelmode=driving"; }
+  };
+  var gm = {
+    open: "#petakampung",
+    dir: "https://www.openstreetmap.org/directions?engine=fossgis_osrm_car&route=%3B" + KANTOR.lat + "%2C" + KANTOR.lng + "#map=16/" + KANTOR.lat + "/" + KANTOR.lng,
+    osm: function (lat, lng) { return "https://www.openstreetmap.org/?mlat=" + lat + "&mlon=" + lng + "#map=18/" + lat + "/" + lng; }
+  };
+  // Data batas kampung dimuat sekali dan dipakai semua peta di website
+  var batasP = null;
+  window.MM_BATAS = function () {
+    if (!batasP) batasP = fetch("data/batas-kampung.json?v=" + (D.meta.diperbarui || ""), { cache: "no-cache" }).then(function (r) { return r.json(); });
+    return batasP;
+  };
+  // Peta dasar: citra satelit asli (Esri World Imagery) dengan nama tempat, atau peta jalan OpenStreetMap.
+  // Pengunjung bisa berpindah lewat tombol lapisan di pojok kanan atas peta.
+  window.MM_DASAR = function (map, utama) {
+    var esri = "https://server.arcgisonline.com/ArcGIS/rest/services/";
+    var satelit = L.layerGroup([
+      L.tileLayer(esri + "World_Imagery/MapServer/tile/{z}/{y}/{x}", { maxZoom: 20, maxNativeZoom: 17, attribution: "Citra satelit &copy; Esri, Maxar, Earthstar Geographics" }),
+      L.tileLayer(esri + "Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}", { maxZoom: 20, maxNativeZoom: 17, opacity: .9 })
+    ]);
+    var jalan = L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", { maxZoom: 20, maxNativeZoom: 19, attribution: "&copy; kontributor OpenStreetMap" });
+    (utama === "jalan" ? jalan : satelit).addTo(map);
+    L.control.layers({ "Satelit": satelit, "Peta jalan": jalan }, null, { position: "topright", collapsed: true }).addTo(map);
+    return { satelit: satelit, jalan: jalan };
+  };
+  // Tambahkan citra peta batas + garis batas ke peta Leaflet mana pun
+  window.MM_LAPIS_BATAS = function (map, B, o) {
+    o = o || {};
+    var lap = {};
+    lap.citra = L.imageOverlay(B.citra.src, B.citra.bounds, { opacity: o.citraOpacity == null ? 1 : o.citraOpacity, interactive: false, className: "citra-batas" });
+    if (o.citra !== false) lap.citra.addTo(map);
+    lap.halo = L.polygon(B.batas, { color: "#FFFFFF", weight: o.tebal || 5, opacity: .9, fill: false, interactive: false }).addTo(map);
+    lap.batas = L.polygon(B.batas, { color: "#1452C2", weight: (o.tebal || 5) - 2.5, dashArray: "8 6", fillColor: "#1452C2", fillOpacity: o.isi == null ? 0 : o.isi }).addTo(map);
+    return lap;
+  };
+  var mapBtn = function (href, label, icon, solid) {
+    return '<a class="btn ' + (solid ? "btn--solid" : "btn--line") + '" href="' + escUrl(href) + '" target="_blank" rel="noopener">' + ic(icon || "pin") + esc(label) + "</a>";
+  };
+
+  /* ---------- Penanda versi draf ---------- */
+  var draft = $("#draftbar"), draftNote = $("#draftNote");
+  if (draft && draftNote) draft.addEventListener("click", function (e) {
+    e.stopPropagation(); draftNote.hidden = !draftNote.hidden; draft.setAttribute("aria-expanded", draftNote.hidden ? "false" : "true");
+  });
+  document.addEventListener("click", function () { if (draftNote && !draftNote.hidden) { draftNote.hidden = true; draft.setAttribute("aria-expanded", "false"); } });
+  if (D.meta.dataContoh && $("#draftbar")) $("#draftbar").hidden = false;
+
+  /* =================== BERANDA =================== */
+  $("#heroPlace").textContent = "Distrik " + id.distrik + " · Kabupaten " + id.kabupaten + " · " + id.provinsi;
+
+
+  var facts = [
+    { il: "keluarga", ic: "users", t: "Penduduk", v: num(P.total), s: "jiwa", info: "Jumlah penduduk Kampung Marga Mulya menurut monografi kampung per 30 September 2026: " + num(P.laki) + " laki-laki dan " + num(P.perempuan) + " perempuan." },
+    { il: "rumah", ic: "home", t: "Kepala keluarga", v: num(P.kk), s: "KK", info: "Jumlah kepala keluarga terdaftar. Rata-rata " + (P.total / P.kk).toLocaleString("id-ID", { maximumFractionDigits: 1 }) + " jiwa per keluarga." },
+    { il: "sawah", ic: "layers", t: "Luas wilayah", v: num(Math.round(id.luasHa)), s: "hektare", info: "Luas wilayah Kampung Marga Mulya " + id.luas + " menurut monografi kampung. Peta resmi wilayah: " + id.petaResmi + "." },
+    { il: "wilayah", ic: "pin", t: "Wilayah", v: id.jumlahRW + " RW", s: id.jumlahRT + " RT", info: "Kampung Marga Mulya terbagi atas " + id.jumlahRW + " rukun warga (RW) dan " + id.jumlahRT + " rukun tetangga (RT). Kode wilayah Kemendagri " + id.kodeWilayah + ", kode pos " + id.kodePos + "." }
+  ];
+  $("#facts").innerHTML = facts.map(function (f) {
+    return '<button type="button" class="fact tap"' + act(function () { openModal({ kat: "Beranda", title: f.t + ": " + f.v, html: "<p>" + esc(f.info) + "</p>" }); }) +
+      '><span class="fact__ilus" aria-hidden="true">' + ilus(f.il) + '</span><span class="fact__t">' + ic(f.ic) + esc(f.t) + '</span><span class="fact__v">' + esc(f.v) + "<small>" + esc(f.s) + "</small></span></button>";
+  }).join("");
+  document.querySelectorAll(".fact").forEach(function (b, i) { if (facts[i].code) b.classList.add("fact--code"); });
+
+  var quick = [
+    ["#tentang", "home", "Profil kampung", "Sejarah, identitas, batas wilayah, dan prestasi"],
+    ["#pemerintahan", "users", "Pemerintahan", "Struktur organisasi, Bamuskam, dan lembaga"],
+    ["#penduduk", "chart", "Data penduduk", "Usia, kesejahteraan, pekerjaan, pendidikan, suku"],
+    ["#fasilitas", "school", "Sarana & fasilitas", "Sarana prasarana kampung dan peta fasilitas"],
+    ["#apbkam", "wallet", "Transparansi anggaran", "APBKam 2026 per bidang dan sumber dana"],
+    ["#petakampung", "pin", "Peta batas kampung", "Peta resmi batas wilayah dan letak fasilitas"],
+    ["#wisatakuliner", "route", "Wisata & kuliner", "Tempat rekreasi dan makan 1–2 jam dari kampung"],
+    ["#surat", "doc", "Layanan surat", "Persyaratan dan lama proses surat"],
+    ["#media", "video", "Video & galeri", "Video profil dan dokumentasi kegiatan"],
+    ["#potensi", "sprout", "Potensi kampung", "Lahan, ternak, BUMKam, dan usaha warga"],
+    ["#kontakkampung", "phone", "Kontak & media sosial", "Kantor kampung, Facebook, Instagram, TikTok"]
+  ];
+  $("#quick").innerHTML = quick.map(function (q) {
+    return '<a class="xcard" href="' + q[0] + '"><span class="xcard__ic">' + ic(q[1]) + '</span><span class="xcard__t"><b>' + esc(q[2]) + "</b><small>" + esc(q[3]) + '</small></span><span class="xcard__go">' + ic("arrow") + "</span></a>";
+  }).join("");
+
+  /* =================== BERITA (slider) =================== */
+  var BULAN = ["Jan", "Feb", "Mar", "Apr", "Mei", "Jun", "Jul", "Agu", "Sep", "Okt", "Nov", "Des"];
+  var tgl = function (iso) { var p = iso.split("-"); return +p[2] + " " + BULAN[+p[1] - 1] + " " + p[0]; };
+  var track = $("#newsTrack"), news = [], newsReady = false, beritaUtama = (D.berita || []).slice(), beritaTerkait = [], filterNews = "semua";
+  var keyUrl = function (u) { return String(u || "").replace(/^https?:\/\/(www\.|m\.)?/i, "").replace(/[?#].*$/, "").replace(/\/+$/, "").toLowerCase(); };
+  var hariIni = new Date(), BARU_HARI = 14;
+  var umurHari = function (iso) { return (hariIni - new Date(iso + "T00:00:00+09:00")) / 864e5; };
+  var unik = function (list, seen) {
+    return list.filter(function (n) { var k = keyUrl(n.url); if (!n.url || seen[k]) return false; seen[k] = 1; return true; })
+      .sort(function (a, b) { return a.tanggal < b.tanggal ? 1 : -1; });
+  };
+  // Susunan: berita utama Marga Mulya tetap jadi fokus; berita terkait harian disisipkan setiap 2 berita utama.
+  function susun() {
+    var seen = {}, utama = unik(beritaUtama, seen), terkait = unik(beritaTerkait, seen);
+    if (filterNews === "utama") return utama;
+    if (filterNews === "terkait") return terkait;
+    var out = [], i = 0, j = 0;
+    while (i < utama.length || j < terkait.length) {
+      if (i < utama.length) out.push(utama[i++]);
+      if (i < utama.length) out.push(utama[i++]);
+      if (j < terkait.length) out.push(terkait[j++]);
+    }
+    return out;
+  }
+  function kartu(n, dup) {
+    var kat = n.kategori && n.kategori !== "Marga Mulya" ? n.kategori : "";
+    var ph = '<span class="ncard__ph"' + (n.cover ? " hidden" : "") + ">" + ic("doc") + "<span>" + esc(n.sumber) + "</span><b>" + esc(kat ? kat : "Kampung Marga Mulya") + "</b></span>";
+    var img = n.cover ? '<img src="' + escUrl(n.cover) + '" alt="" loading="lazy" referrerpolicy="no-referrer">' : "";
+    var baru = umurHari(n.tanggal) <= BARU_HARI;
+    return '<a class="ncard' + (kat ? " ncard--terkait" : "") + '" href="' + escUrl(n.url) + '" target="_blank" rel="noopener"' + (dup ? ' aria-hidden="true" tabindex="-1" data-dup="1"' : "") + ">" +
+      '<span class="ncard__cover">' + img + ph + '<span class="ncard__tags"><span class="ncard__badge' + (baru ? " ncard__badge--new" : "") + '">' + (baru ? "Baru" : n.tanggal.slice(0, 4)) + "</span>" +
+      '<span class="ncard__kat">' + esc(kat || "Marga Mulya") + "</span></span></span>" +
+      '<span class="ncard__body"><span class="ncard__meta">' + esc(n.sumber) + " · " + tgl(n.tanggal) + '</span><span class="ncard__t">' + esc(n.judul) + "</span>" +
+      '<span class="ncard__d">' + esc(n.ringkas || "Baca selengkapnya di " + n.sumber + ".") + '</span><span class="ncard__go">Baca berita ' + ic("external") + "</span></span></a>";
+  }
+  function renderNews() {
+    news = susun();
+    // Daftar ditulis dua kali agar slider bisa berputar terus tanpa melompat balik
+    track.innerHTML = news.map(function (n) { return kartu(n); }).join("") + (news.length > 1 ? news.map(function (n) { return kartu(n, true); }).join("") : "");
+    if (newsReady) { ukur(); posisi = 0; terapkan(); updNav(); }
+  }
+  var newsInfo = $("#newsInfo");
+  var sudahDimuat = false;
+  function muatBeritaOtomatis() {
+    if (!window.fetch) return;
+    fetch("data/berita-otomatis.json?t=" + Date.now(), { cache: "no-store" })
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (j) {
+        if (!j) return;
+        var sebelum = news.length;
+        beritaUtama = (D.berita || []).concat(j.berita || []);
+        beritaTerkait = (j.terkait || []).filter(function (n) { return umurHari(n.tanggal) <= 45; });
+        renderNews();
+        if (j.diperiksa && newsInfo) newsInfo.textContent = "Diperbarui otomatis · dicek " + tgl(j.diperiksa);
+        if (sudahDimuat && news.length > sebelum) toast((news.length - sebelum) + " berita baru ditambahkan");
+        sudahDimuat = true;
+      })
+      .catch(function () { /* tetap tampilkan berita kurasi */ });
+  }
+  // Sampul yang gagal dimuat diganti sampul biru
+  track.addEventListener("error", function (e) {
+    if (e.target.tagName === "IMG") { var c = e.target.parentNode; e.target.remove(); var ph = c.querySelector(".ncard__ph"); if (ph) ph.hidden = false; }
+  }, true);
+
+  /* ---- Slider berjalan terus dan berputar mulus ----
+     posisi = jarak gulir virtual; ditampilkan sebagai posisi modulo lebar satu set berita,
+     sehingga setelah berita terakhir langsung tersambung ke berita pertama. */
+  var prev = $("#newsPrev"), next = $("#newsNext"), count = $("#newsCount");
+  var lebarSet = 0, posisi = 0, jeda = 0, diatas = false, tween = null, tujuan = null, terakhirDiset = -1, waktu = 0;
+  var KECEPATAN = 32; // piksel per detik
+  var kurangiGerak = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  function step() { var c = track.querySelector(".ncard"); return c ? c.getBoundingClientRect().width + 16 : 300; }
+  function ukur() {
+    var c = track.querySelectorAll(".ncard"), n = news.length;
+    lebarSet = (n > 1 && c.length > n) ? c[n].offsetLeft - c[0].offsetLeft : 0;
+    if (lebarSet && lebarSet <= track.clientWidth) lebarSet = 0;   // berita terlalu sedikit untuk berputar
+  }
+  var bungkus = function (p) { return lebarSet ? ((p % lebarSet) + lebarSet) % lebarSet : Math.max(0, Math.min(p, track.scrollWidth - track.clientWidth)); };
+  function terapkan() { var v = bungkus(posisi); if (Math.abs(track.scrollLeft - v) >= 0.5) { terakhirDiset = v; track.scrollLeft = v; } }
+  function updNav() {
+    var n = news.length; if (!n) { count.textContent = ""; return; }
+    var first = (Math.round(bungkus(posisi) / step()) % n) + 1;
+    var vis = Math.max(1, Math.round(track.clientWidth / step()));
+    var last = ((first - 1 + vis - 1) % n) + 1;
+    count.textContent = (vis > 1 ? first + "–" + last : first) + " dari " + n;
+  }
+  var tunda = function (ms) { jeda = Math.max(jeda, performance.now() + ms); };
+  function geserKe(d) {
+    var dari = posisi, dasar = tween && tujuan != null ? tujuan : posisi, ke = Math.round((dasar + d * step()) / step()) * step(), t0 = performance.now();
+    tujuan = ke;
+    tween = function (t) { var k = Math.min(1, (t - t0) / 450), e = k < .5 ? 2 * k * k : 1 - Math.pow(-2 * k + 2, 2) / 2; posisi = dari + (ke - dari) * e; if (k >= 1) { tween = null; tujuan = null; } };
+    tunda(5000);
+  }
+  function loop(t) {
+    var dt = waktu ? Math.min(0.1, (t - waktu) / 1000) : 0; waktu = t;
+    var tampak = !document.hidden && track.offsetParent !== null;
+    if (tween) { tween(t); terapkan(); updNav(); }
+    else if (tampak && lebarSet && !kurangiGerak && !diatas && t > jeda) { posisi += KECEPATAN * dt; terapkan(); }
+    window.requestAnimationFrame(loop);
+  }
+  prev.addEventListener("click", function () { geserKe(-1); });
+  next.addEventListener("click", function () { geserKe(1); });
+  // Jeda saat disentuh, diarahkan tetikus, atau difokus; jalan lagi setelah beberapa detik
+  track.addEventListener("mouseenter", function () { diatas = true; });
+  track.addEventListener("mouseleave", function () { diatas = false; tunda(1200); });
+  ["pointerdown", "touchstart", "wheel", "focusin"].forEach(function (ev) { track.addEventListener(ev, function () { tween = null; tunda(4000); }, { passive: true }); });
+  // Geser manual: ikuti posisi jari, dan sambungkan ujung ke awal tanpa terlihat melompat
+  track.addEventListener("scroll", function () {
+    if (Math.abs(track.scrollLeft - terakhirDiset) < 1) return;
+    terakhirDiset = -1;
+    if (lebarSet) {
+      if (track.scrollLeft >= lebarSet) { terakhirDiset = track.scrollLeft - lebarSet; track.scrollLeft = terakhirDiset; }
+      else if (track.scrollLeft <= 0) { terakhirDiset = lebarSet; track.scrollLeft = lebarSet; }
+    }
+    posisi = track.scrollLeft; tunda(4000);
+    window.requestAnimationFrame(updNav);
+  }, { passive: true });
+  track.addEventListener("keydown", function (e) {
+    if (e.key === "ArrowRight") { e.preventDefault(); geserKe(1); }
+    if (e.key === "ArrowLeft") { e.preventDefault(); geserKe(-1); }
+  });
+  setInterval(updNav, 1000);
+  // Filter berita
+  var fBox = $("#newsFilter");
+  if (fBox) fBox.addEventListener("click", function (e) {
+    var b = e.target.closest("[data-f]"); if (!b) return;
+    filterNews = b.getAttribute("data-f");
+    [].forEach.call(fBox.querySelectorAll("[data-f]"), function (x) { x.setAttribute("aria-pressed", x === b ? "true" : "false"); });
+    renderNews();
+  });
+  window.addEventListener("resize", function () { ukur(); terapkan(); updNav(); });
+  newsReady = true; renderNews(); window.requestAnimationFrame(loop);
+  muatBeritaOtomatis();
+  setInterval(muatBeritaOtomatis, 10 * 60 * 1000);   // cek ulang tiap 10 menit selama halaman dibuka
+
+
+  /* =================== PROFIL =================== */
+  // Tombol "Baca selengkapnya" yang membuka/menutup bagian tersembunyi
+  function bacaLagi(btnTeks, tutupTeks) {
+    return '<button type="button" class="readmore" aria-expanded="false" data-buka="' + esc(btnTeks) + '" data-tutup="' + esc(tutupTeks || "Tutup") + '">' + esc(btnTeks) + "</button>";
+  }
+  document.addEventListener("click", function (e) {
+    var b = e.target.closest && e.target.closest(".readmore");
+    if (!b) return;
+    var box = b.previousElementSibling, buka = b.getAttribute("aria-expanded") !== "true";
+    if (box) box.hidden = !buka;
+    b.setAttribute("aria-expanded", buka ? "true" : "false");
+    b.textContent = buka ? b.getAttribute("data-tutup") : b.getAttribute("data-buka");
+    if (!buka) b.closest("section, .panel, div").scrollIntoView({ block: "nearest" });
+  });
+  (function () {
+    var n = D.sejarahRingkas || D.sejarah.length, awal = D.sejarah.slice(0, n), sisa = D.sejarah.slice(n);
+    var p = function (t) { return "<p>" + esc(t) + "</p>"; };
+    var lini = (D.sejarahLini || []).length ? '<h4 class="mt-s">Lini masa kepemimpinan</h4><ol class="lini">' + D.sejarahLini.map(function (l) {
+      return "<li><b>" + esc(l.tahun) + "</b><span><strong>" + esc(l.nama) + "</strong>" + (l.ket ? " · " + esc(l.ket) : "") + "</span></li>";
+    }).join("") + "</ol>" : "";
+    var src = D.sejarahSumber ? '<p class="small">Sumber: ' + esc(D.sejarahSumber) + (D.rpjmk ? ' · <a href="' + escUrl(D.rpjmk.halaman) + '#bab-ii-1">baca teks aslinya</a>' : "") + "</p>" : "";
+    var fotoUdara = '<figure class="sej-foto"><button type="button" class="reset" data-perbesar="assets/img/udara/permukiman-sawah.jpg" data-ket="Permukiman dan hamparan sawah Kampung Marga Mulya dari udara (dokumentasi pemetaan kampung, Juni 2022)."><img src="assets/img/udara/permukiman-sawah.jpg" alt="Foto udara permukiman dan sawah Kampung Marga Mulya" loading="lazy"></button><figcaption>Dari permukiman transmigran &ldquo;Lokasi 40&rdquo;, kini permukiman dan hamparan sawah. Foto udara, Juni 2022.</figcaption></figure>';
+    var fotoLama = '<div class="sej-duo">' + [["assets/img/fasilitas/2023/f059.jpg", "Kantor kampung lama"], ["assets/img/fasilitas/2023/f007.jpg", "SD Inpres Semangga III"]].map(function (f) {
+      return '<figure class="sej-foto"><button type="button" class="reset" data-perbesar="' + f[0] + '" data-ket="' + f[1] + ' (dokumentasi fasilitas umum kampung, 2023)."><img src="' + f[0] + '" alt="' + f[1] + '" loading="lazy"></button><figcaption>' + f[1] + "</figcaption></figure>";
+    }).join("") + "</div>";
+    var ilusTiba = '<figure class="sej-ilus">' + ilus("transmigran") + '<figcaption><b>1983</b> Rombongan transmigran pertama dari Jawa Tengah dan Jawa Timur tiba di Desa Semangga 1 B.</figcaption></figure>';
+    $("#sejarah").innerHTML = "<h3>Sejarah singkat</h3>" + fotoUdara + awal.slice(0, 1).map(p).join("") + ilusTiba + awal.slice(1).map(p).join("") + fotoLama +
+      (sisa.length || lini ? '<div class="more-body" hidden>' + sisa.map(p).join("") + lini + src + "</div>" + bacaLagi("Baca selengkapnya", "Tutup sejarah") : src);
+  })();
+  $("#identitas").innerHTML = [
+    ["Nama", id.nama], ["Distrik", id.distrik], ["Kabupaten", id.kabupaten], ["Provinsi", id.provinsi],
+    ["Kode wilayah", id.kodeWilayah], ["Kode pos", id.kodePos], ["Tahun dibentuk", id.tahunBerdiri], ["Dasar hukum", id.dasarHukum],
+    ["Luas wilayah", id.luas], ["Wilayah", id.jumlahRW + " RW · " + id.jumlahRT + " RT"],
+    ["Tipologi", id.tipologi], ["Klasifikasi", id.klasifikasi], ["Kategori", id.kategori], ["Komoditas unggulan", id.komoditasUnggulan],
+    ["Peta resmi", id.petaResmi], ["Koordinat", id.koordinatTeks || (hasKoord ? id.koordinat.lat + ", " + id.koordinat.lng : "")], ["Zona waktu", id.zonaWaktu]
+  ].filter(function (r) { return !belumAda(r[1]); }).map(function (r) { return "<dt>" + esc(r[0]) + "</dt><dd>" + esc(r[1]) + "</dd>"; }).join("");
+  if (id.orbitasi || id.pertanahan) {
+    var orb = (id.orbitasi || []).map(function (o) { return [o.km + " km", "ke " + o.label]; });
+    var tn = id.pertanahan ? [[num(id.pertanahan.sertifikat), "sertifikat tanah"], [id.pertanahan.tanahKasHa + " ha", "tanah kas kampung"], [id.pertanahan.waduk + " unit", "waduk / danau / situ"]] : [];
+    $("#identitas").insertAdjacentHTML("afterend", '<h3 class="mt-s">Jarak tempuh</h3><div class="tiles tiles--3">' + orb.map(function (o) { return '<div class="tile"><b>' + esc(o[0]) + "</b><span>" + esc(o[1]) + "</span></div>"; }).join("") + "</div>" +
+      '<h3 class="mt-s">Pertanahan</h3><div class="tiles tiles--3">' + tn.map(function (o) { return '<div class="tile"><b>' + esc(o[0]) + "</b><span>" + esc(o[1]) + "</span></div>"; }).join("") + "</div>" +
+      '<h3 class="mt-s">Bentang wilayah</h3><div class="id-duo"><a class="id-citra" href="#petakampung" aria-label="Buka peta interaktif Kampung Marga Mulya"><img src="assets/img/peta/tematik/citra-csrt.webp" alt="Citra satelit wilayah Kampung Marga Mulya mengikuti batas kampung" loading="lazy"><span class="id-citra__cap">' + ic("pin") + "Citra wilayah kampung (survei 2022). Ketuk untuk membuka peta.</span></a>" +
+      '<figure class="id-foto"><button type="button" class="reset" data-perbesar="assets/img/fasilitas/kantor-kampung.jpg" data-ket="Kantor Kampung Marga Mulya."><img src="assets/img/fasilitas/kantor-kampung.jpg" alt="Kantor Kampung Marga Mulya" loading="lazy"></button><figcaption>Kantor Kampung Marga Mulya, pusat pelayanan pemerintahan kampung.</figcaption></figure></div>');
+  }
+  if (D.visi) $("#visi").textContent = D.visi;
+  else $("#visi").innerHTML = '<span class="small">Visi resmi kampung akan dicantumkan setelah dokumen RPJMKam tersedia.</span>';
+  if (D.visi && D.visiMakna) $("#visi").insertAdjacentHTML("afterend", '<details class="more"><summary>Makna visi</summary><p class="small">' + esc(D.visiMakna) + "</p></details>");
+  (function () {
+    var M = D.misi || [], n = D.misiRingkas || M.length;
+    var li = function (m) { return "<li>" + esc(m) + "</li>"; };
+    if (!M.length) { $("#misi").outerHTML = '<p class="small">Misi resmi kampung akan dicantumkan setelah dokumen RPJMKam tersedia.</p>'; return; }
+    $("#misi").innerHTML = M.slice(0, n).map(li).join("");
+    if (M.length > n) $("#misi").insertAdjacentHTML("afterend", '<ol class="misi more-body" start="' + (n + 1) + '" hidden>' + M.slice(n).map(li).join("") + "</ol>" + bacaLagi("Baca selengkapnya (" + (M.length - n) + " misi lainnya)", "Tampilkan lebih sedikit"));
+  })();
+  if (D.rpjmk) {
+    var R = D.rpjmk;
+    $("#rpjmkCard").innerHTML = '<div class="rpjmk-card"><p class="small">Visi dan misi di atas tercantum dalam <b>' + esc(R.judul) + "</b>, ditetapkan dengan " + esc(R.perkam) + (D.rkpk ? ", dan ditegaskan kembali dalam " + esc(D.rkpk.judul) + " (" + esc(D.rkpk.perkam) + ")" : "") + ".</p>" +
+      '<div class="rpjmk-cta"><a class="btn btn--solid" href="' + escUrl(R.halaman) + '">' + ic("doc") + 'Baca RPJMK lengkap</a><a class="btn btn--line" href="#perencanaan">Ringkasan &amp; dasar hukum</a>' + (D.rkpk ? '<a class="btn btn--line" href="#rkpk">RKPK ' + esc(D.rkpk.tahun) + "</a>" : "") + "</div></div>";
+  }
+  var arah = [["n", "Utara", D.batas.utara], ["w", "Barat", D.batas.barat], ["e", "Timur", D.batas.timur], ["s", "Selatan", D.batas.selatan]];
+  $("#batas").innerHTML = arah.map(function (a) {
+    return '<button type="button" class="c tap ' + a[0] + '"' + act(function () {
+      openModal({ kat: "Batas wilayah", title: "Sebelah " + a[1].toLowerCase(), html: "<p>Kampung Marga Mulya di sebelah " + a[1].toLowerCase() + " berbatasan dengan <b>" + esc(a[2]) + "</b>.</p><div class='modal__actions'>" + "<a class='btn btn--solid' href='#petakampung'>" + ic("pin") + "Lihat di peta batas kampung</a>" + "</div>" });
+    }) + "><b>" + a[1] + "</b>" + esc(a[2]) + "</button>";
+  }).join("") + '<div class="mid">Marga<br>Mulya</div>';
+  $("#batas").insertAdjacentHTML("afterend",
+    '<a class="batas-peta" href="#petakampung" aria-label="Buka peta interaktif batas kampung"><img src="assets/img/peta/tematik/administrasi.webp" alt="Peta administrasi Kampung Marga Mulya dengan wilayah RW dan RT" loading="lazy">' +
+    '<span class="batas-peta__lbl batas-peta__lbl--n">' + esc(D.batas.utara.split(" (")[0]) + '</span><span class="batas-peta__lbl batas-peta__lbl--s">' + esc(D.batas.selatan.split(" dan")[0]) + "</span>" +
+    '<span class="batas-peta__cap">' + ic("pin") + "Peta administrasi kampung (survei 2022). Ketuk untuk membuka peta interaktif.</span></a>" +
+    '<div class="lokasi-kantor"><span class="lokasi-kantor__ilus" aria-hidden="true">' + ilus("rumah") + '</span><div><b>Kantor Kampung Marga Mulya</b><span>' + esc(((D.kontak && D.kontak.alamat) || ("Distrik " + id.distrik + ", Kabupaten " + id.kabupaten)).replace(/^Kantor Kampung [^,]*,\s*/, "")) + "</span></div>" +
+    '<div class="lokasi-kantor__act"><a class="btn btn--solid" href="' + escUrl(gmaps.rute(KANTOR.lat, KANTOR.lng)) + '" target="_blank" rel="noopener">' + ic("nav") + 'Rute ke kantor</a><a class="btn btn--line" href="' + escUrl(gmaps.titik(KANTOR.lat, KANTOR.lng)) + '" target="_blank" rel="noopener">' + ic("pin") + "Buka di Google Maps</a></div></div>");
+
+  /* =================== PRESTASI =================== */
+  if (D.prestasi && $("#prestasi")) {
+    $("#prestasi").innerHTML = D.prestasi.map(function (p) {
+      return '<button type="button" class="pres tap"' + act(function () {
+        openModal({ kat: "Prestasi " + p.tahun, title: p.judul, html:
+          (p.foto && p.foto.length ? '<div class="potgal">' + p.foto.map(function (f) { return '<figure><img src="' + escUrl(f) + '" alt="Piagam ' + esc(p.judul) + '" loading="lazy"><figcaption><span>Foto: dokumentasi Kantor Kampung Marga Mulya</span></figcaption></figure>'; }).join("") + "</div>" : "") +
+          "<p>" + esc(p.ket) + "</p>" + (p.tentang ? "<p><b>Tentang penghargaan ini:</b> " + esc(p.tentang) + "</p>" : "") +
+          "<p class='small'>Pemberi: " + esc(p.pemberi) + ". " + esc(p.dokumen) + ".</p>" });
+      }) + ">" + (p.foto && p.foto[0] ? '<img class="pres__img" src="' + escUrl(p.foto[0]) + '" alt="" loading="lazy">' : "") +
+        '<span class="pres__body"><span class="pres__th">' + p.tahun + '</span><b>' + esc(p.judul) + "</b><small>" + esc(p.pemberi) + "</small></span></button>";
+    }).join("");
+  }
+
+  /* =================== PEMERINTAHAN =================== */
+  var S = D.struktur;
+  function pejabatModal(o) {
+    var foto = o.foto ? '<img class="modal__img" src="' + escUrl(o.foto) + '" alt="Foto ' + esc(o.nama) + '">' : "";
+    openModal({ kat: "Pemerintah Kampung", title: o.jabatan, html: foto + "<p><b>" + esc(o.nama) + "</b>" + (o.pendidikan ? " · pendidikan terakhir " + esc(o.pendidikan) : "") + "</p><p>" + esc(o.tugas || "") + "</p>" + (o.kontak ? "<p>Kontak: " + esc(o.kontak) + "</p>" : "") });
+  }
+  var node = function (o, top) {
+    var ph = top ? '<span class="node__photo">' + (o.foto ? '<img src="' + escUrl(o.foto) + '" alt="">' : ic("users")) + "</span>" : "";
+    return '<button type="button" class="node tap' + (top ? " node--top" : "") + '"' + act(function () { pejabatModal(o); }) + ">" + ph +
+      '<span class="node__jab">' + esc(o.jabatan) + '</span><span class="node__nama">' + esc(o.nama) + "</span></button>";
+  };
+  var row = function (label, list) {
+    return '<div class="org__row">' + (label ? '<div class="org__label">' + esc(label) + "</div>" : "") + list.map(function (o) { return node(o); }).join("") + "</div>";
+  };
+  $("#org").innerHTML = '<div class="org__row">' + node(S.kepala, true) + "</div>" + row("", [S.sekretaris]) +
+    row("Kepala urusan", S.kaur) + row("Kepala seksi", S.kasi);
+  $("#rwgrid").innerHTML = (S.rw || []).map(function (w) {
+    return '<button type="button" class="rwcard tap"' + act(function () {
+      openModal({ kat: "Rukun Warga", title: "RW " + w.rw + " · " + w.ketua, html: "<p><b>Ketua RW " + esc(w.rw) + ":</b> " + esc(w.ketua) + "</p><ul>" + w.rt.map(function (r) { return "<li>Ketua RT " + esc(r[0]) + ": " + esc(r[1]) + "</li>"; }).join("") + "</ul><p class='small'>Ketua RW dan RT membantu pemerintah kampung dalam pelayanan warga, pendataan, dan ketertiban lingkungan.</p>" });
+    }) + '><span class="rwcard__h"><small>Ketua RW ' + esc(w.rw) + "</small><b>" + esc(w.ketua) + '</b></span><span class="rwcard__rt">' +
+      w.rt.map(function (r) { return "<span><i>RT " + esc(r[0]) + "</i>" + esc(r[1]) + "</span>"; }).join("") + "</span></button>";
+  }).join("");
+  if (S.jumlah) $("#org").insertAdjacentHTML("afterend", '<div class="tiles tiles--3 mt-s">' + S.jumlah.map(function (j) { return '<div class="tile"><b>' + num(j.jumlah) + "</b><span>" + esc(j.label) + "</span></div>"; }).join("") + "</div>");
+  $("#bamuskam").innerHTML = S.bamuskam.map(function (o) {
+    return '<li><button type="button" class="tap"' + act(function () {
+      openModal({ kat: "Badan Musyawarah Kampung", title: o.jabatan, html: "<p><b>" + esc(o.nama) + "</b>" + (o.ket ? " — " + esc(o.ket) : "") + "</p><p>Bamuskam menampung aspirasi warga, membahas dan menyepakati rancangan peraturan kampung bersama Kepala Kampung, serta mengawasi kinerja pemerintah kampung.</p>" });
+    }) + "><span>" + esc(o.jabatan) + "</span><span>" + esc(o.nama) + "</span></button></li>";
+  }).join("");
+  $("#lembaga").innerHTML = S.lembaga.map(function (o) {
+    return '<li><button type="button" class="tap"' + act(function () {
+      openModal({ kat: "Lembaga kemasyarakatan", title: o.nama, html: "<p>" + esc(o.ket) + ".</p>" + (o.detail ? "<p>" + esc(o.detail) + "</p>" : "") + (o.ketua && !belumAda(o.ketua) ? "<p>Pimpinan: <b>" + esc(o.ketua) + "</b></p>" : "") +
+        (o.pengurus ? '<div class="tablewrap"><table class="tbl"><tbody>' + o.pengurus.map(function (r) { return "<tr><th>" + esc(r[0]) + "</th><td>" + esc(r[1]) + "</td></tr>"; }).join("") + "</tbody></table></div>" : "") });
+    }) + "><span>" + esc(o.nama) + "</span><span>" + esc(o.ket) + "</span></button></li>";
+  }).join("");
+
+  // Keterangan singkat pada judul lipatan pemerintahan
+  (function () {
+    var set = function (id, t) { var el = document.getElementById(id); if (el && t) el.textContent = t; };
+    set("accOrgSub", (S.kepala ? S.kepala.jabatan + " " + S.kepala.nama + " · " : "") + "sekretaris, " + (S.kaur || []).length + " kaur, dan " + (S.kasi || []).length + " kasi");
+    var nRT = (S.rw || []).reduce(function (a, w) { return a + (w.rt || []).length; }, 0);
+    if ((S.rw || []).length) set("accRwSub", S.rw.length + " RW · " + nRT + " RT");
+    var ket = (S.bamuskam || []).filter(function (o) { return /^ketua$/i.test(o.jabatan); })[0];
+    set("accBamSub", (S.bamuskam || []).length + " orang" + (ket ? " · Ketua " + ket.nama : ""));
+    set("accLemSub", (S.lembaga || []).map(function (o) { return o.nama; }).slice(0, 4).join(", ") + ((S.lembaga || []).length > 4 ? ", dan lainnya" : ""));
+  })();
+
+  /* =================== DIAGRAM LINGKARAN (donat) ===================
+     Maks. 6 irisan; sisanya digabung "Lainnya". Warna: biru (identitas tema). */
+  var PAL_KAT = ["#082A66", "#1452C2", "#5B8DE6", "#9DBCF2", "#2F5FB8", "#C9DBF8", "#0B3A8F"];
+  var PAL_URUT = ["#C9DBF8", "#9DBCF2", "#5B8DE6", "#1452C2", "#0B3A8F", "#082A66"];
+  function ringkas(list, n) {
+    // Kategori bernama "Lainnya" di data asli selalu masuk ke irisan gabungan
+    var lain = list.filter(function (x) { return /^lain/i.test(x.label); });
+    var urut = list.filter(function (x) { return lain.indexOf(x) < 0; }).sort(function (a, b) { return b.jumlah - a.jumlah; });
+    if (urut.length + (lain.length ? 1 : 0) <= n) return urut.concat(lain);
+    var sisa = urut.slice(n - 1).concat(lain);
+    return urut.slice(0, n - 1).concat([{ label: "Lainnya", jumlah: sum(sisa, "jumlah"), isi: sisa }]);
+  }
+  function donut(sel, list, o) {
+    o = o || {};
+    var el = $(sel); if (!el) return; el.classList.add("donut-host");
+    var fmt = o.fmt || num, satuan = o.satuan || "", tot = sum(list, "jumlah");
+    var pal = o.warna || (o.urut ? list.map(function (_, i) { return PAL_URUT[list.length > 1 ? Math.round(i * (PAL_URUT.length - 1) / (list.length - 1)) : 3]; }) : PAL_KAT);
+    var R = 42, C = 2 * Math.PI * R, gap = list.length > 1 ? 1.4 : 0, off = 0;
+    var arcs = list.map(function (x, i) {
+      var len = x.jumlah / tot * C, vis = Math.max(0.01, len - gap);
+      var a = '<circle class="donut__seg" data-i="' + i + '" cx="60" cy="60" r="' + R + '" stroke="' + pal[i % pal.length] + '" stroke-dasharray="' + vis.toFixed(2) + " " + (C - vis).toFixed(2) + '" stroke-dashoffset="' + (-off).toFixed(2) + '" transform="rotate(-90 60 60)"><title>' + esc(x.label) + ": " + fmt(x.jumlah) + (satuan ? " " + satuan : "") + " (" + pct(x.jumlah, tot) + "%)</title></circle>";
+      off += len; return a;
+    }).join("");
+    var tengah = o.tengah || [fmt(tot), o.tengahLabel || "total"];
+    var info = function (x) {
+      var isi = x.isi ? "<p>Termasuk: " + x.isi.map(function (y) { return esc(y.label) + " (" + fmt(y.jumlah) + ")"; }).join(", ") + ".</p>" : "";
+      openModal({ kat: o.kat || "Diagram", title: x.label, html: '<div class="mini-stat"><div><b>' + fmt(x.jumlah) + "</b><span>" + esc(satuan || "Jumlah") + "</span></div><div><b>" + pct(x.jumlah, tot) + "%</b><span>Porsi</span></div><div><b>" + fmt(tot) + "</b><span>Total</span></div></div>" + isi });
+    };
+    el.innerHTML = '<div class="donut"><div class="donut__fig"><svg viewBox="0 0 120 120" role="img" aria-label="' + esc(o.kat || "Diagram lingkaran") + '"><circle cx="60" cy="60" r="' + R + '" class="donut__bg"/>' + arcs +
+      '<text x="60" y="58" text-anchor="middle" class="donut__v' + (String(tengah[0]).length > 6 ? " donut__v--s" : "") + '">' + esc(tengah[0]) + '</text><text x="60" y="73" text-anchor="middle" class="donut__l">' + esc(tengah[1]) + "</text></svg></div>" +
+      '<ul class="donut__lgd">' + list.map(function (x, i) {
+        return '<li><button type="button" class="tap" data-i="' + i + '"' + act(function () { info(x); }) + '><span class="sw" style="background:' + pal[i % pal.length] + '"></span><span class="donut__n">' + (o.ilus ? '<span class="bar__ilus" aria-hidden="true">' + ilusLabel(x.label) + "</span>" : "") + esc(x.label) + '</span><span class="donut__p"><b>' + pct(x.jumlah, tot, 1) + "%</b><small>" + fmt(x.jumlah) + (satuan ? " " + esc(satuan) : "") + "</small></span></button></li>";
+      }).join("") + "</ul></div>";
+    var segs = el.querySelectorAll(".donut__seg"), items = el.querySelectorAll(".donut__lgd button");
+    var sorot = function (i) {
+      segs.forEach(function (s, j) { s.classList.toggle("is-dim", i != null && j !== i); });
+      items.forEach(function (b, j) { b.classList.toggle("is-on", i != null && j === i); });
+      var t = el.querySelector(".donut__v"), l = el.querySelector(".donut__l");
+      if (i == null) { t.textContent = tengah[0]; l.textContent = tengah[1]; }
+      else { t.textContent = pct(list[i].jumlah, tot, 1) + "%"; l.textContent = list[i].label.length > 16 ? list[i].label.slice(0, 15) + "…" : list[i].label; }
+    };
+    segs.forEach(function (s, i) {
+      s.addEventListener("mouseenter", function () { sorot(i); });
+      s.addEventListener("mouseleave", function () { sorot(null); });
+      s.addEventListener("click", function () { info(list[i]); });
+    });
+    items.forEach(function (b, i) {
+      b.addEventListener("mouseenter", function () { sorot(i); });
+      b.addEventListener("mouseleave", function () { sorot(null); });
+      b.addEventListener("focus", function () { sorot(i); });
+      b.addEventListener("blur", function () { sorot(null); });
+    });
+  }
+
+  /* =================== KEPENDUDUKAN =================== */
+  $("#dataSumber").innerHTML = rilis("monografi", true) + "<br>Ketuk angka atau grafik untuk rincian.";
+  var stats = [
+    [num(P.total), "Total penduduk", "", "Jumlah seluruh penduduk Kampung Marga Mulya menurut monografi kampung."],
+    [num(P.laki), "Laki-laki · " + pct(P.laki, P.total) + "%", "", "Penduduk laki-laki. Rasio jenis kelamin " + Math.round(P.laki / P.perempuan * 100) + " laki-laki per 100 perempuan."],
+    [num(P.perempuan), "Perempuan · " + pct(P.perempuan, P.total) + "%", "", "Penduduk perempuan kampung."],
+    [num(P.kk), "Kepala keluarga", "", "Jumlah kepala keluarga terdaftar. Rata-rata " + (P.total / P.kk).toLocaleString("id-ID", { maximumFractionDigits: 1 }) + " jiwa per keluarga."]
+  ];
+  $("#stats").innerHTML = stats.map(function (s) {
+    return '<button type="button" class="stat tap"' + act(function () { openModal({ kat: "Kependudukan", title: s[1].split(" · ")[0] + ": " + s[0], html: "<p>" + esc(s[3]) + "</p>" }); }) +
+      '><span class="stat__ilus" aria-hidden="true">' + ilusLabel(s[1]) + "</span><b>" + s[0] + "</b><span>" + esc(s[1]) + "</span>" + s[2] + "</button>";
+  }).join("");
+
+  // Piktogram laki-laki & perempuan (1 ikon ≈ 100 jiwa)
+  var nL = Math.round(P.laki / 100), nP = Math.round(P.perempuan / 100);
+  $("#picto").setAttribute("aria-label", num(P.laki) + " laki-laki dan " + num(P.perempuan) + " perempuan");
+  $("#picto").innerHTML = '<div class="picto__row">' + new Array(nL + 1).join('<i class="picto__l">' + (ilus("laki") || ic("person")) + "</i>") + '</div><div class="picto__row">' + new Array(nP + 1).join('<i class="picto__p">' + (ilus("perempuan") || ic("person")) + "</i>") + "</div>" +
+    '<div class="picto__lbl"><span><b>' + num(P.laki) + "</b> laki-laki</span><span><b>" + num(P.perempuan) + "</b> perempuan</span></div>";
+
+  donut("#dGender", [{ label: "Laki-laki", jumlah: P.laki }, { label: "Perempuan", jumlah: P.perempuan }], { kat: "Jenis kelamin", satuan: "jiwa", tengahLabel: "jiwa", ilus: true, warna: ["#0B3A8F", "#7AAAF2"] });
+  // Kelompok usia: diagram lingkaran berurutan (muda → tua)
+  var totU = sum(P.kelompokUsia, "jumlah");
+  donut("#kelUsia", P.kelompokUsia, { kat: "Kelompok usia", satuan: "jiwa", urut: true, tengahLabel: "jiwa" });
+  $("#kelUsia").insertAdjacentHTML("beforeend", '<div class="usia-ilus">' + P.kelompokUsia.map(function (u) {
+    return '<div class="usia-ilus__i"><span class="usia-ilus__f" aria-hidden="true">' + ilusLabel(u.label) + "</span><b>" + num(u.jumlah) + "</b><span>" + esc(u.label) + "</span></div>";
+  }).join("") + "</div>");
+  $("#kelUsia").insertAdjacentHTML("beforeend", '<p class="small">Penduduk usia produktif (18–56 tahun) ' + pct(P.kelompokUsia[1].jumlah, totU, 0) + "%. Jumlah ketiga kelompok di monografi " + num(totU) + " jiwa, selisih " + (P.total - totU) + " jiwa dari total penduduk.</p>");
+
+  // Sekolah dan tenaga kesehatan
+  $("#usiaSekolah").innerHTML = P.sekolah.map(function (s) {
+    var r = Math.round(s.murid / s.guru);
+    return '<button type="button" class="tap"' + act(function () {
+      openModal({ kat: "Sekolah di kampung", title: s.label, html: '<div class="mini-stat"><div><b>' + num(s.murid) + "</b><span>Murid</span></div><div><b>" + num(s.guru) + "</b><span>Guru</span></div><div><b>" + r + "</b><span>Murid per guru</span></div></div><p>Data murid dan guru " + esc(s.label.toLowerCase()) + " di Kampung Marga Mulya menurut monografi kampung.</p>" });
+    }) + "><b>" + num(s.murid) + "</b><span>Murid " + esc(s.label) + "</span><small>" + num(s.guru) + " guru · " + r + " murid per guru</small></button>";
+  }).join("");
+  $("#nakes").innerHTML = P.tenagaKesehatan.map(function (t) { return '<span class="nakes__i">' + ic("health") + "<b>" + num(t.jumlah) + "</b>" + esc(t.label) + "</span>"; }).join("");
+
+  function bars(sel, list, kat, fmt, tanpaPorsi, ilusOn) {
+    var tot = sum(list, "jumlah"), max = Math.max.apply(null, list.map(function (x) { return x.jumlah; }));
+    fmt = fmt || num;
+    $(sel).innerHTML = list.map(function (x, i) {
+      var rank = list.slice().sort(function (a, b) { return b.jumlah - a.jumlah; }).indexOf(x) + 1;
+      return '<button type="button" class="bar tap"' + act(function () {
+        openModal({ kat: kat, title: x.label, html: '<div class="mini-stat"><div><b>' + fmt(x.jumlah) + "</b><span>" + (fmt === num ? "Jiwa" : "Jumlah") + "</span></div><div><b>" + pct(x.jumlah, tot) + "%</b><span>Porsi</span></div><div><b>#" + rank + "</b><span>Peringkat</span></div></div>" +
+          "<p>" + esc(x.label) + " mencakup " + pct(x.jumlah, tot) + "% dari total " + fmt(tot) + ".</p>" });
+      }) + "><span>" + (ilusOn ? '<span class="bar__ilus" aria-hidden="true">' + ilusLabel(x.label) + "</span>" : "") + esc(x.label) + '</span><span class="bar__val"><b>' + fmt(x.jumlah) + "</b>" + (tanpaPorsi ? "" : " · " + pct(x.jumlah, tot) + "%") + '</span><span class="bar__track"><span class="bar__fill" style="display:block;width:' + (x.jumlah / max * 100) + '%"></span></span></button>';
+    }).join("");
+  }
+  bars("#pendidikan", P.pendidikan, "Pendidikan terakhir", null, false, true);
+  bars("#pekerjaan", P.pekerjaan, "Mata pencaharian", null, false, true);
+  bars("#agama", P.agama, "Agama");
+  bars("#suku", P.suku, "Suku / etnis");
+  bars("#sejahtera", P.kesejahteraan, "Tingkat kesejahteraan keluarga", function (n) { return num(n) + " KK"; });
+  donut("#dSejahtera", P.kesejahteraan, { kat: "Tingkat kesejahteraan keluarga", satuan: "KK", urut: true, tengahLabel: "kepala keluarga" });
+  donut("#dPekerjaan", ringkas(P.pekerjaan, 6), { kat: "Mata pencaharian", satuan: "orang", tengahLabel: "jiwa", ilus: true });
+  donut("#dSuku", ringkas(P.suku, 6), { kat: "Suku / etnis", satuan: "jiwa", tengahLabel: "jiwa" });
+  donut("#dAgama", P.agama, { kat: "Agama", satuan: "jiwa", tengahLabel: "jiwa" });
+  // Pendidikan dikelompokkan menjadi 6 jenjang
+  var pdk = function (labels) { return sum(P.pendidikan.filter(function (x) { return labels.indexOf(x.label) > -1; }), "jumlah"); };
+  var pdkIsi = function (labels) { return P.pendidikan.filter(function (x) { return labels.indexOf(x.label) > -1; }); };
+  var JENJANG = [
+    ["Belum / tidak sekolah, tidak lulus", ["Tidak / belum sekolah", "Tidak lulus"]],
+    ["TK dan SD", ["Taman kanak-kanak", "SD / sederajat"]],
+    ["SMP / sederajat", ["SMP / sederajat"]],
+    ["SMA / sederajat", ["SMA / sederajat"]],
+    ["Perguruan tinggi", ["Akademi / D1–D3", "Sarjana (S1)", "Magister (S2)"]],
+    ["Pendidikan keagamaan", ["Pondok pesantren", "Pendidikan keagamaan"]]
+  ];
+  donut("#dPendidikan", JENJANG.map(function (j) { var isi = pdkIsi(j[1]); return { label: j[0], jumlah: pdk(j[1]), isi: isi.length > 1 ? isi : null }; }), { kat: "Pendidikan terakhir", ilus: true, satuan: "orang", urut: true, tengahLabel: "jiwa" });
+
+  /* =================== ANGGARAN (APBKam) =================== */
+  var A = D.apbkam;
+  (function () {
+    var totPend = sum(A.pendapatan, "jumlah"), totBel = sum(A.belanja, "anggaran"), P = A.pembiayaan || {};
+    var tanda = function (n) { return (n < 0 ? "−" : "") + rpS(Math.abs(n)); };
+    var sumberDok = "Sumber: " + A.dokumen + ", ditandatangani " + A.penandatangan + " pada " + A.tanggal + ".";
+    $("#apbTitle").textContent = "APBKam Tahun Anggaran " + A.tahun;
+    $("#apbLead").innerHTML = rilis("apbkam", true) + "<br>" + esc("Anggaran Pendapatan dan Belanja Kampung Marga Mulya tahun " + A.tahun + " menurut " + A.dokumen + " (" + A.tanggal + "). Ketuk setiap angka atau bidang untuk melihat rinciannya.");
+    var cards = [
+      ["Pendapatan", rpS(totPend), A.pendapatan.filter(function (k) { return k.jumlah; }).length + " kelompok pendapatan", "Total pendapatan kampung tahun " + A.tahun + ": " + rp(totPend) + ", terdiri atas " + A.pendapatan.filter(function (k) { return k.jumlah; }).map(function (k) { return k.kelompok.toLowerCase() + " " + rp(k.jumlah); }).join(" dan ") + ".", ""],
+      ["Belanja", rpS(totBel), A.belanja.filter(function (b) { return b.anggaran; }).length + " bidang · " + A.belanja.reduce(function (n, b) { return n + b.sub.reduce(function (m, s) { return m + s.kegiatan.length; }, 0); }, 0) + " kegiatan", "Total belanja yang dianggarkan: " + rp(totBel) + ".", "blue"],
+      ["Surplus", rpS(A.surplus), "pendapatan − belanja", "Selisih pendapatan dan belanja: " + rp(totPend) + " − " + rp(totBel) + " = " + rp(A.surplus) + ".", ""],
+      ["Pembiayaan netto", tanda(P.netto), "SiLPA " + rpS(P.totalPenerimaan) + " · keluar " + rpS(P.totalPengeluaran), "Penerimaan pembiayaan (SiLPA 2025) " + rp(P.totalPenerimaan) + " dikurangi pengeluaran pembiayaan " + rp(P.totalPengeluaran) + " = " + tanda(P.netto).replace("Rp ", "Rp") + ".", ""]
+    ];
+    $("#apbSum").innerHTML = cards.map(function (c) {
+      return '<button type="button" class="apb-card tap' + (c[4] ? " apb-card--blue" : "") + '"' + act(function () { openModal({ kat: "APBKam " + A.tahun, title: c[0], html: "<p>" + esc(c[3]) + "</p><p class='small'>" + esc(sumberDok) + "</p>" }); }) +
+        "><span>" + c[0] + "</span><b>" + c[1] + "</b><small>" + esc(c[2]) + "</small></button>";
+    }).join("");
+
+    // Pendapatan per kelompok
+    var pendIsi = A.pendapatan.filter(function (k) { return k.jumlah; });
+    donut("#dPendapatan", pendIsi.map(function (k) { return { label: k.kelompok, jumlah: k.jumlah, isi: k.rincian.length > 1 ? k.rincian.map(function (r) { return { label: r.nama, jumlah: r.jumlah }; }) : null }; }),
+      { kat: "Pendapatan APBKam " + A.tahun, fmt: rpS, tengah: [rpS(totPend).replace("Rp ", "Rp"), "pendapatan"] });
+    $("#apbPendapatan").innerHTML = A.pendapatan.map(function (k) {
+      return '<button type="button" class="kel tap"' + act(function () {
+        openModal({ kat: "Pendapatan · APBKam " + A.tahun, title: k.kelompok,
+          html: '<div class="mini-stat"><div><b>' + rpS(k.jumlah) + "</b><span>Jumlah</span></div><div><b>" + pct(k.jumlah, totPend) + "%</b><span>dari pendapatan</span></div><div><b>" + k.rincian.length + "</b><span>rincian</span></div></div>" +
+            "<p>" + esc(k.ket) + "</p>" + (k.rincian.length ? '<div class="tablewrap"><table class="tbl"><tbody>' + k.rincian.map(function (r) { return "<tr><td>" + esc(r.nama) + '</td><td class="num">' + rp(r.jumlah) + "</td></tr>"; }).join("") + "</tbody></table></div>" : "") });
+      }) + '><span class="kel__h"><b>' + esc(k.kelompok) + "</b><span>" + rpS(k.jumlah) + "</span></span><small>" +
+        (k.rincian.length ? k.rincian.map(function (r) { return esc(r.nama) + " " + rpS(r.jumlah); }).join(" · ") : esc(k.ket)) + "</small></button>";
+    }).join("");
+
+    // Belanja per bidang
+    $("#apbBelanja").innerHTML = A.belanja.map(function (b) {
+      var p = pct(b.anggaran, totBel, 1), nK = b.sub.reduce(function (m, s) { return m + s.kegiatan.length; }, 0);
+      return '<button type="button" class="bid tap"' + act(function () {
+        openModal({ kat: "Bidang " + b.kode + " · APBKam " + A.tahun, title: b.bidang,
+          html: '<div class="mini-stat"><div><b>' + rpS(b.anggaran) + "</b><span>Anggaran</span></div><div><b>" + p + "%</b><span>dari total belanja</span></div><div><b>" + nK + "</b><span>kegiatan</span></div></div>" +
+            (b.sub.length ? b.sub.map(function (s) {
+              return '<h4 class="mt-s">' + esc(s.nama) + ' <span class="small">· ' + rpS(s.anggaran) + '</span></h4><div class="tablewrap"><table class="tbl"><thead><tr><th>Kegiatan</th><th class="num">Anggaran</th></tr></thead><tbody>' +
+                s.kegiatan.map(function (k) { return "<tr><td>" + esc(k.nama) + '<br><span class="small">' + esc(k.sumber) + '</span></td><td class="num">' + rp(k.anggaran) + "</td></tr>"; }).join("") + "</tbody></table></div>";
+            }).join("") : "<p>Bidang ini tidak dianggarkan pada APBKam " + A.tahun + ".</p>") +
+            "<div class='modal__actions'><a class='btn btn--solid' href='" + escUrl(A.halaman) + "#bidang-" + esc(b.kode) + "'>" + ic("doc") + "Lihat rincian belanja lengkap</a></div>" });
+      }) + '><span class="bid__top"><span>' + esc(b.kode) + ". " + esc(b.bidang) + "</span><span>" + rpS(b.anggaran) + '</span></span><span class="bid__track" style="display:block"><span class="bid__fill" style="display:block;width:' + Math.max(b.anggaran ? 1 : 0, b.anggaran / totBel * 100) + '%"></span></span><small>' +
+        (b.anggaran ? p + "% dari total belanja · " + b.sub.length + " sub bidang · " + nK + " kegiatan" : "Tidak dianggarkan tahun ini") + "</small></button>";
+    }).join("");
+
+    // Jenis belanja & sumber dana
+    donut("#dJenis", (A.jenisBelanja || []).map(function (j) { return { label: j.nama, jumlah: j.jumlah }; }), { kat: "Jenis belanja APBKam " + A.tahun, fmt: rpS, tengah: [rpS(totBel).replace("Rp ", "Rp"), "belanja"] });
+    bars("#apbSumber", (A.sumberDana || []).map(function (s) { return { label: s.nama, jumlah: s.jumlah }; }), "Sumber dana belanja", rpS);
+
+    // Pembiayaan
+    var pTab = function (judul, list, tot) {
+      return '<div><h4>' + judul + ' <span class="small">· ' + rpS(tot) + '</span></h4><div class="tablewrap"><table class="tbl"><tbody>' + list.map(function (r) {
+        return "<tr><td>" + esc(r.nama) + (r.sumber ? '<br><span class="small">Sumber: ' + esc(r.sumber) + "</span>" : "") + '</td><td class="num">' + rp(r.jumlah) + "</td></tr>";
+      }).join("") + "</tbody></table></div></div>";
+    };
+    $("#apbPembiayaan").innerHTML = '<div class="grid-2">' + pTab("Penerimaan pembiayaan", P.penerimaan || [], P.totalPenerimaan) + pTab("Pengeluaran pembiayaan", P.pengeluaran || [], P.totalPengeluaran) + "</div>" +
+      '<p class="small mt-s">Pembiayaan netto ' + esc(tanda(P.netto)) + ". Dokumen mencatat selisih pembiayaan (surplus ditambah pembiayaan netto) sebesar " + esc(tanda(A.selisih)) + ".</p>";
+
+    $("#apbMore").innerHTML = '<div class="apb-more__t"><b>Ingin melihat anggaran lengkap?</b><span>Semua kegiatan beserta rincian volume, harga satuan, dan jumlahnya ada di halaman rincian APBKam.</span></div><a class="btn btn--solid" href="' + escUrl(A.halaman) + '">' + ic("doc") + "Baca selengkapnya</a>";
+    if (A.danaLembaga) bars("#apbLembaga", A.danaLembaga, "Dana lembaga kampung", rpS, true);
+    if (A.danaLembagaSumber) $("#apbLembagaNote").textContent = "Di luar APBKam. Sumber: " + A.danaLembagaSumber + ".";
+  })();
+
+  /* =================== RPJMK (Transparansi) =================== */
+  if (D.rpjmk) (function () {
+    var R = D.rpjmk, n = R.dasarHukumRingkas || R.dasarHukum.length;
+    $("#rpjmkLead").innerHTML = rilis("rpjmk", true) + "<br>" + esc("Rencana Pembangunan Jangka Menengah Kampung adalah dokumen perencanaan jangka menengah yang memuat visi-misi kepala kampung, arah kebijakan, dan rencana kegiatan. RPJMK menjadi pedoman penyusunan RKPK dan APBKam setiap tahun." + (R.perpanjangan ? " " + R.perpanjangan : ""));
+    $("#rpjmkMeta").innerHTML = [["Dokumen", R.judul], ["Ditetapkan dengan", R.perkam], ["Masa berlaku", R.periode], ["Ditetapkan", R.ditetapkan], ["Landasan utama", R.landasan]]
+      .map(function (r) { return "<dt>" + esc(r[0]) + "</dt><dd>" + esc(r[1]) + "</dd>"; }).join("");
+    var li = function (t) { return "<li>" + esc(t) + "</li>"; };
+    $("#rpjmkDasar").innerHTML = R.dasarHukum.slice(0, n).map(li).join("");
+    if (R.dasarHukum.length > n) $("#rpjmkDasar").insertAdjacentHTML("afterend", '<ol class="dh more-body" start="' + (n + 1) + '" hidden>' + R.dasarHukum.slice(n).map(li).join("") +
+      '</ol>' + bacaLagi("Lihat semua dasar hukum (" + R.dasarHukum.length + ")", "Tampilkan lebih sedikit"));
+    $("#rpjmkBidang").innerHTML = R.bidang.map(function (b, i) {
+      return '<details class="bid"' + (i === 0 ? " open" : "") + "><summary><b>" + (i + 1) + "</b>" + esc(b.nama) + "</summary><ul>" + b.kegiatan.map(li).join("") + "</ul></details>";
+    }).join("") + '<p class="small mt-s">Daftar ini adalah rencana dan usulan dalam dokumen, bukan laporan realisasi.</p>';
+    $("#rpjmkCta").innerHTML = '<a class="btn btn--solid" href="' + escUrl(R.halaman) + '">' + ic("doc") + 'Baca RPJMK lengkap</a><a class="btn btn--line" href="' + escUrl(R.pdf) + '" download>Unduh PDF dokumen asli</a>';
+  })();
+
+  /* =================== RKPK (Transparansi) =================== */
+  if (D.rkpk) (function () {
+    var K = D.rkpk, dok = "Sumber: " + K.judul + " (" + K.perkam + ", ditetapkan " + K.ditetapkan.split(" di ")[0] + ") dan RAB RKPK " + K.tahun + ".";
+    var nKeg = K.bidang.reduce(function (n, b) { return n + b.kegiatan.length; }, 0);
+    var bidIsi = K.bidang.filter(function (b) { return b.jumlah; });
+    var totMod = (K.pembiayaan || []).reduce(function (n, x) { return n + x.jumlah; }, 0);
+    $("#rkpkLead").innerHTML = rilis("rkpk", true) + "<br>" + esc(K.pengertian + " Ketuk angka atau bidang untuk melihat rinciannya.");
+    var cards = [
+      ["Perkiraan pendapatan", rpS(K.totalPendapatan), "Dana Desa + Alokasi Dana Kampung", "Perkiraan pendapatan Kampung Marga Mulya tahun " + K.tahun + ": " + K.pendapatan.map(function (p) { return p.nama + " " + rp(p.jumlah); }).join(" dan ") + ", jumlah " + rp(K.totalPendapatan) + ". " + K.pendapatanKet, true],
+      ["Rencana belanja", rpS(K.totalBelanja), bidIsi.length + " bidang · " + nKeg + " kegiatan", "Rencana belanja RKPK " + K.tahun + ": " + bidIsi.map(function (b) { return b.nama + " " + rp(b.jumlah); }).join("; ") + ". Jumlah " + rp(K.totalBelanja) + "."],
+      ["Penyertaan modal", rpS(totMod), "pembiayaan · ketahanan pangan", (K.pembiayaan || []).map(function (x) { return x.nama + ": " + rp(x.jumlah) + " (" + x.sumber + ")."; }).join(" ") + " Jumlah seluruh RAB RKPK termasuk pembiayaan: " + rp(K.totalRab) + "."],
+      ["Pagu belanja", "30 : 70", "belanja rutin : pembangunan", K.pagu.map(function (g) { return g[0] + " " + g[1] + " " + g[2] + "."; }).join(" ") + " " + K.paguKet]
+    ];
+    $("#rkpkSum").innerHTML = cards.map(function (c) {
+      return '<button type="button" class="apb-card tap' + (c[4] ? " apb-card--blue" : "") + '"' + act(function () { openModal({ kat: "RKPK " + K.tahun, title: c[0], html: "<p>" + esc(c[3]) + "</p><p class='small'>" + esc(dok) + "</p>" }); }) +
+        "><span>" + esc(c[0]) + "</span><b>" + esc(c[1]) + "</b><small>" + esc(c[2]) + "</small></button>";
+    }).join("");
+
+    // Dokumen asli yang bisa dibuka atau diunduh
+    $("#rkpkDok").innerHTML = '<div class="rkpk-dok__head"><b>Dokumen asli RKPK ' + esc(K.tahun) + "</b><span>Buka langsung di browser (PDF) atau unduh berkas aslinya.</span></div>" +
+      '<div class="rkpk-dok__list">' + K.berkas.map(function (b) {
+        return '<div class="rkpk-berkas"><span class="rkpk-berkas__ic">' + ic("doc") + '</span><div class="rkpk-berkas__t"><b>' + esc(b.nama) + "</b><small>" + esc(b.ket) + " · " + esc(b.hal) + " halaman</small></div>" +
+          '<div class="rkpk-berkas__a"><a class="btn btn--solid" href="' + escUrl(b.pdf) + '" target="_blank" rel="noopener">Lihat PDF</a><a class="btn btn--line" href="' + escUrl(b.asli) + '" download>Unduh ' + esc(b.format) + "</a></div></div>";
+      }).join("") + "</div>" + (K.privasi ? '<p class="small">' + esc(K.privasi) + "</p>" : "");
+
+    // Rencana kegiatan per bidang
+    var keg = function (k) {
+      var meta = [k.volume, k.sasaran, k.waktu].filter(Boolean).map(esc).join(" · ");
+      return '<li><div class="rkpk-keg"><span>' + esc(k.nama) + (meta ? "<small>" + meta + (k.sdgs ? " · SDGs " + esc(k.sdgs) : "") + "</small>" : "") + (k.ket ? "<small>" + esc(k.ket) + "</small>" : "") +
+        "</span><b>" + (k.jumlah ? esc(rp(k.jumlah)) : "–") + '<em class="rkpk-sd">' + esc(k.sumber) + "</em></b></div></li>";
+    };
+    $("#rkpkBidang").innerHTML = K.bidang.map(function (b, i) {
+      return '<details class="bid"><summary><b>' + b.no + "</b><span>" + esc(b.nama) + "<small>" + esc(rp(b.jumlah)) + " · " + pct(b.jumlah, K.totalBelanja) + "% · " + b.kegiatan.length + " kegiatan</small></span></summary>" +
+        (b.kegiatan.length ? '<ul class="rkpk-list">' + b.kegiatan.map(keg).join("") + "</ul>" : '<p class="small rkpk-kosong">' + esc(b.ket || "Belum ada kegiatan.") + "</p>") + "</details>";
+    }).join("") + ((K.pembiayaan || []).length ? '<details class="bid"><summary><b>6</b><span>Pembiayaan<small>' + esc(rp(totMod)) + ' · penyertaan modal</small></span></summary><ul class="rkpk-list">' + K.pembiayaan.map(keg).join("") + "</ul></details>" : "") +
+      '<p class="small mt-s">' + esc(K.pelaksanaan) + " DD = Dana Desa, ADK = Alokasi Dana Kampung. Jumlah RAB termasuk pembiayaan: " + esc(rp(K.totalRab)) + ".</p>";
+
+    // Kerangka keuangan
+    var tr = function (a, b, kuat) { return "<tr" + (kuat ? ' class="tot"' : "") + "><td>" + esc(a) + '</td><td class="num">' + esc(b) + "</td></tr>"; };
+    $("#rkpkKeu").innerHTML = '<table class="rkpk-tab"><tbody>' + K.pendapatan.map(function (p) { return tr(p.nama, rp(p.jumlah)); }).join("") + tr("Jumlah perkiraan pendapatan", rp(K.totalPendapatan), true) + "</tbody></table>" +
+      '<p class="small">' + esc(K.pendapatanKet) + "</p>" +
+      '<div class="rkpk-pagu">' + K.pagu.map(function (g) { return '<div class="tile"><b>' + esc(g[1]) + "</b><span>" + esc(g[0]) + "</span><small>" + esc(g[2]) + "</small></div>"; }).join("") + "</div>" +
+      '<p class="small">' + esc(K.paguKet) + "</p>" +
+      '<h4 class="mt-s">Skala program</h4><dl class="kv kv--sm">' + K.skala.map(function (x) { return "<dt>" + esc(x[0]) + "</dt><dd>" + esc(x[1]) + "</dd>"; }).join("") + "</dl>";
+
+    // Prioritas masalah
+    $("#rkpkPrioritas").innerHTML = K.prioritas.map(function (x, i) { return '<article class="rkpk-pri__i"><b>' + (i + 1) + "</b><div><h4>" + esc(x.judul) + "</h4><p>" + esc(x.isi) + "</p></div></article>"; }).join("");
+
+    // Landasan dan dasar hukum
+    $("#rkpkMeta").innerHTML = [["Dokumen", K.judul], ["Ditetapkan dengan", K.perkam], ["Ditetapkan", K.ditetapkan], ["Diundangkan", K.lembaran], ["Menjabarkan", D.rpjmk ? D.rpjmk.perkam + " tentang RPJMK, berlaku " + D.rpjmk.periode.split(" ")[0] : "RPJMK"], ["Sistematika", K.sistematika.join("; ")]]
+      .map(function (r) { return "<dt>" + esc(r[0]) + "</dt><dd>" + esc(r[1]) + "</dd>"; }).join("");
+    var li = function (t) { return "<li>" + esc(t) + "</li>"; }, n = K.dasarHukumRingkas || K.dasarHukum.length;
+    $("#rkpkDasar").innerHTML = K.dasarHukum.slice(0, n).map(li).join("");
+    if (K.dasarHukum.length > n) $("#rkpkDasar").insertAdjacentHTML("afterend", '<ol class="dh more-body" start="' + (n + 1) + '" hidden>' + K.dasarHukum.slice(n).map(li).join("") +
+      "</ol>" + bacaLagi("Lihat semua dasar hukum (" + K.dasarHukum.length + ")", "Tampilkan lebih sedikit"));
+    $("#rkpkTujuan").innerHTML = '<h4>Tujuan</h4><ol class="dh">' + K.tujuan.map(li).join("") + '</ol><h4 class="mt-s">Manfaat</h4><ol class="dh">' + K.manfaat.map(li).join("") + "</ol>";
+  })();
+
+  /* =================== PETA BATAS KAMPUNG =================== */
+  (function () {
+    var tabs = $("#mapTabs"); if (!tabs) return;
+    var map = null, lap = {}, B = null, aktifLap = { citra: false, batas: true, titik: true, fasilitas: true, tetangga: true };
+    var info = $("#pinInfo");
+    var dms = function (v, pos, neg) { var a = Math.abs(v), d = Math.floor(a), m = Math.floor((a - d) * 60), s_ = ((a - d) * 60 - m) * 60; return d + "° " + m + "′ " + s_.toLocaleString("id-ID", { maximumFractionDigits: 2 }) + "″ " + (v < 0 ? neg : pos); };
+    var tampil = function (kat, judul, isi) { info.innerHTML = '<p class="mapinfo__kat">' + esc(kat) + "</p><h3>" + esc(judul) + "</h3>" + isi; };
+
+    function showTab(t) {
+      tabs.querySelectorAll("button").forEach(function (x) { x.setAttribute("aria-selected", x.dataset.tab === t ? "true" : "false"); });
+      ["interaktif", "resmi"].forEach(function (p) { $("#panel-" + p).hidden = p !== t; });
+      if (t === "interaktif" && map) setTimeout(function () { map.invalidateSize(); }, 50);
+      if (t === "resmi" && B && !$("#petaImg").getAttribute("src")) pilihLembar((B.lembar || [])[0]);
+    }
+    tabs.addEventListener("click", function (e) { var b = e.target.closest("button[data-tab]"); if (b) showTab(b.dataset.tab); });
+
+    // Peta resmi: perbesar / perkecil dan geser
+    var zoom = 1, box = $("#petaZoom");
+    var setZoom = function (z) { zoom = Math.max(1, Math.min(5, z)); $("#petaImg").style.width = (zoom * 100) + "%"; };
+    $("#zoomIn").addEventListener("click", function () { setZoom(zoom * 1.5); });
+    $("#zoomOut").addEventListener("click", function () { setZoom(zoom / 1.5); });
+
+    function bangun(F) {
+      var el = $("#batasMap");
+      if (!window.L) { el.innerHTML = '<p class="wmap__load">Peta interaktif tidak dapat dimuat. Gunakan tab Peta batas resmi.</p>'; return; }
+      el.innerHTML = "";
+      map = L.map(el, { scrollWheelZoom: false, zoomSnap: .25 });
+      window.MM_DASAR(map, "satelit");
+      map.attributionControl.addAttribution("Peta Batas Kampung &copy; DPMK Kabupaten Merauke");
+      var L2 = window.MM_LAPIS_BATAS(map, B, { isi: .04, citra: false, citraOpacity: .75 });
+      lap.citra = L2.citra; lap.batas = L.layerGroup([L2.halo, L2.batas]);
+      L2.batas.on("click", function () {
+        tampil("Batas wilayah", "Kampung Marga Mulya", "<p>Luas menurut monografi kampung <b>" + esc(id.luas) + "</b>; hasil digitasi peta batas ± " + B.luasDigitasiHa.toLocaleString("id-ID", { maximumFractionDigits: 0 }) + " ha.</p><p class='small'>Utara: " + esc(D.batas.utara) + ". Timur: " + esc(D.batas.timur) + ". Selatan: " + esc(D.batas.selatan) + ". Barat: " + esc(D.batas.barat) + ".</p>");
+      });
+      // Titik kartometrik
+      lap.titik = L.layerGroup(B.titik.map(function (t) {
+        var m = L.marker([t.lat, t.lng], { icon: L.divIcon({ className: "", html: '<span class="tk">' + t.no + "</span>", iconSize: [22, 22], iconAnchor: [11, 11] }) });
+        m.on("click", function () {
+          tampil("Titik kartometrik " + t.no, t.kode, "<p>" + dms(t.lat, "LU", "LS") + "<br>" + dms(t.lng, "BT", "BB") + "</p><p class='small'>UTM 54S: X " + t.x.toLocaleString("id-ID") + " · Y " + t.y.toLocaleString("id-ID") + "</p>");
+        });
+        return m.bindTooltip("Titik " + t.no, { direction: "top", offset: [0, -10] });
+      }));
+      // Nama kampung tetangga
+      lap.tetangga = L.layerGroup(B.tetangga.map(function (t) {
+        return L.marker([t.lat, t.lng], { interactive: false, icon: L.divIcon({ className: "", html: '<span class="tetangga">' + esc(t.nama).replace(" · ", "<br>") + "</span>", iconSize: [150, 34], iconAnchor: [75, 17] }) });
+      }));
+      // Kantor kampung
+      var kantor = L.marker([B.kantor.lat, B.kantor.lng], { zIndexOffset: 1000, icon: L.divIcon({ className: "", html: '<span class="mk mk--home"><svg class="ic"><use href="#i-home"/></svg></span>', iconSize: [36, 36], iconAnchor: [18, 18] }) }).addTo(map);
+      kantor.on("click", function () { tampil("Pemerintahan", B.kantor.nama, "<p>" + esc(B.kantor.ket) + ".</p><p class='small'>" + dms(B.kantor.lat, "LU", "LS") + " · " + dms(B.kantor.lng, "BT", "BB") + "</p><p><a href='" + escUrl(gm.dir) + "' target='_blank' rel='noopener'>Petunjuk arah (OpenStreetMap) →</a></p>"); });
+      // Fasilitas umum (titik dari foto GPS)
+      lap.fasilitas = L.layerGroup((F || []).filter(function (f) { return f.lat != null && f.dalamKampung; }).map(function (f) {
+        var m = L.circleMarker([f.lat, f.lng], { radius: 6, color: "#FFFFFF", weight: 2, fillColor: "#0B3A8F", fillOpacity: 1 });
+        m.on("click", function () {
+          tampil(f.kategori + " · " + (f.jenis || ""), f.nama, (f.foto ? '<img class="mapinfo__img" src="' + escUrl(f.foto) + '" alt="">' : "") + "<p>" + esc((f.keterangan || [])[0] || f.alamat) + "</p><p><a href='#fasilitas' data-fokus-fasil='" + esc(f.id) + "'>Lihat di daftar fasilitas →</a></p>");
+        });
+        return m.bindTooltip(f.nama, { direction: "top", offset: [0, -6] });
+      }));
+      ["titik", "fasilitas", "tetangga"].forEach(function (k) { lap[k].addTo(map); });
+      var fit = function () { map.invalidateSize(); map.fitBounds(L2.batas.getBounds(), { padding: [12, 12] }); };
+      fit();
+      (window.MM_MAPS = window.MM_MAPS || []).push({ el: el, map: map, fit: fit });
+      el.addEventListener("click", function () { map.scrollWheelZoom.enable(); }, { once: true });
+
+      // Saringan lapisan
+      var NAMA = { batas: "Garis batas", titik: "Titik kartometrik", fasilitas: "Fasilitas umum", tetangga: "Kampung tetangga" };
+      $("#mapFilter").innerHTML = '<p class="mapfilter__judul">Lapisan</p>' + Object.keys(NAMA).map(function (k) { return '<button class="fbtn" type="button" aria-pressed="' + (aktifLap[k] ? "true" : "false") + '" data-lap="' + k + '">' + NAMA[k] + "</button>"; }).join("");
+      $("#mapFilter").addEventListener("click", function (e) {
+        var b = e.target.closest("[data-lap]"); if (!b) return; var k = b.dataset.lap; aktifLap[k] = !aktifLap[k];
+        b.setAttribute("aria-pressed", aktifLap[k] ? "true" : "false");
+        if (aktifLap[k]) lap[k].addTo(map); else lap[k].remove();
+      });
+
+      // Peta tematik 2022: ditumpangkan di atas citra satelit sesuai koordinat, satu per satu
+      var T = B.tematik || { lapisan: [] }, tema = {}, temaAktif = null, opasitas = .8;
+      var PILIH = T.lapisan.map(function (t) { return { id: t.id, nama: t.nama, ket: t.ket, legenda: t.legenda, buat: function () { return L.imageOverlay(t.src, T.bounds, { opacity: opasitas, interactive: false, className: "tematik" }); } }; });
+      PILIH.push({ id: "dpmk", nama: "Peta batas DPMK", ket: "Lembar Peta Batas Kampung dari DPMK Kabupaten Merauke.", buat: function () { lap.citra.setOpacity(opasitas); return lap.citra; } });
+      $("#mapTema").innerHTML = '<p class="mapfilter__judul">Tumpang peta tematik 2022</p><div class="mapfilter__opsi"><button class="fbtn" type="button" aria-pressed="true" data-tema="">Hanya satelit</button>' +
+        PILIH.map(function (t) { return '<button class="fbtn" type="button" aria-pressed="false" data-tema="' + esc(t.id) + '">' + esc(t.nama) + "</button>"; }).join("") + "</div>" +
+        '<label class="mapfilter__op" id="temaOp" hidden>Transparansi <input type="range" min="20" max="100" value="80" aria-label="Transparansi peta tematik"></label>' +
+        '<div class="maplegend" id="temaLegenda" hidden></div>';
+      function pilihTema(id) {
+        if (temaAktif && tema[temaAktif]) tema[temaAktif].remove();
+        temaAktif = id || null;
+        $("#mapTema").querySelectorAll("[data-tema]").forEach(function (b) { b.setAttribute("aria-pressed", (b.dataset.tema || null) === temaAktif ? "true" : "false"); });
+        var t = PILIH.filter(function (x) { return x.id === temaAktif; })[0];
+        $("#temaOp").hidden = !t; $("#temaLegenda").hidden = !t;
+        if (!t) return;
+        if (!tema[t.id]) tema[t.id] = t.buat();
+        tema[t.id].setOpacity(opasitas).addTo(map);
+        lap.batas.eachLayer(function (l) { l.bringToFront(); });
+        $("#temaLegenda").innerHTML = "<p><b>" + esc(t.nama) + "</b> " + esc(t.ket) + "</p>" + (t.legenda ? '<button type="button" class="reset maplegend__img" data-legenda="' + esc(t.id) + '" aria-label="Perbesar legenda ' + esc(t.nama) + '"><img src="' + escUrl(t.legenda) + '" alt="Legenda ' + esc(t.nama) + '" loading="lazy"></button>' : "") +
+          (T.sumber && t.id !== "dpmk" ? '<p class="small">Sumber: ' + esc(T.sumber) + ".</p>" : "");
+      }
+      $("#mapTema").addEventListener("click", function (e) {
+        var b = e.target.closest("[data-tema]"); if (b) { pilihTema(b.dataset.tema); return; }
+        var lg = e.target.closest("[data-legenda]");
+        if (lg) { var t = PILIH.filter(function (x) { return x.id === lg.dataset.legenda; })[0]; openModal({ kat: "Legenda peta", title: t.nama, html: '<img class="modal__img" src="' + escUrl(t.legenda) + '" alt="Legenda ' + esc(t.nama) + '">' }); }
+      });
+      $("#temaOp input").addEventListener("input", function (e) { opasitas = e.target.value / 100; if (temaAktif && tema[temaAktif]) tema[temaAktif].setOpacity(opasitas); });
+    }
+
+    function pilihLembar(l) {
+      if (!l) { $("#petaImg").src = B.petaGambar; return; }
+      $("#petaImg").src = l.src; $("#petaImg").alt = l.nama + ", skala " + l.skala;
+      $("#petaUnduh").href = l.src; $("#petaUnduhT").textContent = "Unduh " + l.nama.replace(/^Peta /, "peta ") + " (JPG)";
+      $("#petaLembar").querySelectorAll("[data-lembar]").forEach(function (b) { b.setAttribute("aria-pressed", b.dataset.lembar === l.id ? "true" : "false"); });
+      $("#petaLembarSumber").textContent = "Skala " + l.skala + " (kertas A0). Sumber: " + l.sumber + ".";
+      setZoom(1);
+    }
+    window.MM_BATAS().then(function (b) {
+      B = b;
+      $("#petaUnduh").href = B.petaGambar;
+      if (B.lembar && $("#petaLembar")) {
+        $("#petaLembar").innerHTML = B.lembar.map(function (l) { return '<button class="fbtn" type="button" aria-pressed="false" data-lembar="' + esc(l.id) + '">' + esc(l.nama.replace(/^Peta /, "")) + "</button>"; }).join("");
+        $("#petaLembar").addEventListener("click", function (e) { var x = e.target.closest("[data-lembar]"); if (!x) return; pilihLembar(B.lembar.filter(function (l) { return l.id === x.dataset.lembar; })[0]); });
+      }
+      $("#batasRingkas").innerHTML = "Luas wilayah <b>" + esc(id.luas) + "</b>. Ketuk batas wilayah, titik kartometrik, kantor, atau fasilitas di peta untuk melihat keterangannya.";
+      $("#petaMeta").innerHTML = [["Sumber", "Pemkab Merauke · DPMK"], ["Kode wilayah", B.kodeWilayah], ["Skala", B.skala], ["Citra", B.citraSumber], ["Koordinat", B.sistemKoordinat], ["Titik kartometrik", B.titik.length + " titik"]]
+        .map(function (r) { return "<dt>" + esc(r[0]) + "</dt><dd>" + esc(r[1]) + "</dd>"; }).join("");
+      $("#tkTabel").innerHTML = "<thead><tr><th>No</th><th>Titik kartometrik</th><th>Bujur</th><th>Lintang</th><th class='num'>X (m)</th><th class='num'>Y (m)</th></tr></thead><tbody>" +
+        B.titik.map(function (t) { return "<tr><td>" + t.no + "</td><td>" + esc(t.kode) + "</td><td>" + dms(t.lng, "BT", "BB") + "</td><td>" + dms(t.lat, "LU", "LS") + "</td><td class='num'>" + t.x.toLocaleString("id-ID") + "</td><td class='num'>" + t.y.toLocaleString("id-ID") + "</td></tr>"; }).join("") + "</tbody>";
+      return fetch("data/fasilitas.json?t=" + Date.now(), { cache: "no-store" }).then(function (r) { return r.json(); }).then(function (j) { bangun(j.fasilitas); }, function () { bangun([]); });
+    }).catch(function () { $("#batasMap").innerHTML = '<p class="wmap__load">Data peta batas belum dapat dimuat.</p>'; });
+    showTab("interaktif");
+  })();
+
+  /* =================== VIDEO (bergulir seperti berita) ===================
+     Daftar video dari data/video-otomatis.json (robot scripts/update_video.py, tiap 6 jam)
+     ditambah video pilihan di D.video.pilihan. Ketuk kartu untuk memutar di jendela. */
+  (function () {
+    var V = D.video || {}, track = $("#vidTrack"); if (!track) return;
+    $("#videoJudul").textContent = V.judul || "Marga Mulya dalam Video";
+    $("#videoDesk").textContent = V.deskripsi || "";
+    var PLAT = { youtube: "YouTube", tiktok: "TikTok", instagram: "Instagram", facebook: "Facebook" };
+    var BLN = ["Jan", "Feb", "Mar", "Apr", "Mei", "Jun", "Jul", "Agu", "Sep", "Okt", "Nov", "Des"];
+    var tglV = function (iso) { var p = String(iso || "").slice(0, 10).split("-"); return p.length === 3 ? +p[2] + " " + BLN[+p[1] - 1] + " " + p[0] : ""; };
+    // Tanggal dari halaman pencarian YouTube hanya perkiraan ("2 thn lalu"): tampilkan relatif, bukan tanggal pasti
+    var kapan = function (v) {
+      if (!v.tanggal) return "";
+      if (!v.tanggal_kira) return tglV(v.tanggal);
+      var h = Math.round((Date.now() - new Date(v.tanggal + "T00:00:00+09:00")) / 864e5);
+      return h < 7 ? "minggu ini" : h < 30 ? "± " + Math.round(h / 7) + " minggu lalu" : h < 365 ? "± " + Math.round(h / 30) + " bulan lalu" : "± " + Math.round(h / 365) + " tahun lalu";
+    };
+    var durasi = function (d) { if (!d) return ""; var m = Math.floor(d / 60), s = d % 60; return m >= 60 ? Math.floor(m / 60) + ":" + ("0" + (m % 60)).slice(-2) + ":" + ("0" + s).slice(-2) : m + ":" + ("0" + s).slice(-2); };
+    var angka = function (n) { return n >= 1e6 ? (n / 1e6).toFixed(1).replace(".", ",") + " jt" : n >= 1e3 ? (n / 1e3).toFixed(1).replace(".", ",") + " rb" : String(n); };
+    // Kenali tautan video pilihan
+    function kenali(u) {
+      var m;
+      if ((m = /(?:youtube\.com\/(?:watch\?(?:.*&)?v=|shorts\/|embed\/|live\/)|youtu\.be\/)([A-Za-z0-9_-]{11})/.exec(u))) return { platform: "youtube", id: m[1], url: "https://www.youtube.com/watch?v=" + m[1], sampul: "https://i.ytimg.com/vi/" + m[1] + "/hqdefault.jpg", rasio: /shorts\//.test(u) ? "9:16" : "16:9" };
+      if ((m = /tiktok\.com\/@[^/]+\/video\/(\d+)/.exec(u))) return { platform: "tiktok", id: m[1], url: u, rasio: "9:16" };
+      if ((m = /instagram\.com\/(?:[^/]+\/)?(p|reels?|tv)\/([A-Za-z0-9_-]+)/.exec(u))) return { platform: "instagram", id: m[2], url: "https://www.instagram.com/" + (m[1].indexOf("reel") === 0 ? "reel" : m[1]) + "/" + m[2] + "/", rasio: "9:16" };
+      if (/facebook\.com\/|fb\.watch\//.test(u)) return { platform: "facebook", id: u.replace(/\W+/g, "").slice(-24), url: u, rasio: /\/reel\//.test(u) ? "9:16" : "16:9" };
+      return null;
+    }
+    function embed(v) {
+      if (v.platform === "youtube") return "https://www.youtube-nocookie.com/embed/" + encodeURIComponent(v.id) + "?rel=0&playsinline=1&autoplay=1";
+      if (v.platform === "tiktok") return "https://www.tiktok.com/player/v1/" + encodeURIComponent(v.id) + "?autoplay=1&rel=0&description=1";
+      if (v.platform === "instagram") return v.url.replace(/\/?$/, "/") + "embed/";
+      if (v.platform === "facebook") return "https://www.facebook.com/plugins/video.php?href=" + encodeURIComponent(v.url) + "&show_text=false&autoplay=true";
+      return "";
+    }
+    var semua = [], filter = "semua", daftar = [];
+    function gabung(auto) {
+      var pilihan = (V.pilihan || []).map(function (p) { var u = typeof p === "string" ? p : p.url, k = kenali(u || ""); if (!k) return null; k.judul = (p && p.judul) || "Video " + PLAT[k.platform]; k.pilihan = true; return k; }).filter(Boolean);
+      var ada = {}; semua = [];
+      pilihan.concat(auto || []).forEach(function (v) { var k = v.platform + "-" + v.id; if (ada[k]) return; ada[k] = 1; semua.push(v); });
+      // Pilihan selalu di depan; sisanya sesuai skor robot (relevansi + kesegaran + popularitas)
+      semua.sort(function (a, b) { return (b.pilihan ? 1 : 0) - (a.pilihan ? 1 : 0) || (b.skor || 0) - (a.skor || 0); });
+    }
+    function kartu(v, i, dup) {
+      var vert = v.rasio === "9:16" || v.rasio === "4:5" || (v.rasio_sampul && v.rasio_sampul < 1);
+      var foto = v.sampul ? '<img class="vcard__bg" src="' + escUrl(v.sampul) + '" alt="" aria-hidden="true" loading="lazy"><img class="vcard__img" src="' + escUrl(v.sampul) + '" alt="" loading="lazy">' : '<span class="vcard__kosong">' + ic("video") + "</span>";
+      var meta = [v.kanal, kapan(v), v.tayang ? angka(v.tayang) + " x ditonton" : (v.suka ? angka(v.suka) + " suka" : "")].filter(Boolean).join(" · ");
+      return '<button type="button" class="vcard' + (vert ? " vcard--v" : "") + '" data-vi="' + i + '"' + (dup ? ' tabindex="-1" aria-hidden="true"' : "") + ">" +
+        '<span class="vcard__ph">' + foto + '<span class="vcard__plat vcard__plat--' + v.platform + '">' + PLAT[v.platform] + "</span>" +
+        (v.durasi ? '<span class="vcard__dur">' + durasi(v.durasi) + "</span>" : "") + '<span class="vcard__play">' + ic("play") + "</span></span>" +
+        '<span class="vcard__body"><span class="vcard__meta">' + esc(meta || PLAT[v.platform]) + '</span><span class="vcard__t">' + esc(v.judul) + "</span></span></button>";
+    }
+    var fBox = $("#vidFilter");
+    function chips() {
+      var n = { semua: semua.length }; semua.forEach(function (v) { n[v.platform] = (n[v.platform] || 0) + 1; });
+      fBox.innerHTML = ["semua", "youtube", "tiktok", "instagram", "facebook"].map(function (k) {
+        return '<button type="button" class="chipbtn' + (k !== "semua" ? " chipbtn--" + k : "") + '" data-f="' + k + '" aria-pressed="' + (filter === k) + '"' + (k !== "semua" && !n[k] ? " disabled" : "") + ">" + (k === "semua" ? "Semua" : PLAT[k]) + ' <span class="chipbtn__n">' + (n[k] || 0) + "</span></button>";
+      }).join("");
+    }
+    var cari = encodeURIComponent('"marga mulya" merauke');
+    $("#vidCari").innerHTML = "Cari langsung: " + [
+      ["YouTube", "https://www.youtube.com/results?search_query=" + cari],
+      ["TikTok", "https://www.tiktok.com/search/video?q=" + encodeURIComponent("marga mulya merauke")],
+      ["Instagram", "https://www.instagram.com/explore/search/keyword/?q=" + encodeURIComponent("marga mulya merauke")],
+      ["Facebook", "https://www.facebook.com/search/videos/?q=" + encodeURIComponent("marga mulya merauke")]
+    ].map(function (x) { return '<a href="' + x[1] + '" target="_blank" rel="noopener">' + x[0] + "</a>"; }).join(" · ");
+    function render() {
+      daftar = semua.filter(function (v) { return filter === "semua" || v.platform === filter; });
+      chips();
+      if (!daftar.length) { track.innerHTML = '<p class="vid__kosong">' + ic("video") + "Robot sedang mengumpulkan video tentang Marga Mulya. Daftar akan muncul di sini setelah pencarian berikutnya selesai.</p>"; lebarSet = 0; updNav(); return; }
+      track.innerHTML = daftar.map(function (v, i) { return kartu(v, i); }).join("") + (daftar.length > 2 ? daftar.map(function (v, i) { return kartu(v, i, true); }).join("") : "");
+      ukur(); posisi = 0; terapkan(); updNav();
+    }
+    function putar(v) {
+      var vert = v.rasio === "9:16" || v.rasio === "4:5" || v.platform === "tiktok" || v.platform === "instagram";
+      var info = [v.kanal, kapan(v), v.tayang ? angka(v.tayang) + " kali ditonton" : (v.suka ? angka(v.suka) + " suka" : ""), v.durasi ? durasi(v.durasi) : ""].filter(Boolean).join(" · ");
+      openModal({ kat: PLAT[v.platform] + (v.kanal ? " · " + v.kanal : ""), title: v.judul,
+        html: '<div class="vplayer' + (vert ? " vplayer--v" : "") + (v.platform === "instagram" ? " vplayer--ig" : "") + '"><iframe src="' + escUrl(embed(v)) + '" title="' + esc(v.judul) + '" referrerpolicy="strict-origin-when-cross-origin" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe></div>' +
+          (info ? '<p class="vplayer__info">' + esc(info) + "</p>" : "") +
+          (v.keterangan ? '<p class="vplayer__ket">' + esc(v.keterangan.length > 280 ? v.keterangan.slice(0, 280) + "…" : v.keterangan) + "</p>" : "") +
+          '<p class="vplayer__act"><a class="btn btn--solid" href="' + escUrl(v.url) + '" target="_blank" rel="noopener">' + ic("external") + "Buka di " + PLAT[v.platform] + '</a></p><p class="small">Jika video tidak dapat diputar di sini (dibatasi pemiliknya), buka langsung di ' + PLAT[v.platform] + ".</p>" });
+    }
+    // Hentikan video saat jendela ditutup
+    modal.addEventListener("close", function () { var p = $("#modalBody .vplayer"); if (p) $("#modalBody").innerHTML = ""; });
+    track.addEventListener("click", function (e) { var b = e.target.closest("[data-vi]"); if (b) putar(daftar[+b.getAttribute("data-vi")]); });
+    track.addEventListener("error", function (e) { if (e.target.tagName === "IMG") { var ph = e.target.parentNode; ph.querySelectorAll("img").forEach(function (x) { x.remove(); }); if (!ph.querySelector(".vcard__kosong")) ph.insertAdjacentHTML("afterbegin", '<span class="vcard__kosong">' + ic("video") + "</span>"); } }, true);
+    fBox.addEventListener("click", function (e) {
+      var b = e.target.closest("[data-f]"); if (!b || b.disabled) return;
+      filter = b.getAttribute("data-f"); render();
+    });
+
+    // Gulir berjalan terus dan berputar (seperti slider berita)
+    var prev = $("#vidPrev"), next = $("#vidNext"), count = $("#vidCount");
+    var lebarSet = 0, posisi = 0, jeda = 0, diatas = false, tween = null, tujuan = null, terakhir = -1, waktu = 0;
+    var KEC = 30, diam = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    function step() { var c = track.querySelector(".vcard"); return c ? c.getBoundingClientRect().width + 16 : 260; }
+    function ukur() { var c = track.querySelectorAll(".vcard"), n = daftar.length; lebarSet = (n > 2 && c.length > n) ? c[n].offsetLeft - c[0].offsetLeft : 0; if (lebarSet && lebarSet <= track.clientWidth) lebarSet = 0; }
+    var bungkus = function (p) { return lebarSet ? ((p % lebarSet) + lebarSet) % lebarSet : Math.max(0, Math.min(p, track.scrollWidth - track.clientWidth)); };
+    function terapkan() { var v = bungkus(posisi); if (Math.abs(track.scrollLeft - v) >= 0.5) { terakhir = v; track.scrollLeft = v; } }
+    function updNav() {
+      var n = daftar.length; if (!n) { count.textContent = ""; return; }
+      var first = (Math.round(bungkus(posisi) / step()) % n) + 1, vis = Math.max(1, Math.round(track.clientWidth / step())), last = Math.min(n, first + vis - 1);
+      count.textContent = (vis > 1 && last > first ? first + "–" + last : first) + " dari " + n;
+    }
+    var tunda = function (ms) { jeda = Math.max(jeda, performance.now() + ms); };
+    function geserKe(d) {
+      var dari = posisi, dasar = tween && tujuan != null ? tujuan : posisi, ke = Math.round((dasar + d * step()) / step()) * step(), t0 = performance.now();
+      tujuan = ke; tween = function (t) { var k = Math.min(1, (t - t0) / 450), e = k < .5 ? 2 * k * k : 1 - Math.pow(-2 * k + 2, 2) / 2; posisi = dari + (ke - dari) * e; if (k >= 1) { tween = null; tujuan = null; } };
+      tunda(5000);
+    }
+    function loop(t) {
+      var dt = waktu ? Math.min(0.1, (t - waktu) / 1000) : 0; waktu = t;
+      var tampak = !document.hidden && track.offsetParent !== null && !(modal.open);
+      if (tween) { tween(t); terapkan(); updNav(); }
+      else if (tampak && lebarSet && !diam && !diatas && t > jeda) { posisi += KEC * dt; terapkan(); }
+      window.requestAnimationFrame(loop);
+    }
+    prev.addEventListener("click", function () { geserKe(-1); });
+    next.addEventListener("click", function () { geserKe(1); });
+    track.addEventListener("mouseenter", function () { diatas = true; });
+    track.addEventListener("mouseleave", function () { diatas = false; tunda(1200); });
+    ["pointerdown", "touchstart", "wheel", "focusin"].forEach(function (ev) { track.addEventListener(ev, function () { tween = null; tunda(4000); }, { passive: true }); });
+    track.addEventListener("scroll", function () {
+      if (Math.abs(track.scrollLeft - terakhir) < 1) return;
+      terakhir = -1;
+      if (lebarSet) {
+        if (track.scrollLeft >= lebarSet) { terakhir = track.scrollLeft - lebarSet; track.scrollLeft = terakhir; }
+        else if (track.scrollLeft <= 0) { terakhir = lebarSet; track.scrollLeft = lebarSet; }
+      }
+      posisi = track.scrollLeft; tunda(4000); window.requestAnimationFrame(updNav);
+    }, { passive: true });
+    track.addEventListener("keydown", function (e) { if (e.key === "ArrowRight") { e.preventDefault(); geserKe(1); } if (e.key === "ArrowLeft") { e.preventDefault(); geserKe(-1); } });
+    window.addEventListener("resize", function () { ukur(); terapkan(); updNav(); });
+    setInterval(updNav, 1000);
+
+    gabung([]); render(); window.requestAnimationFrame(loop);
+    var info = $("#vidInfo");
+    function muat() {
+      if (!window.fetch) return;
+      fetch("data/video-otomatis.json?t=" + Date.now(), { cache: "no-store" })
+        .then(function (r) { return r.ok ? r.json() : null; })
+        .then(function (j) {
+          if (!j) return;
+          var sebelum = semua.length; gabung(j.video || []); render();
+          if (j.diperiksa && info) info.textContent = "Diperbarui otomatis dari YouTube, TikTok, Instagram, dan Facebook · dicek " + tglV(j.diperiksa);
+          if (sebelum && semua.length > sebelum) toast((semua.length - sebelum) + " video baru ditambahkan");
+        }).catch(function () {});
+    }
+    muat();
+    // Halaman yang dibiarkan terbuka ikut menampilkan video baru tanpa dimuat ulang
+    setInterval(function () { if (!document.hidden) muat(); }, 30 * 60 * 1000);
+  })();
+
+  // Status kampung di foto utama Beranda (dari identitas.kategori)
+  if ($("#heroStatus") && D.identitas && D.identitas.kategori) $("#heroStatus .collab__nilai").innerHTML = '<svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><b>' + esc(D.identitas.kategori) + "</b>" + (D.identitas.statusTahun ? "<small>" + esc(D.identitas.statusTahun) + "</small>" : "");
+
+  /* Status kampung + cuaca + kualitas udara Semangga di Beranda.
+     Data langsung dari Open-Meteo (model cuaca) dan CAMS (kualitas udara); berganti otomatis tanpa berhenti. */
+  (function () {
+    var box = $("#heroStatus"), track = $("#hstatTrack"), dots = $("#hstatDots"), C = D.cuaca;
+    if (!box || !track || !C) return;
+    var EN = window.MM_BAHASA === "en", TZ = "Asia/Jayapura", KUNCI = "mm_cuaca_v1";
+    var T = function (id, en) { return EN ? en : id; };
+    var KODE = { 0: ["Cerah", "Clear", "sun"], 1: ["Cerah berawan", "Mostly clear", "cloudsun"], 2: ["Berawan sebagian", "Partly cloudy", "cloudsun"], 3: ["Mendung", "Overcast", "cloud"],
+      45: ["Berkabut", "Fog", "fog"], 48: ["Berkabut", "Fog", "fog"], 51: ["Gerimis ringan", "Light drizzle", "rain"], 53: ["Gerimis", "Drizzle", "rain"], 55: ["Gerimis lebat", "Heavy drizzle", "rain"],
+      56: ["Gerimis", "Drizzle", "rain"], 57: ["Gerimis", "Drizzle", "rain"], 61: ["Hujan ringan", "Light rain", "rain"], 63: ["Hujan sedang", "Moderate rain", "rain"], 65: ["Hujan lebat", "Heavy rain", "rain"],
+      66: ["Hujan", "Rain", "rain"], 67: ["Hujan lebat", "Heavy rain", "rain"], 80: ["Hujan lokal ringan", "Light showers", "rain"], 81: ["Hujan lokal", "Showers", "rain"], 82: ["Hujan lokal lebat", "Heavy showers", "rain"],
+      95: ["Badai petir", "Thunderstorm", "storm"], 96: ["Badai petir", "Thunderstorm", "storm"], 99: ["Badai petir", "Thunderstorm", "storm"] };
+    var kode = function (k) { var x = KODE[k] || KODE[Math.floor(k / 10) * 10] || ["Berawan", "Cloudy", "cloud"]; return { teks: EN ? x[1] : x[0], ikon: x[2] }; };
+    var AQI = [[50, "Baik", "Good", "Udara bersih, aman untuk beraktivitas di luar.", "Clean air, safe for outdoor activities."],
+      [100, "Sedang", "Moderate", "Masih dapat diterima; orang yang sangat sensitif sebaiknya membatasi aktivitas berat di luar.", "Acceptable; unusually sensitive people should limit heavy outdoor exertion."],
+      [150, "Tidak sehat bagi kelompok sensitif", "Unhealthy for sensitive groups", "Anak, lansia, dan penderita gangguan pernapasan sebaiknya mengurangi aktivitas di luar.", "Children, older adults, and people with breathing problems should reduce outdoor activity."],
+      [200, "Tidak sehat", "Unhealthy", "Kurangi aktivitas di luar dan gunakan masker.", "Reduce outdoor activity and wear a mask."],
+      [300, "Sangat tidak sehat", "Very unhealthy", "Hindari aktivitas di luar.", "Avoid outdoor activity."],
+      [1e9, "Berbahaya", "Hazardous", "Tetap di dalam ruangan.", "Stay indoors."]];
+    var aqiKat = function (v) { for (var i = 0; i < AQI.length; i++) if (v <= AQI[i][0]) return { nama: EN ? AQI[i][2] : AQI[i][1], saran: EN ? AQI[i][4] : AQI[i][3], lv: i }; };
+    var bul = function (n) { return Math.round(n); };
+    var desi = function (n) { return (Math.round(n * 10) / 10).toLocaleString(EN ? "en-GB" : "id-ID"); };
+    var hari = function (tgl, panjang) { return new Date(tgl + "T12:00:00+09:00").toLocaleDateString(EN ? "en-GB" : "id-ID", panjang ? { weekday: "short", day: "numeric", month: "short", timeZone: TZ } : { weekday: "short", timeZone: TZ }); };
+    var jam = function (iso) { return new Date(iso + ":00+09:00").toLocaleTimeString(EN ? "en-GB" : "id-ID", { hour: "2-digit", minute: "2-digit", timeZone: TZ }) + " WIT"; };
+    var ICON = function (n) { return '<svg class="ic" aria-hidden="true"><use href="#i-' + n + '"/></svg>'; };
+
+    // Pergantian slide: otomatis terus, tidak berhenti saat disentuh atau disorot.
+    var slides = function () { return [].slice.call(track.querySelectorAll(".hstat__slide")); };
+    var idx = 0, timer = null;
+    function tampil(n) {
+      var s = slides(); if (!s.length) return;
+      idx = (n + s.length) % s.length;
+      s.forEach(function (el, k) { el.classList.toggle("is-on", k === idx); el.setAttribute("aria-hidden", k === idx ? "false" : "true"); el.tabIndex = k === idx && el.tagName === "BUTTON" ? 0 : -1; });
+      [].forEach.call(dots.children, function (d, k) { d.setAttribute("aria-selected", k === idx ? "true" : "false"); });
+    }
+    function bangunDots() {
+      var s = slides(); dots.hidden = s.length < 2;
+      dots.innerHTML = s.map(function (el, k) { return '<button type="button" role="tab" aria-label="' + (k + 1) + " / " + s.length + '"></button>'; }).join("");
+      tampil(idx);
+    }
+    dots.addEventListener("click", function (e) { var b = e.target.closest("button"); if (b) { tampil([].indexOf.call(dots.children, b)); jalan(); } });
+    // Bergerak sendiri tiap 3 detik selama tidak disentuh. Saat disentuh/digeser berhenti,
+    // lalu lanjut lagi 3 detik setelah dilepas. Bisa digeser dengan jari atau mouse.
+    var JEDA = 3000;
+    function jalan() { clearInterval(timer); timer = setInterval(function () { if (slides().length > 1) tampil(idx + 1); }, JEDA); }
+    function henti() { clearInterval(timer); timer = null; }
+    var x0 = null, geser = false;
+    track.style.touchAction = "pan-y";
+    track.addEventListener("pointerdown", function (e) { if (e.button > 0) return; x0 = e.clientX; geser = false; henti(); });
+    track.addEventListener("pointermove", function (e) { if (x0 != null && Math.abs(e.clientX - x0) > 10) geser = true; });
+    var lepas = function (e) {
+      if (x0 == null) return; var dx = e.clientX - x0; x0 = null;
+      if (Math.abs(dx) > 40) tampil(idx + (dx < 0 ? 1 : -1));
+      jalan();
+    };
+    document.addEventListener("pointerup", lepas); document.addEventListener("pointercancel", function () { if (x0 != null) { x0 = null; jalan(); } });
+    track.addEventListener("click", function (e) { if (geser) { e.preventDefault(); e.stopImmediatePropagation(); geser = false; } }, true);
+    track.addEventListener("dragstart", function (e) { e.preventDefault(); });
+
+    var DATA = { f: null, a: null, t: 0 };
+    function bukaDetail() {
+      var f = DATA.f, a = DATA.a, h = "";
+      if (f && f.current) {
+        var c = f.current, k = kode(c.weather_code);
+        h += '<div class="cuaca-kini">' + ICON(k.ikon) + "<div><b>" + bul(c.temperature_2m) + "°C</b><span>" + esc(k.teks) + "</span></div></div>" +
+          '<dl class="kv kv--sm">' +
+          "<dt>" + T("Terasa seperti", "Feels like") + "</dt><dd>" + bul(c.apparent_temperature) + "°C</dd>" +
+          "<dt>" + T("Kelembapan", "Humidity") + "</dt><dd>" + bul(c.relative_humidity_2m) + "%</dd>" +
+          "<dt>" + T("Angin", "Wind") + "</dt><dd>" + bul(c.wind_speed_10m) + " km/" + T("jam", "h") + "</dd>" +
+          "<dt>" + T("Curah hujan", "Precipitation") + "</dt><dd>" + desi(c.precipitation) + " mm</dd>" +
+          "<dt>" + T("Diperbarui", "Updated") + "</dt><dd>" + esc(jam(c.time)) + "</dd></dl>";
+      }
+      if (f && f.daily && f.daily.time) {
+        var d = f.daily;
+        h += "<h3 class=\"mt-s\">" + T("Ramalan cuaca 7 hari", "7-day forecast") + '</h3><div class="cuaca-tabel"><table><thead><tr><th>' + T("Hari", "Day") + "</th><th>" + T("Kondisi", "Conditions") + "</th><th>" + T("Suhu", "Temp.") + "</th><th>" + T("Peluang hujan", "Rain chance") + "</th></tr></thead><tbody>" +
+          d.time.map(function (t, i) { var k = kode(d.weather_code[i]); return "<tr><td>" + esc(i === 0 ? T("Hari ini", "Today") : hari(t, true)) + "</td><td>" + ICON(k.ikon) + esc(k.teks) + "</td><td>" + bul(d.temperature_2m_min[i]) + "–" + bul(d.temperature_2m_max[i]) + "°C</td><td>" + (d.precipitation_probability_max[i] == null ? "–" : bul(d.precipitation_probability_max[i]) + "%") + (d.precipitation_sum[i] ? " · " + desi(d.precipitation_sum[i]) + " mm" : "") + "</td></tr>"; }).join("") +
+          "</tbody></table></div>";
+      }
+      if (a) {
+        var hr = harianUdara(a);
+        h += "<h3 class=\"mt-s\">" + T("Kualitas udara per hari", "Daily air quality") + "</h3>" +
+          (a.current && a.current.us_aqi != null ? '<p class="small">' + T("Saat ini", "Now") + ": AQI " + bul(a.current.us_aqi) + " (" + esc(aqiKat(a.current.us_aqi).nama) + ") · PM2.5 " + desi(a.current.pm2_5) + " µg/m³ · PM10 " + desi(a.current.pm10) + " µg/m³</p>" : "") +
+          '<div class="cuaca-tabel"><table><thead><tr><th>' + T("Hari", "Day") + "</th><th>AQI " + T("tertinggi", "max") + "</th><th>" + T("Kategori", "Category") + "</th><th>PM2.5 " + T("rata-rata", "avg") + "</th></tr></thead><tbody>" +
+          hr.map(function (x, i) { var k = aqiKat(x.maks); return "<tr><td>" + esc(i === 0 && x.tgl === hariIni() ? T("Hari ini", "Today") : hari(x.tgl, true)) + "</td><td><b>" + bul(x.maks) + '</b></td><td><span class="aqi aqi--' + k.lv + '">' + esc(k.nama) + "</span></td><td>" + desi(x.pm25) + " µg/m³</td></tr>"; }).join("") +
+          "</tbody></table></div>" +
+          (hr.length ? '<p class="small">' + esc(aqiKat(hr[0].maks).saran) + "</p>" : "") +
+          '<p class="small">' + T("Kategori mengikuti Indeks Kualitas Udara AS (US AQI): 0–50 baik, 51–100 sedang, 101–150 tidak sehat bagi kelompok sensitif, 151–200 tidak sehat, di atas 200 sangat tidak sehat.", "Categories follow the US Air Quality Index: 0–50 good, 51–100 moderate, 101–150 unhealthy for sensitive groups, 151–200 unhealthy, above 200 very unhealthy.") + "</p>";
+      }
+      h += '<p class="small mt-s">' + T("Perkiraan model untuk titik koordinat Kampung Marga Mulya, Distrik Semangga, bukan hasil alat ukur di kampung. Sumber: ", "Model estimates for the coordinates of Kampung Marga Mulya, Semangga District, not readings from an instrument in the village. Source: ") +
+        '<a href="https://open-meteo.com/" target="_blank" rel="noopener">Open-Meteo.com</a> (CC BY 4.0); ' + T("kualitas udara dari", "air quality from") + ' CAMS (Copernicus Atmosphere Monitoring Service). ' +
+        T("Untuk peringatan dini cuaca resmi, lihat", "For official weather warnings, see") + ' <a href="https://www.bmkg.go.id/" target="_blank" rel="noopener">BMKG</a>.</p>';
+      openModal({ kat: T("Cuaca Semangga", "Semangga weather"), title: T("Cuaca dan kualitas udara", "Weather and air quality"), html: '<div data-i18n-skip>' + h + "</div>" });
+    }
+    function hariIni() { return new Date().toLocaleDateString("en-CA", { timeZone: TZ }); }
+    function harianUdara(a) {
+      var H = a.hourly || {}, peta = {}, urut = [];
+      (H.time || []).forEach(function (t, i) {
+        var tg = t.slice(0, 10), v = H.us_aqi ? H.us_aqi[i] : null, p = H.pm2_5 ? H.pm2_5[i] : null; if (v == null) return;
+        if (!peta[tg]) { peta[tg] = { tgl: tg, maks: 0, pmJ: 0, pmN: 0 }; urut.push(tg); }
+        var x = peta[tg]; x.maks = Math.max(x.maks, v); if (p != null) { x.pmJ += p; x.pmN++; }
+      });
+      var hi = hariIni();
+      return urut.filter(function (tg) { return tg >= hi; }).map(function (tg) { var x = peta[tg]; return { tgl: tg, maks: x.maks, pm25: x.pmN ? x.pmJ / x.pmN : 0 }; });
+    }
+    function slideTombol(jenis, label, isi, sub) {
+      return '<button type="button" class="collab collab--status hstat__slide hstat__slide--tap" data-slide="' + jenis + '" data-i18n-skip><span class="collab__label">' + label + '</span><span class="collab__nilai">' + isi + "</span>" + (sub ? '<span class="hstat__sub">' + sub + "</span>" : "") + "</button>";
+    }
+    function render() {
+      [].forEach.call(track.querySelectorAll(".hstat__slide--tap"), function (el) { el.remove(); });
+      var f = DATA.f, a = DATA.a, html = "";
+      if (f && f.current && f.daily) {
+        var c = f.current, d = f.daily, k = kode(c.weather_code), lokasi = esc(C.lokasi);
+        html += slideTombol("cuaca", T("Cuaca ", "Weather · ") + lokasi + T(" · sekarang", " · now"), ICON(k.ikon) + "<b>" + bul(c.temperature_2m) + "°C</b><small>" + esc(k.teks) + "</small>",
+          T("Hari ini ", "Today ") + bul(d.temperature_2m_min[0]) + "–" + bul(d.temperature_2m_max[0]) + "°C" + (d.precipitation_probability_max[0] != null ? " · " + T("peluang hujan ", "rain chance ") + bul(d.precipitation_probability_max[0]) + "%" : ""));
+        html += slideTombol("ramalan", T("Ramalan cuaca 3 hari", "3-day forecast"), '<span class="hstat__ramal">' + [1, 2, 3].filter(function (i) { return d.time[i]; }).map(function (i) {
+          var kk = kode(d.weather_code[i]); return '<span title="' + esc(kk.teks) + '"><em>' + esc(hari(d.time[i])) + "</em>" + ICON(kk.ikon) + "<strong>" + bul(d.temperature_2m_max[i]) + "°<i>/" + bul(d.temperature_2m_min[i]) + "°</i></strong></span>";
+        }).join("") + "</span>", "");
+      }
+      if (a) {
+        var hr = harianUdara(a), v = hr.length ? hr[0].maks : (a.current ? a.current.us_aqi : null);
+        if (v != null) {
+          var kt = aqiKat(v);
+          html += slideTombol("udara", T("Kualitas udara · hari ini", "Air quality · today"), ICON("wind") + "<b>AQI " + bul(v) + '</b><small class="aqi aqi--' + kt.lv + '">' + esc(kt.nama) + "</small>",
+            a.current && a.current.pm2_5 != null ? "PM2.5 " + desi(a.current.pm2_5) + " µg/m³ · PM10 " + desi(a.current.pm10) + " µg/m³" : "");
+        }
+      }
+      if (html) track.insertAdjacentHTML("beforeend", html);
+      [].forEach.call(track.querySelectorAll(".hstat__slide--tap"), function (el) { el.addEventListener("click", bukaDetail); });
+      bangunDots(); jalan();
+    }
+    function simpan() { try { localStorage.setItem(KUNCI, JSON.stringify(DATA)); } catch (e) {} }
+    function ambil() {
+      var q = "latitude=" + C.lat + "&longitude=" + C.lng + "&timezone=" + encodeURIComponent(TZ);
+      var uf = "https://api.open-meteo.com/v1/forecast?" + q + "&current=temperature_2m,relative_humidity_2m,apparent_temperature,precipitation,weather_code,wind_speed_10m&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max,precipitation_sum&forecast_days=7";
+      var ua = "https://air-quality-api.open-meteo.com/v1/air-quality?" + q + "&current=us_aqi,pm2_5,pm10&hourly=us_aqi,pm2_5&forecast_days=5";
+      var j = function (u) { return fetch(u, { cache: "no-store" }).then(function (r) { return r.ok ? r.json() : null; }).catch(function () { return null; }); };
+      Promise.all([j(uf), j(ua)]).then(function (h) {
+        if (h[0] && h[0].current) DATA.f = h[0];
+        if (h[1] && (h[1].current || h[1].hourly)) DATA.a = h[1];
+        if (h[0] || h[1]) { DATA.t = Date.now(); simpan(); }
+        render();
+      });
+    }
+    try { var lama = JSON.parse(localStorage.getItem(KUNCI) || "null"); if (lama && lama.t) DATA = lama; } catch (e) {}
+    if (DATA.f || DATA.a) render(); else jalan();
+    if (!DATA.t || Date.now() - DATA.t > 30 * 60 * 1000) ambil();
+    setInterval(ambil, 30 * 60 * 1000);
+  })();
+
+  /* Slide pengantar di atas Beranda: berganti tiap 5 detik dan berputar terus */
+  (function () {
+    var tr = $("#introTrack"), dots = $("#introDots"); if (!tr) return;
+    var sl = [].slice.call(tr.querySelectorAll(".intro__slide")), i = 0, t = null, diam = false;
+    var kurang = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    dots.innerHTML = sl.map(function (_, k) { return '<button type="button" role="tab" aria-label="Slide ' + (k + 1) + '"' + (k ? "" : ' aria-selected="true"') + "></button>"; }).join("");
+    var db = [].slice.call(dots.children);
+    function ke(n) {
+      sl[i].classList.remove("is-on"); sl[i].classList.add("is-out"); var lama = sl[i];
+      setTimeout(function () { lama.classList.remove("is-out"); }, 600);
+      i = (n + sl.length) % sl.length; sl[i].classList.add("is-on");
+      db.forEach(function (d, k) { d.setAttribute("aria-selected", k === i ? "true" : "false"); });
+    }
+    function mulai() { clearInterval(t); if (!kurang) t = setInterval(function () { if (!diam && !document.hidden) ke(i + 1); }, 5000); }
+    dots.addEventListener("click", function (e) { var k = db.indexOf(e.target.closest("button")); if (k > -1) { ke(k); mulai(); } });
+    tr.addEventListener("mouseenter", function () { diam = true; }); tr.addEventListener("mouseleave", function () { diam = false; });
+    tr.addEventListener("focusin", function () { diam = true; }); tr.addEventListener("focusout", function () { diam = false; });
+    // Geser dengan jari
+    var x0 = null;
+    tr.addEventListener("touchstart", function (e) { x0 = e.touches[0].clientX; }, { passive: true });
+    tr.addEventListener("touchend", function (e) { if (x0 == null) return; var dx = e.changedTouches[0].clientX - x0; if (Math.abs(dx) > 40) { ke(i + (dx < 0 ? 1 : -1)); mulai(); } x0 = null; }, { passive: true });
+    mulai();
+  })();
+
+  // Jam buka kantor kampung di Beranda
+  if (D.kontak && D.kontak.jamLayanan && !belumAda(D.kontak.jamLayanan)) $("#heroPlace").insertAdjacentHTML("afterend", '<p class="hero__jam" data-i18n-skip><span class="lampu" aria-hidden="true"></span>' + ic("clock") + "<span>" +
+    (window.MM_BAHASA === "en"
+      ? "Village office open " + (D.kontak.hariLayanan ? "<b>Monday–Friday</b>, " : "") + "<b>" + esc(D.kontak.jamLayanan) + "</b>"
+      : "Kantor kampung buka " + (D.kontak.hariLayanan ? "<b>" + esc(D.kontak.hariLayanan) + "</b>, pukul " : "pukul ") + "<b>" + esc(D.kontak.jamLayanan) + "</b>") + "</span></p>");
+
+  /* =================== LAYANAN SURAT + PENGAJUAN LEWAT WHATSAPP ===================
+     Tidak ada data yang disimpan di website: formulir menyusun pesan di perangkat warga
+     lalu membuka WhatsApp (wa.me) ke nomor layanan kampung. */
+  (function () {
+    var L = D.layanan || [], WA = D.layananWa || {}, jenisAwal = "";
+    $("#layWaTampil").textContent = (WA.tampil || "") + (WA.petugas ? " (" + WA.petugas + ")" : "");
+    var ALUR = [
+      ["doc", "Pilih jenis surat", "Baca persyaratan surat yang dibutuhkan pada daftar di bawah."],
+      ["person", "Isi formulir", "Nama, NIK, alamat, alasan pengajuan, dan data tambahan sesuai jenis surat."],
+      ["chat", "Kirim lewat WhatsApp", "Pesan pengajuan tersusun otomatis dan terkirim ke WhatsApp layanan kampung " + (WA.tampil || "") + "."],
+      ["image", "Kirim foto persyaratan", "Di chat yang sama, kirim foto dokumen persyaratan (KTP, KK, atau surat lain)."],
+      ["check", "Tunggu balasan petugas", "Petugas kampung memeriksa pengajuan dan membalas lewat WhatsApp."]
+    ];
+    $("#layAlur").innerHTML = ALUR.map(function (x, i) {
+      return '<li><span class="alur__no">' + (i + 1) + '</span><span class="alur__ic">' + ic(x[0]) + "</span><b>" + esc(x[1]) + "</b><small>" + esc(x[2]) + "</small></li>";
+    }).join("");
+    var syaratHtml = function (l) {
+      if (l.tanpaSyarat) return '<p class="small"><b>Tanpa persyaratan dokumen.</b> Langsung ajukan lewat WhatsApp.</p>';
+      return (l.syarat || []).length ? "<ul>" + l.syarat.map(function (x) { return "<li>" + esc(x) + "</li>"; }).join("") + "</ul>" : '<p class="small">Persyaratan belum dicantumkan; petugas akan menyampaikannya lewat WhatsApp.</p>';
+    };
+    $("#layananList").innerHTML = L.map(function (l) {
+      return '<article class="svc svc--syarat"><div class="svc__top"><span>' + ic("doc") + "</span><b>" + esc(l.nama) + "</b></div>" +
+        '<div class="svc__syarat"><small>Persyaratan</small>' + syaratHtml(l) + "</div>" +
+        (l.waktu ? '<small class="svc__waktu">' + ic("clock") + esc(l.waktu) + "</small>" : "") +
+        '<button type="button" class="btn btn--solid svc__aju" data-aju="' + esc(l.id) + '">' + ic("chat") + "Ajukan surat ini</button></article>";
+    }).join("");
+
+    var form = $("#formAjukan"); if (!form) return;
+    var fJenis = $("#fJenis"), fTambah = $("#fTambahan"), fSyarat = $("#fSyarat"), galat = $("#fGalat");
+    fJenis.innerHTML = '<option value="">— Pilih jenis surat —</option>' + L.map(function (l) { return '<option value="' + esc(l.id) + '">' + esc(l.nama) + "</option>"; }).join("");
+    var cari = function (id) { return L.filter(function (l) { return l.id === id; })[0]; };
+    function isianHtml(f) {
+      var req = f.wajib ? " required" : "", lbl = "<span>" + esc(f.label) + (f.wajib ? " <i>*</i>" : "") + "</span>", id = "fx_" + esc(f.id);
+      if (f.tipe === "pilih") return '<label class="fld">' + lbl + '<select id="' + id + '"' + req + '><option value="">— Pilih —</option>' + f.pilihan.map(function (o) { return "<option>" + esc(o) + "</option>"; }).join("") + "</select></label>";
+      var t = f.tipe === "tanggal" ? ' type="date"' : f.tipe === "angka" ? ' type="number" min="1" inputmode="numeric"' : f.tipe === "nik" ? ' inputmode="numeric" maxlength="16"' : "";
+      return '<label class="fld">' + lbl + '<input id="' + id + '"' + t + req + (f.contoh ? ' placeholder="' + esc(f.contoh) + '"' : "") + "></label>";
+    }
+    function pilih(id) {
+      var l = cari(id);
+      fTambah.innerHTML = l && (l.isian || []).length ? '<p class="ajukan__sub fld--lebar">Data tambahan untuk ' + esc(l.nama) + "</p>" + l.isian.map(isianHtml).join("") : "";
+      fSyarat.innerHTML = l ? (l.tanpaSyarat ? syaratHtml(l) : "<b>Persyaratan yang perlu dikirim di WhatsApp:</b>" + syaratHtml(l)) : "";
+    }
+    fJenis.addEventListener("change", function () { pilih(fJenis.value); });
+    $("#layananList").addEventListener("click", function (e) {
+      var b = e.target.closest("[data-aju]"); if (!b) return;
+      fJenis.value = b.getAttribute("data-aju"); pilih(fJenis.value);
+      $("#ajukan").scrollIntoView({ behavior: "smooth", block: "start" });
+      setTimeout(function () { $("#fNama").focus({ preventScroll: true }); }, 500);
+    });
+
+    var nilai = function (id) { var el = document.getElementById(id); return el ? String(el.value || "").trim() : ""; };
+    var tglIndo = function (iso) { var p = iso.split("-"); return p.length === 3 ? +p[2] + " " + ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"][+p[1] - 1] + " " + p[0] : iso; };
+    function periksa() {
+      var l = cari(fJenis.value), salah = [];
+      if (!l) salah.push("Pilih jenis surat.");
+      if (!nilai("fNama")) salah.push("Isi nama lengkap.");
+      if (!/^\d{16}$/.test(nilai("fNik"))) salah.push("NIK harus 16 angka.");
+      if (!/^[+0-9][0-9 \-]{8,15}$/.test(nilai("fHp"))) salah.push("Isi nomor HP/WhatsApp yang benar.");
+      if (!nilai("fRt")) salah.push("Isi RT/RW.");
+      if (!nilai("fAlamat")) salah.push("Isi alamat lengkap.");
+      if (!nilai("fAlasan")) salah.push("Isi alasan/keperluan pengajuan.");
+      (l && l.isian || []).forEach(function (f) {
+        var v = nilai("fx_" + f.id);
+        if (f.wajib && !v) salah.push("Isi " + f.label.toLowerCase() + ".");
+        if (f.tipe === "nik" && v && !/^\d{16}$/.test(v)) salah.push(f.label + " harus 16 angka.");
+      });
+      if (!$("#fSetuju").checked) salah.push("Centang pernyataan bahwa data sudah benar.");
+      return { l: l, salah: salah };
+    }
+    function pesan(l) {
+      var now = new Date(), baris = [
+        "*PENGAJUAN SURAT – KAMPUNG MARGA MULYA*",
+        "Jenis surat: *" + l.nama + "*",
+        "Tanggal pengajuan: " + tglIndo(now.getFullYear() + "-" + (now.getMonth() + 1) + "-" + now.getDate()),
+        "",
+        "*Data pemohon*",
+        "Nama lengkap: " + nilai("fNama"),
+        "NIK: " + nilai("fNik"),
+        "No. HP/WA: " + nilai("fHp"),
+        "RT/RW: " + nilai("fRt"),
+        "Alamat: " + nilai("fAlamat")
+      ];
+      var tambah = (l.isian || []).map(function (f) { var v = nilai("fx_" + f.id); if (!v) return ""; return f.label + ": " + (f.tipe === "tanggal" ? tglIndo(v) : v); }).filter(Boolean);
+      if (tambah.length) baris = baris.concat(["", "*Data tambahan*"], tambah);
+      baris.push("", "*Alasan / keperluan*", nilai("fAlasan"));
+      if ((l.syarat || []).length) { baris.push("", "*Persyaratan (fotonya saya kirim di chat ini)*"); l.syarat.forEach(function (x) { baris.push("- " + x); }); }
+      baris.push("", "Saya menyatakan data di atas benar.", "_Dikirim lewat website Marga Mulya On Site_");
+      return baris.join("\n");
+    }
+    // Pemberitahuan ke petugas (push ntfy + email Apps Script): hanya jenis surat dan waktu,
+    // tanpa nama/NIK/alamat. Data lengkap hanya lewat WhatsApp.
+    function notifEmail(l) {
+      var N = WA.notifikasi || {}; if (!window.fetch) return;
+      var d = new Date(), jam = ("0" + d.getHours()).slice(-2) + "." + ("0" + d.getMinutes()).slice(-2);
+      var waktu = tglIndo(d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate()) + ", pukul " + jam;
+      var aman = function (u) { return /^https:\/\/(ntfy\.sh|script\.google\.com)\//.test(u); };
+      try {
+        if (N.ntfyTopik) {
+          var u1 = "https://ntfy.sh/" + String(N.ntfyTopik).replace(/[^A-Za-z0-9_-]/g, "") + "?title=" + encodeURIComponent("Pengajuan surat baru: " + l.nama) +
+            "&tags=envelope&click=" + encodeURIComponent("https://wa.me/" + WA.nomor);
+          if (aman(u1)) fetch(u1, { method: "POST", body: "Waktu: " + waktu + ". Buka WhatsApp " + (WA.tampil || "") + " untuk data lengkap pemohon.", keepalive: true }).catch(function () {});
+        }
+        if (N.emailScript && aman(N.emailScript)) {
+          var isi = new URLSearchParams(); isi.append("jenis", l.nama); isi.append("waktu", waktu);
+          fetch(N.emailScript, { method: "POST", mode: "no-cors", body: isi, keepalive: true }).catch(function () {});
+        }
+      } catch (e) { /* pemberitahuan bersifat tambahan */ }
+    }
+    function tampilGalat(salah) { galat.hidden = !salah.length; galat.innerHTML = salah.length ? "<b>Lengkapi dulu:</b><ul>" + salah.map(function (x) { return "<li>" + esc(x) + "</li>"; }).join("") + "</ul>" : ""; if (salah.length) galat.scrollIntoView({ behavior: "smooth", block: "center" }); }
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      var h = periksa(); tampilGalat(h.salah); if (h.salah.length) return;
+      var url = "https://wa.me/" + encodeURIComponent(WA.nomor) + "?text=" + encodeURIComponent(pesan(h.l));
+      notifEmail(h.l);
+      var a = document.createElement("a"); a.href = url; a.target = "_blank"; a.rel = "noopener"; document.body.appendChild(a); a.click(); a.remove();
+      toast("Membuka WhatsApp… tekan Kirim, lalu kirim foto persyaratan.");
+    });
+    $("#fPratinjau").addEventListener("click", function () {
+      var h = periksa(); tampilGalat(h.salah); if (h.salah.length) return;
+      openModal({ kat: "Pratinjau pesan WhatsApp", title: h.l.nama, html: '<pre class="wa-pratinjau">' + esc(pesan(h.l)) + '</pre><p class="small">Pesan ini akan dikirim ke WhatsApp layanan kampung ' + esc(WA.tampil || "") + ". Data tidak disimpan di website.</p>" });
+    });
+    $("#fNik").addEventListener("input", function () { this.value = this.value.replace(/\D/g, "").slice(0, 16); });
+  })();
+
+  /* =================== POTENSI, KEGIATAN, GALERI =================== */
+  var ikonPot = { padi: "sprout", daun: "daun", ternak: "ternak", toko: "toko", wisata: "tree" };
+  // Foto potensi: dokumentasi tim (foto) + foto dari internet berlisensi bebas (fotoLain, dengan sumber)
+  var fotoPot = function (p) {
+    var a = p.foto ? [{ src: p.foto, ket: p.fotoKet || p.judul, kredit: p.kredit || "Dokumentasi Tim Ekspedisi Patriot" }] : [];
+    return a.concat(p.fotoLain || []);
+  };
+  var kreditHtml = function (f) {
+    return esc(f.kredit) + (f.lisensi ? " · " + esc(f.lisensi) : "") + (f.url ? ' · <a href="' + escUrl(f.url) + '" target="_blank" rel="noopener">sumber</a>' : "");
+  };
+  if (D.potensiSD) (function () {
+    var P = D.potensiSD, H = (D.rpjmk && D.rpjmk.halaman) || "rpjmk.html";
+    var BLN = ["Jan", "Feb", "Mar", "Apr", "Mei", "Jun", "Jul", "Agu", "Sep", "Okt", "Nov", "Des"];
+    var kal = (P.kalender || []).length ? '<div class="panel mt-s"><h3>Kalender musim kampung</h3><p class="small">Kapan warga menanam, memanen, dan menghadapi kendala musiman. Warna makin pekat berarti makin puncak.</p><div class="kalwrap"><table class="kal"><thead><tr><th scope="col"><span class="sr">Kegiatan</span></th>' +
+      BLN.map(function (b) { return '<th scope="col">' + b + "</th>"; }).join("") + "</tr></thead><tbody>" +
+      P.kalender.map(function (r) { return '<tr><th scope="row">' + esc(r[0]) + "</th>" + r[1].map(function (v, i) { return '<td class="k' + v + '" title="' + esc(r[0]) + " · " + BLN[i] + (v ? (v === 3 ? " (puncak)" : "") : " (tidak ada)") + '"></td>'; }).join("") + "</tr>"; }).join("") +
+      '</tbody></table></div><p class="small kal__legend"><span class="k1"></span>sedikit <span class="k2"></span>sedang <span class="k3"></span>puncak · Tabel II.6 RPJMK</p></div>' : "";
+    kal = kal.replace("<h3>Kalender musim kampung</h3>", "<h3>Kalender musim kampung</h3>" + rilis("rpjmk"));
+    $("#potensiSD").innerHTML = '<div class="sdintro"><h3>Potensi sumber daya</h3><p>' + esc(P.pengantar) + "</p></div>" +
+      (P.daftar.length ? '<div class="sdgrid">' : "") + P.daftar.map(function (d) {
+        return '<article class="panel sd"><h4>' + esc(d.judul) + "</h4>" + rilis(d.rilis || "rpjmk") + '<div class="tiles tiles--3">' + d.angka.map(function (a) { return '<div class="tile"><b>' + esc(a[0]) + "</b><span>" + esc(a[1]) + "</span></div>"; }).join("") +
+          '</div><p class="small">' + esc(d.isi) + '</p><a class="linkmore" href="' + escUrl(H) + "#" + esc(d.bab) + '">Baca selengkapnya</a></article>';
+      }).join("") + (P.daftar.length ? "</div>" : "") + kal +
+      '<p class="small mt-s">Kalender musim bersumber dari ' + esc(P.sumber) + '. Angka terbaru tentang lahan, ternak, dan usaha warga ada di atas, sedangkan kependudukan ada di menu <a href="#penduduk">Data Kampung</a>.</p>';
+  })();
+  $("#potensiList").innerHTML = D.potensi.map(function (p) {
+    var fs = fotoPot(p), f0 = fs[0];
+    return '<button type="button" class="pot tap"' + act(function () {
+      openModal({ kat: "Potensi kampung", title: p.judul, html:
+        (fs.length ? '<div class="potgal">' + fs.map(function (f) { return '<figure><img src="' + escUrl(f.src) + '" alt="' + esc(f.ket) + '" loading="lazy"><figcaption><b>' + esc(f.ket) + "</b><span>Foto: " + kreditHtml(f) + "</span></figcaption></figure>"; }).join("") + "</div>" : "") +
+        "<p>" + esc(p.ket) + "</p><p>" + esc(p.detail) + "</p>" +
+        (p.sorotan ? '<div class="sorot"><h4>' + esc(p.sorotan.judul) + "</h4><p>" + esc(p.sorotan.isi) + "</p>" +
+          (p.video ? '<figure class="potvid"><video controls playsinline preload="none" poster="' + escUrl(p.video.poster || "") + '" src="' + escUrl(p.video.src) + '"></video><figcaption><b>' + esc(p.video.ket) + "</b><span>Video: " + esc(p.video.kredit) + "</span></figcaption></figure>" : "") + "</div>" : "") +
+        (p.tautan ? "<div class='modal__actions'><a class='btn btn--solid' href='" + escUrl(p.tautan) + "'>" + ic("pin") + esc(p.tautanLabel || "Lihat selengkapnya") + "</a></div>" : "") });
+    }) + ">" + (f0 ? '<span class="pot__media"><img class="pot__img" src="' + escUrl(f0.src) + '" alt="" loading="lazy">' + (fs.length > 1 ? '<span class="pot__n">' + ic("image") + fs.length + " foto" + (p.video ? " " + ic("play") : "") + "</span>" : "") + '<span class="pot__cr">' + esc(f0.url ? f0.kredit.replace(" · Wikimedia Commons", "") + " · Wikimedia" : (/^Dokumen Fasilitas/.test(f0.kredit || "") ? "Dokumen kampung" : "Tim Ekspedisi Patriot")) + "</span></span>" : "") +
+      '<span class="pot__ic">' + ic(ikonPot[p.ikon] || "sprout") + '</span><b class="pot__t">' + esc(p.judul) + '</b><span class="pot__d">' + esc(p.ket) + "</span></button>";
+  }).join("");
+  if (D.potensi.some(function (p) { return (p.fotoLain || []).length; })) $("#potensiList").insertAdjacentHTML("afterend", '<p class="small">Sebagian foto potensi adalah foto ilustrasi berlisensi bebas dari Wikimedia Commons; nama pembuat, lisensi, dan tautan sumbernya tercantum saat kartu diketuk. Foto lainnya dokumentasi Tim Ekspedisi Patriot IPB University.</p>');
+  var E = D.ekonomi;
+  if (E) {
+    var maxHa = Math.max.apply(null, E.lahan.map(function (x) { return x.ha; }));
+    $("#ekoLahan").innerHTML = E.lahan.map(function (x) {
+      return '<button type="button" class="bar tap"' + act(function () {
+        openModal({ kat: "Komoditas pertanian", title: x.label, html: '<div class="mini-stat"><div><b>' + x.ha.toLocaleString("id-ID") + "</b><span>Hektare</span></div><div><b>" + num(x.petani) + "</b><span>Petani</span></div></div>" +
+          (x.cek ? "<p>Luas tanam padi di monografi tercatat " + x.ha.toLocaleString("id-ID") + " ha dengan " + num(x.petani) + " petani. Angka luas ini sedang dicek ulang karena padi termasuk komoditas utama kampung.</p>" : "<p>" + esc(x.label) + " ditanam di lahan seluas " + x.ha.toLocaleString("id-ID") + " ha oleh " + num(x.petani) + " petani.</p>") });
+      }) + "><span>" + esc(x.label) + (x.cek ? " *" : "") + '</span><span class="bar__val"><b>' + x.ha.toLocaleString("id-ID") + " ha</b> · " + num(x.petani) + ' petani</span><span class="bar__track"><span class="bar__fill" style="display:block;width:' + Math.max(1, x.ha / maxHa * 100) + '%"></span></span></button>';
+    }).join("") + (E.lahan.some(function (g) { return g.cek; }) ? '<p class="small">* Luas tanam padi sedang dicek ulang.</p>' : "");
+    var IKT = { Unggas: "ternak", Sapi: "ternak", Kambing: "ternak", Kuda: "ternak", Kerbau: "ternak" };
+    $("#ekoTernak").innerHTML = E.ternak.map(function (t) {
+      return '<button type="button" class="herd__i tap"' + act(function () {
+        openModal({ kat: "Peternakan", title: t.label, html: '<div class="mini-stat"><div><b>' + num(t.ekor) + "</b><span>Ekor</span></div><div><b>" + num(t.peternak) + "</b><span>Peternak</span></div><div><b>" + (t.ekor / t.peternak).toLocaleString("id-ID", { maximumFractionDigits: 1 }) + "</b><span>Ekor per peternak</span></div></div>" });
+      }) + "><span>" + ic(IKT[t.label] || "ternak") + "</span><b>" + num(t.ekor) + "</b><small>" + esc(t.label) + " · " + num(t.peternak) + " peternak</small></button>";
+    }).join("");
+    var totG = sum(E.penggunaanLahan, "ha"), toneG = ["#0B3A8F", "#1452C2", "#3A72D6", "#6E98E6", "#A3BEF0"];
+    var haFmt = function (v) { return v.toLocaleString("id-ID", { maximumFractionDigits: 2 }); };
+    donut("#ekoGuna", E.penggunaanLahan.map(function (g) { return { label: g.label, jumlah: g.ha }; }), { kat: "Penggunaan lahan", satuan: "ha", fmt: haFmt, tengah: [num(Math.round(totG)), "hektare"] });
+    donut("#dLahan", E.lahan.map(function (g) { return { label: g.label + (g.cek ? " *" : ""), jumlah: g.ha }; }), { kat: "Luas tanam per komoditas", satuan: "ha", fmt: haFmt, tengah: [num(Math.round(sum(E.lahan, "ha"))), "hektare"] });
+    if (E.lahan.some(function (g) { return g.cek; })) $("#dLahan").insertAdjacentHTML("beforeend", '<p class="small">* Luas tanam padi di monografi sedang dicek ulang.</p>');
+    $("#ekoGuna").insertAdjacentHTML("beforeend", '<p class="small">Rincian ini mencakup ' + num(Math.round(totG)) + " ha dari luas wilayah " + id.luas + ". " + (function () { var pd = E.lahan.filter(function (g) { return g.label === "Padi"; })[0]; return pd ? "Lahan pertanian sudah termasuk sawah padi " + pd.ha.toLocaleString("id-ID") + " ha; " : ""; })() + "permukiman dan pekarangan belum dirinci di monografi.</p>");
+    $("#ekoUsaha").innerHTML = E.usaha.map(function (u) { return '<div class="tile"><b>' + num(u.jumlah) + "</b><span>" + esc(u.label) + "</span></div>"; }).join("");
+    $("#ekoSumber").innerHTML = rilis("monografi", true) + " Ketuk grafik untuk rincian.";
+  }
+
+  // Dokumentasi potensi (foto saja, utuh tanpa dipotong; ketuk untuk memperbesar)
+  var PF = D.dokumentasiPotensi || [];
+  if ($("#potFoto")) $("#potFoto").innerHTML = PF.map(function (f) {
+    return '<figure><button type="button" class="reset" data-perbesar="' + escUrl(f.src) + '" data-ket="' + esc(f.ket) + '"><img src="' + escUrl(f.src) + '" alt="' + esc(f.ket) + '" loading="lazy"></button><figcaption>' + esc(f.ket) + "</figcaption></figure>";
+  }).join("");
+  /* =================== MOMEN: TALI JEMURAN & POLAROID BERGOYANG =================== */
+  (function () {
+    var M = D.momen || [], jem = $("#jemuran"), pol = $("#polaroidTrack");
+    if (!M.length || !jem || !pol) return;
+    function bukaFoto(f) { openModal({ kat: "Momen kampung", title: f.ket || "Foto", html: '<img class="modal__img" src="' + escUrl(f.src) + '" alt="' + esc(f.ket || "") + '">' }); }
+    var BENTUK = ["lengkung", "bulat", "kotak", "telur", "polaroid", "oval", "heksa", "daun"];
+    var LEBAR = [168, 150, 160, 146, 158, 150, 156, 148];
+    function baris(daftar, mulai) {
+      var n = daftar.length;
+      return '<div class="tali"><svg class="tali__garis" viewBox="0 0 1000 70" preserveAspectRatio="none" aria-hidden="true"><path d="M-10 12 Q500 78 1010 12"/></svg><div class="tali__isi">' +
+        daftar.map(function (f, i) {
+          var t = (i + .5) / n, y = 12 + 132 * t * (1 - t); // posisi jepitan mengikuti lengkung tali
+          var k = mulai + i, bentuk = BENTUK[k % BENTUK.length];
+          var gaya = "--y:" + y.toFixed(1) + "px;--w:" + LEBAR[k % LEBAR.length] + "px;--d:" + (3.4 + (k * 0.37) % 1.8).toFixed(2) + "s;--t:" + ((k % 2 ? 1 : -1) * (1 + k % 3)) + "deg;--masuk:" + (k * 90) + "ms";
+          return '<button type="button" class="jem jem--' + bentuk + '" style="' + gaya + '"' + act(function () { bukaFoto(f); }) + ' aria-label="Perbesar foto: ' + esc(f.ket || "") + '"><span class="jem__ayun"><span class="jem__jepit" aria-hidden="true"></span><span class="jem__bingkai"><img src="' + escUrl(f.src) + '" alt="' + esc(f.ket || "") + '" loading="lazy"></span></span></button>';
+        }).join("") + "</div></div>";
+    }
+    jem.innerHTML = baris(M.slice(0, 4), 0) + baris(M.slice(4, 8), 4);
+    var sisa = M.slice(8).concat(M.slice(0, 4));
+    var PITA = ["#7AAAF2", "#9DBEFA", "#5B8DE6", "#BFD4FB", "#3A72D6"];
+    function kartuPol(f, i, dup) {
+      var gaya = "--r:" + ((i % 2 ? 1 : -1) * (1.5 + i % 3)) + "deg;--pita:" + PITA[i % PITA.length] + ";--b:" + (2.6 + (i * .41) % 1.6).toFixed(2) + "s";
+      return '<button type="button" class="pol" style="' + gaya + '"' + (dup ? ' aria-hidden="true" tabindex="-1"' : "") + act(function () { bukaFoto(f); }) + '><span class="pol__pita" aria-hidden="true"></span><img src="' + escUrl(f.src) + '" alt="' + esc(f.ket || "") + '" loading="lazy"><span class="pol__cap">' + esc(f.ket || "") + "</span></button>";
+    }
+    pol.innerHTML = sisa.map(function (f, i) { return kartuPol(f, i); }).join("") + sisa.map(function (f, i) { return kartuPol(f, i, true); }).join("");
+    pol.style.setProperty("--durasi", (sisa.length * 5) + "s");
+    // Tali jemuran "dijatuhkan" saat masuk layar; deretan polaroid berhenti saat disentuh
+    if ("IntersectionObserver" in window) {
+      var io = new IntersectionObserver(function (en) { en.forEach(function (e) { if (e.isIntersecting) { jem.classList.add("is-in"); io.disconnect(); } }); }, { threshold: .15 });
+      io.observe(jem);
+    } else jem.classList.add("is-in");
+    var wadah = $("#polaroid");
+    wadah.addEventListener("pointerdown", function () { wadah.classList.add("is-diam"); });
+    ["pointerup", "pointercancel", "pointerleave"].forEach(function (ev) { wadah.addEventListener(ev, function () { wadah.classList.remove("is-diam"); }); });
+  })();
+
+  /* =================== KEGIATAN KAMPUNG =================== */
+  // Beranda: satu kartu per kegiatan, fotonya berganti tiap 3 detik.
+  // Profil > Kegiatan: semua foto tiap kegiatan, ditampilkan utuh sesuai bentuk aslinya.
+  var KG = D.kegiatanKampung || [];
+  function bukaKegiatan(k, mulai) {
+    var urut = k.foto.slice(mulai || 0).concat(k.foto.slice(0, mulai || 0));
+    openModal({ kat: "Kegiatan kampung" + (k.waktu ? " · " + k.waktu : ""), title: k.judul,
+      html: "<p>" + esc(k.ket) + "</p>" + urut.map(function (f) {
+        return '<figure class="kegm"><img class="modal__img" src="' + escUrl(f.src) + '" alt="' + esc(f.ket || k.judul) + '" loading="lazy">' + (f.ket ? "<figcaption>" + esc(f.ket) + "</figcaption>" : "") + "</figure>";
+      }).join("") });
+  }
+  if ($("#kegBeranda") && KG.length) {
+    $("#kegBeranda").innerHTML = KG.map(function (k) {
+      var n = k.foto.length;
+      return '<button type="button" class="kcard"' + act(function () { bukaKegiatan(k, k._i || 0); }) + ' aria-label="' + esc(k.judul + ": lihat " + n + " foto") + '">' +
+        '<span class="kcard__stage">' + k.foto.map(function (f, i) {
+          return '<img class="kcard__img' + (i === 0 ? " is-on" : "") + '" src="' + escUrl(f.src) + '" alt="' + esc(f.ket || k.judul) + '"' + (i ? ' loading="lazy"' : "") + ">";
+        }).join("") + (n > 1 ? '<span class="kcard__dots" aria-hidden="true">' + k.foto.map(function (f, i) { return "<i" + (i === 0 ? ' class="is-on"' : "") + "></i>"; }).join("") + "</span>" : "") + "</span>" +
+        '<span class="kcard__cap">' + esc(k.foto[0] && k.foto[0].ket || "") + "</span>" +
+        '<span class="kcard__body">' + (k.waktu ? '<span class="kcard__when">' + ic("calendar") + esc(k.waktu) + "</span>" : "") +
+        "<b class=\"kcard__t\">" + esc(k.judul) + '</b><span class="kcard__d">' + esc(k.ket) + '</span><span class="kcard__go">' + ic("image") + "Lihat " + n + " foto</span></span></button>";
+    }).join("");
+    var kartuKeg = [].slice.call($("#kegBeranda").querySelectorAll(".kcard"));
+    function gantiFoto(ci) {
+      var k = KG[ci], el = kartuKeg[ci]; if (!el || k.foto.length < 2) return;
+      var imgs = el.querySelectorAll(".kcard__img"), dots = el.querySelectorAll(".kcard__dots i");
+      var lama = k._i || 0, baru = (lama + 1) % k.foto.length;
+      if (!imgs[baru].complete) { imgs[baru].loading = "eager"; return; } // tunggu foto berikutnya selesai dimuat
+      imgs[lama].classList.remove("is-on"); imgs[baru].classList.add("is-on");
+      if (dots.length) { dots[lama].classList.remove("is-on"); dots[baru].classList.add("is-on"); }
+      el.querySelector(".kcard__cap").textContent = k.foto[baru].ket || "";
+      k._i = baru;
+    }
+    var kegTimer = null;
+    function kegMulai() {
+      if (kegTimer) return;
+      // Foto kartu kedua berikutnya dimuat lebih awal agar pergantian mulus
+      kartuKeg.forEach(function (el) { var im = el.querySelectorAll(".kcard__img")[1]; if (im) im.loading = "eager"; });
+      kegTimer = setInterval(function () {
+        if (document.hidden || $("#v-beranda").hidden) return;
+        kartuKeg.forEach(function (el, ci) { setTimeout(function () { gantiFoto(ci); }, ci * 150); });
+      }, 3000);
+    }
+    if (document.readyState === "complete") kegMulai(); else window.addEventListener("load", kegMulai);
+  }
+  if ($("#kegList") && KG.length) {
+    $("#kegList").innerHTML = KG.map(function (k, ki) {
+      return '<article class="kegl__item" id="keg-' + esc(k.id || ki) + '"><header class="kegl__head"><h3>' + esc(k.judul) + "</h3>" + (k.waktu ? '<span class="kcard__when">' + ic("calendar") + esc(k.waktu) + "</span>" : "") + "</header>" +
+        "<p>" + esc(k.ket) + '</p><div class="kegl__grid">' + k.foto.map(function (f, fi) {
+          return '<figure><button type="button" class="reset"' + act(function () { bukaKegiatan(k, fi); }) + ' aria-label="Perbesar foto: ' + esc(f.ket || k.judul) + '"><img src="' + escUrl(f.src) + '" alt="' + esc(f.ket || k.judul) + '" loading="lazy"></button>' + (f.ket ? "<figcaption>" + esc(f.ket) + "</figcaption>" : "") + "</figure>";
+        }).join("") + "</div></article>";
+    }).join("");
+  }
+
+  $("#gallery").innerHTML = D.galeri.map(function (g) {
+    return '<button type="button"' + act(function () {
+      openModal({ kat: "Galeri", title: g.caption, html: g.src ? '<img class="modal__img" src="' + escUrl(g.src) + '" alt="' + esc(g.caption) + '">' : "<p>Foto untuk kegiatan ini akan segera ditambahkan.</p>" });
+    }) + ">" + (g.src ? '<img src="' + escUrl(g.src) + '" alt="' + esc(g.caption) + '" loading="lazy">' : '<span class="ph">' + ic("image") + "</span>") + '<span class="cap">' + esc(g.caption) + "</span></button>";
+  }).join("");
+
+  /* =================== SARANA PRASARANA (monografi) =================== */
+  if (D.sarana && $("#sarana")) {
+    $("#sarana").innerHTML = D.sarana.map(function (g) {
+      return '<div class="sarana__g"><h3>' + ic(g.ikon) + esc(g.kelompok) + "</h3><dl>" + g.isi.map(function (r) { return "<dt>" + esc(r.nama) + "</dt><dd>" + esc(r.nilai) + "</dd>"; }).join("") + "</dl></div>";
+    }).join("") + '<p class="small sarana__src">' + rilis("monografi", true) + " Rekap sarana dan prasarana dari " + esc(D.meta.sumberData) + ".</p>";
+  }
+
+  /* =================== KONTAK & SOSMED =================== */
+  var K = D.kontak;
+  var kontak = [
+    ["pin", "Alamat", K.alamat, function () { openModal({ kat: "Kontak", title: "Alamat kantor", html: "<p>" + esc(K.alamat) + "</p><div class='modal__actions'>" + "<a class='btn btn--solid' href='#petakampung'>" + ic("pin") + "Lihat di peta kampung</a>" + mapBtn(gm.dir, "Petunjuk arah", "nav") + "</div>" }); }],
+    ["phone", "Telepon / WhatsApp", K.telepon, function () { copy(K.telepon); }],
+    ["mail", "Email", K.email, function () { copy(K.email); }],
+    ["clock", "Jam layanan", (K.hariLayanan ? K.hariLayanan + ", " : "") + K.jamLayanan, function () { openModal({ kat: "Kontak", title: "Jam layanan", html: "<p>" + esc((K.hariLayanan ? K.hariLayanan + ", " : "") + K.jamLayanan) + "</p>" }); }]
+  ].map(function (k) {
+    if (!belumAda(k[2])) return k;
+    return [k[0], k[1], "Belum tersedia", function () { openModal({ kat: "Kontak", title: k[1], html: "<p>" + esc(k[1]) + " resmi Kantor Kampung Marga Mulya belum dicantumkan.</p>" }); }];
+  });
+  $("#kontakList").innerHTML = kontak.map(function (k) {
+    return '<li><button type="button" class="tap"' + act(k[3]) + "><span>" + ic(k[0]) + "</span><span><small>" + esc(k[1]) + "</small><b>" + esc(k[2]) + "</b></span></button></li>";
+  }).join("");
+
+  var ikonSos = { Facebook: "thumb", Instagram: "camera", YouTube: "video", TikTok: "note", WhatsApp: "chat", "Grup WhatsApp": "users" };
+  // Akun media sosial yang sudah ada ditulis langsung di daftar kontak (nama akun + tautan).
+  $("#kontakList").insertAdjacentHTML("beforeend", D.sosmed.filter(function (s) { return s.url; }).map(function (s) {
+    return '<li><a class="tap" href="' + escUrl(s.url) + '" target="_blank" rel="noopener"><span>' + ic(ikonSos[s.nama] || "globe") + "</span><span><small>" + esc(s.nama) + "</small><b>" + esc(s.akun) + '</b></span><span class="go">' + ic("external") + "</span></a></li>";
+  }).join(""));
+  var sos = D.sosmed.slice().sort(function (a, b) { return (b.url ? 1 : 0) - (a.url ? 1 : 0); }).map(function (s) {
+    if (s.url) return '<a class="is-linked" href="' + escUrl(s.url) + '" target="_blank" rel="noopener" aria-label="' + esc(s.nama + " " + s.akun) + '">' + ic(ikonSos[s.nama] || "globe") + '<span class="soc__n">' + esc(s.nama) + '</span><span class="soc__a">' + esc(s.akun) + "</span></a>";
+    return '<button type="button" class="is-empty"' + act(function () {
+      openModal({ kat: "Media sosial", title: s.nama + " kampung", html: "<p>Akun " + esc(s.nama) + " resmi Kampung Marga Mulya belum ditautkan. Setelah akun dibuat, tautannya akan tersedia di sini.</p><p class='small'>Untuk pengelola: isi kolom url " + esc(s.nama) + " di file data.js.</p>" });
+    }) + ">" + ic(ikonSos[s.nama] || "globe") + esc(s.nama) + "</button>";
+  }).join("");
+  $("#sosmed").innerHTML = sos; $("#sosmedFoot").innerHTML = sos;
+
+  $("#collabText").textContent = D.kerjaSama.ringkas;
+  $("#collabKetua").textContent = "Ketua Tim Ekspedisi Patriot IPB University: " + D.kerjaSama.ketuaTim;
+  $("#footMeta").textContent = "Data diperbarui " + D.meta.diperbarui + " · © " + D.kerjaSama.tahun + " Pemerintah Kampung Marga Mulya";
+  /* =================== WISATA & KULINER =================== */
+  (function () {
+    var track = $("#wisataTrack"); if (!track) return;
+    var KAT = {
+      "Wisata alam": { ic: "tree", c: "#0B3A8F" }, "Pantai": { ic: "wave", c: "#1452C2" },
+      "Pemancingan & air": { ic: "fish", c: "#2563D6" }, "Sejarah & religi": { ic: "monument", c: "#082A66" },
+      "Taman keluarga": { ic: "sprout", c: "#346FDE" }, "Agrowisata": { ic: "daun", c: "#1A4FB0" },
+      "Kuliner": { ic: "fork", c: "#4A7FE2" }
+    };
+    var W = null, aktif = "Semua", markers = {}, grup = [], map = null, pusat = null;
+    var fmtKm = function (k) { return k == null ? "–" : "± " + k.toLocaleString("id-ID", { maximumFractionDigits: 1 }) + " km"; };
+    var fmtMnt = function (m) { if (m == null) return "–"; return m < 60 ? "± " + m + " menit" : "± " + Math.floor(m / 60) + " jam" + (m % 60 ? " " + (m % 60) + " menit" : ""); };
+    var gmCari = function (t) { return "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(t.nama + ", " + (t.perkiraan || t.lat == null ? t.area : "Merauke")); };
+    var gmRute = function (t) {
+      var dest = (!t.perkiraan && t.lat != null) ? t.lat + "," + t.lng : t.nama + ", " + t.area;
+      return "https://www.google.com/maps/dir/?api=1&origin=" + pusat.lat + "," + pusat.lng + "&destination=" + encodeURIComponent(dest);
+    };
+    var daftar = function () { return W.tempat.filter(function (t) { return aktif === "Semua" || t.kategori === aktif || (aktif === "Pemancingan & air" && (t.tag || []).indexOf("pemancingan") > -1); }); };
+
+    function kartu(t) {
+      var k = KAT[t.kategori] || { ic: "pin" };
+      var foto = t.foto ? '<img src="' + escUrl(t.foto) + '" alt="' + esc(t.nama) + '" loading="lazy" referrerpolicy="no-referrer">' : "";
+      var ph = '<span class="ncard__ph"' + (t.foto ? " hidden" : "") + ">" + ic(k.ic) + "<span>" + esc(t.kategori) + "</span><b>" + esc(t.nama) + "</b></span>";
+      var kredit = t.kreditFoto ? '<span class="wcard__credit">Foto: ' + esc(t.kreditFoto) + "</span>" : "";
+      return '<article class="ncard wcard">' +
+        '<button type="button" class="wcard__top" data-fokus="' + esc(t.id) + '" aria-label="Lihat ' + esc(t.nama) + ' di peta">' +
+        '<span class="ncard__cover">' + foto + ph + '<span class="ncard__badge">' + esc(t.kategori) + "</span>" + kredit + "</span>" +
+        '<span class="ncard__body"><span class="ncard__meta">' + esc(t.area) + '</span><span class="ncard__t">' + esc(t.nama) + "</span>" +
+        (t.lat == null ? '<span class="wcard__dist"><span>' + ic("pin") + "Titik lokasi belum dipetakan</span></span>" :
+          '<span class="wcard__dist"><span>' + ic("route") + fmtKm(t.jarak_km) + "</span><span>" + ic("clock") + fmtMnt(t.waktu_menit) + "</span></span>") +
+        '<span class="ncard__d">' + esc(t.deskripsi) + "</span>" +
+        (t.jam ? '<span class="wcard__info">Buka ' + esc(t.jam) + "</span>" : "") +
+        "</span></button>" +
+        '<span class="wcard__act"><a href="' + escUrl(gmCari(t)) + '" target="_blank" rel="noopener">' + ic("pin") + 'Google Maps</a><a href="' + escUrl(gmRute(t)) + '" target="_blank" rel="noopener">' + ic("nav") + "Rute</a></span></article>";
+    }
+
+    function render() {
+      var list = daftar();
+      track.innerHTML = list.map(kartu).join("");
+      track.scrollLeft = 0; nav();
+      $("#wisataList").innerHTML = list.map(function (t, i) {
+        return '<li><button type="button" data-fokus="' + esc(t.id) + '"><span class="dlist__no" style="background:' + ((KAT[t.kategori] || {}).c || "#1452C2") + '">' + (W.tempat.indexOf(t) + 1) + '</span><span class="dlist__n"><b>' + esc(t.nama) + "</b><small>" + esc(t.kategori) + (t.perkiraan ? " · lokasi perkiraan" : "") + " · " + esc(t.area) + '</small></span><span class="dlist__d">' + (t.lat == null ? "<b>Cek Maps</b><small>belum dipetakan</small>" : "<b>" + fmtKm(t.jarak_km) + "</b><small>" + fmtMnt(t.waktu_menit) + "</small>") + "</span></button></li>";
+      }).join("");
+      if (map) grup.forEach(function (g) {
+        var vis = g.ids.some(function (id) { return list.some(function (t) { return t.id === id; }); });
+        if (vis) g.m.addTo(map); else g.m.remove();
+      });
+    }
+
+    // Slider berputar (sama seperti slider berita)
+    var prev = $("#wisataPrev"), next = $("#wisataNext"), count = $("#wisataCount");
+    var step = function () { var c = track.querySelector(".ncard"); return c ? c.getBoundingClientRect().width + 16 : 300; };
+    var atS = function () { return track.scrollLeft <= 2; }, atE = function () { return track.scrollLeft >= track.scrollWidth - track.clientWidth - 2; };
+    function nav() {
+      var n = track.children.length, first = Math.round(track.scrollLeft / step()) + 1, vis = Math.max(1, Math.round(track.clientWidth / step()));
+      count.textContent = n ? first + "–" + Math.min(n, first + vis - 1) + " dari " + n : "";
+    }
+    next.addEventListener("click", function () { atE() ? track.scrollTo({ left: 0, behavior: "smooth" }) : track.scrollBy({ left: step(), behavior: "smooth" }); });
+    prev.addEventListener("click", function () { atS() ? track.scrollTo({ left: track.scrollWidth, behavior: "smooth" }) : track.scrollBy({ left: -step(), behavior: "smooth" }); });
+    track.addEventListener("scroll", function () { requestAnimationFrame(nav); }, { passive: true });
+    window.addEventListener("resize", nav);
+    var tx = null, edge = "";
+    track.addEventListener("touchstart", function (e) { tx = e.touches[0].clientX; edge = atE() ? "e" : (atS() ? "s" : ""); }, { passive: true });
+    track.addEventListener("touchend", function (e) {
+      if (tx === null) return; var dx = e.changedTouches[0].clientX - tx; tx = null;
+      if (edge === "e" && dx < -40) track.scrollTo({ left: 0, behavior: "smooth" });
+      if (edge === "s" && dx > 40) track.scrollTo({ left: track.scrollWidth, behavior: "smooth" });
+    }, { passive: true });
+    track.addEventListener("error", function (e) {
+      if (e.target.tagName === "IMG") { var c = e.target.parentNode; e.target.remove(); var ph = c.querySelector(".ncard__ph"); if (ph) ph.hidden = false; var cr = c.querySelector(".wcard__credit"); if (cr) cr.remove(); }
+    }, true);
+
+    function fokus(id) {
+      var t = W.tempat.filter(function (x) { return x.id === id; })[0]; if (!t) return;
+      if (map && markers[id]) {
+        if (window.MM_ROUTE) window.MM_ROUTE("wisatakuliner", true);
+        $("#wisataMap").scrollIntoView({ behavior: "smooth", block: "center" });
+        map.flyTo([t.lat, t.lng], Math.max(map.getZoom(), 13), { duration: .8 });
+        setTimeout(function () { markers[id].openPopup(); }, 850);
+      } else {
+        openModal({ kat: t.kategori + " · " + t.area, title: t.nama, html: "<p>" + esc(t.deskripsi) + "</p>" +
+          (t.jam ? "<p><b>Jam buka:</b> " + esc(t.jam) + "</p>" : "") + (t.fasilitas ? "<p><b>Fasilitas:</b> " + esc(t.fasilitas) + "</p>" : "") +
+          "<div class='modal__actions'>" + mapBtn(gmCari(t), "Cari di Google Maps", "pin", true) + mapBtn(gmRute(t), "Rute dari Marga Mulya", "nav") + (t.info ? mapBtn(t.info, "Info lengkap", "external") : "") + "</div>" });
+      }
+    }
+    document.addEventListener("click", function (e) { var b = e.target.closest("[data-fokus]"); if (b) fokus(b.getAttribute("data-fokus")); });
+
+    function petakan() {
+      var el = $("#wisataMap");
+      if (!window.L) { el.innerHTML = '<p class="wmap__load">Peta tidak dapat dimuat. Gunakan tombol Google Maps pada setiap tempat.</p>'; return; }
+      el.innerHTML = "";
+      map = L.map(el, { scrollWheelZoom: false, tap: true }).setView([pusat.lat, pusat.lng], 11);
+      window.MM_DASAR(map, "jalan");
+      window.MM_BATAS().then(function (B) { map.attributionControl.addAttribution("Peta Batas Kampung &copy; DPMK Merauke"); var l = window.MM_LAPIS_BATAS(map, B, { tebal: 4, isi: .08, citra: false }); l.batas.bindTooltip("Wilayah Kampung Marga Mulya"); }).catch(function () {});
+      var home = L.marker([pusat.lat, pusat.lng], { icon: L.divIcon({ className: "", html: '<span class="mk mk--home"><svg class="ic"><use href="#i-home"/></svg></span>', iconSize: [36, 36], iconAnchor: [18, 18] }), zIndexOffset: 1000 })
+        .addTo(map).bindPopup("<b>" + esc(pusat.nama) + "</b><br>Titik awal perhitungan jarak");
+      var b = [[pusat.lat, pusat.lng]];
+      // Tempat dengan titik yang sama digabung dalam satu penanda
+      var byKey = {};
+      W.tempat.forEach(function (t, i) {
+        if (t.lat == null) return;
+        var key = t.lat.toFixed(5) + "," + t.lng.toFixed(5);
+        (byKey[key] = byKey[key] || { lat: t.lat, lng: t.lng, isi: [] }).isi.push({ t: t, no: i + 1 });
+      });
+      Object.keys(byKey).forEach(function (key) {
+        var g = byKey[key], t0 = g.isi[0].t, k = KAT[t0.kategori] || {}, lebih = g.isi.length > 1;
+        var label = lebih ? g.isi.map(function (x) { return x.no; }).join("·") : g.isi[0].no;
+        var m = L.marker([g.lat, g.lng], { icon: L.divIcon({ className: "", html: '<span class="mk' + (lebih ? " mk--grup" : "") + '" style="background:' + (k.c || "#1452C2") + '">' + label + "</span>", iconSize: [lebih ? 46 : 28, 28], iconAnchor: [lebih ? 23 : 14, 14] }) });
+        var html = lebih
+          ? '<div class="mpop"><small>' + g.isi.length + " tempat di titik ini</small>" + g.isi.map(function (x) {
+              var t = x.t; return "<b>" + x.no + ". " + esc(t.nama) + "</b><span>" + esc(t.kategori) + (t.perkiraan ? " · lokasi perkiraan" : "") + "</span>";
+            }).join("") + "<span>" + fmtKm(t0.jarak_km) + " · " + fmtMnt(t0.waktu_menit) + ' dari Marga Mulya</span><span class="mpop__a"><a href="' + escUrl(gmCari(t0)) + '" target="_blank" rel="noopener">Google Maps</a><a href="' + escUrl(gmRute(t0)) + '" target="_blank" rel="noopener">Rute</a></span></div>'
+          : '<div class="mpop">' + (t0.foto ? '<img src="' + escUrl(t0.foto) + '" alt="" referrerpolicy="no-referrer" data-hapus-galat>' : "") + "<small>" + esc(t0.kategori) + "</small><b>" + esc(t0.nama) + "</b><span>" + fmtKm(t0.jarak_km) + " · " + fmtMnt(t0.waktu_menit) + " dari Marga Mulya" + (t0.perkiraan ? "<br><i>Lokasi perkiraan</i>" : "") + '</span><span class="mpop__a"><a href="' + escUrl(gmCari(t0)) + '" target="_blank" rel="noopener">Google Maps</a><a href="' + escUrl(gmRute(t0)) + '" target="_blank" rel="noopener">Rute</a></span></div>';
+        m.bindPopup(html, { maxWidth: 260 });
+        m.addTo(map); b.push([g.lat, g.lng]);
+        grup.push({ m: m, ids: g.isi.map(function (x) { return x.t.id; }) });
+        g.isi.forEach(function (x) { markers[x.t.id] = m; });
+      });
+      map.fitBounds(b, { padding: [24, 24] });
+      (window.MM_MAPS = window.MM_MAPS || []).push({ el: el, map: map, fit: function () { map.invalidateSize(); map.fitBounds(b, { padding: [24, 24] }); } });
+      el.addEventListener("click", function () { map.scrollWheelZoom.enable(); }, { once: true });
+    }
+
+    fetch("data/wisata.json?t=" + Date.now(), { cache: "no-store" }).then(function (r) { return r.json(); }).then(function (j) {
+      W = j; pusat = j.pusat;
+      var kats = ["Semua"].concat(Object.keys(KAT).filter(function (k) { return j.tempat.some(function (t) { return t.kategori === k; }); }));
+      $("#wisataFilter").innerHTML = kats.map(function (k) { return '<button type="button" class="chipbtn" aria-pressed="' + (k === "Semua") + '" data-kat="' + esc(k) + '">' + (KAT[k] ? ic(KAT[k].ic) : "") + esc(k) + "</button>"; }).join("");
+      $("#wisataFilter").addEventListener("click", function (e) {
+        var c = e.target.closest("[data-kat]"); if (!c) return; aktif = c.getAttribute("data-kat");
+        this.querySelectorAll("[data-kat]").forEach(function (x) { x.setAttribute("aria-pressed", x === c ? "true" : "false"); });
+        render();
+      });
+      petakan(); render();
+      $("#wisataNote").innerHTML = "Jarak dan waktu adalah perkiraan rute jalan dari pusat Kampung Marga Mulya (data OpenStreetMap) dan dapat berbeda sesuai kondisi jalan. Jam buka mengikuti sumber yang dikutip dan dapat berubah. Tempat bertanda \u201clokasi perkiraan\u201d dipetakan dari alamatnya; tempat bertanda \u201cbelum dipetakan\u201d belum memiliki titik lokasi. Sumber informasi dan foto destinasi: visitmerauke.com, tempatrenang.com, infodantips.com, trip.com, Wikivoyage, dan Kompas.com.";
+    }).catch(function () { track.innerHTML = '<p class="small">Data wisata belum dapat dimuat.</p>'; });
+  })();
+  /* =================== FASILITAS UMUM =================== */
+  (function () {
+    var track = $("#fasilTrack"); if (!track) return;
+    var KAT = {
+      "Pendidikan": { ic: "school", c: "#0B3A8F" }, "Ibadah": { ic: "home", c: "#082A66" }, "Kesehatan": { ic: "health", c: "#1452C2" },
+      "Air bersih": { ic: "drop", c: "#2563D6" }, "Pemerintahan": { ic: "users", c: "#346FDE" }, "Pertanian": { ic: "sprout", c: "#1046A8" },
+      "Olahraga": { ic: "ball", c: "#4A7FE2" }, "Ekonomi": { ic: "toko", c: "#5B8BE6" }, "Keamanan": { ic: "person", c: "#0F3F99" },
+      "Umum": { ic: "layers", c: "#2F5FB8" }
+    };
+    var JENIS_IC = { "Gereja": "church", "Gereja Katolik": "church", "Masjid": "mosque", "Musala": "mosque", "Madrasah": "school", "Bank": "wallet", "Koperasi": "toko", "Pertashop (BBM)": "drop", "Kantor polisi": "person", "Pos Linmas": "person",
+      "TPQ": "school", "TPQ / pondok pesantren": "school", "Organisasi keagamaan": "mosque", "Lahan gereja": "church", "Apotek": "health",
+      "MCK umum": "drop", "Waduk": "wave", "Pengering padi": "sprout", "Kios pupuk": "sprout", "Kolam pemancingan": "fish", "Area rekreasi": "tree",
+      "SPBU": "drop", "Bengkel": "toko", "Warung makan": "fork", "Usaha konstruksi": "toko", "Menara telekomunikasi": "layers", "Pemakaman umum": "tree", "Gedung serba guna": "users", "Kantor dinas": "sprout" };
+    var BLN = ["Jan", "Feb", "Mar", "Apr", "Mei", "Jun", "Jul", "Agu", "Sep", "Okt", "Nov", "Des"];
+    var survei = function (f) {
+      if (!f.survei) return "";
+      var t = f.survei.tanggal.split("-");
+      return "Difoto " + (+t[2]) + " " + BLN[+t[1] - 1] + " " + t[0] + ", " + f.survei.jam + " WIT · titik dari foto bertimestamp";
+    };
+    var STATUS = { "terverifikasi": ["Terverifikasi", "is-ok"], "sebagian": ["Data sebagian", "is-part"], "perlu-data": ["Perlu dilengkapi", "is-need"] };
+    var F = null, aktif = "Semua", map = null, markers = {};
+    var icon = function (f) { return JENIS_IC[f.jenis] || (KAT[f.kategori] || {}).ic || "pin"; };
+    // Fasilitas di luar kampung: tautan OpenStreetMap; di dalam kampung: peta batas kampung di halaman ini
+    var osm = function (f) { return f.lat != null ? gm.osm(f.lat, f.lng) : "https://www.openstreetmap.org/search?query=" + encodeURIComponent(f.nama + ", " + f.alamat + ", Merauke"); };
+    var qF = function (f) { return f.nama + ", " + f.alamat + ", Merauke"; };
+    var gmF = function (f) { return gmaps.titik(f.perkiraan ? null : f.lat, f.lng, qF(f)); };
+    var ruteF = function (f) { return gmaps.rute(f.perkiraan ? null : f.lat, f.lng, qF(f)); };
+    var lokasi = function (f) {
+      if (f.dalamKampung) return "Di Kampung Marga Mulya";
+      return f.jarak_km != null ? "± " + f.jarak_km.toLocaleString("id-ID") + " km · ± " + f.waktu_menit + " menit dari kampung" : "Sekitar Distrik Semangga";
+    };
+    var daftar = function () {
+      return F.fasilitas.filter(function (f) { return aktif === "Semua" || (aktif === "Dalam kampung" ? f.dalamKampung : f.kategori === aktif); })
+        .map(function (f, i) { return { f: f, i: i }; })
+        // Yang sudah ada fotonya tampil paling awal, lalu yang di dalam kampung, lalu yang terdekat
+        .sort(function (a, b) { return (!!b.f.foto - !!a.f.foto) || (b.f.dalamKampung - a.f.dalamKampung) || ((a.f.jarak_km || 0) - (b.f.jarak_km || 0)) || (a.i - b.i); })
+        .map(function (x) { return x.f; });
+    };
+    function kartu(f) {
+      var st = STATUS[f.status] || STATUS["perlu-data"];
+      var foto = f.foto ? '<img src="' + escUrl(f.foto) + '" alt="' + esc(f.nama) + '" loading="lazy">' : "";
+      var ph = '<span class="ncard__ph"' + (f.foto ? " hidden" : "") + ">" + ic(icon(f)) + "<span>" + esc(f.jenis || f.kategori) + "</span><b>" + esc(f.nama) + "</b></span>";
+      return '<article class="ncard wcard fcard">' +
+        '<button type="button" class="wcard__top" data-fasil="' + esc(f.id) + '" aria-label="Lihat ' + esc(f.nama) + ' di peta">' +
+        '<span class="ncard__cover">' + foto + ph + '<span class="ncard__badge">' + esc(f.kategori) + '</span><span class="fbadge ' + st[1] + '">' + st[0] + "</span></span>" +
+        '<span class="ncard__body"><span class="ncard__meta">' + esc(f.jenis || "") + '</span><span class="ncard__t">' + esc(f.nama) + "</span>" +
+        '<span class="fcard__loc">' + ic(f.dalamKampung ? "home" : "route") + esc(lokasi(f)) + "</span>" +
+        '<span class="fcard__addr">' + esc(f.alamat) + "</span>" +
+        '<ul class="fcard__ket">' + (f.keterangan || []).map(function (k) { return "<li>" + esc(k) + "</li>"; }).join("") + "</ul>" +
+        (f.kontak ? '<span class="fcard__addr">' + ic("mail") + esc(f.kontak) + "</span>" : "") +
+        (f.foto && f.sumberUrl ? '<span class="fcard__addr fcard__srv">' + ic("external") + "Data: " + esc(f.sumber) + "</span>" : "") +
+        (f.survei ? '<span class="fcard__addr fcard__srv">' + ic("camera") + esc(survei(f)) + "</span>" : (f.titikDari ? '<span class="fcard__addr fcard__srv">' + ic("pin") + esc(f.titikDari.replace(/2023-12-0?(\d+)/, function (_, d) { return d + " Des 2023"; })) + "</span>" : "")) +
+        "</span></button>" +
+        '<span class="wcard__act"><button type="button" class="linkbtn linkbtn--first" data-fasil="' + esc(f.id) + '">' + ic("pin") + "Lihat di peta</button>" +
+        (f.foto ? '<button type="button" class="linkbtn" data-fgal="' + esc(f.id) + '">' + ic("image") + "Lihat foto" + (fotoF(f).length > 1 ? " (" + fotoF(f).length + ")" : "") + "</button>"
+          : (f.sumberUrl ? '<a href="' + escUrl(f.sumberUrl) + '" target="_blank" rel="noopener">' + ic("external") + "Sumber: " + esc(f.sumber) + "</a>" : '<a href="#kontak">' + ic("phone") + "Kirim data</a>")) +
+        "</span>" +
+        '<span class="wcard__act wcard__act--maps"><a class="linkbtn--first" href="' + escUrl(gmF(f)) + '" target="_blank" rel="noopener">' + ic("pin") + 'Google Maps</a><a href="' + escUrl(ruteF(f)) + '" target="_blank" rel="noopener">' + ic("nav") + "Rute ke sini</a></span>" +
+        "</article>";
+    }
+    function render() {
+      var list = daftar();
+      track.innerHTML = list.map(kartu).join(""); track.scrollLeft = 0; nav();
+      if (map) grupF.forEach(function (g) {
+        var vis = g.ids.some(function (id) { return list.some(function (f) { return f.id === id; }); });
+        if (vis) g.m.addTo(map); else g.m.remove();
+      });
+    }
+    var grupF = [];
+    var fotoF = function (f) {
+      var a = f.foto ? [{ src: f.foto, ket: f.survei ? "Foto survei 26 Oktober 2026" : "", sumber: f.survei ? "Survei Tim Ekspedisi Patriot IPB University" : (f.galeri && f.galeri[0] && f.galeri[0].src === f.foto ? f.galeri[0].sumber : f.sumber) }] : [];
+      return a.concat((f.galeri || []).filter(function (g) { return g.src !== f.foto; }));
+    };
+    document.addEventListener("click", function (e) {
+      var b = e.target.closest("[data-fgal]"); if (!b) return; e.preventDefault();
+      var f = F.fasilitas.filter(function (x) { return x.id === b.getAttribute("data-fgal"); })[0]; if (!f) return;
+      openModal({ kat: f.kategori + " · " + (f.jenis || ""), title: f.nama, html: '<div class="potgal">' + fotoF(f).map(function (g) {
+        return '<figure><img src="' + escUrl(g.src) + '" alt="' + esc(f.nama) + '" loading="lazy"><figcaption>' + (g.ket ? "<b>" + esc(g.ket) + "</b>" : "") + "<span>Foto: " + esc(g.sumber || "") + "</span></figcaption></figure>";
+      }).join("") + "</div><p>" + esc(f.alamat) + "</p>" });
+    });
+    var prev = $("#fasilPrev"), next = $("#fasilNext"), count = $("#fasilCount");
+    var step = function () { var c = track.querySelector(".ncard"); return c ? c.getBoundingClientRect().width + 16 : 300; };
+    var atS = function () { return track.scrollLeft <= 2; }, atE = function () { return track.scrollLeft >= track.scrollWidth - track.clientWidth - 2; };
+    function nav() { var n = track.children.length, first = Math.round(track.scrollLeft / step()) + 1, vis = Math.max(1, Math.round(track.clientWidth / step())); count.textContent = n ? first + "–" + Math.min(n, first + vis - 1) + " dari " + n : ""; }
+    next.addEventListener("click", function () { atE() ? track.scrollTo({ left: 0, behavior: "smooth" }) : track.scrollBy({ left: step(), behavior: "smooth" }); });
+    prev.addEventListener("click", function () { atS() ? track.scrollTo({ left: track.scrollWidth, behavior: "smooth" }) : track.scrollBy({ left: -step(), behavior: "smooth" }); });
+    track.addEventListener("scroll", function () { requestAnimationFrame(nav); }, { passive: true });
+    window.addEventListener("resize", nav);
+    var tx = null, edge = "";
+    track.addEventListener("touchstart", function (e) { tx = e.touches[0].clientX; edge = atE() ? "e" : (atS() ? "s" : ""); }, { passive: true });
+    track.addEventListener("touchend", function (e) { if (tx === null) return; var dx = e.changedTouches[0].clientX - tx; tx = null; if (edge === "e" && dx < -40) track.scrollTo({ left: 0, behavior: "smooth" }); if (edge === "s" && dx > 40) track.scrollTo({ left: track.scrollWidth, behavior: "smooth" }); }, { passive: true });
+    track.addEventListener("error", function (e) { if (e.target.tagName === "IMG") { var c = e.target.parentNode; e.target.remove(); var ph = c.querySelector(".ncard__ph"); if (ph) ph.hidden = false; } }, true);
+
+    function fokus(id) {
+      var f = F.fasilitas.filter(function (x) { return x.id === id; })[0]; if (!f) return;
+      if (map && markers[id]) {
+        $("#fasilMap").scrollIntoView({ behavior: "smooth", block: "center" });
+        map.flyTo([f.lat, f.lng], Math.max(map.getZoom(), 15), { duration: .8 });
+        setTimeout(function () { markers[id].openPopup(); }, 850);
+      } else {
+        openModal({ kat: f.kategori, title: f.nama, html: (f.foto ? '<img class="modal__img" src="' + escUrl(f.foto) + '" alt="' + esc(f.nama) + '">' : "") + "<p>" + esc(f.alamat) + "</p><ul>" + (f.keterangan || []).map(function (k) { return "<li>" + esc(k) + "</li>"; }).join("") + "</ul>" +
+          "<p class='small'>Titik lokasi fasilitas ini belum tersedia di peta batas kampung. Pemerintah kampung dapat mengirimkan foto bertitik GPS untuk melengkapinya.</p>" });
+      }
+    }
+    document.addEventListener("click", function (e) { var b = e.target.closest("[data-fasil]"); if (b) fokus(b.getAttribute("data-fasil")); });
+
+    function petakan() {
+      var el = $("#fasilMap");
+      if (!window.L) { el.innerHTML = '<p class="wmap__load">Peta tidak dapat dimuat.</p>'; return; }
+      el.innerHTML = "";
+      var P = F.pusat;
+      map = L.map(el, { scrollWheelZoom: false }).setView([P.lat, P.lng], 14);
+      window.MM_DASAR(map, "satelit");
+      map.attributionControl.addAttribution("Peta Batas Kampung &copy; DPMK Kabupaten Merauke");
+      if (BATAS) window.MM_LAPIS_BATAS(map, BATAS, { tebal: 4, citra: false });
+      L.marker([P.lat, P.lng], { icon: L.divIcon({ className: "", html: '<span class="mk mk--home"><svg class="ic"><use href="#i-home"/></svg></span>', iconSize: [36, 36], iconAnchor: [18, 18] }), zIndexOffset: 1000 })
+        .addTo(map).bindPopup("<b>Kantor Kampung Marga Mulya</b><br>Titik kantor pada Peta Batas Kampung");
+      var b = [[P.lat, P.lng]];
+      // Fasilitas yang titiknya berdekatan (< ±5 m) digabung dalam satu penanda
+      var byKey = {};
+      F.fasilitas.forEach(function (f) {
+        if (f.lat == null) return;
+        var key = f.lat.toFixed(4) + "," + f.lng.toFixed(4);
+        (byKey[key] = byKey[key] || []).push(f);
+      });
+      var pop = function (f) {
+        return (f.foto ? '<img src="' + escUrl(f.foto) + '" alt="" data-hapus-galat>' : "") + "<small>" + esc(f.jenis || f.kategori) + "</small><b>" + esc(f.nama) + "</b><span>" + esc(f.alamat) + (f.perkiraan ? "<br><i>Lokasi perkiraan</i>" : "") + (f.survei ? "<br>" + esc(survei(f)) : "") + "</span>" +
+          '<span class="mpop__a">' + (f.foto ? '<a href="#" data-fgal="' + esc(f.id) + '">Foto</a>' : "") + '<a href="' + escUrl(gmF(f)) + '" target="_blank" rel="noopener">Google Maps</a><a href="' + escUrl(ruteF(f)) + '" target="_blank" rel="noopener">Rute</a>' + (f.sumberUrl ? '<a href="' + escUrl(f.sumberUrl) + '" target="_blank" rel="noopener">Sumber</a>' : "") + "</span>";
+      };
+      Object.keys(byKey).forEach(function (key) {
+        var g = byKey[key], f0 = g[0], c = (KAT[f0.kategori] || {}).c || "#1452C2";
+        var html = g.length > 1 ? '<span class="mk mk--ic mk--grup" style="background:' + c + '"><svg class="ic"><use href="#i-' + icon(f0) + '"/></svg>' + g.length + "</span>"
+          : '<span class="mk mk--ic" style="background:' + c + '"><svg class="ic"><use href="#i-' + icon(f0) + '"/></svg></span>';
+        var m = L.marker([f0.lat, f0.lng], { icon: L.divIcon({ className: "", html: html, iconSize: [g.length > 1 ? 44 : 30, 30], iconAnchor: [g.length > 1 ? 22 : 15, 15] }) });
+        m.bindPopup('<div class="mpop">' + (g.length > 1 ? "<small>" + g.length + " fasilitas di titik ini</small>" : "") + g.map(pop).join('<hr class="mpop__hr">') + "</div>", { maxWidth: 250, maxHeight: 340 });
+        m.addTo(map); grupF.push({ m: m, ids: g.map(function (f) { return f.id; }) });
+        g.forEach(function (f) { markers[f.id] = m; });
+        if (f0.dalamKampung || (f0.jarak_km || 99) < 8) b.push([f0.lat, f0.lng]);
+      });
+      // Fokus awal: kawasan permukiman (fasilitas di dalam kampung); geser/perkecil untuk melihat seluruh batas
+      var dalam = F.fasilitas.filter(function (f) { return f.dalamKampung && f.lat != null; }).map(function (f) { return [f.lat, f.lng]; });
+      var bb = L.latLngBounds(dalam.length ? dalam : b);
+      map.fitBounds(bb, { padding: [16, 16] });
+      (window.MM_MAPS = window.MM_MAPS || []).push({ el: el, map: map, fit: function () { map.invalidateSize(); map.fitBounds(bb, { padding: [16, 16] }); } });
+      el.addEventListener("click", function () { map.scrollWheelZoom.enable(); }, { once: true });
+    }
+
+    var BATAS = null;
+    document.addEventListener("click", function (e) {
+      var a = e.target.closest("[data-fokus-fasil]"); if (!a) return;
+      var idf = a.getAttribute("data-fokus-fasil"); setTimeout(function () { if (F) fokus(idf); }, 400);
+    });
+    Promise.all([fetch("data/fasilitas.json?t=" + Date.now(), { cache: "no-store" }).then(function (r) { return r.json(); }), window.MM_BATAS().catch(function () { return null; })]).then(function (res) {
+      var j = res[0]; BATAS = res[1];
+      F = j;
+      var dalam = j.fasilitas.filter(function (f) { return f.dalamKampung; });
+      var kats = Object.keys(KAT).filter(function (k) { return j.fasilitas.some(function (f) { return f.kategori === k; }); });
+      $("#fasilSum").innerHTML = kats.map(function (k) {
+        var n = dalam.filter(function (f) { return f.kategori === k; }).length, luar = j.fasilitas.filter(function (f) { return f.kategori === k && !f.dalamKampung; }).length;
+        return '<button type="button" class="fsum__i" data-fkat="' + esc(k) + '"><span>' + ic(KAT[k].ic) + "</span><b>" + n + "</b><small>" + esc(k) + "</small>" + (luar ? "<i>+" + luar + " di sekitar kampung</i>" : "") + "</button>";
+      }).join("");
+      var chips = ["Semua", "Dalam kampung"].concat(kats);
+      $("#fasilFilter").innerHTML = chips.map(function (k) { return '<button type="button" class="chipbtn" aria-pressed="' + (k === "Semua") + '" data-fkat="' + esc(k) + '">' + (KAT[k] ? ic(KAT[k].ic) : (k === "Dalam kampung" ? ic("home") : "")) + esc(k) + "</button>"; }).join("");
+      document.addEventListener("click", function (e) {
+        var c = e.target.closest("[data-fkat]"); if (!c) return; aktif = c.getAttribute("data-fkat");
+        $("#fasilFilter").querySelectorAll("[data-fkat]").forEach(function (x) { x.setAttribute("aria-pressed", x.getAttribute("data-fkat") === aktif ? "true" : "false"); });
+        render(); if (c.classList.contains("fsum__i")) $("#fasilFilter").scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+      var hit = function (s_) { return j.fasilitas.filter(function (f) { return f.status === s_; }).length; };
+      $("#fasilStatus").innerHTML = [["terverifikasi", "Ada foto/sumber dan titik lokasi"], ["sebagian", "Ada sumber, data belum lengkap"], ["perlu-data", "Menunggu data dari kampung"]].map(function (s_) {
+        return '<li><span class="fbadge ' + STATUS[s_[0]][1] + '">' + STATUS[s_[0]][0] + "</span><b>" + hit(s_[0]) + "</b><small>" + s_[1] + "</small></li>";
+      }).join("");
+      $("#fasilNote").innerHTML = rilis(["fasilitasUmum", "survei"]) + "<br>Foto dan titik lokasi berasal dari Dokumen Fasilitas Umum Kampung Marga Mulya (foto GPS Desember 2023) dan survei Tim Ekspedisi Patriot IPB University 26 Oktober 2026; titik di peta adalah koordinat foto (posisi juru foto) dan cap waktu pada foto yang dipajang sudah dipotong. Data sekolah juga bersumber dari Data Referensi Kemendikdasmen. Jumlah resmi seluruh sarana menurut monografi kampung ada di rekap di atas. Musala yang belum diketahui namanya diberi nomor urut angka Romawi.";
+      petakan(); render();
+    }).catch(function () { track.innerHTML = '<p class="small">Data fasilitas belum dapat dimuat.</p>'; });
+  })();
+
+  /* ---- Foto beranda berganti otomatis tiap 2 detik.
+     Semua foto berbentuk sama (2:1) dengan foto utama, jadi tampil utuh tanpa dipotong. ---- */
+  (function () {
+    var fig = $("#heroFoto"), bg = $("#heroBg"), cap = $("#heroCap");
+    if (!fig || !bg) return;
+    var KREDIT = "Foto: Dokumen Fasilitas Umum Kampung Marga Mulya, Desember 2023.";
+    var UDARA = "Foto udara, dokumentasi pemetaan kampung Juni 2022.";
+    var foto = [
+      { src: "assets/img/udara/permukiman-sawah.jpg", ket: "Permukiman dan hamparan sawah dari udara. " + UDARA, w: 1800, h: 1012 },
+      { src: "assets/img/hero-ekspedisi-patriot.jpg", ket: "Tim Ekspedisi Patriot IPB University bersama perangkat kampung dan Distrik Semangga.", w: 1800, h: 900 },
+      { src: "assets/img/udara/sawah-tergenang.jpg", ket: "Petak-petak sawah tergenang air. " + UDARA, w: 1800, h: 1012 },
+      { src: "assets/img/fasilitas/2023/f059.jpg", ket: "Kantor Kampung Marga Mulya (kantor lama). " + KREDIT },
+      { src: "assets/img/udara/saluran-lahan.jpg", ket: "Saluran air membelah lahan pertanian. " + UDARA, w: 1800, h: 1012 },
+      { src: "assets/img/fasilitas/2023/f007.jpg", ket: "SD Inpres Semangga III. " + KREDIT },
+      { src: "assets/img/udara/hamparan-lahan.jpg", ket: "Hamparan lahan hingga ke cakrawala. " + UDARA, w: 1800, h: 1012 },
+      { src: "assets/img/fasilitas/2023/f090.jpg", ket: "Masjid Al Amin. " + KREDIT },
+      { src: "assets/img/udara/saluran-lahan-2.jpg", ket: "Jaringan saluran di tepi lahan. " + UDARA, w: 1800, h: 1012 },
+      { src: "assets/img/fasilitas/2023/f024.jpg", ket: "Puskesmas Pembantu Kampung Marga Mulya. " + KREDIT },
+      { src: "assets/img/fasilitas/2023/f043.jpg", ket: "Gedung pengering padi (dryer). " + KREDIT },
+      { src: "assets/img/udara/saluran-hutan.jpg", ket: "Saluran air di antara hutan dan lahan. " + UDARA, w: 1800, h: 1012 },
+      { src: "assets/img/fasilitas/2023/f068.jpg", ket: "Depot Air Minum BUMKam (Air Galon Mulya). " + KREDIT },
+      { src: "assets/img/fasilitas/2023/f035.jpg", ket: "Kolam pemancingan kampung. " + KREDIT }
+    ];
+    var slides = [fig.querySelector(".hero__slide")], bgs = [bg.querySelector("img")];
+    var i = 0, timer = null, siap = false;
+    function bangun() {
+      if (siap) return; siap = true;
+      foto.slice(1).forEach(function (f) {
+        var a = new Image(); a.className = "hero__slide"; a.src = f.src; a.alt = f.ket.split(". ")[0]; a.width = f.w || 960; a.height = f.h || 479; a.decoding = "async";
+        fig.insertBefore(a, cap); slides.push(a);
+        var b = new Image(); b.src = f.src; b.alt = ""; b.decoding = "async"; bg.appendChild(b); bgs.push(b);
+      });
+    }
+    function ke(n) {
+      var j = (n + slides.length) % slides.length;
+      if (!slides[j].complete) return; // tunggu foto selesai dimuat agar tidak berkedip
+      slides[i].classList.remove("is-on"); bgs[i].classList.remove("is-on");
+      i = j;
+      slides[i].classList.add("is-on"); bgs[i].classList.add("is-on");
+      if (cap) cap.textContent = foto[i].ket;
+    }
+    function mulai() { if (!timer && !pakaiVideo) timer = setInterval(function () { ke(i + 1); }, 2000); }
+    function henti() { clearInterval(timer); timer = null; }
+    var tenang = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var vEl = $("#heroVideo"), vBox = vEl && vEl.parentNode, pakaiVideo = !!vEl;
+    function jalan() { if (pakaiVideo) return; bangun(); if (!tenang) mulai(); }
+    if (document.readyState === "complete") jalan(); else window.addEventListener("load", jalan);
+    document.addEventListener("visibilitychange", function () { if (document.hidden) henti(); else if (siap && !tenang && !pakaiVideo) mulai(); });
+
+    /* ---- Video profil langsung tampil sejak awal (ada di HTML, dengan gambar pembuka = bingkai pertama video).
+       Tanpa suara dan berulang. Foto berganti hanya dipakai bila video gagal dimuat. ---- */
+    if (vEl) (function () {
+      var HV = D.heroVideo || {};
+      if (cap && HV.ket) cap.textContent = HV.ket;
+      vEl.muted = true; vEl.defaultMuted = true;
+      function gagal() {
+        if (!pakaiVideo) return; pakaiVideo = false;
+        if (vBox) vBox.remove(); fig.classList.remove("hero__photo--video");
+        if (cap) cap.textContent = foto[0].ket;
+        if (document.readyState === "complete") jalan(); else window.addEventListener("load", jalan);
+      }
+      var srcs = vEl.querySelectorAll("source"); if (srcs.length) srcs[srcs.length - 1].addEventListener("error", gagal);
+      vEl.addEventListener("error", gagal);
+      // Kegagalan bisa terjadi sebelum skrip ini berjalan: periksa status sumber video sekarang dan saat halaman selesai dimuat
+      var cek = function () { if (vEl.error || (vEl.networkState === 3 && vEl.readyState === 0)) gagal(); };
+      cek(); window.addEventListener("load", function () { setTimeout(cek, 300); });
+      var hemat = navigator.connection && navigator.connection.saveData;
+      if (tenang || hemat) { vEl.pause(); vEl.removeAttribute("autoplay"); return; }   // tampilkan bingkai pembuka saja
+      var coba = vEl.play(); if (coba && coba.catch) coba.catch(function () { /* autoplay ditolak: bingkai pembuka video tetap tampil */ });
+      document.addEventListener("visibilitychange", function () { if (!pakaiVideo) return; if (document.hidden) vEl.pause(); else if (!tenang) vEl.play().catch(function () {}); });
+    })();
+  })();
+
+  /* ---- Gambar di popup peta yang gagal dimuat dihapus (pengganti onerror sebaris, sesuai CSP) ---- */
+  document.addEventListener("error", function (e) {
+    var t = e.target;
+    if (t && t.tagName === "IMG" && t.hasAttribute("data-hapus-galat")) t.remove();
+  }, true);
+
+  /* ---- Foto yang bisa diperbesar (data-perbesar) ---- */
+  document.addEventListener("click", function (e) {
+    var b = e.target.closest && e.target.closest("[data-perbesar]"); if (!b) return;
+    openModal({ kat: "Foto", title: b.getAttribute("data-ket") || "", html: '<img class="modal__img" src="' + escUrl(b.getAttribute("data-perbesar")) + '" alt="' + esc(b.getAttribute("data-ket") || "") + '">' });
+  });
+
+  /* ---- Mode gelap / terang ---- */
+  (function () {
+    var btn = document.getElementById("temaBtn"); if (!btn) return;
+    var mq = window.matchMedia ? matchMedia("(prefers-color-scheme: dark)") : null;
+    function gelap() { var t = document.documentElement.getAttribute("data-theme"); return t ? t === "dark" : !!(mq && mq.matches); }
+    function segar() { var g = gelap(); btn.setAttribute("aria-label", g ? "Ganti ke mode terang" : "Ganti ke mode gelap"); btn.setAttribute("aria-pressed", g ? "true" : "false"); }
+    btn.addEventListener("click", function () {
+      var t = gelap() ? "light" : "dark";
+      document.documentElement.setAttribute("data-theme", t);
+      try { localStorage.setItem("mm_tema", t); } catch (e) {}
+      segar();
+    });
+    if (mq && mq.addEventListener) mq.addEventListener("change", segar);
+    segar();
+  })();
+
+  /* ---- Riak saat ditekan ---- */
+  (function () {
+    var SEL = ".btn, .chipbtn, .fbtn, .news__btn, .vtabs__row button, .tabbar a, .menu a, .xcard, .kcard, .ncard, .pres, .rwcard, .wcard__top, .linkbtn, .tema";
+    document.addEventListener("pointerdown", function (e) {
+      var el = e.target.closest && e.target.closest(SEL); if (!el) return;
+      var r = el.getBoundingClientRect(); if (!r.width) return;
+      el.classList.add("riak");
+      var t = document.createElement("span"); t.className = "riak__titik";
+      t.style.left = (e.clientX - r.left) + "px"; t.style.top = (e.clientY - r.top) + "px";
+      t.style.setProperty("--s", Math.ceil(Math.max(r.width, r.height) / 5));
+      el.appendChild(t); setTimeout(function () { t.remove(); }, 650);
+    }, { passive: true });
+  })();
+
+  /* Tahun data & tanggal rilis dokumen sumber di setiap kelompok data */
+  pasangRilis("#dGender, #kelUsia, #dSejahtera, #usiaSekolah, #dPekerjaan, #dPendidikan, #dSuku, #dAgama", "monografi");
+  pasangRilis("#dLahan, #ekoTernak, #ekoGuna, #ekoUsaha", "monografi");
+  var fk = $("#facts"); if (fk && !fk.nextElementSibling) fk.insertAdjacentHTML("afterend", '<p class="small facts__src">' + rilis("monografi", true) + "</p>");
+})();

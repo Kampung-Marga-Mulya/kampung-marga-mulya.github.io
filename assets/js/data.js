@@ -1,0 +1,1404 @@
+/* =====================================================================
+   MARGA MULYA ON SITE — DATA KAMPUNG
+   ---------------------------------------------------------------------
+   SEMUA isi website diambil dari file ini. Untuk memperbarui website,
+   cukup ubah teks/angka di bawah, simpan, lalu unggah ulang.
+
+   SUMBER UTAMA: Monografi Tingkat Kampung Marga Mulya, ditandatangani
+   Plt. Kepala Kampung dan Sekretaris Kampung pada 30 September 2026.
+   - Bagian yang masih contoh diberi tanda  contoh: true  dan tampil dengan
+     label "contoh" di website. Ganti isinya lalu hapus tanda tersebut.
+   - Bagian yang kosong di monografi ditulis null / [] dan tampil sebagai
+     "belum tersedia".
+   ===================================================================== */
+
+window.KAMPUNG = {
+  meta: {
+    namaSitus: "Marga Mulya On Site",
+    alamatWeb: "https://kampung-marga-mulya.github.io",
+    dataContoh: false,                      // label contoh kini per bagian (contoh: true)
+    tahunData: "2026",
+    sumberData: "Monografi Tingkat Kampung Marga Mulya per 30 September 2026",
+    diperbarui: "Oktober 2026",
+    // Dokumen sumber data beserta tahun data dan tanggal dirilis/ditandatangani.
+    // Tampil sebagai label "Data 2026 · Monografi Kampung, 30 Sep 2026" di setiap kelompok data.
+    dokumen: {
+      monografi: { nama: "Monografi Tingkat Kampung Marga Mulya", singkat: "Monografi Kampung", tahun: 2026, rilis: "30 September 2026", rilisPendek: "30 Sep 2026" },
+      rpjmk: { nama: "RPJMK Kampung Marga Mulya (Peraturan Kampung Nomor 1 Tahun 2019), berlaku 2019–2026", singkat: "RPJMK 2019–2026", tahun: 2019, rilis: "1 Mei 2019", rilisPendek: "1 Mei 2019" },
+      rkpk: { nama: "RKPK Kampung Marga Mulya Tahun Anggaran 2026 (Peraturan Kampung Nomor 002 Tahun 2026)", singkat: "RKPK 2026", tahun: 2026, rilis: "20 April 2026", rilisPendek: "20 Apr 2026" },
+      apbkam: { nama: "Penjabaran APBKam Kampung Marga Mulya Tahun Anggaran 2026", singkat: "Penjabaran APBKam", tahun: 2026, rilis: "4 Mei 2026", rilisPendek: "4 Mei 2026" },
+      fasilitasUmum: { nama: "Dokumen Fasilitas Umum Kampung Marga Mulya", singkat: "Dokumen Fasilitas Umum", tahun: 2023, rilis: "Desember 2023", rilisPendek: "Des 2023" },
+      survei: { nama: "Survei lapangan Tim Ekspedisi Patriot IPB University", singkat: "Survei Tim Ekspedisi Patriot", tahun: 2026, rilis: "26 Oktober 2026", rilisPendek: "26 Okt 2026" }
+    }
+  },
+
+  identitas: {
+    nama: "Kampung Marga Mulya",
+    distrik: "Semangga",
+    kabupaten: "Merauke",
+    provinsi: "Papua Selatan",
+    kodeWilayah: "93.01.05.2008",
+    kodePos: "99631",
+    tahunBerdiri: 1983,
+    dasarHukum: "UU No. 6 Tahun 2014 tentang Desa",
+    luasHa: 4176.90,                        // hektare
+    luas: "4.176,90 ha (± 41,8 km²)",
+    tipologi: "Desa",
+    klasifikasi: "Swasembada",
+    kategori: "Mandiri",                    // status kampung tahun 2026 (tampil di atas Beranda)
+    statusTahun: 2026,
+    komoditasUnggulan: "Pertanian dan peternakan",
+    zonaWaktu: "WIT (UTC+9)",
+    jumlahRW: 7,
+    jumlahRT: 18,
+    petaResmi: "Skala 1:50.000 (BIG)",
+    koordinatTeks: "8°24′19,5″ LS · 140°28′4,0″ BT",
+    // Titik Kantor Kampung pada Peta Batas Kampung (DPMK Merauke); monografi: 8°24'19,5" LS, 140°28'4,0" BT.
+    koordinat: { lat: -8.405899, lng: 140.467687 },
+    orbitasi: [
+      { label: "Pusat Distrik Semangga", km: 15 },
+      { label: "Pusat Kota Merauke", km: 20 },
+      { label: "Ibu kota Kabupaten Merauke", km: 20 }
+    ],
+    pertanahan: { sertifikat: 2831, tanahKasHa: 1, waduk: 6 }
+  },
+
+
+  // Isi tautan akun resmi kampung. Yang kosong akan tampil "belum tersedia".
+  sosmed: [
+    { nama: "Instagram", url: "https://www.instagram.com/kampungmargamulya/", akun: "@kampungmargamulya" },
+    { nama: "TikTok", url: "https://www.tiktok.com/@kampung.marga.mul", akun: "@kampung.marga.mul" },
+    { nama: "WhatsApp", url: "https://wa.me/6281343244398", akun: "+62 813-4324-4398 (layanan surat · Ramdan Sidik Suseno)" },   // format url: https://wa.me/62812xxxxxxx
+    { nama: "Grup WhatsApp", url: "https://chat.whatsapp.com/1320lutltGe4ayknHjmpjs", akun: "Grup Kampung Marga Mulya" }
+  ],
+
+  kerjaSama: {
+    pihak: ["Tim Ekspedisi Patriot IPB University", "Pemerintah Kampung Marga Mulya"],
+    tahun: "2026",
+    ringkas: "Website ini disusun bersama oleh Tim Ekspedisi Patriot IPB University dan Pemerintah Kampung Marga Mulya sebagai pusat informasi kampung yang terbuka bagi warga, pemerintah, dan mitra pembangunan. Pemetaan drone, pendataan penduduk, dan video profil dikerjakan selama kegiatan Ekspedisi Patriot 2026 di Distrik Semangga.",
+    ketuaTim: "Dr. rer. pol. M. Iqbal Irfany, S.E., M.App.Ec."
+  },
+
+  // Sejarah disarikan dari RPJMK Kampung Marga Mulya 2019–2024 (Bab II, Sejarah Kampung).
+  // sejarahRingkas = jumlah paragraf yang tampil sebelum tombol "Baca selengkapnya".
+  sejarah: [
+    "Marga Mulya berawal dari permukiman transmigrasi. Pada 19 Januari 1983, rombongan transmigran pertama dari Jawa Tengah (Wonogiri, Boyolali, Grobogan) dan Jawa Timur (Banyuwangi) ditempatkan di lokasi yang saat itu bernama Desa Semangga 1 B. Rombongan kedua datang pada 1984, lalu 40 KK pada 1985. Permukiman mereka sampai sekarang dikenal sebagai Lokasi 40.",
+    "Tahun 1985, desa yang sudah dihuni 350 kepala keluarga ini lepas dari pembinaan KUPT dan menggelar pemilihan kepala desa pertama. Sejak itu namanya menjadi Desa Marga Mulya, masih di wilayah Kecamatan Merauke, dengan Lasiman sebagai kepala desa sampai 1988.",
+    "Di masa Kepala Desa Suyoto (1988–1998), pertanian berkembang bersama koperasi KUD Usaha Tama yang dipimpin almarhum Sudiono. Pemilihan ketiga pada 1998 memilih Poniman Sabariyanto (1998–2006). Pada masa inilah sebutan desa berganti menjadi kampung, pertanian dan peternakan maju, dan warung-warung di pinggir jalan poros yang dikenal sebagai Warung Jagung mulai tumbuh.",
+    "Kepala kampung keempat, Eva Hardianto (terpilih 2007), mengundurkan diri pada 2011. Pemerintahan lalu dilanjutkan Sekretaris Kampung Sunaryo sebagai Plt. Kepala Kampung berdasarkan SK Kepala Distrik Semangga. Pembangunan masa itu banyak bertumpu pada swadaya warga, sampai dana bantuan pembangunan dari Pemerintah Kabupaten makin besar. Kampung juga menyiapkan pemekaran dengan fasilitas kembar: 2 kantor/balai kampung, 2 pustu, 2 SD, 2 PAUD, 1 TK, dan 2 lapangan olahraga.",
+    "Muntamah, perwakilan perempuan, terpilih sebagai kepala kampung kelima untuk periode 2012–2018. Pemilihan serentak pada 11 September 2018 memilih Zubaidah Alfakir untuk periode 2019–2024, yang menetapkan RPJMK Marga Mulya 2019–2024. Saat ini pemerintahan kampung dijalankan oleh Plt. Kepala Kampung Sunaryo, S.AP."
+  ],
+  sejarahRingkas: 2,
+  sejarahLini: [
+    { tahun: "1983", nama: "Transmigran pertama tiba", ket: "Ditempatkan di Desa Semangga 1 B (19 Januari 1983)" },
+    { tahun: "1985–1988", nama: "Lasiman", ket: "Kepala desa pertama; nama Desa Marga Mulya" },
+    { tahun: "1988–1998", nama: "Suyoto", ket: "Kepala desa kedua" },
+    { tahun: "1998–2006", nama: "Poniman Sabariyanto", ket: "Sebutan desa berganti menjadi kampung" },
+    { tahun: "2007–2011", nama: "Eva Hardianto", ket: "Mengundurkan diri 2011, dilanjutkan Plt. Sunaryo" },
+    { tahun: "2012–2018", nama: "Muntamah", ket: "Kepala kampung kelima" },
+    { tahun: "2019–2024", nama: "Zubaidah Alfakir", ket: "Menetapkan RPJMK 2019–2024" },
+    { tahun: "Kini", nama: "Sunaryo, S.AP", ket: "Plt. Kepala Kampung" }
+  ],
+  sejarahSumber: "RPJMK Kampung Marga Mulya 2019–2024, Bab II",
+
+  // Visi & misi menurut RKPK 2026 (Bab I D), yang menjabarkan RPJMK (Peraturan Kampung Nomor 1 Tahun 2019)
+  visi: "Terwujudnya Kampung Marga Mulya yang Maju, Mandiri, Bermartabat dan Modern Religius",
+  visiMakna: "Maju, mandiri, dan bermartabat berarti pelayanan yang lebih baik di berbagai bidang, lapangan kerja lewat Badan Usaha Milik Kampung, serta kampung yang kreatif menggali potensi pertanian dan wisata lokal. Religius berarti masyarakat yang beriman, bertakwa, dan berakhlak mulia, dengan nilai luhur budaya seperti kejujuran dihayati dalam keseharian.",
+  misi: [
+    "Mengoptimalkan kinerja perangkat kampung dan kelembagaan kampung sesuai tugas pokok dan fungsi, agar pelayanan kepada masyarakat di berbagai aspek meningkat secara tuntas.",
+    "Menciptakan pendapatan asli kampung melalui penggalian potensi dan pengelolaan aset kampung dengan membentuk Badan Usaha Milik Kampung, guna membuka lapangan kerja bagi masyarakat.",
+    "Meningkatkan infrastruktur jalan lingkungan, jalan usaha tani, dan saluran pengendali banjir.",
+    "Meningkatkan kepedulian dan keberpihakan terhadap kesehatan, pendidikan, dan keamanan masyarakat.",
+    "Meningkatkan pemberdayaan masyarakat agar partisipasi dan peran serta warga tertib dalam seluruh aspek pembangunan kampung.",
+    "Meningkatkan sistem keamanan swakarsa demi rasa aman, serta mengapresiasi Linmas dengan insentif yang layak.",
+    "Menyusun peraturan kampung untuk mewujudkan pengayoman kepada masyarakat.",
+    "Menggali dan memanfaatkan potensi sumber daya alam (pertanian, perikanan, perkebunan) menjadi aset kampung, menuju Kampung Agrowisata.",
+    "Membangun dan meningkatkan mental spiritual masyarakat menuju masyarakat yang modern religius, berlandaskan Pancasila dan UUD 1945.",
+    "Mendorong terealisasinya pemekaran Kampung Marga Mulya."
+  ],
+  misiRingkas: 5,
+
+  // Ringkasan RPJMK. Dokumen lengkap: rpjmk.html, PDF asli: assets/dok/
+  rpjmk: {
+    judul: "Rencana Pembangunan Jangka Menengah Kampung (RPJMK) Marga Mulya Tahun 2019–2024",
+    perkam: "Peraturan Kampung Marga Mulya Nomor 1 Tahun 2019",
+    periode: "2019–2026 (semula 2019–2024, diperpanjang 2 tahun)",
+    perpanjangan: "Seiring perpanjangan masa jabatan kepala kampung dari 6 menjadi 8 tahun, masa berlaku RPJMK diperpanjang menjadi 2019–2026 (RKPK 2026, Bab I dan Bab III).",
+    ditetapkan: "01 Mei 2019 oleh Kepala Kampung Zubaidah Alfakir, atas persetujuan bersama Bamuskam",
+    landasan: "Pasal 79 ayat (3) Undang-Undang Nomor 6 Tahun 2014 tentang Desa",
+    halaman: "rpjmk.html",
+    pdf: "assets/dok/RPJMK-Kampung-Marga-Mulya-2019-2024.pdf",
+    dasarHukum: [
+      "UU Nomor 6 Tahun 2014 tentang Desa",
+      "UU Nomor 21 Tahun 2001 tentang Otonomi Khusus bagi Provinsi Papua (diubah dengan UU Nomor 35 Tahun 2008)",
+      "UU Nomor 25 Tahun 2004 tentang Sistem Perencanaan Pembangunan Nasional",
+      "UU Nomor 23 Tahun 2014 tentang Pemerintahan Daerah",
+      "PP Nomor 43 Tahun 2014 tentang Peraturan Pelaksanaan UU Desa",
+      "PP Nomor 60 Tahun 2014 tentang Dana Desa yang Bersumber dari APBN",
+      "Permendagri Nomor 114 Tahun 2014 tentang Pedoman Pembangunan Desa",
+      "Permendagri Nomor 20 Tahun 2018 tentang Pengelolaan Keuangan Desa",
+      "Permendesa PDTT Nomor 1 Tahun 2015 tentang Kewenangan Berdasarkan Hak Asal Usul dan Kewenangan Lokal Berskala Desa",
+      "Peraturan Bupati Merauke Nomor 11 Tahun 2015 tentang Pedoman Penyusunan Perencanaan Pembangunan Kampung",
+      "Perda Kabupaten Merauke tentang RPJMD Kabupaten Merauke",
+      "UU Nomor 12 Tahun 1969, UU Nomor 12 Tahun 2011, dan PP Nomor 40 Tahun 2006"
+    ],
+    dasarHukumRingkas: 4,
+    bidang: [
+      { nama: "Penyelenggaraan pemerintahan kampung", kegiatan: ["Penetapan dan penegasan batas kampung", "Pendataan kampung, peta, dan papan informasi kampung", "Musyawarah kampung dan musrenbang", "Penyusunan RPJMK dan RKPK", "Sarana dan fasilitas kantor kampung"] },
+      { nama: "Pelaksanaan pembangunan kampung", kegiatan: ["Rabat beton jalan permukiman dan gorong-gorong", "Jalan dan gorong-gorong usaha tani", "Air bersih, sanitasi, dan saluran air", "Posyandu, PAUD, dan taman bacaan", "Pengembangan BUMK dan alat pertanian"] },
+      { nama: "Pembinaan kemasyarakatan", kegiatan: ["Pos kamling dan pembinaan Linmas", "Pembinaan kerukunan umat beragama", "Sarana olahraga", "Kesenian dan sosial budaya (kuda lumping)"] },
+      { nama: "Pemberdayaan masyarakat", kegiatan: ["Pelatihan teknologi tepat guna", "Pelatihan aparat kampung dan Bamuskam", "Peningkatan kapasitas kelompok perempuan, tani ternak, usaha, dan pemuda", "Pelatihan menjahit bagi PKK"] }
+    ]
+  },
+
+  // RKPK 2026 dari dokumen RKPK (Perkam No. 002/2026, 20 April 2026) dan RAB RKPK 2026.
+  // Angka belanja mengikuti RAB RKPK; berkas asli di assets/dok/.
+  rkpk: {
+    "tahun": 2026,
+    "judul": "Rencana Kerja Pemerintah Kampung (RKPK) Marga Mulya Tahun Anggaran 2026",
+    "perkam": "Peraturan Kampung Marga Mulya Nomor 002 Tahun 2026",
+    "ditetapkan": "20 April 2026 di Marga Mulya oleh Plt. Kepala Kampung, dengan persetujuan bersama Bamuskam",
+    "lembaran": "Lembaran Kampung Marga Mulya Tahun 2026 Nomor 02",
+    "pengertian": "RKPK adalah penjabaran RPJMK untuk jangka waktu satu tahun. Isinya bidang dan kegiatan pembangunan kampung selama setahun, dan menjadi pedoman penyusunan APBKam.",
+    "tujuan": [
+      "Kampung memiliki dokumen perencanaan pembangunan tahunan yang berkekuatan hukum tetap.",
+      "Menjadi dasar dan pedoman pelaksanaan pembangunan di kampung.",
+      "Menjadi dasar penyusunan Peraturan Kampung tentang APBKam."
+    ],
+    "manfaat": [
+      "Menjamin kesinambungan pembangunan di tingkat kampung.",
+      "Menjadi pedoman dan acuan pembangunan kampung.",
+      "Memberi arah kegiatan pembangunan tahunan.",
+      "Menampung aspirasi sesuai kebutuhan masyarakat dan memadukannya dengan program pembangunan supra kampung.",
+      "Mendorong partisipasi dan swadaya masyarakat."
+    ],
+    "sistematika": [
+      "Bab I Pendahuluan",
+      "Bab II Arah kebijakan keuangan kampung",
+      "Bab III Rumusan prioritas masalah",
+      "Bab IV Rumusan prioritas kebijakan program pembangunan kampung",
+      "Bab V Penutup"
+    ],
+    "pendapatan": [
+      {
+        "nama": "Dana Desa (APBN)",
+        "jumlah": 373456000
+      },
+      {
+        "nama": "Alokasi Dana Kampung (APBD Kabupaten Merauke)",
+        "jumlah": 521227062
+      }
+    ],
+    "totalPendapatan": 894683062,
+    "pendapatanKet": "Perkiraan pendapatan transfer. Pendapatan Asli Kampung (PAK) Rp12.000.000 dari tahun sebelumnya ikut membiayai belanja.",
+    "pak": 12000000,
+    "bidang": [
+      {
+        "no": 1,
+        "nama": "Penyelenggaraan Pemerintahan Kampung",
+        "jumlah": 504267062,
+        "kegiatan": [
+          {
+            "nama": "Penghasilan tetap dan tunjangan kepala kampung",
+            "sumber": "ADK",
+            "ket": "Nilai tidak dicantumkan terpisah dalam RAB RKPK."
+          },
+          {
+            "nama": "Penghasilan tetap dan tunjangan perangkat kampung",
+            "volume": "7 orang",
+            "sasaran": "Perangkat kampung",
+            "waktu": "12 bulan",
+            "jumlah": 180000000,
+            "sumber": "ADK",
+            "sdgs": "18"
+          },
+          {
+            "nama": "Penyediaan jaminan sosial bagi kepala kampung dan perangkat kampung",
+            "volume": "7 orang",
+            "sasaran": "Perangkat kampung",
+            "waktu": "12 bulan",
+            "jumlah": 11232000,
+            "sumber": "ADK",
+            "sdgs": "1, 3"
+          },
+          {
+            "nama": "Operasional kantor kampung",
+            "volume": "1 paket",
+            "sasaran": "Sarana pendukung",
+            "waktu": "12 bulan",
+            "jumlah": 68986000,
+            "sumber": "ADK",
+            "sdgs": "18"
+          },
+          {
+            "nama": "Tunjangan Bamuskam",
+            "volume": "5 orang",
+            "sasaran": "Bamuskam",
+            "waktu": "12 bulan",
+            "jumlah": 84600000,
+            "sumber": "ADK",
+            "sdgs": "18"
+          },
+          {
+            "nama": "Operasional Bamuskam",
+            "volume": "1 paket",
+            "sasaran": "Bamuskam",
+            "waktu": "12 bulan",
+            "jumlah": 6950000,
+            "sumber": "ADK",
+            "sdgs": "18"
+          },
+          {
+            "nama": "Insentif/operasional RT/RW",
+            "volume": "9 orang",
+            "sasaran": "Ketua RW/RT",
+            "waktu": "12 bulan",
+            "jumlah": 75000000,
+            "sumber": "ADK",
+            "sdgs": "18"
+          },
+          {
+            "nama": "Biaya pemerintah kampung yang bersumber dari Dana Desa",
+            "volume": "23 KK",
+            "sasaran": "Ketua RW/RT",
+            "waktu": "12 bulan",
+            "jumlah": 10800000,
+            "sumber": "DD",
+            "sdgs": "1"
+          },
+          {
+            "nama": "Pemutakhiran profil kampung (profil kependudukan dan potensi) dan pendataan SDGs Desa",
+            "volume": "1 kegiatan",
+            "sasaran": "Masyarakat",
+            "waktu": "7 hari",
+            "jumlah": 5840000,
+            "sumber": "DD",
+            "sdgs": "10, 17"
+          },
+          {
+            "nama": "Penyelenggaraan musyawarah kampung",
+            "volume": "1 kegiatan",
+            "sasaran": "Tim penyusun",
+            "waktu": "2 hari",
+            "jumlah": 3800000,
+            "sumber": "ADK",
+            "sdgs": "1, 17"
+          },
+          {
+            "nama": "Penyusunan dokumen keuangan kampung (APBKam, LPJ APBKam, dan dokumen terkait)",
+            "volume": "22 orang",
+            "sasaran": "Tim penyusun",
+            "waktu": "3 bulan",
+            "jumlah": 22005000,
+            "sumber": "ADK",
+            "sdgs": "18"
+          },
+          {
+            "nama": "Sistem informasi kampung",
+            "volume": "1 kegiatan",
+            "sasaran": "Masyarakat",
+            "waktu": "12 bulan",
+            "jumlah": 1200000,
+            "sumber": "ADK",
+            "sdgs": "1"
+          },
+          {
+            "nama": "Dukungan pelaksanaan dan sosialisasi pemilihan kepala kampung",
+            "volume": "1 kegiatan",
+            "sasaran": "Masyarakat",
+            "waktu": "12 bulan",
+            "jumlah": 30758062,
+            "sumber": "ADK",
+            "sdgs": "1"
+          },
+          {
+            "nama": "Penentuan/penegasan/pembangunan batas atau patok tanah kampung",
+            "volume": "2 kegiatan",
+            "sasaran": "Masyarakat",
+            "waktu": "13 bulan",
+            "jumlah": 3096000,
+            "sumber": "ADK",
+            "sdgs": "1"
+          }
+        ]
+      },
+      {
+        "no": 2,
+        "nama": "Pembangunan Kampung",
+        "jumlah": 280836048,
+        "kegiatan": [
+          {
+            "nama": "Penyelenggaraan PAUD/TK/TPA/TKA/TPQ/madrasah nonformal milik kampung (honor pengajar, seragam, operasional)",
+            "volume": "5 orang",
+            "sasaran": "Pengajar PAUD, guru ngaji, dan guru sekolah minggu",
+            "waktu": "12 bulan",
+            "jumlah": 69050000,
+            "sumber": "DD",
+            "sdgs": "4, 16"
+          },
+          {
+            "nama": "Dukungan penyelenggaraan PAUD (APE, sarana PAUD)",
+            "volume": "1 paket",
+            "sasaran": "Masyarakat",
+            "waktu": "12 bulan",
+            "jumlah": 31589500,
+            "sumber": "DD",
+            "sdgs": "1"
+          },
+          {
+            "nama": "Penyelenggaraan posyandu (makanan tambahan, kelas ibu hamil, kelas lansia, insentif kader posyandu)",
+            "volume": "1 paket",
+            "sasaran": "Balita, lansia, dan kader posyandu",
+            "waktu": "12 bulan",
+            "jumlah": 81806500,
+            "sumber": "DD",
+            "sdgs": "3"
+          },
+          {
+            "nama": "Pemeliharaan gedung/prasarana balai kampung",
+            "volume": "1 paket",
+            "sasaran": "Masyarakat",
+            "waktu": "1 tahun",
+            "jumlah": 18580771,
+            "sumber": "ADK",
+            "sdgs": "1"
+          },
+          {
+            "nama": "Pemeliharaan pemakaman milik kampung",
+            "volume": "2 orang",
+            "sasaran": "Penjaga makam",
+            "waktu": "12 bulan",
+            "jumlah": 9600000,
+            "sumber": "DD",
+            "sdgs": "11"
+          },
+          {
+            "nama": "Pembangunan gorong-gorong RT 13 dan RT 15",
+            "volume": "2 RT",
+            "sasaran": "Masyarakat",
+            "waktu": "1 tahun",
+            "jumlah": 31657277,
+            "sumber": "DD",
+            "sdgs": "2",
+            "ket": "RT 13 Rp14.502.554 dan RT 15 Rp17.154.723."
+          },
+          {
+            "nama": "Pembangunan peningkatan balai kampung (rehab balai kampung)",
+            "volume": "1 paket",
+            "sasaran": "Masyarakat",
+            "waktu": "1 tahun",
+            "jumlah": 6282000,
+            "sumber": "ADK",
+            "sdgs": "1"
+          },
+          {
+            "nama": "Peningkatan makam kampung",
+            "volume": "2 paket",
+            "sasaran": "Penjaga makam",
+            "waktu": "13 bulan",
+            "jumlah": 30920000,
+            "sumber": "DD",
+            "sdgs": "2"
+          },
+          {
+            "nama": "Penyelenggaraan informasi publik kampung",
+            "volume": "1 kegiatan",
+            "sasaran": "Masyarakat",
+            "waktu": "5 hari",
+            "jumlah": 1350000,
+            "sumber": "DD",
+            "sdgs": "18"
+          }
+        ]
+      },
+      {
+        "no": 3,
+        "nama": "Pembinaan Kemasyarakatan",
+        "jumlah": 37368000,
+        "kegiatan": [
+          {
+            "nama": "Penyelenggaraan pos keamanan kampung (jadwal ronda/patroli, Linmas)",
+            "volume": "1 kegiatan",
+            "sasaran": "Masyarakat",
+            "waktu": "1 tahun",
+            "jumlah": 3768000,
+            "sumber": "ADK",
+            "sdgs": "14"
+          },
+          {
+            "nama": "Penguatan dan peningkatan kapasitas tenaga keamanan/ketertiban oleh pemerintah kampung",
+            "jumlah": 33600000,
+            "sumber": "ADK"
+          }
+        ]
+      },
+      {
+        "no": 4,
+        "nama": "Pemberdayaan Masyarakat",
+        "jumlah": 0,
+        "kegiatan": [],
+        "ket": "Belum ada kegiatan yang dianggarkan dalam RKPK 2026."
+      },
+      {
+        "no": 5,
+        "nama": "Penanggulangan Bencana, Keadaan Darurat, dan Mendesak",
+        "jumlah": 84000000,
+        "kegiatan": [
+          {
+            "nama": "Keadaan mendesak: Bantuan Langsung Tunai Dana Desa (BLT-DD)",
+            "volume": "35 KK",
+            "sasaran": "Masyarakat",
+            "waktu": "12 bulan",
+            "jumlah": 84000000,
+            "sumber": "DD",
+            "sdgs": "1, 2"
+          }
+        ]
+      }
+    ],
+    "totalBelanja": 906471110,
+    "pembiayaan": [
+      {
+        "nama": "Penyertaan modal kampung (Dana Desa untuk ketahanan pangan)",
+        "volume": "1 kegiatan",
+        "sasaran": "Masyarakat",
+        "waktu": "12 bulan",
+        "jumlah": 54000000,
+        "sumber": "DD",
+        "sdgs": "2"
+      }
+    ],
+    "totalRab": 960471110,
+    "pagu": [
+      [
+        "Belanja rutin",
+        "30%",
+        "dari total belanja kampung, bersumber dari APBN dan APBD"
+      ],
+      [
+        "Belanja pembangunan",
+        "70%",
+        "untuk bidang pembangunan, pembinaan kemasyarakatan, pemberdayaan masyarakat, penanggulangan bencana, dan penyertaan modal (ketahanan pangan)"
+      ]
+    ],
+    "paguKet": "Komposisi pagu disepakati dalam forum Musrenbang RKP Kampung.",
+    "pelaksanaan": "Semua kegiatan dilaksanakan secara swakelola oleh Tim Pelaksana Kegiatan (TPK) Dana Desa atau Alokasi Dana Kampung, di Kampung Marga Mulya.",
+    "prioritas": [
+      {
+        "judul": "Evaluasi pembangunan tahun sebelumnya",
+        "isi": "Masa jabatan kepala kampung diperpanjang dari 6 menjadi 8 tahun, sehingga RKPK 2026 melanjutkan pembangunan yang belum terlaksana. Sebagian usulan prioritas dalam matriks RPJMK belum terpenuhi karena refocusing atau efisiensi anggaran, serta adanya kewajiban anggaran seperti penanggulangan kerawanan sosial, pendataan SDGs Desa, dan penanganan stunting."
+      },
+      {
+        "judul": "Prioritas RPJMK",
+        "isi": "Berdasarkan Peraturan Kampung Nomor 01 Tahun 2019 tentang RPJM Kampung (2019–2026), prioritas meliputi bidang pemerintahan, pembangunan, pembinaan kemasyarakatan, pemberdayaan masyarakat, penanggulangan bencana, penyertaan modal (ketahanan pangan), dan pendapatan asli kampung."
+      },
+      {
+        "judul": "Prioritas kebijakan supra kampung",
+        "isi": "Mengikuti prioritas pembangunan daerah: mengurangi kemiskinan dan meningkatkan pendapatan masyarakat lewat ekonomi rakyat dan BUMK, didukung peningkatan pendidikan dan kualitas kesehatan."
+      },
+      {
+        "judul": "Analisa keadaan darurat",
+        "isi": "Masalah mendasar yang perlu segera diatasi: infrastruktur jalan, gorong-gorong, saluran air, penanggulangan kemiskinan, ketahanan pangan, terwujudnya Koperasi Merah Putih, dan pengembangan Badan Usaha Milik Kampung yang pendapatannya belum maksimal."
+      }
+    ],
+    "skala": [
+      [
+        "Skala kampung",
+        "Program yang sepenuhnya mampu dilaksanakan kampung, diukur dari ketersediaan anggaran, kewenangan, dan potensi unggulan kampung."
+      ],
+      [
+        "Skala distrik/kabupaten",
+        "Kebutuhan nyata warga yang bukan kewenangan kampung, terlalu besar biayanya, atau belum didukung sumber daya. Usulan dibawa delegasi kampung ke Musrenbang Distrik."
+      ]
+    ],
+    "dasarHukum": [
+      "UU Nomor 12 Tahun 1969 tentang Pembentukan Propinsi Otonom Irian Barat dan Kabupaten-kabupaten Otonom di Propinsi Irian Barat",
+      "UU Nomor 21 Tahun 2001 tentang Otonomi Khusus bagi Provinsi Papua, sebagaimana diubah dengan UU Nomor 35 Tahun 2008",
+      "UU Nomor 12 Tahun 2011 tentang Pembentukan Peraturan Perundang-undangan",
+      "UU Nomor 6 Tahun 2014 tentang Desa",
+      "UU Nomor 23 Tahun 2014 tentang Pemerintahan Daerah",
+      "PP Nomor 43 Tahun 2014 tentang Peraturan Pelaksanaan UU Nomor 6 Tahun 2014 tentang Desa",
+      "PP Nomor 60 Tahun 2014 tentang Dana Desa yang Bersumber dari APBN",
+      "Permendagri Nomor 114 Tahun 2014 tentang Pedoman Pembangunan Desa",
+      "Permendagri Nomor 20 Tahun 2018 tentang Pengelolaan Keuangan Desa",
+      "Permendesa PDTT Nomor 13 Tahun 2023 tentang Petunjuk Operasional atas Fokus Penggunaan Dana Desa Tahun 2026",
+      "PMK Nomor 145 Tahun 2023 tentang Pengelolaan Dana Desa",
+      "PMK Nomor 146 Tahun 2023 tentang Pengalokasian Dana Desa Setiap Desa, Penyaluran, dan Penggunaan Dana Desa Tahun Anggaran 2026",
+      "Peraturan Bupati Merauke Nomor 5 Tahun 2026 tentang Tata Cara Pengalokasian Alokasi Dana Kampung"
+    ],
+    "dasarHukumRingkas": 4,
+    "berkas": [
+      {
+        "nama": "Dokumen RKPK 2026",
+        "ket": "Peraturan Kampung Nomor 002 Tahun 2026 beserta lampiran Bab I–V",
+        "pdf": "assets/dok/RKPK-Kampung-Marga-Mulya-2026.pdf",
+        "asli": "assets/dok/RKPK-Kampung-Marga-Mulya-2026.docx",
+        "format": "Word",
+        "hal": 15
+      },
+      {
+        "nama": "RAB RKPK 2026",
+        "ket": "Rencana kegiatan, volume, sasaran, waktu, biaya, sumber dana, dan daftar prioritas masalah",
+        "pdf": "assets/dok/RAB-RKPK-Kampung-Marga-Mulya-2026.pdf",
+        "asli": "assets/dok/RAB-RKPK-Kampung-Marga-Mulya-2026.xlsx",
+        "format": "Excel",
+        "hal": 4
+      }
+    ],
+    "privasi": "Nomor induk pegawai (NIP) dan pangkat pejabat penandatangan dihapus dari salinan dokumen untuk melindungi data pribadi."
+  },
+
+  // Potensi sumber daya menurut RPJMK (Bab II).
+  potensiSD: {
+    pengantar: "Kajian sumber daya dalam RPJMK menempatkan Marga Mulya sebagai sentra produksi padi. Tanahnya paling cocok untuk persawahan, dan hampir semua keluarga menggantungkan penghasilan pada pertanian.",
+    sumber: "RPJMK Kampung Marga Mulya 2019–2024, Bab II",
+    // Angka kondisi tahun 2019 (sumber daya alam, manusia, pembangunan, sosial budaya) dihapus;
+    // data terbaru ada di Monografi Kampung 2026 (menu Data Kampung dan Potensi).
+    daftar: [],
+    // Kalender musim (Tabel II.6). Nilai 0–3 = tidak ada sampai puncak.
+    kalender: [
+      ["Tanam padi rendengan", [3,2,0,0,0,0,0,0,0,3,3,0]],
+      ["Panen padi rendengan", [0,0,0,2,3,0,0,0,0,0,0,0]],
+      ["Tanam padi gadu",      [0,0,0,0,2,3,0,0,0,0,0,0]],
+      ["Panen padi gadu",      [0,0,0,0,0,0,0,2,3,0,0,0]],
+      ["Hama tanaman",         [0,0,2,0,0,0,1,0,0,0,0,0]],
+      ["Banjir",               [0,1,2,0,0,0,0,0,0,0,0,0]],
+      ["Keterbatasan air",     [0,0,0,0,0,0,1,1,2,3,3,2]],
+      ["Musim hajatan",        [0,0,0,3,0,3,2,0,0,0,0,0]]
+    ]
+  },
+
+  batas: {
+    utara: "Distrik Tanah Miring (Kampung Sumber Harapan dan Kampung Yasa Mulya)",
+    selatan: "Kampung Semangga Jaya dan Kampung Kuper",
+    timur: "Kampung Kamangi dan Kali Maro",
+    barat: "Kampung Waninggap Kai"
+  },
+
+  struktur: {
+    // Sumber: papan Struktur Pemerintahan Kampung Marga Mulya di kantor kampung (foto Oktober 2026),
+    // dengan Kepala Kampung saat ini Sunaryo, S.AP (Plt., merangkap Sekretaris Kampung).
+    kepala: { jabatan: "Plt. Kepala Kampung", nama: "Sunaryo, S.AP", pendidikan: "S1", foto: "", kontak: "",
+      tugas: "Memimpin penyelenggaraan pemerintahan kampung, melaksanakan pembangunan, pembinaan kemasyarakatan, dan pemberdayaan masyarakat. Saat ini juga merangkap Sekretaris Kampung." },
+    sekretaris: { jabatan: "Sekretaris Kampung", nama: "Sunaryo, S.AP", pendidikan: "S1",
+      tugas: "Membantu Kepala Kampung di bidang administrasi pemerintahan dan mengoordinasikan kepala urusan." },
+    kaur: [
+      { jabatan: "Kaur Umum dan Tata Usaha", nama: "Nurdhaiyah, S.P", pendidikan: "S1", tugas: "Mengurus surat-menyurat, arsip, inventaris aset, dan keperluan umum kantor kampung." },
+      { jabatan: "Kaur Keuangan", nama: "Eko Wahyudi, S.Sos", pendidikan: "S1", tugas: "Menatausahakan keuangan kampung: penerimaan, pengeluaran, pembukuan, dan laporan pertanggungjawaban APBKam." },
+      { jabatan: "Kaur Perencanaan", nama: "Ramdan Sidik Suseno, S.T", pendidikan: "S1", tugas: "Menyusun rencana pembangunan kampung (RPJMKam dan RKPKam) serta memantau pelaksanaannya." }
+    ],
+    kasi: [
+      { jabatan: "Kasi Pemerintahan", nama: "Mitra Setiawan, S.Pd", pendidikan: "S1", tugas: "Menangani administrasi kependudukan, pertanahan, ketertiban, dan penyusunan produk hukum kampung." },
+      { jabatan: "Kasi Kesejahteraan", nama: "Kidin", pendidikan: "SMEA", tugas: "Melaksanakan pembangunan sarana prasarana dan program pemberdayaan masyarakat." },
+      { jabatan: "Kasi Pelayanan", nama: "Wati, A.Md", pendidikan: "D-III", tugas: "Melaksanakan penyuluhan, pelayanan sosial, keagamaan, dan ketenagakerjaan." }
+    ],
+    // Ketua RW dan Ketua RT per wilayah
+    rw: [
+      { rw: "01", ketua: "Suparman", rt: [["01", "Sriyanto"], ["02", "Suyadi"], ["08", "Karsan"]] },
+      { rw: "02", ketua: "Sutarto", rt: [["03", "Maksun"], ["06", "Ach. Amirudin"], ["07", "Ridho"]] },
+      { rw: "03", ketua: "Saridi", rt: [["04", "Nur Hadi"], ["05", "Sugino"], ["09", "Tumirin"], ["10", "Suyah"]] },
+      { rw: "04", ketua: "Triono", rt: [["11", "Ari Saputra"], ["12", "Sarinoto"]] },
+      { rw: "05", ketua: "Dalimin", rt: [["13", "Jimin"], ["14", "Meseri"]] },
+      { rw: "06", ketua: "Supomo", rt: [["15", "Sugiyanto"], ["16", "Kadaro"]] },
+      { rw: "07", ketua: "Suhartono", rt: [["17", "Tugiran"], ["18", "Rebo"]] }
+    ],
+    jumlah: [
+      { label: "Aparat kampung", jumlah: 8 }, { label: "Anggota Bamuskam", jumlah: 9 }, { label: "Anggota Linmas", jumlah: 14 }
+    ],
+    // Sumber: papan Struktur Badan Musyawarah Kampung (Bamuskam) Kampung Marga Mulya
+    bamuskam: [
+      { jabatan: "Ketua", nama: "Azwari Subhan, S.Ag" },
+      { jabatan: "Wakil Ketua", nama: "A. Suprianto" },
+      { jabatan: "Sekretaris", nama: "Purwanto" },
+      { jabatan: "Anggota", nama: "Siti Nurlia Pakaimu" },
+      { jabatan: "Anggota", nama: "Jaeni L. Basik-Basik" },
+      { jabatan: "Anggota", nama: "M. Ali" },
+      { jabatan: "Anggota", nama: "Suradi" },
+      { jabatan: "Anggota", nama: "Riyadi" },
+      { jabatan: "Anggota", nama: "Sutikno" }
+    ],
+    lembaga: [
+      { nama: "TP PKK Kampung", ket: "Pemberdayaan dan kesejahteraan keluarga", ketua: "Nur Hidayah",
+        detail: "Monografi 2026: 21 pengurus dan 35 anggota, 4 kegiatan setiap bulan, 3 buku administrasi, dan dana kelola Rp86.000.000.",
+        pengurus: [
+          ["Ketua", "Nur Hidayah"], ["Wakil Ketua I", "Nur Heni Susilo Wulan"], ["Wakil Ketua II", "Anik Endang Susilo Wati"],
+          ["Sekretaris", "Rini Anjayani, Jumiati"], ["Bendahara", "Ngatmi, Eva Purnamasari"],
+          ["Pokja I", "Koordinator Fatmawati · Bendahara Endang · Sekretaris Sugiati · 10 anggota"],
+          ["Pokja II", "Koordinator Sunarni · Bendahara Astri Dewi Ningsih · Sekretaris Pariyem · 9 anggota"],
+          ["Pokja III", "Koordinator Wagini · Bendahara Dustik · Sekretaris Siti Nuraini · 9 anggota"],
+          ["Pokja IV", "Koordinator Suprihati · Bendahara Mistinah · Sekretaris Nurhayati · 10 anggota"]
+        ] },
+      { nama: "Karang Taruna Cahaya Muda", ket: "Wadah kegiatan kepemudaan", detail: "13 pengurus dan 17 anggota. Kegiatan utama: bakti sosial." },
+      { nama: "BUMKam Bina Mulya Sejahtera", ket: "Badan Usaha Milik Kampung", detail: "3 unit usaha: depot air minum, wisata pemancingan, dan ayam petelur. Modal Rp657.899.000; keuangan yang dikelola Rp84.000.000." },
+      { nama: "Linmas", ket: "Perlindungan masyarakat", detail: "14 anggota Linmas dan 18 pos kamling. Kampung juga memiliki 1 tim tanggap dan siaga bencana (Tagana)." },
+      { nama: "Majelis taklim", ket: "9 kelompok · 300 anggota", detail: "Al Kautsar (65), Al Muhajir (60), Al Qodri (35), Al Jannah (32), Nurul Huda (29), Attaubah (26), Al Amin (22), Al Karimah (19), dan Nurul Hikmah (12 orang)." },
+      { nama: "Kelompok kepemudaan", ket: "4 kelompok · 118 anggota", detail: "Remaja Masjid Nurul Huda (37), Remaja Masjid Al Amin (36), Pemuda Gereja (26), dan Karang Taruna (19 orang)." },
+      { nama: "Paguyuban kuda lumping", ket: "Seni budaya", detail: "2 kelompok dengan 58 anggota." }
+    ]
+  },
+
+  /* ---------- PRESTASI KAMPUNG ----------
+     Sumber: piagam dan sertifikat di Kantor Kampung Marga Mulya (foto Oktober 2026). */
+  prestasi: [
+    { tahun: 2025, judul: "Tuan rumah Jambore Cabang XII Gerakan Pramuka Merauke", pemberi: "Kwartir Cabang Gerakan Pramuka Merauke",
+      dokumen: "Piagam Penghargaan No. 169/2601/JAMCAB/2025, Merauke, 1 Juni 2025",
+      ket: "Penghargaan kepada Pemerintah Kampung Marga Mulya yang berpartisipasi dan menyukseskan Jambore Cabang XII Kwartir Cabang Merauke pada 29 Mei–1 Juni 2025, yang diselenggarakan di Kampung Marga Mulya.",
+      tentang: "Jambore Cabang adalah perkemahan besar Pramuka penggalang tingkat kabupaten/kota yang diselenggarakan Kwartir Cabang.",
+      foto: ["assets/img/prestasi/jamcab-2025.jpg"] },
+    { tahun: 2024, judul: "Juara 1 Paritrana Award 2023 Tingkat Provinsi Papua Selatan", pemberi: "Menteri Koordinator Bidang Pembangunan Manusia dan Kebudayaan RI",
+      dokumen: "Piagam Penghargaan, Merauke, November 2024; juga piagam dari Pemerintah Provinsi Papua Selatan",
+      ket: "Juara 1 Penghargaan Jaminan Sosial Ketenagakerjaan (Paritrana Award) Tahun 2023 kategori Pemerintah Desa/Kelurahan tingkat Provinsi Papua Selatan.",
+      tentang: "Paritrana Award adalah penghargaan pemerintah bersama BPJS Ketenagakerjaan bagi pemerintah daerah, desa, dan badan usaha yang mendukung perlindungan jaminan sosial ketenagakerjaan bagi pekerja.",
+      foto: ["assets/img/prestasi/paritrana-kemenko-pmk.jpg", "assets/img/prestasi/paritrana-papua-selatan.jpg"] },
+    { tahun: 2023, judul: "Desa Cantik Terbaik Wilayah Papua – kategori Kelengkapan Dokumen", pemberi: "Badan Pusat Statistik Provinsi Papua",
+      dokumen: "Sertifikat Penghargaan No. B-139/94523/VS.190/12/2023, Jayapura, 6 Desember 2023",
+      ket: "Desa Marga Mulya ditetapkan sebagai Desa Cinta Statistik (Desa Cantik) terbaik untuk wilayah Papua pada Pembinaan Desa Cantik 2023 Program Nasional, kategori Kelengkapan Dokumen.",
+      tentang: "Desa Cantik (Desa Cinta Statistik) adalah program pembinaan BPS agar perangkat desa mampu mengumpulkan, mengelola, dan memanfaatkan data statistik untuk perencanaan pembangunan desa.",
+      foto: ["assets/img/prestasi/desa-cantik-2023.jpg"] },
+    { tahun: 2022, judul: "Desa Utama Program Desa Cinta Statistik (Desa Cantik)", pemberi: "Badan Pusat Statistik",
+      dokumen: "Sertifikat Kepala Badan Pusat Statistik, 2022",
+      ket: "Penghargaan BPS kepada Desa Marga Mulya atas partisipasinya sebagai desa/kelurahan utama dalam Program Desa Cinta Statistik (Desa Cantik) Tahun 2022.",
+      tentang: "Desa/kelurahan utama adalah desa yang dipilih menjadi lokasi pembinaan Desa Cantik pada tahun tersebut.",
+      foto: ["assets/img/prestasi/desa-cantik-2022.jpg"] }
+  ],
+
+  penduduk: {
+    total: 3201,
+    laki: 1674,
+    perempuan: 1527,
+    kk: 986,
+    // Kelompok usia di monografi hanya tiga kelompok (jumlahnya 3.197, selisih 4 dari total).
+    kelompokUsia: [
+      { label: "0–17 tahun", jumlah: 897, ket: "Anak dan remaja usia sekolah." },
+      { label: "18–56 tahun", jumlah: 1728, ket: "Penduduk usia produktif." },
+      { label: "Di atas 56 tahun", jumlah: 572, ket: "Penduduk lanjut usia." }
+    ],
+    kesejahteraan: [
+      { label: "Pra sejahtera", jumlah: 206 }, { label: "Sejahtera I", jumlah: 361 },
+      { label: "Sejahtera II", jumlah: 376 }, { label: "Sejahtera III", jumlah: 16 }, { label: "Sejahtera III Plus", jumlah: 27 }
+    ],
+    // Murid & guru di sekolah kampung, serta tenaga kesehatan
+    sekolah: [
+      { label: "Taman kanak-kanak", murid: 117, guru: 9 },
+      { label: "Sekolah dasar", murid: 214, guru: 12 }
+    ],
+    tenagaKesehatan: [
+      { label: "Dokter umum", jumlah: 1 }, { label: "Bidan / dukun bayi terlatih", jumlah: 2 }, { label: "Perawat", jumlah: 13 }
+    ],
+    pendidikan: [
+      { label: "Tidak / belum sekolah", jumlah: 230 }, { label: "Tidak lulus", jumlah: 403 },
+      { label: "Taman kanak-kanak", jumlah: 212 }, { label: "SD / sederajat", jumlah: 615 },
+      { label: "SMP / sederajat", jumlah: 538 }, { label: "SMA / sederajat", jumlah: 962 },
+      { label: "Akademi / D1–D3", jumlah: 52 }, { label: "Sarjana (S1)", jumlah: 129 },
+      { label: "Magister (S2)", jumlah: 2 }, { label: "Pondok pesantren", jumlah: 41 },
+      { label: "Pendidikan keagamaan", jumlah: 17 }
+    ],
+    pekerjaan: [
+      { label: "Petani", jumlah: 2161 }, { label: "Tidak / belum bekerja", jumlah: 314 },
+      { label: "Lainnya", jumlah: 193 }, { label: "Peternak", jumlah: 127 },
+      { label: "Pegawai swasta", jumlah: 123 }, { label: "Karyawan swasta", jumlah: 68 },
+      { label: "Wiraswasta / pedagang", jumlah: 65 }, { label: "Pegawai negeri sipil", jumlah: 40 },
+      { label: "Jasa", jumlah: 25 }, { label: "Buruh tani", jumlah: 24 },
+      { label: "TNI / Polri", jumlah: 21 }, { label: "Pensiunan", jumlah: 17 },
+      { label: "Pengrajin / mebel", jumlah: 11 }, { label: "Pekerja seni", jumlah: 11 }, { label: "Nelayan", jumlah: 1 }
+    ],
+    agama: [
+      { label: "Islam", jumlah: 2916 }, { label: "Katolik", jumlah: 258 },
+      { label: "Kristen", jumlah: 18 }, { label: "Hindu", jumlah: 9 }
+    ],
+    suku: [
+      { label: "Jawa", jumlah: 2801 }, { label: "Mandobo", jumlah: 139 }, { label: "Mappi", jumlah: 65 },
+      { label: "Sunda", jumlah: 64 }, { label: "Makassar", jumlah: 34 }, { label: "Marind", jumlah: 28 },
+      { label: "Maluku", jumlah: 20 }, { label: "NTB", jumlah: 18 }, { label: "Batak", jumlah: 18 }, { label: "NTT", jumlah: 14 }
+    ]
+  },
+
+  /* ---------- BERITA KAMPUNG (tampil sebagai slider di bawah foto utama) ----------
+     Urutkan dari yang terbaru. cover = gambar sampul dari situs berita (boleh kosong;
+     bila kosong atau gagal dimuat, sampul biru otomatis ditampilkan). */
+  berita: [
+    { tanggal: "2026-10-23", sumber: "Tiffa News", judul: "TEP 06 IPB University Dorong Kemandirian Petani melalui Pelatihan Budidaya Padi Berkelanjutan",
+      ringkas: "Petani Kampung Marga Mulya berlatih membuat sendiri pupuk dan pestisida nabati lalu mengujinya di sawah.",
+      url: "https://www.tiffanews.co.id/berita/40485/tep-06-ipb-university-dorong-kemandirian-petani-melalui-pelatihan-budidaya-padi-berkelanjutan-2/",
+      cover: "https://www.tiffanews.co.id/wp-content/uploads/2026/10/IMG-20261023-WA0026.jpg" },
+    { tanggal: "2026-08-28", sumber: "Suara Media", judul: "Peran TNI AD, Seskoad dan LPPM Unjani dalam Mewujudkan Infrastruktur yang Bermanfaat bagi Masyarakat di Merauke",
+      ringkas: "Tim Seskoad dan Unjani meninjau dua sumur bor di Marga Mulya, di SD Inpres Semangga III dan masjid RT 09.",
+      url: "https://suaramediaa.id/2026/08/28/peran-tni-ad-seskoad-dan-universitas-lppm-unjani-dalam-mewujudkan-infrastruktur-yang-bermanfaat-bagi-masyarakat-di-merauke/",
+      cover: "" },
+    { tanggal: "2026-08-26", sumber: "Barometer99", judul: "Peran TNI AD Wujudkan Air Bersih, Harapan Siswa dan Guru SD Inpres Semangga III Kini Terwujud",
+      ringkas: "Sumur bor di SD Inpres Semangga III, Kampung Marga Mulya, selesai dan ditinjau Pangdam XXIV/Mandala Trikora.",
+      url: "https://barometer99.com/peran-tni-ad-wujudkan-air-bersih-harapan-siswa-dan-guru-sd-inpres-semangga-iii-kini-terwujud/",
+      cover: "https://barometer99.com/wp-content/uploads/2026/08/IMG-20260826-WA0090.jpg" },
+    { tanggal: "2025-10-01", sumber: "Papua Selatan Pos", judul: "Semangat Petani Merauke, Tanam Padi Serentak demi Swasembada Pangan Nasional",
+      ringkas: "Lebih dari 150 petani menanam padi serentak di Sawah Lahan 1 Kampung Marga Mulya bersama Brigade Pangan.",
+      url: "https://papuaselatanpos.com/2025/10/01/semangat-petani-merauke-tanam-padi-serentak-demi-swasembada-pangan-nasional/",
+      cover: "https://i0.wp.com/papuaselatanpos.com/wp-content/uploads/2025/09/Tanam-Padi-Serentak-yang-digelar-oleh-Brigade-Pangan-BP.jpg?fit=1600%2C1066&ssl=1" },
+    { tanggal: "2025-05-22", sumber: "Metro Merauke", judul: "Pencurian Alat Tani Resahkan Warga di Semangga, Komponen Hand Traktor hingga Mesin Pompa Air Digondol",
+      ringkas: "Warga Semangga, termasuk Kampung Marga Mulya (Semangga 3), resah karena maraknya pencurian alat pertanian.",
+      url: "https://metromerauke.co/pencurian-alat-tani-resahkan-warga-di-semangga-komponen-hand-traktor-hingga-mesin-pompa-air-digondol/",
+      cover: "https://metromerauke.co/wp-content/uploads/2025/05/IMG_20250522_220200.jpg" },
+    { tanggal: "2022-02-17", sumber: "Suara Merauke (Pemkab Merauke)", judul: "Bupati Merauke: Masalah Limbah Kotoran Ayam Masih Dikaji Secara Teknis",
+      ringkas: "Pemerintah kabupaten masih mengkaji keluhan warga Marga Mulya terkait bau kandang ayam petelur di kampung.",
+      url: "https://suara.merauke.go.id/post/3077/bupati-merauke-masalah-limbah-kotoran-ayam-masih-dikaji-secara-teknis.html",
+      cover: "https://suara.merauke.go.id/content/file_manager/lokasi-ternak-ayam-petelur-pt-harvest-pulus-papua-di-merauke.jpg" },
+    { tanggal: "2026-10-19", sumber: "IPB University", judul: "Tim Ekspedisi Patriot IPB University Kenalkan Data Desa Presisi, Bantu Rumuskan Kebijakan Kampung di Semangga",
+      ringkas: "Lokakarya data desa presisi bagi perangkat dan kader kampung digelar di Balai Kampung Marga Mulya.",
+      url: "https://www.ipb.ac.id/news/index/2026/10/tim-ekspedisi-patriot-ipb-university-kenalkan-data-desa-presisi-bantu-rumuskan-kebijakan-kampung-di-semangga",
+      cover: "https://www.ipb.ac.id/wp-content/uploads/2026/10/tim-ekspedisi-patriot-ipb-university-kenalkan-data-desa-presisi-bantu-rumuskan-kebijakan-kampung-di-semangga-770x400.avif" },
+    { tanggal: "2026-10-09", sumber: "MataPapua", judul: "Ubah Limbah Jadi Pakan Bernilai, Tim 17 TEP IPB University Kembangkan Teknologi Amoniasi Jerami di Semangga",
+      ringkas: "Peternak di Semangga, termasuk Marga Mulya, belajar mengolah jerami padi menjadi pakan sapi.",
+      url: "https://matapapua.com/ubah-limbah-jadi-pakan-bernilai-tim-17-tep-ipb-university-kembangkan-teknologi-amoniasi-jerami-di-semangga",
+      cover: "https://matapapua.com/storage/whatsapp-image-2026-10-09-at-173204.jpeg" },
+    { tanggal: "2026-09-14", sumber: "Barometer99", judul: "TNI AD Wujudkan Air Bersih, Kodim 1707/Merauke Hadir Atasi Kesulitan Warga RT.09 Marga Mulya",
+      ringkas: "Sumur bor di Mushola Al Barokah RT 09 kini menjadi sumber air bersih warga.",
+      url: "https://barometer99.com/tni-ad-wujudkan-air-bersih-kodim-1707-merauke-hadir-atasi-kesulitan-warga-rt-09-marga-mulya/",
+      cover: "https://barometer99.com/wp-content/uploads/2026/09/IMG-20260914-WA0055.jpg" },
+    { tanggal: "2026-08-23", sumber: "Barometer99", judul: "Babinsa dan Warga Bergerak Cepat Padamkan Kebakaran Lahan di Marga Mulya",
+      ringkas: "Babinsa dan warga memadamkan kebakaran lahan sekitar satu hektare sebelum mencapai permukiman.",
+      url: "https://barometer99.com/babinsa-dan-warga-bergerak-cepat-padamkan-kebakaran-lahan-di-marga-mulya/",
+      cover: "https://barometer99.com/wp-content/uploads/2026/08/IMG-20260823-WA0030.jpg" },
+    { tanggal: "2026-08-13", sumber: "Media TNI Polri", judul: "Kebersamaan TNI dan Masyarakat Wujudkan Harapan Air Bersih di Semangga Merauke",
+      ringkas: "Karya Bakti TNI AD 2026 membangun sumur bor, salah satunya di Mushola RT 09 Marga Mulya.",
+      url: "https://mediatni-polri.com/kebersamaan-tni-dan-masyarakat-wujudkan-harapan-air-bersih-di-semangga-merauke/",
+      cover: "https://mediatni-polri.com/wp-content/uploads/2026/08/IMG-20260813-WA0144.jpg" },
+    { tanggal: "2025-09-30", sumber: "Kodim 1707/Merauke", judul: "Semangat Petani Merauke; Tanam Padi Serentak demi Swasembada Pangan Nasional",
+      ringkas: "Lebih dari 150 orang menanam padi serentak di Sawah Lahan 1 Marga Mulya.",
+      url: "https://kodim1707merauke.com/berita/detail/semangat-petani-merauke-tanam-padi-serentak-demi-swasembada-pangan-nasional",
+      cover: "https://kodim1707merauke.com/asset/foto_berita/SAMPUL_TANAM_PADI_DI_SEMANGGA.jpg" },
+    { tanggal: "2025-05-22", sumber: "Metro Merauke", judul: "Viral, Pemotor Berjatuhan Melintasi Jalan Rusak di Distrik Semangga",
+      ringkas: "Jalan penghubung Muram Sari dan Marga Mulya rusak setelah perbaikannya terhenti.",
+      url: "https://metromerauke.co/viral-pemotor-berjatuhan-melintasi-jalan-rusak-di-distrik-semangga/",
+      cover: "https://metromerauke.co/wp-content/uploads/2025/05/IMG_20250522_225734.jpg" },
+    { tanggal: "2024-10-22", sumber: "Pemkab Merauke", judul: "Lima Kampung Pemekaran Baru di Merauke Ditetapkan Batas Wilayahnya Melalui FGD",
+      ringkas: "Marga Mulya termasuk kampung yang diusulkan dimekarkan; batas wilayahnya dibahas dalam FGD.",
+      url: "https://portal.merauke.go.id/berita/lima-kampung-pemekaran-baru-di-merauke-ditetapkan-batas-wilayahnya-melalui-fgd",
+      cover: "https://portal.merauke.go.id/api/serve-uploads/images/lima-kampung.jpg" },
+    { tanggal: "2023-05-13", sumber: "Kompas.com", judul: "Cerita Warga Kampung Marga Mulya Merauke, Tiap Hari Kumpulkan Uang hingga Rp 83 Juta untuk Bangun Pos Polisi",
+      ringkas: "Warga bergotong royong mengumpulkan dana untuk membangun pos polisi di kampung.",
+      url: "https://regional.kompas.com/read/2023/05/13/180917478/cerita-warga-kampung-marga-mulya-merauke-tiap-hari-kumpulkan-uang-hingga-rp",
+      cover: "" },
+    { tanggal: "2023-02-18", sumber: "Tiffa News", judul: "HUT Kota Merauke ke-121, Warga Kampung Marga Mulya Ramaikan Panggung Hiburan Rakyat",
+      ringkas: "Warga menggelar tarian dan lomba anak untuk merayakan HUT Kota Merauke.",
+      url: "https://www.tiffanews.co.id/berita/25420/merauke-ke-121-warga-kampung-marga-mulya-ramaikan-panggung-hiburan-rakyat/",
+      cover: "" },
+    { tanggal: "2022-04-26", sumber: "Surya Papua", judul: "Di Kampung Marga Mulya, Lahan 140 Hektar Dibuka Tanam Jagung",
+      ringkas: "Warga membuka 140 hektare lahan untuk jagung manis dan ketan, namun terkendala air saat kemarau.",
+      url: "https://suryapapua.com/di-kampung-marga-mulya-lahan-140-hektar-dibuka-tanam-jagung/",
+      cover: "https://suryapapua.com/wp-content/uploads/2022/04/kepala-kampung-.jpg" },
+    { tanggal: "2022-02-18", sumber: "Surya Papua", judul: "Jeritan Warga Marga Mulya, Kami Hanya Punya Tumpuan Harapan di Bapak Romanus Mbaraka",
+      ringkas: "Warga mengeluhkan bau peternakan ayam dan Bupati Merauke meninjau langsung lokasinya.",
+      url: "https://suryapapua.com/jeritan-warga-marga-mulya-kami-hanya-punya-tumpuan-harapan-di-bapak-romanus-mbaraka/",
+      cover: "https://suryapapua.com/wp-content/uploads/2022/02/ternak-ayam.jpg" },
+    { tanggal: "2022-01-07", sumber: "Tribun Papua", judul: "Petani Marga Mulya Merauke Tanam Seribu Lebih Hektar",
+      ringkas: "Laporan musim tanam petani Marga Mulya yang mencakup lebih dari seribu hektare lahan.",
+      url: "https://papua.tribunnews.com/2022/01/07/petani-marga-mulya-merauke-tanam-seribu-lebih-hektar",
+      cover: "" }
+  ],
+
+  /* ---------- TRANSPARANSI ANGGARAN ----------
+     Monografi baru mencatat pendapatan (bantuan) dan SILPA. Rincian belanja
+     per bidang diisi setelah Perkam APBKam & laporan realisasi tersedia. */
+  // APBKam 2026 dari Penjabaran APBKam (ditandatangani Kepala Kampung, 4 Mei 2026).
+  // Rincian lengkap per kegiatan: data/apbk-2026.json (dibaca halaman apbk.html).
+  apbkam: {
+    tahun: 2026,
+    judul: "Penjabaran Anggaran Pendapatan dan Belanja Kampung (APBKam) Marga Mulya Tahun Anggaran 2026",
+    dokumen: "Penjabaran APBKam Kampung Marga Mulya Tahun Anggaran 2026",
+    tanggal: "4 Mei 2026",
+    penandatangan: "Kepala Kampung Marga Mulya",
+    halaman: "apbk.html",
+    rinciJson: "data/apbk-2026.json",
+    pendapatan: [
+      {
+        kelompok: "Pendapatan Asli Kampung",
+        jumlah: 12000000,
+        rincian: [
+          {
+            nama: "Pendapatan asli kampung (PAD tahun 2025)",
+            jumlah: 6500000
+          },
+          {
+            nama: "Pendapatan asli kampung (PAD tahun 2024)",
+            jumlah: 5500000
+          }
+        ],
+        ket: "Pendapatan dari usaha dan aset kampung yang dicatat dari tahun sebelumnya."
+      },
+      {
+        kelompok: "Pendapatan Transfer",
+        jumlah: 894683062,
+        rincian: [
+          {
+            nama: "Dana Desa (DD) 2026",
+            jumlah: 373456000
+          },
+          {
+            nama: "Alokasi Dana Kampung (ADK) 2026",
+            jumlah: 521227062
+          }
+        ],
+        ket: "Dana Desa dari APBN dan Alokasi Dana Kampung dari APBD Kabupaten Merauke."
+      },
+      {
+        kelompok: "Pendapatan Lain-lain",
+        jumlah: 0,
+        rincian: [],
+        ket: "Bunga bank dan pendapatan lain yang sah; tidak dianggarkan tahun ini."
+      }
+    ],
+    belanja: [
+      {
+        kode: "1",
+        bidang: "Bidang Penyelenggaraan Pemerintahan Desa",
+        anggaran: 504267062,
+        sub: [
+          {
+            nama: "Penyelenggara Belanja Penghasilan Tetap, Tunjangan dan Operasional Pemerintah Desa",
+            anggaran: 437568000,
+            kegiatan: [
+              {
+                nama: "Penyediaan Penghasilan Tetap dan Tunjangan Kepala Desa",
+                anggaran: 0,
+                sumber: "Alokasi Dana Kampung 2026"
+              },
+              {
+                nama: "Penyediaan Penghasilan Tetap dan Tunjangan Perangkat Desa",
+                anggaran: 180000000,
+                sumber: "Alokasi Dana Kampung 2026"
+              },
+              {
+                nama: "Penyediaan Jaminan Sosial bagi Kepala Desa dan Perangkat Desa",
+                anggaran: 11232000,
+                sumber: "Alokasi Dana Kampung 2026"
+              },
+              {
+                nama: "Penyediaan Operasional Pemerintah Desa (ATK, Honorarium PKPKD dan PPKD, perlengkapan perkantoran, Pakaian dinas/atribut, listrik/telpon, dll)",
+                anggaran: 68986000,
+                sumber: "Alokasi Dana Kampung 2026"
+              },
+              {
+                nama: "Penyediaan Tunjangan BAMUSKAM",
+                anggaran: 84600000,
+                sumber: "Alokasi Dana Kampung 2026"
+              },
+              {
+                nama: "Penyediaan Operasional BPD (Rapat-rapat (ATK, makan-minum), perlengkapan perkantoran, Pakaian Seragam, perjalanan dinas, listrik/telpon, dll)",
+                anggaran: 6950000,
+                sumber: "Alokasi Dana Kampung 2026"
+              },
+              {
+                nama: "Penyediaan Insentif/Operasional RT/RW",
+                anggaran: 75000000,
+                sumber: "Alokasi Dana Kampung 2026"
+              },
+              {
+                nama: "Biaya Pemerintah Desa yang bersumber Dari Dana Desa",
+                anggaran: 10800000,
+                sumber: "Dana Desa 2026"
+              }
+            ]
+          },
+          {
+            nama: "Administrasi Kependudukan, Pencatatan Sipil, Statistik dan Kearsipan",
+            anggaran: 5840000,
+            kegiatan: [
+              {
+                nama: "Pemutakhiran Data IDM Berbasis SDGs Desa Tahun 2022",
+                anggaran: 5840000,
+                sumber: "Dana Desa 2026"
+              }
+            ]
+          },
+          {
+            nama: "Tata Praja Pemerintahan, Perencanaan, Keuangan dan Pelaporan",
+            anggaran: 57763062,
+            kegiatan: [
+              {
+                nama: "Penyelenggaraan Musyawarah Desa Lainnya (musdus, rembug warga dll yang bersifat non reguler sesuai kebutuhan desa)",
+                anggaran: 3800000,
+                sumber: "Alokasi Dana Kampung 2026"
+              },
+              {
+                nama: "Penyusunan Dokumen Perencanaan Kampung (RPJMK, RKPK, dll)",
+                anggaran: 22005000,
+                sumber: "Alokasi Dana Kampung 2026"
+              },
+              {
+                nama: "Pengembangan Sistem Informasi Desa",
+                anggaran: 1200000,
+                sumber: "Alokasi Dana Kampung 2026"
+              },
+              {
+                nama: "Dukungan Pelaksanaan dan Sosialisasi Pilkades, Pemilihan Kepala Wilayah dan Pemilihan BPD (Yang Menjadi wewenang Desa)",
+                anggaran: 30758062,
+                sumber: "Alokasi Dana Kampung 2026"
+              }
+            ]
+          },
+          {
+            nama: "Pertanahan",
+            anggaran: 3096000,
+            kegiatan: [
+              {
+                nama: "Penentuan/Penegasan/Pembangunan Batas/Patok Tanah Desa",
+                anggaran: 3096000,
+                sumber: "Alokasi Dana Kampung 2026"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        kode: "2",
+        bidang: "Bidang Pelaksanaan Pembangunan Desa",
+        anggaran: 280836048,
+        sub: [
+          {
+            nama: "Pendidikan",
+            anggaran: 100639500,
+            kegiatan: [
+              {
+                nama: "Penyelenggaraan PAUD/TK/TPA/TKA/TPQ/Madrasah Non-Formal Milik Desa (Bantuan Honor Pengajar, Pakaian Seragam, Operasional, dst)",
+                anggaran: 69050000,
+                sumber: "Dana Desa 2026"
+              },
+              {
+                nama: "Pembangunan/Rehabilitasi/Peningkatan/Pengadaan Sarana/Prasarana/Alat Peraga Edukatif (APE) PAUD/ TK/TPA/TKA/TPQ/Madrasah Non-Formal Milik Desa",
+                anggaran: 31589500,
+                sumber: "Dana Desa 2026"
+              }
+            ]
+          },
+          {
+            nama: "Kesehatan",
+            anggaran: 81806500,
+            kegiatan: [
+              {
+                nama: "Penyelenggaraan Pos Kesehatan Desa (PKD)/Polindes Milik Desa (Obat-obatan; Tambahan Insentif Bidan Desa/Perawat Desa; Penyediaan Pelayanan KB dan Alat Kontrasepsi bagi Keluarga Miskin, dst)",
+                anggaran: 8594000,
+                sumber: "Dana Desa 2026"
+              },
+              {
+                nama: "Penyelenggaraan Posyandu (Makanan Tambahan, Kelas Ibu Hamil, Kelas Lansia, Insentif Kader Posyandu)",
+                anggaran: 66800000,
+                sumber: "Dana Desa 2026"
+              },
+              {
+                nama: "Pemeliharaan Sarana/Prasarana / Posyandu/Polindes/PKD",
+                anggaran: 860000,
+                sumber: "Dana Desa 2026"
+              },
+              {
+                nama: "Pembangunan/Rehabilitasi/Peningkatan/Pengadaan Sarana/Prasarana Posyandu/Polindes/PKD",
+                anggaran: 5552500,
+                sumber: "Dana Desa 2026"
+              }
+            ]
+          },
+          {
+            nama: "Pekerjaan Umum dan Penataan Ruang",
+            anggaran: 97040048,
+            kegiatan: [
+              {
+                nama: "Pemeliharaan Gedung/Prasarana Balai Desa/Balai Kemasyarakatan",
+                anggaran: 18580771,
+                sumber: "SiLPA Alokasi Dana Kampung 2025"
+              },
+              {
+                nama: "Pemeliharaan Pemakaman Milik Desa/Situs Bersejarah Milik Desa/Petilasan Milik Desa",
+                anggaran: 9600000,
+                sumber: "Dana Desa 2026"
+              },
+              {
+                nama: "Pemeliharaan Makam (Penimbunan Makam dan Peningkatan badan Jalan Makam = 100 Meter)",
+                anggaran: 30920000,
+                sumber: "Dana Desa 2026"
+              },
+              {
+                nama: "Pembangunan Gorong-Gorong (RT.15)",
+                anggaran: 17154723,
+                sumber: "SiLPA Dana Desa 2025"
+              },
+              {
+                nama: "Pembangunan Gorong-Gorong (RT.13)",
+                anggaran: 14502554,
+                sumber: "SiLPA Dana Desa 2025"
+              },
+              {
+                nama: "Pembangunan Peningkatan Balai Desa (Rehab Balai Desa)",
+                anggaran: 6282000,
+                sumber: "SiLPA Alokasi Dana Kampung 2025"
+              }
+            ]
+          },
+          {
+            nama: "Perhubungan, Komunikasi, dan Informatika",
+            anggaran: 1350000,
+            kegiatan: [
+              {
+                nama: "Penyelenggaraan Informasi Publik Kampung",
+                anggaran: 1350000,
+                sumber: "Dana Desa 2026"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        kode: "3",
+        bidang: "Bidang Pembinaan Kemasyarakatan Desa",
+        anggaran: 37368000,
+        sub: [
+          {
+            nama: "Ketenteraman, Ketertiban Umum, dan Pelindungan Masyarakat",
+            anggaran: 37368000,
+            kegiatan: [
+              {
+                nama: "Pengadaan/Penyelenggaraan Pos Keamanan Desa (Pelaksanaan jadwal ronda/patroli, dll.)",
+                anggaran: 3768000,
+                sumber: "SiLPA Alokasi Dana Kampung 2025"
+              },
+              {
+                nama: "Penguatan dan Peningkatan Kapasitas Tenaga Keamanan/Ketertiban oleh Pemerintah Desa (Satlinmas desa)",
+                anggaran: 33600000,
+                sumber: "Alokasi Dana Kampung 2026"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        kode: "4",
+        bidang: "Bidang Pemberdayaan Masyarakat Desa",
+        anggaran: 0,
+        sub: []
+      },
+      {
+        kode: "5",
+        bidang: "Bidang Penanggulangan Bencana, Keadaan Darurat dan Mendesak Desa",
+        anggaran: 84000000,
+        sub: [
+          {
+            nama: "Keadaan Mendesak",
+            anggaran: 84000000,
+            kegiatan: [
+              {
+                nama: "Keadaan Mendesak",
+                anggaran: 84000000,
+                sumber: "Dana Desa 2026"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    jenisBelanja: [
+      {
+        nama: "Belanja pegawai",
+        jumlah: 286632000
+      },
+      {
+        nama: "Belanja barang dan jasa",
+        jumlah: 418157292
+      },
+      {
+        nama: "Belanja modal",
+        jumlah: 117681818
+      },
+      {
+        nama: "Belanja tak terduga",
+        jumlah: 84000000
+      }
+    ],
+    sumberDana: [
+      {
+        nama: "Alokasi Dana Kampung 2026",
+        jumlah: 521227062
+      },
+      {
+        nama: "Dana Desa 2026",
+        jumlah: 324956000
+      },
+      {
+        nama: "SiLPA Dana Desa 2025",
+        jumlah: 31657277
+      },
+      {
+        nama: "SiLPA Alokasi Dana Kampung 2025",
+        jumlah: 28630771
+      }
+    ],
+    surplus: 211952,
+    pembiayaan: {
+      penerimaan: [
+        {
+          nama: "SiLPA Dana Desa 2025",
+          jumlah: 31657277
+        },
+        {
+          nama: "SiLPA Alokasi Dana Kampung 2025",
+          jumlah: 28630771
+        }
+      ],
+      pengeluaran: [
+        {
+          nama: "Pembentukan Dana Cadangan",
+          jumlah: 12000000,
+          sumber: "PAD 2025"
+        },
+        {
+          nama: "Penyertaan Modal Desa (Ketahanan Pangan)",
+          jumlah: 54000000,
+          sumber: "Dana Desa 2026"
+        }
+      ],
+      totalPenerimaan: 60288048,
+      totalPengeluaran: 66000000,
+      netto: -5711952
+    },
+    selisih: -5500000,
+    danaLembaga: [
+      {
+        label: "Modal BUMKam Bina Mulya Sejahtera",
+        jumlah: 657899000
+      },
+      {
+        label: "Keuangan dikelola BUMKam",
+        jumlah: 84000000
+      },
+      {
+        label: "Dana dikelola TP PKK",
+        jumlah: 86000000
+      }
+    ],
+    danaLembagaSumber: "Monografi Kampung Marga Mulya, 30 September 2026"
+  },
+
+
+  /* ---------- LAYANAN ADMINISTRASI ---------- */
+  // Persyaratan & lama proses belum ada data resmi. Isi "syarat" dan "waktu" dari kantor kampung.
+  // Layanan surat. "syarat" = dokumen yang dikirim/dibawa; "isian" = data tambahan di formulir pengajuan.
+  // Pengajuan lewat website TIDAK disimpan di server: formulir hanya menyusun pesan WhatsApp
+  // di perangkat warga, lalu dikirim langsung ke nomor layanan (layananWa).
+  layananWa: { nomor: "6281343244398", tampil: "+62 813-4324-4398", petugas: "Ramdan Sidik Suseno",
+    // Pemberitahuan pengajuan baru ke petugas — hanya jenis surat & waktu, TANPA data pribadi.
+    notifikasi: {
+      // 1) Push ke HP lewat aplikasi ntfy (gratis, tanpa akun): pasang aplikasi "ntfy", lalu langganan topik ini.
+      ntfyTopik: "margamulya-layanan-c1f9f9884a",
+      // 2) Email lewat Google Apps Script (lihat docs/notifikasi-email/PANDUAN.md). Isi URL /exec setelah dipasang.
+      emailScript: "",
+      email: "seldiozora3@gmail.com"
+    } },
+  layanan: [
+    { id: "domisili", nama: "Surat Keterangan Domisili", waktu: "", syarat: ["KTP", "Kartu Keluarga (KK)"], isian: [] },
+    { id: "usaha", nama: "Surat Keterangan Domisili Usaha", waktu: "", syarat: ["KTP", "Kartu Keluarga (KK)"],
+      isian: [{ id: "namaUsaha", label: "Nama usaha", wajib: true }, { id: "jenisUsaha", label: "Jenis usaha", contoh: "mis. warung sembako, bengkel, usaha tani", wajib: true }, { id: "alamatUsaha", label: "Alamat / lokasi usaha", wajib: true }] },
+    { id: "sktm", nama: "Surat Keterangan Tidak Mampu (SKTM)", waktu: "", syarat: ["Kartu Keluarga (KK)", "Alamat tempat tinggal lengkap (RT/RW)"],
+      isian: [{ id: "keperluanSktm", label: "SKTM digunakan untuk", tipe: "pilih", pilihan: ["Pendidikan / sekolah", "Berobat / kesehatan", "Bantuan sosial", "Lainnya"], wajib: true }] },
+    { id: "kematian", nama: "Surat Keterangan Kematian", waktu: "", syarat: [], tanpaSyarat: true,
+      isian: [{ id: "namaAlm", label: "Nama almarhum / almarhumah", wajib: true }, { id: "nikAlm", label: "NIK almarhum / almarhumah", tipe: "nik" },
+        { id: "tglMeninggal", label: "Tanggal meninggal", tipe: "tanggal", wajib: true }, { id: "tempatMeninggal", label: "Tempat meninggal", wajib: true },
+        { id: "sebab", label: "Sebab meninggal (bila diketahui)" }, { id: "hubungan", label: "Hubungan pelapor dengan almarhum", contoh: "mis. anak, suami, istri", wajib: true }] },
+    { id: "pindah", nama: "Surat Keterangan Pindah", waktu: "",
+      syarat: ["Pindah keluar: Kartu Keluarga (KK), daerah tujuan pindah, dan alamat lengkap tujuan", "Pindah datang ke Marga Mulya: KTP"],
+      isian: [{ id: "arahPindah", label: "Jenis kepindahan", tipe: "pilih", pilihan: ["Pindah keluar dari Marga Mulya", "Pindah datang ke Marga Mulya"], wajib: true },
+        { id: "daerahPindah", label: "Daerah tujuan / asal (kampung, distrik, kabupaten/kota, provinsi)", wajib: true },
+        { id: "alamatPindah", label: "Alamat lengkap tujuan / asal", wajib: true }, { id: "jumlahPindah", label: "Jumlah anggota keluarga yang pindah", tipe: "angka", wajib: true }] }
+  ],
+
+
+  // Rekap sarana dan prasarana dari monografi (tampil di tab Fasilitas Umum)
+  sarana: [
+    { kelompok: "Kesehatan", ikon: "health", isi: [{ nama: "Puskesmas pembantu", nilai: "2 unit" }, { nama: "Posyandu & polindes", nilai: "1 unit" }, { nama: "Gedung posyandu", nilai: "1 unit" }, { nama: "Klinik", nilai: "1 unit" }, { nama: "Apotek", nilai: "1 unit" }] },
+    { kelompok: "Pendidikan", ikon: "school", isi: [{ nama: "Gedung PAUD", nilai: "2 unit" }, { nama: "Gedung TK", nilai: "1 unit" }, { nama: "Gedung SD", nilai: "2 unit" }] },
+    { kelompok: "Ibadah", ikon: "mosque", isi: [{ nama: "Masjid", nilai: "3 unit" }, { nama: "Musala", nilai: "16 unit" }, { nama: "Gereja", nilai: "1 unit" }] },
+    { kelompok: "Umum", ikon: "home", isi: [{ nama: "Kantor kampung", nilai: "2 unit" }, { nama: "Sarana olahraga", nilai: "2 unit" }, { nama: "Balai pertemuan", nilai: "2 unit" }, { nama: "Gedung serba guna", nilai: "1 unit" }, { nama: "Sumur desa", nilai: "1 unit" }, { nama: "Makam", nilai: "2 ha" }] },
+    { kelompok: "Jalan & komunikasi", ikon: "route", isi: [{ nama: "Jalan kampung (aspal/beton)", nilai: "12 km" }, { nama: "Jalan kabupaten", nilai: "4,16 km" }, { nama: "Jalan provinsi", nilai: "5,10 km" }, { nama: "Menara Telkomsel 4G", nilai: "2 unit" }] },
+    { kelompok: "Air bersih & sanitasi", ikon: "drop", isi: [{ nama: "Penampung air hujan", nilai: "6" }, { nama: "Pamsimas", nilai: "1" }, { nama: "Sumur gali", nilai: "8" }, { nama: "MCK umum", nilai: "11" }, { nama: "Jamban keluarga", nilai: "892" }, { nama: "Saluran drainase", nilai: "46 km" }, { nama: "Pintu air", nilai: "10" }] }
+  ],
+
+  // Peta kampung memakai Peta Batas Kampung resmi (data/batas-kampung.json, digitasi dari peta DPMK Merauke).
+  peta: {
+    sumber: "Peta Batas Kampung Marga Mulya – Dinas Pemberdayaan Masyarakat dan Kampung Kabupaten Merauke",
+    gambar: "assets/img/peta/peta-batas-kampung-marga-mulya.jpg",
+    skala: "1:14.000",
+    citra: "SPOT 6/SPOT 7 tahun 2015–2018 (resolusi 1,5 m), Badan Informasi Geospasial",
+    ortofoto: ""                          // bila ortofoto drone sudah ada, isi path gambarnya di sini
+  },
+
+
+  // Video tentang kampung. Daftar utama dikumpulkan otomatis setiap 6 jam oleh robot
+  // (scripts/update_video.py → data/video-otomatis.json) dari YouTube, TikTok, Instagram, dan Facebook.
+  // "pilihan": tautan video yang wajib selalu tampil paling depan, misalnya video resmi kampung.
+  // Contoh: { url: "https://www.youtube.com/watch?v=XXXXXXXXXXX", judul: "Video Profil Kampung Marga Mulya" }
+  // Video latar foto utama Beranda: diputar otomatis tanpa suara dan berulang (berkas sendiri, tanpa suara).
+  // Bila video gagal diputar, foto yang berganti-ganti tetap tampil sebagai cadangan.
+  heroVideo: { file: "assets/video/profil-lapangan.mp4", fileHp: "assets/video/profil-lapangan-hp.mp4", poster: "assets/video/profil-lapangan-poster.jpg", ket: "Video profil Kampung Marga Mulya." },
+
+  video: {
+    judul: "Marga Mulya dalam Video",
+    deskripsi: "Video dari YouTube, TikTok, Instagram, dan Facebook yang membahas Kampung Marga Mulya, Distrik Semangga, Merauke. Daftar ini dikumpulkan dan diurutkan otomatis: video yang paling jelas membahas Marga Mulya dan yang terbaru tampil lebih dulu. Ketuk video untuk memutarnya.",
+    pilihan: []
+  },
+
+  potensi: [
+    { judul: "Tanaman pangan & hortikultura", ikon: "padi", foto: "assets/img/kegiatan/kebun-tomat.jpg", fotoKet: "Petani merawat tanaman tomat", kredit: "Dokumentasi Tim Ekspedisi Patriot IPB University 2026",
+      fotoLain: [
+        { src: "assets/img/udara/permukiman-sawah.jpg", ket: "Foto udara permukiman dan hamparan sawah", kredit: "Dokumentasi pemetaan kampung, Juni 2022" },
+        { src: "assets/img/udara/sawah-tergenang.jpg", ket: "Foto udara petak sawah tergenang air", kredit: "Dokumentasi pemetaan kampung, Juni 2022" },
+        { src: "assets/img/udara/saluran-lahan.jpg", ket: "Saluran air yang mengalirkan air ke lahan pertanian", kredit: "Dokumentasi pemetaan kampung, Juni 2022" },
+        { src: "assets/img/udara/kebun-sayur.jpg", ket: "Kebun sayur warga dengan tiang rambatan", kredit: "Dokumentasi pemetaan kampung, Juni 2022" },
+        { src: "assets/img/potensi/petani-cabai.jpg", ket: "Ilustrasi: petani memetik cabai (Sukoharjo, Jawa Tengah)", kredit: "ANTARA TV · Wikimedia Commons", lisensi: "CC BY 3.0", url: "https://commons.wikimedia.org/wiki/File:Petani_Sedang_Memetik_Cabai.jpg" }
+      ], ket: "Lahan pertanian 1.964,19 ha, terluas sawah padi 1.758,19 ha.", detail: "Padi adalah komoditas utama: sawah seluas 1.758,19 ha digarap 771 petani. Tanaman lain adalah cabai (118,25 ha, 127 petani), jagung (46,5 ha, 41 petani), dan sayuran (41,25 ha, 62 petani)." },
+    { judul: "Peternakan", ikon: "ternak", foto: "assets/img/kegiatan/periksa-sapi-2.jpg", fotoKet: "Pemeriksaan kesehatan sapi milik peternak", kredit: "Dokumentasi Tim Ekspedisi Patriot IPB University 2026",
+      fotoLain: [
+        { src: "assets/img/potensi/bumkam-ayam-petelur-1.jpg", ket: "Kandang ayam petelur BUMKam Bina Mulya Sejahtera", kredit: "Dokumentasi Tim Ekspedisi Patriot IPB University 2026" },
+        { src: "assets/img/potensi/bumkam-ayam-petelur-2.jpg", ket: "Deretan kandang baterai bertingkat berisi ayam petelur BUMKam", kredit: "Dokumentasi Tim Ekspedisi Patriot IPB University 2026" },
+        { src: "assets/img/potensi/bumkam-ayam-petelur-3.jpg", ket: "Kandang baterai dengan talang pakan dan pipa air minum", kredit: "Dokumentasi Tim Ekspedisi Patriot IPB University 2026" },
+        { src: "assets/img/potensi/sapi-bali-ipb.jpg", ket: "Ilustrasi: sapi bali di kandang IPB Jonggol", kredit: "Btcpg · Wikimedia Commons", lisensi: "CC BY-SA 4.0", url: "https://commons.wikimedia.org/wiki/File:Bali_cattle_IPB_Jonggol.jpg" }
+      ],
+      video: { src: "assets/video/bumkam-ayam-petelur.mp4", poster: "assets/video/bumkam-ayam-petelur-poster.jpg", ket: "Video kandang ayam petelur BUMKam Bina Mulya Sejahtera", kredit: "Dokumentasi Tim Ekspedisi Patriot IPB University 2026" },
+      ket: "411 sapi, 298 kambing, 117 kuda, 45.250 unggas, dan peternakan ayam petelur BUMKam.", detail: "Peternakan dikelola 119 peternak sapi, 93 peternak kambing, 51 peternak kuda, 3 peternak kerbau (9 ekor), dan 257 peternak unggas, di atas lahan peternakan seluas 7 ha.",
+      sorotan: { judul: "Peternakan ayam petelur BUMKam", isi: "Badan Usaha Milik Kampung (BUMKam) Bina Mulya Sejahtera menjalankan unit usaha peternakan ayam petelur. Ayam dipelihara di kandang baterai bertingkat di bawah bangunan kandang beratap seng, lengkap dengan talang pakan dan pipa air minum di setiap baris. Unit ini menjadi salah satu usaha BUMKam di samping depot air minum dan wisata pemancingan." } },
+    { judul: "Perkebunan jeruk", ikon: "daun",
+      fotoLain: [
+        { src: "assets/img/potensi/kebun-jeruk.jpg", ket: "Ilustrasi: kebun jeruk berbuah", kredit: "BerkahAgeng · Wikimedia Commons", lisensi: "CC BY-SA 4.0", url: "https://commons.wikimedia.org/wiki/File:Kebun_jeruk.jpg" }
+      ], ket: "10 ha kebun jeruk milik 9 petani.", detail: "Perkebunan jeruk seluas 10 hektare dikelola 9 petani (Monografi Kampung 2026)." },
+    { judul: "BUMKam & usaha warga", ikon: "toko", foto: "assets/img/fasilitas/kopdes-merah-putih.jpg", fotoKet: "Koperasi Desa Merah Putih Kampung Marga Mulya", kredit: "Dokumentasi Tim Ekspedisi Patriot IPB University 2026",
+      fotoLain: [
+        { src: "assets/img/potensi/bumkam-ayam-petelur-2.jpg", ket: "Unit ayam petelur BUMKam Bina Mulya Sejahtera", kredit: "Dokumentasi Tim Ekspedisi Patriot IPB University 2026" }
+      ], ket: "BUMKam Bina Mulya Sejahtera, 25 UMKM, 33 kios, 11 toko.", detail: "BUMKam Bina Mulya Sejahtera mengelola depot air minum, wisata pemancingan, dan ayam petelur dengan modal Rp657.899.000. Usaha warga lain: 10 warung, 7 pom mini, 3 agen minyak tanah, 1 SPBU, dan 1 perusahaan. Perbankan: BRI Unit Semangga." },
+    { judul: "Potensi wisata", ikon: "wisata", foto: "assets/img/fasilitas/2023/f035.jpg", fotoKet: "Kolam pemancingan kampung dengan pondok tempat duduk", kredit: "Dokumen Fasilitas Umum Kampung Marga Mulya, Desember 2023",
+      fotoLain: [
+        { src: "assets/img/fasilitas/2023/f034.jpg", ket: "Kolam pemancingan Kampung Marga Mulya", kredit: "Dokumen Fasilitas Umum Kampung Marga Mulya, Desember 2023" },
+        { src: "assets/img/fasilitas/2023/f037.jpg", ket: "Pendopo joglo dan gazebo di sekitar kolam pemancingan", kredit: "Dokumen Fasilitas Umum Kampung Marga Mulya, Desember 2023" },
+        { src: "assets/img/potensi/musamus-wasur.jpg", ket: "Musamus (sarang rayap raksasa) di Taman Nasional Wasur, Merauke", kredit: "Bonefasius Kondahon · Wikimedia Commons", lisensi: "CC BY-SA 4.0", url: "https://commons.wikimedia.org/wiki/File:Sarang_Semut-TamanNasionalWasur.jpg" }
+      ], ket: "Kolam pemancingan kampung, agrowisata, dan taman wisata hingga Distrik Tanah Miring.", detail: "Di dalam kampung terdapat kolam pemancingan dengan pondok tempat duduk, pendopo joglo, dan gazebo. Monografi kampung mencatat wisata pemancingan sebagai salah satu unit usaha BUMKam Bina Mulya Sejahtera. Di sekitar Marga Mulya dan Distrik Tanah Miring terdapat Taman Wisata Alam Mandira Loka, Mandira Agro Park, Taman Bambu Mandira, Romans Garden, Hokkaido Farm, Kebun Percontohan Tanaman Porang, Kebun Pisang Akerezki Farm, dan Kolam Pemancingan Wisata Banyu Mulya.", tautan: "#wisata", tautanLabel: "Lihat peta, jarak & rute" }
+  ],
+
+  // Rincian ekonomi dari monografi (grafik di tab Potensi)
+  ekonomi: {
+    lahan: [
+      { label: "Cabai", ha: 118.25, petani: 127 }, { label: "Jagung", ha: 46.5, petani: 41 },
+      { label: "Sayuran", ha: 41.25, petani: 62 }, { label: "Jeruk", ha: 10, petani: 9 }, { label: "Padi", ha: 1758.19, petani: 771 }
+    ],
+    ternak: [
+      { label: "Unggas", ekor: 45250, peternak: 257 }, { label: "Sapi", ekor: 411, peternak: 119 },
+      { label: "Kambing", ekor: 298, peternak: 93 }, { label: "Kuda", ekor: 117, peternak: 51 }, { label: "Kerbau", ekor: 9, peternak: 3 }
+    ],
+    penggunaanLahan: [
+      { label: "Lahan pertanian", ha: 1964.19 }, { label: "Lahan perkebunan", ha: 10 }, { label: "Lahan peternakan", ha: 7 },
+      { label: "Hutan", ha: 61 }, { label: "Lahan lainnya", ha: 766 }
+    ],
+    usaha: [
+      { label: "Kios", jumlah: 33 }, { label: "UMKM", jumlah: 25 }, { label: "Pertokoan", jumlah: 11 }, { label: "Warung", jumlah: 10 },
+      { label: "Pom mini (BBM)", jumlah: 7 }, { label: "Agen minyak tanah", jumlah: 3 }, { label: "BUMKam", jumlah: 1 }, { label: "SPBU", jumlah: 1 }, { label: "Perusahaan", jumlah: 1 }
+    ]
+  },
+
+  // Kegiatan kampung: tampil di Beranda (foto berganti tiap 3 detik) dan di Profil > Kegiatan.
+  // Setiap kegiatan punya judul, waktu, deskripsi singkat (ket), dan daftar foto.
+  // Foto ditampilkan utuh sesuai bentuk aslinya. "ket" pada foto muncul sebagai keterangan foto.
+  kegiatanKampung: [
+    { id: "agustusan", judul: "Perayaan HUT Kemerdekaan RI (Agustusan)", waktu: "Agustus 2023–2026",
+      ket: "Setiap bulan Agustus warga Kampung Marga Mulya merayakan Hari Ulang Tahun Kemerdekaan Republik Indonesia dengan lomba, pawai kendaraan hias, penampilan barisan peserta, dan penyerahan piala bagi para pemenang.",
+      foto: [
+        { src: "assets/img/kegiatan-kampung/agustusan-1.jpg", ket: "Agustus 2023: warga bersama kuda dalam perayaan HUT RI" },
+        { src: "assets/img/kegiatan-kampung/agustusan-2.jpg", ket: "Agustus 2024: penyerahan piala lomba Dirgahayu Republik Indonesia" },
+        { src: "assets/img/kegiatan-kampung/agustusan-3.jpg", ket: "Agustus 2025: pawai kendaraan hias" },
+        { src: "assets/img/kegiatan-kampung/agustusan-4.jpg", ket: "Agustus 2026: penampilan barisan peserta" },
+        { src: "assets/img/kegiatan-kampung/agustusan-5.jpg", ket: "Agustus 2026: barisan peserta pelajar" }
+      ] },
+    { id: "hari-santri", judul: "Peringatan Hari Santri", waktu: "",
+      ket: "Peringatan Hari Santri Nasional yang diikuti para santri dan warga Kampung Marga Mulya, diisi kegiatan bersama dan penampilan pencak silat.",
+      foto: [
+        { src: "assets/img/kegiatan-kampung/hari-santri-1.jpg", ket: "Santri dan warga mengikuti peringatan Hari Santri" },
+        { src: "assets/img/kegiatan-kampung/hari-santri-2.jpg", ket: "Peserta peringatan Hari Santri" },
+        { src: "assets/img/kegiatan-kampung/hari-santri-3.jpg", ket: "Penampilan pencak silat" }
+      ] },
+    { id: "koperasi-merah-putih", judul: "Musyawarah Desa Khusus Koperasi Desa Merah Putih", waktu: "",
+      ket: "Musyawarah desa khusus untuk sosialisasi dan pembentukan Koperasi Desa Merah Putih di Kampung Marga Mulya bersama perangkat kampung dan warga, disertai peninjauan lapangan.",
+      foto: [
+        { src: "assets/img/kegiatan-kampung/musdesus-koperasi-merah-putih-1.jpg", ket: "Musyawarah desa khusus sosialisasi dan pembentukan Koperasi Desa Merah Putih" },
+        { src: "assets/img/kegiatan-kampung/musdesus-koperasi-merah-putih-2.jpg", ket: "Peninjauan lapangan" },
+        { src: "assets/img/kegiatan-kampung/musdesus-koperasi-merah-putih-3.jpg", ket: "Foto bersama peserta peninjauan lapangan" }
+      ] },
+    { id: "musyawarah-kampung-2025", judul: "Musyawarah Kampung 2025", waktu: "2025",
+      ket: "Musyawarah Rencana Pembangunan Kampung untuk membahas dan menyepakati Rencana Kerja Pemerintah Kampung (RKPK) bersama perangkat kampung dan warga.",
+      foto: [
+        { src: "assets/img/kegiatan-kampung/musyawarah-kampung-2025-1.jpg", ket: "Musyawarah Rencana Pembangunan Kampung tentang RKPK" },
+        { src: "assets/img/kegiatan-kampung/musyawarah-kampung-2025-2.jpg", ket: "Warga mengikuti musyawarah kampung" },
+        { src: "assets/img/kegiatan-kampung/musyawarah-kampung-2025-3.jpg", ket: "Peserta musyawarah kampung" }
+      ] },
+    { id: "pengabdian-masyarakat", judul: "Pengabdian Masyarakat", waktu: "",
+      ket: "Kegiatan pengabdian kepada masyarakat oleh perguruan tinggi, antara lain sosialisasi penggunaan Azotobacter sp. dan Trichoderma sp. untuk menunjang pertanian organik oleh Magister Ilmu Pertanian Fakultas Pertanian Universitas Musamus, serta Kuliah Kerja Profesional (KKP) Pengabdian pada Masyarakat.",
+      foto: [
+        { src: "assets/img/kegiatan-kampung/pengabdian-masyarakat-1.jpg", ket: "Sosialisasi Azotobacter sp. dan Trichoderma sp. untuk pertanian organik, Universitas Musamus" },
+        { src: "assets/img/kegiatan-kampung/pengabdian-masyarakat-2.jpg", ket: "Kunjungan ke rumah warga" },
+        { src: "assets/img/kegiatan-kampung/pengabdian-masyarakat-3.jpg", ket: "Kuliah Kerja Profesional (KKP) Pengabdian pada Masyarakat" }
+      ] },
+    { id: "rapat-bamuskam", judul: "Rapat Bamuskam", waktu: "",
+      ket: "Rapat Badan Musyawarah Kampung (Bamuskam) bersama pemerintah kampung di kantor kampung untuk membahas program dan kebijakan kampung.",
+      foto: [
+        { src: "assets/img/kegiatan-kampung/rapat-bamuskam-1.jpg", ket: "Rapat Bamuskam di kantor kampung" },
+        { src: "assets/img/kegiatan-kampung/rapat-bamuskam-2.jpg", ket: "Peserta rapat Bamuskam" },
+        { src: "assets/img/kegiatan-kampung/rapat-bamuskam-3.jpg", ket: "Pembahasan bersama perangkat kampung" },
+        { src: "assets/img/kegiatan-kampung/rapat-bamuskam-4.jpg", ket: "Suasana rapat Bamuskam" }
+      ] }
+  ],
+
+  // Momen: foto yang bergoyang di Beranda (tali jemuran dan deretan polaroid).
+  // Ketuk foto di website untuk melihatnya utuh. Bisa diganti lewat Portal Admin.
+  momen: [
+    { src: "assets/img/kegiatan-kampung/hari-santri-3.jpg", ket: "Pencak silat di peringatan Hari Santri" },
+    { src: "assets/img/kegiatan-kampung/agustusan-3.jpg", ket: "Pawai kendaraan hias, Agustus 2025" },
+    { src: "assets/img/kegiatan/petik-tomat.jpg", ket: "Panen tomat di kebun warga" },
+    { src: "assets/img/potensi/bumkam-ayam-petelur-1.jpg", ket: "Kandang ayam petelur BUMKam" },
+    { src: "assets/img/kegiatan-kampung/agustusan-5.jpg", ket: "Barisan pelajar, Agustus 2026" },
+    { src: "assets/img/kegiatan/periksa-sapi-2.jpg", ket: "Memeriksa kesehatan sapi warga" },
+    { src: "assets/img/fasilitas/masjid-al-amin.jpg", ket: "Masjid Al Amin" },
+    { src: "assets/img/kegiatan-kampung/agustusan-2.jpg", ket: "Penyerahan piala HUT RI, Agustus 2024" },
+    { src: "assets/img/kegiatan/kebun-tomat.jpg", ket: "Kebun tomat warga" },
+    { src: "assets/img/kegiatan-kampung/musyawarah-kampung-2025-2.jpg", ket: "Musyawarah kampung 2025" },
+    { src: "assets/img/kegiatan/pelatihan-peternakan.jpg", ket: "Pelatihan peternakan bersama warga" },
+    { src: "assets/img/kegiatan-kampung/agustusan-1.jpg", ket: "Perayaan HUT RI, Agustus 2023" },
+    { src: "assets/img/fasilitas/2023/f035.jpg", ket: "Kolam pemancingan kampung" },
+    { src: "assets/img/udara/sawah-tergenang.jpg", ket: "Sawah dari udara" },
+    { src: "assets/img/udara/saluran-teratai.jpg", ket: "Saluran air bertabur teratai" },
+    { src: "assets/img/kegiatan-kampung/hari-santri-1.jpg", ket: "Santri dan warga di Hari Santri" },
+    { src: "assets/img/fasilitas/sd-semangga-3.jpg", ket: "SD Inpres Semangga III" },
+    { src: "assets/img/fasilitas/2023/f054.jpg", ket: "Saluran air menuju kolam bendali" },
+    { src: "assets/img/udara/jembatan-kayu.jpg", ket: "Jembatan kayu di atas saluran" },
+    { src: "assets/img/udara/lahan-pepohonan.jpg", ket: "Lahan dan pepohonan" },
+    { src: "assets/img/udara/hamparan-lahan.jpg", ket: "Hamparan lahan dari udara" }
+  ],
+
+  galeri: [
+    { src: "assets/img/galeri-ekspedisi-patriot.jpg", caption: "Tim Ekspedisi Patriot bersama perangkat kampung dan distrik" },
+    { src: "assets/img/kegiatan/pelatihan-peternakan.jpg", caption: "Pelatihan Manajemen Sistem Peternakan Skala Industri dan Pengembangan Pertanian Terintegrasi Berkelanjutan" },
+    { src: "assets/img/kegiatan/periksa-sapi-1.jpg", caption: "Pemeriksaan kesehatan sapi milik peternak oleh Tim Ekspedisi Patriot" },
+    { src: "assets/img/kegiatan/periksa-sapi-2.jpg", caption: "Tim Ekspedisi Patriot memeriksa dan mendata kesehatan ternak bersama peternak" },
+    { src: "assets/img/kegiatan/petik-tomat.jpg", caption: "Tim Ekspedisi Patriot ikut memetik tomat bersama petani" },
+    { src: "assets/img/kegiatan/kebun-tomat.jpg", caption: "Petani merawat tanaman tomat di kebun hortikultura" }
+  ],
+
+  // Foto dokumentasi di bawah Potensi (Profil → Potensi)
+  dokumentasiPotensi: [
+    { src: "assets/img/kegiatan/periksa-sapi-1.jpg", ket: "Peternakan sapi warga" },
+    { src: "assets/img/kegiatan/periksa-sapi-2.jpg", ket: "Kandang ternak sapi di permukiman" },
+    { src: "assets/img/kegiatan/kebun-tomat.jpg", ket: "Kebun tomat hortikultura warga" },
+    { src: "assets/img/kegiatan/petik-tomat.jpg", ket: "Panen tomat di kebun warga" },
+    { src: "assets/img/kegiatan/pelatihan-peternakan.jpg", ket: "Pelatihan peternakan dan pertanian terpadu di balai kampung" }
+  ],
+
+  // Cuaca & kualitas udara di Beranda (data langsung dari Open-Meteo, tanpa kunci API).
+  cuaca: { lokasi: "Semangga", lat: -8.405899, lng: 140.467687 },
+
+  kontak: {
+    alamat: "Kantor Kampung Marga Mulya, Distrik Semangga, Kabupaten Merauke, Papua Selatan 99631",
+    telepon: "+62 813-4324-4398 (WhatsApp layanan surat · Ramdan Sidik Suseno)",
+    email: "kampungmargamulya667@gmail.com",
+    hariLayanan: "Senin–Jumat",
+    jamLayanan: "09.00–14.00 WIT"   // jam buka kantor kampung (tampil di Beranda dan Kontak)
+  }
+};

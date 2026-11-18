@@ -1,0 +1,55 @@
+name: Perbarui video otomatis
+
+# Mencari video baru tentang Kampung Marga Mulya di YouTube, TikTok, Instagram,
+# dan Facebook setiap 6 jam, lalu menyimpannya ke data/video-otomatis.json.
+# Bisa juga dijalankan manual: tab Actions → "Perbarui video otomatis" → Run workflow.
+on:
+  schedule:
+    - cron: "41 */6 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+
+concurrency:
+  group: video-otomatis
+  cancel-in-progress: false
+
+jobs:
+  perbarui:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Pasang pustaka
+        run: pip install --quiet requests pillow
+
+      - name: Cari video baru
+        run: python scripts/update_video.py
+
+      - name: Simpan jika ada perubahan
+        id: simpan
+        run: |
+          git add -A data/video-otomatis.json assets/img/video
+          if git diff --cached --quiet; then
+            echo "Tidak ada perubahan."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Perbarui video otomatis"
+          git pull --rebase origin main
+          git push
+          echo "berubah=1" >> "$GITHUB_OUTPUT"
+
+      - name: Terbitkan ulang website
+        if: steps.simpan.outputs.berubah == '1'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api -X POST "repos/${{ github.repository }}/pages/builds" || echo "Penerbitan akan berjalan otomatis."
