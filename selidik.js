@@ -16,7 +16,7 @@ fs.mkdirSync('hasil', { recursive: true });
       try { const t = await r.text(); fs.writeFileSync('hasil/js_' + u.replace(/[^a-z0-9]+/gi, '_').slice(-90) + '.js', t); } catch (x) {}
     }
   });
-  const halaman = ['https://pat.cwssibu.org/dashboard/aws-pat1', 'https://pat.cwssibu.org/', 'https://hpt.sinaubumi.org/', 'https://kat.sinaubumi.org/', 'https://fwi.sinaubumi.org/', 'https://dbd.sinaubumi.org/'];
+  const halaman = ['https://pat.cwssibu.org/dashboard/aws-pat1/forecast/daily', 'https://pat.cwssibu.org/dashboard/aws-pat1/forecast/hourly', 'https://pat.cwssibu.org/dashboard/calendar', 'https://pat.cwssibu.org/dashboard/aws-pat1/analysis'];
   for (const u of halaman) {
     const k = u.replace(/https:\/\//, '').replace(/[^a-z0-9]+/gi, '_');
     try { await p.goto(u, { waitUntil: 'networkidle', timeout: 60000 }); } catch (x) { log.push({ err: String(x).slice(0, 300), u }); }
