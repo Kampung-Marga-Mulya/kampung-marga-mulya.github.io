@@ -366,8 +366,8 @@
   })();
   if (D.rpjmk) {
     var R = D.rpjmk;
-    $("#rpjmkCard").innerHTML = '<div class="rpjmk-card"><p class="small">Visi dan misi di atas tercantum dalam <b>' + esc(R.judul) + "</b>, ditetapkan dengan " + esc(R.perkam) + ".</p>" +
-      '<div class="rpjmk-cta"><a class="btn btn--solid" href="' + escUrl(R.halaman) + '">' + ic("doc") + 'Baca RPJMK lengkap</a><a class="btn btn--line" href="#perencanaan">Ringkasan &amp; dasar hukum</a></div></div>';
+    $("#rpjmkCard").innerHTML = '<div class="rpjmk-card"><p class="small">Visi dan misi di atas tercantum dalam <b>' + esc(R.judul) + "</b>, ditetapkan dengan " + esc(R.perkam) + (D.rkpk ? ", dan ditegaskan kembali dalam " + esc(D.rkpk.judul) + " (" + esc(D.rkpk.perkam) + ")" : "") + ".</p>" +
+      '<div class="rpjmk-cta"><a class="btn btn--solid" href="' + escUrl(R.halaman) + '">' + ic("doc") + 'Baca RPJMK lengkap</a><a class="btn btn--line" href="#perencanaan">Ringkasan &amp; dasar hukum</a>' + (D.rkpk ? '<a class="btn btn--line" href="#rkpk">RKPK ' + esc(D.rkpk.tahun) + "</a>" : "") + "</div></div>";
   }
   var arah = [["n", "Utara", D.batas.utara], ["w", "Barat", D.batas.barat], ["e", "Timur", D.batas.timur], ["s", "Selatan", D.batas.selatan]];
   $("#batas").innerHTML = arah.map(function (a) {
@@ -633,8 +633,8 @@
   /* =================== RPJMK (Transparansi) =================== */
   if (D.rpjmk) (function () {
     var R = D.rpjmk, n = R.dasarHukumRingkas || R.dasarHukum.length;
-    $("#rpjmkLead").innerHTML = rilis("rpjmk", true) + "<br>" + esc("Rencana Pembangunan Jangka Menengah Kampung adalah dokumen perencanaan enam tahun yang memuat visi-misi kepala kampung, arah kebijakan, dan rencana kegiatan. RPJMK menjadi pedoman penyusunan RKPK dan APBKam setiap tahun.");
-    $("#rpjmkMeta").innerHTML = [["Dokumen", R.judul], ["Ditetapkan dengan", R.perkam], ["Periode", R.periode], ["Ditetapkan", R.ditetapkan], ["Landasan utama", R.landasan]]
+    $("#rpjmkLead").innerHTML = rilis("rpjmk", true) + "<br>" + esc("Rencana Pembangunan Jangka Menengah Kampung adalah dokumen perencanaan jangka menengah yang memuat visi-misi kepala kampung, arah kebijakan, dan rencana kegiatan. RPJMK menjadi pedoman penyusunan RKPK dan APBKam setiap tahun." + (R.perpanjangan ? " " + R.perpanjangan : ""));
+    $("#rpjmkMeta").innerHTML = [["Dokumen", R.judul], ["Ditetapkan dengan", R.perkam], ["Masa berlaku", R.periode], ["Ditetapkan", R.ditetapkan], ["Landasan utama", R.landasan]]
       .map(function (r) { return "<dt>" + esc(r[0]) + "</dt><dd>" + esc(r[1]) + "</dd>"; }).join("");
     var li = function (t) { return "<li>" + esc(t) + "</li>"; };
     $("#rpjmkDasar").innerHTML = R.dasarHukum.slice(0, n).map(li).join("");
@@ -644,6 +644,64 @@
       return '<details class="bid"' + (i === 0 ? " open" : "") + "><summary><b>" + (i + 1) + "</b>" + esc(b.nama) + "</summary><ul>" + b.kegiatan.map(li).join("") + "</ul></details>";
     }).join("") + '<p class="small mt-s">Daftar ini adalah rencana dan usulan dalam dokumen, bukan laporan realisasi.</p>';
     $("#rpjmkCta").innerHTML = '<a class="btn btn--solid" href="' + escUrl(R.halaman) + '">' + ic("doc") + 'Baca RPJMK lengkap</a><a class="btn btn--line" href="' + escUrl(R.pdf) + '" download>Unduh PDF dokumen asli</a>';
+  })();
+
+  /* =================== RKPK (Transparansi) =================== */
+  if (D.rkpk) (function () {
+    var K = D.rkpk, dok = "Sumber: " + K.judul + " (" + K.perkam + ", ditetapkan " + K.ditetapkan.split(" di ")[0] + ") dan RAB RKPK " + K.tahun + ".";
+    var nKeg = K.bidang.reduce(function (n, b) { return n + b.kegiatan.length; }, 0);
+    var bidIsi = K.bidang.filter(function (b) { return b.jumlah; });
+    var totMod = (K.pembiayaan || []).reduce(function (n, x) { return n + x.jumlah; }, 0);
+    $("#rkpkLead").innerHTML = rilis("rkpk", true) + "<br>" + esc(K.pengertian + " Ketuk angka atau bidang untuk melihat rinciannya.");
+    var cards = [
+      ["Perkiraan pendapatan", rpS(K.totalPendapatan), "Dana Desa + Alokasi Dana Kampung", "Perkiraan pendapatan Kampung Marga Mulya tahun " + K.tahun + ": " + K.pendapatan.map(function (p) { return p.nama + " " + rp(p.jumlah); }).join(" dan ") + ", jumlah " + rp(K.totalPendapatan) + ". " + K.pendapatanKet, true],
+      ["Rencana belanja", rpS(K.totalBelanja), bidIsi.length + " bidang · " + nKeg + " kegiatan", "Rencana belanja RKPK " + K.tahun + ": " + bidIsi.map(function (b) { return b.nama + " " + rp(b.jumlah); }).join("; ") + ". Jumlah " + rp(K.totalBelanja) + "."],
+      ["Penyertaan modal", rpS(totMod), "pembiayaan · ketahanan pangan", (K.pembiayaan || []).map(function (x) { return x.nama + ": " + rp(x.jumlah) + " (" + x.sumber + ")."; }).join(" ") + " Jumlah seluruh RAB RKPK termasuk pembiayaan: " + rp(K.totalRab) + "."],
+      ["Pagu belanja", "30 : 70", "belanja rutin : pembangunan", K.pagu.map(function (g) { return g[0] + " " + g[1] + " " + g[2] + "."; }).join(" ") + " " + K.paguKet]
+    ];
+    $("#rkpkSum").innerHTML = cards.map(function (c) {
+      return '<button type="button" class="apb-card tap' + (c[4] ? " apb-card--blue" : "") + '"' + act(function () { openModal({ kat: "RKPK " + K.tahun, title: c[0], html: "<p>" + esc(c[3]) + "</p><p class='small'>" + esc(dok) + "</p>" }); }) +
+        "><span>" + esc(c[0]) + "</span><b>" + esc(c[1]) + "</b><small>" + esc(c[2]) + "</small></button>";
+    }).join("");
+
+    // Dokumen asli yang bisa dibuka atau diunduh
+    $("#rkpkDok").innerHTML = '<div class="rkpk-dok__head"><b>Dokumen asli RKPK ' + esc(K.tahun) + "</b><span>Buka langsung di browser (PDF) atau unduh berkas aslinya.</span></div>" +
+      '<div class="rkpk-dok__list">' + K.berkas.map(function (b) {
+        return '<div class="rkpk-berkas"><span class="rkpk-berkas__ic">' + ic("doc") + '</span><div class="rkpk-berkas__t"><b>' + esc(b.nama) + "</b><small>" + esc(b.ket) + " · " + esc(b.hal) + " halaman</small></div>" +
+          '<div class="rkpk-berkas__a"><a class="btn btn--solid" href="' + escUrl(b.pdf) + '" target="_blank" rel="noopener">Lihat PDF</a><a class="btn btn--line" href="' + escUrl(b.asli) + '" download>Unduh ' + esc(b.format) + "</a></div></div>";
+      }).join("") + "</div>" + (K.privasi ? '<p class="small">' + esc(K.privasi) + "</p>" : "");
+
+    // Rencana kegiatan per bidang
+    var keg = function (k) {
+      var meta = [k.volume, k.sasaran, k.waktu].filter(Boolean).map(esc).join(" · ");
+      return '<li><div class="rkpk-keg"><span>' + esc(k.nama) + (meta ? "<small>" + meta + (k.sdgs ? " · SDGs " + esc(k.sdgs) : "") + "</small>" : "") + (k.ket ? "<small>" + esc(k.ket) + "</small>" : "") +
+        "</span><b>" + (k.jumlah ? esc(rp(k.jumlah)) : "–") + '<em class="rkpk-sd">' + esc(k.sumber) + "</em></b></div></li>";
+    };
+    $("#rkpkBidang").innerHTML = K.bidang.map(function (b, i) {
+      return '<details class="bid"><summary><b>' + b.no + "</b><span>" + esc(b.nama) + "<small>" + esc(rp(b.jumlah)) + " · " + pct(b.jumlah, K.totalBelanja) + "% · " + b.kegiatan.length + " kegiatan</small></span></summary>" +
+        (b.kegiatan.length ? '<ul class="rkpk-list">' + b.kegiatan.map(keg).join("") + "</ul>" : '<p class="small rkpk-kosong">' + esc(b.ket || "Belum ada kegiatan.") + "</p>") + "</details>";
+    }).join("") + ((K.pembiayaan || []).length ? '<details class="bid"><summary><b>6</b><span>Pembiayaan<small>' + esc(rp(totMod)) + ' · penyertaan modal</small></span></summary><ul class="rkpk-list">' + K.pembiayaan.map(keg).join("") + "</ul></details>" : "") +
+      '<p class="small mt-s">' + esc(K.pelaksanaan) + " DD = Dana Desa, ADK = Alokasi Dana Kampung. Jumlah RAB termasuk pembiayaan: " + esc(rp(K.totalRab)) + ".</p>";
+
+    // Kerangka keuangan
+    var tr = function (a, b, kuat) { return "<tr" + (kuat ? ' class="tot"' : "") + "><td>" + esc(a) + '</td><td class="num">' + esc(b) + "</td></tr>"; };
+    $("#rkpkKeu").innerHTML = '<table class="rkpk-tab"><tbody>' + K.pendapatan.map(function (p) { return tr(p.nama, rp(p.jumlah)); }).join("") + tr("Jumlah perkiraan pendapatan", rp(K.totalPendapatan), true) + "</tbody></table>" +
+      '<p class="small">' + esc(K.pendapatanKet) + "</p>" +
+      '<div class="rkpk-pagu">' + K.pagu.map(function (g) { return '<div class="tile"><b>' + esc(g[1]) + "</b><span>" + esc(g[0]) + "</span><small>" + esc(g[2]) + "</small></div>"; }).join("") + "</div>" +
+      '<p class="small">' + esc(K.paguKet) + "</p>" +
+      '<h4 class="mt-s">Skala program</h4><dl class="kv kv--sm">' + K.skala.map(function (x) { return "<dt>" + esc(x[0]) + "</dt><dd>" + esc(x[1]) + "</dd>"; }).join("") + "</dl>";
+
+    // Prioritas masalah
+    $("#rkpkPrioritas").innerHTML = K.prioritas.map(function (x, i) { return '<article class="rkpk-pri__i"><b>' + (i + 1) + "</b><div><h4>" + esc(x.judul) + "</h4><p>" + esc(x.isi) + "</p></div></article>"; }).join("");
+
+    // Landasan dan dasar hukum
+    $("#rkpkMeta").innerHTML = [["Dokumen", K.judul], ["Ditetapkan dengan", K.perkam], ["Ditetapkan", K.ditetapkan], ["Diundangkan", K.lembaran], ["Menjabarkan", D.rpjmk ? D.rpjmk.perkam + " tentang RPJMK, berlaku " + D.rpjmk.periode.split(" ")[0] : "RPJMK"], ["Sistematika", K.sistematika.join("; ")]]
+      .map(function (r) { return "<dt>" + esc(r[0]) + "</dt><dd>" + esc(r[1]) + "</dd>"; }).join("");
+    var li = function (t) { return "<li>" + esc(t) + "</li>"; }, n = K.dasarHukumRingkas || K.dasarHukum.length;
+    $("#rkpkDasar").innerHTML = K.dasarHukum.slice(0, n).map(li).join("");
+    if (K.dasarHukum.length > n) $("#rkpkDasar").insertAdjacentHTML("afterend", '<ol class="dh more-body" start="' + (n + 1) + '" hidden>' + K.dasarHukum.slice(n).map(li).join("") +
+      "</ol>" + bacaLagi("Lihat semua dasar hukum (" + K.dasarHukum.length + ")", "Tampilkan lebih sedikit"));
+    $("#rkpkTujuan").innerHTML = '<h4>Tujuan</h4><ol class="dh">' + K.tujuan.map(li).join("") + '</ol><h4 class="mt-s">Manfaat</h4><ol class="dh">' + K.manfaat.map(li).join("") + "</ol>";
   })();
 
   /* =================== PETA BATAS KAMPUNG =================== */
@@ -1098,11 +1156,11 @@
       '</tbody></table></div><p class="small kal__legend"><span class="k1"></span>sedikit <span class="k2"></span>sedang <span class="k3"></span>puncak · Tabel II.6 RPJMK</p></div>' : "";
     kal = kal.replace("<h3>Kalender musim kampung</h3>", "<h3>Kalender musim kampung</h3>" + rilis("rpjmk"));
     $("#potensiSD").innerHTML = '<div class="sdintro"><h3>Potensi sumber daya</h3><p>' + esc(P.pengantar) + "</p></div>" +
-      '<div class="sdgrid">' + P.daftar.map(function (d) {
+      (P.daftar.length ? '<div class="sdgrid">' : "") + P.daftar.map(function (d) {
         return '<article class="panel sd"><h4>' + esc(d.judul) + "</h4>" + rilis(d.rilis || "rpjmk") + '<div class="tiles tiles--3">' + d.angka.map(function (a) { return '<div class="tile"><b>' + esc(a[0]) + "</b><span>" + esc(a[1]) + "</span></div>"; }).join("") +
           '</div><p class="small">' + esc(d.isi) + '</p><a class="linkmore" href="' + escUrl(H) + "#" + esc(d.bab) + '">Baca selengkapnya</a></article>';
-      }).join("") + "</div>" + kal +
-      '<p class="small mt-s">Sumber: ' + esc(P.sumber) + '. Angka adalah kondisi saat dokumen disusun (2019), kecuali luas sawah yang memakai Monografi Kampung 30 September 2026; data terbaru ada di menu <a href="#penduduk">Data Kampung</a>.</p>';
+      }).join("") + (P.daftar.length ? "</div>" : "") + kal +
+      '<p class="small mt-s">Kalender musim bersumber dari ' + esc(P.sumber) + '. Angka terbaru tentang lahan, ternak, dan usaha warga ada di atas, sedangkan kependudukan ada di menu <a href="#penduduk">Data Kampung</a>.</p>';
   })();
   $("#potensiList").innerHTML = D.potensi.map(function (p) {
     var fs = fotoPot(p), f0 = fs[0];

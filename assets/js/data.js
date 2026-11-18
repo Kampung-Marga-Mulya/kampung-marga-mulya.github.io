@@ -24,7 +24,8 @@ window.KAMPUNG = {
     // Tampil sebagai label "Data 2026 · Monografi Kampung, 30 Sep 2026" di setiap kelompok data.
     dokumen: {
       monografi: { nama: "Monografi Tingkat Kampung Marga Mulya", singkat: "Monografi Kampung", tahun: 2026, rilis: "30 September 2026", rilisPendek: "30 Sep 2026" },
-      rpjmk: { nama: "RPJMK Kampung Marga Mulya 2019–2024 (Peraturan Kampung Nomor 1 Tahun 2019)", singkat: "RPJMK 2019–2024", tahun: 2019, rilis: "1 Mei 2019", rilisPendek: "1 Mei 2019" },
+      rpjmk: { nama: "RPJMK Kampung Marga Mulya (Peraturan Kampung Nomor 1 Tahun 2019), berlaku 2019–2026", singkat: "RPJMK 2019–2026", tahun: 2019, rilis: "1 Mei 2019", rilisPendek: "1 Mei 2019" },
+      rkpk: { nama: "RKPK Kampung Marga Mulya Tahun Anggaran 2026 (Peraturan Kampung Nomor 002 Tahun 2026)", singkat: "RKPK 2026", tahun: 2026, rilis: "20 April 2026", rilisPendek: "20 Apr 2026" },
       apbkam: { nama: "Penjabaran APBKam Kampung Marga Mulya Tahun Anggaran 2026", singkat: "Penjabaran APBKam", tahun: 2026, rilis: "4 Mei 2026", rilisPendek: "4 Mei 2026" },
       fasilitasUmum: { nama: "Dokumen Fasilitas Umum Kampung Marga Mulya", singkat: "Dokumen Fasilitas Umum", tahun: 2023, rilis: "Desember 2023", rilisPendek: "Des 2023" },
       survei: { nama: "Survei lapangan Tim Ekspedisi Patriot IPB University", singkat: "Survei Tim Ekspedisi Patriot", tahun: 2026, rilis: "26 Oktober 2026", rilisPendek: "26 Okt 2026" }
@@ -102,8 +103,8 @@ window.KAMPUNG = {
   ],
   sejarahSumber: "RPJMK Kampung Marga Mulya 2019–2024, Bab II",
 
-  // Visi & misi dari RPJMK Kampung Marga Mulya 2019–2024 (Peraturan Kampung Nomor 1 Tahun 2019)
-  visi: "Terwujudnya Kampung Marga Mulya yang Maju, Mandiri, Bermartabat dan Religius",
+  // Visi & misi menurut RKPK 2026 (Bab I D), yang menjabarkan RPJMK (Peraturan Kampung Nomor 1 Tahun 2019)
+  visi: "Terwujudnya Kampung Marga Mulya yang Maju, Mandiri, Bermartabat dan Modern Religius",
   visiMakna: "Maju, mandiri, dan bermartabat berarti pelayanan yang lebih baik di berbagai bidang, lapangan kerja lewat Badan Usaha Milik Kampung, serta kampung yang kreatif menggali potensi pertanian dan wisata lokal. Religius berarti masyarakat yang beriman, bertakwa, dan berakhlak mulia, dengan nilai luhur budaya seperti kejujuran dihayati dalam keseharian.",
   misi: [
     "Mengoptimalkan kinerja perangkat kampung dan kelembagaan kampung sesuai tugas pokok dan fungsi, agar pelayanan kepada masyarakat di berbagai aspek meningkat secara tuntas.",
@@ -113,8 +114,8 @@ window.KAMPUNG = {
     "Meningkatkan pemberdayaan masyarakat agar partisipasi dan peran serta warga tertib dalam seluruh aspek pembangunan kampung.",
     "Meningkatkan sistem keamanan swakarsa demi rasa aman, serta mengapresiasi Linmas dengan insentif yang layak.",
     "Menyusun peraturan kampung untuk mewujudkan pengayoman kepada masyarakat.",
-    "Menggali dan memanfaatkan potensi sumber daya alam (pertanian, perkebunan) menjadi aset kampung, menuju Kampung Agrowisata dan wisata lokal.",
-    "Membangun mental spiritual masyarakat menuju masyarakat religius yang berlandaskan Pancasila dan UUD 1945.",
+    "Menggali dan memanfaatkan potensi sumber daya alam (pertanian, perikanan, perkebunan) menjadi aset kampung, menuju Kampung Agrowisata.",
+    "Membangun dan meningkatkan mental spiritual masyarakat menuju masyarakat yang modern religius, berlandaskan Pancasila dan UUD 1945.",
     "Mendorong terealisasinya pemekaran Kampung Marga Mulya."
   ],
   misiRingkas: 5,
@@ -123,7 +124,8 @@ window.KAMPUNG = {
   rpjmk: {
     judul: "Rencana Pembangunan Jangka Menengah Kampung (RPJMK) Marga Mulya Tahun 2019–2024",
     perkam: "Peraturan Kampung Marga Mulya Nomor 1 Tahun 2019",
-    periode: "2019–2024",
+    periode: "2019–2026 (semula 2019–2024, diperpanjang 2 tahun)",
+    perpanjangan: "Seiring perpanjangan masa jabatan kepala kampung dari 6 menjadi 8 tahun, masa berlaku RPJMK diperpanjang menjadi 2019–2026 (RKPK 2026, Bab I dan Bab III).",
     ditetapkan: "01 Mei 2019 oleh Kepala Kampung Zubaidah Alfakir, atas persetujuan bersama Bamuskam",
     landasan: "Pasal 79 ayat (3) Undang-Undang Nomor 6 Tahun 2014 tentang Desa",
     halaman: "rpjmk.html",
@@ -151,16 +153,410 @@ window.KAMPUNG = {
     ]
   },
 
-  // Potensi sumber daya menurut RPJMK 2019–2024 (Bab II). Angka kondisi tahun penyusunan.
+  // RKPK 2026 dari dokumen RKPK (Perkam No. 002/2026, 20 April 2026) dan RAB RKPK 2026.
+  // Angka belanja mengikuti RAB RKPK; berkas asli di assets/dok/.
+  rkpk: {
+    "tahun": 2026,
+    "judul": "Rencana Kerja Pemerintah Kampung (RKPK) Marga Mulya Tahun Anggaran 2026",
+    "perkam": "Peraturan Kampung Marga Mulya Nomor 002 Tahun 2026",
+    "ditetapkan": "20 April 2026 di Marga Mulya oleh Plt. Kepala Kampung, dengan persetujuan bersama Bamuskam",
+    "lembaran": "Lembaran Kampung Marga Mulya Tahun 2026 Nomor 02",
+    "pengertian": "RKPK adalah penjabaran RPJMK untuk jangka waktu satu tahun. Isinya bidang dan kegiatan pembangunan kampung selama setahun, dan menjadi pedoman penyusunan APBKam.",
+    "tujuan": [
+      "Kampung memiliki dokumen perencanaan pembangunan tahunan yang berkekuatan hukum tetap.",
+      "Menjadi dasar dan pedoman pelaksanaan pembangunan di kampung.",
+      "Menjadi dasar penyusunan Peraturan Kampung tentang APBKam."
+    ],
+    "manfaat": [
+      "Menjamin kesinambungan pembangunan di tingkat kampung.",
+      "Menjadi pedoman dan acuan pembangunan kampung.",
+      "Memberi arah kegiatan pembangunan tahunan.",
+      "Menampung aspirasi sesuai kebutuhan masyarakat dan memadukannya dengan program pembangunan supra kampung.",
+      "Mendorong partisipasi dan swadaya masyarakat."
+    ],
+    "sistematika": [
+      "Bab I Pendahuluan",
+      "Bab II Arah kebijakan keuangan kampung",
+      "Bab III Rumusan prioritas masalah",
+      "Bab IV Rumusan prioritas kebijakan program pembangunan kampung",
+      "Bab V Penutup"
+    ],
+    "pendapatan": [
+      {
+        "nama": "Dana Desa (APBN)",
+        "jumlah": 373456000
+      },
+      {
+        "nama": "Alokasi Dana Kampung (APBD Kabupaten Merauke)",
+        "jumlah": 521227062
+      }
+    ],
+    "totalPendapatan": 894683062,
+    "pendapatanKet": "Perkiraan pendapatan transfer. Pendapatan Asli Kampung (PAK) Rp12.000.000 dari tahun sebelumnya ikut membiayai belanja.",
+    "pak": 12000000,
+    "bidang": [
+      {
+        "no": 1,
+        "nama": "Penyelenggaraan Pemerintahan Kampung",
+        "jumlah": 504267062,
+        "kegiatan": [
+          {
+            "nama": "Penghasilan tetap dan tunjangan kepala kampung",
+            "sumber": "ADK",
+            "ket": "Nilai tidak dicantumkan terpisah dalam RAB RKPK."
+          },
+          {
+            "nama": "Penghasilan tetap dan tunjangan perangkat kampung",
+            "volume": "7 orang",
+            "sasaran": "Perangkat kampung",
+            "waktu": "12 bulan",
+            "jumlah": 180000000,
+            "sumber": "ADK",
+            "sdgs": "18"
+          },
+          {
+            "nama": "Penyediaan jaminan sosial bagi kepala kampung dan perangkat kampung",
+            "volume": "7 orang",
+            "sasaran": "Perangkat kampung",
+            "waktu": "12 bulan",
+            "jumlah": 11232000,
+            "sumber": "ADK",
+            "sdgs": "1, 3"
+          },
+          {
+            "nama": "Operasional kantor kampung",
+            "volume": "1 paket",
+            "sasaran": "Sarana pendukung",
+            "waktu": "12 bulan",
+            "jumlah": 68986000,
+            "sumber": "ADK",
+            "sdgs": "18"
+          },
+          {
+            "nama": "Tunjangan Bamuskam",
+            "volume": "5 orang",
+            "sasaran": "Bamuskam",
+            "waktu": "12 bulan",
+            "jumlah": 84600000,
+            "sumber": "ADK",
+            "sdgs": "18"
+          },
+          {
+            "nama": "Operasional Bamuskam",
+            "volume": "1 paket",
+            "sasaran": "Bamuskam",
+            "waktu": "12 bulan",
+            "jumlah": 6950000,
+            "sumber": "ADK",
+            "sdgs": "18"
+          },
+          {
+            "nama": "Insentif/operasional RT/RW",
+            "volume": "9 orang",
+            "sasaran": "Ketua RW/RT",
+            "waktu": "12 bulan",
+            "jumlah": 75000000,
+            "sumber": "ADK",
+            "sdgs": "18"
+          },
+          {
+            "nama": "Biaya pemerintah kampung yang bersumber dari Dana Desa",
+            "volume": "23 KK",
+            "sasaran": "Ketua RW/RT",
+            "waktu": "12 bulan",
+            "jumlah": 10800000,
+            "sumber": "DD",
+            "sdgs": "1"
+          },
+          {
+            "nama": "Pemutakhiran profil kampung (profil kependudukan dan potensi) dan pendataan SDGs Desa",
+            "volume": "1 kegiatan",
+            "sasaran": "Masyarakat",
+            "waktu": "7 hari",
+            "jumlah": 5840000,
+            "sumber": "DD",
+            "sdgs": "10, 17"
+          },
+          {
+            "nama": "Penyelenggaraan musyawarah kampung",
+            "volume": "1 kegiatan",
+            "sasaran": "Tim penyusun",
+            "waktu": "2 hari",
+            "jumlah": 3800000,
+            "sumber": "ADK",
+            "sdgs": "1, 17"
+          },
+          {
+            "nama": "Penyusunan dokumen keuangan kampung (APBKam, LPJ APBKam, dan dokumen terkait)",
+            "volume": "22 orang",
+            "sasaran": "Tim penyusun",
+            "waktu": "3 bulan",
+            "jumlah": 22005000,
+            "sumber": "ADK",
+            "sdgs": "18"
+          },
+          {
+            "nama": "Sistem informasi kampung",
+            "volume": "1 kegiatan",
+            "sasaran": "Masyarakat",
+            "waktu": "12 bulan",
+            "jumlah": 1200000,
+            "sumber": "ADK",
+            "sdgs": "1"
+          },
+          {
+            "nama": "Dukungan pelaksanaan dan sosialisasi pemilihan kepala kampung",
+            "volume": "1 kegiatan",
+            "sasaran": "Masyarakat",
+            "waktu": "12 bulan",
+            "jumlah": 30758062,
+            "sumber": "ADK",
+            "sdgs": "1"
+          },
+          {
+            "nama": "Penentuan/penegasan/pembangunan batas atau patok tanah kampung",
+            "volume": "2 kegiatan",
+            "sasaran": "Masyarakat",
+            "waktu": "13 bulan",
+            "jumlah": 3096000,
+            "sumber": "ADK",
+            "sdgs": "1"
+          }
+        ]
+      },
+      {
+        "no": 2,
+        "nama": "Pembangunan Kampung",
+        "jumlah": 280836048,
+        "kegiatan": [
+          {
+            "nama": "Penyelenggaraan PAUD/TK/TPA/TKA/TPQ/madrasah nonformal milik kampung (honor pengajar, seragam, operasional)",
+            "volume": "5 orang",
+            "sasaran": "Pengajar PAUD, guru ngaji, dan guru sekolah minggu",
+            "waktu": "12 bulan",
+            "jumlah": 69050000,
+            "sumber": "DD",
+            "sdgs": "4, 16"
+          },
+          {
+            "nama": "Dukungan penyelenggaraan PAUD (APE, sarana PAUD)",
+            "volume": "1 paket",
+            "sasaran": "Masyarakat",
+            "waktu": "12 bulan",
+            "jumlah": 31589500,
+            "sumber": "DD",
+            "sdgs": "1"
+          },
+          {
+            "nama": "Penyelenggaraan posyandu (makanan tambahan, kelas ibu hamil, kelas lansia, insentif kader posyandu)",
+            "volume": "1 paket",
+            "sasaran": "Balita, lansia, dan kader posyandu",
+            "waktu": "12 bulan",
+            "jumlah": 81806500,
+            "sumber": "DD",
+            "sdgs": "3"
+          },
+          {
+            "nama": "Pemeliharaan gedung/prasarana balai kampung",
+            "volume": "1 paket",
+            "sasaran": "Masyarakat",
+            "waktu": "1 tahun",
+            "jumlah": 18580771,
+            "sumber": "ADK",
+            "sdgs": "1"
+          },
+          {
+            "nama": "Pemeliharaan pemakaman milik kampung",
+            "volume": "2 orang",
+            "sasaran": "Penjaga makam",
+            "waktu": "12 bulan",
+            "jumlah": 9600000,
+            "sumber": "DD",
+            "sdgs": "11"
+          },
+          {
+            "nama": "Pembangunan gorong-gorong RT 13 dan RT 15",
+            "volume": "2 RT",
+            "sasaran": "Masyarakat",
+            "waktu": "1 tahun",
+            "jumlah": 31657277,
+            "sumber": "DD",
+            "sdgs": "2",
+            "ket": "RT 13 Rp14.502.554 dan RT 15 Rp17.154.723."
+          },
+          {
+            "nama": "Pembangunan peningkatan balai kampung (rehab balai kampung)",
+            "volume": "1 paket",
+            "sasaran": "Masyarakat",
+            "waktu": "1 tahun",
+            "jumlah": 6282000,
+            "sumber": "ADK",
+            "sdgs": "1"
+          },
+          {
+            "nama": "Peningkatan makam kampung",
+            "volume": "2 paket",
+            "sasaran": "Penjaga makam",
+            "waktu": "13 bulan",
+            "jumlah": 30920000,
+            "sumber": "DD",
+            "sdgs": "2"
+          },
+          {
+            "nama": "Penyelenggaraan informasi publik kampung",
+            "volume": "1 kegiatan",
+            "sasaran": "Masyarakat",
+            "waktu": "5 hari",
+            "jumlah": 1350000,
+            "sumber": "DD",
+            "sdgs": "18"
+          }
+        ]
+      },
+      {
+        "no": 3,
+        "nama": "Pembinaan Kemasyarakatan",
+        "jumlah": 37368000,
+        "kegiatan": [
+          {
+            "nama": "Penyelenggaraan pos keamanan kampung (jadwal ronda/patroli, Linmas)",
+            "volume": "1 kegiatan",
+            "sasaran": "Masyarakat",
+            "waktu": "1 tahun",
+            "jumlah": 3768000,
+            "sumber": "ADK",
+            "sdgs": "14"
+          },
+          {
+            "nama": "Penguatan dan peningkatan kapasitas tenaga keamanan/ketertiban oleh pemerintah kampung",
+            "jumlah": 33600000,
+            "sumber": "ADK"
+          }
+        ]
+      },
+      {
+        "no": 4,
+        "nama": "Pemberdayaan Masyarakat",
+        "jumlah": 0,
+        "kegiatan": [],
+        "ket": "Belum ada kegiatan yang dianggarkan dalam RKPK 2026."
+      },
+      {
+        "no": 5,
+        "nama": "Penanggulangan Bencana, Keadaan Darurat, dan Mendesak",
+        "jumlah": 84000000,
+        "kegiatan": [
+          {
+            "nama": "Keadaan mendesak: Bantuan Langsung Tunai Dana Desa (BLT-DD)",
+            "volume": "35 KK",
+            "sasaran": "Masyarakat",
+            "waktu": "12 bulan",
+            "jumlah": 84000000,
+            "sumber": "DD",
+            "sdgs": "1, 2"
+          }
+        ]
+      }
+    ],
+    "totalBelanja": 906471110,
+    "pembiayaan": [
+      {
+        "nama": "Penyertaan modal kampung (Dana Desa untuk ketahanan pangan)",
+        "volume": "1 kegiatan",
+        "sasaran": "Masyarakat",
+        "waktu": "12 bulan",
+        "jumlah": 54000000,
+        "sumber": "DD",
+        "sdgs": "2"
+      }
+    ],
+    "totalRab": 960471110,
+    "pagu": [
+      [
+        "Belanja rutin",
+        "30%",
+        "dari total belanja kampung, bersumber dari APBN dan APBD"
+      ],
+      [
+        "Belanja pembangunan",
+        "70%",
+        "untuk bidang pembangunan, pembinaan kemasyarakatan, pemberdayaan masyarakat, penanggulangan bencana, dan penyertaan modal (ketahanan pangan)"
+      ]
+    ],
+    "paguKet": "Komposisi pagu disepakati dalam forum Musrenbang RKP Kampung.",
+    "pelaksanaan": "Semua kegiatan dilaksanakan secara swakelola oleh Tim Pelaksana Kegiatan (TPK) Dana Desa atau Alokasi Dana Kampung, di Kampung Marga Mulya.",
+    "prioritas": [
+      {
+        "judul": "Evaluasi pembangunan tahun sebelumnya",
+        "isi": "Masa jabatan kepala kampung diperpanjang dari 6 menjadi 8 tahun, sehingga RKPK 2026 melanjutkan pembangunan yang belum terlaksana. Sebagian usulan prioritas dalam matriks RPJMK belum terpenuhi karena refocusing atau efisiensi anggaran, serta adanya kewajiban anggaran seperti penanggulangan kerawanan sosial, pendataan SDGs Desa, dan penanganan stunting."
+      },
+      {
+        "judul": "Prioritas RPJMK",
+        "isi": "Berdasarkan Peraturan Kampung Nomor 01 Tahun 2019 tentang RPJM Kampung (2019–2026), prioritas meliputi bidang pemerintahan, pembangunan, pembinaan kemasyarakatan, pemberdayaan masyarakat, penanggulangan bencana, penyertaan modal (ketahanan pangan), dan pendapatan asli kampung."
+      },
+      {
+        "judul": "Prioritas kebijakan supra kampung",
+        "isi": "Mengikuti prioritas pembangunan daerah: mengurangi kemiskinan dan meningkatkan pendapatan masyarakat lewat ekonomi rakyat dan BUMK, didukung peningkatan pendidikan dan kualitas kesehatan."
+      },
+      {
+        "judul": "Analisa keadaan darurat",
+        "isi": "Masalah mendasar yang perlu segera diatasi: infrastruktur jalan, gorong-gorong, saluran air, penanggulangan kemiskinan, ketahanan pangan, terwujudnya Koperasi Merah Putih, dan pengembangan Badan Usaha Milik Kampung yang pendapatannya belum maksimal."
+      }
+    ],
+    "skala": [
+      [
+        "Skala kampung",
+        "Program yang sepenuhnya mampu dilaksanakan kampung, diukur dari ketersediaan anggaran, kewenangan, dan potensi unggulan kampung."
+      ],
+      [
+        "Skala distrik/kabupaten",
+        "Kebutuhan nyata warga yang bukan kewenangan kampung, terlalu besar biayanya, atau belum didukung sumber daya. Usulan dibawa delegasi kampung ke Musrenbang Distrik."
+      ]
+    ],
+    "dasarHukum": [
+      "UU Nomor 12 Tahun 1969 tentang Pembentukan Propinsi Otonom Irian Barat dan Kabupaten-kabupaten Otonom di Propinsi Irian Barat",
+      "UU Nomor 21 Tahun 2001 tentang Otonomi Khusus bagi Provinsi Papua, sebagaimana diubah dengan UU Nomor 35 Tahun 2008",
+      "UU Nomor 12 Tahun 2011 tentang Pembentukan Peraturan Perundang-undangan",
+      "UU Nomor 6 Tahun 2014 tentang Desa",
+      "UU Nomor 23 Tahun 2014 tentang Pemerintahan Daerah",
+      "PP Nomor 43 Tahun 2014 tentang Peraturan Pelaksanaan UU Nomor 6 Tahun 2014 tentang Desa",
+      "PP Nomor 60 Tahun 2014 tentang Dana Desa yang Bersumber dari APBN",
+      "Permendagri Nomor 114 Tahun 2014 tentang Pedoman Pembangunan Desa",
+      "Permendagri Nomor 20 Tahun 2018 tentang Pengelolaan Keuangan Desa",
+      "Permendesa PDTT Nomor 13 Tahun 2023 tentang Petunjuk Operasional atas Fokus Penggunaan Dana Desa Tahun 2026",
+      "PMK Nomor 145 Tahun 2023 tentang Pengelolaan Dana Desa",
+      "PMK Nomor 146 Tahun 2023 tentang Pengalokasian Dana Desa Setiap Desa, Penyaluran, dan Penggunaan Dana Desa Tahun Anggaran 2026",
+      "Peraturan Bupati Merauke Nomor 5 Tahun 2026 tentang Tata Cara Pengalokasian Alokasi Dana Kampung"
+    ],
+    "dasarHukumRingkas": 4,
+    "berkas": [
+      {
+        "nama": "Dokumen RKPK 2026",
+        "ket": "Peraturan Kampung Nomor 002 Tahun 2026 beserta lampiran Bab I–V",
+        "pdf": "assets/dok/RKPK-Kampung-Marga-Mulya-2026.pdf",
+        "asli": "assets/dok/RKPK-Kampung-Marga-Mulya-2026.docx",
+        "format": "Word",
+        "hal": 15
+      },
+      {
+        "nama": "RAB RKPK 2026",
+        "ket": "Rencana kegiatan, volume, sasaran, waktu, biaya, sumber dana, dan daftar prioritas masalah",
+        "pdf": "assets/dok/RAB-RKPK-Kampung-Marga-Mulya-2026.pdf",
+        "asli": "assets/dok/RAB-RKPK-Kampung-Marga-Mulya-2026.xlsx",
+        "format": "Excel",
+        "hal": 4
+      }
+    ],
+    "privasi": "Nomor induk pegawai (NIP) dan pangkat pejabat penandatangan dihapus dari salinan dokumen untuk melindungi data pribadi."
+  },
+
+  // Potensi sumber daya menurut RPJMK (Bab II).
   potensiSD: {
     pengantar: "Kajian sumber daya dalam RPJMK menempatkan Marga Mulya sebagai sentra produksi padi. Tanahnya paling cocok untuk persawahan, dan hampir semua keluarga menggantungkan penghasilan pada pertanian.",
     sumber: "RPJMK Kampung Marga Mulya 2019–2024, Bab II",
-    daftar: [
-      { judul: "Sumber daya alam", rilis: ["rpjmk", "monografi"], isi: "Sawah, kini seluas 1.758,19 ha (RPJMK 2019 mencatat 1.116 ha), menjadi tumpuan utama, ditambah 183 ha lahan palawija dan 118 ha lahan yang sudah dibersihkan dan direncanakan menjadi sawah. Ada pula 282 ha permukiman, 46 ha rawa, dan 2 km sungai.", angka: [["1.758,19 ha", "sawah"], ["183 ha", "palawija"], ["118 ha", "siap dibuka"]], bab: "bab-ii-3" },
-      { judul: "Sumber daya manusia", isi: "586 keluarga hidup dari pertanian dan perkebunan; lainnya dari perdagangan, angkutan, industri pengolahan, dan jasa. Petani menanam padi dua kali setahun (rendengan dan gadu), dan 1 ha sawah menghasilkan sekitar 4 ton gabah.", angka: [["586 KK", "petani"], ["2 kali", "panen padi setahun"], ["±4 ton", "gabah per hektare"]], bab: "bab-ii-4" },
-      { judul: "Sumber daya pembangunan", isi: "Kampung memiliki 38 km jalan kampung, 41 km jalan usaha tani, 24 jembatan, 49 km drainase, dan 5 bendali (kolam tadah air). Alat pertanian warga mencakup 42 hand tractor, 4 jonder, dan 3 mesin perontok padi, digerakkan oleh 18 kelompok tani.", angka: [["42", "hand tractor"], ["18", "kelompok tani"], ["41 km", "jalan usaha tani"]], bab: "bab-ii-5" },
-      { judul: "Sumber daya sosial budaya", isi: "Gotong royong dan kegiatan keagamaan menjadi perekat warga: 18 kelompok yasinan (satu di tiap RT), pengajian Jumat Pahing se-kampung dengan 350–450 jamaah, 6 majelis taklim/grup rebana, 3 TPQ dengan 227 santri, sekolah minggu, dan kelompok kesenian kuda lumping.", angka: [["18", "kelompok yasinan"], ["3", "TPQ"], ["1", "grup kuda lumping"]], bab: "bab-ii-6" }
-    ],
+    // Angka kondisi tahun 2019 (sumber daya alam, manusia, pembangunan, sosial budaya) dihapus;
+    // data terbaru ada di Monografi Kampung 2026 (menu Data Kampung dan Potensi).
+    daftar: [],
     // Kalender musim (Tabel II.6). Nilai 0–3 = tidak ada sampai puncak.
     kalender: [
       ["Tanam padi rendengan", [3,2,0,0,0,0,0,0,0,3,3,0]],

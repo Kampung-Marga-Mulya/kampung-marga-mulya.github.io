@@ -1547,3 +1547,38 @@ a.intro__slide p::after { content: " →"; color: #BFD4FB; font-weight: 700; }
 .collab__nilai .ic { width: 26px; height: 26px; padding: 5px; border-radius: 50%; background: #fff; color: #0B3A8F; flex: none; }
 .collab__nilai b { font-family: var(--font-serif, "Source Serif 4", Georgia, serif); font-size: 1.6rem; font-weight: 600; line-height: 1.1; color: #fff; }
 .collab__nilai small { padding: 2px 9px; border-radius: 99px; background: rgba(255, 255, 255, .18); border: 1px solid rgba(255, 255, 255, .35); color: #fff; font-size: .82rem; font-weight: 700; }
+
+/* ---------- RKPK 2026 ---------- */
+.rkpk-dok { border: 1px solid var(--blue); border-radius: var(--r); background: linear-gradient(135deg, var(--tint), var(--card)); padding: 16px; display: grid; gap: 12px; }
+.rkpk-dok__head b { display: block; font-family: var(--font-head); font-size: 1.1rem; }
+.rkpk-dok__head span { color: var(--ink-2); font-size: .92rem; }
+.rkpk-dok__list { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr)); gap: 10px; }
+.rkpk-berkas { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 10px 12px; align-items: start; background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 12px; }
+.rkpk-berkas__ic { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 10px; background: var(--blue-fill); color: #fff; }
+.rkpk-berkas__ic .ic { width: 20px; height: 20px; }
+.rkpk-berkas__t b { display: block; }
+.rkpk-berkas__t small { color: var(--ink-2); line-height: 1.35; display: block; }
+.rkpk-berkas__a { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 8px; }
+.rkpk-berkas__a .btn { flex: 1 1 140px; justify-content: center; }
+.rkpk-dok > .small { margin: 0; }
+details.bid > summary > span { display: block; min-width: 0; }
+details.bid > summary > span small { display: block; font-weight: 500; color: var(--ink-2); font-size: .82rem; font-variant-numeric: tabular-nums; }
+.rkpk-list { list-style: none; margin: 0; padding: 0 12px 12px; display: grid; gap: 8px; }
+.rkpk-list li { border-top: 1px solid var(--line); padding-top: 8px; }
+.rkpk-keg { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 4px 12px; font-size: .93rem; }
+.rkpk-keg span small { display: block; color: var(--ink-2); font-size: .8rem; margin-top: 2px; }
+.rkpk-keg b { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.rkpk-sd { display: block; font-style: normal; font-weight: 600; font-size: .72rem; color: var(--blue); letter-spacing: .04em; }
+.rkpk-kosong { padding: 0 12px 12px; margin: 0; }
+.rkpk-tab { width: 100%; border-collapse: collapse; font-size: .93rem; }
+.rkpk-tab td { padding: 8px 0; border-bottom: 1px solid var(--line); }
+.rkpk-tab td.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; padding-left: 12px; }
+.rkpk-tab tr.tot td { font-weight: 700; border-bottom: 0; color: var(--blue); }
+.rkpk-pagu { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin-top: 10px; }
+.rkpk-pagu .tile small { display: block; font-size: .78rem; color: var(--ink-2); line-height: 1.3; margin-top: 4px; }
+.rkpk-pri { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: 10px; }
+.rkpk-pri__i { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 10px; border: 1px solid var(--line); border-radius: 12px; padding: 12px; background: var(--card); }
+.rkpk-pri__i > b { display: grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; background: var(--blue-fill); color: #fff; font-size: .85rem; }
+.rkpk-pri__i h4 { margin: 2px 0 4px; }
+.rkpk-pri__i p { margin: 0; font-size: .92rem; color: var(--ink-2); }
+@media (max-width: 520px) { .rkpk-keg { grid-template-columns: 1fr; } .rkpk-keg b { text-align: left; } .rkpk-pagu { grid-template-columns: 1fr; } }

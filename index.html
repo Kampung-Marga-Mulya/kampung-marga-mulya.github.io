@@ -29,8 +29,8 @@
   <link rel="stylesheet" href="assets/css/fonts.css?v=1">
   <link rel="stylesheet" href="assets/vendor/leaflet/leaflet.css?v=1.9.4">
   <script src="assets/js/tema.js?v=1"></script>
-  <script src="assets/js/bahasa.js?v=1794663564"></script>
-  <link rel="stylesheet" href="assets/css/style.css?v=1794662906">
+  <script src="assets/js/bahasa.js?v=1794995488"></script>
+  <link rel="stylesheet" href="assets/css/style.css?v=1794995488">
   <link rel="stylesheet" href="assets/css/aspirasi.css?v=6">
 </head>
 <body>
@@ -127,7 +127,7 @@
             <a class="intro__slide" href="#tentang" role="group" aria-roledescription="slide" aria-label="2 dari 6"><span class="intro__tag">Profil wilayah</span><p>Sejarah, identitas wilayah, batas kampung, pemerintahan, dan prestasi Kampung Marga Mulya.</p></a>
             <a class="intro__slide" href="#penduduk" role="group" aria-roledescription="slide" aria-label="3 dari 6"><span class="intro__tag">Data kampung</span><p>Kependudukan serta sarana dan prasarana kampung, lengkap dengan tahun rilis dokumen sumbernya.</p></a>
             <a class="intro__slide" href="#potensi" role="group" aria-roledescription="slide" aria-label="4 dari 6"><span class="intro__tag">Potensi ekonomi</span><p>Pertanian padi dan hortikultura, peternakan, serta usaha warga Kampung Marga Mulya.</p></a>
-            <a class="intro__slide" href="#apbkam" role="group" aria-roledescription="slide" aria-label="5 dari 6"><span class="intro__tag">Transparansi pembangunan</span><p>APBKam dan RPJMK yang bisa dibaca terbuka oleh seluruh warga.</p></a>
+            <a class="intro__slide" href="#apbkam" role="group" aria-roledescription="slide" aria-label="5 dari 6"><span class="intro__tag">Transparansi pembangunan</span><p>APBKam, RKPK, dan RPJMK yang bisa dibaca terbuka oleh seluruh warga.</p></a>
             <a class="intro__slide" href="#layanan" role="group" aria-roledescription="slide" aria-label="6 dari 6"><span class="intro__tag">Layanan informasi</span><p>Persyaratan surat dan pengajuan langsung lewat WhatsApp, serta aspirasi dan pengaduan warga.</p></a>
           </div>
           <div class="intro__dots" id="introDots" role="tablist" aria-label="Pilih slide"></div>
@@ -358,9 +358,9 @@
     <div class="view" data-view="transparansi" id="v-transparansi" hidden>
       <div class="vhead">
         <div class="wrap">
-          <div class="vhead__t"><span class="vhead__ic"><svg class="ic"><use href="#i-wallet"/></svg></span><div><h1>Transparansi</h1><p>Anggaran kampung dan rencana pembangunan (RPJMK).</p></div></div>
+          <div class="vhead__t"><span class="vhead__ic"><svg class="ic"><use href="#i-wallet"/></svg></span><div><h1>Transparansi</h1><p>Anggaran kampung (APBKam), rencana kerja tahunan (RKPK), dan rencana pembangunan jangka menengah (RPJMK).</p></div></div>
         </div>
-        <div class="vtabs"><div class="wrap"><div class="vtabs__row" role="tablist" aria-label="Transparansi"><button type="button" role="tab" data-tab="apbkam" aria-selected="true"><svg class="ic"><use href="#i-wallet"/></svg>APBKam</button><button type="button" role="tab" data-tab="perencanaan" aria-selected="false"><svg class="ic"><use href="#i-doc"/></svg>RPJMK</button></div></div></div>
+        <div class="vtabs"><div class="wrap"><div class="vtabs__row" role="tablist" aria-label="Transparansi"><button type="button" role="tab" data-tab="apbkam" aria-selected="true"><svg class="ic"><use href="#i-wallet"/></svg>APBKam</button><button type="button" role="tab" data-tab="rkpk" aria-selected="false"><svg class="ic"><use href="#i-calendar"/></svg>RKPK 2026</button><button type="button" role="tab" data-tab="perencanaan" aria-selected="false"><svg class="ic"><use href="#i-doc"/></svg>RPJMK</button></div></div></div>
       </div>
         <div class="tabpanel" role="tabpanel" data-panel="apbkam">
 <section class="sec" id="anggaran">
@@ -378,6 +378,24 @@
         <div class="panel mt-s"><h3>Pembiayaan</h3><div id="apbPembiayaan"></div></div>
         <div class="apb-more mt-s" id="apbMore"></div>
         <div class="panel mt"><h3>Dana yang dikelola lembaga kampung</h3><p class="small" id="apbLembagaNote"></p><div class="bars" id="apbLembaga"></div></div>
+      </div>
+    </section>
+        </div>
+        <div class="tabpanel" role="tabpanel" data-panel="rkpk" hidden>
+<section class="sec" id="rkpk">
+      <div class="wrap">
+        <header class="sec__head"><span class="sec__icon"><svg class="ic"><use href="#i-calendar"/></svg></span><div><p class="eyebrow">Rencana kerja tahunan</p><h2>RKPK Kampung Marga Mulya 2026</h2><p class="lead" id="rkpkLead"></p></div></header>
+        <div class="apb-sum" id="rkpkSum"></div>
+        <div class="rkpk-dok mt-s" id="rkpkDok"></div>
+        <div class="grid-apb mt">
+          <div class="panel"><h3>Rencana kegiatan per bidang</h3><p class="small">Ketuk bidang untuk melihat kegiatan, volume, sasaran, waktu, biaya, dan sumber dananya.</p><div id="rkpkBidang"></div></div>
+          <div class="panel"><h3>Kerangka keuangan</h3><p class="small">Perkiraan pendapatan dan komposisi pagu anggaran dalam RKPK.</p><div id="rkpkKeu"></div></div>
+        </div>
+        <div class="panel mt-s"><h3>Rumusan prioritas masalah</h3><p class="small">Dasar penentuan program dan kegiatan tahun 2026 (Bab III RKPK).</p><div class="rkpk-pri" id="rkpkPrioritas"></div></div>
+        <div class="grid-2 mt-s">
+          <div class="panel"><h3>Landasan</h3><dl class="kv" id="rkpkMeta"></dl><h3 class="mt-s">Dasar hukum</h3><ol class="dh" id="rkpkDasar"></ol></div>
+          <div class="panel"><h3>Tujuan dan manfaat</h3><div id="rkpkTujuan"></div></div>
+        </div>
       </div>
     </section>
         </div>
@@ -604,9 +622,9 @@
   </dialog>
 
   <script src="assets/vendor/leaflet/leaflet.js?v=1.9.4"></script>
-  <script src="assets/js/data.js?v=1794662906"></script>
-  <script src="assets/js/ilustrasi.js?v=1794662906"></script>
-  <script src="assets/js/app.js?v=1794662906"></script>
-  <script src="assets/js/router.js?v=1794662906"></script>
+  <script src="assets/js/data.js?v=1794995488"></script>
+  <script src="assets/js/ilustrasi.js?v=1794995488"></script>
+  <script src="assets/js/app.js?v=1794995488"></script>
+  <script src="assets/js/router.js?v=1794995488"></script>
 </body>
 </html>

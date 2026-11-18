@@ -13,6 +13,7 @@
     data: ["data", "penduduk"], penduduk: ["data", "penduduk"], sarana: ["data", "sarana"], "sarana-prasarana": ["data", "sarana"], fasilitas: ["jelajah", "fasilitas"], "fasilitas-umum": ["jelajah", "fasilitas"],
     transparansi: ["transparansi", "apbkam"], apbkam: ["transparansi", "apbkam"], anggaran: ["transparansi", "apbkam"],
     indeksdesa: ["beranda"], indeks: ["beranda"],
+    rkpk: ["transparansi", "rkpk"], rkpkam: ["transparansi", "rkpk"], "rencana-kerja": ["transparansi", "rkpk"],
     perencanaan: ["transparansi", "perencanaan"], rpjmk: ["transparansi", "perencanaan"], rpjmkam: ["transparansi", "perencanaan"],
     jelajah: ["jelajah", "petakampung"], petakampung: ["jelajah", "petakampung"], peta: ["jelajah", "petakampung"],
     wisatakuliner: ["jelajah", "wisatakuliner"], wisata: ["jelajah", "wisatakuliner"],
