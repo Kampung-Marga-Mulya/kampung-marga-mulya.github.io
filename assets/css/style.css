@@ -1582,3 +1582,39 @@ details.bid > summary > span small { display: block; font-weight: 500; color: va
 .rkpk-pri__i h4 { margin: 2px 0 4px; }
 .rkpk-pri__i p { margin: 0; font-size: .92rem; color: var(--ink-2); }
 @media (max-width: 520px) { .rkpk-keg { grid-template-columns: 1fr; } .rkpk-keg b { text-align: left; } .rkpk-pagu { grid-template-columns: 1fr; } }
+
+/* ---------- Beranda: status kampung + cuaca + kualitas udara (berganti otomatis) ---------- */
+.hstat { width: fit-content; min-width: min(100%, 320px); max-width: 100%; margin-bottom: 1.4rem; }
+.hstat__track { display: grid; }
+.hstat__slide { grid-area: 1 / 1; justify-content: center; margin: 0 !important; width: 100%; max-width: none; font: inherit; color: inherit; text-align: left; opacity: 0; visibility: hidden; transform: translateY(8px); transition: opacity .5s ease, transform .5s ease, visibility .5s; }
+.hstat__slide.is-on { opacity: 1; visibility: visible; transform: none; }
+.hstat__slide--tap { cursor: pointer; -webkit-tap-highlight-color: transparent; }
+.hero .hstat__slide--tap:hover { background: rgba(255,255,255,.22); border-color: #fff; }
+.hstat__slide--tap:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+.hstat__sub { display: block; margin-top: 4px; font-size: .84rem; color: #DCE8FB; line-height: 1.35; }
+.hstat__slide .collab__nilai small.aqi { white-space: normal; }
+.hstat__ramal { display: flex; gap: 16px; margin-top: 2px; }
+.hstat__ramal > span { display: grid; grid-template-columns: auto auto; align-items: center; column-gap: 6px; row-gap: 2px; }
+.hstat__ramal em { grid-column: 1 / -1; }
+.hstat__ramal em { font-style: normal; font-size: .74rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: #DCE8FB; }
+.hstat__ramal .ic { width: 26px; height: 26px; padding: 4px; border-radius: 50%; background: #fff; color: #0B3A8F; }
+.hstat__ramal strong { font-size: 1.05rem; color: #fff; line-height: 1.1; }
+.hstat__ramal i { font-style: normal; font-weight: 500; font-size: .8rem; color: #DCE8FB; }
+.hstat__dots { display: flex; gap: 6px; margin-top: 8px; }
+.hstat__dots button { width: 8px; height: 8px; padding: 0; border: 0; border-radius: 99px; background: rgba(255,255,255,.45); cursor: pointer; transition: width .3s, background .3s; position: relative; }
+.hstat__dots button::after { content: ""; position: absolute; inset: -8px -3px; }
+.hstat__dots button[aria-selected="true"] { width: 22px; background: #fff; }
+@media (prefers-reduced-motion: reduce) { .hstat__slide { transition: none; transform: none; } }
+@media (max-width: 520px) { .hstat { width: 100%; min-width: 0; margin-bottom: 1rem; } .hstat__ramal { gap: 10px; } .collab__nilai b { font-size: 1.4rem; } }
+/* Jendela rincian cuaca */
+.cuaca-kini { display: flex; align-items: center; gap: 14px; margin-bottom: 12px; }
+.cuaca-kini > .ic { width: 52px; height: 52px; padding: 10px; border-radius: 50%; background: var(--blue-fill); color: #fff; }
+.cuaca-kini b { display: block; font-family: var(--font-head); font-size: 2rem; line-height: 1; color: var(--blue); }
+.cuaca-kini span { color: var(--ink-2); }
+.cuaca-tabel { overflow-x: auto; margin-top: 6px; }
+.cuaca-tabel table { width: 100%; border-collapse: collapse; font-size: .9rem; }
+.cuaca-tabel th { text-align: left; font-size: .78rem; color: var(--ink-2); font-weight: 700; padding: 6px 8px 6px 0; border-bottom: 1px solid var(--line); white-space: nowrap; }
+.cuaca-tabel td { padding: 7px 8px 7px 0; border-bottom: 1px solid var(--line); vertical-align: middle; }
+.cuaca-tabel td .ic { width: 18px; height: 18px; margin-right: 6px; vertical-align: -4px; color: var(--blue); }
+.aqi { display: inline-block; padding: 2px 8px; border-radius: 99px; font-size: .8rem; font-weight: 700; background: var(--tint); border: 1px solid var(--line); color: var(--blue); }
+.aqi--2, .aqi--3, .aqi--4, .aqi--5 { background: var(--blue-fill); border-color: var(--blue); color: #fff; }

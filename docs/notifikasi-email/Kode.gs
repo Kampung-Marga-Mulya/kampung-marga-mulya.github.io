@@ -9,7 +9,7 @@
  * Cara pasang: lihat PANDUAN.md di folder yang sama.
  */
 const EMAIL_TUJUAN = 'seldiozora3@gmail.com';   // alamat yang menerima notifikasi
-const NOMOR_WA = '+62 856-2492-4834';
+const NOMOR_WA = '+62 813-4324-4398';
 const BATAS_PER_JAM = 30;                        // pengaman spam sederhana
 
 function doPost(e) {

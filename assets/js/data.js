@@ -68,7 +68,7 @@ window.KAMPUNG = {
   sosmed: [
     { nama: "Instagram", url: "https://www.instagram.com/kampungmargamulya/", akun: "@kampungmargamulya" },
     { nama: "TikTok", url: "https://www.tiktok.com/@kampung.marga.mul", akun: "@kampung.marga.mul" },
-    { nama: "WhatsApp", url: "https://wa.me/6285624924834", akun: "+62 856-2492-4834 (layanan surat)" },   // format url: https://wa.me/62812xxxxxxx
+    { nama: "WhatsApp", url: "https://wa.me/6281343244398", akun: "+62 813-4324-4398 (layanan surat · Ramdan Sidik Suseno)" },   // format url: https://wa.me/62812xxxxxxx
     { nama: "Grup WhatsApp", url: "https://chat.whatsapp.com/1320lutltGe4ayknHjmpjs", akun: "Grup Kampung Marga Mulya" }
   ],
 
@@ -1180,7 +1180,7 @@ window.KAMPUNG = {
   // Layanan surat. "syarat" = dokumen yang dikirim/dibawa; "isian" = data tambahan di formulir pengajuan.
   // Pengajuan lewat website TIDAK disimpan di server: formulir hanya menyusun pesan WhatsApp
   // di perangkat warga, lalu dikirim langsung ke nomor layanan (layananWa).
-  layananWa: { nomor: "6285624924834", tampil: "+62 856-2492-4834",
+  layananWa: { nomor: "6281343244398", tampil: "+62 813-4324-4398", petugas: "Ramdan Sidik Suseno",
     // Pemberitahuan pengajuan baru ke petugas — hanya jenis surat & waktu, TANPA data pribadi.
     notifikasi: {
       // 1) Push ke HP lewat aplikasi ntfy (gratis, tanpa akun): pasang aplikasi "ntfy", lalu langganan topik ini.
@@ -1391,9 +1391,12 @@ window.KAMPUNG = {
     { src: "assets/img/kegiatan/pelatihan-peternakan.jpg", ket: "Pelatihan peternakan dan pertanian terpadu di balai kampung" }
   ],
 
+  // Cuaca & kualitas udara di Beranda (data langsung dari Open-Meteo, tanpa kunci API).
+  cuaca: { lokasi: "Semangga", lat: -8.405899, lng: 140.467687 },
+
   kontak: {
     alamat: "Kantor Kampung Marga Mulya, Distrik Semangga, Kabupaten Merauke, Papua Selatan 99631",
-    telepon: "+62 856-2492-4834 (WhatsApp layanan surat)",
+    telepon: "+62 813-4324-4398 (WhatsApp layanan surat · Ramdan Sidik Suseno)",
     email: "kampungmargamulya667@gmail.com",
     jamLayanan: "09.00–14.00 WIT"   // jam buka kantor kampung (tampil di Beranda dan Kontak)
   }

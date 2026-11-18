@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Marga Mulya On Site</title>
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https:; font-src 'self'; connect-src 'self' https://ntfy.sh https://script.google.com https://script.googleusercontent.com; media-src 'self'; frame-src https://www.youtube-nocookie.com https://www.tiktok.com https://www.instagram.com https://www.facebook.com; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https:; font-src 'self'; connect-src 'self' https://api.open-meteo.com https://air-quality-api.open-meteo.com https://ntfy.sh https://script.google.com https://script.googleusercontent.com; media-src 'self'; frame-src https://www.youtube-nocookie.com https://www.tiktok.com https://www.instagram.com https://www.facebook.com; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta name="description" content="Website resmi Kampung Marga Mulya, Distrik Semangga, Kabupaten Merauke, Papua Selatan: profil, pemerintahan, data penduduk, transparansi APBKam, Indeks Desa, peta batas kampung, dan layanan warga.">
   <meta name="author" content="Pemerintah Kampung Marga Mulya">
@@ -29,8 +29,8 @@
   <link rel="stylesheet" href="assets/css/fonts.css?v=1">
   <link rel="stylesheet" href="assets/vendor/leaflet/leaflet.css?v=1.9.4">
   <script src="assets/js/tema.js?v=1"></script>
-  <script src="assets/js/bahasa.js?v=1794995488"></script>
-  <link rel="stylesheet" href="assets/css/style.css?v=1794995488">
+  <script src="assets/js/bahasa.js?v=1794996759"></script>
+  <link rel="stylesheet" href="assets/css/style.css?v=1794996759">
   <link rel="stylesheet" href="assets/css/aspirasi.css?v=6">
 </head>
 <body>
@@ -73,7 +73,14 @@
       <symbol id="i-mosque" viewBox="0 0 24 24"><path d="M5 21v-7a7 7 0 0 1 14 0v7M3 21h18M12 4v3M10 21v-3a2 2 0 0 1 4 0v3"/><path d="M12 4a1.5 1.5 0 1 0 0-.01"/></symbol>
       <symbol id="i-school" viewBox="0 0 24 24"><path d="M2 9 12 4l10 5-10 5z"/><path d="M6 11v5c2 1.5 4 2 6 2s4-.5 6-2v-5M22 9v6"/></symbol>
       <symbol id="i-health" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M12 8v8M8 12h8"/></symbol>
-      <symbol id="i-drop" viewBox="0 0 24 24"><path d="M12 3s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11z"/></symbol>
+      <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
+<symbol id="i-cloud" viewBox="0 0 24 24"><path d="M7 18h10a4 4 0 0 0 .5-7.97A6 6 0 0 0 6.1 9.6 4.2 4.2 0 0 0 7 18z"/></symbol>
+<symbol id="i-cloudsun" viewBox="0 0 24 24"><path d="M8 2.5V4M3.4 5.4l1 1M2 10h1.5M12.6 5.4l-1 1"/><path d="M5.2 11.6A3.5 3.5 0 0 1 11.3 8"/><path d="M9.5 20.5h8a3.5 3.5 0 0 0 .4-6.98 5 5 0 0 0-9.6 1.3 2.9 2.9 0 0 0 1.2 5.68z"/></symbol>
+<symbol id="i-rain" viewBox="0 0 24 24"><path d="M7 14h10a4 4 0 0 0 .5-7.97A6 6 0 0 0 6.1 5.6 4.2 4.2 0 0 0 7 14z"/><path d="M8.5 17l-1 3M12.5 17l-1 3M16.5 17l-1 3"/></symbol>
+<symbol id="i-storm" viewBox="0 0 24 24"><path d="M7 14h10a4 4 0 0 0 .5-7.97A6 6 0 0 0 6.1 5.6 4.2 4.2 0 0 0 7 14z"/><path d="M12.5 14l-2.5 4h3.5l-2.5 4"/></symbol>
+<symbol id="i-fog" viewBox="0 0 24 24"><path d="M7 12h10a4 4 0 0 0 .5-7.97A6 6 0 0 0 6.1 3.6 4.2 4.2 0 0 0 7 12z"/><path d="M4 16h16M6 20h12"/></symbol>
+<symbol id="i-wind" viewBox="0 0 24 24"><path d="M3 8h10a3 3 0 1 0-3-3M3 12h15a3 3 0 1 1-3 3M3 16h7"/></symbol>
+<symbol id="i-drop" viewBox="0 0 24 24"><path d="M12 3s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11z"/></symbol>
       <symbol id="i-ball" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7l4 3-1.5 4.5h-5L8 10z"/></symbol>
       <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
       <symbol id="i-ternak" viewBox="0 0 24 24"><path d="M6 9c0-1.7 1.3-3 3-3h6c1.7 0 3 1.3 3 3v4a4 4 0 0 1-4 4h-4a4 4 0 0 1-4-4z"/><path d="M3 6.5 6 9M21 6.5 18 9M10 17v3.5M14 17v3.5"/><circle cx="10" cy="11" r=".6"/><circle cx="14" cy="11" r=".6"/></symbol>
@@ -140,9 +147,14 @@
           <p class="eyebrow">Selamat datang di</p>
           <h1>Kampung Marga Mulya</h1>
           <p class="hero__place" id="heroPlace">Distrik Semangga · Kabupaten Merauke · Papua Selatan</p>
-          <div class="collab collab--status" id="heroStatus">
-            <span class="collab__label">Status kampung</span>
-            <span class="collab__nilai"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><b>Mandiri</b><small>2026</small></span>
+          <div class="hstat" id="heroStatus" aria-roledescription="carousel" aria-label="Status kampung, cuaca, dan kualitas udara">
+            <div class="hstat__track" id="hstatTrack" aria-live="off">
+              <div class="collab collab--status hstat__slide is-on" data-slide="status">
+                <span class="collab__label">Status kampung</span>
+                <span class="collab__nilai"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><b>Mandiri</b><small>2026</small></span>
+              </div>
+            </div>
+            <div class="hstat__dots" id="hstatDots" hidden></div>
           </div>
           <div class="hero__cta">
             <a class="btn btn--solid" href="#peta"><svg class="ic"><use href="#i-pin"/></svg>Lihat peta kampung</a>
@@ -622,9 +634,9 @@
   </dialog>
 
   <script src="assets/vendor/leaflet/leaflet.js?v=1.9.4"></script>
-  <script src="assets/js/data.js?v=1794995881"></script>
-  <script src="assets/js/ilustrasi.js?v=1794995488"></script>
-  <script src="assets/js/app.js?v=1794995488"></script>
-  <script src="assets/js/router.js?v=1794995488"></script>
+  <script src="assets/js/data.js?v=1794996759"></script>
+  <script src="assets/js/ilustrasi.js?v=1794996759"></script>
+  <script src="assets/js/app.js?v=1794996759"></script>
+  <script src="assets/js/router.js?v=1794996759"></script>
 </body>
 </html>

@@ -986,6 +986,142 @@
   // Status kampung di foto utama Beranda (dari identitas.kategori)
   if ($("#heroStatus") && D.identitas && D.identitas.kategori) $("#heroStatus .collab__nilai").innerHTML = '<svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><b>' + esc(D.identitas.kategori) + "</b>" + (D.identitas.statusTahun ? "<small>" + esc(D.identitas.statusTahun) + "</small>" : "");
 
+  /* Status kampung + cuaca + kualitas udara Semangga di Beranda.
+     Data langsung dari Open-Meteo (model cuaca) dan CAMS (kualitas udara); berganti otomatis tanpa berhenti. */
+  (function () {
+    var box = $("#heroStatus"), track = $("#hstatTrack"), dots = $("#hstatDots"), C = D.cuaca;
+    if (!box || !track || !C) return;
+    var EN = window.MM_BAHASA === "en", TZ = "Asia/Jayapura", KUNCI = "mm_cuaca_v1";
+    var T = function (id, en) { return EN ? en : id; };
+    var KODE = { 0: ["Cerah", "Clear", "sun"], 1: ["Cerah berawan", "Mostly clear", "cloudsun"], 2: ["Berawan sebagian", "Partly cloudy", "cloudsun"], 3: ["Mendung", "Overcast", "cloud"],
+      45: ["Berkabut", "Fog", "fog"], 48: ["Berkabut", "Fog", "fog"], 51: ["Gerimis ringan", "Light drizzle", "rain"], 53: ["Gerimis", "Drizzle", "rain"], 55: ["Gerimis lebat", "Heavy drizzle", "rain"],
+      56: ["Gerimis", "Drizzle", "rain"], 57: ["Gerimis", "Drizzle", "rain"], 61: ["Hujan ringan", "Light rain", "rain"], 63: ["Hujan sedang", "Moderate rain", "rain"], 65: ["Hujan lebat", "Heavy rain", "rain"],
+      66: ["Hujan", "Rain", "rain"], 67: ["Hujan lebat", "Heavy rain", "rain"], 80: ["Hujan lokal ringan", "Light showers", "rain"], 81: ["Hujan lokal", "Showers", "rain"], 82: ["Hujan lokal lebat", "Heavy showers", "rain"],
+      95: ["Badai petir", "Thunderstorm", "storm"], 96: ["Badai petir", "Thunderstorm", "storm"], 99: ["Badai petir", "Thunderstorm", "storm"] };
+    var kode = function (k) { var x = KODE[k] || KODE[Math.floor(k / 10) * 10] || ["Berawan", "Cloudy", "cloud"]; return { teks: EN ? x[1] : x[0], ikon: x[2] }; };
+    var AQI = [[50, "Baik", "Good", "Udara bersih, aman untuk beraktivitas di luar.", "Clean air, safe for outdoor activities."],
+      [100, "Sedang", "Moderate", "Masih dapat diterima; orang yang sangat sensitif sebaiknya membatasi aktivitas berat di luar.", "Acceptable; unusually sensitive people should limit heavy outdoor exertion."],
+      [150, "Tidak sehat bagi kelompok sensitif", "Unhealthy for sensitive groups", "Anak, lansia, dan penderita gangguan pernapasan sebaiknya mengurangi aktivitas di luar.", "Children, older adults, and people with breathing problems should reduce outdoor activity."],
+      [200, "Tidak sehat", "Unhealthy", "Kurangi aktivitas di luar dan gunakan masker.", "Reduce outdoor activity and wear a mask."],
+      [300, "Sangat tidak sehat", "Very unhealthy", "Hindari aktivitas di luar.", "Avoid outdoor activity."],
+      [1e9, "Berbahaya", "Hazardous", "Tetap di dalam ruangan.", "Stay indoors."]];
+    var aqiKat = function (v) { for (var i = 0; i < AQI.length; i++) if (v <= AQI[i][0]) return { nama: EN ? AQI[i][2] : AQI[i][1], saran: EN ? AQI[i][4] : AQI[i][3], lv: i }; };
+    var bul = function (n) { return Math.round(n); };
+    var desi = function (n) { return (Math.round(n * 10) / 10).toLocaleString(EN ? "en-GB" : "id-ID"); };
+    var hari = function (tgl, panjang) { return new Date(tgl + "T12:00:00+09:00").toLocaleDateString(EN ? "en-GB" : "id-ID", panjang ? { weekday: "short", day: "numeric", month: "short", timeZone: TZ } : { weekday: "short", timeZone: TZ }); };
+    var jam = function (iso) { return new Date(iso + ":00+09:00").toLocaleTimeString(EN ? "en-GB" : "id-ID", { hour: "2-digit", minute: "2-digit", timeZone: TZ }) + " WIT"; };
+    var ICON = function (n) { return '<svg class="ic" aria-hidden="true"><use href="#i-' + n + '"/></svg>'; };
+
+    // Pergantian slide: otomatis terus, tidak berhenti saat disentuh atau disorot.
+    var slides = function () { return [].slice.call(track.querySelectorAll(".hstat__slide")); };
+    var idx = 0, timer = null;
+    function tampil(n) {
+      var s = slides(); if (!s.length) return;
+      idx = (n + s.length) % s.length;
+      s.forEach(function (el, k) { el.classList.toggle("is-on", k === idx); el.setAttribute("aria-hidden", k === idx ? "false" : "true"); el.tabIndex = k === idx && el.tagName === "BUTTON" ? 0 : -1; });
+      [].forEach.call(dots.children, function (d, k) { d.setAttribute("aria-selected", k === idx ? "true" : "false"); });
+    }
+    function bangunDots() {
+      var s = slides(); dots.hidden = s.length < 2;
+      dots.innerHTML = s.map(function (el, k) { return '<button type="button" role="tab" aria-label="' + (k + 1) + " / " + s.length + '"></button>'; }).join("");
+      tampil(idx);
+    }
+    dots.addEventListener("click", function (e) { var b = e.target.closest("button"); if (b) { tampil([].indexOf.call(dots.children, b)); jalan(); } });
+    function jalan() { clearInterval(timer); timer = setInterval(function () { if (slides().length > 1) tampil(idx + 1); }, 5000); }
+    var x0 = null;
+    track.addEventListener("touchstart", function (e) { x0 = e.touches[0].clientX; }, { passive: true });
+    track.addEventListener("touchend", function (e) { if (x0 == null) return; var dx = e.changedTouches[0].clientX - x0; if (Math.abs(dx) > 40) { tampil(idx + (dx < 0 ? 1 : -1)); jalan(); } x0 = null; }, { passive: true });
+
+    var DATA = { f: null, a: null, t: 0 };
+    function bukaDetail() {
+      var f = DATA.f, a = DATA.a, h = "";
+      if (f && f.current) {
+        var c = f.current, k = kode(c.weather_code);
+        h += '<div class="cuaca-kini">' + ICON(k.ikon) + "<div><b>" + bul(c.temperature_2m) + "°C</b><span>" + esc(k.teks) + "</span></div></div>" +
+          '<dl class="kv kv--sm">' +
+          "<dt>" + T("Terasa seperti", "Feels like") + "</dt><dd>" + bul(c.apparent_temperature) + "°C</dd>" +
+          "<dt>" + T("Kelembapan", "Humidity") + "</dt><dd>" + bul(c.relative_humidity_2m) + "%</dd>" +
+          "<dt>" + T("Angin", "Wind") + "</dt><dd>" + bul(c.wind_speed_10m) + " km/" + T("jam", "h") + "</dd>" +
+          "<dt>" + T("Curah hujan", "Precipitation") + "</dt><dd>" + desi(c.precipitation) + " mm</dd>" +
+          "<dt>" + T("Diperbarui", "Updated") + "</dt><dd>" + esc(jam(c.time)) + "</dd></dl>";
+      }
+      if (f && f.daily && f.daily.time) {
+        var d = f.daily;
+        h += "<h3 class=\"mt-s\">" + T("Ramalan cuaca 7 hari", "7-day forecast") + '</h3><div class="cuaca-tabel"><table><thead><tr><th>' + T("Hari", "Day") + "</th><th>" + T("Kondisi", "Conditions") + "</th><th>" + T("Suhu", "Temp.") + "</th><th>" + T("Peluang hujan", "Rain chance") + "</th></tr></thead><tbody>" +
+          d.time.map(function (t, i) { var k = kode(d.weather_code[i]); return "<tr><td>" + esc(i === 0 ? T("Hari ini", "Today") : hari(t, true)) + "</td><td>" + ICON(k.ikon) + esc(k.teks) + "</td><td>" + bul(d.temperature_2m_min[i]) + "–" + bul(d.temperature_2m_max[i]) + "°C</td><td>" + (d.precipitation_probability_max[i] == null ? "–" : bul(d.precipitation_probability_max[i]) + "%") + (d.precipitation_sum[i] ? " · " + desi(d.precipitation_sum[i]) + " mm" : "") + "</td></tr>"; }).join("") +
+          "</tbody></table></div>";
+      }
+      if (a) {
+        var hr = harianUdara(a);
+        h += "<h3 class=\"mt-s\">" + T("Kualitas udara per hari", "Daily air quality") + "</h3>" +
+          (a.current && a.current.us_aqi != null ? '<p class="small">' + T("Saat ini", "Now") + ": AQI " + bul(a.current.us_aqi) + " (" + esc(aqiKat(a.current.us_aqi).nama) + ") · PM2.5 " + desi(a.current.pm2_5) + " µg/m³ · PM10 " + desi(a.current.pm10) + " µg/m³</p>" : "") +
+          '<div class="cuaca-tabel"><table><thead><tr><th>' + T("Hari", "Day") + "</th><th>AQI " + T("tertinggi", "max") + "</th><th>" + T("Kategori", "Category") + "</th><th>PM2.5 " + T("rata-rata", "avg") + "</th></tr></thead><tbody>" +
+          hr.map(function (x, i) { var k = aqiKat(x.maks); return "<tr><td>" + esc(i === 0 && x.tgl === hariIni() ? T("Hari ini", "Today") : hari(x.tgl, true)) + "</td><td><b>" + bul(x.maks) + '</b></td><td><span class="aqi aqi--' + k.lv + '">' + esc(k.nama) + "</span></td><td>" + desi(x.pm25) + " µg/m³</td></tr>"; }).join("") +
+          "</tbody></table></div>" +
+          (hr.length ? '<p class="small">' + esc(aqiKat(hr[0].maks).saran) + "</p>" : "") +
+          '<p class="small">' + T("Kategori mengikuti Indeks Kualitas Udara AS (US AQI): 0–50 baik, 51–100 sedang, 101–150 tidak sehat bagi kelompok sensitif, 151–200 tidak sehat, di atas 200 sangat tidak sehat.", "Categories follow the US Air Quality Index: 0–50 good, 51–100 moderate, 101–150 unhealthy for sensitive groups, 151–200 unhealthy, above 200 very unhealthy.") + "</p>";
+      }
+      h += '<p class="small mt-s">' + T("Perkiraan model untuk titik koordinat Kampung Marga Mulya, Distrik Semangga, bukan hasil alat ukur di kampung. Sumber: ", "Model estimates for the coordinates of Kampung Marga Mulya, Semangga District, not readings from an instrument in the village. Source: ") +
+        '<a href="https://open-meteo.com/" target="_blank" rel="noopener">Open-Meteo.com</a> (CC BY 4.0); ' + T("kualitas udara dari", "air quality from") + ' CAMS (Copernicus Atmosphere Monitoring Service). ' +
+        T("Untuk peringatan dini cuaca resmi, lihat", "For official weather warnings, see") + ' <a href="https://www.bmkg.go.id/" target="_blank" rel="noopener">BMKG</a>.</p>';
+      openModal({ kat: T("Cuaca Semangga", "Semangga weather"), title: T("Cuaca dan kualitas udara", "Weather and air quality"), html: '<div data-i18n-skip>' + h + "</div>" });
+    }
+    function hariIni() { return new Date().toLocaleDateString("en-CA", { timeZone: TZ }); }
+    function harianUdara(a) {
+      var H = a.hourly || {}, peta = {}, urut = [];
+      (H.time || []).forEach(function (t, i) {
+        var tg = t.slice(0, 10), v = H.us_aqi ? H.us_aqi[i] : null, p = H.pm2_5 ? H.pm2_5[i] : null; if (v == null) return;
+        if (!peta[tg]) { peta[tg] = { tgl: tg, maks: 0, pmJ: 0, pmN: 0 }; urut.push(tg); }
+        var x = peta[tg]; x.maks = Math.max(x.maks, v); if (p != null) { x.pmJ += p; x.pmN++; }
+      });
+      var hi = hariIni();
+      return urut.filter(function (tg) { return tg >= hi; }).map(function (tg) { var x = peta[tg]; return { tgl: tg, maks: x.maks, pm25: x.pmN ? x.pmJ / x.pmN : 0 }; });
+    }
+    function slideTombol(jenis, label, isi, sub) {
+      return '<button type="button" class="collab collab--status hstat__slide hstat__slide--tap" data-slide="' + jenis + '" data-i18n-skip><span class="collab__label">' + label + '</span><span class="collab__nilai">' + isi + "</span>" + (sub ? '<span class="hstat__sub">' + sub + "</span>" : "") + "</button>";
+    }
+    function render() {
+      [].forEach.call(track.querySelectorAll(".hstat__slide--tap"), function (el) { el.remove(); });
+      var f = DATA.f, a = DATA.a, html = "";
+      if (f && f.current && f.daily) {
+        var c = f.current, d = f.daily, k = kode(c.weather_code), lokasi = esc(C.lokasi);
+        html += slideTombol("cuaca", T("Cuaca ", "Weather · ") + lokasi + T(" · sekarang", " · now"), ICON(k.ikon) + "<b>" + bul(c.temperature_2m) + "°C</b><small>" + esc(k.teks) + "</small>",
+          T("Hari ini ", "Today ") + bul(d.temperature_2m_min[0]) + "–" + bul(d.temperature_2m_max[0]) + "°C" + (d.precipitation_probability_max[0] != null ? " · " + T("peluang hujan ", "rain chance ") + bul(d.precipitation_probability_max[0]) + "%" : ""));
+        html += slideTombol("ramalan", T("Ramalan cuaca 3 hari", "3-day forecast"), '<span class="hstat__ramal">' + [1, 2, 3].filter(function (i) { return d.time[i]; }).map(function (i) {
+          var kk = kode(d.weather_code[i]); return '<span title="' + esc(kk.teks) + '"><em>' + esc(hari(d.time[i])) + "</em>" + ICON(kk.ikon) + "<strong>" + bul(d.temperature_2m_max[i]) + "°<i>/" + bul(d.temperature_2m_min[i]) + "°</i></strong></span>";
+        }).join("") + "</span>", "");
+      }
+      if (a) {
+        var hr = harianUdara(a), v = hr.length ? hr[0].maks : (a.current ? a.current.us_aqi : null);
+        if (v != null) {
+          var kt = aqiKat(v);
+          html += slideTombol("udara", T("Kualitas udara · hari ini", "Air quality · today"), ICON("wind") + "<b>AQI " + bul(v) + '</b><small class="aqi aqi--' + kt.lv + '">' + esc(kt.nama) + "</small>",
+            a.current && a.current.pm2_5 != null ? "PM2.5 " + desi(a.current.pm2_5) + " µg/m³ · PM10 " + desi(a.current.pm10) + " µg/m³" : "");
+        }
+      }
+      if (html) track.insertAdjacentHTML("beforeend", html);
+      [].forEach.call(track.querySelectorAll(".hstat__slide--tap"), function (el) { el.addEventListener("click", bukaDetail); });
+      bangunDots(); jalan();
+    }
+    function simpan() { try { localStorage.setItem(KUNCI, JSON.stringify(DATA)); } catch (e) {} }
+    function ambil() {
+      var q = "latitude=" + C.lat + "&longitude=" + C.lng + "&timezone=" + encodeURIComponent(TZ);
+      var uf = "https://api.open-meteo.com/v1/forecast?" + q + "&current=temperature_2m,relative_humidity_2m,apparent_temperature,precipitation,weather_code,wind_speed_10m&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max,precipitation_sum&forecast_days=7";
+      var ua = "https://air-quality-api.open-meteo.com/v1/air-quality?" + q + "&current=us_aqi,pm2_5,pm10&hourly=us_aqi,pm2_5&forecast_days=5";
+      var j = function (u) { return fetch(u, { cache: "no-store" }).then(function (r) { return r.ok ? r.json() : null; }).catch(function () { return null; }); };
+      Promise.all([j(uf), j(ua)]).then(function (h) {
+        if (h[0] && h[0].current) DATA.f = h[0];
+        if (h[1] && (h[1].current || h[1].hourly)) DATA.a = h[1];
+        if (h[0] || h[1]) { DATA.t = Date.now(); simpan(); }
+        render();
+      });
+    }
+    try { var lama = JSON.parse(localStorage.getItem(KUNCI) || "null"); if (lama && lama.t) DATA = lama; } catch (e) {}
+    if (DATA.f || DATA.a) render(); else jalan();
+    if (!DATA.t || Date.now() - DATA.t > 30 * 60 * 1000) ambil();
+    setInterval(ambil, 30 * 60 * 1000);
+  })();
+
   /* Slide pengantar di atas Beranda: berganti tiap 5 detik dan berputar terus */
   (function () {
     var tr = $("#introTrack"), dots = $("#introDots"); if (!tr) return;
@@ -1018,7 +1154,7 @@
      lalu membuka WhatsApp (wa.me) ke nomor layanan kampung. */
   (function () {
     var L = D.layanan || [], WA = D.layananWa || {}, jenisAwal = "";
-    $("#layWaTampil").textContent = WA.tampil || "";
+    $("#layWaTampil").textContent = (WA.tampil || "") + (WA.petugas ? " (" + WA.petugas + ")" : "");
     var ALUR = [
       ["doc", "Pilih jenis surat", "Baca persyaratan surat yang dibutuhkan pada daftar di bawah."],
       ["person", "Isi formulir", "Nama, NIK, alamat, alasan pengajuan, dan data tambahan sesuai jenis surat."],
