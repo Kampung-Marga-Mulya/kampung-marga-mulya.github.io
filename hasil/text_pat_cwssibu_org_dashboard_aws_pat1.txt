@@ -1,0 +1,147 @@
+Ekspedisi Patriot: AWS PAT-1 (Desa Waninggap Kai, Merauke)
+Online | Lat, Lon: -8.3563, 140.3928 | Alt: 4 MDPL
+Waktu : 2026-11-18 21:35 WIT (Per 5 Menit)
+Prakiraan (Wunderground) : Per Jam, Per 10 Hari
+Download DataPeta CuacaData HistorisKalender Curah HujanFWI Dashboard
+Intensitas Hujan
+0.0 mm/jam
+Suhu Udara
+27.9℃
+Suhu Titik Embun
+23.9℃
+Kelembapan Udara
+79%
+Radiasi Matahari
+0.0 W/m2
+Lama Penyinaran
+6.50 Jam/Hari
+Kecepatan Angin
+0.8 m/s
+Arah Angin Dari
+Timur
+Tekanan Udara
+1011.6 hPa
+00
+02
+04
+06
+08
+10
+12
+14
+16
+18
+20
+22
+Hujan Ringan (0.5 - 20)
+Intensitas Hujan (mm/jam)
+5
+4
+3
+2
+1
+0
+00
+02
+04
+06
+08
+10
+12
+14
+16
+18
+20
+22
+Suhu Udara (℃) & Suhu Titik Embun (℃)
+36
+33
+30
+27
+24
+21
+Suhu Udara
+Suhu Titik Embun
+00
+02
+04
+06
+08
+10
+12
+14
+16
+18
+20
+22
+Kelembapan Udara (%)
+100
+80
+60
+40
+20
+0
+00
+02
+04
+06
+08
+10
+12
+14
+16
+18
+20
+22
+Penyinaran (≥120 W/m2)
+Radiasi Matahari (W/m2)
+441
+353
+264
+176
+88
+0
+00
+02
+04
+06
+08
+10
+12
+14
+16
+18
+20
+22
+Kecepatan Angin (m/s)
+5
+4
+3
+2
+1
+0
+00
+02
+04
+06
+08
+10
+12
+14
+16
+18
+20
+22
+Utara
+Timur
+Selatan
+Barat
+Utara
+Arah Angin (°)
+360
+270
+180
+90
+0
+© 2026 Sinau Bumi & IPB University
+Versi 1.4.8

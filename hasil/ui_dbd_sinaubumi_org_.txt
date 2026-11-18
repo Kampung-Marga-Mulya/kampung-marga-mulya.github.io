@@ -1,0 +1,33 @@
+A  https://map.sinaubumi.org/ AWS
+A  https://fwi.sinaubumi.org/ FWI
+A  https://hpt.sinaubumi.org/ HPT
+A  https://kat.sinaubumi.org/ KAT
+BUTTON   Disclaimer
+BUTTON   
+BUTTON   
+A  https://sinaubumi.org/ Sinau Bumi
+A  https://www.ipb.ac.id/ IPB University
+BUTTON   ✕
+BUTTON   Terapkan
+INPUT stationSearchInput  
+BUTTON   AWS
+A  https://map.sinaubumi.org/ AWS
+BUTTON   FWI
+A  https://fwi.sinaubumi.org/ FWI
+BUTTON   HPT
+A  https://hpt.sinaubumi.org/ HPT
+BUTTON   KAT
+A  https://kat.sinaubumi.org/ KAT
+A  # +
+A  # −
+A  # 
+BUTTON stationSearchBtn  
+BUTTON configBtn  
+A  https://leafletjs.com Leaflet
+A  https://www.openstreetmap.org/copyright OpenStreetMap
+A  https://carto.com/attribution/ CARTO
+BUTTON   
+BUTTON   ▼Legenda
+BUTTON   ✕
+A  https://sinaubumi.org/ Sinau Bumi
+A  https://www.ipb.ac.id/ IPB University

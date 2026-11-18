@@ -1,0 +1,6 @@
+A  https://www.transmigrasi.go.id/ 
+A  https://pat.cwssibu.org/dashboard PemantauanDaftar Stasiun
+A  https://pat.cwssibu.org/data Download Data
+A  https://pat.cwssibu.org/info Informasi Data
+A  https://www.ipb.ac.id/ 
+A  https://sinaubumi.org/ 

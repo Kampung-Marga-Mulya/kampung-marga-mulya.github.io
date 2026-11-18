@@ -1,0 +1,39 @@
+AWS FWI KAT DBD Disclaimer
+Konfigurasi
+Jenis Tanaman
+
+Pilih tanaman untuk menampilkan peta risiko HPT.
+
+Pilih tanaman...
+Padi
+Jagung
+Kopi (Proses Kalibrasi)
+Kakao (Proses Kalibrasi)
+Jenis Peta
+
+Pilih jenis peta yang ingin ditampilkan.
+
+CartoDB Voyager
+ESRI World Imagery
+Filter Stasiun
+
+Pilih filter stasiun yang ingin ditampilkan.
+
+Semua Stasiun
+Online
+Offline
+Terapkan
+Tanggal: 18 November 2026
+🌱 –
++
+−
+Leaflet | © OpenStreetMap contributors, © CARTO
+300 km
+▼
+Legenda
+✕
+–
+–
+–
+© 2026 Sinau Bumi & IPB University
+v1.5.0

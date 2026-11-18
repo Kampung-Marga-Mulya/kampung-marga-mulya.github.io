@@ -1,0 +1,39 @@
+A  https://map.sinaubumi.org/ AWS
+A  https://fwi.sinaubumi.org/ FWI
+A  https://kat.sinaubumi.org/ KAT
+A  https://dbd.sinaubumi.org/ DBD
+BUTTON   Disclaimer
+BUTTON   
+BUTTON   
+A  https://sinaubumi.org/ Sinau Bumi
+A  https://www.ipb.ac.id/ IPB University
+BUTTON configModalClose  
+SELECT configCropSelect  Pilih tanaman...PadiJagungKopi (Proses Kalibrasi)Kakao (Pros OPTS:=Pilih tanaman...|padi=Padi|jagung=Jagung|kopi=Kopi (Proses Kalibrasi)|kakao=Kakao (Proses Kalibrasi)
+INPUT basemap  
+INPUT basemap  
+INPUT stationFilter  
+INPUT stationFilter  
+INPUT stationFilter  
+BUTTON configModalApply  Terapkan
+INPUT stationSearchInput  
+BUTTON   AWS
+A  https://map.sinaubumi.org/ AWS
+BUTTON   FWI
+A  https://fwi.sinaubumi.org/ FWI
+BUTTON   KAT
+A  https://kat.sinaubumi.org/ KAT
+BUTTON   DBD
+A  https://dbd.sinaubumi.org/ DBD
+A  # +
+A  # −
+A  # 
+BUTTON stationSearchBtn  
+BUTTON configBtn  
+A  https://leafletjs.com Leaflet
+A  https://www.openstreetmap.org/copyright OpenStreetMap
+A  https://carto.com/attribution/ CARTO
+BUTTON   
+BUTTON   ▼Legenda
+BUTTON   ✕
+A  https://sinaubumi.org/ Sinau Bumi
+A  https://www.ipb.ac.id/ IPB University
