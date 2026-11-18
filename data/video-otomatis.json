@@ -1,5 +1,5 @@
 {
- "diperiksa": "2026-11-18T22:53+09:00",
+ "diperiksa": "2026-11-19T04:38+09:00",
  "catatan": "Dibuat otomatis oleh scripts/update_video.py. Jangan disunting manual; gunakan video.pilihan di assets/js/data.js atau data/video-abaikan.json.",
  "video": [
   {
@@ -15,7 +15,7 @@
    "ditemukan": "2026-11-06",
    "rasio_sampul": 1.778,
    "sampul": "assets/img/video/instagram-DdRFcGASMKK.jpg",
-   "skor": 11.454
+   "skor": 11.44
   },
   {
    "platform": "instagram",
@@ -30,7 +30,7 @@
    "ditemukan": "2026-11-08",
    "rasio_sampul": 1.778,
    "sampul": "assets/img/video/instagram-DfY7fmOB9Dn.jpg",
-   "skor": 10.998
+   "skor": 10.975
   },
   {
    "platform": "instagram",
@@ -45,7 +45,7 @@
    "ditemukan": "2026-11-10",
    "rasio_sampul": 0.562,
    "sampul": "assets/img/video/instagram-DcshGFOMPD-.jpg",
-   "skor": 10.691
+   "skor": 10.678
   },
   {
    "platform": "instagram",
@@ -60,7 +60,7 @@
    "ditemukan": "2026-11-07",
    "rasio_sampul": 1.0,
    "sampul": "assets/img/video/instagram-DdRC_44Ep9F.jpg",
-   "skor": 10.466
+   "skor": 10.451
   },
   {
    "platform": "instagram",
@@ -75,7 +75,7 @@
    "ditemukan": "2026-11-05",
    "rasio_sampul": 1.778,
    "sampul": "assets/img/video/instagram-DcsXgowSuJA.jpg",
-   "skor": 10.311
+   "skor": 10.299
   },
   {
    "platform": "instagram",
@@ -90,7 +90,7 @@
    "ditemukan": "2026-11-09",
    "rasio_sampul": 1.778,
    "sampul": "assets/img/video/instagram-DcsWLpoIV_j.jpg",
-   "skor": 9.976
+   "skor": 9.963
   },
   {
    "platform": "instagram",
@@ -105,7 +105,7 @@
    "ditemukan": "2026-11-06",
    "rasio_sampul": 0.562,
    "sampul": "assets/img/video/instagram-DaO5UM3RBsF.jpg",
-   "skor": 9.58
+   "skor": 9.573
   },
   {
    "platform": "instagram",
@@ -115,7 +115,7 @@
    "kanal": "info_kejadian_merauke",
    "keterangan": "Seorang pria dari Kampung Marga Mulya, Distrik Semangga, Merauke, pulang dari hutan dengan babi di punggungnya dan kuda menyusul di belakang. Bukan sekadar berburu, ini tentang harga diri, kejantanan, dan hubungan yang dalam dengan alam. Di sini, menjadi laki-laki artinya tahu jalan pulang sambil membawa bukti perjuangan. #PapuaSelatan #Merauke #AnakKampung #TradisiPapua #HutanAdalahGuru #MargaMul",
    "tanggal": "2025-05-05",
-   "suka": 3511,
+   "suka": 3510,
    "rasio": "9:16",
    "ditemukan": "2026-11-06",
    "rasio_sampul": 0.562,
@@ -132,7 +132,7 @@
    "ditemukan": "2026-11-04",
    "rasio_sampul": 0.563,
    "sampul": "assets/img/video/facebook-1021361486911765.jpg",
-   "skor": 9.079
+   "skor": 9.062
   },
   {
    "platform": "facebook",
@@ -144,7 +144,7 @@
    "ditemukan": "2026-11-15",
    "rasio_sampul": 0.563,
    "sampul": "assets/img/video/facebook-4170877719815068.jpg",
-   "skor": 8.779
+   "skor": 8.76
   },
   {
    "platform": "facebook",
@@ -157,7 +157,7 @@
    "ditemukan": "2026-11-09",
    "rasio_sampul": 0.549,
    "sampul": "assets/img/video/facebook-1097893822796117.jpg",
-   "skor": 8.668
+   "skor": 8.65
   },
   {
    "platform": "youtube",
@@ -165,7 +165,7 @@
    "url": "https://www.youtube.com/watch?v=ascjSfNf2UQ",
    "judul": "Begini kekompakan❗️Warga Exs Transmigrasi di kampung Marga Mulya Papua Selatan",
    "kanal": "STORY AMRY",
-   "tanggal": "2026-10-28",
+   "tanggal": "2026-10-29",
    "tanggal_kira": true,
    "tayang": 650,
    "durasi": 740,
@@ -187,7 +187,7 @@
    "ditemukan": "2026-11-06",
    "rasio_sampul": 0.562,
    "sampul": "assets/img/video/instagram-DdEgtLmCcJ8.jpg",
-   "skor": 7.674
+   "skor": 7.66
   },
   {
    "platform": "youtube",
@@ -195,7 +195,7 @@
    "url": "https://www.youtube.com/watch?v=FeS3BFihQts",
    "judul": "TNI AD WUJUDKAN AIR BERSIH DI RT 09 MARGA MULYA - MERAUKE",
    "kanal": "Kodim 1707 Merauke",
-   "tanggal": "2026-09-19",
+   "tanggal": "2026-09-20",
    "tanggal_kira": true,
    "tayang": 63,
    "durasi": 192,
@@ -204,6 +204,22 @@
    "rasio_sampul": 1.333,
    "sampul": "assets/img/video/youtube-FeS3BFihQts.jpg",
    "skor": 7.524
+  },
+  {
+   "platform": "youtube",
+   "id": "29_kk5DTN40",
+   "url": "https://www.youtube.com/watch?v=29_kk5DTN40",
+   "judul": "TERNYATA RAJIN BERTANI JUGA BETERNAK‼️ WARGA LOKAL KAMPUNG MARGA MULYA EKS TRANSMIGRASI SEMANGGA 2",
+   "kanal": "Leksono Japa",
+   "tanggal": "2025-11-19",
+   "tanggal_kira": true,
+   "tayang": 2984,
+   "durasi": 1102,
+   "rasio": "16:9",
+   "ditemukan": "2026-11-04",
+   "rasio_sampul": 1.333,
+   "sampul": "assets/img/video/youtube-29_kk5DTN40.jpg",
+   "skor": 6.96
   },
   {
    "platform": "instagram",
@@ -218,23 +234,7 @@
    "ditemukan": "2026-11-06",
    "rasio_sampul": 1.0,
    "sampul": "assets/img/video/instagram-DeG3ucdDwgp.jpg",
-   "skor": 6.972
-  },
-  {
-   "platform": "youtube",
-   "id": "29_kk5DTN40",
-   "url": "https://www.youtube.com/watch?v=29_kk5DTN40",
-   "judul": "TERNYATA RAJIN BERTANI JUGA BETERNAK‼️ WARGA LOKAL KAMPUNG MARGA MULYA EKS TRANSMIGRASI SEMANGGA 2",
-   "kanal": "Leksono Japa",
-   "tanggal": "2025-11-18",
-   "tanggal_kira": true,
-   "tayang": 2984,
-   "durasi": 1102,
-   "rasio": "16:9",
-   "ditemukan": "2026-11-04",
-   "rasio_sampul": 1.333,
-   "sampul": "assets/img/video/youtube-29_kk5DTN40.jpg",
-   "skor": 6.96
+   "skor": 6.955
   },
   {
    "platform": "youtube",
@@ -242,7 +242,7 @@
    "url": "https://www.youtube.com/watch?v=g-zeq2Pwx9o",
    "judul": "TERNYATA MASIH MENUMPANG‼️WARGA KAMPUNG MARGA MULYA EKS TRANSMIGRASI SEMANGGA 2 MERAUKE",
    "kanal": "Leksono Japa",
-   "tanggal": "2025-11-18",
+   "tanggal": "2025-11-19",
    "tanggal_kira": true,
    "tayang": 2594,
    "durasi": 912,
@@ -258,7 +258,7 @@
    "url": "https://www.youtube.com/watch?v=x0s84dskmJM",
    "judul": "UPDATE TERBARU 2025‼️KAMPUNG MARGA MULYA EKS TRANSMIGRASI 1980an SEMANGGA 2 KABUPATEN MERAUKE",
    "kanal": "Leksono Japa",
-   "tanggal": "2025-11-18",
+   "tanggal": "2025-11-19",
    "tanggal_kira": true,
    "tayang": 2292,
    "durasi": 933,
@@ -274,7 +274,7 @@
    "url": "https://www.youtube.com/watch?v=r-VyRP2D5ms",
    "judul": "Hari SUMPAH PEMUDA,Perlombaan mancing didesa Margamulya, Merauke PAPUA Team Nekat Strike",
    "kanal": "Sadikin Tilong Fishing",
-   "tanggal": "2021-11-19",
+   "tanggal": "2021-11-20",
    "tanggal_kira": true,
    "tayang": 2281,
    "durasi": 663,
@@ -290,7 +290,7 @@
    "url": "https://www.youtube.com/watch?v=SyyhKW3Mygg",
    "judul": "Kepala Kampung Marga Mulya ZUBAIDAH ALFAKIR Khotbah IDUL FITRI 1442 H #idulfitrimargamulya#merauke",
    "kanal": "ASUMSI KAMPUNG",
-   "tanggal": "2021-11-19",
+   "tanggal": "2021-11-20",
    "tanggal_kira": true,
    "tayang": 335,
    "durasi": 1365,
@@ -306,7 +306,7 @@
    "url": "https://www.youtube.com/watch?v=NYrnk265P5U",
    "judul": "SUASANA DI TAHUN 2024,KAMPUNG MARGA MULYA || EKS TRANSMIGRASI SEMANGGA 2 KABUPATEN MERAUKE",
    "kanal": "Leksono Japa",
-   "tanggal": "2024-11-18",
+   "tanggal": "2024-11-19",
    "tanggal_kira": true,
    "tayang": 1329,
    "durasi": 566,
@@ -326,7 +326,7 @@
    "ditemukan": "2026-11-04",
    "rasio_sampul": 1.333,
    "sampul": "assets/img/video/youtube-GstSi_HcxI4.jpg",
-   "skor": 6.579
+   "skor": 6.562
   },
   {
    "platform": "youtube",
@@ -338,7 +338,7 @@
    "ditemukan": "2026-11-04",
    "rasio_sampul": 1.333,
    "sampul": "assets/img/video/youtube-kfqEWqrPOLc.jpg",
-   "skor": 6.579
+   "skor": 6.562
   },
   {
    "platform": "youtube",
@@ -350,23 +350,7 @@
    "ditemukan": "2026-11-04",
    "rasio_sampul": 1.333,
    "sampul": "assets/img/video/youtube-xH1UZn6oYB4.jpg",
-   "skor": 6.579
-  },
-  {
-   "platform": "youtube",
-   "id": "6k3LJ-dfkyI",
-   "url": "https://www.youtube.com/watch?v=6k3LJ-dfkyI",
-   "judul": "HABIS UNTUK SEWA ALAT‼️PETANI PADI KAMPUNG MARGAMULYA EKS TRANSMIGRASI SEMANGGA 2 KABUPATEN MERAUKE",
-   "kanal": "Leksono Japa",
-   "tanggal": "2025-11-18",
-   "tanggal_kira": true,
-   "tayang": 580,
-   "durasi": 1193,
-   "rasio": "16:9",
-   "ditemukan": "2026-11-18",
-   "rasio_sampul": 1.333,
-   "sampul": "assets/img/video/youtube-6k3LJ-dfkyI.jpg",
-   "skor": 6.486
+   "skor": 6.562
   },
   {
    "platform": "youtube",
@@ -374,7 +358,7 @@
    "url": "https://www.youtube.com/watch?v=639sPUOhe_k",
    "judul": "marga mulya,semangga dua,merauke,papua",
    "kanal": "EL Marhume",
-   "tanggal": "2021-11-19",
+   "tanggal": "2021-11-20",
    "tanggal_kira": true,
    "tayang": 643,
    "durasi": 388,
@@ -390,7 +374,7 @@
    "url": "https://www.youtube.com/watch?v=bDjz-3gVRMI",
    "judul": "PENINJAUAN KDKMP OLEH ITJEN TNI DAN PT APN DI KAMPUNG MARGA MULYA MERAUKE",
    "kanal": "Kodim 1707 Merauke",
-   "tanggal": "2026-05-22",
+   "tanggal": "2026-05-23",
    "tanggal_kira": true,
    "tayang": 51,
    "durasi": 110,
@@ -406,7 +390,7 @@
    "url": "https://www.youtube.com/watch?v=aIdTsQ0WN6k",
    "judul": "Penyulingan Serai Wangi Marga Mulya, Merauke - Papua",
    "kanal": "Juru Foto Keliling",
-   "tanggal": "2022-11-19",
+   "tanggal": "2022-11-20",
    "tanggal_kira": true,
    "tayang": 503,
    "durasi": 347,
@@ -422,7 +406,7 @@
    "url": "https://www.youtube.com/watch?v=r2r-c-g8NoQ",
    "judul": "Warga Kampung Marga Mulya Sudah Sangat Muak Dengan Bau Busuk Dari Kandang Ayam di Semangga 2",
    "kanal": "INFO KEJADIAN MERAUKE",
-   "tanggal": "2021-11-19",
+   "tanggal": "2021-11-20",
    "tanggal_kira": true,
    "tayang": 485,
    "durasi": 182,
@@ -438,7 +422,7 @@
    "url": "https://www.youtube.com/watch?v=-b_Jw1WIc0M",
    "judul": "Pengembangan potensi wisata kuliner di kampung Marga Mulya Distrik Semangga Merauke Papua",
    "kanal": "KASRI KASIR",
-   "tanggal": "2022-11-19",
+   "tanggal": "2022-11-20",
    "tanggal_kira": true,
    "tayang": 436,
    "durasi": 341,
@@ -454,7 +438,7 @@
    "url": "https://www.youtube.com/watch?v=SHFdYQuMhsw",
    "judul": "Karnaval HUT RI ke 79 Merauke || Semangga 2 kampung marga mulya",
    "kanal": "Andi Lala Official",
-   "tanggal": "2024-11-18",
+   "tanggal": "2024-11-19",
    "tanggal_kira": true,
    "tayang": 322,
    "durasi": 873,
@@ -470,7 +454,7 @@
    "url": "https://www.youtube.com/watch?v=aBW2UvI8KZo",
    "judul": "Masjid AL Amin marga mulya semangga dua merauke papua",
    "kanal": "EL Marhume",
-   "tanggal": "2021-11-19",
+   "tanggal": "2021-11-20",
    "tanggal_kira": true,
    "tayang": 326,
    "durasi": 196,
@@ -486,7 +470,7 @@
    "url": "https://www.youtube.com/watch?v=j6LGQ3EpiwM",
    "judul": "KARNAVAL SEMANGGA 2 MARGA MULYA, MERAUKE 15 AGUSTUS 2024",
    "kanal": "zefan studio",
-   "tanggal": "2024-11-18",
+   "tanggal": "2024-11-19",
    "tanggal_kira": true,
    "tayang": 310,
    "durasi": 434,
@@ -502,7 +486,7 @@
    "url": "https://www.youtube.com/watch?v=xwMXuWhAQ14",
    "judul": "KEMAJUAN PTDM 2021 PENGERING PADI UV DRYER DI KAMP MARGAMULYA, MERAUKE | UNIVERSITAS MUSAMUS",
    "kanal": "LPPM UNMUS",
-   "tanggal": "2021-11-19",
+   "tanggal": "2021-11-20",
    "tanggal_kira": true,
    "tayang": 297,
    "durasi": 177,
@@ -518,7 +502,7 @@
    "url": "https://www.youtube.com/watch?v=X9q_K35VCcY",
    "judul": "Marga mulya semangga dua merauke",
    "kanal": "EL Marhume",
-   "tanggal": "2021-11-19",
+   "tanggal": "2021-11-20",
    "tanggal_kira": true,
    "tayang": 290,
    "durasi": 48,
@@ -530,19 +514,35 @@
   },
   {
    "platform": "youtube",
-   "id": "DlUvHbFk2vs",
-   "url": "https://www.youtube.com/watch?v=DlUvHbFk2vs",
-   "judul": "HENGAR VLOG #3 - WARGA MARGA MULYA - MERAUKE",
-   "kanal": "Hendrikus Ngarbingan",
-   "tanggal": "2020-11-19",
+   "id": "HrxJHBLGFEU",
+   "url": "https://www.youtube.com/watch?v=HrxJHBLGFEU",
+   "judul": "KARNAVAL SEMANGGA 2 MARGA MULYA, Dalam Rangka HUT RI KE 79 Tahun, MERAUKE 15 AGUSTUS 2024...",
+   "kanal": "TUKANG PHOTO ART",
+   "tanggal": "2024-11-19",
    "tanggal_kira": true,
-   "tayang": 289,
-   "durasi": 720,
+   "tayang": 279,
+   "durasi": 773,
    "rasio": "16:9",
-   "ditemukan": "2026-11-18",
+   "ditemukan": "2026-11-19",
    "rasio_sampul": 1.333,
-   "sampul": "assets/img/video/youtube-DlUvHbFk2vs.jpg",
-   "skor": 6.142
+   "sampul": "assets/img/video/youtube-HrxJHBLGFEU.jpg",
+   "skor": 6.138
+  },
+  {
+   "platform": "youtube",
+   "id": "LUCH4yWc_cw",
+   "url": "https://www.youtube.com/watch?v=LUCH4yWc_cw",
+   "judul": "TPQ Al Ittihad marga mulya merauke papua",
+   "kanal": "BUNDA RAHMA",
+   "tanggal": "2021-11-20",
+   "tanggal_kira": true,
+   "tayang": 256,
+   "durasi": 151,
+   "rasio": "16:9",
+   "ditemukan": "2026-11-19",
+   "rasio_sampul": 1.333,
+   "sampul": "assets/img/video/youtube-LUCH4yWc_cw.jpg",
+   "skor": 6.107
   },
   {
    "platform": "youtube",
@@ -550,7 +550,7 @@
    "url": "https://www.youtube.com/watch?v=m7Zz3j95XTY",
    "judul": "pacuan kuda memperingati hari kemerdekaan HUT ke 78,Kampung MARGA MULYA SEMANGGA DUA.",
    "kanal": "Mas Blenk Makarena",
-   "tanggal": "2023-11-19",
+   "tanggal": "2023-11-20",
    "tanggal_kira": true,
    "tayang": 169,
    "durasi": 353,
@@ -566,7 +566,7 @@
    "url": "https://www.youtube.com/watch?v=XJ42WnKHTtI",
    "judul": "Pembaruan saluran air marga mulya semangga dua",
    "kanal": "EL Marhume",
-   "tanggal": "2021-11-19",
+   "tanggal": "2021-11-20",
    "tanggal_kira": true,
    "tayang": 93,
    "durasi": 123,
@@ -582,7 +582,7 @@
    "url": "https://www.youtube.com/watch?v=B_BAq4rco-g",
    "judul": "Acara penutupan KKP Yaleka Maro Merauke angkatan XVII di Kampung Marga Mulya...",
    "kanal": "Unarapal Chanel",
-   "tanggal": "2025-11-18",
+   "tanggal": "2025-11-19",
    "tanggal_kira": true,
    "tayang": 48,
    "durasi": 203,
@@ -598,7 +598,7 @@
    "url": "https://www.youtube.com/watch?v=Rr33aaAKEFA",
    "judul": "Acara Rama Tama Warga Kampung Marga Mulya Semangga Dua Provinsi Papua Selatan",
    "kanal": "Sobat HT",
-   "tanggal": "2023-11-19",
+   "tanggal": "2023-11-20",
    "tanggal_kira": true,
    "tayang": 74,
    "durasi": 314,
