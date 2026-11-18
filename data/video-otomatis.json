@@ -1,5 +1,5 @@
 {
- "diperiksa": "2026-11-18T04:42+09:00",
+ "diperiksa": "2026-11-18T10:56+09:00",
  "catatan": "Dibuat otomatis oleh scripts/update_video.py. Jangan disunting manual; gunakan video.pilihan di assets/js/data.js atau data/video-abaikan.json.",
  "video": [
   {
@@ -354,6 +354,22 @@
   },
   {
    "platform": "youtube",
+   "id": "6k3LJ-dfkyI",
+   "url": "https://www.youtube.com/watch?v=6k3LJ-dfkyI",
+   "judul": "HABIS UNTUK SEWA ALAT‼️PETANI PADI KAMPUNG MARGAMULYA EKS TRANSMIGRASI SEMANGGA 2 KABUPATEN MERAUKE",
+   "kanal": "Leksono Japa",
+   "tanggal": "2025-11-18",
+   "tanggal_kira": true,
+   "tayang": 580,
+   "durasi": 1193,
+   "rasio": "16:9",
+   "ditemukan": "2026-11-18",
+   "rasio_sampul": 1.333,
+   "sampul": "assets/img/video/youtube-6k3LJ-dfkyI.jpg",
+   "skor": 6.486
+  },
+  {
+   "platform": "youtube",
    "id": "639sPUOhe_k",
    "url": "https://www.youtube.com/watch?v=639sPUOhe_k",
    "judul": "marga mulya,semangga dua,merauke,papua",
@@ -562,6 +578,22 @@
   },
   {
    "platform": "youtube",
+   "id": "XRGqKjXkVmo",
+   "url": "https://www.youtube.com/watch?v=XRGqKjXkVmo",
+   "judul": "Prakerin SMK Pertanian Kuler Di kamp. Marga Mulya - Merauke.",
+   "kanal": "Petani Milenial Merauke",
+   "tanggal": "2020-11-19",
+   "tanggal_kira": true,
+   "tayang": 110,
+   "durasi": 203,
+   "rasio": "16:9",
+   "ditemukan": "2026-11-18",
+   "rasio_sampul": 1.333,
+   "sampul": "assets/img/video/youtube-XRGqKjXkVmo.jpg",
+   "skor": 5.864
+  },
+  {
+   "platform": "youtube",
    "id": "XJ42WnKHTtI",
    "url": "https://www.youtube.com/watch?v=XJ42WnKHTtI",
    "judul": "Pembaruan saluran air marga mulya semangga dua",
@@ -575,38 +607,6 @@
    "rasio_sampul": 1.333,
    "sampul": "assets/img/video/youtube-XJ42WnKHTtI.jpg",
    "skor": 5.815
-  },
-  {
-   "platform": "youtube",
-   "id": "B_BAq4rco-g",
-   "url": "https://www.youtube.com/watch?v=B_BAq4rco-g",
-   "judul": "Acara penutupan KKP Yaleka Maro Merauke angkatan XVII di Kampung Marga Mulya...",
-   "kanal": "Unarapal Chanel",
-   "tanggal": "2025-11-18",
-   "tanggal_kira": true,
-   "tayang": 48,
-   "durasi": 203,
-   "rasio": "16:9",
-   "ditemukan": "2026-11-17",
-   "rasio_sampul": 1.333,
-   "sampul": "assets/img/video/youtube-B_BAq4rco-g.jpg",
-   "skor": 5.77
-  },
-  {
-   "platform": "youtube",
-   "id": "Rr33aaAKEFA",
-   "url": "https://www.youtube.com/watch?v=Rr33aaAKEFA",
-   "judul": "Acara Rama Tama Warga Kampung Marga Mulya Semangga Dua Provinsi Papua Selatan",
-   "kanal": "Sobat HT",
-   "tanggal": "2023-11-19",
-   "tanggal_kira": true,
-   "tayang": 74,
-   "durasi": 314,
-   "rasio": "16:9",
-   "ditemukan": "2026-11-17",
-   "rasio_sampul": 1.333,
-   "sampul": "assets/img/video/youtube-Rr33aaAKEFA.jpg",
-   "skor": 5.75
   }
  ]
 }
