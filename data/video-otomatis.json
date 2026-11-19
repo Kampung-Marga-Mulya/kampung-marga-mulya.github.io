@@ -1,5 +1,5 @@
 {
- "diperiksa": "2026-11-19T16:56+09:00",
+ "diperiksa": "2026-11-19T22:54+09:00",
  "catatan": "Dibuat otomatis oleh scripts/update_video.py. Jangan disunting manual; gunakan video.pilihan di assets/js/data.js atau data/video-abaikan.json.",
  "video": [
   {
@@ -176,23 +176,6 @@
    "skor": 7.895
   },
   {
-   "platform": "youtube",
-   "id": "XJ42WnKHTtI",
-   "url": "https://www.youtube.com/watch?v=XJ42WnKHTtI",
-   "judul": "Pembaruan saluran air marga mulya semangga dua",
-   "kanal": "EL Marhume",
-   "keterangan": "kampung marga mulya semangga dua merauke papua,melakukan pembaruan saluran air di wilayah nya untuk mencegah terjadinya meluapnya air di saat musim penghujan,menggunakan alat berat berbayar",
-   "tanggal": "2021-04-06",
-   "tanggal_kira": true,
-   "tayang": 93,
-   "durasi": 122,
-   "rasio": "16:9",
-   "ditemukan": "2026-11-18",
-   "rasio_sampul": 1.333,
-   "sampul": "assets/img/video/youtube-XJ42WnKHTtI.jpg",
-   "skor": 7.815
-  },
-  {
    "platform": "instagram",
    "id": "DdEgtLmCcJ8",
    "url": "https://www.instagram.com/reel/DdEgtLmCcJ8/",
@@ -347,18 +330,6 @@
   },
   {
    "platform": "youtube",
-   "id": "xH1UZn6oYB4",
-   "url": "https://www.youtube.com/watch?v=xH1UZn6oYB4",
-   "judul": "detik detik keberangkatan untuk mengikuti karnaval di kampung marga mulya semangga 2 #shorts",
-   "kanal": "TIYO DRTX",
-   "rasio": "9:16",
-   "ditemukan": "2026-11-04",
-   "rasio_sampul": 1.333,
-   "sampul": "assets/img/video/youtube-xH1UZn6oYB4.jpg",
-   "skor": 6.562
-  },
-  {
-   "platform": "youtube",
    "id": "kfqEWqrPOLc",
    "url": "https://www.youtube.com/watch?v=kfqEWqrPOLc",
    "judul": "KREASI TARI JARANAN KRIDA BUDAYA MARGA MULYA MERAUKE",
@@ -367,6 +338,18 @@
    "ditemukan": "2026-11-04",
    "rasio_sampul": 1.333,
    "sampul": "assets/img/video/youtube-kfqEWqrPOLc.jpg",
+   "skor": 6.562
+  },
+  {
+   "platform": "youtube",
+   "id": "xH1UZn6oYB4",
+   "url": "https://www.youtube.com/watch?v=xH1UZn6oYB4",
+   "judul": "detik detik keberangkatan untuk mengikuti karnaval di kampung marga mulya semangga 2 #shorts",
+   "kanal": "TIYO DRTX",
+   "rasio": "9:16",
+   "ditemukan": "2026-11-04",
+   "rasio_sampul": 1.333,
+   "sampul": "assets/img/video/youtube-xH1UZn6oYB4.jpg",
    "skor": 6.562
   },
   {
@@ -563,6 +546,22 @@
   },
   {
    "platform": "youtube",
+   "id": "LUCH4yWc_cw",
+   "url": "https://www.youtube.com/watch?v=LUCH4yWc_cw",
+   "judul": "TPQ Al Ittihad marga mulya merauke papua",
+   "kanal": "BUNDA RAHMA",
+   "tanggal": "2021-11-20",
+   "tanggal_kira": true,
+   "tayang": 256,
+   "durasi": 151,
+   "rasio": "16:9",
+   "ditemukan": "2026-11-19",
+   "rasio_sampul": 1.333,
+   "sampul": "assets/img/video/youtube-LUCH4yWc_cw.jpg",
+   "skor": 6.107
+  },
+  {
+   "platform": "youtube",
    "id": "m7Zz3j95XTY",
    "url": "https://www.youtube.com/watch?v=m7Zz3j95XTY",
    "judul": "pacuan kuda memperingati hari kemerdekaan HUT ke 78,Kampung MARGA MULYA SEMANGGA DUA.",
@@ -595,19 +594,19 @@
   },
   {
    "platform": "youtube",
-   "id": "B_BAq4rco-g",
-   "url": "https://www.youtube.com/watch?v=B_BAq4rco-g",
-   "judul": "Acara penutupan KKP Yaleka Maro Merauke angkatan XVII di Kampung Marga Mulya...",
-   "kanal": "Unarapal Chanel",
-   "tanggal": "2025-11-19",
+   "id": "XJ42WnKHTtI",
+   "url": "https://www.youtube.com/watch?v=XJ42WnKHTtI",
+   "judul": "Pembaruan saluran air marga mulya semangga dua",
+   "kanal": "EL Marhume",
+   "tanggal": "2021-11-20",
    "tanggal_kira": true,
-   "tayang": 48,
-   "durasi": 203,
+   "tayang": 93,
+   "durasi": 123,
    "rasio": "16:9",
    "ditemukan": "2026-11-18",
    "rasio_sampul": 1.333,
-   "sampul": "assets/img/video/youtube-B_BAq4rco-g.jpg",
-   "skor": 5.77
+   "sampul": "assets/img/video/youtube-XJ42WnKHTtI.jpg",
+   "skor": 5.815
   }
  ]
 }
