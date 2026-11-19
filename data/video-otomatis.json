@@ -1,5 +1,5 @@
 {
- "diperiksa": "2026-11-19T10:55+09:00",
+ "diperiksa": "2026-11-19T16:56+09:00",
  "catatan": "Dibuat otomatis oleh scripts/update_video.py. Jangan disunting manual; gunakan video.pilihan di assets/js/data.js atau data/video-abaikan.json.",
  "video": [
   {
@@ -10,12 +10,12 @@
    "kanal": "kodim1707merauke",
    "keterangan": "TNI AD WUJUDKAN AIR BERSIH, KODIM 1707/MERAUKE HADIR ATASI KESULITAN WARGA RT.09 MARGA MULYA Merauke, Papua Selatan - Ketersediaan air bersih menjadi kebutuhan mendasar bagi masyarakat, terlebih saat musim kemarau. Kondisi tersebut turut dirasakan warga RT.09, Kampung Marga Mulya, Distrik Semangga, Kabupaten Merauke, khususnya jamaah Mushola Al Barokah yang selama bertahun-tahun mengandalkan air d",
    "tanggal": "2026-09-14",
-   "suka": 1156,
+   "suka": 1155,
    "rasio": "9:16",
    "ditemukan": "2026-11-06",
    "rasio_sampul": 1.778,
    "sampul": "assets/img/video/instagram-DdRFcGASMKK.jpg",
-   "skor": 11.44
+   "skor": 11.439
   },
   {
    "platform": "instagram",
@@ -167,13 +167,30 @@
    "kanal": "STORY AMRY",
    "tanggal": "2026-10-29",
    "tanggal_kira": true,
-   "tayang": 650,
+   "tayang": 653,
    "durasi": 740,
    "rasio": "16:9",
    "ditemukan": "2026-11-04",
    "rasio_sampul": 1.333,
    "sampul": "assets/img/video/youtube-ascjSfNf2UQ.jpg",
-   "skor": 7.894
+   "skor": 7.895
+  },
+  {
+   "platform": "youtube",
+   "id": "XJ42WnKHTtI",
+   "url": "https://www.youtube.com/watch?v=XJ42WnKHTtI",
+   "judul": "Pembaruan saluran air marga mulya semangga dua",
+   "kanal": "EL Marhume",
+   "keterangan": "kampung marga mulya semangga dua merauke papua,melakukan pembaruan saluran air di wilayah nya untuk mencegah terjadinya meluapnya air di saat musim penghujan,menggunakan alat berat berbayar",
+   "tanggal": "2021-04-06",
+   "tanggal_kira": true,
+   "tayang": 93,
+   "durasi": 122,
+   "rasio": "16:9",
+   "ditemukan": "2026-11-18",
+   "rasio_sampul": 1.333,
+   "sampul": "assets/img/video/youtube-XJ42WnKHTtI.jpg",
+   "skor": 7.815
   },
   {
    "platform": "instagram",
@@ -330,18 +347,6 @@
   },
   {
    "platform": "youtube",
-   "id": "kfqEWqrPOLc",
-   "url": "https://www.youtube.com/watch?v=kfqEWqrPOLc",
-   "judul": "KREASI TARI JARANAN KRIDA BUDAYA MARGA MULYA MERAUKE",
-   "kanal": "MERAUKE MIX CHANNEL",
-   "rasio": "9:16",
-   "ditemukan": "2026-11-04",
-   "rasio_sampul": 1.333,
-   "sampul": "assets/img/video/youtube-kfqEWqrPOLc.jpg",
-   "skor": 6.562
-  },
-  {
-   "platform": "youtube",
    "id": "xH1UZn6oYB4",
    "url": "https://www.youtube.com/watch?v=xH1UZn6oYB4",
    "judul": "detik detik keberangkatan untuk mengikuti karnaval di kampung marga mulya semangga 2 #shorts",
@@ -350,6 +355,18 @@
    "ditemukan": "2026-11-04",
    "rasio_sampul": 1.333,
    "sampul": "assets/img/video/youtube-xH1UZn6oYB4.jpg",
+   "skor": 6.562
+  },
+  {
+   "platform": "youtube",
+   "id": "kfqEWqrPOLc",
+   "url": "https://www.youtube.com/watch?v=kfqEWqrPOLc",
+   "judul": "KREASI TARI JARANAN KRIDA BUDAYA MARGA MULYA MERAUKE",
+   "kanal": "MERAUKE MIX CHANNEL",
+   "rasio": "9:16",
+   "ditemukan": "2026-11-04",
+   "rasio_sampul": 1.333,
+   "sampul": "assets/img/video/youtube-kfqEWqrPOLc.jpg",
    "skor": 6.562
   },
   {
@@ -466,6 +483,22 @@
   },
   {
    "platform": "youtube",
+   "id": "j6LGQ3EpiwM",
+   "url": "https://www.youtube.com/watch?v=j6LGQ3EpiwM",
+   "judul": "KARNAVAL SEMANGGA 2 MARGA MULYA, MERAUKE 15 AGUSTUS 2024",
+   "kanal": "zefan studio",
+   "tanggal": "2024-11-19",
+   "tanggal_kira": true,
+   "tayang": 310,
+   "durasi": 434,
+   "rasio": "16:9",
+   "ditemukan": "2026-11-19",
+   "rasio_sampul": 1.333,
+   "sampul": "assets/img/video/youtube-j6LGQ3EpiwM.jpg",
+   "skor": 6.169
+  },
+  {
+   "platform": "youtube",
    "id": "xwMXuWhAQ14",
    "url": "https://www.youtube.com/watch?v=xwMXuWhAQ14",
    "judul": "KEMAJUAN PTDM 2021 PENGERING PADI UV DRYER DI KAMP MARGAMULYA, MERAUKE | UNIVERSITAS MUSAMUS",
@@ -514,19 +547,19 @@
   },
   {
    "platform": "youtube",
-   "id": "LUCH4yWc_cw",
-   "url": "https://www.youtube.com/watch?v=LUCH4yWc_cw",
-   "judul": "TPQ Al Ittihad marga mulya merauke papua",
-   "kanal": "BUNDA RAHMA",
-   "tanggal": "2021-11-20",
+   "id": "HrxJHBLGFEU",
+   "url": "https://www.youtube.com/watch?v=HrxJHBLGFEU",
+   "judul": "KARNAVAL SEMANGGA 2 MARGA MULYA, Dalam Rangka HUT RI KE 79 Tahun, MERAUKE 15 AGUSTUS 2024...",
+   "kanal": "TUKANG PHOTO ART",
+   "tanggal": "2024-11-19",
    "tanggal_kira": true,
-   "tayang": 256,
-   "durasi": 151,
+   "tayang": 279,
+   "durasi": 773,
    "rasio": "16:9",
    "ditemukan": "2026-11-19",
    "rasio_sampul": 1.333,
-   "sampul": "assets/img/video/youtube-LUCH4yWc_cw.jpg",
-   "skor": 6.107
+   "sampul": "assets/img/video/youtube-HrxJHBLGFEU.jpg",
+   "skor": 6.138
   },
   {
    "platform": "youtube",
@@ -546,19 +579,19 @@
   },
   {
    "platform": "youtube",
-   "id": "XJ42WnKHTtI",
-   "url": "https://www.youtube.com/watch?v=XJ42WnKHTtI",
-   "judul": "Pembaruan saluran air marga mulya semangga dua",
-   "kanal": "EL Marhume",
-   "tanggal": "2021-11-20",
+   "id": "XRGqKjXkVmo",
+   "url": "https://www.youtube.com/watch?v=XRGqKjXkVmo",
+   "judul": "Prakerin SMK Pertanian Kuler Di kamp. Marga Mulya - Merauke.",
+   "kanal": "Petani Milenial Merauke",
+   "tanggal": "2020-11-20",
    "tanggal_kira": true,
-   "tayang": 93,
-   "durasi": 123,
+   "tayang": 110,
+   "durasi": 203,
    "rasio": "16:9",
-   "ditemukan": "2026-11-18",
+   "ditemukan": "2026-11-19",
    "rasio_sampul": 1.333,
-   "sampul": "assets/img/video/youtube-XJ42WnKHTtI.jpg",
-   "skor": 5.815
+   "sampul": "assets/img/video/youtube-XRGqKjXkVmo.jpg",
+   "skor": 5.864
   },
   {
    "platform": "youtube",
@@ -575,38 +608,6 @@
    "rasio_sampul": 1.333,
    "sampul": "assets/img/video/youtube-B_BAq4rco-g.jpg",
    "skor": 5.77
-  },
-  {
-   "platform": "youtube",
-   "id": "Rr33aaAKEFA",
-   "url": "https://www.youtube.com/watch?v=Rr33aaAKEFA",
-   "judul": "Acara Rama Tama Warga Kampung Marga Mulya Semangga Dua Provinsi Papua Selatan",
-   "kanal": "Sobat HT",
-   "tanggal": "2023-11-20",
-   "tanggal_kira": true,
-   "tayang": 74,
-   "durasi": 314,
-   "rasio": "16:9",
-   "ditemukan": "2026-11-18",
-   "rasio_sampul": 1.333,
-   "sampul": "assets/img/video/youtube-Rr33aaAKEFA.jpg",
-   "skor": 5.75
-  },
-  {
-   "platform": "youtube",
-   "id": "Ms7Q4Kj4SpY",
-   "url": "https://www.youtube.com/watch?v=Ms7Q4Kj4SpY",
-   "judul": "Pernikahan ✨Risdah ♥️ Alfian✨ Di Kampung Marga Mulya Merauke",
-   "kanal": "MW ANTARSUKHA",
-   "tanggal": "2025-11-19",
-   "tanggal_kira": true,
-   "tayang": 44,
-   "durasi": 432,
-   "rasio": "16:9",
-   "ditemukan": "2026-11-19",
-   "rasio_sampul": 1.333,
-   "sampul": "assets/img/video/youtube-Ms7Q4Kj4SpY.jpg",
-   "skor": 5.745
   }
  ]
 }
