@@ -1,5 +1,5 @@
 {
- "diperiksa": "2026-11-20T04:41+09:00",
+ "diperiksa": "2026-11-20T10:51+09:00",
  "catatan": "Dibuat otomatis oleh scripts/update_video.py. Jangan disunting manual; gunakan video.pilihan di assets/js/data.js atau data/video-abaikan.json.",
  "video": [
   {
@@ -546,22 +546,6 @@
   },
   {
    "platform": "youtube",
-   "id": "LUCH4yWc_cw",
-   "url": "https://www.youtube.com/watch?v=LUCH4yWc_cw",
-   "judul": "TPQ Al Ittihad marga mulya merauke papua",
-   "kanal": "BUNDA RAHMA",
-   "tanggal": "2021-11-21",
-   "tanggal_kira": true,
-   "tayang": 256,
-   "durasi": 151,
-   "rasio": "16:9",
-   "ditemukan": "2026-11-19",
-   "rasio_sampul": 1.333,
-   "sampul": "assets/img/video/youtube-LUCH4yWc_cw.jpg",
-   "skor": 6.107
-  },
-  {
-   "platform": "youtube",
    "id": "m7Zz3j95XTY",
    "url": "https://www.youtube.com/watch?v=m7Zz3j95XTY",
    "judul": "pacuan kuda memperingati hari kemerdekaan HUT ke 78,Kampung MARGA MULYA SEMANGGA DUA.",
@@ -607,6 +591,22 @@
    "rasio_sampul": 1.333,
    "sampul": "assets/img/video/youtube-B_BAq4rco-g.jpg",
    "skor": 5.77
+  },
+  {
+   "platform": "youtube",
+   "id": "Rr33aaAKEFA",
+   "url": "https://www.youtube.com/watch?v=Rr33aaAKEFA",
+   "judul": "Acara Rama Tama Warga Kampung Marga Mulya Semangga Dua Provinsi Papua Selatan",
+   "kanal": "Sobat HT",
+   "tanggal": "2023-11-21",
+   "tanggal_kira": true,
+   "tayang": 74,
+   "durasi": 314,
+   "rasio": "16:9",
+   "ditemukan": "2026-11-20",
+   "rasio_sampul": 1.333,
+   "sampul": "assets/img/video/youtube-Rr33aaAKEFA.jpg",
+   "skor": 5.75
   }
  ]
 }
