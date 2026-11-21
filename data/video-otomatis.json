@@ -1,5 +1,5 @@
 {
- "diperiksa": "2026-11-21T10:53+09:00",
+ "diperiksa": "2026-11-21T16:50+09:00",
  "catatan": "Dibuat otomatis oleh scripts/update_video.py. Jangan disunting manual; gunakan video.pilihan di assets/js/data.js atau data/video-abaikan.json.",
  "video": [
   {
@@ -354,6 +354,22 @@
   },
   {
    "platform": "youtube",
+   "id": "6k3LJ-dfkyI",
+   "url": "https://www.youtube.com/watch?v=6k3LJ-dfkyI",
+   "judul": "HABIS UNTUK SEWA ALAT‼️PETANI PADI KAMPUNG MARGAMULYA EKS TRANSMIGRASI SEMANGGA 2 KABUPATEN MERAUKE",
+   "kanal": "Leksono Japa",
+   "tanggal": "2025-11-21",
+   "tanggal_kira": true,
+   "tayang": 580,
+   "durasi": 1193,
+   "rasio": "16:9",
+   "ditemukan": "2026-11-21",
+   "rasio_sampul": 1.333,
+   "sampul": "assets/img/video/youtube-6k3LJ-dfkyI.jpg",
+   "skor": 6.486
+  },
+  {
+   "platform": "youtube",
    "id": "639sPUOhe_k",
    "url": "https://www.youtube.com/watch?v=639sPUOhe_k",
    "judul": "marga mulya,semangga dua,merauke,papua",
@@ -466,6 +482,22 @@
   },
   {
    "platform": "youtube",
+   "id": "j6LGQ3EpiwM",
+   "url": "https://www.youtube.com/watch?v=j6LGQ3EpiwM",
+   "judul": "KARNAVAL SEMANGGA 2 MARGA MULYA, MERAUKE 15 AGUSTUS 2024",
+   "kanal": "zefan studio",
+   "tanggal": "2024-11-21",
+   "tanggal_kira": true,
+   "tayang": 310,
+   "durasi": 434,
+   "rasio": "16:9",
+   "ditemukan": "2026-11-21",
+   "rasio_sampul": 1.333,
+   "sampul": "assets/img/video/youtube-j6LGQ3EpiwM.jpg",
+   "skor": 6.169
+  },
+  {
+   "platform": "youtube",
    "id": "xwMXuWhAQ14",
    "url": "https://www.youtube.com/watch?v=xwMXuWhAQ14",
    "judul": "KEMAJUAN PTDM 2021 PENGERING PADI UV DRYER DI KAMP MARGAMULYA, MERAUKE | UNIVERSITAS MUSAMUS",
@@ -514,19 +546,19 @@
   },
   {
    "platform": "youtube",
-   "id": "LUCH4yWc_cw",
-   "url": "https://www.youtube.com/watch?v=LUCH4yWc_cw",
-   "judul": "TPQ Al Ittihad marga mulya merauke papua",
-   "kanal": "BUNDA RAHMA",
-   "tanggal": "2021-11-22",
+   "id": "HrxJHBLGFEU",
+   "url": "https://www.youtube.com/watch?v=HrxJHBLGFEU",
+   "judul": "KARNAVAL SEMANGGA 2 MARGA MULYA, Dalam Rangka HUT RI KE 79 Tahun, MERAUKE 15 AGUSTUS 2024...",
+   "kanal": "TUKANG PHOTO ART",
+   "tanggal": "2024-11-21",
    "tanggal_kira": true,
-   "tayang": 256,
-   "durasi": 151,
+   "tayang": 279,
+   "durasi": 773,
    "rasio": "16:9",
    "ditemukan": "2026-11-21",
    "rasio_sampul": 1.333,
-   "sampul": "assets/img/video/youtube-LUCH4yWc_cw.jpg",
-   "skor": 6.107
+   "sampul": "assets/img/video/youtube-HrxJHBLGFEU.jpg",
+   "skor": 6.138
   },
   {
    "platform": "youtube",
@@ -543,22 +575,6 @@
    "rasio_sampul": 1.333,
    "sampul": "assets/img/video/youtube-m7Zz3j95XTY.jpg",
    "skor": 5.987
-  },
-  {
-   "platform": "youtube",
-   "id": "XRGqKjXkVmo",
-   "url": "https://www.youtube.com/watch?v=XRGqKjXkVmo",
-   "judul": "Prakerin SMK Pertanian Kuler Di kamp. Marga Mulya - Merauke.",
-   "kanal": "Petani Milenial Merauke",
-   "tanggal": "2020-11-22",
-   "tanggal_kira": true,
-   "tayang": 110,
-   "durasi": 203,
-   "rasio": "16:9",
-   "ditemukan": "2026-11-21",
-   "rasio_sampul": 1.333,
-   "sampul": "assets/img/video/youtube-XRGqKjXkVmo.jpg",
-   "skor": 5.864
   },
   {
    "platform": "youtube",
@@ -591,22 +607,6 @@
    "rasio_sampul": 1.333,
    "sampul": "assets/img/video/youtube-B_BAq4rco-g.jpg",
    "skor": 5.77
-  },
-  {
-   "platform": "youtube",
-   "id": "Rr33aaAKEFA",
-   "url": "https://www.youtube.com/watch?v=Rr33aaAKEFA",
-   "judul": "Acara Rama Tama Warga Kampung Marga Mulya Semangga Dua Provinsi Papua Selatan",
-   "kanal": "Sobat HT",
-   "tanggal": "2023-11-22",
-   "tanggal_kira": true,
-   "tayang": 74,
-   "durasi": 314,
-   "rasio": "16:9",
-   "ditemukan": "2026-11-21",
-   "rasio_sampul": 1.333,
-   "sampul": "assets/img/video/youtube-Rr33aaAKEFA.jpg",
-   "skor": 5.75
   }
  ]
 }
