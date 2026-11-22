@@ -23,8 +23,11 @@ if (window.top !== window.self) {
     "assets/js/data.js": { kind: "js", data: null, asli: null, sha: null },
     "data/wisata.json": { kind: "json", data: null, asli: null, sha: null },
     "data/fasilitas.json": { kind: "json", data: null, asli: null, sha: null },
-    "data/berita-abaikan.json": { kind: "json", data: null, asli: null, sha: null }
+    "data/berita-abaikan.json": { kind: "json", data: null, asli: null, sha: null },
+    "data/apbk-2026.json": { kind: "json", data: null, asli: null, sha: null },
+    "data/video-abaikan.json": { kind: "jsonList", kunci: "abaikan", data: null, asli: null, sha: null }
   };
+  var dokumen = {};  // path -> base64 (dokumen PDF/Word/Excel baru yang belum disimpan)
   var uploads = {};   // path -> base64 (gambar baru yang belum disimpan)
   var previews = {};  // path -> dataURL
 
@@ -40,18 +43,23 @@ if (window.top !== window.self) {
     { g: "Data", id: "penduduk", label: "Kependudukan", file: "assets/js/data.js", keys: ["penduduk"], desc: "Jumlah penduduk, kelompok usia, kesejahteraan keluarga, sekolah, pendidikan, pekerjaan, agama, dan suku." },
     { g: "Data", id: "sarana", label: "Sarana prasarana", file: "assets/js/data.js", keys: ["sarana"], desc: "Rekap jumlah sarana kesehatan, pendidikan, ibadah, umum, jalan, serta air bersih dan sanitasi." },
     { g: "Data", id: "fasilitas", label: "Fasilitas umum", file: "data/fasilitas.json", keys: ["fasilitas"], desc: "Sekolah, rumah ibadah, kesehatan, air bersih, dll. Status: terverifikasi, sebagian, atau perlu-data. Isi lat/lng atau biarkan kosong (robot mencarikan dari kolom 'cari')." },
+    { g: "Transparansi", id: "rkpk", label: "RKPK (rencana kerja tahunan)", file: "assets/js/data.js", keys: ["rkpk"], desc: "Isi tab Transparansi > RKPK: perkiraan pendapatan, kegiatan per bidang, pembiayaan, pagu, prioritas masalah, dasar hukum, dan berkas dokumen asli. Berkas PDF/Word/Excel bisa diunggah langsung; pastikan NIP dan data pribadi sudah dihapus sebelum diunggah." },
+    { g: "Transparansi", id: "apbkrinci", label: "Rincian APBKam per kegiatan", file: "data/apbk-2026.json", keys: ["tahun", "judul", "dokumen", "tanggal", "penandatangan", "pendapatan", "totalPendapatan", "belanja", "totalBelanja", "jenisBelanja", "sumberDana", "surplus", "pembiayaan", "selisih"], desc: "Isi halaman apbk.html (rincian setiap kegiatan: uraian, volume, satuan, harga satuan, dan jumlah). Jenis baris: akun, sub, item, atau paket. Angka dalam rupiah tanpa titik." },
     { g: "Transparansi", id: "apbkam", label: "APBKam & keuangan", file: "assets/js/data.js", keys: ["apbkam"], desc: "Ringkasan APBKam: pendapatan per kelompok, belanja per bidang/sub bidang/kegiatan, jenis belanja, sumber dana, dan pembiayaan. Rincian per kegiatan (untuk halaman apbk.html) ada di data/apbk-2026.json. Angka dalam rupiah tanpa titik." },
     { g: "Konten", id: "berita", label: "Berita pilihan", file: "assets/js/data.js", keys: ["berita"], desc: "Berita yang ditambahkan manual. Berita dari robot otomatis tidak perlu diisi di sini." },
     { g: "Konten", id: "beritaabaikan", label: "Sembunyikan berita robot", file: "data/berita-abaikan.json", keys: ["abaikan"], desc: "Tempel tautan berita temuan robot yang keliru agar tidak ditampilkan." },
     { g: "Konten", id: "kegiatankampung", label: "Kegiatan kampung", file: "assets/js/data.js", keys: ["kegiatanKampung"], desc: "Kegiatan yang tampil di Beranda (foto berganti tiap 3 detik) dan di Profil > Kegiatan: judul, waktu, deskripsi singkat, dan foto beserta keterangannya." },
     { g: "Konten", id: "momen", label: "Foto bergoyang di Beranda", file: "assets/js/data.js", keys: ["momen"], desc: "Foto yang tampil di tali jemuran dan deretan polaroid Beranda. Delapan foto pertama untuk tali jemuran, sisanya untuk polaroid." },
+    { g: "Konten", id: "herovideo", label: "Video profil di Beranda", file: "assets/js/data.js", keys: ["heroVideo"], desc: "Video yang berputar tanpa suara di bagian atas Beranda: berkas untuk layar besar, berkas untuk HP, gambar sampul, dan keterangan. Berkas video diunggah ke folder assets/video/ lewat GitHub karena ukurannya besar." },
     { g: "Konten", id: "galeri", label: "Galeri foto", file: "assets/js/data.js", keys: ["galeri"], desc: "Unggah foto kegiatan dan tulis keterangannya." },
     { g: "Konten", id: "video", label: "Video", file: "assets/js/data.js", keys: ["video"], desc: "Video pilihan yang selalu tampil paling depan (tautan YouTube, TikTok, Instagram, atau Facebook). Video lain dikumpulkan otomatis setiap 6 jam." },
+    { g: "Konten", id: "videoabaikan", label: "Sembunyikan video robot", file: "data/video-abaikan.json", keys: ["abaikan"], desc: "Tempel tautan video temuan robot yang keliru (tidak membahas Marga Mulya) agar tidak ditampilkan lagi. Berlaku pada pengumpulan video berikutnya (tiap 6 jam)." },
     { g: "Konten", id: "potensi", label: "Potensi & kegiatan", file: "assets/js/data.js", keys: ["potensi", "ekonomi", "dokumentasiPotensi"], desc: "Potensi kampung, data lahan, ternak, dan usaha warga, serta foto dokumentasi potensi." },
     { g: "Jelajah", id: "peta", label: "Peta kampung", file: "assets/js/data.js", keys: ["peta"], desc: "Keterangan Peta Batas Kampung. Garis batas dan titik kartometrik tersimpan di data/batas-kampung.json." },
+    { g: "Jelajah", id: "cuaca", label: "Cuaca & pertanian", file: "assets/js/data.js", keys: ["cuaca"], desc: "Data cuaca, prakiraan, kelembapan tanah, hama, dan bahaya kebakaran diperbarui OTOMATIS tiap 3 jam dari Sinau Bumi (stasiun PAT-1 Waninggap Kai), jadi tidak perlu diisi. Di sini hanya nama lokasi dan titik kampung untuk menghitung jarak ke stasiun." },
     { g: "Jelajah", id: "wisata", label: "Wisata & kuliner", file: "data/wisata.json", keys: ["tempat"], desc: "Daftar tempat wisata dan kuliner. Jarak dan waktu dihitung ulang otomatis setelah disimpan." },
-    { g: "Layanan", id: "layanan", label: "Layanan surat", file: "assets/js/data.js", keys: ["layananContoh", "layanan"], desc: "Jenis surat, persyaratan, dan lama proses." },
-    { g: "Layanan", id: "kontak", label: "Kontak & media sosial", file: "assets/js/data.js", keys: ["kontak", "sosmed"], desc: "Alamat, telepon, email, jam layanan, dan tautan media sosial." },
+    { g: "Layanan", id: "layanan", label: "Layanan surat", file: "assets/js/data.js", keys: ["layananWa", "layananContoh", "layanan"], desc: "Nomor WhatsApp & nama petugas layanan surat, notifikasi ke HP petugas, jenis surat, persyaratan, dan lama proses." },
+    { g: "Layanan", id: "kontak", label: "Kontak & media sosial", file: "assets/js/data.js", keys: ["kontak", "sosmed"], desc: "Alamat, telepon, email, hari & jam layanan kantor, dan tautan media sosial." },
     { g: "Pengaturan", id: "meta", label: "Pengaturan website", file: "assets/js/data.js", keys: ["meta"], desc: "Label data contoh, sumber data, dan tanggal pembaruan." }
   ];
   var LABEL = {
@@ -83,10 +91,19 @@ if (window.top !== window.self) {
     kelompokUsia: "Kelompok usia", kesejahteraan: "Tingkat kesejahteraan (KK)", sekolah: "Murid dan guru", murid: "Murid", guru: "Guru", tenagaKesehatan: "Tenaga kesehatan", suku: "Suku / etnis",
     pendapatanKosong: "Pendapatan yang belum tercatat", danaLembaga: "Dana lembaga kampung", sumberStatus: "Sumber status", sarana: "Sarana prasarana", kelompok: "Kelompok", isi: "Rincian",
     ekonomi: "Data ekonomi", lahan: "Komoditas (luas tanam)", ha: "Luas (ha)", petani: "Jumlah petani", cek: "Perlu dicek ulang", ternak: "Ternak", ekor: "Jumlah ekor", peternak: "Jumlah peternak",
-    penggunaanLahan: "Penggunaan lahan", usaha: "Sarana usaha"
+    penggunaanLahan: "Penggunaan lahan", usaha: "Sarana usaha",
+    layananWa: "WhatsApp layanan surat", nomor: "Nomor WhatsApp (62…, tanpa + dan spasi)", tampil: "Nomor yang ditampilkan", petugas: "Nama petugas", notifikasi: "Notifikasi ke petugas",
+    ntfyTopik: "Topik notifikasi ntfy", emailScript: "Alamat Google Apps Script (email)", hariLayanan: "Hari layanan", heroVideo: "Video profil", file: "Berkas video (layar besar)", fileHp: "Berkas video (HP)",
+    rkpk: "RKPK", pengertian: "Pengertian", tujuan: "Tujuan", manfaat: "Manfaat", sistematika: "Sistematika", totalPendapatan: "Total pendapatan (Rp)", pendapatanKet: "Keterangan pendapatan",
+    pak: "Pendapatan asli kampung (Rp)", totalBelanja: "Total belanja (Rp)", totalRab: "Total RAB termasuk pembiayaan (Rp)", pagu: "Pagu belanja", paguKet: "Keterangan pagu", pelaksanaan: "Pola pelaksanaan",
+    prioritas: "Prioritas masalah", berkas: "Berkas dokumen asli", asli: "Berkas asli (Word/Excel)", format: "Format berkas", hal: "Jumlah halaman", privasi: "Catatan privasi", lembaran: "Lembaran kampung",
+    volume: "Volume", sasaran: "Sasaran", sdgs: "SDGs ke-", no: "Nomor", kode: "Kode", sub: "Sub bidang", rincian: "Rincian", t: "Jenis baris (akun / sub / item / paket)", n: "Uraian",
+    j: "Jumlah (Rp)", v: "Volume", s: "Satuan", h: "Harga satuan (Rp)", penandatangan: "Penandatangan", jenisBelanja: "Jenis belanja", sumberDana: "Sumber dana", surplus: "Surplus/defisit (Rp)", selisih: "Selisih (Rp)", lokasi: "Nama lokasi"
   };
   var PANJANG = /^(deskripsi|ringkas|ket|tugas|detail|catatan|visi|keterangan|alamat|ringkasan)$/;
   var GAMBAR = /^(foto|src|cover|poster|ortofoto)$/;
+  var DOKUMEN = /^(pdf|asli)$/;
+  var MAKS_DOK = 15 * 1024 * 1024;
   var labelOf = function (k) { return LABEL[k] || String(k).replace(/([a-z])([A-Z])/g, "$1 $2").replace(/_/g, " ").replace(/^./, function (c) { return c.toUpperCase(); }); };
 
   /* ---------- GitHub API ---------- */
@@ -109,6 +126,7 @@ if (window.top !== window.self) {
 
   function parseFile(name, text) {
     if (FILES[name].kind === "json") return JSON.parse(text);
+    if (FILES[name].kind === "jsonList") { var o = {}; o[FILES[name].kunci] = JSON.parse(text || "[]"); return o; }
     // data.js dibaca sebagai data (JSON5), tidak dijalankan sebagai kode.
     var a = text.indexOf("=", text.indexOf("window.KAMPUNG")) + 1, b = text.lastIndexOf(";");
     var k = window.JSON5.parse(text.slice(a, b > a ? b : text.length));
@@ -117,6 +135,7 @@ if (window.top !== window.self) {
   }
   function serialize(name, data) {
     if (FILES[name].kind === "json") return JSON.stringify(data, null, 1) + "\n";
+    if (FILES[name].kind === "jsonList") return JSON.stringify(data[FILES[name].kunci] || [], null, 1) + "\n";
     return "/* =====================================================================\n" +
       "   MARGA MULYA ON SITE — DATA KAMPUNG\n" +
       "   Diubah melalui Portal Admin: " + location.origin + location.pathname + "\n" +
@@ -175,7 +194,7 @@ if (window.top !== window.self) {
       return gh("/repos/" + OWNER + "/" + REPO + "/contents/" + name + "?ref=" + BRANCH).then(function (j) {
         var text = b64ToText(j.content);
         FILES[name].sha = j.sha; FILES[name].data = parseFile(name, text); FILES[name].asli = JSON.stringify(FILES[name].data);
-      }).catch(function (e) { if (e.status === 404 && name.indexOf("abaikan") > -1) { FILES[name].data = { abaikan: [] }; FILES[name].asli = JSON.stringify(FILES[name].data); } else throw e; });
+      }).catch(function (e) { if (e.status === 404 && name.indexOf("abaikan") > -1) { FILES[name].sha = null; FILES[name].data = { abaikan: [] }; FILES[name].asli = JSON.stringify(FILES[name].data); } else throw e; });
     }));
   }
 
@@ -262,6 +281,28 @@ if (window.top !== window.self) {
         var file = this.files && this.files[0]; if (!file) return;
         unggah(file).then(function (path) { obj[k] = path; input.value = path; img.src = srcOf(path); img.hidden = false; ubah(); toast("Foto siap. Klik Simpan & terbitkan untuk mengunggah."); })
           .catch(function (e) { toast("Gagal memproses foto: " + e.message); });
+      });
+      return row;
+    }
+    if (DOKUMEN.test(k)) {
+      var dbox = document.createElement("div"); dbox.className = "img";
+      dbox.innerHTML = '<input type="text" id="' + idf + '" value="' + esc(v) + '" placeholder="assets/dok/… atau https://…">' +
+        '<label class="btn btn--line btn--sm"><svg class="ic"><use href="#i-upload"/></svg>Unggah dokumen<input type="file" accept=".pdf,.doc,.docx,.xls,.xlsx,application/pdf"></label>';
+      row.appendChild(dbox); input = $("input[type=text]", dbox);
+      input.addEventListener("input", function () { obj[k] = this.value.trim(); ubah(); });
+      $("input[type=file]", dbox).addEventListener("change", function () {
+        var file = this.files && this.files[0]; if (!file) return;
+        if (file.size > MAKS_DOK) { toast("Berkas terlalu besar (maksimal 15 MB)."); return; }
+        if (!window.confirm("Pastikan dokumen tidak memuat NIP, NIK, atau data pribadi lain. Lanjutkan unggah \"" + file.name + "\"?")) { this.value = ""; return; }
+        var fr = new FileReader();
+        fr.onload = function () {
+          var ext = (file.name.match(/\.([a-z0-9]+)$/i) || [, "pdf"])[1].toLowerCase();
+          var path = "assets/dok/unggahan/" + Date.now() + "-" + slug(file.name) + "." + ext;
+          dokumen[path] = String(fr.result).split(",")[1];
+          obj[k] = path; input.value = path; ubah(); toast("Dokumen siap. Klik Simpan & terbitkan untuk mengunggah.");
+        };
+        fr.onerror = function () { toast("Gagal membaca berkas."); };
+        fr.readAsDataURL(file);
       });
       return row;
     }
@@ -359,17 +400,17 @@ if (window.top !== window.self) {
 
   /* ---------- Status perubahan & simpan ---------- */
   function berubah() { return Object.keys(FILES).filter(function (n) { return FILES[n].data && JSON.stringify(FILES[n].data) !== FILES[n].asli; }); }
-  function adaPerubahan() { return berubah().length > 0 || Object.keys(uploads).length > 0; }
+  function adaPerubahan() { return berubah().length > 0 || Object.keys(uploads).length > 0 || Object.keys(dokumen).length > 0; }
   function ubah() {
-    var n = berubah(), u = Object.keys(uploads).length, ada = n.length || u;
+    var n = berubah(), u = Object.keys(uploads).length, d = Object.keys(dokumen).length, ada = n.length || u || d;
     $("#saveBtn").disabled = !ada; $("#resetBtn").disabled = !ada;
-    $("#saveMsg").innerHTML = ada ? '<span class="dot"></span><b>Ada perubahan belum disimpan</b>' + (u ? " · " + u + " foto baru" : "") : "Belum ada perubahan.";
+    $("#saveMsg").innerHTML = ada ? '<span class="dot"></span><b>Ada perubahan belum disimpan</b>' + (u ? " · " + u + " foto baru" : "") + (d ? " · " + d + " dokumen baru" : "") : "Belum ada perubahan.";
   }
   window.addEventListener("beforeunload", function (e) { if (adaPerubahan()) { e.preventDefault(); e.returnValue = ""; } });
   $("#resetBtn").addEventListener("click", function () {
     if (!window.confirm("Batalkan semua perubahan yang belum disimpan?")) return;
     Object.keys(FILES).forEach(function (n) { if (FILES[n].asli) FILES[n].data = JSON.parse(FILES[n].asli); });
-    uploads = {}; previews = {}; bukaBagian(aktif); ubah();
+    uploads = {}; previews = {}; dokumen = {}; bukaBagian(aktif); ubah();
   });
 
   $("#saveBtn").addEventListener("click", function () {
@@ -384,7 +425,7 @@ if (window.top !== window.self) {
       // Cek apakah ada admin lain yang mengubah berkas yang sama sejak dibuka
       return Promise.all(files.map(function (n) {
         return gh(R + "/contents/" + n + "?ref=" + BRANCH).then(function (j) {
-          if (j.sha !== FILES[n].sha) throw new Error("Berkas " + n + " sudah diubah orang lain sejak portal dibuka. Muat ulang halaman, lalu ulangi perubahan Anda.");
+          if (FILES[n].sha && j.sha !== FILES[n].sha) throw new Error("Berkas " + n + " sudah diubah orang lain sejak portal dibuka. Muat ulang halaman, lalu ulangi perubahan Anda.");
         });
       }));
     }).then(function () {
@@ -393,7 +434,8 @@ if (window.top !== window.self) {
       var html = b64ToText(idx.content).replace(/\?v=\d+/g, "?v=" + Date.now());
       var blobs = files.map(function (n) { return { path: n, content: textToB64(serialize(n, FILES[n].data)) }; })
         .concat([{ path: "index.html", content: textToB64(html) }])
-        .concat(Object.keys(uploads).map(function (p) { return { path: p, content: uploads[p] }; }));
+        .concat(Object.keys(uploads).map(function (p) { return { path: p, content: uploads[p] }; }))
+        .concat(Object.keys(dokumen).map(function (p) { return { path: p, content: dokumen[p] }; }));
       return Promise.all(blobs.map(function (b) {
         return gh(R + "/git/blobs", { method: "POST", body: { content: b.content, encoding: "base64" } }).then(function (r) { return { path: b.path, mode: "100644", type: "blob", sha: r.sha }; });
       }));
@@ -401,12 +443,12 @@ if (window.top !== window.self) {
       return gh(R + "/git/trees", { method: "POST", body: { base_tree: baseTree, tree: tree } });
     }).then(function (t) {
       var bagian = SECTIONS.filter(function (s) { return files.indexOf(s.file) > -1; }).map(function (s) { return s.label; });
-      var pesan = "Admin: perbarui isi website" + (Object.keys(uploads).length ? " dan unggah foto" : "") + "\n\nDiubah melalui Portal Admin oleh " + (user.name || user.login) + " (@" + user.login + ").";
+      var pesan = "Admin: perbarui isi website" + (Object.keys(uploads).length ? " dan unggah foto" : "") + (Object.keys(dokumen).length ? " dan unggah dokumen" : "") + "\n\nDiubah melalui Portal Admin oleh " + (user.name || user.login) + " (@" + user.login + ").";
       return gh(R + "/git/commits", { method: "POST", body: { message: pesan, tree: t.sha, parents: [headSha] } });
     }).then(function (c) {
       return gh(R + "/git/refs/heads/" + BRANCH, { method: "PATCH", body: { sha: c.sha } });
     }).then(function () {
-      uploads = {}; previews = {};
+      uploads = {}; previews = {}; dokumen = {};
       return muatSemua();
     }).then(function () {
       bukaBagian(aktif); ubah();

@@ -162,13 +162,15 @@
       <details class="help">
         <summary>Cara membuat token admin</summary>
         <ol>
-          <li>Pastikan akun GitHub Anda sudah diundang ke organisasi <b>Kampung-Marga-Mulya</b> dengan akses tulis (write).</li>
-          <li>Buka <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">github.com → Settings → Fine-grained tokens → Generate new token</a>.</li>
-          <li>Isi nama token, misalnya <i>Admin Website Marga Mulya</i>, dan pilih masa berlaku.</li>
-          <li><b>Resource owner:</b> pilih <i>Kampung-Marga-Mulya</i>. <b>Repository access:</b> <i>Only select repositories</i> → <i>kampung-marga-mulya.github.io</i>.</li>
-          <li><b>Permissions → Repository permissions → Contents:</b> <i>Read and write</i>. Lalu klik <i>Generate token</i>.</li>
-          <li>Salin token (diawali <code>github_pat_</code>) dan tempel di kolom di atas. Jangan bagikan token kepada siapa pun.</li>
+          <li>Masuk ke GitHub dengan akun yang punya akses tulis (write) ke organisasi <b>Kampung-Marga-Mulya</b>.</li>
+          <li>Buka <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">github.com → Settings → Developer settings → Fine-grained tokens → Generate new token</a>.</li>
+          <li>Isi nama token, misalnya <i>Admin Website Marga Mulya</i>, dan pilih masa berlaku (disarankan 90 hari).</li>
+          <li><b>Resource owner:</b> <i>Kampung-Marga-Mulya</i>. <b>Repository access:</b> <i>Only select repositories</i> → <i>kampung-marga-mulya.github.io</i>.</li>
+          <li><b>Repository permissions → Contents:</b> <i>Read and write</i>. Izin lain biarkan <i>No access</i>. Klik <i>Generate token</i>.</li>
+          <li>Salin token (diawali <code>github_pat_</code>) lalu tempel di kolom di atas.</li>
         </ol>
+        <p class="small">Siapa pun yang memegang token ini bisa mengubah isi website, jadi berikan hanya kepada admin kampung yang dipercaya. Token bisa dicabut kapan saja di halaman Fine-grained tokens dan otomatis tidak berlaku setelah masa berlakunya habis.</p>
+        <p class="small">Yang <b>tidak perlu</b> diisi karena diperbarui otomatis: berita & video temuan robot, data cuaca & pertanian, serta jarak dan waktu tempuh wisata.</p>
       </details>
     </div>
   </section>
