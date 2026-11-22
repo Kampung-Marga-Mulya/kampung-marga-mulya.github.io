@@ -1,5 +1,5 @@
 {
- "diperiksa": "2026-11-22T04:28+09:00",
+ "diperiksa": "2026-11-22T10:50+09:00",
  "catatan": "Dibuat otomatis oleh scripts/update_video.py. Jangan disunting manual; gunakan video.pilihan di assets/js/data.js atau data/video-abaikan.json.",
  "video": [
   {
@@ -167,13 +167,13 @@
    "kanal": "STORY AMRY",
    "tanggal": "2026-11-01",
    "tanggal_kira": true,
-   "tayang": 662,
+   "tayang": 663,
    "durasi": 740,
    "rasio": "16:9",
    "ditemukan": "2026-11-04",
    "rasio_sampul": 1.333,
    "sampul": "assets/img/video/youtube-ascjSfNf2UQ.jpg",
-   "skor": 7.899
+   "skor": 7.9
   },
   {
    "platform": "instagram",
@@ -260,7 +260,7 @@
    "kanal": "Leksono Japa",
    "tanggal": "2025-11-22",
    "tanggal_kira": true,
-   "tayang": 2293,
+   "tayang": 2295,
    "durasi": 933,
    "rasio": "16:9",
    "ditemukan": "2026-11-04",
@@ -351,22 +351,6 @@
    "rasio_sampul": 1.333,
    "sampul": "assets/img/video/youtube-xH1UZn6oYB4.jpg",
    "skor": 6.511
-  },
-  {
-   "platform": "youtube",
-   "id": "6k3LJ-dfkyI",
-   "url": "https://www.youtube.com/watch?v=6k3LJ-dfkyI",
-   "judul": "HABIS UNTUK SEWA ALAT‼️PETANI PADI KAMPUNG MARGAMULYA EKS TRANSMIGRASI SEMANGGA 2 KABUPATEN MERAUKE",
-   "kanal": "Leksono Japa",
-   "tanggal": "2025-11-22",
-   "tanggal_kira": true,
-   "tayang": 580,
-   "durasi": 1193,
-   "rasio": "16:9",
-   "ditemukan": "2026-11-22",
-   "rasio_sampul": 1.333,
-   "sampul": "assets/img/video/youtube-6k3LJ-dfkyI.jpg",
-   "skor": 6.486
   },
   {
    "platform": "youtube",
@@ -527,6 +511,22 @@
    "rasio_sampul": 1.333,
    "sampul": "assets/img/video/youtube-X9q_K35VCcY.jpg",
    "skor": 6.144
+  },
+  {
+   "platform": "youtube",
+   "id": "DlUvHbFk2vs",
+   "url": "https://www.youtube.com/watch?v=DlUvHbFk2vs",
+   "judul": "HENGAR VLOG #3 - WARGA MARGA MULYA - MERAUKE",
+   "kanal": "Hendrikus Ngarbingan",
+   "tanggal": "2020-11-23",
+   "tanggal_kira": true,
+   "tayang": 289,
+   "durasi": 720,
+   "rasio": "16:9",
+   "ditemukan": "2026-11-22",
+   "rasio_sampul": 1.333,
+   "sampul": "assets/img/video/youtube-DlUvHbFk2vs.jpg",
+   "skor": 6.142
   },
   {
    "platform": "youtube",
