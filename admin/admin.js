@@ -98,12 +98,30 @@ if (window.top !== window.self) {
     pak: "Pendapatan asli kampung (Rp)", totalBelanja: "Total belanja (Rp)", totalRab: "Total RAB termasuk pembiayaan (Rp)", pagu: "Pagu belanja", paguKet: "Keterangan pagu", pelaksanaan: "Pola pelaksanaan",
     prioritas: "Prioritas masalah", berkas: "Berkas dokumen asli", asli: "Berkas asli (Word/Excel)", format: "Format berkas", hal: "Jumlah halaman", privasi: "Catatan privasi", lembaran: "Lembaran kampung",
     volume: "Volume", sasaran: "Sasaran", sdgs: "SDGs ke-", no: "Nomor", kode: "Kode", sub: "Sub bidang", rincian: "Rincian", t: "Jenis baris (akun / sub / item / paket)", n: "Uraian",
-    j: "Jumlah (Rp)", v: "Volume", s: "Satuan", h: "Harga satuan (Rp)", penandatangan: "Penandatangan", jenisBelanja: "Jenis belanja", sumberDana: "Sumber dana", surplus: "Surplus/defisit (Rp)", selisih: "Selisih (Rp)", lokasi: "Nama lokasi"
+    id: "Kode singkat (boleh dikosongkan)", j: "Jumlah (Rp)", v: "Volume", s: "Satuan", h: "Harga satuan (Rp)", penandatangan: "Penandatangan", jenisBelanja: "Jenis belanja", sumberDana: "Sumber dana", surplus: "Surplus/defisit (Rp)", selisih: "Selisih (Rp)", lokasi: "Nama lokasi"
   };
   var PANJANG = /^(deskripsi|ringkas|ket|tugas|detail|catatan|visi|keterangan|alamat|ringkasan)$/;
   var GAMBAR = /^(foto|src|cover|poster|ortofoto)$/;
   var DOKUMEN = /^(pdf|asli)$/;
   var MAKS_DOK = 15 * 1024 * 1024;
+  // Beberapa nama kolom dipakai di lebih dari satu bagian: pakai label umum agar tidak membingungkan
+  LABEL.waktu = "Waktu"; LABEL.dokumen = "Dokumen / nomor"; LABEL.jam = "Jam"; LABEL.isi = "Isi / rincian";
+  // Bentuk isian baru untuk daftar yang masih kosong
+  var TEMPLATE = {
+    foto: { src: "", ket: "" }, galeri: { src: "", caption: "" }, momen: { src: "", ket: "" }, dokumentasiPotensi: { src: "", ket: "" },
+    kegiatanKampung: { id: "", judul: "", waktu: "", ket: "", foto: [{ src: "", ket: "" }] },
+    berita: { tanggal: "", sumber: "", judul: "", ringkas: "", url: "", cover: "" },
+    prestasi: { tahun: new Date().getFullYear(), judul: "", pemberi: "", dokumen: "", ket: "", tentang: "", foto: "" }
+  };
+  // Item baru diletakkan paling atas (konten terbaru tampil lebih dulu)
+  var TAMBAH_ATAS = { kegiatanKampung: 1, galeri: 1, berita: 1, prestasi: 1 };
+  var kosongItem = function (o) {
+    if (o == null || o === "" || o === 0 || o === false) return true;
+    if (Array.isArray(o)) return o.every(kosongItem);
+    if (typeof o === "object") return Object.keys(o).every(function (k) { return kosongItem(o[k]); });
+    return false;
+  };
+  var kunciGambar = function (o) { if (!o || typeof o !== "object") return null; var ks = Object.keys(o); for (var i = 0; i < ks.length; i++) if (GAMBAR.test(ks[i]) && typeof o[ks[i]] !== "object") return ks[i]; return null; };
   var labelOf = function (k) { return LABEL[k] || String(k).replace(/([a-z])([A-Z])/g, "$1 $2").replace(/_/g, " ").replace(/^./, function (c) { return c.toUpperCase(); }); };
 
   /* ---------- GitHub API ---------- */
@@ -228,7 +246,7 @@ if (window.top !== window.self) {
   /* ---------- Pembuat formulir otomatis ---------- */
   function judulItem(o, i) {
     if (o == null || typeof o !== "object") return String(o == null ? "" : o) || "(kosong)";
-    return o.nama || o.judul || o.jabatan || o.label || o.bidang || o.caption || o.k || o.tahun || o.kategori || ("Item " + (i + 1));
+    return o.nama || o.judul || o.jabatan || o.label || o.bidang || o.caption || o.ket || o.k || o.tahun || o.kategori || o.n || ("Item " + (i + 1));
   }
   function kosongkan(v) {
     if (Array.isArray(v)) return v.length && v[0] && typeof v[0] === "object" ? [kosongkan(v[0])] : [];
@@ -339,7 +357,8 @@ if (window.top !== window.self) {
           aksi(r, i); list.appendChild(r);
         } else {
           var card = document.createElement("div"); card.className = "item";
-          card.innerHTML = '<div class="item__head"><span class="no">' + (i + 1) + "</span><b>" + esc(judulItem(it, i)) + "</b>" +
+          var kg = kunciGambar(it), thumb = kg && it[kg] ? '<img class="item__thumb" alt="" src="' + esc(srcOf(it[kg])) + '">' : (Array.isArray(it.foto) && it.foto[0] && it.foto[0].src ? '<img class="item__thumb" alt="" src="' + esc(srcOf(it.foto[0].src)) + '">' : "");
+          card.innerHTML = '<div class="item__head"><span class="no">' + (i + 1) + "</span>" + thumb + "<b>" + esc(judulItem(it, i)) + "</b>" +
             '<button type="button" class="iconbtn" data-a="up" title="Naikkan"><svg class="ic"><use href="#i-up"/></svg></button>' +
             '<button type="button" class="iconbtn" data-a="down" title="Turunkan"><svg class="ic"><use href="#i-down"/></svg></button>' +
             '<button type="button" class="iconbtn" data-a="del" title="Hapus"><svg class="ic"><use href="#i-trash"/></svg></button></div><div class="item__body"></div>';
@@ -361,14 +380,40 @@ if (window.top !== window.self) {
         });
       });
     }
+    var contoh = arr[0] != null ? arr[0] : TEMPLATE[key];
+    var primitifBaru = contoh == null ? primitif : typeof contoh !== "object";
+    var atas = !!TAMBAH_ATAS[key];
+    var tambahItem = function (baru) { if (atas) arr.unshift(baru); else arr.push(baru); };
+    var bukaBaru = function () { var el = atas ? list.firstElementChild : list.lastElementChild; if (el) { el.classList.add("is-open"); el.scrollIntoView({ block: "center", behavior: "smooth" }); var f = el.querySelector("textarea, input[type=text]:not([placeholder^=assets])"); if (f) f.focus({ preventScroll: true }); } };
+    var tombol = document.createElement("div"); tombol.className = "addrow";
     var add = document.createElement("button"); add.type = "button"; add.className = "btn btn--line btn--sm add";
     add.innerHTML = '<svg class="ic"><use href="#i-plus"/></svg>Tambah ' + esc(labelOf(key).toLowerCase());
     add.addEventListener("click", function () {
-      var baru = primitif ? "" : kosongkan(arr[0] || {});
-      arr.push(baru); gambar(); ubah();
-      var last = list.lastElementChild; if (last) { last.classList.add("is-open"); var f = last.querySelector("input, textarea"); if (f) f.focus(); }
+      tambahItem(primitifBaru ? "" : kosongkan(contoh || {}));
+      primitif = primitifBaru; gambar(); ubah(); bukaBaru();
     });
-    wrap.appendChild(add); gambar();
+    tombol.appendChild(add);
+    // Daftar foto: bisa memilih beberapa foto sekaligus, lalu tinggal menulis keterangannya
+    var kgContoh = !primitifBaru && contoh ? kunciGambar(contoh) : null;
+    if (kgContoh) {
+      var banyak = document.createElement("label"); banyak.className = "btn btn--solid btn--sm add";
+      banyak.innerHTML = '<svg class="ic"><use href="#i-upload"/></svg>Unggah beberapa foto sekaligus<input type="file" accept="image/*" multiple hidden>';
+      $("input", banyak).addEventListener("change", function () {
+        var files = [].slice.call(this.files || []); this.value = ""; if (!files.length) return;
+        toast("Memproses " + files.length + " foto…");
+        for (var x = arr.length - 1; x >= 0; x--) if (kosongItem(arr[x])) arr.splice(x, 1);  // buang isian foto yang masih kosong
+        files.reduce(function (p, file) {
+          return p.then(function () { return unggah(file).then(function (path) { var baru = kosongkan(contoh); baru[kgContoh] = path; tambahItem(baru); }); });
+        }, Promise.resolve()).then(function () {
+          primitif = false; gambar(); ubah();
+          [].forEach.call(list.children, function (el, n) { var o = arr[n]; if (o && typeof o === "object" && !o.ket && !o.caption) el.classList.add("is-open"); });
+          bukaBaru();
+          toast(files.length + " foto siap. Tulis keterangan tiap foto, lalu klik Simpan & terbitkan.");
+        }).catch(function (e) { gambar(); ubah(); toast("Sebagian foto gagal diproses: " + e.message); });
+      });
+      tombol.appendChild(banyak);
+    }
+    wrap.appendChild(tombol); gambar();
     return wrap;
   }
 
