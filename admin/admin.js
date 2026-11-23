@@ -166,7 +166,7 @@ if (window.top !== window.self) {
   function showErr(m) { var e = $("#loginErr"); e.textContent = m; e.hidden = false; }
   var POLA_TOKEN = /^(github_pat_|ghp_)[A-Za-z0-9_]{20,}$/;
   function masuk(t) {
-    token = String(t || "").trim();
+    token = String(t || "").replace(/\s+/g, "");  // buang spasi/baris baru yang ikut tersalin (mis. dari PDF)
     if (!POLA_TOKEN.test(token)) { token = null; store.del("mm_token"); showErr("Format token tidak dikenali. Token GitHub diawali github_pat_ (disarankan) atau ghp_."); return; } $("#loginBtn").disabled = true; $("#loginBtn").textContent = "Memeriksa…"; $("#loginErr").hidden = true;
     gh("/user").then(function (u) {
       user = u;
