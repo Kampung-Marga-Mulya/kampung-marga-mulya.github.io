@@ -1,5 +1,5 @@
 {
- "diperiksa": "2026-11-23T08:47+09:00",
+ "diperiksa": "2026-11-23T17:10+09:00",
  "catatan": "Dibuat otomatis oleh scripts/update_video.py. Jangan disunting manual; gunakan video.pilihan di assets/js/data.js atau data/video-abaikan.json.",
  "video": [
   {
@@ -530,6 +530,22 @@
   },
   {
    "platform": "youtube",
+   "id": "DlUvHbFk2vs",
+   "url": "https://www.youtube.com/watch?v=DlUvHbFk2vs",
+   "judul": "HENGAR VLOG #3 - WARGA MARGA MULYA - MERAUKE",
+   "kanal": "Hendrikus Ngarbingan",
+   "tanggal": "2020-11-24",
+   "tanggal_kira": true,
+   "tayang": 289,
+   "durasi": 720,
+   "rasio": "16:9",
+   "ditemukan": "2026-11-23",
+   "rasio_sampul": 1.333,
+   "sampul": "assets/img/video/youtube-DlUvHbFk2vs.jpg",
+   "skor": 6.142
+  },
+  {
+   "platform": "youtube",
    "id": "HrxJHBLGFEU",
    "url": "https://www.youtube.com/watch?v=HrxJHBLGFEU",
    "judul": "KARNAVAL SEMANGGA 2 MARGA MULYA, Dalam Rangka HUT RI KE 79 Tahun, MERAUKE 15 AGUSTUS 2024...",
@@ -543,22 +559,6 @@
    "rasio_sampul": 1.333,
    "sampul": "assets/img/video/youtube-HrxJHBLGFEU.jpg",
    "skor": 6.138
-  },
-  {
-   "platform": "youtube",
-   "id": "LUCH4yWc_cw",
-   "url": "https://www.youtube.com/watch?v=LUCH4yWc_cw",
-   "judul": "TPQ Al Ittihad marga mulya merauke papua",
-   "kanal": "BUNDA RAHMA",
-   "tanggal": "2021-11-24",
-   "tanggal_kira": true,
-   "tayang": 256,
-   "durasi": 151,
-   "rasio": "16:9",
-   "ditemukan": "2026-11-22",
-   "rasio_sampul": 1.333,
-   "sampul": "assets/img/video/youtube-LUCH4yWc_cw.jpg",
-   "skor": 6.107
   },
   {
    "platform": "youtube",
