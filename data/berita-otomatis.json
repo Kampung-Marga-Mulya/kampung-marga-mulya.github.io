@@ -1,5 +1,5 @@
 {
-  "diperiksa": "2026-11-23",
+  "diperiksa": "2026-11-24",
   "berita": [
     {
       "tanggal": "2026-11-10",
@@ -236,6 +236,17 @@
     }
   ],
   "terkait": [
+    {
+      "tanggal": "2026-11-24",
+      "sumber": "Viva.co.id",
+      "judul": "Warga Transmigran Diberi Pelatihan Pertanian dan Agribisnis Guna Tingkatkan Kesejahteraan",
+      "ringkas": "Pemerintah melalui Kementerian Transmigrasi terus berupaya meningkatkan kesejahteraan para warga transmigran, yang tersebar di berbagai penjuru wilayah Indonesia.",
+      "url": "https://www.viva.co.id/bisnis/1945843-warga-transmigran-diberi-pelatihan-pertanian-dan-agribisnis-guna-tingkatkan-kesejahteraan",
+      "cover": "https://thumb.viva.co.id/media/frontend/thumbs3/2026/11/23/6b0443cb0d4d1-pelatihan-pertanian-dan-agrabisnis-buat-warga-transmigran_gemini_1265_711.jpg",
+      "otomatis": true,
+      "kategori": "Transmigrasi",
+      "ditemukan": "2026-11-24"
+    },
     {
       "tanggal": "2026-11-21",
       "sumber": "ibtimes",
@@ -488,17 +499,6 @@
       "otomatis": true,
       "kategori": "Transmigrasi",
       "ditemukan": "2026-11-22"
-    },
-    {
-      "tanggal": "2026-11-09",
-      "sumber": "ANTARA",
-      "judul": "TEP IPB Kementrans kembangkan sagu Merauke dukung kemandirian pangan",
-      "ringkas": "Kementerian Transmigrasi (Kementrans) melalui Tim Ekspedisi Patriot (TEP) 11 IPB University mendampingi masyarakat di Merauke, Papua Selatan, mengembangkan ...",
-      "url": "https://www.antaranews.com/berita/5841567/tep-ipb-kementrans-kembangkan-sagu-merauke-dukung-kemandirian-pangan",
-      "cover": "https://cdn.antaranews.com/cache/1200x800/2026/11/09/1000223481.jpg",
-      "otomatis": true,
-      "kategori": "Transmigrasi",
-      "ditemukan": "2026-11-09"
     }
   ]
 }
