@@ -376,9 +376,9 @@
     }) + "><b>" + a[1] + "</b>" + esc(a[2]) + "</button>";
   }).join("") + '<div class="mid">Marga<br>Mulya</div>';
   $("#batas").insertAdjacentHTML("afterend",
-    '<a class="batas-peta" href="#petakampung" aria-label="Buka peta interaktif batas kampung"><img src="assets/img/peta/tematik/administrasi.webp" alt="Peta administrasi Kampung Marga Mulya dengan wilayah RW dan RT" loading="lazy">' +
+    '<a class="batas-peta" href="#petakampung" aria-label="Buka peta interaktif batas kampung"><img src="assets/img/peta/tematik/administrasi-2026.webp" alt="Peta administrasi Kampung Marga Mulya tahun 2026 dengan batas RT dan titik batas kampung" loading="lazy">' +
     '<span class="batas-peta__lbl batas-peta__lbl--n">' + esc(D.batas.utara.split(" (")[0]) + '</span><span class="batas-peta__lbl batas-peta__lbl--s">' + esc(D.batas.selatan.split(" dan")[0]) + "</span>" +
-    '<span class="batas-peta__cap">' + ic("pin") + "Peta administrasi kampung (survei 2022). Ketuk untuk membuka peta interaktif.</span></a>" +
+    '<span class="batas-peta__cap">' + ic("pin") + "Peta administrasi kampung 2026 (Tim Ekspedisi Patriot LP2AI IPB University). Ketuk untuk membuka peta interaktif.</span></a>" +
     '<div class="lokasi-kantor"><span class="lokasi-kantor__ilus" aria-hidden="true">' + ilus("rumah") + '</span><div><b>Kantor Kampung Marga Mulya</b><span>' + esc(((D.kontak && D.kontak.alamat) || ("Distrik " + id.distrik + ", Kabupaten " + id.kabupaten)).replace(/^Kantor Kampung [^,]*,\s*/, "")) + "</span></div>" +
     '<div class="lokasi-kantor__act"><a class="btn btn--solid" href="' + escUrl(gmaps.rute(KANTOR.lat, KANTOR.lng)) + '" target="_blank" rel="noopener">' + ic("nav") + 'Rute ke kantor</a><a class="btn btn--line" href="' + escUrl(gmaps.titik(KANTOR.lat, KANTOR.lng)) + '" target="_blank" rel="noopener">' + ic("pin") + "Buka di Google Maps</a></div></div>");
 
@@ -776,11 +776,11 @@
         if (aktifLap[k]) lap[k].addTo(map); else lap[k].remove();
       });
 
-      // Peta tematik 2022: ditumpangkan di atas citra satelit sesuai koordinat, satu per satu
+      // Peta tematik (survei 2022 dan administrasi 2026): ditumpangkan di atas citra satelit sesuai koordinat, satu per satu
       var T = B.tematik || { lapisan: [] }, tema = {}, temaAktif = null, opasitas = .8;
-      var PILIH = T.lapisan.map(function (t) { return { id: t.id, nama: t.nama, ket: t.ket, legenda: t.legenda, buat: function () { return L.imageOverlay(t.src, T.bounds, { opacity: opasitas, interactive: false, className: "tematik" }); } }; });
+      var PILIH = T.lapisan.map(function (t) { return { id: t.id, nama: t.nama, ket: t.ket, legenda: t.legenda, sumber: t.sumber, buat: function () { return L.imageOverlay(t.src, T.bounds, { opacity: opasitas, interactive: false, className: "tematik" }); } }; });
       PILIH.push({ id: "dpmk", nama: "Peta batas DPMK", ket: "Lembar Peta Batas Kampung dari DPMK Kabupaten Merauke.", buat: function () { lap.citra.setOpacity(opasitas); return lap.citra; } });
-      $("#mapTema").innerHTML = '<p class="mapfilter__judul">Tumpang peta tematik 2022</p><div class="mapfilter__opsi"><button class="fbtn" type="button" aria-pressed="true" data-tema="">Hanya satelit</button>' +
+      $("#mapTema").innerHTML = '<p class="mapfilter__judul">Tumpang peta tematik</p><div class="mapfilter__opsi"><button class="fbtn" type="button" aria-pressed="true" data-tema="">Hanya satelit</button>' +
         PILIH.map(function (t) { return '<button class="fbtn" type="button" aria-pressed="false" data-tema="' + esc(t.id) + '">' + esc(t.nama) + "</button>"; }).join("") + "</div>" +
         '<label class="mapfilter__op" id="temaOp" hidden>Transparansi <input type="range" min="20" max="100" value="80" aria-label="Transparansi peta tematik"></label>' +
         '<div class="maplegend" id="temaLegenda" hidden></div>';
@@ -795,7 +795,7 @@
         tema[t.id].setOpacity(opasitas).addTo(map);
         lap.batas.eachLayer(function (l) { l.bringToFront(); });
         $("#temaLegenda").innerHTML = "<p><b>" + esc(t.nama) + "</b> " + esc(t.ket) + "</p>" + (t.legenda ? '<button type="button" class="reset maplegend__img" data-legenda="' + esc(t.id) + '" aria-label="Perbesar legenda ' + esc(t.nama) + '"><img src="' + escUrl(t.legenda) + '" alt="Legenda ' + esc(t.nama) + '" loading="lazy"></button>' : "") +
-          (T.sumber && t.id !== "dpmk" ? '<p class="small">Sumber: ' + esc(T.sumber) + ".</p>" : "");
+          ((t.sumber || T.sumber) && t.id !== "dpmk" ? '<p class="small">Sumber: ' + esc(t.sumber || T.sumber) + ".</p>" : "");
       }
       $("#mapTema").addEventListener("click", function (e) {
         var b = e.target.closest("[data-tema]"); if (b) { pilihTema(b.dataset.tema); return; }
@@ -810,7 +810,7 @@
       $("#petaImg").src = l.src; $("#petaImg").alt = l.nama + ", skala " + l.skala;
       $("#petaUnduh").href = l.src; $("#petaUnduhT").textContent = "Unduh " + l.nama.replace(/^Peta /, "peta ") + " (JPG)";
       $("#petaLembar").querySelectorAll("[data-lembar]").forEach(function (b) { b.setAttribute("aria-pressed", b.dataset.lembar === l.id ? "true" : "false"); });
-      $("#petaLembarSumber").textContent = "Skala " + l.skala + " (kertas A0). Sumber: " + l.sumber + ".";
+      $("#petaLembarSumber").textContent = "Skala " + l.skala + (l.kertas === false ? "" : " (kertas A0)") + ". Sumber: " + l.sumber + ".";
       setZoom(1);
     }
     window.MM_BATAS().then(function (b) {

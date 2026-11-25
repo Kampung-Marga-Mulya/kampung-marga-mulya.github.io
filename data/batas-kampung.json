@@ -2158,7 +2158,7 @@
   ]
  ],
  "tematik": {
-  "keterangan": "Peta tematik hasil survei lapangan 2022 (WGS 1984 UTM 54S), diselaraskan ke koordinat 12 pal batas dan 19 titik pintu air/bendali, lalu dipotong mengikuti batas kampung.",
+  "keterangan": "Peta tematik hasil survei lapangan 2022 dan peta administrasi 2026 (WGS 1984 UTM 54S), diselaraskan ke koordinat titik batas kampung, lalu dipotong mengikuti batas kampung.",
   "bounds": [
    [
     -8.467734,
@@ -2186,10 +2186,11 @@
    },
    {
     "id": "administrasi",
-    "nama": "Administrasi RW/RT",
-    "src": "assets/img/peta/tematik/administrasi.webp",
-    "legenda": "assets/img/peta/legenda/administrasi.jpg",
-    "ket": "Wilayah RW dan RT, pal batas, dan jaringan saluran."
+    "nama": "Administrasi RT 2026",
+    "src": "assets/img/peta/tematik/administrasi-2026.webp",
+    "legenda": "assets/img/peta/legenda/administrasi-2026.jpg",
+    "ket": "Batas RT 01–18 dan 18 titik batas kampung di atas citra drone 2026.",
+    "sumber": "Tim Ekspedisi Patriot LP2AI IPB University, Edisi Pertama 2026"
    },
    {
     "id": "jaringan-irigasi",
@@ -2225,10 +2226,11 @@
   },
   {
    "id": "administrasi",
-   "nama": "Peta Administrasi Kampung",
-   "src": "assets/img/peta/lembar/administrasi.jpg",
+   "nama": "Peta Administrasi Kampung 2026",
+   "src": "assets/img/peta/lembar/administrasi-2026.jpg",
    "skala": "1:14.000",
-   "sumber": "Pemerintah Kampung Marga Mulya, survei lapangan 2022"
+   "sumber": "Tim Ekspedisi Patriot LP2AI IPB University, Edisi Pertama 2026",
+   "kertas": false
   },
   {
    "id": "administrasi-rw-rt",
