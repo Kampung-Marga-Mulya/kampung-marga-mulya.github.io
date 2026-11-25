@@ -1,5 +1,5 @@
 {
-  "diperiksa": "2026-11-25",
+  "diperiksa": "2026-11-26",
   "berita": [
     {
       "tanggal": "2026-11-10",
@@ -236,6 +236,17 @@
     }
   ],
   "terkait": [
+    {
+      "tanggal": "2026-11-25",
+      "sumber": "Tribunnews",
+      "judul": "Dampak Kekeringan dan Karhutla, Dompet Dhuafa Distribusikan Paket Sembako Bagi Ratusan KK di Merauke",
+      "ringkas": "Sebanyak 153 kepala keluarga (KK) di Kampung Yanggandur Kabupaten Merauke, Papua Selatan, menerima bantuan sembako dari Dompet Dhuafa.",
+      "url": "https://jabar.tribunnews.com/advertorial/1190934/dampak-kekeringan-dan-karhutla-dompet-dhuafa-distribusikan-paket-sembako-bagi-ratusan-kk-di-merauke",
+      "cover": "https://asset.tribunnews.com/_VIX7ALQBw6NLZfE6z7DNJfLNlg=/1200x675/filters:upscale():quality(30):format(webp):focal(0.5x0.5:0.5x0.5)/jabar/foto/bank/originals/bantuan-dompet-dhuafa-untuk-karhutla-di-papua.jpg",
+      "otomatis": true,
+      "kategori": "Kampung Merauke",
+      "ditemukan": "2026-11-26"
+    },
     {
       "tanggal": "2026-11-24",
       "sumber": "Viva.co.id",
@@ -487,17 +498,6 @@
       "cover": "https://www.delikasia.com/wp-content/uploads/2026/11/IMG-20261110-WA0011.jpg",
       "otomatis": true,
       "kategori": "Pertanian Merauke",
-      "ditemukan": "2026-11-15"
-    },
-    {
-      "tanggal": "2026-11-10",
-      "sumber": "infoekonomi",
-      "judul": "Siap Pasok Program Makan Bergizi Gratis, Peternak Ayam Papua Selatan Dapat Bantuan 600 Ekor Ternak",
-      "ringkas": "Pengembangan usaha peternakan di Papua Selatan terus diperkuat untuk meningkatkan kesejahteraan masyarakat sekaligus memenuhi kebutuhan",
-      "url": "https://infoekonomi.id/2026/11/siap-pasok-program-makan-bergizi-gratis-peternak-ayam-papua-selatan-dapat-bantuan-600-ekor-ternak/",
-      "cover": "http://infoekonomi.id/wp-content/uploads/2026/11/s45PQyKp6qIuB6b020261110134153.jpg",
-      "otomatis": true,
-      "kategori": "Peternakan",
       "ditemukan": "2026-11-15"
     }
   ]
