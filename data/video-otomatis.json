@@ -1,5 +1,5 @@
 {
- "diperiksa": "2026-11-25T07:44+09:00",
+ "diperiksa": "2026-11-25T18:07+09:00",
  "catatan": "Dibuat otomatis oleh scripts/update_video.py. Jangan disunting manual; gunakan video.pilihan di assets/js/data.js atau data/video-abaikan.json.",
  "video": [
   {
@@ -100,7 +100,7 @@
    "kanal": "info_kejadian_merauke",
    "keterangan": "Seorang pria dari Kampung Marga Mulya, Distrik Semangga, Merauke, pulang dari hutan dengan babi di punggungnya dan kuda menyusul di belakang. Bukan sekadar berburu, ini tentang harga diri, kejantanan, dan hubungan yang dalam dengan alam. Di sini, menjadi laki-laki artinya tahu jalan pulang sambil membawa bukti perjuangan. #PapuaSelatan #Merauke #AnakKampung #TradisiPapua #HutanAdalahGuru #MargaMul",
    "tanggal": "2025-05-05",
-   "suka": 3506,
+   "suka": 3507,
    "rasio": "9:16",
    "ditemukan": "2026-11-06",
    "rasio_sampul": 0.562,
@@ -167,7 +167,7 @@
    "kanal": "STORY AMRY",
    "tanggal": "2026-11-04",
    "tanggal_kira": true,
-   "tayang": 674,
+   "tayang": 675,
    "durasi": 740,
    "rasio": "16:9",
    "ditemukan": "2026-11-04",
@@ -207,22 +207,6 @@
   },
   {
    "platform": "youtube",
-   "id": "29_kk5DTN40",
-   "url": "https://www.youtube.com/watch?v=29_kk5DTN40",
-   "judul": "TERNYATA RAJIN BERTANI JUGA BETERNAK‼️ WARGA LOKAL KAMPUNG MARGA MULYA EKS TRANSMIGRASI SEMANGGA 2",
-   "kanal": "Leksono Japa",
-   "tanggal": "2025-11-25",
-   "tanggal_kira": true,
-   "tayang": 2984,
-   "durasi": 1102,
-   "rasio": "16:9",
-   "ditemukan": "2026-11-04",
-   "rasio_sampul": 1.333,
-   "sampul": "assets/img/video/youtube-29_kk5DTN40.jpg",
-   "skor": 6.96
-  },
-  {
-   "platform": "youtube",
    "id": "g-zeq2Pwx9o",
    "url": "https://www.youtube.com/watch?v=g-zeq2Pwx9o",
    "judul": "TERNYATA MASIH MENUMPANG‼️WARGA KAMPUNG MARGA MULYA EKS TRANSMIGRASI SEMANGGA 2 MERAUKE",
@@ -245,7 +229,7 @@
    "kanal": "Leksono Japa",
    "tanggal": "2025-11-25",
    "tanggal_kira": true,
-   "tayang": 2296,
+   "tayang": 2297,
    "durasi": 933,
    "rasio": "16:9",
    "ditemukan": "2026-11-04",
@@ -308,7 +292,7 @@
    "kanal": "Leksono Japa",
    "tanggal": "2024-11-25",
    "tanggal_kira": true,
-   "tayang": 1330,
+   "tayang": 1331,
    "durasi": 566,
    "rasio": "16:9",
    "ditemukan": "2026-11-04",
@@ -607,6 +591,22 @@
    "rasio_sampul": 1.333,
    "sampul": "assets/img/video/youtube-XRGqKjXkVmo.jpg",
    "skor": 5.864
+  },
+  {
+   "platform": "youtube",
+   "id": "XJ42WnKHTtI",
+   "url": "https://www.youtube.com/watch?v=XJ42WnKHTtI",
+   "judul": "Pembaruan saluran air marga mulya semangga dua",
+   "kanal": "EL Marhume",
+   "tanggal": "2021-11-26",
+   "tanggal_kira": true,
+   "tayang": 94,
+   "durasi": 123,
+   "rasio": "16:9",
+   "ditemukan": "2026-11-25",
+   "rasio_sampul": 1.333,
+   "sampul": "assets/img/video/youtube-XJ42WnKHTtI.jpg",
+   "skor": 5.818
   }
  ]
 }
