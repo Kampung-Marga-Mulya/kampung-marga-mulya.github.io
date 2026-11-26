@@ -1,5 +1,5 @@
 {
- "diperiksa": "2026-11-26T06:57+09:00",
+ "diperiksa": "2026-11-26T17:52+09:00",
  "catatan": "Dibuat otomatis oleh scripts/update_video.py. Jangan disunting manual; gunakan video.pilihan di assets/js/data.js atau data/video-abaikan.json.",
  "video": [
   {
@@ -100,7 +100,7 @@
    "kanal": "info_kejadian_merauke",
    "keterangan": "Seorang pria dari Kampung Marga Mulya, Distrik Semangga, Merauke, pulang dari hutan dengan babi di punggungnya dan kuda menyusul di belakang. Bukan sekadar berburu, ini tentang harga diri, kejantanan, dan hubungan yang dalam dengan alam. Di sini, menjadi laki-laki artinya tahu jalan pulang sambil membawa bukti perjuangan. #PapuaSelatan #Merauke #AnakKampung #TradisiPapua #HutanAdalahGuru #MargaMul",
    "tanggal": "2025-05-05",
-   "suka": 3507,
+   "suka": 3506,
    "rasio": "9:16",
    "ditemukan": "2026-11-06",
    "rasio_sampul": 0.562,
@@ -562,6 +562,22 @@
   },
   {
    "platform": "youtube",
+   "id": "LUCH4yWc_cw",
+   "url": "https://www.youtube.com/watch?v=LUCH4yWc_cw",
+   "judul": "TPQ Al Ittihad marga mulya merauke papua",
+   "kanal": "BUNDA RAHMA",
+   "tanggal": "2021-11-27",
+   "tanggal_kira": true,
+   "tayang": 256,
+   "durasi": 151,
+   "rasio": "16:9",
+   "ditemukan": "2026-11-26",
+   "rasio_sampul": 1.333,
+   "sampul": "assets/img/video/youtube-LUCH4yWc_cw.jpg",
+   "skor": 6.107
+  },
+  {
+   "platform": "youtube",
    "id": "m7Zz3j95XTY",
    "url": "https://www.youtube.com/watch?v=m7Zz3j95XTY",
    "judul": "pacuan kuda memperingati hari kemerdekaan HUT ke 78,Kampung MARGA MULYA SEMANGGA DUA.",
@@ -575,22 +591,6 @@
    "rasio_sampul": 1.333,
    "sampul": "assets/img/video/youtube-m7Zz3j95XTY.jpg",
    "skor": 5.987
-  },
-  {
-   "platform": "youtube",
-   "id": "XRGqKjXkVmo",
-   "url": "https://www.youtube.com/watch?v=XRGqKjXkVmo",
-   "judul": "Prakerin SMK Pertanian Kuler Di kamp. Marga Mulya - Merauke.",
-   "kanal": "Petani Milenial Merauke",
-   "tanggal": "2020-11-27",
-   "tanggal_kira": true,
-   "tayang": 110,
-   "durasi": 203,
-   "rasio": "16:9",
-   "ditemukan": "2026-11-24",
-   "rasio_sampul": 1.333,
-   "sampul": "assets/img/video/youtube-XRGqKjXkVmo.jpg",
-   "skor": 5.864
   },
   {
    "platform": "youtube",
