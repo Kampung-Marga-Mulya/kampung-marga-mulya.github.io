@@ -1,5 +1,5 @@
 {
- "diperiksa": "2026-11-27T06:55+09:00",
+ "diperiksa": "2026-11-27T18:03+09:00",
  "catatan": "Dibuat otomatis oleh scripts/update_video.py. Jangan disunting manual; gunakan video.pilihan di assets/js/data.js atau data/video-abaikan.json.",
  "video": [
   {
@@ -229,7 +229,7 @@
    "kanal": "Leksono Japa",
    "tanggal": "2025-11-27",
    "tanggal_kira": true,
-   "tayang": 2594,
+   "tayang": 2595,
    "durasi": 912,
    "rasio": "16:9",
    "ditemukan": "2026-11-04",
@@ -315,22 +315,6 @@
    "rasio_sampul": 1.333,
    "sampul": "assets/img/video/youtube-NYrnk265P5U.jpg",
    "skor": 6.59
-  },
-  {
-   "platform": "youtube",
-   "id": "6k3LJ-dfkyI",
-   "url": "https://www.youtube.com/watch?v=6k3LJ-dfkyI",
-   "judul": "HABIS UNTUK SEWA ALAT‼️PETANI PADI KAMPUNG MARGAMULYA EKS TRANSMIGRASI SEMANGGA 2 KABUPATEN MERAUKE",
-   "kanal": "Leksono Japa",
-   "tanggal": "2025-11-27",
-   "tanggal_kira": true,
-   "tayang": 580,
-   "durasi": 1193,
-   "rasio": "16:9",
-   "ditemukan": "2026-11-25",
-   "rasio_sampul": 1.333,
-   "sampul": "assets/img/video/youtube-6k3LJ-dfkyI.jpg",
-   "skor": 6.486
   },
   {
    "platform": "youtube",
@@ -527,6 +511,22 @@
    "rasio_sampul": 1.333,
    "sampul": "assets/img/video/youtube-X9q_K35VCcY.jpg",
    "skor": 6.144
+  },
+  {
+   "platform": "youtube",
+   "id": "DlUvHbFk2vs",
+   "url": "https://www.youtube.com/watch?v=DlUvHbFk2vs",
+   "judul": "HENGAR VLOG #3 - WARGA MARGA MULYA - MERAUKE",
+   "kanal": "Hendrikus Ngarbingan",
+   "tanggal": "2020-11-28",
+   "tanggal_kira": true,
+   "tayang": 289,
+   "durasi": 720,
+   "rasio": "16:9",
+   "ditemukan": "2026-11-27",
+   "rasio_sampul": 1.333,
+   "sampul": "assets/img/video/youtube-DlUvHbFk2vs.jpg",
+   "skor": 6.142
   },
   {
    "platform": "youtube",
