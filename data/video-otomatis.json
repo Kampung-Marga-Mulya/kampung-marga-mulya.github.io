@@ -1,5 +1,5 @@
 {
- "diperiksa": "2026-11-28T06:37+09:00",
+ "diperiksa": "2026-11-28T17:25+09:00",
  "catatan": "Dibuat otomatis oleh scripts/update_video.py. Jangan disunting manual; gunakan video.pilihan di assets/js/data.js atau data/video-abaikan.json.",
  "video": [
   {
@@ -318,22 +318,6 @@
   },
   {
    "platform": "youtube",
-   "id": "6k3LJ-dfkyI",
-   "url": "https://www.youtube.com/watch?v=6k3LJ-dfkyI",
-   "judul": "HABIS UNTUK SEWA ALAT‼️PETANI PADI KAMPUNG MARGAMULYA EKS TRANSMIGRASI SEMANGGA 2 KABUPATEN MERAUKE",
-   "kanal": "Leksono Japa",
-   "tanggal": "2025-11-28",
-   "tanggal_kira": true,
-   "tayang": 580,
-   "durasi": 1193,
-   "rasio": "16:9",
-   "ditemukan": "2026-11-28",
-   "rasio_sampul": 1.333,
-   "sampul": "assets/img/video/youtube-6k3LJ-dfkyI.jpg",
-   "skor": 6.486
-  },
-  {
-   "platform": "youtube",
    "id": "GstSi_HcxI4",
    "url": "https://www.youtube.com/watch?v=GstSi_HcxI4",
    "judul": "4 Unit Kubah Menuju Masjid Yayasan “Nurul Huda” Marga Mulya, Merauke #kubahindonesia#shorts",
@@ -383,22 +367,6 @@
    "rasio_sampul": 1.333,
    "sampul": "assets/img/video/youtube-639sPUOhe_k.jpg",
    "skor": 6.373
-  },
-  {
-   "platform": "youtube",
-   "id": "bDjz-3gVRMI",
-   "url": "https://www.youtube.com/watch?v=bDjz-3gVRMI",
-   "judul": "PENINJAUAN KDKMP OLEH ITJEN TNI DAN PT APN DI KAMPUNG MARGA MULYA MERAUKE",
-   "kanal": "Kodim 1707 Merauke",
-   "tanggal": "2026-06-01",
-   "tanggal_kira": true,
-   "tayang": 51,
-   "durasi": 110,
-   "rasio": "16:9",
-   "ditemukan": "2026-11-04",
-   "rasio_sampul": 1.333,
-   "sampul": "assets/img/video/youtube-bDjz-3gVRMI.jpg",
-   "skor": 6.313
   },
   {
    "platform": "youtube",
@@ -498,6 +466,22 @@
   },
   {
    "platform": "youtube",
+   "id": "bDjz-3gVRMI",
+   "url": "https://www.youtube.com/watch?v=bDjz-3gVRMI",
+   "judul": "PENINJAUAN KDKMP OLEH ITJEN TNI DAN PT APN DI KAMPUNG MARGA MULYA MERAUKE",
+   "kanal": "Kodim 1707 Merauke",
+   "tanggal": "2026-05-02",
+   "tanggal_kira": true,
+   "tayang": 51,
+   "durasi": 110,
+   "rasio": "16:9",
+   "ditemukan": "2026-11-04",
+   "rasio_sampul": 1.333,
+   "sampul": "assets/img/video/youtube-bDjz-3gVRMI.jpg",
+   "skor": 6.165
+  },
+  {
+   "platform": "youtube",
    "id": "xwMXuWhAQ14",
    "url": "https://www.youtube.com/watch?v=xwMXuWhAQ14",
    "judul": "KEMAJUAN PTDM 2021 PENGERING PADI UV DRYER DI KAMP MARGAMULYA, MERAUKE | UNIVERSITAS MUSAMUS",
@@ -562,6 +546,22 @@
   },
   {
    "platform": "youtube",
+   "id": "LUCH4yWc_cw",
+   "url": "https://www.youtube.com/watch?v=LUCH4yWc_cw",
+   "judul": "TPQ Al Ittihad marga mulya merauke papua",
+   "kanal": "BUNDA RAHMA",
+   "tanggal": "2021-11-29",
+   "tanggal_kira": true,
+   "tayang": 256,
+   "durasi": 151,
+   "rasio": "16:9",
+   "ditemukan": "2026-11-28",
+   "rasio_sampul": 1.333,
+   "sampul": "assets/img/video/youtube-LUCH4yWc_cw.jpg",
+   "skor": 6.107
+  },
+  {
+   "platform": "youtube",
    "id": "m7Zz3j95XTY",
    "url": "https://www.youtube.com/watch?v=m7Zz3j95XTY",
    "judul": "pacuan kuda memperingati hari kemerdekaan HUT ke 78,Kampung MARGA MULYA SEMANGGA DUA.",
@@ -578,6 +578,22 @@
   },
   {
    "platform": "youtube",
+   "id": "XRGqKjXkVmo",
+   "url": "https://www.youtube.com/watch?v=XRGqKjXkVmo",
+   "judul": "Prakerin SMK Pertanian Kuler Di kamp. Marga Mulya - Merauke.",
+   "kanal": "Petani Milenial Merauke",
+   "tanggal": "2019-11-30",
+   "tanggal_kira": true,
+   "tayang": 110,
+   "durasi": 203,
+   "rasio": "16:9",
+   "ditemukan": "2026-11-28",
+   "rasio_sampul": 1.333,
+   "sampul": "assets/img/video/youtube-XRGqKjXkVmo.jpg",
+   "skor": 5.864
+  },
+  {
+   "platform": "youtube",
    "id": "XJ42WnKHTtI",
    "url": "https://www.youtube.com/watch?v=XJ42WnKHTtI",
    "judul": "Pembaruan saluran air marga mulya semangga dua",
@@ -591,22 +607,6 @@
    "rasio_sampul": 1.333,
    "sampul": "assets/img/video/youtube-XJ42WnKHTtI.jpg",
    "skor": 5.818
-  },
-  {
-   "platform": "youtube",
-   "id": "B_BAq4rco-g",
-   "url": "https://www.youtube.com/watch?v=B_BAq4rco-g",
-   "judul": "Acara penutupan KKP Yaleka Maro Merauke angkatan XVII di Kampung Marga Mulya...",
-   "kanal": "Unarapal Chanel",
-   "tanggal": "2025-11-28",
-   "tanggal_kira": true,
-   "tayang": 48,
-   "durasi": 203,
-   "rasio": "16:9",
-   "ditemukan": "2026-11-28",
-   "rasio_sampul": 1.333,
-   "sampul": "assets/img/video/youtube-B_BAq4rco-g.jpg",
-   "skor": 5.77
   }
  ]
 }
